@@ -1,0 +1,22 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.page-forms .has-feedback .form-control-feedback {
+	right: 15px;
+}
+.page-forms .summary-errors p {
+	color: inherit;
+}
+.page-forms .summary-errors ul li a {
+	color: inherit;
+}
+.page-forms .summary-errors ul li a:hover {
+	text-decoration: none;
+}
+@media (min-width: 768px) {
+	.page-forms #exampleFullForm .form-horizontal .control-label {
+		text-align: inherit;
+	}
+}

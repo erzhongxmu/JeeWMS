@@ -1,0 +1,4 @@
+/*! jQuery UI integration for DataTables' Responsive
+ * ©2015 SpryMedia Ltd - datatables.net/license
+ */
+(function(a){if(typeof define==="function"&&define.amd){define(["jquery","datatables.net-jqui","datatables.net-responsive"],function(b){return a(b,window,document)})}else{if(typeof exports==="object"){module.exports=function(b,c){if(!b){b=window}if(!c||!c.fn.dataTable){c=require("datatables.net-jqui")(b,c).$}if(!c.fn.dataTable.Responsive){require("datatables.net-responsive")(b,c)}return a(c,b,b.document)}}else{a(jQuery,window,document)}}}(function(f,d,a,g){var e=f.fn.dataTable;var c=e.Responsive.display;var b=c.modal;c.modal=function(h){return function(j,k,i){if(!f.fn.dialog){b(j,k,i)}else{if(!k){f("<div/>").append(i()).appendTo("body").dialog(f.extend(true,{title:h&&h.header?h.header(j):"",width:500},h.dialog))}}}};return e.Responsive}));

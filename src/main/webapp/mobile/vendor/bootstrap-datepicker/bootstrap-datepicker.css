@@ -1,0 +1,398 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.datepicker {
+	padding: 4px;
+	margin: 0;
+	border-radius: 3px;
+
+	direction: ltr;
+}
+.datepicker-inline {
+	display: block !important;
+	width: 220px;
+}
+.datepicker.datepicker-rtl {
+	direction: rtl;
+}
+.datepicker.datepicker-rtl table tr td span {
+	float: right;
+}
+.datepicker-dropdown {
+	top: 0;
+	left: 0;
+}
+.datepicker-dropdown:before {
+	position: absolute;
+	display: inline-block;
+	content: "";
+	border-top: 0;
+	border-right: 7px solid transparent;
+	border-bottom: 7px solid #e4eaec;
+	border-bottom-color: rgba(0, 0, 0, .2);
+	border-left: 7px solid transparent;
+}
+.datepicker-dropdown:after {
+	position: absolute;
+	display: inline-block;
+	content: "";
+	border-top: 0;
+	border-right: 6px solid transparent;
+	border-bottom: 6px solid #fff;
+	border-left: 6px solid transparent;
+}
+.datepicker-dropdown.datepicker-orient-left:before {
+	left: 6px;
+}
+.datepicker-dropdown.datepicker-orient-left:after {
+	left: 7px;
+}
+.datepicker-dropdown.datepicker-orient-right:before {
+	right: 6px;
+}
+.datepicker-dropdown.datepicker-orient-right:after {
+	right: 7px;
+}
+.datepicker-dropdown.datepicker-orient-bottom:before {
+	top: -7px;
+}
+.datepicker-dropdown.datepicker-orient-bottom:after {
+	top: -6px;
+}
+.datepicker-dropdown.datepicker-orient-top:before {
+	bottom: -7px;
+	border-top: 7px solid #e4eaec;
+	border-bottom: 0;
+}
+.datepicker-dropdown.datepicker-orient-top:after {
+	bottom: -6px;
+	border-top: 6px solid #fff;
+	border-bottom: 0;
+}
+.datepicker > div {
+	display: none;
+}
+.datepicker.days .datepicker-days, .datepicker.months .datepicker-months, .datepicker.years .datepicker-years {
+	display: block;
+}
+.datepicker table {
+	margin: 0;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+
+	-webkit-touch-callout: none;
+}
+.datepicker table tr td, .datepicker table tr th {
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	border: none;
+	border-radius: 3px;
+}
+.table-striped .datepicker table tr td, .table-striped .datepicker table tr th {
+	background-color: transparent;
+}
+.datepicker table tr td.day:hover, .datepicker table tr td.day.focused {
+	cursor: pointer;
+	background: #e4eaec;
+}
+.datepicker table tr td.old, .datepicker table tr td.new {
+	color: #a3afb7;
+}
+.datepicker table tr td.disabled, .datepicker table tr td.disabled:hover {
+	color: #a3afb7;
+	cursor: default;
+	background: none;
+}
+.datepicker table tr td.highlighted {
+	background: #57c7d4;
+	border-radius: 0;
+}
+.datepicker table tr td.today, .datepicker table tr td.today:hover, .datepicker table tr td.today.disabled, .datepicker table tr td.today.disabled:hover {
+	color: #000;
+	background-color: #ffdb99;
+	border-color: #ffb733;
+}
+.datepicker table tr td.today:focus, .datepicker table tr td.today:hover:focus, .datepicker table tr td.today.disabled:focus, .datepicker table tr td.today.disabled:hover:focus, .datepicker table tr td.today.focus, .datepicker table tr td.today:hover.focus, .datepicker table tr td.today.disabled.focus, .datepicker table tr td.today.disabled:hover.focus {
+	color: #000;
+	background-color: #ffc966;
+	border-color: #b37400;
+}
+.datepicker table tr td.today:hover, .datepicker table tr td.today:hover:hover, .datepicker table tr td.today.disabled:hover, .datepicker table tr td.today.disabled:hover:hover {
+	color: #000;
+	background-color: #ffc966;
+	border-color: #f59e00;
+}
+.datepicker table tr td.today:active, .datepicker table tr td.today:hover:active, .datepicker table tr td.today.disabled:active, .datepicker table tr td.today.disabled:hover:active, .datepicker table tr td.today.active, .datepicker table tr td.today:hover.active, .datepicker table tr td.today.disabled.active, .datepicker table tr td.today.disabled:hover.active, .open > .dropdown-toggle.datepicker table tr td.today, .open > .dropdown-toggle.datepicker table tr td.today:hover, .open > .dropdown-toggle.datepicker table tr td.today.disabled, .open > .dropdown-toggle.datepicker table tr td.today.disabled:hover {
+	color: #000;
+	background-color: #ffc966;
+	border-color: #f59e00;
+}
+.datepicker table tr td.today:active:hover, .datepicker table tr td.today:hover:active:hover, .datepicker table tr td.today.disabled:active:hover, .datepicker table tr td.today.disabled:hover:active:hover, .datepicker table tr td.today.active:hover, .datepicker table tr td.today:hover.active:hover, .datepicker table tr td.today.disabled.active:hover, .datepicker table tr td.today.disabled:hover.active:hover, .open > .dropdown-toggle.datepicker table tr td.today:hover, .open > .dropdown-toggle.datepicker table tr td.today:hover:hover, .open > .dropdown-toggle.datepicker table tr td.today.disabled:hover, .open > .dropdown-toggle.datepicker table tr td.today.disabled:hover:hover, .datepicker table tr td.today:active:focus, .datepicker table tr td.today:hover:active:focus, .datepicker table tr td.today.disabled:active:focus, .datepicker table tr td.today.disabled:hover:active:focus, .datepicker table tr td.today.active:focus, .datepicker table tr td.today:hover.active:focus, .datepicker table tr td.today.disabled.active:focus, .datepicker table tr td.today.disabled:hover.active:focus, .open > .dropdown-toggle.datepicker table tr td.today:focus, .open > .dropdown-toggle.datepicker table tr td.today:hover:focus, .open > .dropdown-toggle.datepicker table tr td.today.disabled:focus, .open > .dropdown-toggle.datepicker table tr td.today.disabled:hover:focus, .datepicker table tr td.today:active.focus, .datepicker table tr td.today:hover:active.focus, .datepicker table tr td.today.disabled:active.focus, .datepicker table tr td.today.disabled:hover:active.focus, .datepicker table tr td.today.active.focus, .datepicker table tr td.today:hover.active.focus, .datepicker table tr td.today.disabled.active.focus, .datepicker table tr td.today.disabled:hover.active.focus, .open > .dropdown-toggle.datepicker table tr td.today.focus, .open > .dropdown-toggle.datepicker table tr td.today:hover.focus, .open > .dropdown-toggle.datepicker table tr td.today.disabled.focus, .open > .dropdown-toggle.datepicker table tr td.today.disabled:hover.focus {
+	color: #000;
+	background-color: #ffbc42;
+	border-color: #b37400;
+}
+.datepicker table tr td.today:active, .datepicker table tr td.today:hover:active, .datepicker table tr td.today.disabled:active, .datepicker table tr td.today.disabled:hover:active, .datepicker table tr td.today.active, .datepicker table tr td.today:hover.active, .datepicker table tr td.today.disabled.active, .datepicker table tr td.today.disabled:hover.active, .open > .dropdown-toggle.datepicker table tr td.today, .open > .dropdown-toggle.datepicker table tr td.today:hover, .open > .dropdown-toggle.datepicker table tr td.today.disabled, .open > .dropdown-toggle.datepicker table tr td.today.disabled:hover {
+	background-image: none;
+}
+.datepicker table tr td.today.disabled:hover, .datepicker table tr td.today:hover.disabled:hover, .datepicker table tr td.today.disabled.disabled:hover, .datepicker table tr td.today.disabled:hover.disabled:hover, .datepicker table tr td.today[disabled]:hover, .datepicker table tr td.today:hover[disabled]:hover, .datepicker table tr td.today.disabled[disabled]:hover, .datepicker table tr td.today.disabled:hover[disabled]:hover, fieldset[disabled] .datepicker table tr td.today:hover, fieldset[disabled] .datepicker table tr td.today:hover:hover, fieldset[disabled] .datepicker table tr td.today.disabled:hover, fieldset[disabled] .datepicker table tr td.today.disabled:hover:hover, .datepicker table tr td.today.disabled:focus, .datepicker table tr td.today:hover.disabled:focus, .datepicker table tr td.today.disabled.disabled:focus, .datepicker table tr td.today.disabled:hover.disabled:focus, .datepicker table tr td.today[disabled]:focus, .datepicker table tr td.today:hover[disabled]:focus, .datepicker table tr td.today.disabled[disabled]:focus, .datepicker table tr td.today.disabled:hover[disabled]:focus, fieldset[disabled] .datepicker table tr td.today:focus, fieldset[disabled] .datepicker table tr td.today:hover:focus, fieldset[disabled] .datepicker table tr td.today.disabled:focus, fieldset[disabled] .datepicker table tr td.today.disabled:hover:focus, .datepicker table tr td.today.disabled.focus, .datepicker table tr td.today:hover.disabled.focus, .datepicker table tr td.today.disabled.disabled.focus, .datepicker table tr td.today.disabled:hover.disabled.focus, .datepicker table tr td.today[disabled].focus, .datepicker table tr td.today:hover[disabled].focus, .datepicker table tr td.today.disabled[disabled].focus, .datepicker table tr td.today.disabled:hover[disabled].focus, fieldset[disabled] .datepicker table tr td.today.focus, fieldset[disabled] .datepicker table tr td.today:hover.focus, fieldset[disabled] .datepicker table tr td.today.disabled.focus, fieldset[disabled] .datepicker table tr td.today.disabled:hover.focus {
+	background-color: #ffdb99;
+	border-color: #ffb733;
+}
+.datepicker table tr td.today .badge, .datepicker table tr td.today:hover .badge, .datepicker table tr td.today.disabled .badge, .datepicker table tr td.today.disabled:hover .badge {
+	color: #ffdb99;
+	background-color: #000;
+}
+.datepicker table tr td.today:hover:hover {
+	color: #000;
+}
+.datepicker table tr td.today.active:hover {
+	color: #fff;
+}
+.datepicker table tr td.range, .datepicker table tr td.range:hover, .datepicker table tr td.range.disabled, .datepicker table tr td.range.disabled:hover {
+	background: #e4eaec;
+	border-radius: 0;
+}
+.datepicker table tr td.range.today, .datepicker table tr td.range.today:hover, .datepicker table tr td.range.today.disabled, .datepicker table tr td.range.today.disabled:hover {
+	color: #000;
+	background-color: #f2c876;
+	border-color: #e8a219;
+	border-radius: 0;
+}
+.datepicker table tr td.range.today:focus, .datepicker table tr td.range.today:hover:focus, .datepicker table tr td.range.today.disabled:focus, .datepicker table tr td.range.today.disabled:hover:focus, .datepicker table tr td.range.today.focus, .datepicker table tr td.range.today:hover.focus, .datepicker table tr td.range.today.disabled.focus, .datepicker table tr td.range.today.disabled:hover.focus {
+	color: #000;
+	background-color: #edb548;
+	border-color: #76520c;
+}
+.datepicker table tr td.range.today:hover, .datepicker table tr td.range.today:hover:hover, .datepicker table tr td.range.today.disabled:hover, .datepicker table tr td.range.today.disabled:hover:hover {
+	color: #000;
+	background-color: #edb548;
+	border-color: #b37c12;
+}
+.datepicker table tr td.range.today:active, .datepicker table tr td.range.today:hover:active, .datepicker table tr td.range.today.disabled:active, .datepicker table tr td.range.today.disabled:hover:active, .datepicker table tr td.range.today.active, .datepicker table tr td.range.today:hover.active, .datepicker table tr td.range.today.disabled.active, .datepicker table tr td.range.today.disabled:hover.active, .open > .dropdown-toggle.datepicker table tr td.range.today, .open > .dropdown-toggle.datepicker table tr td.range.today:hover, .open > .dropdown-toggle.datepicker table tr td.range.today.disabled, .open > .dropdown-toggle.datepicker table tr td.range.today.disabled:hover {
+	color: #000;
+	background-color: #edb548;
+	border-color: #b37c12;
+}
+.datepicker table tr td.range.today:active:hover, .datepicker table tr td.range.today:hover:active:hover, .datepicker table tr td.range.today.disabled:active:hover, .datepicker table tr td.range.today.disabled:hover:active:hover, .datepicker table tr td.range.today.active:hover, .datepicker table tr td.range.today:hover.active:hover, .datepicker table tr td.range.today.disabled.active:hover, .datepicker table tr td.range.today.disabled:hover.active:hover, .open > .dropdown-toggle.datepicker table tr td.range.today:hover, .open > .dropdown-toggle.datepicker table tr td.range.today:hover:hover, .open > .dropdown-toggle.datepicker table tr td.range.today.disabled:hover, .open > .dropdown-toggle.datepicker table tr td.range.today.disabled:hover:hover, .datepicker table tr td.range.today:active:focus, .datepicker table tr td.range.today:hover:active:focus, .datepicker table tr td.range.today.disabled:active:focus, .datepicker table tr td.range.today.disabled:hover:active:focus, .datepicker table tr td.range.today.active:focus, .datepicker table tr td.range.today:hover.active:focus, .datepicker table tr td.range.today.disabled.active:focus, .datepicker table tr td.range.today.disabled:hover.active:focus, .open > .dropdown-toggle.datepicker table tr td.range.today:focus, .open > .dropdown-toggle.datepicker table tr td.range.today:hover:focus, .open > .dropdown-toggle.datepicker table tr td.range.today.disabled:focus, .open > .dropdown-toggle.datepicker table tr td.range.today.disabled:hover:focus, .datepicker table tr td.range.today:active.focus, .datepicker table tr td.range.today:hover:active.focus, .datepicker table tr td.range.today.disabled:active.focus, .datepicker table tr td.range.today.disabled:hover:active.focus, .datepicker table tr td.range.today.active.focus, .datepicker table tr td.range.today:hover.active.focus, .datepicker table tr td.range.today.disabled.active.focus, .datepicker table tr td.range.today.disabled:hover.active.focus, .open > .dropdown-toggle.datepicker table tr td.range.today.focus, .open > .dropdown-toggle.datepicker table tr td.range.today:hover.focus, .open > .dropdown-toggle.datepicker table tr td.range.today.disabled.focus, .open > .dropdown-toggle.datepicker table tr td.range.today.disabled:hover.focus {
+	color: #000;
+	background-color: #eaa827;
+	border-color: #76520c;
+}
+.datepicker table tr td.range.today:active, .datepicker table tr td.range.today:hover:active, .datepicker table tr td.range.today.disabled:active, .datepicker table tr td.range.today.disabled:hover:active, .datepicker table tr td.range.today.active, .datepicker table tr td.range.today:hover.active, .datepicker table tr td.range.today.disabled.active, .datepicker table tr td.range.today.disabled:hover.active, .open > .dropdown-toggle.datepicker table tr td.range.today, .open > .dropdown-toggle.datepicker table tr td.range.today:hover, .open > .dropdown-toggle.datepicker table tr td.range.today.disabled, .open > .dropdown-toggle.datepicker table tr td.range.today.disabled:hover {
+	background-image: none;
+}
+.datepicker table tr td.range.today.disabled:hover, .datepicker table tr td.range.today:hover.disabled:hover, .datepicker table tr td.range.today.disabled.disabled:hover, .datepicker table tr td.range.today.disabled:hover.disabled:hover, .datepicker table tr td.range.today[disabled]:hover, .datepicker table tr td.range.today:hover[disabled]:hover, .datepicker table tr td.range.today.disabled[disabled]:hover, .datepicker table tr td.range.today.disabled:hover[disabled]:hover, fieldset[disabled] .datepicker table tr td.range.today:hover, fieldset[disabled] .datepicker table tr td.range.today:hover:hover, fieldset[disabled] .datepicker table tr td.range.today.disabled:hover, fieldset[disabled] .datepicker table tr td.range.today.disabled:hover:hover, .datepicker table tr td.range.today.disabled:focus, .datepicker table tr td.range.today:hover.disabled:focus, .datepicker table tr td.range.today.disabled.disabled:focus, .datepicker table tr td.range.today.disabled:hover.disabled:focus, .datepicker table tr td.range.today[disabled]:focus, .datepicker table tr td.range.today:hover[disabled]:focus, .datepicker table tr td.range.today.disabled[disabled]:focus, .datepicker table tr td.range.today.disabled:hover[disabled]:focus, fieldset[disabled] .datepicker table tr td.range.today:focus, fieldset[disabled] .datepicker table tr td.range.today:hover:focus, fieldset[disabled] .datepicker table tr td.range.today.disabled:focus, fieldset[disabled] .datepicker table tr td.range.today.disabled:hover:focus, .datepicker table tr td.range.today.disabled.focus, .datepicker table tr td.range.today:hover.disabled.focus, .datepicker table tr td.range.today.disabled.disabled.focus, .datepicker table tr td.range.today.disabled:hover.disabled.focus, .datepicker table tr td.range.today[disabled].focus, .datepicker table tr td.range.today:hover[disabled].focus, .datepicker table tr td.range.today.disabled[disabled].focus, .datepicker table tr td.range.today.disabled:hover[disabled].focus, fieldset[disabled] .datepicker table tr td.range.today.focus, fieldset[disabled] .datepicker table tr td.range.today:hover.focus, fieldset[disabled] .datepicker table tr td.range.today.disabled.focus, fieldset[disabled] .datepicker table tr td.range.today.disabled:hover.focus {
+	background-color: #f2c876;
+	border-color: #e8a219;
+}
+.datepicker table tr td.range.today .badge, .datepicker table tr td.range.today:hover .badge, .datepicker table tr td.range.today.disabled .badge, .datepicker table tr td.range.today.disabled:hover .badge {
+	color: #f2c876;
+	background-color: #000;
+}
+.datepicker table tr td.selected, .datepicker table tr td.selected:hover, .datepicker table tr td.selected.disabled, .datepicker table tr td.selected.disabled:hover {
+	color: #fff;
+	background-color: #ccd5db;
+	border-color: #a3afb7;
+}
+.datepicker table tr td.selected:focus, .datepicker table tr td.selected:hover:focus, .datepicker table tr td.selected.disabled:focus, .datepicker table tr td.selected.disabled:hover:focus, .datepicker table tr td.selected.focus, .datepicker table tr td.selected:hover.focus, .datepicker table tr td.selected.disabled.focus, .datepicker table tr td.selected.disabled:hover.focus {
+	color: #fff;
+	background-color: #aebcc6;
+	border-color: #60707b;
+}
+.datepicker table tr td.selected:hover, .datepicker table tr td.selected:hover:hover, .datepicker table tr td.selected.disabled:hover, .datepicker table tr td.selected.disabled:hover:hover {
+	color: #fff;
+	background-color: #aebcc6;
+	border-color: #81919c;
+}
+.datepicker table tr td.selected:active, .datepicker table tr td.selected:hover:active, .datepicker table tr td.selected.disabled:active, .datepicker table tr td.selected.disabled:hover:active, .datepicker table tr td.selected.active, .datepicker table tr td.selected:hover.active, .datepicker table tr td.selected.disabled.active, .datepicker table tr td.selected.disabled:hover.active, .open > .dropdown-toggle.datepicker table tr td.selected, .open > .dropdown-toggle.datepicker table tr td.selected:hover, .open > .dropdown-toggle.datepicker table tr td.selected.disabled, .open > .dropdown-toggle.datepicker table tr td.selected.disabled:hover {
+	color: #fff;
+	background-color: #aebcc6;
+	border-color: #81919c;
+}
+.datepicker table tr td.selected:active:hover, .datepicker table tr td.selected:hover:active:hover, .datepicker table tr td.selected.disabled:active:hover, .datepicker table tr td.selected.disabled:hover:active:hover, .datepicker table tr td.selected.active:hover, .datepicker table tr td.selected:hover.active:hover, .datepicker table tr td.selected.disabled.active:hover, .datepicker table tr td.selected.disabled:hover.active:hover, .open > .dropdown-toggle.datepicker table tr td.selected:hover, .open > .dropdown-toggle.datepicker table tr td.selected:hover:hover, .open > .dropdown-toggle.datepicker table tr td.selected.disabled:hover, .open > .dropdown-toggle.datepicker table tr td.selected.disabled:hover:hover, .datepicker table tr td.selected:active:focus, .datepicker table tr td.selected:hover:active:focus, .datepicker table tr td.selected.disabled:active:focus, .datepicker table tr td.selected.disabled:hover:active:focus, .datepicker table tr td.selected.active:focus, .datepicker table tr td.selected:hover.active:focus, .datepicker table tr td.selected.disabled.active:focus, .datepicker table tr td.selected.disabled:hover.active:focus, .open > .dropdown-toggle.datepicker table tr td.selected:focus, .open > .dropdown-toggle.datepicker table tr td.selected:hover:focus, .open > .dropdown-toggle.datepicker table tr td.selected.disabled:focus, .open > .dropdown-toggle.datepicker table tr td.selected.disabled:hover:focus, .datepicker table tr td.selected:active.focus, .datepicker table tr td.selected:hover:active.focus, .datepicker table tr td.selected.disabled:active.focus, .datepicker table tr td.selected.disabled:hover:active.focus, .datepicker table tr td.selected.active.focus, .datepicker table tr td.selected:hover.active.focus, .datepicker table tr td.selected.disabled.active.focus, .datepicker table tr td.selected.disabled:hover.active.focus, .open > .dropdown-toggle.datepicker table tr td.selected.focus, .open > .dropdown-toggle.datepicker table tr td.selected:hover.focus, .open > .dropdown-toggle.datepicker table tr td.selected.disabled.focus, .open > .dropdown-toggle.datepicker table tr td.selected.disabled:hover.focus {
+	color: #fff;
+	background-color: #99abb7;
+	border-color: #60707b;
+}
+.datepicker table tr td.selected:active, .datepicker table tr td.selected:hover:active, .datepicker table tr td.selected.disabled:active, .datepicker table tr td.selected.disabled:hover:active, .datepicker table tr td.selected.active, .datepicker table tr td.selected:hover.active, .datepicker table tr td.selected.disabled.active, .datepicker table tr td.selected.disabled:hover.active, .open > .dropdown-toggle.datepicker table tr td.selected, .open > .dropdown-toggle.datepicker table tr td.selected:hover, .open > .dropdown-toggle.datepicker table tr td.selected.disabled, .open > .dropdown-toggle.datepicker table tr td.selected.disabled:hover {
+	background-image: none;
+}
+.datepicker table tr td.selected.disabled:hover, .datepicker table tr td.selected:hover.disabled:hover, .datepicker table tr td.selected.disabled.disabled:hover, .datepicker table tr td.selected.disabled:hover.disabled:hover, .datepicker table tr td.selected[disabled]:hover, .datepicker table tr td.selected:hover[disabled]:hover, .datepicker table tr td.selected.disabled[disabled]:hover, .datepicker table tr td.selected.disabled:hover[disabled]:hover, fieldset[disabled] .datepicker table tr td.selected:hover, fieldset[disabled] .datepicker table tr td.selected:hover:hover, fieldset[disabled] .datepicker table tr td.selected.disabled:hover, fieldset[disabled] .datepicker table tr td.selected.disabled:hover:hover, .datepicker table tr td.selected.disabled:focus, .datepicker table tr td.selected:hover.disabled:focus, .datepicker table tr td.selected.disabled.disabled:focus, .datepicker table tr td.selected.disabled:hover.disabled:focus, .datepicker table tr td.selected[disabled]:focus, .datepicker table tr td.selected:hover[disabled]:focus, .datepicker table tr td.selected.disabled[disabled]:focus, .datepicker table tr td.selected.disabled:hover[disabled]:focus, fieldset[disabled] .datepicker table tr td.selected:focus, fieldset[disabled] .datepicker table tr td.selected:hover:focus, fieldset[disabled] .datepicker table tr td.selected.disabled:focus, fieldset[disabled] .datepicker table tr td.selected.disabled:hover:focus, .datepicker table tr td.selected.disabled.focus, .datepicker table tr td.selected:hover.disabled.focus, .datepicker table tr td.selected.disabled.disabled.focus, .datepicker table tr td.selected.disabled:hover.disabled.focus, .datepicker table tr td.selected[disabled].focus, .datepicker table tr td.selected:hover[disabled].focus, .datepicker table tr td.selected.disabled[disabled].focus, .datepicker table tr td.selected.disabled:hover[disabled].focus, fieldset[disabled] .datepicker table tr td.selected.focus, fieldset[disabled] .datepicker table tr td.selected:hover.focus, fieldset[disabled] .datepicker table tr td.selected.disabled.focus, fieldset[disabled] .datepicker table tr td.selected.disabled:hover.focus {
+	background-color: #ccd5db;
+	border-color: #a3afb7;
+}
+.datepicker table tr td.selected .badge, .datepicker table tr td.selected:hover .badge, .datepicker table tr td.selected.disabled .badge, .datepicker table tr td.selected.disabled:hover .badge {
+	color: #ccd5db;
+	background-color: #fff;
+}
+.datepicker table tr td.active, .datepicker table tr td.active:hover, .datepicker table tr td.active.disabled, .datepicker table tr td.active.disabled:hover {
+	color: #fff;
+	background-color: #62a8ea;
+	border-color: #62a8ea;
+}
+.datepicker table tr td.active:focus, .datepicker table tr td.active:hover:focus, .datepicker table tr td.active.disabled:focus, .datepicker table tr td.active.disabled:hover:focus, .datepicker table tr td.active.focus, .datepicker table tr td.active:hover.focus, .datepicker table tr td.active.disabled.focus, .datepicker table tr td.active.disabled:hover.focus {
+	color: #fff;
+	background-color: #358fe4;
+	border-color: #1869b4;
+}
+.datepicker table tr td.active:hover, .datepicker table tr td.active:hover:hover, .datepicker table tr td.active.disabled:hover, .datepicker table tr td.active.disabled:hover:hover {
+	color: #fff;
+	background-color: #358fe4;
+	border-color: #2c8ae3;
+}
+.datepicker table tr td.active:active, .datepicker table tr td.active:hover:active, .datepicker table tr td.active.disabled:active, .datepicker table tr td.active.disabled:hover:active, .datepicker table tr td.active.active, .datepicker table tr td.active:hover.active, .datepicker table tr td.active.disabled.active, .datepicker table tr td.active.disabled:hover.active, .open > .dropdown-toggle.datepicker table tr td.active, .open > .dropdown-toggle.datepicker table tr td.active:hover, .open > .dropdown-toggle.datepicker table tr td.active.disabled, .open > .dropdown-toggle.datepicker table tr td.active.disabled:hover {
+	color: #fff;
+	background-color: #358fe4;
+	border-color: #2c8ae3;
+}
+.datepicker table tr td.active:active:hover, .datepicker table tr td.active:hover:active:hover, .datepicker table tr td.active.disabled:active:hover, .datepicker table tr td.active.disabled:hover:active:hover, .datepicker table tr td.active.active:hover, .datepicker table tr td.active:hover.active:hover, .datepicker table tr td.active.disabled.active:hover, .datepicker table tr td.active.disabled:hover.active:hover, .open > .dropdown-toggle.datepicker table tr td.active:hover, .open > .dropdown-toggle.datepicker table tr td.active:hover:hover, .open > .dropdown-toggle.datepicker table tr td.active.disabled:hover, .open > .dropdown-toggle.datepicker table tr td.active.disabled:hover:hover, .datepicker table tr td.active:active:focus, .datepicker table tr td.active:hover:active:focus, .datepicker table tr td.active.disabled:active:focus, .datepicker table tr td.active.disabled:hover:active:focus, .datepicker table tr td.active.active:focus, .datepicker table tr td.active:hover.active:focus, .datepicker table tr td.active.disabled.active:focus, .datepicker table tr td.active.disabled:hover.active:focus, .open > .dropdown-toggle.datepicker table tr td.active:focus, .open > .dropdown-toggle.datepicker table tr td.active:hover:focus, .open > .dropdown-toggle.datepicker table tr td.active.disabled:focus, .open > .dropdown-toggle.datepicker table tr td.active.disabled:hover:focus, .datepicker table tr td.active:active.focus, .datepicker table tr td.active:hover:active.focus, .datepicker table tr td.active.disabled:active.focus, .datepicker table tr td.active.disabled:hover:active.focus, .datepicker table tr td.active.active.focus, .datepicker table tr td.active:hover.active.focus, .datepicker table tr td.active.disabled.active.focus, .datepicker table tr td.active.disabled:hover.active.focus, .open > .dropdown-toggle.datepicker table tr td.active.focus, .open > .dropdown-toggle.datepicker table tr td.active:hover.focus, .open > .dropdown-toggle.datepicker table tr td.active.disabled.focus, .open > .dropdown-toggle.datepicker table tr td.active.disabled:hover.focus {
+	color: #fff;
+	background-color: #1d7dd8;
+	border-color: #1869b4;
+}
+.datepicker table tr td.active:active, .datepicker table tr td.active:hover:active, .datepicker table tr td.active.disabled:active, .datepicker table tr td.active.disabled:hover:active, .datepicker table tr td.active.active, .datepicker table tr td.active:hover.active, .datepicker table tr td.active.disabled.active, .datepicker table tr td.active.disabled:hover.active, .open > .dropdown-toggle.datepicker table tr td.active, .open > .dropdown-toggle.datepicker table tr td.active:hover, .open > .dropdown-toggle.datepicker table tr td.active.disabled, .open > .dropdown-toggle.datepicker table tr td.active.disabled:hover {
+	background-image: none;
+}
+.datepicker table tr td.active.disabled:hover, .datepicker table tr td.active:hover.disabled:hover, .datepicker table tr td.active.disabled.disabled:hover, .datepicker table tr td.active.disabled:hover.disabled:hover, .datepicker table tr td.active[disabled]:hover, .datepicker table tr td.active:hover[disabled]:hover, .datepicker table tr td.active.disabled[disabled]:hover, .datepicker table tr td.active.disabled:hover[disabled]:hover, fieldset[disabled] .datepicker table tr td.active:hover, fieldset[disabled] .datepicker table tr td.active:hover:hover, fieldset[disabled] .datepicker table tr td.active.disabled:hover, fieldset[disabled] .datepicker table tr td.active.disabled:hover:hover, .datepicker table tr td.active.disabled:focus, .datepicker table tr td.active:hover.disabled:focus, .datepicker table tr td.active.disabled.disabled:focus, .datepicker table tr td.active.disabled:hover.disabled:focus, .datepicker table tr td.active[disabled]:focus, .datepicker table tr td.active:hover[disabled]:focus, .datepicker table tr td.active.disabled[disabled]:focus, .datepicker table tr td.active.disabled:hover[disabled]:focus, fieldset[disabled] .datepicker table tr td.active:focus, fieldset[disabled] .datepicker table tr td.active:hover:focus, fieldset[disabled] .datepicker table tr td.active.disabled:focus, fieldset[disabled] .datepicker table tr td.active.disabled:hover:focus, .datepicker table tr td.active.disabled.focus, .datepicker table tr td.active:hover.disabled.focus, .datepicker table tr td.active.disabled.disabled.focus, .datepicker table tr td.active.disabled:hover.disabled.focus, .datepicker table tr td.active[disabled].focus, .datepicker table tr td.active:hover[disabled].focus, .datepicker table tr td.active.disabled[disabled].focus, .datepicker table tr td.active.disabled:hover[disabled].focus, fieldset[disabled] .datepicker table tr td.active.focus, fieldset[disabled] .datepicker table tr td.active:hover.focus, fieldset[disabled] .datepicker table tr td.active.disabled.focus, fieldset[disabled] .datepicker table tr td.active.disabled:hover.focus {
+	background-color: #62a8ea;
+	border-color: #62a8ea;
+}
+.datepicker table tr td.active .badge, .datepicker table tr td.active:hover .badge, .datepicker table tr td.active.disabled .badge, .datepicker table tr td.active.disabled:hover .badge {
+	color: #62a8ea;
+	background-color: #fff;
+}
+.datepicker table tr td span {
+	display: block;
+	float: left;
+	width: 23%;
+	height: 54px;
+	margin: 1%;
+	line-height: 54px;
+	cursor: pointer;
+	border-radius: 3px;
+}
+.datepicker table tr td span:hover, .datepicker table tr td span.focused {
+	background: #e4eaec;
+}
+.datepicker table tr td span.disabled, .datepicker table tr td span.disabled:hover {
+	color: #a3afb7;
+	cursor: default;
+	background: none;
+}
+.datepicker table tr td span.active, .datepicker table tr td span.active:hover, .datepicker table tr td span.active.disabled, .datepicker table tr td span.active.disabled:hover {
+	color: #fff;
+	background-color: #62a8ea;
+	border-color: #62a8ea;
+}
+.datepicker table tr td span.active:focus, .datepicker table tr td span.active:hover:focus, .datepicker table tr td span.active.disabled:focus, .datepicker table tr td span.active.disabled:hover:focus, .datepicker table tr td span.active.focus, .datepicker table tr td span.active:hover.focus, .datepicker table tr td span.active.disabled.focus, .datepicker table tr td span.active.disabled:hover.focus {
+	color: #fff;
+	background-color: #358fe4;
+	border-color: #1869b4;
+}
+.datepicker table tr td span.active:hover, .datepicker table tr td span.active:hover:hover, .datepicker table tr td span.active.disabled:hover, .datepicker table tr td span.active.disabled:hover:hover {
+	color: #fff;
+	background-color: #358fe4;
+	border-color: #2c8ae3;
+}
+.datepicker table tr td span.active:active, .datepicker table tr td span.active:hover:active, .datepicker table tr td span.active.disabled:active, .datepicker table tr td span.active.disabled:hover:active, .datepicker table tr td span.active.active, .datepicker table tr td span.active:hover.active, .datepicker table tr td span.active.disabled.active, .datepicker table tr td span.active.disabled:hover.active, .open > .dropdown-toggle.datepicker table tr td span.active, .open > .dropdown-toggle.datepicker table tr td span.active:hover, .open > .dropdown-toggle.datepicker table tr td span.active.disabled, .open > .dropdown-toggle.datepicker table tr td span.active.disabled:hover {
+	color: #fff;
+	background-color: #358fe4;
+	border-color: #2c8ae3;
+}
+.datepicker table tr td span.active:active:hover, .datepicker table tr td span.active:hover:active:hover, .datepicker table tr td span.active.disabled:active:hover, .datepicker table tr td span.active.disabled:hover:active:hover, .datepicker table tr td span.active.active:hover, .datepicker table tr td span.active:hover.active:hover, .datepicker table tr td span.active.disabled.active:hover, .datepicker table tr td span.active.disabled:hover.active:hover, .open > .dropdown-toggle.datepicker table tr td span.active:hover, .open > .dropdown-toggle.datepicker table tr td span.active:hover:hover, .open > .dropdown-toggle.datepicker table tr td span.active.disabled:hover, .open > .dropdown-toggle.datepicker table tr td span.active.disabled:hover:hover, .datepicker table tr td span.active:active:focus, .datepicker table tr td span.active:hover:active:focus, .datepicker table tr td span.active.disabled:active:focus, .datepicker table tr td span.active.disabled:hover:active:focus, .datepicker table tr td span.active.active:focus, .datepicker table tr td span.active:hover.active:focus, .datepicker table tr td span.active.disabled.active:focus, .datepicker table tr td span.active.disabled:hover.active:focus, .open > .dropdown-toggle.datepicker table tr td span.active:focus, .open > .dropdown-toggle.datepicker table tr td span.active:hover:focus, .open > .dropdown-toggle.datepicker table tr td span.active.disabled:focus, .open > .dropdown-toggle.datepicker table tr td span.active.disabled:hover:focus, .datepicker table tr td span.active:active.focus, .datepicker table tr td span.active:hover:active.focus, .datepicker table tr td span.active.disabled:active.focus, .datepicker table tr td span.active.disabled:hover:active.focus, .datepicker table tr td span.active.active.focus, .datepicker table tr td span.active:hover.active.focus, .datepicker table tr td span.active.disabled.active.focus, .datepicker table tr td span.active.disabled:hover.active.focus, .open > .dropdown-toggle.datepicker table tr td span.active.focus, .open > .dropdown-toggle.datepicker table tr td span.active:hover.focus, .open > .dropdown-toggle.datepicker table tr td span.active.disabled.focus, .open > .dropdown-toggle.datepicker table tr td span.active.disabled:hover.focus {
+	color: #fff;
+	background-color: #1d7dd8;
+	border-color: #1869b4;
+}
+.datepicker table tr td span.active:active, .datepicker table tr td span.active:hover:active, .datepicker table tr td span.active.disabled:active, .datepicker table tr td span.active.disabled:hover:active, .datepicker table tr td span.active.active, .datepicker table tr td span.active:hover.active, .datepicker table tr td span.active.disabled.active, .datepicker table tr td span.active.disabled:hover.active, .open > .dropdown-toggle.datepicker table tr td span.active, .open > .dropdown-toggle.datepicker table tr td span.active:hover, .open > .dropdown-toggle.datepicker table tr td span.active.disabled, .open > .dropdown-toggle.datepicker table tr td span.active.disabled:hover {
+	background-image: none;
+}
+.datepicker table tr td span.active.disabled:hover, .datepicker table tr td span.active:hover.disabled:hover, .datepicker table tr td span.active.disabled.disabled:hover, .datepicker table tr td span.active.disabled:hover.disabled:hover, .datepicker table tr td span.active[disabled]:hover, .datepicker table tr td span.active:hover[disabled]:hover, .datepicker table tr td span.active.disabled[disabled]:hover, .datepicker table tr td span.active.disabled:hover[disabled]:hover, fieldset[disabled] .datepicker table tr td span.active:hover, fieldset[disabled] .datepicker table tr td span.active:hover:hover, fieldset[disabled] .datepicker table tr td span.active.disabled:hover, fieldset[disabled] .datepicker table tr td span.active.disabled:hover:hover, .datepicker table tr td span.active.disabled:focus, .datepicker table tr td span.active:hover.disabled:focus, .datepicker table tr td span.active.disabled.disabled:focus, .datepicker table tr td span.active.disabled:hover.disabled:focus, .datepicker table tr td span.active[disabled]:focus, .datepicker table tr td span.active:hover[disabled]:focus, .datepicker table tr td span.active.disabled[disabled]:focus, .datepicker table tr td span.active.disabled:hover[disabled]:focus, fieldset[disabled] .datepicker table tr td span.active:focus, fieldset[disabled] .datepicker table tr td span.active:hover:focus, fieldset[disabled] .datepicker table tr td span.active.disabled:focus, fieldset[disabled] .datepicker table tr td span.active.disabled:hover:focus, .datepicker table tr td span.active.disabled.focus, .datepicker table tr td span.active:hover.disabled.focus, .datepicker table tr td span.active.disabled.disabled.focus, .datepicker table tr td span.active.disabled:hover.disabled.focus, .datepicker table tr td span.active[disabled].focus, .datepicker table tr td span.active:hover[disabled].focus, .datepicker table tr td span.active.disabled[disabled].focus, .datepicker table tr td span.active.disabled:hover[disabled].focus, fieldset[disabled] .datepicker table tr td span.active.focus, fieldset[disabled] .datepicker table tr td span.active:hover.focus, fieldset[disabled] .datepicker table tr td span.active.disabled.focus, fieldset[disabled] .datepicker table tr td span.active.disabled:hover.focus {
+	background-color: #62a8ea;
+	border-color: #62a8ea;
+}
+.datepicker table tr td span.active .badge, .datepicker table tr td span.active:hover .badge, .datepicker table tr td span.active.disabled .badge, .datepicker table tr td span.active.disabled:hover .badge {
+	color: #62a8ea;
+	background-color: #fff;
+}
+.datepicker table tr td span.old, .datepicker table tr td span.new {
+	color: #a3afb7;
+}
+.datepicker .datepicker-switch {
+	width: 145px;
+}
+.datepicker thead tr:first-child th, .datepicker tfoot tr th {
+	cursor: pointer;
+}
+.datepicker thead tr:first-child th:hover, .datepicker tfoot tr th:hover {
+	background: #e4eaec;
+}
+.datepicker .cw {
+	width: 12px;
+	padding: 0 2px 0 5px;
+	font-size: 10px;
+	vertical-align: middle;
+}
+.datepicker thead tr:first-child .cw {
+	cursor: default;
+	background-color: transparent;
+}
+.input-group.date .input-group-addon {
+	cursor: pointer;
+}
+.input-daterange {
+	width: 100%;
+}
+.input-daterange:before, .input-daterange:after {
+	display: table;
+	content: " ";
+}
+.input-daterange:after {
+	clear: both;
+}
+.input-daterange input {
+	text-align: center;
+}
+.input-daterange .input-group {
+	float: left;
+	width: 50%;
+}
+.input-daterange .input-group:first-child input {
+	border-radius: 0;
+}
+.input-daterange .input-group:not(:last-child) input {
+	border-radius: 0;
+}
+.input-daterange .input-group:not(:first-child):not(:last-child) .input-group-addon {
+	border-right-width: 0;
+	border-left-width: 0;
+	border-radius: 0;
+}
+.input-daterange .input-group:last-child .input-group-addon {
+	border-left-width: 0;
+	border-radius: 0;
+}
+.input-daterange .input-group:last-child input {
+	border-radius: 0 3px 3px 0;
+}
+.input-daterange .input-group-addon {
+	width: auto;
+	min-width: 16px;
+	padding: 4px 12px;
+	margin-right: -5px;
+	margin-left: -5px;
+	line-height: 1.6;
+	border-width: 1px 0;
+}
+.input-daterange .input-group-addon:first-child {
+	border-left-width: 1px;
+}
+.input-daterange .input-group-addon:last-child {
+	border-right-width: 1px;
+}

@@ -1,0 +1,254 @@
+[
+    {
+        "id": "mid_1",
+        "label": "mid_1",
+        "avatar": "/images/portraits/5.jpg",
+        "name": "廖力",
+        "email": "jim.hunter32@qq.com",
+        "title": "在图像识别上，隐私技术面临人工智能的挑战",
+        "unread": "false",
+        "starred": "false",
+        "color": "red-600",
+        "group": "工作",
+        "time": "2 小时前",
+        "attachments": [],
+        "messages": [
+            {
+                "time": "2 小时前",
+                "content": "<p>在整体机身设计上，Rival 500 还是保持了 Rival 系列一贯的不对称右手设计风格。握持感舒适，比较贴手。同时 Rival 500 还采用了赛睿今年发布的触感提示技术，两大拇指按键区配备“Flick-Down”功能按键，掌部区域也有个触觉反馈电机，以便玩家获知各项游戏事件信息（比如技能冷却时间或弹药量）。当游戏中的技能冷却时，鼠标会震动以提示你可以释放下一次技能，更适合入门玩家进阶游戏水平。</p>"
+            },
+            {
+                "time": "1 小时前",
+                "content": "<p>这种辐射通常用于安全性检查，有点类似于 X 射线，但太赫兹辐射能够识别出墨水及空白纸张，这是 X 射线做不到的。由于不同的化学物质吸收不同量的太赫兹辐射，因此每种物质都拥有其独特的频率，传感器根据反弹回的辐射波就能判断所对应的物质。而这套“透视封面”的系统，正是利用太赫兹辐射这一特性实现对文字的识别。</p>"
+            },
+            {
+                "time": "40 分钟前",
+                "content": "<p>为了区别每张独立的纸张，工程们使用了短脉冲的太赫兹辐射来分辨墨水与纸张，生成字母的图像。</p>"
+            }
+        ]
+    },
+    {
+        "id": "mid_2",
+        "label": "mid_2",
+        "avatar": "/images/portraits/6.jpg",
+        "name": "颜慧",
+        "email": "zoe.perez69@yahoo.com",
+        "title": "福特 2025 年开始卖无人驾驶汽车",
+        "unread": "true",
+        "starred": "false",
+        "color": "red-600",
+        "group": "工作",
+        "time": "5 小时前",
+        "attachments": [
+            {
+                "name": "attachment.txt",
+                "size": "900K"
+            },
+            {
+                "name": "attachment.png",
+                "size": "1.4M"
+            }
+        ],
+        "messages": [
+            {
+                "time": "5 小时前",
+                "content": "<p>光有太赫兹辐射还不够，识别系统还需要多个算法协同处理，以便创建清晰的打印图像。麻省理工设计了生成  RAW  图像的算法，并由佐治亚理工学院进行了完善，使得模糊的原始图片变为清晰的单个字母。</p>"
+            },
+            {
+                "time": "1 小时前",
+                "content": "<p>该项目已经引起了纽约大都会博物馆的浓厚兴趣，因为他们希望能将这一技术应用于查看古籍，而不需要接触到这些珍贵书籍脆弱的纸张。</p>"
+            },
+            {
+                "time": "40 分钟前",
+                "content": "<p>然而，在这套系统能够实现透过封面看全书前，还需要解决消除传感器噪音及干扰的问题。一旦能做到这点，它将能够阅读一本 600 页书的每一页。</p>"
+            }
+        ]
+    },
+    {
+        "id": "mid_3",
+        "label": "mid_3",
+        "avatar": "/images/portraits/7.jpg",
+        "name": "刘亦文",
+        "email": "esther.kelly84@hotmail.com",
+        "title": "三星通过 OTA 升级限制手机充电量",
+        "unread": "false",
+        "starred": "true",
+        "color": "orange-600",
+        "group": "家庭",
+        "time": "11 小时前",
+        "attachments": [
+            {
+                "name": "attachment.txt",
+                "size": "900K"
+            },
+            {
+                "name": "attachment.png",
+                "size": "1.4M"
+            }
+        ],
+        "messages": [
+            {
+                "time": "11 小时前",
+                "content": "<p>福特汽车的 CEO 马克·菲尔兹（Mark Fields）日前透露，福特将在 2025 年开始正式面向所有公众出售无人驾驶汽车。本周一，福特汽车的 CEO 马克·菲尔兹在位于美国密歇根州迪尔伯恩市的福特汽车总部的演讲中表示：“我们的目标是充分降低成本，足以让数以百万计的人能够买得起。在 2021 年，福特将开启机器人出租车和网络约车服务；然后在未来十年左右的时间里，我们将生产出来可以让人们自行购买且可以负担得起的无人驾驶汽车。”</p>"
+            },
+            {
+                "time": "1 小时前",
+                "content": "<p>ZDNet 报道，被 Note 7 电池爆炸事件搞得焦头烂额的三星最近也是招式频出，除了曝出要在月底远程注销未召回的机器，现在它们还要通过 OTA 升级来控制 Note 7 的充电量。升级后，未召回的 Note 7 无论怎么充电，最高也只能到达 60% 的电量。这样一来，问题电池的能量密度就能维持在一个安全的水准，防止短路引发起火爆炸。</p>"
+            }
+        ]
+    },
+    {
+        "id": "mid_4",
+        "label": "mid_4",
+        "avatar": "/images/portraits/8.jpg",
+        "name": "梅小燕",
+        "email": "jo.dunn18@qq.com",
+        "title": "iPhone 7 T-Mobile 首日预订量是 iPhone 6 的 4 倍",
+        "unread": "true",
+        "starred": "false",
+        "color": "cyan-600",
+        "group": "个人",
+        "time": "20 小时前",
+        "attachments": [],
+        "messages": [
+            {
+                "time": "20 小时前",
+                "content": "<p>美国运营商 T-Mobile 报告显示，iPhone 7 和 iPhone 7 Plus 在预订阶段的销售量创下历史纪录，订单量达到 iPhone 6 的 4 倍，目前尚不清楚美国其他运营商的情况是否也与 T-Mobile 类似。苹果此前宣布，将不再公布首个周末的销售数据，此举曾加剧外界的怀疑情绪。</p>"
+            }
+        ]
+    },
+    {
+        "id": "mid_5",
+        "label": "mid_5",
+        "avatar": "/images/portraits/9.jpg",
+        "name": "尹建芹",
+        "email": "jacob.morgan95@qq.com",
+        "title": "苹果 iOS 10 正式推送",
+        "unread": "true",
+        "starred": "false",
+        "color": "green-600",
+        "group": "朋友",
+        "time": "22 小时前",
+        "attachments": [],
+        "messages": [
+            {
+                "time": "22 小时前",
+                "content": "<p>北京时间 9 月 14 日凌晨，苹果正式向 iPhone、iPad 以及 iPod touch 用户推送了 iOS 10 系统。用户可以通过 OTA 或 iTunes 进行更新，正式版系统将 App Store 引入到了信息应用，此外地图、Siri 以及照片等应用也获得更新。</p>"
+            },
+            {
+                "time": "10 小时前",
+                "content": "<p>彭博社消息，知情人士透露，网易对出售新闻业务持开放态度，将寻求通过分拆新闻业务融资 3 亿美元，从而专注于核心的在线游戏业务。知情人士称，融资形式可能通过在美国 IPO(首次公开招股)进行，但也可能直接出售新闻业务。目前该分拆还处于计划阶段，网易正在寻求与潜在买家谈判。</p>"
+            },
+            {
+                "time": "30 分钟前",
+                "content": "<p>一名知情人士表示，中国电池制造商 ATL 将成为三星 Galaxy Note 7 智能手机电池主要供应商。向客户通报因电池容易起火并召回 Note 7 后，周一三星股价跌至近两个月新低。据业内分析师，三星旗下 SDI 一直是占有主导地位的 Note 7 电池供应商，拥有约 70% 业务。ATL 供应约三分之一 Note 7 电池，而且主要用于在中国市场销售的产品。</p>"
+            }
+        ]
+    },
+    {
+        "id": "mid_6",
+        "label": "mid_6",
+        "avatar": "/images/portraits/10.jpg",
+        "name": "赵桦",
+        "email": "erin.miller29@tom.com",
+        "title": "网易或分拆新闻业务",
+        "unread": "false",
+        "starred": "true",
+        "color": "cyan-600",
+        "group": "个人",
+        "time": "26 小时前",
+        "attachments": [
+            {
+                "name": "attachment.txt",
+                "size": "900K"
+            },
+            {
+                "name": "attachment.png",
+                "size": "1.4M"
+            }
+        ],
+        "messages": [
+            {
+                "time": "26 小时前",
+                "content": "<p>Twitter 用户 @usbfl 刚刚曝光了一张非常模糊的 Google Pixel XL 智能手机谍照。尽管照片模糊，但是也能揭示一个相当有趣的细节——Pixel XL Home、返回和多任务虚拟按键可能采用了全新的设计。几个星期前，就有传闻称 Google 即将发布的 Pixel 系列智能手机将采用重新设计的导航按钮。此前消息显示 Pixel 系列智能手机将由 Google 与 HTC 共同开发，Pixel 也将采用 5.2-5.3 英寸显示屏，全高清分辨率；而 Pixel XL智能手机采用 5.7 英寸显示屏，拥有 2K 分辨率。</p>"
+            },
+            {
+                "time": "16 小时前",
+                "content": "<p>互联网汽车品牌小鹏汽车正式对外公布了 Beta 版车型。小鹏汽车的首款车型是一款纯电驱动的紧凑型 SUV，将会推出两驱和四驱两个动力版本，Beta 版车型的 0-100km/h 加速时间分别是 7.9 秒（两驱版）和 5.8 秒（四驱版），续航里程达到 300km。车内搭载了 15.6 寸智能中控大屏和 12.3 寸全液晶仪表，可实现全触摸车辆控制、实时路况地图导航、360 度全景影像、车顶及车内高清摄像、在线音乐、语音交互、仪表信息自主定制等功能。据悉，小鹏汽车已与某民营车企达成合作意向，将在 2017 年内实现少批量产并上市。</p>"
+            }
+        ]
+    },
+    {
+        "id": "mid_7",
+        "label": "mid_7",
+        "avatar": "/images/portraits/11.jpg",
+        "name": "唐雪琴",
+        "email": "fernando.coleman60@sohu.com",
+        "title": "Google Pixel XL 模糊谍照曝光",
+        "unread": "false",
+        "starred": "false",
+        "color": "green-600",
+        "group": "朋友",
+        "time": "30 小时前",
+        "attachments": [
+            {
+                "name": "attachment.txt",
+                "size": "900K"
+            },
+            {
+                "name": "attachment.png",
+                "size": "1.4M"
+            }
+        ],
+        "messages": [
+            {
+                "time": "30 小时前",
+                "content": "<p>《纽约时报》在 iPhone 7 系列评测文章当中透露，两位匿名苹果员工向其爆料，明年的 iPhone 将有一个全屏幕正面机身，集成虚拟按钮。之前已经有消息称，明年 iPhone 将大幅度重新设计，引入一个边缘到边缘的 OLED 显示屏，消除顶部和底部的挡板，而 iPhone 的 Home 实体按键将彻底消失，并与 OLED 显示器融合，提供带触摸的 ID 功能。</p>"
+            },
+            {
+                "time": "29 小时前",
+                "content": "<p>爱奇艺和创维集团在北京联合宣布，将在客厅娱乐生态方面展开深度合作。爱奇艺向创维旗下互联网电视品牌酷开战略投资 1.5 亿元，占股 5%。爱奇艺创始人龚宇表示，爱奇艺和创维将展开从资本层面到 VIP 会员服务层面的合作，从下一财年开始，创维旗下互联网电视将通过银河互联网电视集成播控平台，预置 VIP 会员服务和相关内容。</p>"
+            }
+        ]
+    },
+    {
+        "id": "mid_8",
+        "label": "mid_8",
+        "avatar": "/images/portraits/12.jpg",
+        "name": "陈媚婉",
+        "email": "tanya.ortiz78163.com",
+        "title": "小鹏汽车 Beta 版正式亮相",
+        "unread": "false",
+        "starred": "false",
+        "color": "red-600",
+        "group": "工作",
+        "time": "2 天前",
+        "attachments": [],
+        "messages": [
+            {
+                "time": "2 天前",
+                "content": "<p>据 Wired 网站的报道，德州大学和康奈尔科技学院的研究人员发现，通过一些训练，神经网络可以识别图像中隐藏的信息，无论是模糊的门牌号，还是像素化的人脸。而且，他们并不需要费力开发新的方法，只要使用主流的机器学习方法就行了。“我们使用了非常标准的图像识别技术。这才是让人不安的地方。” 康奈尔科技的研究员 Vitaly Shmatikov 说。由于这些方法广为人知，解析图片隐藏信息只需要一些基础的技术 。</p>"
+            }
+        ]
+    },
+    {
+        "id": "mid_9",
+        "label": "mid_9",
+        "avatar": "/images/portraits/13.jpg",
+        "name": "曹洁群",
+        "email": "sebastian.nelson47@qq.com",
+        "title": "爱奇艺 1.5 亿元战略投资创维旗下酷开",
+        "unread": "false",
+        "starred": "false",
+        "color": "orange-600",
+        "group": "家庭",
+        "time": "2 天前",
+        "attachments": [],
+        "messages": [
+            {
+                "time": "2 天前",
+                "content": "<p>在训练神经网络的过程中，研究人员使用了几个大型的图像库。当神经网络看到的单词、脸部或者物品越多，它的识别准确率就会越高。在神经网络的识别准确率达到 90% 后，研究人员用三种隐私工具处理了图像，并且让神经网络继续解析这些图像。最后，他们开始用新的模糊图像测试神经网络，看它是否能够辨识出面部、物品或者手写的数字。</p>"
+            }
+        ]
+    }
+]

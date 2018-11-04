@@ -1,0 +1,113 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.page-display .color-radio .radio-custom.radio-primary label::before {
+	border-color: #62a8ea;
+}
+.page-display .color-radio .radio-custom.radio-primary label::after {
+	border-color: #62a8ea;
+}
+.page-display .color-radio .radio-custom.radio-primary input[type=radio]:checked + label::before {
+	border-color: #62a8ea;
+}
+.page-display .color-radio .radio-custom.radio-brown label::before {
+	border-color: #8d6658;
+}
+.page-display .color-radio .radio-custom.radio-brown label::after {
+	border-color: #8d6658;
+}
+.page-display .color-radio .radio-custom.radio-brown input[type=radio]:checked + label::before {
+	border-color: #8d6658;
+}
+.page-display .color-radio .radio-custom.radio-cyan label::before {
+	border-color: #57c7d4;
+}
+.page-display .color-radio .radio-custom.radio-cyan label::after {
+	border-color: #57c7d4;
+}
+.page-display .color-radio .radio-custom.radio-cyan input[type=radio]:checked + label::before {
+	border-color: #57c7d4;
+}
+.page-display .color-radio .radio-custom.radio-green label::before {
+	border-color: #46be8a;
+}
+.page-display .color-radio .radio-custom.radio-green label::after {
+	border-color: #46be8a;
+}
+.page-display .color-radio .radio-custom.radio-green input[type=radio]:checked + label::before {
+	border-color: #46be8a;
+}
+.page-display .color-radio .radio-custom.radio-grey label::before {
+	border-color: #757575;
+}
+.page-display .color-radio .radio-custom.radio-grey label::after {
+	border-color: #757575;
+}
+.page-display .color-radio .radio-custom.radio-grey input[type=radio]:checked + label::before {
+	border-color: #757575;
+}
+.page-display .color-radio .radio-custom.radio-indigo label::before {
+	border-color: #677ae4;
+}
+.page-display .color-radio .radio-custom.radio-indigo label::after {
+	border-color: #677ae4;
+}
+.page-display .color-radio .radio-custom.radio-indigo input[type=radio]:checked + label::before {
+	border-color: #677ae4;
+}
+.page-display .color-radio .radio-custom.radio-orange label::before {
+	border-color: #f2a654;
+}
+.page-display .color-radio .radio-custom.radio-orange label::after {
+	border-color: #f2a654;
+}
+.page-display .color-radio .radio-custom.radio-orange input[type=radio]:checked + label::before {
+	border-color: #f2a654;
+}
+.page-display .color-radio .radio-custom.radio-pink label::before {
+	border-color: #f96197;
+}
+.page-display .color-radio .radio-custom.radio-pink label::after {
+	border-color: #f96197;
+}
+.page-display .color-radio .radio-custom.radio-pink input[type=radio]:checked + label::before {
+	border-color: #f96197;
+}
+.page-display .color-radio .radio-custom.radio-purple label::before {
+	border-color: #926dde;
+}
+.page-display .color-radio .radio-custom.radio-purple label::after {
+	border-color: #926dde;
+}
+.page-display .color-radio .radio-custom.radio-purple input[type=radio]:checked + label::before {
+	border-color: #926dde;
+}
+.page-display .color-radio .radio-custom.radio-red label::before {
+	border-color: #f96868;
+}
+.page-display .color-radio .radio-custom.radio-red label::after {
+	border-color: #f96868;
+}
+.page-display .color-radio .radio-custom.radio-red input[type=radio]:checked + label::before {
+	border-color: #f96868;
+}
+.page-display .color-radio .radio-custom.radio-teal label::before {
+	border-color: #3aa99e;
+}
+.page-display .color-radio .radio-custom.radio-teal label::after {
+	border-color: #3aa99e;
+}
+.page-display .color-radio .radio-custom.radio-teal input[type=radio]:checked + label::before {
+	border-color: #3aa99e;
+}
+.page-display .color-radio .radio-custom.radio-yellow label::before {
+	border-color: #f7da64;
+}
+.page-display .color-radio .radio-custom.radio-yellow label::after {
+	border-color: #f7da64;
+}
+.page-display .color-radio .radio-custom.radio-yellow input[type=radio]:checked + label::before {
+	border-color: #f7da64;
+}

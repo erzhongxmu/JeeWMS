@@ -1,0 +1,28 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.page-forms .bootstrap-select {
+	width: 100% !important;
+}
+.page-forms .datepair-wrap {
+	position: relative;
+	overflow: hidden;
+}
+.page-forms .input-daterange-wrap {
+	float: left;
+}
+.page-forms .input-daterange-to {
+	float: left;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+}
+@media (max-width: 1360px) {
+	.page-forms .input-daterange-wrap, .page-forms .input-daterange-to {
+		display: block;
+		float: none;
+	}
+}

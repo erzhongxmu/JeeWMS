@@ -1,0 +1,42 @@
+.cm-s-elegant span.cm-number, .cm-s-elegant span.cm-string, .cm-s-elegant span.cm-atom {
+  color: #762;
+}
+.cm-s-elegant span.cm-comment {
+  font-style: italic;
+  line-height: 1em; 
+  color: #262;
+}
+.cm-s-elegant span.cm-meta {
+  font-style: italic;
+  line-height: 1em; 
+  color: #555;
+}
+.cm-s-elegant span.cm-variable {
+  color: black;
+}
+.cm-s-elegant span.cm-variable-2 {
+  color: #b11;
+}
+.cm-s-elegant span.cm-qualifier {
+  color: #555;
+}
+.cm-s-elegant span.cm-keyword {
+  color: #730;
+}
+.cm-s-elegant span.cm-builtin {
+  color: #30a;
+}
+.cm-s-elegant span.cm-link {
+  color: #762;
+}
+.cm-s-elegant span.cm-error {
+  background-color: #fdd;
+}
+
+.cm-s-elegant .CodeMirror-activeline-background {
+  background: #e8f2ff;
+}
+.cm-s-elegant .CodeMirror-matchingbracket {
+  color: black !important; 
+  outline: 1px solid grey;
+}

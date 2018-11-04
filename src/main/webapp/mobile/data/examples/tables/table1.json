@@ -1,0 +1,25 @@
+{
+    "draw": 2,
+    "success": true,
+    "total": 20,
+    "data": [
+        {
+            "DT_RowId": 1,
+            "url": "www.baidu.com",
+            "type": "display",
+            "params": "delete=true",
+            "user": {"loginName": "randy"},
+            "userIp": "192.168.1.232",
+            "logTime": "2016-12-24"
+        },
+        {
+            "DT_RowId": 1,
+            "url": "www.baidu.com",
+            "type": "display",
+            "params": "delete=true",
+            "user": {"loginName": "randy"},
+            "userIp": "192.168.1.232",
+            "logTime": "2016-12-24"
+        }
+    ]
+}

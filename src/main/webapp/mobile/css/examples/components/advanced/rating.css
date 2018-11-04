@@ -1,0 +1,10 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.rating-hint {
+	display: inline;
+	margin-left: 10px;
+	vertical-align: sub;
+}

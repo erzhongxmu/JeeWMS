@@ -1,0 +1,13 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+#jqstooltip {
+	-webkit-box-sizing: content-box !important;
+	   -moz-box-sizing: content-box !important;
+	        box-sizing: content-box !important;
+}
+.jqstooltip {
+	z-index: 1900;
+}

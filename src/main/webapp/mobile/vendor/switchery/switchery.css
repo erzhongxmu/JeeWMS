@@ -1,0 +1,53 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.switchery {
+	position: relative;
+	display: inline-block;
+	width: 45px;
+	height: 24px;
+	-webkit-box-sizing: content-box;
+	   -moz-box-sizing: content-box;
+	        box-sizing: content-box;
+	vertical-align: middle;
+	cursor: pointer;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+	background-color: #fff;
+	-webkit-background-clip: content-box;
+	        background-clip: content-box;
+	border: 1px solid #e4eaec;
+	border-radius: 20px;
+}
+.switchery > small {
+	position: absolute;
+	top: 0;
+	width: 24px;
+	height: 24px;
+	background: #fff;
+	border-radius: 100%;
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+	        box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+}
+.switchery-small {
+	width: 33px;
+	height: 20px;
+	border-radius: 20px;
+}
+.switchery-small > small {
+	width: 20px;
+	height: 20px;
+}
+.switchery-large {
+	width: 66px;
+	height: 36px;
+	border-radius: 36px;
+}
+.switchery-large > small {
+	width: 36px;
+	height: 36px;
+}

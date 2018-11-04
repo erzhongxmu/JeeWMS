@@ -1,0 +1,242 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+@-webkit-keyframes blink {
+	0% {
+		border-color: #ededed;
+	}
+	100% {
+		border-color: #b94a48;
+	}
+}
+@-moz-keyframes blink {
+	0% {
+		border-color: #ededed;
+	}
+	100% {
+		border-color: #b94a48;
+	}
+}
+@-o-keyframes blink {
+	0% {
+		border-color: #ededed;
+	}
+	100% {
+		border-color: #b94a48;
+	}
+}
+@keyframes blink {
+	0% {
+		border-color: #ededed;
+	}
+	100% {
+		border-color: #b94a48;
+	}
+}
+.tokenfield {
+	height: auto;
+	min-height: 32px;
+	padding-bottom: 0;
+}
+.tokenfield.focus {
+	border-color: #62a8ea;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(98, 168, 234, .6);
+	        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(98, 168, 234, .6);
+}
+.tokenfield .token {
+	display: inline-block;
+	height: 22px;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+	margin: -1px 5px 5px 0;
+	white-space: nowrap;
+	vertical-align: top;
+	cursor: default;
+	background-color: #f3f7f9;
+	border: 1px solid #e4eaec;
+	border-radius: 3px;
+}
+.tokenfield .token:hover {
+	border-color: #89bceb;
+}
+.tokenfield .token.active {
+	border-color: #52a8ec;
+	border-color: rgba(82, 168, 236, .8);
+}
+.tokenfield .token.duplicate {
+	border-color: #f85974;
+	-webkit-animation-name: blink;
+	     -o-animation-name: blink;
+	        animation-name: blink;
+	-webkit-animation-duration: .1s;
+	     -o-animation-duration: .1s;
+	        animation-duration: .1s;
+	-webkit-animation-timing-function: ease;
+	     -o-animation-timing-function: ease;
+	        animation-timing-function: ease;
+	-webkit-animation-iteration-count: infinite;
+	     -o-animation-iteration-count: infinite;
+	        animation-iteration-count: infinite;
+	-webkit-animation-direction: normal;
+	     -o-animation-direction: normal;
+	        animation-direction: normal;
+}
+.tokenfield .token.invalid {
+	background: none;
+	border: 1px solid transparent;
+	border-bottom: 1px dotted #f96868;
+	border-radius: 0;
+}
+.tokenfield .token.invalid.active {
+	background: #f3f7f9;
+	border: 1px solid #f3f7f9;
+	border-radius: 3px;
+}
+.tokenfield .token .token-label {
+	display: inline-block;
+	padding-left: 4px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	vertical-align: top;
+}
+.tokenfield .token .close {
+	display: inline-block;
+	float: none;
+	height: 100%;
+	padding-right: 4px;
+	margin-left: 5px;
+	font-family: Arial;
+	font-size: 1.1em;
+	line-height: inherit;
+	vertical-align: top;
+}
+.tokenfield .token-input {
+	width: 60px;
+	min-width: 60px;
+	height: 20px;
+	padding: 0;
+	margin-bottom: 6px;
+	background: none;
+	border: 0;
+	-webkit-box-shadow: none;
+	        box-shadow: none;
+}
+.tokenfield .token-input:focus {
+	border-color: transparent;
+	outline: 0;
+	/* IE6-9 */
+	-webkit-box-shadow: none;
+	        box-shadow: none;
+}
+.tokenfield.disabled {
+	cursor: not-allowed;
+	background-color: #f3f7f9;
+}
+.tokenfield.disabled .token-input {
+	cursor: not-allowed;
+}
+.tokenfield.disabled .token:hover {
+	cursor: not-allowed;
+	border-color: #e4eaec;
+}
+.tokenfield.disabled .token:hover .close {
+	cursor: not-allowed;
+	filter: alpha(opacity=20);
+	opacity: .2;
+}
+.has-warning .tokenfield.focus {
+	border-color: #e6e6e6;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #fff;
+	        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #fff;
+}
+.has-error .tokenfield.focus {
+	border-color: #e6e6e6;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #fff;
+	        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #fff;
+}
+.has-success .tokenfield.focus {
+	border-color: #e6e6e6;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #fff;
+	        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #fff;
+}
+.tokenfield.input-sm, .input-group-sm .tokenfield {
+	min-height: 30px;
+	padding-bottom: 0;
+}
+.input-group-sm .token, .tokenfield.input-sm .token {
+	height: 20px;
+	margin-bottom: 4px;
+}
+.input-group-sm .token-input, .tokenfield.input-sm .token-input {
+	height: 18px;
+	margin-bottom: 5px;
+}
+.tokenfield.input-lg, .input-group-lg .tokenfield {
+	min-height: 45px;
+	padding-bottom: 4px;
+}
+.input-group-lg .token, .tokenfield.input-lg .token {
+	height: 25px;
+}
+.input-group-lg .token-label, .tokenfield.input-lg .token-label {
+	line-height: 23px;
+}
+.input-group-lg .token .close, .tokenfield.input-lg .token .close {
+	line-height: 1.3em;
+}
+.input-group-lg .token-input, .tokenfield.input-lg .token-input {
+	height: 23px;
+	margin-bottom: 6px;
+	line-height: 23px;
+	vertical-align: top;
+}
+.input-group .tokenfield + .input-group-btn {
+	height: 100%;
+}
+.input-group .tokenfield + .input-group-btn .btn {
+	height: -webkit-calc(100% + 2px);
+	height:         calc(100% + 2px);
+	padding-top: 0;
+	padding-bottom: 0;
+}
+.input-group .tokenfield .token-input {
+	width: 100% !important;
+}
+.tokenfield.rtl {
+	text-align: right;
+
+	direction: rtl;
+}
+.tokenfield.rtl .token {
+	margin: -1px 0 5px 5px;
+}
+.tokenfield.rtl .token .token-label {
+	padding-right: 4px;
+	padding-left: 0;
+}
+/* Tokenfield-specific 样式 */
+.tokenfield .twitter-typeahead {
+	float: none;
+	width: auto;
+}
+.tokenfield .twitter-typeahead .tt-hint {
+	height: 20px;
+	padding: 0;
+}
+.tokenfield.input-sm .twitter-typeahead .tt-input, .tokenfield.input-sm .twitter-typeahead .tt-hint {
+	height: 18px;
+	font-size: 12px;
+	line-height: 1.5;
+}
+.tokenfield.input-lg .twitter-typeahead .tt-input, .tokenfield.input-lg .twitter-typeahead .tt-hint {
+	height: 23px;
+	font-size: 18px;
+	line-height: 1.33;
+}
+.tokenfield .twitter-typeahead .tt-suggestions {
+	font-size: 14px;
+}

@@ -1,0 +1,232 @@
+[
+    {
+        "title": "待办事项",
+        "tasks": [
+            {
+                "complete": false,
+                "title": "X 项目原型图设计",
+                "description": "但 TOGO 途歌出行尝试的是一条新路子：用户随时租用位于各大公共停车位的专用车辆，开到目的地后停在任意合法停车位后即可完成整个过程，费用以使用时间和里程来计算。其中无论是找车、控制车辆、付费全都在手机上完成。这种新的租车方式名曰“分时租赁”。",
+                "priority": "urgent",
+                "duedate": "",
+                "members": [
+                    {
+                        "id": "uid_5",
+                        "name": "尹建芹",
+                        "img": "/images/portraits/5.jpg"
+                    }
+                ],
+                "subtasks": [
+                    {
+                        "title": "原型图文件",
+                        "complete": true
+                    },
+                    {
+                        "title": "原型图效果",
+                        "complete": false
+                    }
+                ],
+                "attachments": [
+                    {
+                        "title": "原型图文件",
+                        "src": "/images/photos/view-1.jpg",
+                        "size": "500K"
+                    },
+                    {
+                        "title": "原型图效果",
+                        "src": "/images/photos/view-2.jpg",
+                        "size": "2.04M"
+                    }
+                ],
+                "comments": [
+                    {
+                        "user": "赵桦",
+                        "src": "/images/portraits/3.jpg",
+                        "time": "2 天前",
+                        "content": "行驶在高速列车轨道上的中国大城市，如何改善交通情况，同时做到环保节能，早已成为一大难题。公交、地铁、出租，和最近兴起的专车快车，都是已有的探索方式。"
+                    },
+                    {
+                        "user": "梅小燕",
+                        "src": "/images/portraits/2.jpg",
+                        "time": "16 小时前",
+                        "content": "TOGO 的使用从注册到用车只需一台智能手机"
+                    }
+                ]
+            },
+            {
+                "complete": false,
+                "title": "IE6 不兼容问题",
+                "description": "而涉及到驾驶，不可避免地就需要考虑到特殊情况的出现。王利峰向爱范儿介绍，因为是自驾服务，所以用户需要自主遵守关于驾车、租车的法律法规。如果出现事故意外等现象，TOGO 会根据具体情况进行处理，除了为每台车辆购置了保险保障外，TOGO 还配有专业的团队专门负责配合用户处理此类业务。",
+                "priority": "high",
+                "duedate": "",
+                "members": [
+                    {
+                        "id": "uid_5",
+                        "name": "唐雪琴",
+                        "img": "/images/portraits/5.jpg"
+                    },
+                    {
+                        "id": "uid_3",
+                        "name": "嵇慧莉",
+                        "img": "/images/portraits/3.jpg"
+                    }
+                ],
+                "subtasks": [
+                    {
+                        "title": "IE6 概率性崩溃",
+                        "complete": false
+                    },
+                    {
+                        "title": "页面显示不正常",
+                        "complete": false
+                    }
+                ],
+                "attachments": [],
+                "comments": [
+                    {
+                        "user": "曹洁群",
+                        "src": "/images/portraits/1.jpg",
+                        "time": "2 天前",
+                        "content": "尼玛，又是IE6"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "进行中",
+        "tasks": [
+            {
+                "complete": false,
+                "title": "修复系统 Bug",
+                "description": "首先我们的车型是统一的，每台车提供的服务也是一致的，比如每台车都会配备充电器、水、纸巾，马上还会有 Wi-Fi。而我们的线下运营团队会根据后台数据，对每台车进行定期的消毒、清扫和物料的补充。这些都是有着一套非常标准的运营体系的。",
+                "priority": "normal",
+                "duedate": "10/29/2015",
+                "members": [
+                    {
+                        "id": "uid_5",
+                        "name": "刘文平",
+                        "img": "/images/portraits/5.jpg"
+                    },
+                    {
+                        "id": "uid_4",
+                        "name": "孙玉珍",
+                        "img": "/images/portraits/4.jpg"
+                    }
+                ],
+                "subtasks": [],
+                "attachments": [],
+                "comments": [
+                    {
+                        "user": "柳映秋",
+                        "src": "/images/portraits/1.jpg",
+                        "time": "2 天前",
+                        "content": "随着电动车的应用，还有自动泊车、智慧出行、自动导航、自动驾驶的出现，都会影响城市人的出行方式。而我认为 TOGO 做的是符合这种未来趋势的。另外很重要的一点是它更环保，也更高效。一台共享车能够替代 10 台甚至更多的私家车。"
+                    }
+                ]
+            },
+            {
+                "complete": false,
+                "title": "增强系统安全性",
+                "description": "2015 年年初，car2go 进军中国，首站定在了山城重庆。面对如此强大的对手，TOGO 将如何迎战？",
+                "priority": "high",
+                "duedate": "",
+                "members": [
+                    {
+                        "id": "uid_5",
+                        "name": "周伊娅",
+                        "img": "/images/portraits/5.jpg"
+                    },
+                    {
+                        "id": "uid_1",
+                        "name": "陈思思",
+                        "img": "/images/portraits/1.jpg"
+                    },
+                    {
+                        "id": "uid_2",
+                        "name": "陈朝红",
+                        "img": "/images/portraits/2.jpg"
+                    }
+                ],
+                "subtasks": [],
+                "attachments": [
+                    {
+                        "title": "附件 1",
+                        "src": "/images/photos/view-3.jpg",
+                        "size": "500K"
+                    },
+                    {
+                        "title": "附件 2",
+                        "src": "/images/photos/view-4.jpg",
+                        "size": "2.04M"
+                    },
+                    {
+                        "title": "附件 3",
+                        "src": "/images/photos/view-5.jpg",
+                        "size": "1.06M"
+                    }
+                ],
+                "comments": []
+            }
+        ]
+    },
+    {
+        "title": "已完成",
+        "tasks": [
+            {
+                "complete": true,
+                "title": "Y 项目前端开发",
+                "description": "我们只用了 2 个月产品就上线了。落地北京后 3 个月就积累了上万用户。而我们马上就要把业务拓展到深圳，服务的体验和北京都会是一样的。",
+                "priority": "normal",
+                "duedate": "",
+                "members": [
+                    {
+                        "id": "uid_6",
+                        "name": "孙继红",
+                        "img": "/images/portraits/6.jpg"
+                    }
+                ],
+                "subtasks": [],
+                "attachments": [],
+                "comments": []
+            },
+            {
+                "complete": true,
+                "title": "Y 项目需求分析",
+                "description": "不过我们两者的基因不太一样。TOGO 更多的是做互联网、车联网的事，在利用数据和技术上有优势。另外我们的团队也更了解中国和用户习惯，所以发展速度也更快。",
+                "priority": "normal",
+                "duedate": "",
+                "members": [
+                    {
+                        "id": "uid_5",
+                        "name": "蒋海燕",
+                        "img": "/images/portraits/5.jpg"
+                    },
+                    {
+                        "id": "uid_4",
+                        "name": "倪圣婴",
+                        "img": "/images/portraits/4.jpg"
+                    }
+                ],
+                "subtasks": [
+                    {
+                        "title": "subtask 1",
+                        "complete": true
+                    },
+                    {
+                        "title": "subtask 2",
+                        "complete": true
+                    }
+                ],
+                "attachments": [],
+                "comments": [
+                    {
+                        "user": "张倩",
+                        "src": "/images/portraits/1.jpg",
+                        "time": "2 天前",
+                        "content": "之后 TOGO 的核心工作是扩张我们的用户群和车队，形成更高标准的服务体系。在 2016 年，TOGO 会落地更多城市，为更多用户提供服务。"
+                    }
+                ]
+            }
+        ]
+    }
+]

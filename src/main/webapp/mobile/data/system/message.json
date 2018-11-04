@@ -1,0 +1,47 @@
+{
+    "success": true,
+    "page": 1,
+    "msgList": [
+        {
+            "messageId": 15,
+            "title": "您的账户信息已修改。",
+            "content": "管理员修改了您的账户信息。",
+            "type": "SYSTEM",
+            "sendTime": "2017-03-28 15:44:47",
+            "readFlag": false
+        },
+        {
+            "messageId": 14,
+            "title": "您的账户信息已修改。",
+            "content": "管理员修改了您的账户信息。",
+            "type": "SYSTEM",
+            "sendTime": "2017-03-28 15:44:35",
+            "readFlag": false
+        },
+        {
+            "messageId": 9,
+            "title": "您的账户信息已修改。",
+            "content": "管理员修改了您的账户信息。",
+            "type": "SYSTEM",
+            "sendTime": "2017-03-28 15:21:53",
+            "readFlag": false
+        },
+        {
+            "messageId": 8,
+            "title": "您的账户信息已修改。",
+            "content": "管理员修改了您的账户信息。",
+            "type": "SYSTEM",
+            "sendTime": "2017-03-28 15:21:07",
+            "readFlag": false
+        },
+        {
+            "messageId": 7,
+            "title": "刚问过且无人敢",
+            "content": "我更为",
+            "type": "SYSTEM",
+            "sendTime": "2017-03-27 18:13:16",
+            "readFlag": false
+        }
+    ],
+    "maxPage": 1
+}

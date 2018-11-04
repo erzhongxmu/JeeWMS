@@ -1,0 +1,16 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.grid-stack-item-content {
+	font-size: 20px;
+	color: #526069;
+	text-align: center;
+	background: white;
+}
+.grid-stack-item-content .fa {
+	display: block;
+	margin: 20px 0 10px;
+	font-size: 64px;
+}

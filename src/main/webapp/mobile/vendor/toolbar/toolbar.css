@@ -1,0 +1,336 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.tool-container {
+	position: absolute;
+	background-color: #e4eaec;
+	-webkit-background-size: 100% 100%;
+	        background-size: 100% 100%;
+	border: 1px solid transparent;
+	border-radius: 4px;
+}
+.tool-container.tool-top, .tool-container.tool-bottom {
+	height: 34px;
+}
+.tool-container.tool-top .tool-item, .tool-container.tool-bottom .tool-item {
+	float: left;
+}
+.tool-item {
+	display: block;
+	width: 20px;
+	height: 20px;
+	-webkit-box-sizing: content-box;
+	   -moz-box-sizing: content-box;
+	        box-sizing: content-box;
+	padding: 6px;
+	color: #76838f;
+	text-align: center;
+	-webkit-transition: none;
+	     -o-transition: none;
+	        transition: none;
+}
+.tool-item.selected, .tool-item:hover {
+	color: #fff;
+	background: #ccd5db;
+}
+.tool-top .tool-item:first-child:hover, .tool-bottom .tool-item:first-child:hover {
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+.tool-top .tool-item:last-child:hover, .tool-bottom .tool-item:last-child:hover {
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+.tool-vertical-top .tool-item:first-child:hover, .tool-vertical-bottom .tool-item:first-child:hover, .tool-right .tool-item:first-child:hover, .tool-left .tool-item:first-child:hover {
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+.tool-vertical-top .tool-item:last-child:hover, .tool-vertical-bottom .tool-item:last-child:hover, .tool-right .tool-item:last-child:hover, .tool-left .tool-item:last-child:hover {
+	border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+.tool-container .arrow {
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 6px;
+}
+.tool-container.tool-top .arrow {
+	bottom: -12px;
+	left: 50%;
+	margin-left: -6px;
+	border-color: #e4eaec transparent transparent;
+}
+.tool-container.tool-bottom .arrow {
+	top: -12px;
+	left: 50%;
+	margin-left: -6px;
+	border-color: transparent transparent #e4eaec;
+}
+.tool-container.tool-left .arrow {
+	top: 50%;
+	right: -12px;
+	margin-top: -6px;
+	border-color: transparent transparent transparent #e4eaec;
+}
+.tool-container.tool-right .arrow {
+	top: 50%;
+	left: -12px;
+	margin-top: -6px;
+	border-color: transparent #e4eaec transparent transparent;
+}
+.toolbar-default {
+	background-color: #e4eaec;
+}
+.toolbar-default.tool-top .arrow {
+	border-color: #e4eaec transparent transparent;
+}
+.toolbar-default.tool-bottom .arrow {
+	border-color: transparent transparent #e4eaec;
+}
+.toolbar-default.tool-left .arrow {
+	border-color: transparent transparent transparent #e4eaec;
+}
+.toolbar-default.tool-right .arrow {
+	border-color: transparent #e4eaec transparent transparent;
+}
+.toolbar-default .tool-item.selected, .toolbar-default .tool-item:hover {
+	color: #fff;
+	background: #ccd5db;
+}
+.toolbar-primary {
+	background-color: #62a8ea;
+}
+.toolbar-primary.tool-top .arrow {
+	border-color: #62a8ea transparent transparent;
+}
+.toolbar-primary.tool-bottom .arrow {
+	border-color: transparent transparent #62a8ea;
+}
+.toolbar-primary.tool-left .arrow {
+	border-color: transparent transparent transparent #62a8ea;
+}
+.toolbar-primary.tool-right .arrow {
+	border-color: transparent #62a8ea transparent transparent;
+}
+.toolbar-primary .tool-item {
+	color: #fff;
+}
+.toolbar-primary .tool-item.selected, .toolbar-primary .tool-item:hover {
+	color: #fff;
+	background: #4e97d9;
+}
+.toolbar-success {
+	background-color: #46be8a;
+}
+.toolbar-success.tool-top .arrow {
+	border-color: #46be8a transparent transparent;
+}
+.toolbar-success.tool-bottom .arrow {
+	border-color: transparent transparent #46be8a;
+}
+.toolbar-success.tool-left .arrow {
+	border-color: transparent transparent transparent #46be8a;
+}
+.toolbar-success.tool-right .arrow {
+	border-color: transparent #46be8a transparent transparent;
+}
+.toolbar-success .tool-item {
+	color: #fff;
+}
+.toolbar-success .tool-item.selected, .toolbar-success .tool-item:hover {
+	color: #fff;
+	background: #36ab7a;
+}
+.toolbar-info {
+	background-color: #57c7d4;
+}
+.toolbar-info.tool-top .arrow {
+	border-color: #57c7d4 transparent transparent;
+}
+.toolbar-info.tool-bottom .arrow {
+	border-color: transparent transparent #57c7d4;
+}
+.toolbar-info.tool-left .arrow {
+	border-color: transparent transparent transparent #57c7d4;
+}
+.toolbar-info.tool-right .arrow {
+	border-color: transparent #57c7d4 transparent transparent;
+}
+.toolbar-info .tool-item {
+	color: #fff;
+}
+.toolbar-info .tool-item.selected, .toolbar-info .tool-item:hover {
+	color: #fff;
+	background: #47b8c6;
+}
+.toolbar-warning {
+	background-color: #f2a654;
+}
+.toolbar-warning.tool-top .arrow {
+	border-color: #f2a654 transparent transparent;
+}
+.toolbar-warning.tool-bottom .arrow {
+	border-color: transparent transparent #f2a654;
+}
+.toolbar-warning.tool-left .arrow {
+	border-color: transparent transparent transparent #f2a654;
+}
+.toolbar-warning.tool-right .arrow {
+	border-color: transparent #f2a654 transparent transparent;
+}
+.toolbar-warning .tool-item {
+	color: #fff;
+}
+.toolbar-warning .tool-item.selected, .toolbar-warning .tool-item:hover {
+	color: #fff;
+	background: #ec9940;
+}
+.toolbar-danger {
+	background-color: #f96868;
+}
+.toolbar-danger.tool-top .arrow {
+	border-color: #f96868 transparent transparent;
+}
+.toolbar-danger.tool-bottom .arrow {
+	border-color: transparent transparent #f96868;
+}
+.toolbar-danger.tool-left .arrow {
+	border-color: transparent transparent transparent #f96868;
+}
+.toolbar-danger.tool-right .arrow {
+	border-color: transparent #f96868 transparent transparent;
+}
+.toolbar-danger .tool-item {
+	color: #fff;
+}
+.toolbar-danger .tool-item.selected, .toolbar-danger .tool-item:hover {
+	color: #fff;
+	background: #e9595b;
+}
+.toolbar-dark {
+	background-color: #526069;
+}
+.toolbar-dark.tool-top .arrow {
+	border-color: #526069 transparent transparent;
+}
+.toolbar-dark.tool-bottom .arrow {
+	border-color: transparent transparent #526069;
+}
+.toolbar-dark.tool-left .arrow {
+	border-color: transparent transparent transparent #526069;
+}
+.toolbar-dark.tool-right .arrow {
+	border-color: transparent #526069 transparent transparent;
+}
+.toolbar-dark .tool-item {
+	color: #fff;
+}
+.toolbar-dark .tool-item.selected, .toolbar-dark .tool-item:hover {
+	color: #fff;
+	background: #37474f;
+}
+.animate-standard {
+	-webkit-animation: standardAnimate .3s 1 ease;
+}
+.animate-flyin {
+	-webkit-animation: rotateAnimate .5s 1 ease;
+}
+.animate-grow {
+	-webkit-animation: growAnimate .4s 1 ease;
+}
+.animate-flip {
+	-webkit-animation: flipAnimate .4s 1 ease;
+}
+.animate-bounce {
+	-webkit-animation: bounceAnimate .4s 1 ease-out;
+}
+@-webkit-keyframes rotateAnimate {
+	from {
+		opacity: 0;
+		-webkit-transform: rotate(180deg) translate(-120px);
+		        transform: rotate(180deg) translate(-120px);
+	}
+	to {
+		opacity: 1;
+		-webkit-transform: rotate(0deg) translate(0);
+		        transform: rotate(0deg) translate(0);
+	}
+}
+@-webkit-keyframes standardAnimate {
+	from {
+		opacity: 0;
+		-webkit-transform: translateY(20px);
+		        transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		-webkit-transform: translateY(0);
+		        transform: translateY(0);
+	}
+}
+@-webkit-keyframes growAnimate {
+	0% {
+		opacity: 0;
+		-webkit-transform: scale(0) translateY(40px);
+		        transform: scale(0) translateY(40px);
+	}
+	70% {
+		-webkit-transform: scale(1.5) translate(0);
+		        transform: scale(1.5) translate(0);
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: scale(1) translate(0);
+		        transform: scale(1) translate(0);
+	}
+}
+@-webkit-keyframes rotate2Animate {
+	from {
+		opacity: 0;
+		-webkit-transform: rotate(-90deg);
+		        transform: rotate(-90deg);
+		-webkit-transform-origin: 0 100%;
+		        transform-origin: 0 100%;
+	}
+	to {
+		opacity: 1;
+		-webkit-transform: rotate(0deg);
+		        transform: rotate(0deg);
+	}
+}
+@-webkit-keyframes flipAnimate {
+	from {
+		opacity: 0;
+		-webkit-transform: rotate3d(2, 2, 2, 180deg);
+		        transform: rotate3d(2, 2, 2, 180deg);
+	}
+	to {
+		opacity: 1;
+		-webkit-transform: rotate3d(0, 0, 0, 0deg);
+		        transform: rotate3d(0, 0, 0, 0deg);
+	}
+}
+@-webkit-keyframes bounceAnimate {
+	0% {
+		opacity: 0;
+		-webkit-transform: translateY(40px);
+		        transform: translateY(40px);
+	}
+	30% {
+		-webkit-transform: translateY(-40px);
+		        transform: translateY(-40px);
+	}
+	70% {
+		-webkit-transform: translateY(20px);
+		        transform: translateY(20px);
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: translateY(0);
+		        transform: translateY(0);
+	}
+}

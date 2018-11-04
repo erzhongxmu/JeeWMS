@@ -1,0 +1,56 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.example-modal {
+	display: block;
+	width: 100%;
+	padding: 35px 15px;
+	background-color: #f1f4f5;
+}
+.example-modal .modal {
+	position: relative;
+	top: auto;
+	right: auto;
+	bottom: auto;
+	left: auto;
+	z-index: 1;
+	display: block;
+}
+.example-modal .modal .modal-dialog {
+	width: auto;
+	margin: 15px 15px;
+}
+.example-modal-top .center {
+	top: 0;
+	-webkit-transform: translate(-50%, 0);
+	    -ms-transform: translate(-50%, 0);
+	     -o-transform: translate(-50%, 0);
+	        transform: translate(-50%, 0);
+}
+.example-modal-bottom .center {
+	top: auto;
+	bottom: 0;
+	-webkit-transform: translate(-50%, 0);
+	    -ms-transform: translate(-50%, 0);
+	     -o-transform: translate(-50%, 0);
+	        transform: translate(-50%, 0);
+}
+.example-modal-sidebar .center {
+	top: 0;
+	right: 5px;
+	left: auto;
+	-webkit-transform: none;
+	    -ms-transform: none;
+	     -o-transform: none;
+	        transform: none;
+}
+.color-selector > li {
+	margin-right: 5px;
+}
+@media (max-width: 479px) {
+	#examplePositionSidebar .modal-sidebar {
+		min-width: 260px;
+	}
+}

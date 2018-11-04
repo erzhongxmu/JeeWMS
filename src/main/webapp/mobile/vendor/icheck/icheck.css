@@ -1,0 +1,469 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+/* iCheck 扁平皮肤
+----------------------------------- */
+[class^="icheckbox_"] + label, [class^="iradio_"] + label {
+	margin: 0 0 0 15px;
+}
+.icheckbox_flat, .iradio_flat {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	margin: 0;
+	vertical-align: middle;
+	cursor: pointer;
+	background: url("images/flat.png") no-repeat;
+	border: none;
+}
+.icheckbox_flat {
+	background-position: 0 0;
+}
+.icheckbox_flat.checked {
+	background-position: -22px 0;
+}
+.icheckbox_flat.disabled {
+	cursor: default;
+	background-position: -44px 0;
+}
+.icheckbox_flat.checked.disabled {
+	background-position: -66px 0;
+}
+.iradio_flat {
+	background-position: -88px 0;
+}
+.iradio_flat.checked {
+	background-position: -110px 0;
+}
+.iradio_flat.disabled {
+	cursor: default;
+	background-position: -132px 0;
+}
+.iradio_flat.checked.disabled {
+	background-position: -154px 0;
+}
+/* HiDPI支持 */
+@media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+	.icheckbox_flat, .iradio_flat {
+		background-image: url("images/flat@2x.png");
+		-webkit-background-size: 176px 22px;
+		        background-size: 176px 22px;
+	}
+}
+/* 红色 */
+.icheckbox_flat-red, .iradio_flat-red {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	margin: 0;
+	vertical-align: middle;
+	cursor: pointer;
+	background: url("images/red.png") no-repeat;
+	border: none;
+}
+.icheckbox_flat-red {
+	background-position: 0 0;
+}
+.icheckbox_flat-red.checked {
+	background-position: -22px 0;
+}
+.icheckbox_flat-red.disabled {
+	cursor: default;
+	background-position: -44px 0;
+}
+.icheckbox_flat-red.checked.disabled {
+	background-position: -66px 0;
+}
+.iradio_flat-red {
+	background-position: -88px 0;
+}
+.iradio_flat-red.checked {
+	background-position: -110px 0;
+}
+.iradio_flat-red.disabled {
+	cursor: default;
+	background-position: -132px 0;
+}
+.iradio_flat-red.checked.disabled {
+	background-position: -154px 0;
+}
+/* HiDPI支持 */
+@media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+	.icheckbox_flat-red, .iradio_flat-red {
+		background-image: url("images/red@2x.png");
+		-webkit-background-size: 176px 22px;
+		        background-size: 176px 22px;
+	}
+}
+/* 绿色 */
+.icheckbox_flat-green, .iradio_flat-green {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	margin: 0;
+	vertical-align: middle;
+	cursor: pointer;
+	background: url("images/green.png") no-repeat;
+	border: none;
+}
+.icheckbox_flat-green {
+	background-position: 0 0;
+}
+.icheckbox_flat-green.checked {
+	background-position: -22px 0;
+}
+.icheckbox_flat-green.disabled {
+	cursor: default;
+	background-position: -44px 0;
+}
+.icheckbox_flat-green.checked.disabled {
+	background-position: -66px 0;
+}
+.iradio_flat-green {
+	background-position: -88px 0;
+}
+.iradio_flat-green.checked {
+	background-position: -110px 0;
+}
+.iradio_flat-green.disabled {
+	cursor: default;
+	background-position: -132px 0;
+}
+.iradio_flat-green.checked.disabled {
+	background-position: -154px 0;
+}
+/* HiDPI支持 */
+@media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+	.icheckbox_flat-green, .iradio_flat-green {
+		background-image: url("images/green@2x.png");
+		-webkit-background-size: 176px 22px;
+		        background-size: 176px 22px;
+	}
+}
+/* 蓝色 */
+.icheckbox_flat-blue, .iradio_flat-blue {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	margin: 0;
+	vertical-align: middle;
+	cursor: pointer;
+	background: url("images/blue.png") no-repeat;
+	border: none;
+}
+.icheckbox_flat-blue {
+	background-position: 0 0;
+}
+.icheckbox_flat-blue.checked {
+	background-position: -22px 0;
+}
+.icheckbox_flat-blue.disabled {
+	cursor: default;
+	background-position: -44px 0;
+}
+.icheckbox_flat-blue.checked.disabled {
+	background-position: -66px 0;
+}
+.iradio_flat-blue {
+	background-position: -88px 0;
+}
+.iradio_flat-blue.checked {
+	background-position: -110px 0;
+}
+.iradio_flat-blue.disabled {
+	cursor: default;
+	background-position: -132px 0;
+}
+.iradio_flat-blue.checked.disabled {
+	background-position: -154px 0;
+}
+/* HiDPI支持 */
+@media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+	.icheckbox_flat-blue, .iradio_flat-blue {
+		background-image: url("images/blue@2x.png");
+		-webkit-background-size: 176px 22px;
+		        background-size: 176px 22px;
+	}
+}
+/* aero */
+.icheckbox_flat-aero, .iradio_flat-aero {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	margin: 0;
+	vertical-align: middle;
+	cursor: pointer;
+	background: url("images/aero.png") no-repeat;
+	border: none;
+}
+.icheckbox_flat-aero {
+	background-position: 0 0;
+}
+.icheckbox_flat-aero.checked {
+	background-position: -22px 0;
+}
+.icheckbox_flat-aero.disabled {
+	cursor: default;
+	background-position: -44px 0;
+}
+.icheckbox_flat-aero.checked.disabled {
+	background-position: -66px 0;
+}
+.iradio_flat-aero {
+	background-position: -88px 0;
+}
+.iradio_flat-aero.checked {
+	background-position: -110px 0;
+}
+.iradio_flat-aero.disabled {
+	cursor: default;
+	background-position: -132px 0;
+}
+.iradio_flat-aero.checked.disabled {
+	background-position: -154px 0;
+}
+/* HiDPI支持 */
+@media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+	.icheckbox_flat-aero, .iradio_flat-aero {
+		background-image: url("images/aero@2x.png");
+		-webkit-background-size: 176px 22px;
+		        background-size: 176px 22px;
+	}
+}
+/* 灰色 */
+.icheckbox_flat-grey, .iradio_flat-grey {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	margin: 0;
+	vertical-align: middle;
+	cursor: pointer;
+	background: url("images/grey.png") no-repeat;
+	border: none;
+}
+.icheckbox_flat-grey {
+	background-position: 0 0;
+}
+.icheckbox_flat-grey.checked {
+	background-position: -22px 0;
+}
+.icheckbox_flat-grey.disabled {
+	cursor: default;
+	background-position: -44px 0;
+}
+.icheckbox_flat-grey.checked.disabled {
+	background-position: -66px 0;
+}
+.iradio_flat-grey {
+	background-position: -88px 0;
+}
+.iradio_flat-grey.checked {
+	background-position: -110px 0;
+}
+.iradio_flat-grey.disabled {
+	cursor: default;
+	background-position: -132px 0;
+}
+.iradio_flat-grey.checked.disabled {
+	background-position: -154px 0;
+}
+/* HiDPI支持 */
+@media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+	.icheckbox_flat-grey, .iradio_flat-grey {
+		background-image: url("images/grey@2x.png");
+		-webkit-background-size: 176px 22px;
+		        background-size: 176px 22px;
+	}
+}
+/* 橙色 */
+.icheckbox_flat-orange, .iradio_flat-orange {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	margin: 0;
+	vertical-align: middle;
+	cursor: pointer;
+	background: url("images/orange.png") no-repeat;
+	border: none;
+}
+.icheckbox_flat-orange {
+	background-position: 0 0;
+}
+.icheckbox_flat-orange.checked {
+	background-position: -22px 0;
+}
+.icheckbox_flat-orange.disabled {
+	cursor: default;
+	background-position: -44px 0;
+}
+.icheckbox_flat-orange.checked.disabled {
+	background-position: -66px 0;
+}
+.iradio_flat-orange {
+	background-position: -88px 0;
+}
+.iradio_flat-orange.checked {
+	background-position: -110px 0;
+}
+.iradio_flat-orange.disabled {
+	cursor: default;
+	background-position: -132px 0;
+}
+.iradio_flat-orange.checked.disabled {
+	background-position: -154px 0;
+}
+/* HiDPI支持 */
+@media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+	.icheckbox_flat-orange, .iradio_flat-orange {
+		background-image: url("images/orange@2x.png");
+		-webkit-background-size: 176px 22px;
+		        background-size: 176px 22px;
+	}
+}
+/* 黄色 */
+.icheckbox_flat-yellow, .iradio_flat-yellow {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	margin: 0;
+	vertical-align: middle;
+	cursor: pointer;
+	background: url("images/yellow.png") no-repeat;
+	border: none;
+}
+.icheckbox_flat-yellow {
+	background-position: 0 0;
+}
+.icheckbox_flat-yellow.checked {
+	background-position: -22px 0;
+}
+.icheckbox_flat-yellow.disabled {
+	cursor: default;
+	background-position: -44px 0;
+}
+.icheckbox_flat-yellow.checked.disabled {
+	background-position: -66px 0;
+}
+.iradio_flat-yellow {
+	background-position: -88px 0;
+}
+.iradio_flat-yellow.checked {
+	background-position: -110px 0;
+}
+.iradio_flat-yellow.disabled {
+	cursor: default;
+	background-position: -132px 0;
+}
+.iradio_flat-yellow.checked.disabled {
+	background-position: -154px 0;
+}
+/* HiDPI支持 */
+@media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+	.icheckbox_flat-yellow, .iradio_flat-yellow {
+		background-image: url("images/yellow@2x.png");
+		-webkit-background-size: 176px 22px;
+		        background-size: 176px 22px;
+	}
+}
+/* 粉红色 */
+.icheckbox_flat-pink, .iradio_flat-pink {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	margin: 0;
+	vertical-align: middle;
+	cursor: pointer;
+	background: url("images/pink.png") no-repeat;
+	border: none;
+}
+.icheckbox_flat-pink {
+	background-position: 0 0;
+}
+.icheckbox_flat-pink.checked {
+	background-position: -22px 0;
+}
+.icheckbox_flat-pink.disabled {
+	cursor: default;
+	background-position: -44px 0;
+}
+.icheckbox_flat-pink.checked.disabled {
+	background-position: -66px 0;
+}
+.iradio_flat-pink {
+	background-position: -88px 0;
+}
+.iradio_flat-pink.checked {
+	background-position: -110px 0;
+}
+.iradio_flat-pink.disabled {
+	cursor: default;
+	background-position: -132px 0;
+}
+.iradio_flat-pink.checked.disabled {
+	background-position: -154px 0;
+}
+/* HiDPI支持 */
+@media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+	.icheckbox_flat-pink, .iradio_flat-pink {
+		background-image: url("images/pink@2x.png");
+		-webkit-background-size: 176px 22px;
+		        background-size: 176px 22px;
+	}
+}
+/* 紫色 */
+.icheckbox_flat-purple, .iradio_flat-purple {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	margin: 0;
+	vertical-align: middle;
+	cursor: pointer;
+	background: url("images/purple.png") no-repeat;
+	border: none;
+}
+.icheckbox_flat-purple {
+	background-position: 0 0;
+}
+.icheckbox_flat-purple.checked {
+	background-position: -22px 0;
+}
+.icheckbox_flat-purple.disabled {
+	cursor: default;
+	background-position: -44px 0;
+}
+.icheckbox_flat-purple.checked.disabled {
+	background-position: -66px 0;
+}
+.iradio_flat-purple {
+	background-position: -88px 0;
+}
+.iradio_flat-purple.checked {
+	background-position: -110px 0;
+}
+.iradio_flat-purple.disabled {
+	cursor: default;
+	background-position: -132px 0;
+}
+.iradio_flat-purple.checked.disabled {
+	background-position: -154px 0;
+}
+/* HiDPI支持 */
+@media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+	.icheckbox_flat-purple, .iradio_flat-purple {
+		background-image: url("images/purple@2x.png");
+		-webkit-background-size: 176px 22px;
+		        background-size: 176px 22px;
+	}
+}

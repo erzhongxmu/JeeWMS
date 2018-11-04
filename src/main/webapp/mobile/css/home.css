@@ -1,0 +1,102 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.page-index .row .panel {
+	height: -webkit-calc(100% - 24px);
+	height:         calc(100% - 24px);
+}
+.page-index .account-info {
+	overflow: visible;
+	border-bottom: none;
+}
+.page-index .account-info .media-right {
+	vertical-align: middle;
+}
+@media (max-width: 768px) {
+	.page-index .account-info .media-right {
+		display: none;
+	}
+}
+.page-index .introduce-info .media {
+	margin: 0;
+	border-bottom: none;
+}
+.page-index .introduce-info .media .media-object {
+	height: 120px;
+}
+.page-index .introduce-info .media .media-body {
+	padding-left: 20px;
+}
+.page-index .introduce-info .media .media-body .btn {
+	display: inline-block;
+	margin: 3px 5px 3px 0;
+}
+.page-index .changelog-info .time-line {
+	padding-left: 0;
+	list-style: none;
+}
+.page-index .changelog-info .time-line:before {
+	position: absolute;
+	top: 25px;
+	bottom: 40px;
+	left: 120px;
+	width: 1px;
+	content: " ";
+	background: #e4eaec;
+}
+.page-index .changelog-info .time-line > li {
+	position: relative;
+	width: 100%;
+	margin: 15px 0;
+	overflow: hidden;
+	line-height: 24px;
+}
+.page-index .changelog-info .time-line > li:before {
+	position: absolute;
+	top: 6px;
+	left: 93px;
+	display: block;
+	width: 14px;
+	height: 14px;
+	content: " ";
+	background: #fff;
+	border: solid 2px #e4eaec;
+	border-radius: 50%;
+}
+.page-index .changelog-info .time-line > li:first-child:before {
+	background: #5cd29d;
+	border-color: #bfedd8;
+}
+.page-index .changelog-info .time-line > li:last-child:before {
+	background: #fa7a7a;
+	border-color: #fad3d3;
+}
+.page-index .changelog-info .time-line > li time {
+	float: left;
+}
+.page-index .changelog-info .time-line > li h5 {
+	float: left;
+	margin: 0 0 0 55px;
+	line-height: 24px;
+}
+.page-index .part-info .panel-body .icon {
+	font-size: 3.2em;
+	line-height: 1.6;
+}
+.page-index .part-info .panel-body .label-content {
+	margin: 20px 0 10px;
+}
+.page-index .part-info .panel-body .label-content .label {
+	display: inline-block;
+	margin: 3px 0;
+}
+@media (max-width: 768px) {
+	.introduce-info .media-left {
+		display: none;
+	}
+	.introduce-info .media-body {
+		padding-left: 0!important;
+	}
+}

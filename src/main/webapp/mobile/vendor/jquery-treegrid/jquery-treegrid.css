@@ -1,0 +1,26 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.treegrid-indent {
+	position: relative;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	color: #a3afb7;
+}
+.treegrid-expander {
+	position: relative;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	color: #a3afb7;
+	cursor: pointer;
+}
+.treegrid-expander-expanded {
+	background-image: url("img/collapse.png");
+}
+.treegrid-expander-collapsed {
+	background-image: url("img/expand.png");
+}

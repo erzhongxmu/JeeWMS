@@ -1,0 +1,14 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+@media (min-width: 768px) and (max-width: 992px) {
+	.page-forms .form-inline .control-label {
+		display: block;
+	}
+	.page-forms .form-inline .form-group {
+		margin-bottom: 20px;
+		vertical-align: baseline;
+	}
+}

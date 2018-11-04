@@ -1,0 +1,132 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.page-message .page-main {
+	height: 100%;
+}
+.page-message .page-aside .form-control {
+	height: 56px;
+	padding: 10px 40px 10px 20px;
+	border-color: rgba(0, 0, 0, .06);
+	border-width: 0 0 1px 0;
+	border-radius: 0;
+}
+.page-message .page-aside .input-search-btn {
+	padding-right: 20px;
+	border-radius: 0;
+}
+.page-message .page-aside-inner {
+	height: 100%;
+}
+.page-message-list {
+	height: -webkit-calc(100% - 56px);
+	height:         calc(100% - 56px);
+}
+.page-message-list .list-group .list-group-item {
+	z-index: 0;
+	padding: 16px 30px;
+	white-space: nowrap;
+	border-bottom: 0;
+	border-radius: 0;
+}
+.page-message-list .list-group .list-group-item:hover, .page-message-list .list-group .list-group-item.active {
+	background-color: #e8f1f8;
+}
+.page-message-list .list-group .list-group-item.active:after {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 1px;
+	height: 100%;
+	content: " ";
+	background: #62a8ea;
+}
+.page-message-list .list-group .list-group-item .media-time {
+	color: #a3afb7;
+}
+.page-message-chats {
+	height: -webkit-calc(100% - 76px);
+	height:         calc(100% - 76px);
+	padding: 20px 20px;
+	overflow-y: scroll;
+	text-align: center;
+	background-color: #fff;
+}
+.page-message-chats > .btn {
+	color: #89bceb;
+}
+.page-message-chats > .btn:hover {
+	color: #76838f;
+}
+.page-message-chats .chats {
+	padding: 0;
+}
+.page-message-chats .chats .chat-avatar .avatar {
+	width: 60px;
+	margin-top: -10px;
+}
+.page-message-chats .chats .time {
+	margin: 40px 0;
+	font-size: 12px;
+	color: #a3afb7;
+	text-align: center;
+}
+.page-message-input {
+	position: relative;
+	padding: 20px 110px 20px 20px;
+	background-color: #f3f7f9;
+}
+.page-message-input .message-input {
+	position: relative;
+}
+.page-message-input .message-input textarea {
+	height: 36px;
+	max-height: 100px;
+	padding-right: 110px;
+	resize: none;
+}
+.page-message-input .message-input-actions {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+.page-message-input .message-input-actions input {
+	display: none;
+}
+.page-message-input .message-input-btn {
+	position: absolute;
+	right: 20px;
+	bottom: 20px;
+}
+@media (max-width: 1199px) {
+	.page-message .page-aside .list-group-item {
+		padding: 14px 16px;
+		font-size: 12px;
+	}
+	.page-message .page-aside .list-group-item h4 {
+		font-size: 12px;
+	}
+	.page-message .page-aside .list-group-item .avatar {
+		width: 34px;
+	}
+	.page-message .page-aside .list-group-item .badge {
+		padding: 1px 4px;
+	}
+}
+@media (max-width: 1199px) {
+	.page-message .page-aside .list-group-item {
+		padding: 14px 16px;
+		font-size: 12px;
+	}
+	.page-message .page-aside .list-group-item h4 {
+		font-size: 12px;
+	}
+	.page-message .page-aside .list-group-item .avatar {
+		width: 34px;
+	}
+	.page-message .page-aside .list-group-item .badge {
+		padding: 1px 4px;
+	}
+}

@@ -1,0 +1,166 @@
+{
+    "total": 163,
+    "data": [
+        {
+            "url": "/log/saveConfig",
+            "type": "保存日志配置",
+            "params": "[configId=2 url=/log/saveConfig type=保存日志配置]",
+            "user": {
+                "userId": 1,
+                "loginName": "admin",
+                "loginCount": 542,
+                "state": "FORBIDDEN",
+                "lastLoginTime": "2017-03-30 10:11:55",
+                "lastLoginIp": "127.0.0.1",
+                "createTime": "2016-12-21 11:16:00"
+            },
+            "logTime": "2017-03-27 01:10:20",
+            "userIp": "127.0.0.1"
+        },
+        {
+            "url": "/log/saveConfig",
+            "type": "保存日志配置",
+            "params": "[configId=2 url=/log/saveConfig type=保存日志配置]",
+            "user": {
+                "userId": 1,
+                "loginName": "admin",
+                "loginCount": 542,
+                "state": "FORBIDDEN",
+                "lastLoginTime": "2017-03-30 10:11:55",
+                "lastLoginIp": "127.0.0.1",
+                "createTime": "2016-12-21 11:16:00"
+            },
+            "logTime": "2017-03-27 11:26:31",
+            "userIp": "127.0.0.1"
+        },
+        {
+            "url": "/log/saveConfig",
+            "type": "保存日志配置",
+            "params": "[configId=2 url=/log/saveConfig type=保存日志配置]",
+            "user": {
+                "userId": 1,
+                "loginName": "admin",
+                "loginCount": 542,
+                "state": "FORBIDDEN",
+                "lastLoginTime": "2017-03-30 10:11:55",
+                "lastLoginIp": "127.0.0.1",
+                "createTime": "2016-12-21 11:16:00"
+            },
+            "logTime": "2017-03-27 11:28:38",
+            "userIp": "127.0.0.1"
+        },
+        {
+            "url": "/log/saveConfig",
+            "type": "保存日志配置",
+            "params": "[configId=2 url=/log/saveConfig type=保存日志配置]",
+            "user": {
+                "userId": 1,
+                "loginName": "admin",
+                "loginCount": 542,
+                "state": "FORBIDDEN",
+                "lastLoginTime": "2017-03-30 10:11:55",
+                "lastLoginIp": "127.0.0.1",
+                "createTime": "2016-12-21 11:16:00"
+            },
+            "logTime": "2017-03-27 11:28:48",
+            "userIp": "127.0.0.1"
+        },
+        {
+            "url": "/log/saveConfig",
+            "type": "保存日志配置",
+            "params": "[configId=2 url=/log/saveConfig type=保存日志配置 ]",
+            "user": {
+                "userId": 1,
+                "loginName": "admin",
+                "loginCount": 542,
+                "state": "FORBIDDEN",
+                "lastLoginTime": "2017-03-30 10:11:55",
+                "lastLoginIp": "127.0.0.1",
+                "createTime": "2016-12-21 11:16:00"
+            },
+            "logTime": "2017-03-27 12:01:50",
+            "userIp": "127.0.0.1"
+        },
+        {
+            "url": "/log/saveConfig",
+            "type": "保存日志配置",
+            "params": "[configId=2 url=/log/saveConfig type=保存日志配置 ]",
+            "user": {
+                "userId": 1,
+                "loginName": "admin",
+                "loginCount": 542,
+                "state": "FORBIDDEN",
+                "lastLoginTime": "2017-03-30 10:11:55",
+                "lastLoginIp": "127.0.0.1",
+                "createTime": "2016-12-21 11:16:00"
+            },
+            "logTime": "2017-03-27 12:06:22",
+            "userIp": "127.0.0.1"
+        },
+        {
+            "url": "/log/saveConfig",
+            "type": "保存日志配置",
+            "params": "[configId=2 url=/log/saveConfig type=保存日志配置 ]",
+            "user": {
+                "userId": 1,
+                "loginName": "admin",
+                "loginCount": 542,
+                "state": "FORBIDDEN",
+                "lastLoginTime": "2017-03-30 10:11:55",
+                "lastLoginIp": "127.0.0.1",
+                "createTime": "2016-12-21 11:16:00"
+            },
+            "logTime": "2017-03-27 12:11:42",
+            "userIp": "127.0.0.1"
+        },
+        {
+            "url": "/log/saveConfig",
+            "type": "保存日志配置",
+            "params": "[configId=2 url=/log/saveConfig type=保存日志配置 ]",
+            "user": {
+                "userId": 1,
+                "loginName": "admin",
+                "loginCount": 542,
+                "state": "FORBIDDEN",
+                "lastLoginTime": "2017-03-30 10:11:55",
+                "lastLoginIp": "127.0.0.1",
+                "createTime": "2016-12-21 11:16:00"
+            },
+            "logTime": "2017-03-27 12:12:04",
+            "userIp": "127.0.0.1"
+        },
+        {
+            "url": "/log/saveConfig",
+            "type": "保存日志配置",
+            "params": "[configId= url=all type=1 ]",
+            "user": {
+                "userId": 1,
+                "loginName": "admin",
+                "loginCount": 542,
+                "state": "FORBIDDEN",
+                "lastLoginTime": "2017-03-30 10:11:55",
+                "lastLoginIp": "127.0.0.1",
+                "createTime": "2016-12-21 11:16:00"
+            },
+            "logTime": "2017-03-27 13:28:02",
+            "userIp": "127.0.0.1"
+        },
+        {
+            "url": "/log/saveConfig",
+            "type": "保存日志配置",
+            "params": "[configId= url=all type=2 ]",
+            "user": {
+                "userId": 1,
+                "loginName": "admin",
+                "loginCount": 542,
+                "state": "FORBIDDEN",
+                "lastLoginTime": "2017-03-30 10:11:55",
+                "lastLoginIp": "127.0.0.1",
+                "createTime": "2016-12-21 11:16:00"
+            },
+            "logTime": "2017-03-27 13:28:48",
+            "userIp": "127.0.0.1"
+        }
+    ],
+    "success": true
+}

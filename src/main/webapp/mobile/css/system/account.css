@@ -1,0 +1,68 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.page-account .widget-header {
+	padding: 40px 15px;
+	background-color: #fff;
+}
+.page-account .widget-footer {
+	padding: 10px;
+	background-color: #f6f9fd;
+}
+.page-account .widget .avatar {
+	width: 130px;
+	margin-bottom: 10px;
+}
+.page-account .account-user {
+	margin-bottom: 10px;
+	color: #263238;
+}
+.page-account .account-stat-count {
+	display: block;
+	margin-bottom: 3px;
+	font-size: 20px;
+	font-weight: 300;
+	color: #526069;
+}
+.page-account .account-stat-count + span {
+	color: #a3afb7;
+}
+.page-account .tab-content .tab-message .media {
+	padding-top: 0;
+}
+.page-account .tab-content .tab-message .media-heading {
+	margin-top: 5px;
+}
+.page-account .tab-content .tab-message .media-left {
+	padding: 5px 10px 0 0;
+}
+.page-account .tab-content .tab-message .media-left .icon {
+	margin-left: .6em;
+}
+.page-account .tab-content .tab-message .media-left .icon.system {
+	background-color: #f96868;
+}
+.page-account .tab-content .tab-message .media-left .icon.task {
+	background-color: #46be8a;
+}
+.page-account .tab-content .tab-message .media-left .icon.setting {
+	background-color: #62a8ea;
+}
+.page-account .tab-content .tab-message .media-left .icon.event {
+	background-color: #8d6658;
+}
+.page-account .tab-content .tab-message .media-left .icon.other {
+	background-color: #f2a654;
+}
+.page-account .tab-content .tab-message .media-right .btn {
+	margin: 5px 0 0;
+	visibility: hidden;
+}
+.page-account .tab-content .tab-message .media time {
+	opacity: .5;
+}
+.page-account .tab-content .tab-message .media:hover .media-right .btn {
+	visibility: visible;
+}

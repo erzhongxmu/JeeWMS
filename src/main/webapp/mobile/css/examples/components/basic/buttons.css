@@ -1,0 +1,30 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.color-box {
+	width: 20px;
+	height: 40px;
+	border-radius: 4px;
+}
+.btn.btn-direction {
+	width: 174px;
+}
+.btn-pill-left, .btn-pill-right {
+	width: 120px;
+}
+.text-active, .active > .text, .active > .auto .text {
+	display: none !important;
+}
+.active > .text-active, .active > .auto .text-active {
+	display: inline-block !important;
+}
+.active .icon {
+	line-height: 1;
+}
+@media screen and (max-width: 768px) {
+	.btn-group-justified .btn {
+		min-height: 50px;
+	}
+}

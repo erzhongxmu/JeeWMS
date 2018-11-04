@@ -1,0 +1,183 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.page-documents .form-group .dropdown-toggle {
+	height: 46px;
+	padding-left: 20px;
+	background-color: #fff;
+	border-color: #e4eaec;
+	border-width: 1px 0 1px 1px;
+}
+.page-documents .form-group .filter-option {
+	float: none !important;
+	text-overflow: ellipsis;
+	vertical-align: middle;
+}
+.page-documents .form-group .input-search-btn {
+	z-index: 3;
+	font-size: 20px;
+}
+.page-documents .form-group .input-search-btn + .form-control {
+	height: 46px;
+	padding: 8px 48px 8px 13px;
+	border-radius: 0 4px 4px 0;
+}
+.page-documents .documents-wrap {
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+.page-documents .articles {
+	padding: 30px 30px 0;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	background-color: #fff;
+	border-radius: 4px;
+}
+.page-documents .articles .blocks > li {
+	margin-bottom: 50px;
+}
+.page-documents .articles-item {
+	position: relative;
+	padding-left: 45px;
+}
+.page-documents .articles-item > .icon {
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-size: 25px;
+}
+.page-documents .articles-item a {
+	color: #76838f;
+}
+.page-documents .categories {
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+.page-documents .categories .blocks > li {
+	margin-bottom: 30px;
+}
+.page-documents .category {
+	height: 100%;
+	padding: 30px;
+	text-align: center;
+	background-color: #fff;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+	        box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+.page-documents .category .icon-wrap > .icon {
+	font-size: 65px;
+}
+.page-documents .article:before, .page-documents .article:after {
+	display: table;
+	content: " ";
+}
+.page-documents .article:after {
+	clear: both;
+}
+.page-documents .article-sidebar, .page-documents .article-content {
+	float: left;
+	background-color: #fff;
+	border-radius: 4px;
+}
+.page-documents .article-sidebar {
+	width: 260px;
+	padding: 20px 15px;
+	margin-bottom: 30px;
+}
+.page-documents .article-sidebar .list-group {
+	margin-bottom: 0;
+}
+.page-documents .article-sidebar .list-group .list-group {
+	display: none;
+}
+.page-documents .article-sidebar .list-group-item {
+	padding: 0;
+	margin-bottom: 1px;
+	border: none;
+}
+.page-documents .article-sidebar .list-group-item a {
+	display: block;
+	padding: 10px 15px;
+	overflow: hidden;
+	color: inherit;
+	text-decoration: none;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.page-documents .article-sidebar .list-group-item a:hover, .page-documents .article-sidebar .list-group-item a:focus {
+	background-color: #f3f7f9;
+}
+.page-documents .article-sidebar .list-group-item a + .list-group {
+	margin-top: 1px;
+}
+.page-documents .article-sidebar .list-group-item.active .list-group {
+	display: block;
+}
+.page-documents .article-sidebar .list-group-item.active, .page-documents .article-sidebar .list-group-item.active:hover, .page-documents .article-sidebar .list-group-item.active:focus {
+	color: inherit;
+}
+.page-documents .article-sidebar .list-group-item.active > a {
+	color: #62a8ea;
+	background-color: #f3f7f9;
+}
+.page-documents .article-sidebar .list-group-item .list-group-item > a {
+	padding-left: 25px;
+}
+.page-documents .affix {
+	top: 80px;
+}
+.site-contabs-open .page-documents .affix {
+	top: 120px;
+}
+.page-documents .affix + .article-content {
+	margin-left: 290px;
+}
+.page-documents .article-content {
+	width: -webkit-calc(100% - 290px);
+	width:         calc(100% - 290px);
+	padding: 20px 30px;
+	margin-left: 30px;
+}
+.page-documents .article-content section {
+	margin-bottom: 22px;
+}
+.page-documents .article-footer {
+	padding: 30px;
+	font-size: 18px;
+	background-color: #f3f7f9;
+	border-radius: 4px;
+}
+.page-documents .article-footer:before, .page-documents .article-footer:after {
+	display: table;
+	content: " ";
+}
+.page-documents .article-footer:after {
+	clear: both;
+}
+.page-documents .article-footer-actions {
+	float: right;
+}
+@media (max-width: 767px) {
+	.page-documents .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+		width: 200px;
+	}
+	.page-documents .article-sidebar, .page-documents .article-content {
+		width: 100%;
+		margin-left: 0;
+	}
+	.page-documents .article-sidebar.affix {
+		position: static;
+		top: 0;
+	}
+	.page-documents .article-sidebar.affix + .article-content {
+		margin-left: 0;
+	}
+}
+@media (max-width: 480px) {
+	.page-documents .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+		width: 100px;
+	}
+}

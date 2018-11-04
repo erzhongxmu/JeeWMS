@@ -1,0 +1,29 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.page-errors .page-error {
+	height: 90vh;
+}
+.page-error .error-mark {
+	margin-bottom: 33px;
+}
+.page-error header .icon:before {
+	margin-bottom: 20px;
+	font-size: 120px;
+}
+.page-error header h1 {
+	font-size: 120px;
+	color: #76838f;
+}
+.page-error header h3 {
+	margin-top: 30px;
+}
+.page-error header p {
+	margin-bottom: 30px;
+	text-transform: uppercase;
+}
+main.site-page .page-error .page-copyright {
+	display: none;
+}

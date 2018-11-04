@@ -1,0 +1,295 @@
+\uFEFF#SESSION
+sessionVersion=sessionVersion
+#
+templatepath=docTemp
+#
+
+timerun=run
+uploadpath=upload
+
+webUploadpath=D://upFiles
+showAndDownUrl=systemController/showOrDownByurl.do?dbPath=
+
+office_home=D://OpenOffice
+
+
+#DEV(\u5F00\u53D1\u6A21\u5F0F)/PUB(\u751F\u4EA7\u6A21\u5F0F)
+sqlReadMode=PUB
+
+#database type for spring jdbc 
+jdbc.url.jeecg=mysql
+
+#\u6309\u94AE\u6743\u9650\u5F00\u5173
+button.authority.jeecg=true
+
+#auto scan menu flag true or false
+auto.scan.menu.flag=false
+
+
+# \u9A8C\u8BC1\u7801\u914D\u7F6E
+# \u9A8C\u8BC1\u7801\u957F\u5EA6
+randCodeLength=4
+# \u9A8C\u8BC1\u7801\u7C7B\u578B\uFF1A1-\u6570\u5B57\uFF0C2-\u5C0F\u5199\u5B57\u6BCD\uFF0C3-\u5927\u5199\u5B57\u7B26\uFF0C4-\u5B57\u7B26,5-\u6DF7\u5408\u5B57\u7B26\u4E32\uFF0C
+randCodeType=1
+
+# \u7EC4\u7EC7\u7ED3\u6784\u7F16\u7801\u957F\u5EA6\u7C7B\u578B\uFF1A2-\u4E24\u4F4D\u6570\u5B57\u30013-3\u4E3A\u6570\u5B57\uFF0C\u5982\u679C\u7C7B\u578B\u4E0D\u662F2\u6216\u80053\uFF0C\u5219\u957F\u5EA6\u9ED8\u8BA4\u4E3A\u4E24\u4F4D\uFF1B
+orgCodeLengthType=2
+# \u7C7B\u578B\u7ED3\u6784\u7F16\u7801\u957F\u5EA6\u7C7B\u578B\uFF1A2-\u4E24\u4F4D\u6570\u5B57\u30013-3\u4F4D\u6570\u5B57\u4F9D\u6B21\u7C7B\u63A8,\u6700\u4F4E2\u4F4D
+categoryCodeLengthType=2
+
+
+
+#on  \u542F\u7528\u6A21\u7CCA  off *\u53F7\u4EE3\u8868\u6A21\u7CCA
+sysfuzseach=on
+
+mail.smtpHost=smtp.163.com
+mail.sender=cao6512931@163.com
+mail.user=cao6512931
+mail.pwd=123qwe
+
+
+
+
+#\u7535\u5546\u63A5\u53E3
+#http://218.5.177.99:81/dsc/api.php?app_key=B92BB31B-A746-49A7-8393-2147D6EA588D&method=dsc.order.list.get
+dsc.url=http://218.5.177.99:81/dsc/api.php
+dsc.key=B92BB31B-A746-49A7-8393-2147D6EA588D
+
+
+#uas\u63A5\u53E3
+uas.url=http://36.110.2.114:8099/XKN/
+uas.userName=xknTest
+uas.passWord=xknTest123
+uas.master=XKN_TEST
+uas.cuscode=xkn
+
+
+
+#sap
+rfc.clientName=300
+rfc.userid=DY_EZCAO
+rfc.password=123123
+rfc.language=ZH
+rfc.host=192.168.254.99
+rfc.system=00
+
+
+
+
+#e3
+E3.url=http://121.199.171.146/e3_cs/webopm/web/
+E3.key=BAISON_E3_BSWMS
+E3.secret=770e253089a257a8070f984d5505aee2
+
+
+#\u57DF\u9A8C\u8BC1
+#user.login.type=ldap
+user.login.type=system
+
+ldap.DOMAIN_NAME=ARTGRI
+ldap.DOMAIN_SUFFIX=COM
+ldap.LDAP_SERVER_IP=192.168.254.26
+ldap.LDAP_PORTAL=389
+
+
+#\u8C03\u7528\u65B9id
+from_account=fzcsxc
+#\u63D0\u4F9B\u65B9id
+to_account = to_fzcsxc
+#\u5E94\u7528key
+app_key=opa25e0e3864460573f
+#\u5E94\u7528\u5BC6\u94A5
+app_secret=b28a5fd5251145729dc29e3600360873
+#\u7F51\u7AD9api\u7684url
+baseURL=https://api.yonyouup.com/api/
+#\u83B7\u53D6token\u7684url
+api_url_token_get=https://api.yonyouup.com/system/token?from_account={from_account}&app_key={app_key}&app_secret={app_secret}
+#\u83B7\u53D6trade_id \u7684url
+api_url_trade_get = https://api.yonyouup.com/system/tradeid?from_account={from_account}&app_key={app_key}&token={token}
+#\u83B7\u53D6orderstatus\u7684url
+api_url_orderstatus_get = https://api.yonyouup.com/orderstatus/get?from_account={from_account}&to_account={to_account}&app_key={app_key}&token={token}
+#\u83B7\u53D6\u7ED3\u679C\u7684url
+api_url_result_get = https://api.yonyouup.com/result?requestid={requestid}
+
+
+#\u542F\u7528HITI
+hiti=off
+
+#\u5141\u8BB8\u8D85\u6536   y\u5141\u8BB8  n\u4E0D\u5141\u8BB8
+chaoshou=y
+
+#\u6253\u5370\u65B9\u5F0F excel  page
+printtype=page
+
+binStoress=01A
+moveStats=\u8BA1\u5212\u4E2D
+#nocheck  \u4E0D\u68C0\u67E5
+nocheck=yes
+
+#\u5BFC\u51FA\u5168\u90E8\u4E3A\u6587\u672C
+exceltxt=yes
+
+
+#isSend =0:\u4E0D\u53D1\u9001\uFF0CisSend=1:\u53D1\u9001(\u9ED8\u8BA4)
+sms.tip.control=1
+#\u663E\u793A\u6258\u76D8
+systuopan=yes
+\u5BF9\u8D26\u5355\u663E\u793A\u660E\u7EC6
+sysdzd=yes
+
+
+\u4ED3\u5E93\u4FE1\u606F
+comname=\u6CC9\u5DDE\u65B0\u96C5\u4ED5\u51B7\u94FE\u7269\u6D41\u4E2D\u5FC3
+comaddr=\u6CC9\u5DDE\u5E02\u6E05\u6FDB\u5F00\u53D1\u533A\u5B89\u6CF0\u8DEF1\u53F7
+comtel=0595-22996006   0595-22996007
+#\u5BF9\u8D26\u4FE1\u606F
+comfiname=\u6CC9\u5DDE\u65B0\u96C5\u4ED5\u51B7\u94FE\u7269\u6D41\u6709\u9650\u516C\u53F8
+comfiaddr=\u798F\u5EFA\u7701\u6CC9\u5DDE\u5E02\u9CA4\u57CE\u533A\u6C5F\u5357\u8857\u9053\u767B\u5CF0\u793E\u533A\u53CC\u5751\u5D0E\u6BB5
+comfitel=15059713100/0595-22996665
+comfibankid=35050165683600000101
+comfibankname=\u5EFA\u8BBE\u94F6\u884C\u6CC9\u5DDE\u5C55\u89C8\u57CE\u652F\u884C
+comfizhucehao=91350500MA2YF39RXK
+comfibeizhu1=1.\u4E59\u65B9\u5982\u5BF9\u5177\u4F53\u6570\u989D\u6709\u5F02\u8BAE\u5E94\u5728\u4E24\u4E2A\u5DE5\u4F5C\u65E5\u5185\u4EE5\u4E66\u9762\u5F62\u5F0F\u63D0\u51FA\uFF0C\u5426\u5219\u89C6\u4E3A\u4E59\u65B9\u786E\u8BA4
+comfibeizhu2=2.\u4E59\u65B9\u5728\u6B21\u67085\u53F7\u524D\u5C06\u6240\u6709\u8D39\u7528\u652F\u4ED8\u5230\u7532\u65B9\u6307\u5B9A\u94F6\u884C\u5E10\u6237
+comfibeizhu3=\u611F\u8C22\u8D35\u53F8\u4E00\u76F4\u4EE5\u6765\u7684\u652F\u6301\u548C\u60E0\u987E\uFF01
+comfidzyz=D://upFiles//yyz.jpg
+comfilogo=D://upFiles//logo.jpg
+#1:\u4E0D\u6EE1\u4E00\u5428\u7B97\u4E00\u5428; 0: \u5B9E\u9645\u8BA1\u8D39
+jifeitype=1
+
+#\u6309SKU\u8BA1\u7B97\u4ED3\u79DF 1   \u5426\u5219\u6309\u50A8\u4F4D\u548C\u6258\u76D80
+ckjf=0
+
+#\u4E0B\u67B6\u81EA\u52A8\u786E\u8BA4
+autocon=no
+
+#\u6309\u5269\u4F59\u6570\u91CF\u6536\u8D27 yes  \u6309\u7801\u76D8\u6536\u8D27  no
+giwq=no
+
+#\u662F\u5426\u542F\u7528\u6258\u76D8   yes \u542F\u7528  no \u4E0D\u542F\u7528
+usetuopan=yes
+
+##\u56FA\u5B9A\u6258\u76D8\u7801
+tuopanma=
+
+#\u662F\u5426\u542F\u7528\u751F\u4EA7\u65E5\u671F
+scrqon=yes
+scrq=2099-12-31
+
+#\u662F\u5426\u542F\u7528\u5546\u54C1\u6761\u7801
+sptmon=no
+
+
+#hrbengin
+####\u663E\u793A\u6258\u76D8
+#systuopan=yes
+##\u4ED3\u5E93\u4FE1\u606F
+#comname=\u5E7F\u4E1C\u6D77\u6DA6\u51B7\u94FE\u7269\u6D41\u6709\u9650\u516C\u53F8
+#comaddr=\u9976\u5E73\u53BF\u6D77\u5C71\u9547\u4E09\u767E\u95E8\u6E2F
+#comtel=
+##\u5BF9\u8D26\u4FE1\u606F
+#comfiname=\u5E7F\u4E1C\u6D77\u6DA6\u51B7\u94FE\u7269\u6D41\u6709\u9650\u516C\u53F8
+#comfiaddr=\u9976\u5E73\u53BF\u6D77\u5C71\u9547\u4E09\u767E\u95E8\u6E2F
+#comfitel=
+#comfibankid=
+#comfibankname=
+#comfizhucehao=
+#comfibeizhu1=1.\u4E59\u65B9\u5982\u5BF9\u5177\u4F53\u6570\u989D\u6709\u5F02\u8BAE\u5E94\u5728\u4E24\u4E2A\u5DE5\u4F5C\u65E5\u5185\u4EE5\u4E66\u9762\u5F62\u5F0F\u63D0\u51FA\uFF0C\u5426\u5219\u89C6\u4E3A\u4E59\u65B9\u786E\u8BA4
+#comfibeizhu2=2.\u4E59\u65B9\u5728\u6B21\u67085\u53F7\u524D\u5C06\u6240\u6709\u8D39\u7528\u652F\u4ED8\u5230\u7532\u65B9\u6307\u5B9A\u94F6\u884C\u5E10\u6237
+#comfibeizhu3=\u611F\u8C22\u8D35\u53F8\u4E00\u76F4\u4EE5\u6765\u7684\u652F\u6301\u548C\u60E0\u987E\uFF01
+#comfidzyz=D://upFiles//yyz.jpg
+#comfilogo=D://upFiles//logo.jpg
+#
+## 1:\u4E0D\u6EE1\u4E00\u5428\u7B97\u4E00\u5428; 0: \u5B9E\u9645\u8BA1\u8D39
+#jifeitype=0
+#
+##  1\uFF1A\u6309SKU\u8BA1\u7B97\u4ED3\u79DF    0\uFF1A\u5426\u5219\u6309\u50A8\u4F4D\u548C\u6258\u76D8
+#ckjf=1
+#
+#
+##\u4E0B\u67B6\u81EA\u52A8\u786E\u8BA4     yes \u70BA\u81EA\u52D5\u78BA\u8A8D  no \u70BA\u624B\u5DE5\u78BA\u8A8D
+#autocon=yes
+#
+##\u6309\u5269\u4F59\u6570\u91CF\u6536\u8D27 yes  \u6309\u7801\u76D8\u6536\u8D27  no
+#giwq=no
+#
+##\u662F\u5426\u542F\u7528\u6258\u76D8   yes \u542F\u7528  no \u4E0D\u542F\u7528
+#usetuopan=no
+##\u56FA\u5B9A\u6258\u76D8\u7801
+#tuopanma=1
+
+
+##
+##\u662F\u5426\u542F\u7528\u751F\u4EA7\u65E5\u671F  no\u4E3A\u4E0D\u542F\u7528  \u751F\u4EA7\u65E5\u671F\u5168\u90E8\u4E3A2099-12-31
+#scrqon=no
+#scrq=2099-12-31
+#
+##\u662F\u5426\u542F\u7528\u5546\u54C1\u6761\u7801  no\u4E3A\u4E0D\u542F\u7528   yes \u5553\u7528
+#sptmon=no
+#
+#hrend
+
+
+##beijing
+###\u663E\u793A\u6258\u76D8
+#systuopan=yes
+##\u5BF9\u8D26\u5355\u663E\u793A\u660E\u7EC6
+#sysdzd=yes
+##\u4ED3\u5E93\u4FE1\u606F
+#comname=\u5317\u4EAC\u6B23\u5EB7\u5B81\u5DE5\u8D38\u6709\u9650\u516C\u53F8
+#comaddr=\u5317\u4EAC\u5E02\u4E1C\u57CE\u533A\u4E1C\u56DB\u5757\u7389\u5357\u885732\u53F75\u53F7\u697C 503
+#comtel=
+##\u5BF9\u8D26\u4FE1\u606F
+#comfiname=\u5317\u4EAC\u6B23\u5EB7\u5B81\u5DE5\u8D38\u6709\u9650\u516C\u53F8
+#comfiaddr=\u5317\u4EAC\u5E02\u4E1C\u57CE\u533A\u4E1C\u56DB\u5757\u7389\u5357\u885732\u53F75\u53F7\u697C 503
+#comfitel=
+#comfibankid=
+#comfibankname=
+#comfizhucehao=
+#comfibeizhu1=1.\u4E59\u65B9\u5982\u5BF9\u5177\u4F53\u6570\u989D\u6709\u5F02\u8BAE\u5E94\u5728\u4E24\u4E2A\u5DE5\u4F5C\u65E5\u5185\u4EE5\u4E66\u9762\u5F62\u5F0F\u63D0\u51FA\uFF0C\u5426\u5219\u89C6\u4E3A\u4E59\u65B9\u786E\u8BA4
+#comfibeizhu2=2.\u4E59\u65B9\u5728\u6B21\u67085\u53F7\u524D\u5C06\u6240\u6709\u8D39\u7528\u652F\u4ED8\u5230\u7532\u65B9\u6307\u5B9A\u94F6\u884C\u5E10\u6237
+#comfibeizhu3=\u611F\u8C22\u8D35\u53F8\u4E00\u76F4\u4EE5\u6765\u7684\u652F\u6301\u548C\u60E0\u987E\uFF01
+#comfidzyz=D://upFiles//yyz.jpg
+#comfilogo=D://upFiles//logo.jpg
+##1:\u4E0D\u6EE1\u4E00\u5428\u7B97\u4E00\u5428; 0: \u5B9E\u9645\u8BA1\u8D39
+#jifeitype=1
+#
+##\u6309SKU\u8BA1\u7B97\u4ED3\u79DF 1   \u5426\u5219\u6309\u50A8\u4F4D\u548C\u6258\u76D80
+#ckjf=0
+#
+##\u4E0B\u67B6\u81EA\u52A8\u786E\u8BA4
+#autocon=no
+#
+##\u6309\u5269\u4F59\u6570\u91CF\u6536\u8D27 yes  \u6309\u7801\u76D8\u6536\u8D27  no
+#giwq=yes
+#
+##\u662F\u5426\u542F\u7528\u6258\u76D8   yes \u542F\u7528  no \u4E0D\u542F\u7528
+#usetuopan=no
+##\u56FA\u5B9A\u6258\u76D8\u7801
+#tuopanma=A
+##\u662F\u5426\u542F\u7528\u751F\u4EA7\u65E5\u671F
+#scrqon=yes
+#scrq=2099-12-31
+#
+#
+##\u662F\u5426\u542F\u7528\u5546\u54C1\u6761\u7801
+#sptmon=yes
+##beijingend
+
+yydbkey=mssql
+yy.cuscode=hwm
+
+
+interfacetype=U8
+
+
+
+
+
+
+
+
+
+
+
+

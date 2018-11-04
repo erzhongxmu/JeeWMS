@@ -1,0 +1,28 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.fixed-table-body {
+	height: 100%;
+	overflow: auto;
+}
+#daily-feed .name {
+	font-weight: 500;
+	color: #526069;
+	text-decoration: none;
+	cursor: pointer;
+}
+#daily-feed .content {
+	margin-top: 10px;
+	margin-bottom: 0;
+}
+#tickets .hightlight {
+	font-weight: 500;
+	color: #526069;
+	text-decoration: none;
+	cursor: pointer;
+}
+#projects .table > tbody > tr > td, #projects .table > thead > tr > th {
+	vertical-align: middle;
+}

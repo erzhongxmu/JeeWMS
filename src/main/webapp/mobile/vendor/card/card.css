@@ -1,0 +1,695 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.jp-card.jp-card-safari.jp-card-identified .jp-card-front:before, .jp-card.jp-card-safari.jp-card-identified .jp-card-back:before {
+	background-image: -webkit-repeating-linear-gradient(45deg, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), -webkit-repeating-linear-gradient(315deg, opacify(rgba(255, 255, 255, 0), .05) 1px, rgba(255, 255, 255, 0) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .03) 4px), -webkit-repeating-linear-gradient(left, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), -webkit-repeating-linear-gradient(240deg, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), -webkit-linear-gradient(115deg, rgba(255, 255, 255, 0) 50%, opacify(rgba(255, 255, 255, 0), .2) 70%, rgba(255, 255, 255, 0) 90%);
+	background-image:      -o-repeating-linear-gradient(45deg, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), -o-repeating-linear-gradient(315deg, opacify(rgba(255, 255, 255, 0), .05) 1px, rgba(255, 255, 255, 0) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .03) 4px), -o-repeating-linear-gradient(left, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), -o-repeating-linear-gradient(240deg, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), -o-linear-gradient(115deg, rgba(255, 255, 255, 0) 50%, opacify(rgba(255, 255, 255, 0), .2) 70%, rgba(255, 255, 255, 0) 90%);
+	background-image:         repeating-linear-gradient(45deg, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), repeating-linear-gradient(135deg, opacify(rgba(255, 255, 255, 0), .05) 1px, rgba(255, 255, 255, 0) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .03) 4px), repeating-linear-gradient(90deg, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), repeating-linear-gradient(210deg, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), linear-gradient(-25deg, rgba(255, 255, 255, 0) 50%, opacify(rgba(255, 255, 255, 0), .2) 70%, rgba(255, 255, 255, 0) 90%);
+}
+.jp-card.jp-card-ie-10.jp-card-flipped, .jp-card.jp-card-ie-11.jp-card-flipped {
+	-webkit-transform: rotate(0deg);
+	    -ms-transform: rotate(0deg);
+	     -o-transform: rotate(0deg);
+	        transform: rotate(0deg);
+}
+.jp-card.jp-card-ie-10.jp-card-flipped .jp-card-front, .jp-card.jp-card-ie-11.jp-card-flipped .jp-card-front {
+	-webkit-transform: rotateY(0deg);
+	    -ms-transform: rotateY(0deg);
+	        transform: rotateY(0deg);
+}
+.jp-card.jp-card-ie-10.jp-card-flipped .jp-card-back, .jp-card.jp-card-ie-11.jp-card-flipped .jp-card-back {
+	-webkit-transform: rotateY(0deg);
+	    -ms-transform: rotateY(0deg);
+	        transform: rotateY(0deg);
+}
+.jp-card.jp-card-ie-10.jp-card-flipped .jp-card-back:after, .jp-card.jp-card-ie-11.jp-card-flipped .jp-card-back:after {
+	left: 18%;
+}
+.jp-card.jp-card-ie-10.jp-card-flipped .jp-card-back .jp-card-cvc, .jp-card.jp-card-ie-11.jp-card-flipped .jp-card-back .jp-card-cvc {
+	left: 5%;
+	-webkit-transform: rotateY(180deg);
+	    -ms-transform: rotateY(180deg);
+	        transform: rotateY(180deg);
+}
+.jp-card.jp-card-ie-10.jp-card-flipped .jp-card-back .jp-card-shiny, .jp-card.jp-card-ie-11.jp-card-flipped .jp-card-back .jp-card-shiny {
+	left: 84%;
+}
+.jp-card.jp-card-ie-10.jp-card-flipped .jp-card-back .jp-card-shiny:after, .jp-card.jp-card-ie-11.jp-card-flipped .jp-card-back .jp-card-shiny:after {
+	left: -480%;
+	-webkit-transform: rotateY(180deg);
+	    -ms-transform: rotateY(180deg);
+	        transform: rotateY(180deg);
+}
+.jp-card.jp-card-ie-1.jp-card-amex .jp-card-back, .jp-card.jp-card-ie-11.jp-card-amex .jp-card-back {
+	display: none;
+}
+.jp-card-logo {
+	width: 60px;
+	height: 36px;
+	font-style: italic;
+}
+.jp-card-logo, .jp-card-logo:before, .jp-card-logo:after {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.jp-card-logo.jp-card-amex {
+	font-size: 4px;
+	font-weight: 700;
+	color: white;
+	text-transform: uppercase;
+	background-image: -webkit-repeating-radial-gradient(center circle, #fff 1px, #999 2px);
+	background-image:      -o-repeating-radial-gradient(center circle, #fff 1px, #999 2px);
+	background-image:         repeating-radial-gradient(circle at center, #fff 1px, #999 2px);
+	border: 1px solid #eee;
+}
+.jp-card-logo.jp-card-amex:before, .jp-card-logo.jp-card-amex:after {
+	position: absolute;
+	left: 16px;
+	display: block;
+	width: 28px;
+}
+.jp-card-logo.jp-card-amex:before {
+	top: 3px;
+	height: 28px;
+	padding-top: 11px;
+	padding-left: 2px;
+	text-align: left;
+	content: "american";
+	background: #267ac3;
+}
+.jp-card-logo.jp-card-amex:after {
+	bottom: 11px;
+	padding-right: 2px;
+	text-align: right;
+	content: "express";
+}
+.jp-card.jp-card-amex.jp-card-flipped {
+	-webkit-transform: none;
+	    -ms-transform: none;
+	     -o-transform: none;
+	        transform: none;
+}
+.jp-card.jp-card-amex.jp-card-identified .jp-card-front:before, .jp-card.jp-card-amex.jp-card-identified .jp-card-back:before {
+	background-color: #0055c7;
+}
+.jp-card.jp-card-amex.jp-card-identified .jp-card-front .jp-card-logo.jp-card-amex {
+	opacity: 1;
+}
+.jp-card.jp-card-amex.jp-card-identified .jp-card-front .jp-card-cvc {
+	visibility: visible;
+}
+.jp-card.jp-card-amex.jp-card-identified .jp-card-front:after {
+	opacity: 1;
+}
+.jp-card-logo.jp-card-discover {
+	z-index: 1;
+	padding-top: 9px;
+	overflow: hidden;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: 700;
+	color: #111;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: .03em;
+	background: #f60;
+	border: 1px solid #eee;
+}
+.jp-card-logo.jp-card-discover:before, .jp-card-logo.jp-card-discover:after {
+	position: absolute;
+	display: block;
+	content: " ";
+}
+.jp-card-logo.jp-card-discover:before {
+	right: -80%;
+	bottom: -5%;
+	z-index: -1;
+	width: 200px;
+	height: 200px;
+	background: white;
+	border-radius: 200px;
+}
+.jp-card-logo.jp-card-discover:after {
+	top: 10px;
+	left: 27px;
+	width: 8px;
+	height: 8px;
+	font-size: 4px;
+	line-height: 24px;
+	text-indent: -7px;
+	content: "network";
+	background-image: -webkit-radial-gradient(circle, #fff, #f60);
+	background-image:      -o-radial-gradient(circle, #fff, #f60);
+	background-image:         radial-gradient(circle, #fff, #f60);
+	background-repeat: no-repeat;
+	border-radius: 4px;
+}
+.jp-card .jp-card-front .jp-card-logo.jp-card-discover {
+	top: 18%;
+	right: 12%;
+}
+.jp-card.jp-card-discover.jp-card-identified .jp-card-front:before, .jp-card.jp-card-discover.jp-card-identified .jp-card-back:before {
+	background-color: #0055c7;
+}
+.jp-card.jp-card-discover.jp-card-identified .jp-card-logo.jp-card-discover {
+	opacity: 1;
+}
+.jp-card.jp-card-discover.jp-card-identified .jp-card-front:after {
+	position: absolute;
+	top: 15%;
+	left: 100%;
+	display: block;
+	width: 50px;
+	height: 50px;
+	margin-left: -25px;
+	content: " ";
+	background-image: -webkit-linear-gradient(#f60, #ffa366 #f60, #c3325f);
+	background-image:      -o-linear-gradient(#f60, #ffa366 #f60, #c3325f);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#f60), color-stop(#f60, #ffa366), to(#c3325f));
+	background-image:         linear-gradient(#f60, #ffa366 #f60, #c3325f);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffff6600', endColorstr='#ffc3325f', GradientType=0);
+	background-repeat: no-repeat;
+	border-radius: 25px;
+	-webkit-box-shadow: inset 1px 1px 3px 1px rgba(0, 0, 0, .5);
+	        box-shadow: inset 1px 1px 3px 1px rgba(0, 0, 0, .5);
+	-webkit-transition: 400ms;
+	     -o-transition: 400ms;
+	        transition: 400ms;
+}
+.jp-card-logo.jp-card-visa {
+	font-size: 15px;
+	font-weight: 700;
+	line-height: 18px;
+	color: #1a1876;
+	text-align: center;
+	text-transform: uppercase;
+	background: white;
+}
+.jp-card-logo.jp-card-visa:before, .jp-card-logo.jp-card-visa:after {
+	display: block;
+	width: 100%;
+	height: 25%;
+	content: " ";
+}
+.jp-card-logo.jp-card-visa:before {
+	background: #1a1876;
+}
+.jp-card-logo.jp-card-visa:after {
+	background: #e79800;
+}
+.jp-card.jp-card-visa.jp-card-identified .jp-card-front:before, .jp-card.jp-card-visa.jp-card-identified .jp-card-back:before {
+	background-color: #0055c7;
+}
+.jp-card.jp-card-visa.jp-card-identified .jp-card-logo.jp-card-visa {
+	opacity: 1;
+}
+.jp-card-logo.jp-card-mastercard {
+	z-index: 1;
+	font-size: 9px;
+	font-weight: 700;
+	line-height: 36px;
+	color: white;
+	text-align: center;
+	text-shadow: 1px 1px rgba(0, 0, 0, .6);
+}
+.jp-card-logo.jp-card-mastercard:before, .jp-card-logo.jp-card-mastercard:after {
+	position: absolute;
+	top: 0;
+	display: block;
+	width: 36px;
+	height: 36px;
+	content: " ";
+	border-radius: 18px;
+}
+.jp-card-logo.jp-card-mastercard:before {
+	left: 0;
+	z-index: -1;
+	background: #f00;
+}
+.jp-card-logo.jp-card-mastercard:after {
+	right: 0;
+	z-index: -2;
+	background: #ffab00;
+}
+.jp-card.jp-card-mastercard.jp-card-identified .jp-card-front .jp-card-logo.jp-card-mastercard, .jp-card.jp-card-mastercard.jp-card-identified .jp-card-back .jp-card-logo.jp-card-mastercard {
+	-webkit-box-shadow: none;
+	        box-shadow: none;
+}
+.jp-card.jp-card-mastercard.jp-card-identified .jp-card-front:before, .jp-card.jp-card-mastercard.jp-card-identified .jp-card-back:before {
+	background-color: #0055c7;
+}
+.jp-card.jp-card-mastercard.jp-card-identified .jp-card-logo.jp-card-mastercard {
+	opacity: 1;
+}
+.jp-card-logo.jp-card-maestro {
+	z-index: 1;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 36px;
+	color: white;
+	text-align: center;
+	text-shadow: 1px 1px rgba(0, 0, 0, .6);
+}
+.jp-card-logo.jp-card-maestro:before, .jp-card-logo.jp-card-maestro:after {
+	position: absolute;
+	top: 0;
+	display: block;
+	width: 36px;
+	height: 36px;
+	content: " ";
+	border-radius: 18px;
+}
+.jp-card-logo.jp-card-maestro:before {
+	left: 0;
+	z-index: -1;
+	background: #0064cb;
+}
+.jp-card-logo.jp-card-maestro:after {
+	right: 0;
+	z-index: -2;
+	background: #c00;
+}
+.jp-card.jp-card-maestro.jp-card-identified .jp-card-front .jp-card-logo.jp-card-maestro, .jp-card.jp-card-maestro.jp-card-identified .jp-card-back .jp-card-logo.jp-card-maestro {
+	-webkit-box-shadow: none;
+	        box-shadow: none;
+}
+.jp-card.jp-card-maestro.jp-card-identified .jp-card-front:before, .jp-card.jp-card-maestro.jp-card-identified .jp-card-back:before {
+	background-color: #0055c7;
+}
+.jp-card.jp-card-maestro.jp-card-identified .jp-card-logo.jp-card-maestro {
+	opacity: 1;
+}
+.jp-card.jp-card-dankort.jp-card-identified .jp-card-front:before, .jp-card.jp-card-dankort.jp-card-identified .jp-card-back:before {
+	background-color: #0055c7;
+}
+.jp-card.jp-card-dankort.jp-card-identified .jp-card-logo.jp-card-dankort {
+	opacity: 1;
+}
+.jp-card-logo.jp-card-dankort {
+	width: 60px;
+	height: 36px;
+	padding: 3px;
+	background-color: #fff;
+	border: #000 1px solid;
+	border-radius: 8px;
+}
+.jp-card-logo.jp-card-dankort .dk {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.jp-card-logo.jp-card-dankort .dk:before {
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 100%;
+	content: "";
+	background-color: #ed1c24;
+	border-radius: 6px;
+}
+.jp-card-logo.jp-card-dankort .dk:after {
+	position: absolute;
+	top: 50%;
+	right: 0;
+	z-index: 1;
+	width: 0;
+	height: 0;
+	margin-top: -7.7px;
+	content: "";
+	border-color: transparent #ed1c24 transparent transparent;
+	border-style: solid;
+	border-width: 7px 7px 10px 0;
+}
+.jp-card-logo.jp-card-dankort .d, .jp-card-logo.jp-card-dankort .k {
+	position: absolute;
+	top: 50%;
+	display: block;
+	width: 50%;
+	height: 15.4px;
+	margin-top: -7.7px;
+	background: white;
+}
+.jp-card-logo.jp-card-dankort .d {
+	left: 0;
+	border-radius: 0 8px 10px 0;
+}
+.jp-card-logo.jp-card-dankort .d:before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	display: block;
+	width: 7px;
+	height: 5px;
+	margin: -3px 0 0 -4px;
+	content: "";
+	background: #ed1c24;
+	border-radius: 2px 4px 6px 0;
+}
+.jp-card-logo.jp-card-dankort .k {
+	right: 0;
+}
+.jp-card-logo.jp-card-dankort .k:before, .jp-card-logo.jp-card-dankort .k:after {
+	position: absolute;
+	right: 50%;
+	width: 0;
+	height: 0;
+	margin-right: -1px;
+	content: "";
+	border-style: solid;
+}
+.jp-card-logo.jp-card-dankort .k:before {
+	top: 0;
+	border-color: #ed1c24 transparent transparent transparent;
+	border-width: 8px 5px 0 0;
+}
+.jp-card-logo.jp-card-dankort .k:after {
+	bottom: 0;
+	border-color: transparent transparent #ed1c24 transparent;
+	border-width: 0 5px 8px 0;
+}
+.jp-card-container {
+	position: relative;
+	z-index: 1;
+	width: 350px;
+	max-width: 100%;
+	height: 200px;
+	margin: auto;
+
+	-webkit-perspective: 1000px;
+	   -moz-perspective: 1000px;
+	        perspective: 1000px;
+}
+.jp-card {
+	position: relative;
+	width: 100%;
+	min-width: 315px;
+	height: 100%;
+	font-family: "Helvetica Neue";
+	line-height: 1;
+	border-radius: 10px;
+	-webkit-transition: all 400ms linear;
+	     -o-transition: all 400ms linear;
+	        transition: all 400ms linear;
+
+	    -ms-transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
+	        transform-style: preserve-3d;
+}
+.jp-card > *, .jp-card > *:before, .jp-card > *:after {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+	font-family: inherit;
+}
+.jp-card.jp-card-flipped {
+	-webkit-transform: rotateY(180deg);
+	    -ms-transform: rotateY(180deg);
+	        transform: rotateY(180deg);
+}
+.jp-card .jp-card-front, .jp-card .jp-card-back {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background: #ddd;
+	border-radius: 10px;
+	-webkit-transition: all 400ms linear;
+	     -o-transition: all 400ms linear;
+	        transition: all 400ms linear;
+
+	-webkit-backface-visibility: hidden;
+	   -moz-backface-visibility: hidden;
+	        backface-visibility: hidden;
+	    -ms-transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
+	        transform-style: preserve-3d;
+}
+.jp-card .jp-card-front:before, .jp-card .jp-card-back:before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	content: " ";
+	border-radius: 10px;
+	opacity: 0;
+	-webkit-transition: all 400ms ease;
+	     -o-transition: all 400ms ease;
+	        transition: all 400ms ease;
+}
+.jp-card .jp-card-front:after, .jp-card .jp-card-back:after {
+	display: block;
+	content: " ";
+}
+.jp-card .jp-card-front .jp-card-display, .jp-card .jp-card-back .jp-card-display {
+	font-weight: normal;
+	color: white;
+	opacity: .5;
+	-webkit-transition: opacity 400ms linear;
+	     -o-transition: opacity 400ms linear;
+	        transition: opacity 400ms linear;
+}
+.jp-card .jp-card-front .jp-card-display.jp-card-focused, .jp-card .jp-card-back .jp-card-display.jp-card-focused {
+	font-weight: 700;
+	opacity: 1;
+}
+.jp-card .jp-card-front .jp-card-cvc, .jp-card .jp-card-back .jp-card-cvc {
+	font-family: "Bitstream Vera Sans Mono", Consolas, Courier, monospace;
+	font-size: 14px;
+}
+.jp-card .jp-card-front .jp-card-shiny, .jp-card .jp-card-back .jp-card-shiny {
+	position: relative;
+	width: 50px;
+	height: 35px;
+	background: #ccc;
+	border-radius: 5px;
+}
+.jp-card .jp-card-front .jp-card-shiny:before, .jp-card .jp-card-back .jp-card-shiny:before {
+	position: absolute;
+	top: 20%;
+	display: block;
+	width: 70%;
+	height: 60%;
+	content: " ";
+	background: #d9d9d9;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+.jp-card .jp-card-front .jp-card-logo {
+	position: absolute;
+	top: 8%;
+	right: 5%;
+	opacity: 0;
+	-webkit-transition: 400ms;
+	     -o-transition: 400ms;
+	        transition: 400ms;
+}
+.jp-card .jp-card-front .jp-card-lower {
+	position: absolute;
+	bottom: 30px;
+	left: 10%;
+	width: 80%;
+}
+@media only screen and (max-width: 480px) {
+	.jp-card .jp-card-front .jp-card-lower {
+		left: 5%;
+		width: 90%;
+	}
+}
+.jp-card .jp-card-front .jp-card-lower .jp-card-cvc {
+	position: relative;
+	bottom: 5px;
+	float: right;
+	visibility: hidden;
+}
+.jp-card .jp-card-front .jp-card-lower .jp-card-number {
+	margin-bottom: 30px;
+	clear: both;
+	font-family: "Bitstream Vera Sans Mono", Consolas, Courier, monospace;
+	font-size: 24px;
+}
+.jp-card .jp-card-front .jp-card-lower .jp-card-expiry {
+	position: relative;
+	float: right;
+	width: 25%;
+	font-family: "Bitstream Vera Sans Mono", Consolas, Courier, monospace;
+	letter-spacing: 0;
+}
+.jp-card .jp-card-front .jp-card-lower .jp-card-expiry:before, .jp-card .jp-card-front .jp-card-lower .jp-card-expiry:after {
+	display: block;
+	font-family: "Helvetica Neue";
+	font-size: 7px;
+	font-weight: bold;
+	white-space: pre;
+	opacity: .5;
+}
+.jp-card .jp-card-front .jp-card-lower .jp-card-expiry .jp-card-display {
+	font-weight: 400;
+	color: white;
+	opacity: .5;
+	-webkit-transition: opacity 400ms linear;
+	     -o-transition: opacity 400ms linear;
+	        transition: opacity 400ms linear;
+}
+.jp-card .jp-card-front .jp-card-lower .jp-card-expiry .jp-card-display.jp-card-focused {
+	font-weight: 700;
+	opacity: 1;
+}
+.jp-card .jp-card-front .jp-card-lower .jp-card-expiry:after {
+	position: absolute;
+	right: 100%;
+	bottom: 0;
+	margin-top: 2px;
+	margin-right: 5px;
+	text-align: right;
+	content: attr(data-after);
+}
+.jp-card .jp-card-front .jp-card-lower .jp-card-name {
+	position: absolute;
+	bottom: 0;
+	display: -webkit-box;
+	width: 190px;
+	max-height: 45px;
+	overflow: hidden;
+	font-family: "Bitstream Vera Sans Mono", Consolas, Courier, monospace;
+	font-size: 20px;
+	text-overflow: ellipsis;
+	text-transform: uppercase;
+
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: horizontal;
+}
+.jp-card .jp-card-front .jp-card-front .jp-card-logo {
+	position: absolute;
+	top: 8%;
+	right: 5%;
+	opacity: 0;
+	-webkit-transition: 400ms;
+	     -o-transition: 400ms;
+	        transition: 400ms;
+}
+.jp-card .jp-card-front .jp-card-front .jp-card-lower {
+	position: absolute;
+	bottom: 30px;
+	left: 10%;
+	width: 80%;
+}
+@media only screen and (max-width: 480px) {
+	.jp-card .jp-card-front .jp-card-front .jp-card-lower {
+		left: 5%;
+		width: 90%;
+	}
+}
+.jp-card .jp-card-front .jp-card-front .jp-card-lower .jp-card-cvc {
+	position: relative;
+	bottom: 5px;
+	float: right;
+	visibility: hidden;
+}
+.jp-card .jp-card-front .jp-card-front .jp-card-lower .jp-card-number {
+	margin-bottom: 30px;
+	clear: both;
+	font-family: "Bitstream Vera Sans Mono", Consolas, Courier, monospace;
+	font-size: 24px;
+}
+.jp-card .jp-card-front .jp-card-front .jp-card-lower .jp-card-expiry {
+	position: relative;
+	float: right;
+	width: 25%;
+	font-family: "Bitstream Vera Sans Mono", Consolas, Courier, monospace;
+	letter-spacing: 0;
+}
+.jp-card .jp-card-front .jp-card-front .jp-card-lower .jp-card-expiry:before, .jp-card .jp-card-front .jp-card-front .jp-card-lower .jp-card-expiry:after {
+	display: block;
+	font-family: "Helvetica Neue";
+	font-size: 7px;
+	font-weight: 700;
+	white-space: pre;
+	opacity: .5;
+}
+.jp-card .jp-card-front .jp-card-front .jp-card-lower .jp-card-expiry:before {
+	margin-bottom: 2px;
+	font-size: 7px;
+	text-transform: uppercase;
+	content: attr(data-before);
+}
+.jp-card .jp-card-front .jp-card-front .jp-card-lower .jp-card-expiry:after {
+	position: absolute;
+	right: 100%;
+	bottom: 0;
+	margin-top: 2px;
+	margin-right: 5px;
+	text-align: right;
+	content: attr(data-after);
+}
+.jp-card .jp-card-front .jp-card-front .jp-card-lower .jp-card-name {
+	position: absolute;
+	bottom: 0;
+	display: -webkit-box;
+	width: 190px;
+	max-height: 45px;
+	overflow: hidden;
+	font-family: "Bitstream Vera Sans Mono", Consolas, Courier, monospace;
+	font-size: 20px;
+	text-overflow: ellipsis;
+	text-transform: uppercase;
+
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: horizontal;
+}
+.jp-card .jp-card-front .jp-card-cvc {
+	position: absolute;
+	top: 40%;
+	left: 85%;
+	-webkit-transition-delay: 600ms;
+	     -o-transition-delay: 600ms;
+	        transition-delay: 600ms;
+}
+.jp-card .jp-card-front .jp-card-shiny {
+	position: absolute;
+	top: 66%;
+	left: 2%;
+}
+.jp-card .jp-card-front .jp-card-shiny:after {
+	position: absolute;
+	top: 5%;
+	left: 120%;
+	width: 230px;
+	font-size: 7px;
+	color: white;
+	content: " ";
+	opacity: .5;
+}
+.jp-card.jp-card-identified {
+	-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, .3);
+	        box-shadow: 0 0 20px rgba(0, 0, 0, .3);
+}
+.jp-card.jp-card-identified .jp-card-front, .jp-card.jp-card-identified .jp-card-back {
+	background-color: #000;
+	background-color: rgba(0, 0, 0, .5);
+}
+.jp-card.jp-card-identified .jp-card-front:before, .jp-card.jp-card-identified .jp-card-back:before {
+	background-image: -webkit-repeating-linear-gradient(45deg, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), -webkit-repeating-linear-gradient(315deg, opacify(rgba(255, 255, 255, 0), .05) 1px, rgba(255, 255, 255, 0) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .03) 4px), -webkit-repeating-linear-gradient(left, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), -webkit-repeating-linear-gradient(240deg, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), -webkit-repeating-radial-gradient(30% 30% circle, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), -webkit-repeating-radial-gradient(70% 70% circle, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), -webkit-repeating-radial-gradient(90% 20% circle, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), -webkit-repeating-radial-gradient(15% 80% circle, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), -webkit-linear-gradient(115deg, rgba(255, 255, 255, 0) 50%, opacify(rgba(255, 255, 255, 0), .2) 70%, rgba(255, 255, 255, 0) 90%);
+	background-image:      -o-repeating-linear-gradient(45deg, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), -o-repeating-linear-gradient(315deg, opacify(rgba(255, 255, 255, 0), .05) 1px, rgba(255, 255, 255, 0) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .03) 4px), -o-repeating-linear-gradient(left, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), -o-repeating-linear-gradient(240deg, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), -o-repeating-radial-gradient(30% 30% circle, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), -o-repeating-radial-gradient(70% 70% circle, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), -o-repeating-radial-gradient(90% 20% circle, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), -o-repeating-radial-gradient(15% 80% circle, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), -o-linear-gradient(115deg, rgba(255, 255, 255, 0) 50%, opacify(rgba(255, 255, 255, 0), .2) 70%, rgba(255, 255, 255, 0) 90%);
+	background-image:         repeating-linear-gradient(45deg, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), repeating-linear-gradient(135deg, opacify(rgba(255, 255, 255, 0), .05) 1px, rgba(255, 255, 255, 0) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .03) 4px), repeating-linear-gradient(90deg, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), repeating-linear-gradient(210deg, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), repeating-radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), repeating-radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), repeating-radial-gradient(circle at 90% 20%, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), repeating-radial-gradient(circle at 15% 80%, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), linear-gradient(-25deg, rgba(255, 255, 255, 0) 50%, opacify(rgba(255, 255, 255, 0), .2) 70%, rgba(255, 255, 255, 0) 90%);
+	opacity: 1;
+	-webkit-transition: all 400ms ease;
+	     -o-transition: all 400ms ease;
+	        transition: all 400ms ease;
+}
+.jp-card.jp-card-identified .jp-card-front .jp-card-logo, .jp-card.jp-card-identified .jp-card-back .jp-card-logo {
+	-webkit-box-shadow: 0 0 0 2px rgba(255, 255, 255, .3);
+	        box-shadow: 0 0 0 2px rgba(255, 255, 255, .3);
+}
+.jp-card.jp-card-identified.no-radial-gradient .jp-card-front:before, .jp-card.jp-card-identified.no-radial-gradient .jp-card-back:before {
+	background-image: -webkit-repeating-linear-gradient(45deg, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), -webkit-repeating-linear-gradient(315deg, opacify(rgba(255, 255, 255, 0), .05) 1px, rgba(255, 255, 255, 0) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .03) 4px), -webkit-repeating-linear-gradient(left, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), -webkit-repeating-linear-gradient(240deg, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), -webkit-linear-gradient(115deg, rgba(255, 255, 255, 0) 50%, opacify(rgba(255, 255, 255, 0), .2) 70%, rgba(255, 255, 255, 0) 90%);
+	background-image:      -o-repeating-linear-gradient(45deg, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), -o-repeating-linear-gradient(315deg, opacify(rgba(255, 255, 255, 0), .05) 1px, rgba(255, 255, 255, 0) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .03) 4px), -o-repeating-linear-gradient(left, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), -o-repeating-linear-gradient(240deg, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), -o-linear-gradient(115deg, rgba(255, 255, 255, 0) 50%, opacify(rgba(255, 255, 255, 0), .2) 70%, rgba(255, 255, 255, 0) 90%);
+	background-image:         repeating-linear-gradient(45deg, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), repeating-linear-gradient(135deg, opacify(rgba(255, 255, 255, 0), .05) 1px, rgba(255, 255, 255, 0) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .03) 4px), repeating-linear-gradient(90deg, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), repeating-linear-gradient(210deg, rgba(255, 255, 255, 0) 1px, opacify(rgba(255, 255, 255, 0), .03) 2px, opacify(rgba(255, 255, 255, 0), .04) 3px, opacify(rgba(255, 255, 255, 0), .05) 4px), linear-gradient(-25deg, rgba(255, 255, 255, 0) 50%, opacify(rgba(255, 255, 255, 0), .2) 70%, rgba(255, 255, 255, 0) 90%);
+}

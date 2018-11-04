@@ -1,0 +1,95 @@
+.CodeMirror-Tern-completion {
+  position: relative;
+  padding-left: 22px;
+  line-height: 1.5;
+}
+.CodeMirror-Tern-completion:before {
+  position: absolute;
+  bottom: 2px;
+  left: 2px;
+  width: 15px;
+  height: 15px;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 16px;
+  color: white;
+  text-align: center;
+  border-radius: 50%;
+}
+.CodeMirror-Tern-completion-unknown:before {
+  content: "?";
+  background: #4bb;
+}
+.CodeMirror-Tern-completion-object:before {
+  content: "O";
+  background: #77c;
+}
+.CodeMirror-Tern-completion-fn:before {
+  content: "F";
+  background: #7c7;
+}
+.CodeMirror-Tern-completion-array:before {
+  content: "A";
+  background: #c66;
+}
+.CodeMirror-Tern-completion-number:before {
+  content: "1";
+  background: #999;
+}
+.CodeMirror-Tern-completion-string:before {
+  content: "S";
+  background: #999;
+}
+.CodeMirror-Tern-completion-bool:before {
+  content: "B";
+  background: #999;
+}
+
+.CodeMirror-Tern-completion-guess {
+  color: #999;
+}
+
+.CodeMirror-Tern-tooltip {
+  position: absolute;
+  z-index: 10;
+  max-width: 40em;
+  padding: 2px 5px;
+  font-family: monospace;
+  font-size: 90%;
+  color: #444;
+  white-space: pre-wrap;
+  background-color: white;
+  border: 1px solid silver;
+  border-radius: 3px;
+  -webkit-box-shadow: 2px 3px 5px rgba(0,0,0,.2);
+          box-shadow: 2px 3px 5px rgba(0,0,0,.2);
+  -webkit-transition: opacity 1s;
+     -moz-transition: opacity 1s;
+      -ms-transition: opacity 1s;
+       -o-transition: opacity 1s;
+          transition: opacity 1s;
+}
+
+.CodeMirror-Tern-hint-doc {
+  max-width: 25em;
+  margin-top: -3px;
+}
+
+.CodeMirror-Tern-fname {
+  color: black;
+}
+.CodeMirror-Tern-farg {
+  color: #70a;
+}
+.CodeMirror-Tern-farg-current {
+  text-decoration: underline;
+}
+.CodeMirror-Tern-type {
+  color: #07c;
+}
+.CodeMirror-Tern-fhint-guess {
+  opacity: .7;
+}
