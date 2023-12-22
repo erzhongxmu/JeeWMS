@@ -128,11 +128,7 @@ public class WmsPlcController extends BaseController {
         CriteriaQuery cq = new CriteriaQuery(WmsPlcEntity.class, dataGrid);
         //查询条件组装器
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wmsPlc, request.getParameterMap());
-        try {
-            //自定义追加查询条件
-        } catch (Exception e) {
-            throw new BusinessException(e.getMessage());
-        }
+
         cq.add();
         this.wmsPlcService.getDataGridReturn(cq, true);
         TagUtil.datagrid(response, dataGrid);
@@ -155,8 +151,7 @@ public class WmsPlcController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "PLC指令删除失败";
-            throw new BusinessException(e.getMessage());
+             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
         return j;
@@ -179,8 +174,7 @@ public class WmsPlcController extends BaseController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "PLC指令执行失败";
-            throw new BusinessException(e.getMessage());
+             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
         return j;
@@ -223,8 +217,7 @@ public class WmsPlcController extends BaseController {
             }
         }
         if (wmsPlc != null) {
-            long start = System.currentTimeMillis();
-            SiemensPLCS siemensPLCS = SiemensPLCS.S200Smart;
+             SiemensPLCS siemensPLCS = SiemensPLCS.S200Smart;
             SiemensS7Net siemensS7Net = null;
             siemensS7Net = new SiemensS7Net(siemensPLCS);
             siemensS7Net.setIpAddress(wmsPlc.getPlcIp());
@@ -243,7 +236,7 @@ public class WmsPlcController extends BaseController {
             String comCons = wmsPlc.getComCons();
             String query01 = wmsPlc.getQuery01();
             String query02 = wmsPlc.getQuery02();
-            Float stepNumrun = Float.valueOf("1");
+            Float stepNumrun ;
             if (StringUtil.isNotEmpty(stepNum)) {
                 stepNumrun = Float.parseFloat(stepNum);
             } else {
@@ -254,7 +247,6 @@ public class WmsPlcController extends BaseController {
             comCons = StringUtils.replace(comCons, "{query02}", query02);
             String[] coms = comCons.split(";");
             for (String com : coms) {
-                System.out.println("指令：" + com);
                 try {
                     Thread.sleep(500);
                 } catch (Exception e) {
@@ -270,22 +262,18 @@ public class WmsPlcController extends BaseController {
                     }
                 } else if (split[0].equals("float")) {
                     Float runfloat = Float.parseFloat(split[2]) * stepNumrun;
-                    System.out.println("runfloat：" + Math.abs(runfloat));
                     siemensS7Net.Write(defaultAddress, Math.abs(runfloat));
                 } else if (split[0].equals("-float")) {
                     Float runfloat = Float.parseFloat(split[2]) * stepNumrun;
-                    System.out.println("runfloat：" + runfloat);
                     siemensS7Net.Write(defaultAddress, runfloat);
                 } else if (split[0].equals("int")) {
                     Float runfloat = Float.parseFloat(split[2]) * stepNumrun;
                     Float abs = Math.abs(runfloat);
                     int runint = abs.intValue();
-                    System.out.println("runint：" + runint);
                     siemensS7Net.Write(defaultAddress, runint);
                 } else if (split[0].equals("-int")) {
                     Float runfloat = Float.parseFloat(split[2]) * stepNumrun;
                     int runint = runfloat.intValue();
-                    System.out.println("runint：" + runint);
                     siemensS7Net.Write(defaultAddress, runint);
                 }
             }
@@ -296,14 +284,7 @@ public class WmsPlcController extends BaseController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-            long end = System.currentTimeMillis();
-            long times = end - start;
-            org.jeecgframework.core.util.LogUtil.info(wmsPlc.getComRemark() + "总耗时" + times + "毫秒" + comCons);
-
-        }
-
-
+           }
     }
 
     /**
@@ -327,7 +308,6 @@ public class WmsPlcController extends BaseController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "PLC指令删除失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
