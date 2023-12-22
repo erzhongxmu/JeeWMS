@@ -128,7 +128,6 @@ public class WmsPlcController extends BaseController {
         CriteriaQuery cq = new CriteriaQuery(WmsPlcEntity.class, dataGrid);
         //查询条件组装器
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wmsPlc, request.getParameterMap());
-
         cq.add();
         this.wmsPlcService.getDataGridReturn(cq, true);
         TagUtil.datagrid(response, dataGrid);
