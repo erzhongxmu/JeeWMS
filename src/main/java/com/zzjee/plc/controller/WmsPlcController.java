@@ -158,7 +158,7 @@ public class WmsPlcController extends BaseController {
     }
 
     /**
-     * 批量删除PLC指令
+     * PLC指令执行
      *
      * @return
      */
