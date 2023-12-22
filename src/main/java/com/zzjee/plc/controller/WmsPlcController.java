@@ -151,7 +151,7 @@ public class WmsPlcController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-             throw new BusinessException(e.getMessage());
+            throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
         return j;
@@ -174,11 +174,13 @@ public class WmsPlcController extends BaseController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-             throw new BusinessException(e.getMessage());
+            throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
         return j;
     }
+
+   //U型指令运转
     public void runu() {
         WmsPlcEntity wmsPlc = null;
         String hql = "";
@@ -197,6 +199,7 @@ public class WmsPlcController extends BaseController {
         }
 
     }
+
     public void run(String id, String comNo, String stepNum) {
         System.out.println("id:" + id + ";comNo:" + comNo + ";stepNum:" + stepNum);
         if (stepNum.equals("0")) {
@@ -217,7 +220,7 @@ public class WmsPlcController extends BaseController {
             }
         }
         if (wmsPlc != null) {
-             SiemensPLCS siemensPLCS = SiemensPLCS.S200Smart;
+            SiemensPLCS siemensPLCS = SiemensPLCS.S200Smart;
             SiemensS7Net siemensS7Net = null;
             siemensS7Net = new SiemensS7Net(siemensPLCS);
             siemensS7Net.setIpAddress(wmsPlc.getPlcIp());
@@ -236,7 +239,7 @@ public class WmsPlcController extends BaseController {
             String comCons = wmsPlc.getComCons();
             String query01 = wmsPlc.getQuery01();
             String query02 = wmsPlc.getQuery02();
-            Float stepNumrun ;
+            Float stepNumrun;
             if (StringUtil.isNotEmpty(stepNum)) {
                 stepNumrun = Float.parseFloat(stepNum);
             } else {
@@ -284,7 +287,7 @@ public class WmsPlcController extends BaseController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-           }
+        }
     }
 
     /**
@@ -331,7 +334,6 @@ public class WmsPlcController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "PLC指令添加失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -356,7 +358,6 @@ public class WmsPlcController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "PLC指令更新失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
