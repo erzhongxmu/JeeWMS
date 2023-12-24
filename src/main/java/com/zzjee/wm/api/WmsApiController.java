@@ -77,16 +77,6 @@ public class WmsApiController {
     @Autowired
     private MdSupServiceI mdSupServiceI;
 
-    @RequestMapping(params = "getToken")
-    @ResponseBody
-    public ResponseMessage test(HttpServletRequest request, HttpServletResponse response){
-
-        Map<String,Object> data = new HashMap<>();
-
-        data.put("token", JwtUtils.buildJWT("wmsAccount"));
-
-        return Result.success(data);
-    }
 
     /**
      * 获取商品
@@ -112,10 +102,6 @@ public class WmsApiController {
             cq.eq("shpBianMakh", mdGoods.getShpBianMakh());
         }
 
-
-//		if(mdGoods.getZhuangTai()==null){
-//			cq.notEq("zhuangTai", "Y");
-//		}
         cq.add();
        return Result.success(this.mdGoodsService.getDataGridReturn(cq, true));
     }
