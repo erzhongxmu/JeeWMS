@@ -413,7 +413,6 @@ public class WmsApiController {
             wmImNoticeHService.addMain(wmImNoticeH, wmImNoticeIListnew);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "进货通知添加失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -480,7 +479,6 @@ public class WmsApiController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "进货通知删除失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -520,20 +518,11 @@ public class WmsApiController {
                     wmOmNoticeH.setCusCode(wmUtil.getCusCode());
                 }
             }
-
-
             List<WmOmNoticeIEntity> wmomNoticeIListnew = new ArrayList<WmOmNoticeIEntity>();
             for (WmOmNoticeIEntity wmomNoticeIEntity : wmOmNoticeIList) {
                 if(!StringUtil.isEmpty(wmomNoticeIEntity.getGoodsId())){
                     try {
-
-
                         MvGoodsEntity mvgoods = systemService.findUniqueByProperty(MvGoodsEntity.class,"goodsId",wmomNoticeIEntity.getGoodsId());
-
-//					String date[]=wmImNoticeIEntity.getGoodsCode().split("-");
-//						wmImNoticeIEntity.setGoodsCode(mvgoods.getGoodsCode());
-//						wmImNoticeIEntity.setGoodsName(mvgoods.getShpMingCheng());
-//						String date[]=wmomNoticeIEntity.getGoodsId().split("-");
                         wmomNoticeIEntity.setGoodsId(mvgoods.getGoodsCode());
                         wmomNoticeIEntity.setGoodsName(mvgoods.getShpMingCheng());
                     } catch (Exception e) {
@@ -552,9 +541,6 @@ public class WmsApiController {
                 }
             }
             wmOmNoticeHService.addMain(wmOmNoticeH, wmomNoticeIListnew);
-
-
-
             Map<String ,Object> map = new HashMap<String ,Object>();
             map.put("id", wmOmNoticeH.getOmNoticeId());
             try {
@@ -566,7 +552,6 @@ public class WmsApiController {
             systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
         }catch(Exception e){
             e.printStackTrace();
-            message = "出货通知添加失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -614,7 +599,6 @@ public class WmsApiController {
             systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
         }catch(Exception e){
             e.printStackTrace();
-            message = "出货通知删除失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -745,7 +729,6 @@ public class WmsApiController {
             systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
         }catch(Exception e){
             e.printStackTrace();
-            message = "产品属性添加失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -792,7 +775,6 @@ public class WmsApiController {
             systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
         }catch(Exception e){
             e.printStackTrace();
-            message = "商品类目添加失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -848,7 +830,6 @@ public class WmsApiController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            message = "供应商添加失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -875,7 +856,6 @@ public class WmsApiController {
                     Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "供应商更新失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
