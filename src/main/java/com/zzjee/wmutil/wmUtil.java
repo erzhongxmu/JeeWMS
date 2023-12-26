@@ -247,7 +247,7 @@ public class wmUtil {
                 }
 
             } catch (Exception e) {
-
+                e.printStackTrace();
             }
         }
         return resultmap;
@@ -259,10 +259,8 @@ public class wmUtil {
         String cusrole = "";
         try {
             cusrole = ResourceUtil.getConfigByName("cus.role");
-
         } catch (Exception e) {
             cusrole = "CUS";
-
         }
         try {
             TSUser user = ResourceUtil.getSessionUserName();
@@ -270,7 +268,6 @@ public class wmUtil {
             if (user != null) {
                 List<TSRoleUser> rUsers = systemService.findByProperty(TSRoleUser.class, "TSUser.id", user.getId());
                 for (TSRoleUser ru : rUsers) {
-
                     TSRole role = ru.getTSRole();
                     roles += role.getRoleCode() + ",";
                     System.out.println("role.getRoleCode()========" + role.getRoleCode());
@@ -298,7 +295,7 @@ public class wmUtil {
                     tuopanma = DateUtils.getDataString(DateUtils.yyyymmddhhmmss);
                 }
             } catch (Exception e) {
-
+                e.printStackTrace();
             }
 
         }
@@ -324,7 +321,6 @@ public class wmUtil {
                     System.out.print("22222" + goods);
 
                 }
-
             }
             SystemService systemService = ApplicationContextUtil.getContext().getBean(SystemService.class);
             String tsql = "select ws.base_unit,ws.zhong_wen_qch, ws.ku_wei_bian_ma,ws.bin_id,ws.shp_ming_cheng,cast(sum(ws.base_goodscount) as signed) as goods_qua, mb.qu_huo_ci_xu, ws.goods_pro_data"
@@ -355,14 +351,11 @@ public class wmUtil {
         }
         if ("cus".equals(checktype)) {
             hql = hql + " cusCode = ?";
-
         }
         if ("goods".equals(checktype)) {
             hql = hql + " goodsId = ?";
-
         }
         SystemService systemService = ApplicationContextUtil.getContext().getBean(SystemService.class);
-
         List<WvStockEntity> list = systemService.findHql(hql, checkvalue);
         if (list != null && list.size() > 0 && list.get(0).getGoodsQua() > 0.01) {//判断库存不为0
             ishavestock = true;
@@ -381,9 +374,7 @@ public class wmUtil {
                 } else {
                     goods = goodsid;
                     System.out.print("22222" + goods);
-
                 }
-
             }
             SystemService systemService = ApplicationContextUtil.getContext().getBean(SystemService.class);
             String tsql = " select cast(sum(ws.base_goodscount) as signed) as goods_qua"
