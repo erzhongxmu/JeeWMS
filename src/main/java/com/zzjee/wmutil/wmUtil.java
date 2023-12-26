@@ -19,25 +19,7 @@ import org.jeecgframework.core.util.StringUtil;
 
 import java.util.*;
 
-/**
- * User: caoez
- * Date: 13-7-26
- * Time: 下午2:07
- */
-
-
 public class wmUtil {
-
-    public static List removeDuplicate(List list) {
-        for (int i = 0; i < list.size() - 1; i++) {
-            for (int j = list.size() - 1; j > i; j--) {
-                if (list.get(j).equals(list.get(i))) {
-                    list.remove(j);
-                }
-            }
-        }
-        return list;
-    }
 
     public synchronized static void genrp(String datafrom, String datato, String username) {
         SystemService systemService = ApplicationContextUtil.getContext().getBean(SystemService.class);
@@ -46,7 +28,7 @@ public class wmUtil {
         try {
             systemService.executeSql(tsql);
         } catch (Exception e) {
-            // TODO: handle exception
+            e.printStackTrace();
         }
     }
 
@@ -57,7 +39,7 @@ public class wmUtil {
             //			  1,获取允收配置。
             pz = ResourceUtil.getConfigByName("wms.yskz");
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         if ("A".equals(pz)) {
             return isaccept;
@@ -74,13 +56,13 @@ public class wmUtil {
             try {
                 ysrq = Integer.parseInt(bzhiqi) - Integer.parseInt(zhlKgm);
             } catch (Exception e) {
-
+                e.printStackTrace();
             }
             try {
                 Calendar scrqc = DateUtils.parseCalendar(scrq, "yyyy-MM-dd");
                 ygrq = DateUtils.dateDiff('d', now, scrqc);
             } catch (Exception e) {
-
+                e.printStackTrace();
             }
             if (ygrq > ysrq) {
                 isaccept = false;
@@ -90,17 +72,6 @@ public class wmUtil {
 
     }
 
-
-    public synchronized static void genrp2(String datafrom, String datato, String username) {
-        SystemService systemService = ApplicationContextUtil.getContext().getBean(SystemService.class);
-
-        String tsql = "i";
-        try {
-            List<RpPeriodInOutEntity> forJdbc = systemService.findHql(tsql);
-            forJdbc.forEach(System.out::println);
-        } catch (Exception e) {
-        }
-    }
 
     public synchronized static String getNextNoticeid(String orderType) {
         String noticeid = null;
@@ -155,8 +126,6 @@ public class wmUtil {
                     newcount, 4,
                     '0');
         }
-
-
         return noticeid;
     }
 
@@ -238,58 +207,6 @@ public class wmUtil {
         return noticeid;
     }
 
-    public static String getSysPar(String parType, String username) {
-        String parvalue = null;
-        try {
-            SystemService systemService = ApplicationContextUtil.getContext().getBean(SystemService.class);
-            if (StringUtil.isEmpty(username)) {
-                String hql = " from SysParaEntity where parType = ?";
-                SysParaEntity syspar = (SysParaEntity) systemService.findHql(hql, parType).get(0);
-                parvalue = syspar.getParValue();
-            } else {
-                String hql = " from SysParaEntity where parType = ? and parUsername = ?";
-                SysParaEntity syspar = (SysParaEntity) systemService.findHql(hql, parType, username).get(0);
-                parvalue = syspar.getParValue();
-            }
-        } catch (Exception e) {
-
-        }
-
-        return parvalue;
-    }
-
-    public static void saveSysPar(String parType, String username, String parvalue) {
-        SystemService systemService = ApplicationContextUtil.getContext().getBean(SystemService.class);
-        if (StringUtil.isEmpty(username)) {
-            String hql = " from SysParaEntity where parType = ?";
-            SysParaEntity syspar = (SysParaEntity) systemService.findHql(hql, parType).get(0);
-            if (syspar == null) {
-                syspar = new SysParaEntity();
-                syspar.setParType(parType);
-                syspar.setParValue(parType);
-                systemService.save(syspar);
-            } else {
-                syspar.setParType(parType);
-                syspar.setParValue(parType);
-                systemService.updateEntitie(syspar);
-            }
-        } else {
-            String hql = " from SysParaEntity where parType = ? and parUsername = ?";
-            SysParaEntity syspar = (SysParaEntity) systemService.findHql(hql, parType, username).get(0);
-            if (syspar == null) {
-                syspar = new SysParaEntity();
-                syspar.setParType(parType);
-                syspar.setParUsername(username);
-                syspar.setParValue(parType);
-                systemService.save(syspar);
-            } else {
-                syspar.setParType(parType);
-                syspar.setParUsername(username);
-                syspar.setParValue(parType);
-                systemService.updateEntitie(syspar);
-            }
-        }
-    }
 
     public static String getCurrentDepartCode() {
         TSUser tsUser = ResourceUtil.getSessionUserName();
@@ -424,9 +341,8 @@ public class wmUtil {
                 }
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
-
         return flag;
     }
 
@@ -452,9 +368,7 @@ public class wmUtil {
             ishavestock = true;
         }
         return ishavestock;
-
     }
-
 
     public static String getstock(String goodsid) {
         String goodsqua = "0";
@@ -482,6 +396,7 @@ public class wmUtil {
                 goodsqua = result.get(0).get("goods_qua").toString();
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
         return goodsqua;
     }
@@ -519,7 +434,7 @@ public class wmUtil {
 
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         return flag;
     }
@@ -571,6 +486,7 @@ public class wmUtil {
                 }
                 return ttr;
             } catch (Exception e) {
+                e.printStackTrace();
                 return null;
             }
         } else {
@@ -578,43 +494,6 @@ public class wmUtil {
         }
     }
 
-    public static boolean checkstcokk(String cuscode, String binid, String tinid, String goodsid, String prodate, String basecount) {
-        boolean flag = false;
-        try {
-            String goods = null;
-            if (!StringUtil.isEmpty(goodsid)) {
-                if (goodsid.endsWith("l")) {
-                    goods = goodsid.substring(0, goodsid.length() - 1);
-                    System.out.print("11111111I" + goods);
-                } else {
-                    goods = goodsid;
-                    System.out.print("22222" + goods);
-
-                }
-
-            }
-            SystemService systemService = ApplicationContextUtil.getContext().getBean(SystemService.class);
-            String tsql = "select ws.base_unit,ws.zhong_wen_qch, ws.ku_wei_bian_ma,ws.bin_id,ws.shp_ming_cheng,cast(sum(ws.base_goodscount) as signed) as goods_qua, mb.qu_huo_ci_xu, ws.goods_pro_data"
-                    + "  from wv_stock ws, md_bin mb  where "
-                    + "   ws.ku_wei_bian_ma = mb.ku_wei_bian_ma and mb.ting_yong <> 'Y' and (ws.kuctype = '库存' )"
-                    + "   and ws.ku_wei_bian_ma = ? "
-                    + "   and ws.bin_id =  ? "
-                    + "   and ws.goods_id =  ? "
-                    + "   and ws.cus_code = ?   "
-                    + "   group by ws.ku_wei_bian_ma,ws.bin_id,ws.goods_id,mb.qu_huo_ci_xu, ws.goods_pro_data order by ws.goods_pro_data , ws.goods_qua ,mb.qu_huo_ci_xu,ws.create_date desc";
-
-            List<Map<String, Object>> result = systemService.findForJdbc(tsql, binid, tinid, goods, cuscode);
-            if (result.size() > 0) {
-                if (Double.parseDouble(result.get(0).get("goods_qua").toString()) >= Double.parseDouble(basecount)) {
-                    flag = true;
-                }
-
-            }
-        } catch (Exception e) {
-
-        }
-        return flag;
-    }
 
     public static TSUser getsysorgcode(String sysuser) {
         SystemService systemService = ApplicationContextUtil.getContext().getBean(SystemService.class);
