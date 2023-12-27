@@ -63,17 +63,12 @@ public class wmBaseController extends BaseController {
      * Logger for this class
      */
     private static final Logger logger = Logger.getLogger(wmBaseController.class);
-
-    //	@Autowired
-//	private WvGiServiceI wvGiService;
     @Autowired
     private SystemService systemService;
     @Autowired
     private SmsSendTask smsSendTask;
     @Autowired
     private CostTask costTask;
-//	@Autowired
-//	private Validator validator;
 
     /**
      * 获取图片流/获取文件用于下载
@@ -87,22 +82,18 @@ public class wmBaseController extends BaseController {
     public void getbarcodeImgByurl(HttpServletResponse response, HttpServletRequest request) throws Exception {
         request.setCharacterEncoding("UTF-8");
         String flag = request.getParameter("down");//是否下载否则展示图片
-
         String qrvalue = request.getParameter("qrvalue");
         String dbpath = qrvalue + ".jpg";
         String localPath = ResourceUtil.getConfigByName("webUploadpath");
-
         try {
             String imgurl = localPath + File.separator + dbpath;
-//			QRcodeUtil.encode(qrvalue,imgurl);
             BarcodeUtil.generateFile(qrvalue, imgurl);
         } catch (Exception e) {
-
+e.printStackTrace();
         }
         if ("1".equals(flag)) {
             response.setContentType("application/x-msdownload;charset=utf-8");
             String fileName = dbpath.substring(dbpath.lastIndexOf(File.separator) + 1);
-
             String userAgent = request.getHeader("user-agent").toLowerCase();
             if (userAgent.contains("msie") || userAgent.contains("like gecko")) {
                 fileName = URLEncoder.encode(fileName, "UTF-8");
@@ -110,11 +101,9 @@ public class wmBaseController extends BaseController {
                 fileName = new String(fileName.getBytes("UTF-8"), "iso-8859-1");
             }
             response.setHeader("Content-disposition", "attachment; filename=" + fileName);
-
         } else {
             response.setContentType("image/jpeg;charset=utf-8");
         }
-
         InputStream inputStream = null;
         OutputStream outputStream = null;
         try {
@@ -152,21 +141,18 @@ public class wmBaseController extends BaseController {
     public void getQrImgByurl(HttpServletResponse response, HttpServletRequest request) throws Exception {
         request.setCharacterEncoding("UTF-8");
         String flag = request.getParameter("down");//是否下载否则展示图片
-
         String qrvalue = request.getParameter("qrvalue");
         String dbpath = qrvalue + ".jpg";
         String localPath = ResourceUtil.getConfigByName("webUploadpath");
-
         try {
             String imgurl = localPath + File.separator + dbpath;
             QRcodeUtil.encode(qrvalue, imgurl);
         } catch (Exception e) {
-
+e.printStackTrace();
         }
         if ("1".equals(flag)) {
             response.setContentType("application/x-msdownload;charset=utf-8");
             String fileName = dbpath.substring(dbpath.lastIndexOf(File.separator) + 1);
-
             String userAgent = request.getHeader("user-agent").toLowerCase();
             if (userAgent.contains("msie") || userAgent.contains("like gecko")) {
                 fileName = URLEncoder.encode(fileName, "UTF-8");
@@ -174,11 +160,9 @@ public class wmBaseController extends BaseController {
                 fileName = new String(fileName.getBytes("UTF-8"), "iso-8859-1");
             }
             response.setHeader("Content-disposition", "attachment; filename=" + fileName);
-
         } else {
             response.setContentType("image/jpeg;charset=utf-8");
         }
-
         InputStream inputStream = null;
         OutputStream outputStream = null;
         try {
@@ -206,17 +190,11 @@ public class wmBaseController extends BaseController {
     @RequestMapping(value = "geterpim", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<?> listim() {
-
-
         ResultDO D0 = new ResultDO();
-
         String hql = " from WmToUpGoodsErpEntity where 1 = 1  ";
         D0.setOK(true);
-
         List<WmToUpGoodsErpEntity> listerp = systemService.findHql(hql);
         D0.setOK(true);
-
-
         D0.setObj(listerp);
         return new ResponseEntity(D0, HttpStatus.OK);
     }
@@ -224,17 +202,11 @@ public class wmBaseController extends BaseController {
     @RequestMapping(value = "geterpom", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<?> listom() {
-
-
         ResultDO D0 = new ResultDO();
-
         String hql = " from WmToDownGoodsErpEntity where 1 = 1  ";
         D0.setOK(true);
-
         List<WmToDownGoodsErpEntity> listerp = systemService.findHql(hql);
         D0.setOK(true);
-
-
         D0.setObj(listerp);
         return new ResponseEntity(D0, HttpStatus.OK);
     }
@@ -242,8 +214,6 @@ public class wmBaseController extends BaseController {
     @RequestMapping(value = "runtask", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<?> runtask() {
-
-
         ResultDO D0 = new ResultDO();
         smsSendTask.run();
         return new ResponseEntity(D0, HttpStatus.OK);
@@ -253,8 +223,6 @@ public class wmBaseController extends BaseController {
     @RequestMapping(value = "runtaskone", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<?> runtaskone() {
-
-
         ResultDO D0 = new ResultDO();
         costTask.run();
         return new ResponseEntity(D0, HttpStatus.OK);
