@@ -69,15 +69,12 @@ public class WvGiNoticeController extends BaseController {
      * Logger for this class
      */
     private static final Logger logger = Logger.getLogger(WvGiNoticeController.class);
-
     @Autowired
     private WvGiNoticeServiceI wvGiNoticeService;
     @Autowired
     private SystemService systemService;
     @Autowired
     private Validator validator;
-
-
     /**
      * wv_gi_notice列表 页面跳转
      *
@@ -101,11 +98,6 @@ public class WvGiNoticeController extends BaseController {
         CriteriaQuery cq = new CriteriaQuery(WvGiNoticeEntity.class, dataGrid);
         //查询条件组装器
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wvGiNotice, request.getParameterMap());
-        try {
-            //自定义追加查询条件
-        } catch (Exception e) {
-            throw new BusinessException(e.getMessage());
-        }
         cq.add();
         this.wvGiNoticeService.getDataGridReturn(cq, true);
         TagUtil.datagrid(response, dataGrid);
@@ -128,7 +120,6 @@ public class WvGiNoticeController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "wv_gi_notice删除失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -156,7 +147,6 @@ public class WvGiNoticeController extends BaseController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "wv_gi_notice删除失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -180,7 +170,6 @@ public class WvGiNoticeController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "wv_gi_notice添加失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -205,7 +194,6 @@ public class WvGiNoticeController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "wv_gi_notice更新失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -311,7 +299,6 @@ public class WvGiNoticeController extends BaseController {
                 j.setMsg("文件导入成功！");
             } catch (Exception e) {
                 j.setMsg("文件导入失败！");
-                logger.error(ExceptionUtil.getExceptionMessage(e));
             } finally {
                 try {
                     file.getInputStream().close();
@@ -326,8 +313,6 @@ public class WvGiNoticeController extends BaseController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<?> list() {
-
-//		public ResponseEntity<?>  list(@RequestParam String username, @RequestParam String searchstr) {
         ResultDO D0 = new ResultDO();
         List<WvGiNoticeEntity> listWvGiNotices = wvGiNoticeService.getList(WvGiNoticeEntity.class);
         D0.setOK(true);
@@ -343,9 +328,6 @@ public class WvGiNoticeController extends BaseController {
                                    @RequestParam(value = "searchstr", required = false) String searchstr,
                                    @RequestParam(value = "searchstr2", required = false) String searchstr2,
                                    @RequestParam(value = "searchstr3", required = false) String searchstr3) {
-//		return listWvGis;
-
-
         ResultDO D0 = new ResultDO();
         String hql = " from WvGiNoticeEntity where 1 = 1 ";
         D0.setOK(true);
@@ -361,13 +343,9 @@ public class WvGiNoticeController extends BaseController {
             } catch (Exception e) {
 
             }
-//			hql=hql+"  and goodsId = '" + searchstr2 + "'";
-
-
             String[] ss = searchstr2.split(",");
             if (ss.length == 1) {
                 hql = hql + "  and goodsId like '%" + searchstr2 + "%'";
-
             } else {
                 String insearch = "";
                 for (String s : ss) {
@@ -376,18 +354,13 @@ public class WvGiNoticeController extends BaseController {
                     } else {
                         insearch = "goodsId = '" + s + "'";
                     }
-
                 }
                 hql = hql + "  and  (" + insearch + ")";
-
             }
-
         }
         if (!StringUtil.isEmpty(searchstr3)) {
             hql = hql + "  and binId = '" + searchstr3 + "'";
         }
-
-
         List<WvGiNoticeEntity> listWvGiNotices = wvGiNoticeService.findHql(hql);
         if (listWvGiNotices == null || listWvGiNotices.size() == 0) {
             hql = " from WvGiNoticeEntity where 1 = 1 ";
@@ -396,15 +369,8 @@ public class WvGiNoticeController extends BaseController {
                 hql = hql + "  and omNoticeId = '" + searchstr + "'";
             }
             listWvGiNotices = wvGiNoticeService.findHql(hql);
-
         }
-
-//		public ResponseEntity<?>  list(@RequestParam String username, @RequestParam String searchstr) {
-//		ResultDO D0 = new  ResultDO();
-//		List<WvGiNoticeEntity> listWvGiNotices=wvGiNoticeService.getList(WvGiNoticeEntity.class);
         D0.setOK(true);
-
-
         List<WvGiNoticeEntity> result = new ArrayList<WvGiNoticeEntity>();
         int i = 0;
         for (WvGiNoticeEntity t : listWvGiNotices) {
@@ -456,7 +422,6 @@ public class WvGiNoticeController extends BaseController {
         if (!failures.isEmpty()) {
             return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
         }
-
         //保存
         try {
             wvGiNoticeService.save(wvGiNotice);
@@ -469,7 +434,6 @@ public class WvGiNoticeController extends BaseController {
         URI uri = uriBuilder.path("/rest/wvGiNoticeController/" + id).build().toUri();
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(uri);
-
         return new ResponseEntity(headers, HttpStatus.CREATED);
     }
 
@@ -480,7 +444,6 @@ public class WvGiNoticeController extends BaseController {
         if (!failures.isEmpty()) {
             return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
         }
-
         //保存
         try {
             wvGiNoticeService.saveOrUpdate(wvGiNotice);
@@ -488,7 +451,6 @@ public class WvGiNoticeController extends BaseController {
             e.printStackTrace();
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
-
         //按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
