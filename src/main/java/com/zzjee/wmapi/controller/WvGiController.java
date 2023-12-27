@@ -111,7 +111,6 @@ public class WvGiController extends BaseController {
      * @param request
      * @param response
      * @param dataGrid
-     * @param user
      */
 
     @RequestMapping(params = "datagrid")
@@ -119,11 +118,6 @@ public class WvGiController extends BaseController {
         CriteriaQuery cq = new CriteriaQuery(WvGiEntity.class, dataGrid);
         //查询条件组装器
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wvGi, request.getParameterMap());
-        try {
-            //自定义追加查询条件
-        } catch (Exception e) {
-            throw new BusinessException(e.getMessage());
-        }
         cq.add();
         this.wvGiService.getDataGridReturn(cq, true);
         TagUtil.datagrid(response, dataGrid);
@@ -146,7 +140,6 @@ public class WvGiController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "wv_gi删除失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -174,7 +167,6 @@ public class WvGiController extends BaseController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "wv_gi删除失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -199,7 +191,6 @@ public class WvGiController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "wv_gi添加失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -225,7 +216,6 @@ public class WvGiController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "wv_gi更新失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -366,12 +356,9 @@ public class WvGiController extends BaseController {
             } catch (Exception e) {
 
             }
-
-//			hql=hql+"  and goodsId = '" + searchstr2 + "'";
             String[] ss = searchstr2.split(",");
             if (ss.length == 1) {
                 hql = hql + "  and goodsId = '" + searchstr2 + "'";
-
             } else {
                 String insearch = "";
                 for (String s : ss) {
@@ -383,29 +370,21 @@ public class WvGiController extends BaseController {
 
                 }
                 hql = hql + "  and  (" + insearch + ")";
-
-
             }
         }
-
         List<WvGiEntity> listWvGis = wvGiService.findHql(hql);
-
-//		List<WvGiEntity> listWvGis=wvGiService.getList(WvGiEntity.class);
         D0.setOK(true);
         List<WvGiEntity> result = new ArrayList<WvGiEntity>();
         int i = 0;
         for (WvGiEntity t : listWvGis) {
-
             i++;
             if (i > 100) {
                 break;
             }
             result.add(t);
         }
-
         D0.setObj(result);
         return new ResponseEntity(D0, HttpStatus.OK);
-
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -421,12 +400,10 @@ public class WvGiController extends BaseController {
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<?> create(@RequestBody WvGiEntity wvGi, UriComponentsBuilder uriBuilder) {
-        //调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
         Set<ConstraintViolation<WvGiEntity>> failures = validator.validate(wvGi);
         if (!failures.isEmpty()) {
             return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
         }
-
         //保存
         try {
             wvGiService.save(wvGi);
@@ -434,23 +411,19 @@ public class WvGiController extends BaseController {
             e.printStackTrace();
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
-        //按照Restful风格约定，创建指向新任务的url, 也可以直接返回id或对象.
         String id = wvGi.getId();
         URI uri = uriBuilder.path("/rest/wvGiController/" + id).build().toUri();
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(uri);
-
         return new ResponseEntity(headers, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> update(@RequestBody WvGiEntity wvGi) {
-        //调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
         Set<ConstraintViolation<WvGiEntity>> failures = validator.validate(wvGi);
         if (!failures.isEmpty()) {
             return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
         }
-
         //保存
         try {
             wvGiService.saveOrUpdate(wvGi);
@@ -458,7 +431,6 @@ public class WvGiController extends BaseController {
             e.printStackTrace();
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
-
         //按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
