@@ -312,18 +312,20 @@ public class wmUtil {
             if (!StringUtil.isEmpty(goodsid)) {
                 if (goodsid.endsWith("l")) {//拆零商品，商品编码不需要l结尾
                     goods = goodsid.substring(0, goodsid.length() - 1);
-                 } else {
+                } else {
                     goods = goodsid;
                 }
             }
             SystemService systemService = ApplicationContextUtil.getContext().getBean(SystemService.class);
-            String tsql = "select ws.base_unit,ws.zhong_wen_qch, ws.ku_wei_bian_ma,ws.bin_id,ws.shp_ming_cheng,cast(sum(ws.base_goodscount) as signed) as goods_qua, mb.qu_huo_ci_xu, ws.goods_pro_data"
-                    + "  from wv_stock ws, md_bin mb  where "
+            String tsql = "select ws.base_unit,ws.zhong_wen_qch, ws.ku_wei_bian_ma,ws.bin_id,"
+                    + "   ws.shp_ming_cheng,cast(sum(ws.base_goodscount) as signed) as goods_qua, mb.qu_huo_ci_xu, ws.goods_pro_data"
+                    + "   from wv_stock ws, md_bin mb  where "
                     + "   ws.ku_wei_bian_ma = mb.ku_wei_bian_ma and mb.ting_yong <> 'Y' and (ws.kuctype = '库存' or ws.kuctype = '待下架')"
                     + "   and ws.ku_wei_bian_ma = ? "
                     + "   and ws.bin_id =  ? "
                     + "   and ws.goods_id =  ? "
-                    + "   group by ws.ku_wei_bian_ma,ws.bin_id,ws.goods_id,mb.qu_huo_ci_xu, ws.goods_pro_data order by ws.goods_pro_data , ws.goods_qua ,mb.qu_huo_ci_xu,ws.create_date desc";
+                    + "   group by ws.ku_wei_bian_ma,ws.bin_id,ws.goods_id,mb.qu_huo_ci_xu, ws.goods_pro_data"
+                    + "   order by ws.goods_pro_data , ws.goods_qua ,mb.qu_huo_ci_xu,ws.create_date desc";
             List<Map<String, Object>> result = systemService.findForJdbc(tsql, binid, tinid, goods);
             if (result.size() > 0) {
                 if (Double.parseDouble(result.get(0).get("goods_qua").toString()) >= Double.parseDouble(basecount)) {
@@ -364,10 +366,8 @@ public class wmUtil {
             if (!StringUtil.isEmpty(goodsid)) {
                 if (goodsid.endsWith("l")) {
                     goods = goodsid.substring(0, goodsid.length() - 1);
-                    System.out.print("11111111I" + goods);
                 } else {
                     goods = goodsid;
-                    System.out.print("22222" + goods);
                 }
             }
             SystemService systemService = ApplicationContextUtil.getContext().getBean(SystemService.class);
@@ -385,8 +385,6 @@ public class wmUtil {
         }
         return goodsqua;
     }
-
-
     public static boolean checkstcoka(String binid, String tinid, String goodsid, String prodate, String basecount) {
         boolean flag = false;
         try {
@@ -394,22 +392,19 @@ public class wmUtil {
             if (!StringUtil.isEmpty(goodsid)) {
                 if (goodsid.endsWith("l")) {
                     goods = goodsid.substring(0, goodsid.length() - 1);
-                    System.out.print("11111111I" + goods);
                 } else {
                     goods = goodsid;
-                    System.out.print("22222" + goods);
-
                 }
-
             }
             SystemService systemService = ApplicationContextUtil.getContext().getBean(SystemService.class);
             String tsql = "select ws.base_unit,ws.zhong_wen_qch, ws.ku_wei_bian_ma,ws.bin_id,ws.shp_ming_cheng,cast(sum(ws.base_goodscount) as signed) as goods_qua, mb.qu_huo_ci_xu, ws.goods_pro_data"
-                    + "  from wv_stock ws, md_bin mb  where "
+                    + "   from wv_stock ws, md_bin mb  where "
                     + "   ws.ku_wei_bian_ma = mb.ku_wei_bian_ma and mb.ting_yong <> 'Y' and (ws.kuctype = '库存' )"
                     + "   and ws.ku_wei_bian_ma = ? "
                     + "   and ws.bin_id =  ? "
                     + "   and ws.goods_id =  ? "
-                    + "   group by ws.ku_wei_bian_ma,ws.bin_id,ws.goods_id,mb.qu_huo_ci_xu order by ws.goods_pro_data , ws.goods_qua ,mb.qu_huo_ci_xu,ws.create_date desc";
+                    + "   group by ws.ku_wei_bian_ma,ws.bin_id,ws.goods_id,mb.qu_huo_ci_xu "
+                    + "   order by ws.goods_pro_data , ws.goods_qua ,mb.qu_huo_ci_xu,ws.create_date desc";
 
             List<Map<String, Object>> result = systemService.findForJdbc(tsql, binid, tinid, goods);
             if (result.size() > 0) {
@@ -423,8 +418,6 @@ public class wmUtil {
         }
         return flag;
     }
-
-
     public static boolean checkbin(String binid) {
         boolean flag = false;
         SystemService systemService = ApplicationContextUtil.getContext().getBean(SystemService.class);
@@ -434,14 +427,12 @@ public class wmUtil {
                 if ("N".equals(mdBinEntity.getTingYong())) {
                     flag = true;
                 }
-
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return flag;
     }
-
     public static String getscrp() {
         if ("no".equals(ResourceUtil.getConfigByName("scrqon"))) {
             if (StringUtil.isNotEmpty(ResourceUtil.getConfigByName("scrq"))) {
@@ -453,14 +444,11 @@ public class wmUtil {
             return null;
         }
     }
-
     public static String getmdgoodsbytiaoma(String tiaoma) {
         if ("yes".equals(ResourceUtil.getConfigByName("sptmon"))) {
             try {
                 SystemService systemService = ApplicationContextUtil.getContext().getBean(SystemService.class);
-
                 String ttr = "";
-
                 List<MdGoodsEntity> t = systemService.findByProperty(MdGoodsEntity.class, "shpTiaoMa", tiaoma);
                 for (MdGoodsEntity tt : t) {
                     if (StringUtil.isNotEmpty(ttr)) {
@@ -478,8 +466,6 @@ public class wmUtil {
             return null;
         }
     }
-
-
     public static TSUser getsysorgcode(String sysuser) {
         SystemService systemService = ApplicationContextUtil.getContext().getBean(SystemService.class);
         try {
@@ -491,10 +477,6 @@ public class wmUtil {
 
         }
         TSUser task = systemService.findUniqueByProperty(TSUser.class, "userName", sysuser);
-//		if(task==null){
-//			sysuser=ResourceUtil.getConfigByName("mini.user");
-//			task = systemService.findUniqueByProperty(TSUser.class,"userName",sysuser);
-//		}
         if (task != null) {
             try {
                 TSDepart tsDepart = systemService.get(TSDepart.class, task.getDepartid());
@@ -503,7 +485,7 @@ public class wmUtil {
                     task.setCurrentDepart(tsDepart);
                 }
             } catch (Exception e) {
-
+                e.printStackTrace();
             }
         }
         return task;
