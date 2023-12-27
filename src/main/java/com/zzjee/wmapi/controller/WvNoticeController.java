@@ -101,11 +101,6 @@ public class WvNoticeController extends BaseController {
         CriteriaQuery cq = new CriteriaQuery(WvNoticeEntity.class, dataGrid);
         //查询条件组装器
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wvNotice, request.getParameterMap());
-        try {
-            //自定义追加查询条件
-        } catch (Exception e) {
-            throw new BusinessException(e.getMessage());
-        }
         cq.add();
         this.wvNoticeService.getDataGridReturn(cq, true);
         TagUtil.datagrid(response, dataGrid);
@@ -128,7 +123,6 @@ public class WvNoticeController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "wv_notice删除失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -156,7 +150,6 @@ public class WvNoticeController extends BaseController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "wv_notice删除失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -181,7 +174,6 @@ public class WvNoticeController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "wv_notice添加失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -207,7 +199,6 @@ public class WvNoticeController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "wv_notice更新失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -296,7 +287,6 @@ public class WvNoticeController extends BaseController {
     @ResponseBody
     public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
         AjaxJson j = new AjaxJson();
-
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
         for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
@@ -349,7 +339,6 @@ public class WvNoticeController extends BaseController {
             String[] ss = searchstr2.split(",");
             if (ss.length == 1) {
                 hql = hql + "  and (goodsCode like '%" + searchstr2 + "%'" + "or shp_ming_cheng like '%" + searchstr2 + "%')";
-
             } else {
                 String insearch = "";
                 for (String s : ss) {
