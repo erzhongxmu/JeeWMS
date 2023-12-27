@@ -94,14 +94,12 @@ public class WmsApiController {
         // 查询条件组装器
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq,
                 mdGoods, request.getParameterMap());
-
         if(StringUtil.isNotEmpty(mdGoods.getSuoShuKeHu())){
             cq.eq("suoShuKeHu", mdGoods.getSuoShuKeHu());
         }
         if(StringUtil.isNotEmpty(mdGoods.getShpBianMakh())){
             cq.eq("shpBianMakh", mdGoods.getShpBianMakh());
         }
-
         cq.add();
        return Result.success(this.mdGoodsService.getDataGridReturn(cq, true));
     }
@@ -125,7 +123,6 @@ public class WmsApiController {
                 j.setMsg("类目编码为空");
                 return j;
             }
-
             if(mdGoods1 ==null ){
                 Map<String, Object> countMap = systemService.findOneForJdbc("select right(shp_bian_ma,7) shp_bian_ma  from md_goods where category_code =? and suo_shu_ke_hu  = ? and shp_bian_ma like ? ORDER BY shp_bian_ma desc LIMIT 1",mdGoods.getCategoryCode(),mdGoods.getSuoShuKeHu(),mdGoods.getSuoShuKeHu()+mdGoods.getCategoryCode()+"%");
                 if (countMap == null) {
@@ -144,21 +141,17 @@ public class WmsApiController {
                 if("N".equals(mdGoods.getChlKongZhi() )){
                     mdGoods.setChlShl("1");
                     mdGoods.setJshDanWei(mdGoods.getShlDanWei());
-
                 }
-
                 try {
                     if(StringUtil.isEmpty(mdGoods.getZhlKgm())){
                         if(!StringUtil.isEmpty(mdGoods.getBzhiQi())){
                             int bzhiq = Integer.parseInt(mdGoods.getBzhiQi());
                             mdGoods.setZhlKgm(Integer.toString(bzhiq));
                         }
-
                     }
                 } catch (Exception e) {
                     // TODO: handle exception
                 }
-
                 mdGoodsService.save(mdGoods);
                 systemService.addLog(message, Globals.Log_Type_INSERT,
                         Globals.Log_Leavel_INFO);
@@ -170,11 +163,9 @@ public class WmsApiController {
                             int bzhiq = Integer.parseInt(mdGoods.getBzhiQi());
                             mdGoods.setZhlKgm(Integer.toString(bzhiq));
                         }
-
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    // TODO: handle exception
                 }
                 MyBeanUtils.copyBeanNotNull2Bean(mdGoods, mdGoods1);
                 mdGoodsService.updateEntitie(mdGoods1);
