@@ -270,10 +270,7 @@ public class wmUtil {
                 for (TSRoleUser ru : rUsers) {
                     TSRole role = ru.getTSRole();
                     roles += role.getRoleCode() + ",";
-                    System.out.println("role.getRoleCode()========" + role.getRoleCode());
                 }
-                System.out.println("roles========" + roles);
-                System.out.println("cusrole========" + cusrole);
                 if (StringUtil.strPos(roles, cusrole)) {
                     cusCode = user.getUserName();
                 }
@@ -313,13 +310,10 @@ public class wmUtil {
         try {
             String goods = null;
             if (!StringUtil.isEmpty(goodsid)) {
-                if (goodsid.endsWith("l")) {
+                if (goodsid.endsWith("l")) {//拆零商品，商品编码不需要l结尾
                     goods = goodsid.substring(0, goodsid.length() - 1);
-                    System.out.print("11111111I" + goods);
-                } else {
+                 } else {
                     goods = goodsid;
-                    System.out.print("22222" + goods);
-
                 }
             }
             SystemService systemService = ApplicationContextUtil.getContext().getBean(SystemService.class);
