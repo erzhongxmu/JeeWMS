@@ -74,7 +74,7 @@ public class wmBaseController extends BaseController {
      * 获取图片流/获取文件用于下载
      *
      * @param response
-     * @param request code128 格式
+     * @param request  code128 格式
      * @throws Exception http://localhost:8080/zzjee/wmOmNoticeHController/showOrDownbarcodeByurl.do?&qrvalue=1111223333  调用
      */
 
@@ -89,7 +89,7 @@ public class wmBaseController extends BaseController {
             String imgurl = localPath + File.separator + dbpath;
             BarcodeUtil.generateFile(qrvalue, imgurl);
         } catch (Exception e) {
-e.printStackTrace();
+            e.printStackTrace();
         }
         if ("1".equals(flag)) {
             response.setContentType("application/x-msdownload;charset=utf-8");
@@ -148,7 +148,7 @@ e.printStackTrace();
             String imgurl = localPath + File.separator + dbpath;
             QRcodeUtil.encode(qrvalue, imgurl);
         } catch (Exception e) {
-e.printStackTrace();
+            e.printStackTrace();
         }
         if ("1".equals(flag)) {
             response.setContentType("application/x-msdownload;charset=utf-8");
