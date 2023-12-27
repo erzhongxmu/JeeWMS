@@ -182,7 +182,6 @@ public class WmsApiController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            message = "商品信息添加失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -209,7 +208,6 @@ public class WmsApiController {
                     Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "商品信息更新失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -265,7 +263,6 @@ public class WmsApiController {
 
         }catch(Exception e){
             e.printStackTrace();
-            message = "客户添加失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -290,7 +287,6 @@ public class WmsApiController {
             systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "客户更新失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -311,11 +307,6 @@ public class WmsApiController {
         CriteriaQuery cq = new CriteriaQuery(MdBinEntity.class, dataGrid);
         //查询条件组装器
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, mdBin, request.getParameterMap());
-        try{
-            //自定义追加查询条件
-        }catch (Exception e) {
-            throw new BusinessException(e.getMessage());
-        }
         cq.add();
         return Result.success(this.mdBinService.getDataGridReturn(cq, true));
     }
@@ -349,7 +340,6 @@ public class WmsApiController {
             }
         }catch(Exception e){
             e.printStackTrace();
-            message = "仓位定义添加失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -455,7 +445,6 @@ public class WmsApiController {
             Object id0 = wmImNoticeH.getNoticeId();
             // ===================================================================================
             // 查询-进货通知明细
-
             if(wmImNoticeH.getOrderTypeCode().equals("04")){
                 String 	tsql = "delete  from wm_in_qm_i where im_notice_id = ?";
                 systemService.executeSql(tsql, wmImNoticeH.getNoticeId());
@@ -471,7 +460,6 @@ public class WmsApiController {
 
                     }else{
                         systemService.updateEntitie(wmImNoticeIEntity);
-
                     }
                 }
             }catch (Exception e) {
@@ -533,7 +521,6 @@ public class WmsApiController {
                 }
             }
             if(StringUtil.isNotEmpty( wmOmNoticeH.getOcusCode())){
-//				String datecuso[]= wmOmNoticeH.getOcusCode().split("-");
                 MdCusOtherEntity mdcusother = systemService.findUniqueByProperty(MdCusOtherEntity.class, "keHuBianMa",wmOmNoticeH.getOcusCode());
                 if (mdcusother != null) {
                     wmOmNoticeH.setOcusCode(wmOmNoticeH.getOcusCode());
@@ -546,7 +533,6 @@ public class WmsApiController {
             try {
                 TuiSongMsgUtil.sendMessage("出货通知", Constants.SMS_SEND_TYPE_3, "CKYYTZ", map, "admin", ResourceUtil.getSessionUserName().getUserName());
             } catch (Exception e) {
-                // TODO: handle exception
                 logger.error(ExceptionUtil.getExceptionMessage(e));
             }
             systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
@@ -584,10 +570,8 @@ public class WmsApiController {
                 wmOmNoticeIEntity.setPlanSta("Y");
                 if("database".equals(deltype)){
                     systemService.delete(wmOmNoticeIEntity);
-
                 }else{
                     systemService.saveOrUpdate(wmOmNoticeIEntity);
-
                 }
             }
             if("database".equals(deltype)){
@@ -684,7 +668,6 @@ public class WmsApiController {
     @ResponseBody
     public ResponseMessage<List<Map<String, Object>>> getStock (String sku) {
         List<Map<String,Object>> data = systemService.findForJdbc("SELECT goods_id,shp_ming_cheng goods_name,sku,base_goodscount,goods_unit from wv_stock where base_goodscount <> 0 and sku = ? GROUP BY goods_id",sku);
-
         return Result.success(data);
     }
 
@@ -694,11 +677,6 @@ public class WmsApiController {
         CriteriaQuery cq = new CriteriaQuery(BaGoodsTypeEntity.class, dataGrid);
         //查询条件组装器
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, baGoodsType, request.getParameterMap());
-        try{
-            //自定义追加查询条件
-        }catch (Exception e) {
-            throw new BusinessException(e.getMessage());
-        }
         cq.add();
         this.baGoodsTypeService.getDataGridReturn(cq, true);
         TagUtil.datagrid(response, dataGrid);
@@ -796,11 +774,6 @@ public class WmsApiController {
         // 查询条件组装器
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq,
                 mdSup, request.getParameterMap());
-        try {
-            // 自定义追加查询条件
-        } catch (Exception e) {
-            throw new BusinessException(e.getMessage());
-        }
         cq.add();
         return Result.success(this.mdSupServiceI.getDataGridReturn(cq, true));
     }
