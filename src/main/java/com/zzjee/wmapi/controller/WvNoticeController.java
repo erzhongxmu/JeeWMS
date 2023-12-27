@@ -349,7 +349,6 @@ public class WvNoticeController extends BaseController {
                     }
                 }
                 hql = hql + "  and  (" + insearch + ")";
-
             }
         }
         List<WvNoticeEntity> listWvNotices = wvNoticeService.findHql(hql);
