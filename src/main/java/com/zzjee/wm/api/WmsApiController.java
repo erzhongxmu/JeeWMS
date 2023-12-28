@@ -219,11 +219,6 @@ public class WmsApiController {
         CriteriaQuery cq = new CriteriaQuery(MdCusEntity.class, dataGrid);
         //查询条件组装器
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, mdCus, request.getParameterMap());
-        try{
-            //自定义追加查询条件
-        }catch (Exception e) {
-            throw new BusinessException(e.getMessage());
-        }
         Map<String,Object> map1 = new HashMap<String,Object>();
         map1.put("zhuJiMa", "desc");
         cq.setOrder(map1);
@@ -251,7 +246,6 @@ public class WmsApiController {
                 message = "客户编码已经存在";
                 j.setSuccess(false);
             }
-
         }catch(Exception e){
             e.printStackTrace();
             throw new BusinessException(e.getMessage());
@@ -352,7 +346,6 @@ public class WmsApiController {
         AjaxJson j = new AjaxJson();
         String message = "进货通知添加成功";
         try {
-
             String noticeid =  wmUtil.getNextNoticeid(wmImNoticeH.getOrderTypeCode()) ;
             wmImNoticeH.setNoticeId(noticeid);
             wmImNoticeH.setCreateDate(DateUtils.getDate());
@@ -505,7 +498,6 @@ public class WmsApiController {
                         wmomNoticeIEntity.setGoodsId(mvgoods.getGoodsCode());
                         wmomNoticeIEntity.setGoodsName(mvgoods.getShpMingCheng());
                     } catch (Exception e) {
-                        // TODO: handle exception
                         logger.error(ExceptionUtil.getExceptionMessage(e));
                     }
                     wmomNoticeIListnew.add(wmomNoticeIEntity);
@@ -623,12 +615,10 @@ public class WmsApiController {
         CriteriaQuery cq = new CriteriaQuery(WmOmNoticeHEntity.class, dataGrid);
         //查询条件组装器
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wmOmNoticeH);
-
         try {
             // 自定义追加查询条件
             String query_imData_begin = request.getParameter("delvData_begin1");
             String query_imData_end = request.getParameter("delvData_end2");
-
             if (StringUtil.isNotEmpty(query_imData_begin)) {
                 cq.ge("delvData", new SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
                         .parse(query_imData_begin));
@@ -640,10 +630,8 @@ public class WmsApiController {
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
         }
-
         if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
             cq.eq("cusCode", wmUtil.getCusCode());
-
         }
         if (wmOmNoticeH.getOmSta() == null) {
             cq.notEq("omSta", Constants.wm_sta4);
