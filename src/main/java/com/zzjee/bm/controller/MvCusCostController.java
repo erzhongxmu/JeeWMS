@@ -116,14 +116,9 @@ public class MvCusCostController extends BaseController {
     @RequestMapping(params = "datagrid")
     public void datagrid(MvCusCostEntity mvCusCost, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
         CriteriaQuery cq = new CriteriaQuery(MvCusCostEntity.class, dataGrid);
-        //查询条件组装器
-//		request.setAttribute("costData_begin", "1990-01-01");
-//		request.setAttribute("costData_end", "2990-01-01");
+
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, mvCusCost, request.getParameterMap());
         try {
-            //自定义追加查询条件
-//			cq.ge("costData",  DateUtils.str2Date("1990-01-01", DateUtils.date_sdf) );
-//			cq.le("costData", DateUtils.str2Date("2990-01-01", DateUtils.date_sdf) );
             if (StringUtil.isNotEmpty(wmUtil.getCusCode())) {
                 cq.eq("cusCode", wmUtil.getCusCode());
             }
@@ -742,7 +737,6 @@ public class MvCusCostController extends BaseController {
             Row rowColumnNamedetail = sheet1.createRow((short) 0); // 列名
             int colidetail = 0;
             for (int i = 0; i < columnNamesdetail.length; i++) {
-
                 Cell cell = rowColumnNamedetail.createCell(colidetail);
                 colidetail = colidetail + 1;
                 rowColumnName.setHeight((short) 300);
