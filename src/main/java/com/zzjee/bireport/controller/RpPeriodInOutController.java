@@ -43,10 +43,6 @@ public class RpPeriodInOutController extends BaseController {
 
     @Autowired
     private RpPeriodInOutServiceI rpPeriodInOutService;
-//    @Autowired
-//    private SystemService systemService;
-//    @Autowired
-//    private Validator validator;
 
 
     /**

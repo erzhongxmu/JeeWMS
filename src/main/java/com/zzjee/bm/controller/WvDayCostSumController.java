@@ -149,7 +149,6 @@ public class WvDayCostSumController extends BaseController {
 					+ sdayCostHsj + "");
 		} catch (Exception e) {
 			e.printStackTrace();
-			// TODO: handle exception
 		}
 
 		TagUtil.datagrid(response, dataGrid);
@@ -198,7 +197,6 @@ public class WvDayCostSumController extends BaseController {
 					+ sdayCostBhs + ",shuie:" + sdayCostSe + ",hansj:"
 					+ sdayCostHsj + "");
 		} catch (Exception e) {
-			// TODO: handle exception
 			throw new BusinessException(e.getMessage());
 		}
 
@@ -222,7 +220,6 @@ public class WvDayCostSumController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -250,7 +247,6 @@ public class WvDayCostSumController extends BaseController {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -275,7 +271,6 @@ public class WvDayCostSumController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "添加失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -301,7 +296,6 @@ public class WvDayCostSumController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "wv_day_cost_sum更新失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
