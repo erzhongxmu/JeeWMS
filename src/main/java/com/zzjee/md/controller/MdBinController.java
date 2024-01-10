@@ -159,7 +159,6 @@ public class MdBinController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "仓位停用失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -207,7 +206,6 @@ public class MdBinController extends BaseController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            message = "仓位同步失败功";
             throw new BusinessException(e.getMessage());
         }
 
@@ -281,14 +279,8 @@ public class MdBinController extends BaseController {
                     result.add(jsonParts);
                 }
                 j.setObj(resultt.size());
-
-
                 Map<String, Object> attrs = new HashMap<String, Object>();
                 attrs.put("messageList", result);
-//				String tip = MutiLangUtil.getMutiLangInstance().getLang("message.tip");
-//				attrs.put("tip", tip);
-//				String seeAll = MutiLangUtil.getMutiLangInstance().getLang("message.seeAll");
-//				attrs.put("seeAll", seeAll);
                 j.setAttributes(attrs);
             }
         } catch (Exception e) {
@@ -393,10 +385,6 @@ public class MdBinController extends BaseController {
 
                 Map<String, Object> attrs = new HashMap<String, Object>();
                 attrs.put("messageList", result);
-//				String tip = MutiLangUtil.getMutiLangInstance().getLang("message.tip");
-//				attrs.put("tip", tip);
-//				String seeAll = MutiLangUtil.getMutiLangInstance().getLang("message.seeAll");
-//				attrs.put("seeAll", seeAll);
                 j.setAttributes(attrs);
             }
         } catch (Exception e) {
@@ -502,7 +490,6 @@ public class MdBinController extends BaseController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "仓位停用失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -541,7 +528,6 @@ public class MdBinController extends BaseController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "仓位定义添加失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -566,7 +552,6 @@ public class MdBinController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "仓位定义更新失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
