@@ -2254,7 +2254,7 @@ public class WmOmNoticeHController extends BaseController {
         PrintHeader printHeader = new PrintHeader();
         WmOmNoticeHEntity wmOmNoticeH = systemService.getEntity(WmOmNoticeHEntity.class,
                 id);//获取抬头
-       printHeader.setHeader01("签收单");
+        printHeader.setHeader01("签收单");
         printHeader.setHeader02("司机电话：");
         printHeader.setHeader03("车牌号：");
         printHeader.setHeader04("司机： ");
@@ -2407,7 +2407,7 @@ public class WmOmNoticeHController extends BaseController {
         printHeader.setHeader14("备注： " + wmOmNoticeH.getOmBeizhu());
         List<PrintItem> listitem = new ArrayList<>();
         String tsql = "SELECT wq.goods_pro_data as pro_data,wq.base_unit, mg.goods_code, mg.goods_id,mg.shp_ming_cheng," +
-                 "   cast(sum(wq.base_goodscount) as signed) as goods_count,mg.chl_shl,cast(mg.ti_ji_cm/mg.chl_shl as signed) tin_tj ,(mg.zhl_kg/mg.chl_shl ) as tin_zhl  "
+                "   cast(sum(wq.base_goodscount) as signed) as goods_count,mg.chl_shl,cast(mg.ti_ji_cm/mg.chl_shl as signed) tin_tj ,(mg.zhl_kg/mg.chl_shl ) as tin_zhl  "
                 + " FROM wm_to_down_goods wq,mv_goods mg where wq.order_id =  ? "
                 + " and  wq.goods_id = mg.goods_id group by wq.order_id, mg.goods_code,wq.goods_pro_data";
 
