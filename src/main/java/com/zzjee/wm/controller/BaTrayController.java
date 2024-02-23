@@ -150,8 +150,7 @@ public class BaTrayController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "ba_tray删除失败";
-			throw new BusinessException(e.getMessage());
+ 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
@@ -178,8 +177,7 @@ public class BaTrayController extends BaseController {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "ba_tray删除失败";
-			throw new BusinessException(e.getMessage());
+ 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
@@ -203,8 +201,7 @@ public class BaTrayController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "ba_tray添加失败";
-			throw new BusinessException(e.getMessage());
+ 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
@@ -229,8 +226,7 @@ public class BaTrayController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "ba_tray更新失败";
-			throw new BusinessException(e.getMessage());
+ 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;

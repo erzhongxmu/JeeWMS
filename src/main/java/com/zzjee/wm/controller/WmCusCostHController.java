@@ -146,8 +146,7 @@ public class WmCusCostHController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "客户费用删除失败";
-			throw new BusinessException(e.getMessage());
+ 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
@@ -173,8 +172,7 @@ public class WmCusCostHController extends BaseController {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "客户费用删除失败";
-			throw new BusinessException(e.getMessage());
+ 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
@@ -197,8 +195,7 @@ public class WmCusCostHController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "客户费用添加失败";
-			throw new BusinessException(e.getMessage());
+ 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		j.setObj(wmCusCostH);
@@ -221,8 +218,7 @@ public class WmCusCostHController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "更新客户费用失败";
-			throw new BusinessException(e.getMessage());
+ 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
