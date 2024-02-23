@@ -75,13 +75,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import static com.xiaoleilu.hutool.date.DateTime.now;
 
-/**
- * @author onlineGenerator
- * @version V1.0
- * @Title: Controller
- * @Description: wave_to_down
- * @date 2019-12-11 11:32:25
- */
 @Controller
 @RequestMapping("/waveToDownController")
 public class WaveToDownController extends BaseController {
@@ -115,10 +108,6 @@ public class WaveToDownController extends BaseController {
     public ModelAndView doPrint(String waveid, HttpServletRequest request) {
         String hql = "from WmOmQmIEntity where waveId = ? ";
         List<WmOmQmIEntity> wavelist = systemService.findHql(hql, waveid);
-//		for(WmOmQmIEntity t: wavelist ){
-//			t.setFirstRq("已打印");
-//			systemService.updateEntitie(t);
-//		}
         request.setAttribute("kprq", DateUtils.date2Str(DateUtils.date_sdf));
         request.setAttribute("comname", ResourceUtil.getConfigByName("comname"));
         request.setAttribute("waveid", waveid);
@@ -134,11 +123,6 @@ public class WaveToDownController extends BaseController {
         CriteriaQuery cq = new CriteriaQuery(WaveToDownEntity.class, dataGrid);
         //查询条件组装器
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, waveToDown, request.getParameterMap());
-        try {
-            //自定义追加查询条件
-        } catch (Exception e) {
-            throw new BusinessException(e.getMessage());
-        }
         cq.add();
         this.waveToDownService.getDataGridReturn(cq, true);
         TagUtil.datagrid(response, dataGrid);
@@ -161,8 +145,7 @@ public class WaveToDownController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "wave_to_down删除失败";
-            throw new BusinessException(e.getMessage());
+              throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
         return j;
@@ -189,8 +172,7 @@ public class WaveToDownController extends BaseController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "wave_to_down删除失败";
-            throw new BusinessException(e.getMessage());
+             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
         return j;
@@ -213,8 +195,7 @@ public class WaveToDownController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "wave_to_down添加失败";
-            throw new BusinessException(e.getMessage());
+             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
         return j;
@@ -238,8 +219,7 @@ public class WaveToDownController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "wave_to_down更新失败";
-            throw new BusinessException(e.getMessage());
+             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
         return j;
@@ -467,18 +447,13 @@ public class WaveToDownController extends BaseController {
             return new ResponseEntity(D0, HttpStatus.OK);
         }
         D0.setOK(true);
-
         return new ResponseEntity(D0, HttpStatus.OK);
-
-
     }
 
     @RequestMapping(value = "/jsondown", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> update(@RequestBody WaveToDownEntity waveToDown) {
         ResultDO D0 = new ResultDO();
-
         //调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
-
         //保存
         try {
             String hql = "from WmOmQmIEntity where waveId = ? and  goodsId = ? and proData = ? and tinId = ? and binId =  ? and binSta = ?";
@@ -504,7 +479,6 @@ public class WaveToDownController extends BaseController {
                 wmToDownGoods.setImCusCode(wmOmQmI.getImCusCode());//客户单号
                 wmToDownGoods.setOrderType("99");//默认为01
                 wmToDownGoods.setCreateDate(now());
-
                 systemService.save(wmToDownGoods);
                 wmOmQmI.setBinSta("H");
                 wmOmQmI.setFirstRq(waveToDown.getFirstRq());
