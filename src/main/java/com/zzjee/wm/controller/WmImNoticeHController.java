@@ -223,25 +223,18 @@ public class WmImNoticeHController extends BaseController {
                         wmImNoticeIEntity.setGoodsName(mvgoods.getShpMingCheng());
                     }
                 }catch (Exception e){
-
                 }
 
                 try{
-
                     wmImNoticeIEntity.setGoodsFvol(dfsum.format(Double.parseDouble(wmImNoticeIEntity.getGoodsFvol())));
                 }catch (Exception e){
-
                 }
 
                 try{
                     wmImNoticeIEntity.setGoodsWeight(dfsum.format(Double.parseDouble(wmImNoticeIEntity.getGoodsWeight())));
-
                 }catch (Exception e){
-
                 }
                 totalCount = totalCount.add(new BigDecimal(wmImNoticeIEntity.getGoodsCount()));
-
-
                 wmImNoticeIEntitynewList.add(wmImNoticeIEntity);
             }
             request.setAttribute("wmImNoticeIList", wmImNoticeIEntitynewList);
@@ -278,13 +271,10 @@ public class WmImNoticeHController extends BaseController {
                 wmImNoticeIEntity.setGoodsQmCount("0");
                 resultnew.add(wmImNoticeIEntity);
             }
-
-
         }
         dataGrid.setResults(resultnew);
         dataGrid.setTotal(resultnew.size());
         TagUtil.datagrid(response, dataGrid);
-
     }
     @RequestMapping(params = "datagridtbatch")
     public void datagridtbatch(WmImNoticeIEntity wmImNoticeI,
@@ -390,26 +380,14 @@ public class WmImNoticeHController extends BaseController {
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
         }
-//		if (wmImNoticeH.getImSta() == null) {
-//			cq.eq("imSta", Constants.wm_sta1);
-//		}
-
-
-
         if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
             cq.eq("cusCode", wmUtil.getCusCode());
         }
-
-//		Map<String,Object> map = new HashMap<String,Object>();
-//		map.put("imSta", "desc");
-//		cq.setOrder(map);
-
         Map<String,Object> map1 = new HashMap<String,Object>();
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.eq("orderTypeCode", "09");
         cq.add();
-
         this.wmImNoticeHService.getDataGridReturn(cq, true);
         TagUtil.datagrid(response, dataGrid);
     }
@@ -442,23 +420,14 @@ public class WmImNoticeHController extends BaseController {
         if (wmImNoticeH.getImSta() == null) {
             cq.eq("imSta", Constants.wm_sta1);
         }
-
-
-
         if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
             cq.eq("cusCode", wmUtil.getCusCode());
         }
-
-//		Map<String,Object> map = new HashMap<String,Object>();
-//		map.put("imSta", "desc");
-//		cq.setOrder(map);
-
         Map<String,Object> map1 = new HashMap<String,Object>();
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.eq("orderTypeCode", "03");
         cq.add();
-
         this.wmImNoticeHService.getDataGridReturn(cq, true);
         TagUtil.datagrid(response, dataGrid);
     }
@@ -495,13 +464,11 @@ public class WmImNoticeHController extends BaseController {
         if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
             cq.eq("cusCode", wmUtil.getCusCode());
         }
-
         Map<String,Object> map1 = new HashMap<String,Object>();
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.eq("orderTypeCode", "04");
         cq.add();
-
         this.wmImNoticeHService.getDataGridReturn(cq, true);
         TagUtil.datagrid(response, dataGrid);
     }
