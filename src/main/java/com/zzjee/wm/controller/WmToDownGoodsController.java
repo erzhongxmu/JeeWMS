@@ -231,8 +231,7 @@ public class WmToDownGoodsController extends BaseController {
                     Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "下架商品明细删除失败";
-            throw new BusinessException(e.getMessage());
+           throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
         return j;
@@ -259,7 +258,6 @@ public class WmToDownGoodsController extends BaseController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "下架商品明细删除失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -309,7 +307,6 @@ public class WmToDownGoodsController extends BaseController {
                     Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "批量复核失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);

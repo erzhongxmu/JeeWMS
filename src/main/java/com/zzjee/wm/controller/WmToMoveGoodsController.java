@@ -136,8 +136,7 @@ public class WmToMoveGoodsController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "库存转移删除失败";
-            throw new BusinessException(e.getMessage());
+             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
         return j;
@@ -174,8 +173,7 @@ public class WmToMoveGoodsController extends BaseController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "批量设置状态失败";
-            throw new BusinessException(e.getMessage());
+             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
         return j;
@@ -203,8 +201,7 @@ public class WmToMoveGoodsController extends BaseController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "库存转移删除失败";
-            throw new BusinessException(e.getMessage());
+             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
         return j;
@@ -240,8 +237,7 @@ public class WmToMoveGoodsController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "库存转移添加失败";
-            throw new BusinessException(e.getMessage());
+             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
         return j;
@@ -272,8 +268,7 @@ public class WmToMoveGoodsController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "库存转移更新失败";
-            throw new BusinessException(e.getMessage());
+             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
         return j;
