@@ -214,8 +214,6 @@ public class WmToMoveGoodsController extends BaseController {
     public AjaxJson doGetstock(HttpServletRequest request) {
         AjaxJson j = new AjaxJson();
         WmToMoveGoodsEntity wmToMoveGoods = new WmToMoveGoodsEntity();
-
-
         j.setObj(wmToMoveGoods);
         return j;
     }
@@ -261,9 +259,7 @@ public class WmToMoveGoodsController extends BaseController {
                 MvCusEntity mvcus = systemService.findUniqueByProperty(MvCusEntity.class, "cusCode", wmToMoveGoods.getToCusCode());
                 t.setToCusName(mvcus.getCusName());
             } catch (Exception e) {
-
             }
-
             wmToMoveGoodsService.saveOrUpdate(t);
             systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
@@ -296,9 +292,7 @@ public class WmToMoveGoodsController extends BaseController {
                             String movesta = "已完成";
                             try {
                                 movesta = ResourceUtil.getConfigByName("wm.movesta");
-
                             } catch (Exception e) {
-
                             }
                             t.setMoveSta(movesta);
                             MyBeanUtils.copyBeanNotNull2Bean(jeecgDemo, t);
