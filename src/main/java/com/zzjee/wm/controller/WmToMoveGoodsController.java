@@ -161,12 +161,12 @@ public class WmToMoveGoodsController extends BaseController {
                 );
                 message = "批量保存成功";
                 String movesta = "已完成";
-                try {
-                    movesta = ResourceUtil.getConfigByName("wm.movesta");
-
-                } catch (Exception e) {
-
-                }
+//                try {
+//                    movesta = ResourceUtil.getConfigByName("wm.movesta");
+//
+//                } catch (Exception e) {
+//
+//                }
 
                 wmToMoveGoods.setMoveSta(movesta);
                 wmToMoveGoodsService.updateEntitie(wmToMoveGoods);
@@ -299,12 +299,12 @@ public class WmToMoveGoodsController extends BaseController {
                         } else {
                             message = "批量保存成功";
                             String movesta = "已完成";
-                            try {
-                                movesta = ResourceUtil.getConfigByName("wm.movesta");
-
-                            } catch (Exception e) {
-
-                            }
+//                            try {
+//                                movesta = ResourceUtil.getConfigByName("wm.movesta");
+//
+//                            } catch (Exception e) {
+//
+//                            }
                             t.setMoveSta(movesta);
                             MyBeanUtils.copyBeanNotNull2Bean(jeecgDemo, t);
                             systemService.saveOrUpdate(t);
@@ -548,12 +548,12 @@ public class WmToMoveGoodsController extends BaseController {
 //			}else{
 
             String movesta = "已完成";
-            try {
-                movesta = ResourceUtil.getConfigByName("wm.movesta");
-
-            } catch (Exception e) {
-
-            }
+//            try {
+//                movesta = ResourceUtil.getConfigByName("wm.movesta");
+//
+//            } catch (Exception e) {
+//
+//            }
             t.setMoveSta(movesta);
             wmToMoveGoodsService.saveOrUpdate(t);
             D0.setOK(true);
