@@ -78,12 +78,12 @@ import java.net.URI;
 import org.springframework.http.MediaType;
 import org.springframework.web.util.UriComponentsBuilder;
 
-/**   
- * @Title: Controller  
+/**
+ * @Title: Controller
  * @Description: 储位盘点
  * @author erzhongxmu
  * @date 2017-11-20 22:48:23
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Controller
@@ -100,12 +100,12 @@ public class WvStockSttBinController extends BaseController {
 	private SystemService systemService;
 	@Autowired
 	private Validator validator;
-	
+
 
 
 	/**
 	 * 储位盘点列表 页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "list")
@@ -115,7 +115,7 @@ public class WvStockSttBinController extends BaseController {
 
 	/**
 	 * easyui AJAX请求数据
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @param dataGrid
@@ -136,10 +136,10 @@ public class WvStockSttBinController extends BaseController {
 		this.wvStockSttBinService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
 	}
-	
+
 	/**
 	 * 删除储位盘点
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -154,16 +154,15 @@ public class WvStockSttBinController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "储位盘点删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 批量删除储位盘点
-	 * 
+	 *
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")
@@ -174,7 +173,7 @@ public class WvStockSttBinController extends BaseController {
 		message = "储位盘点删除成功";
 		try{
 			for(String id:ids.split(",")){
-				WvStockSttBinEntity wvStockSttBin = systemService.getEntity(WvStockSttBinEntity.class, 
+				WvStockSttBinEntity wvStockSttBin = systemService.getEntity(WvStockSttBinEntity.class,
 				id
 				);
 				wvStockSttBinService.delete(wvStockSttBin);
@@ -182,7 +181,6 @@ public class WvStockSttBinController extends BaseController {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "储位盘点删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -192,7 +190,7 @@ public class WvStockSttBinController extends BaseController {
 
 	/**
 	 * 添加储位盘点
-	 * 
+	 *
 	 * @param ids
 	 * @return
 	 */
@@ -215,16 +213,15 @@ public class WvStockSttBinController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "储位盘点添加失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 更新储位盘点
-	 * 
+	 *
 	 * @param ids
 	 * @return
 	 */
@@ -241,14 +238,13 @@ public class WvStockSttBinController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "储位盘点更新失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
-	
+
+
 	@RequestMapping(params = "dostt")
 	@ResponseBody
 	public AjaxJson doStt(WvStockSttBinEntity wvStock, HttpServletRequest request) {
@@ -288,17 +284,16 @@ public class WvStockSttBinController extends BaseController {
 					Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "生成盘点单失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
+
 
 	/**
 	 * 储位盘点新增页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -311,7 +306,7 @@ public class WvStockSttBinController extends BaseController {
 	}
 	/**
 	 * 储位盘点编辑页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -322,10 +317,10 @@ public class WvStockSttBinController extends BaseController {
 		}
 		return new ModelAndView("com/zzjee/wm/wvStockSttBin-update");
 	}
-	
+
 	/**
 	 * 导入功能跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "upload")
@@ -333,10 +328,10 @@ public class WvStockSttBinController extends BaseController {
 		req.setAttribute("controller_name","wvStockSttBinController");
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
-	
+
 	/**
 	 * 导出excel
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -355,7 +350,7 @@ public class WvStockSttBinController extends BaseController {
 	}
 	/**
 	 * 导出excel 使模板
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -369,13 +364,13 @@ public class WvStockSttBinController extends BaseController {
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-		
+
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
@@ -403,14 +398,14 @@ public class WvStockSttBinController extends BaseController {
 		}
 		return j;
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<WvStockSttBinEntity> list() {
 		List<WvStockSttBinEntity> listWvStockSttBins=wvStockSttBinService.getList(WvStockSttBinEntity.class);
 		return listWvStockSttBins;
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {

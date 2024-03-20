@@ -114,11 +114,6 @@ public class WmToDownGoodsController extends BaseController {
         // 查询条件组装器
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq,
                 wmToDownGoods, request.getParameterMap());
-        try {
-            // 自定义追加查询条件
-        } catch (Exception e) {
-            throw new BusinessException(e.getMessage());
-        }
         Map<String, Object> map1 = new HashMap<String, Object>();
         map1.put("createDate", "desc");
         cq.setOrder(map1);
@@ -134,16 +129,11 @@ public class WmToDownGoodsController extends BaseController {
                         t.setGoodsName(goods.getGoodsName());
                     }
                 } catch (Exception e) {
-
                 }
-
             }
-
             resultnew.add(t);
         }
         dataGrid.setResults(resultnew);
-
-
         TagUtil.datagrid(response, dataGrid);
     }
 
@@ -231,8 +221,7 @@ public class WmToDownGoodsController extends BaseController {
                     Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "下架商品明细删除失败";
-            throw new BusinessException(e.getMessage());
+           throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
         return j;
@@ -259,7 +248,6 @@ public class WmToDownGoodsController extends BaseController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "下架商品明细删除失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -309,7 +297,6 @@ public class WmToDownGoodsController extends BaseController {
                     Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "批量复核失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -326,7 +313,6 @@ public class WmToDownGoodsController extends BaseController {
     @RequestMapping(params = "updateRows")
     @ResponseBody
     public AjaxJson updateRows(Delrowpage page) {
-        String message = null;
         List<WmToDownGoodsEntity> demos = page.getDownrows();
         AjaxJson j = new AjaxJson();
         if (CollectionUtils.isNotEmpty(demos)) {
