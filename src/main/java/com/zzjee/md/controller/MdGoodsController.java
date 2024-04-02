@@ -213,6 +213,9 @@ public class MdGoodsController extends BaseController {
 		try {
 			if(StringUtil.isEmpty(mdGoods.getChlKongZhi()) ){
 				mdGoods.setChlKongZhi("N");
+
+			}
+			if(StringUtil.isEmpty(mdGoods.getChlShl())){
 				mdGoods.setChlShl("1");
 				mdGoods.setJshDanWei(mdGoods.getShlDanWei());
 			}
@@ -424,7 +427,19 @@ public class MdGoodsController extends BaseController {
 								}
 							}
 
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						try{
 
+							if(StringUtil.isEmpty(mdGoods.getChlKongZhi()) ){
+								mdGoods.setChlKongZhi("N");
+
+							}
+							if(StringUtil.isEmpty(mdGoods.getChlShl())){
+								mdGoods.setChlShl("1");
+								mdGoods.setJshDanWei(mdGoods.getShlDanWei());
+							}
 							if(StringUtil.isEmpty(mdGoods.getZhlKgm())){
 								if(!StringUtil.isEmpty(mdGoods.getBzhiQi())){
 									int bzhiq = Integer.parseInt(mdGoods.getBzhiQi());
@@ -432,18 +447,7 @@ public class MdGoodsController extends BaseController {
 								}
 
 							}
-							if(StringUtil.isEmpty(mdGoods.getChlKongZhi()) ){
-								mdGoods.setChlKongZhi("N");
-
-							}
-							if("N".equals(mdGoods.getChlKongZhi())){
-								mdGoods.setChlShl("1");
-								mdGoods.setJshDanWei(mdGoods.getShlDanWei());
-
-							}
-
-						} catch (Exception e) {
-							// TODO: handle exception
+						}catch (Exception e){
 							e.printStackTrace();
 						}
 						mdGoodsService.save(mdGoods);
