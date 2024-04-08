@@ -128,7 +128,6 @@ public class MdCusOtherController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "第三方客户删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -156,7 +155,6 @@ public class MdCusOtherController extends BaseController {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "第三方客户删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -181,7 +179,6 @@ public class MdCusOtherController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "第三方客户添加失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -206,7 +203,6 @@ public class MdCusOtherController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "第三方客户更新失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -347,7 +343,6 @@ public class MdCusOtherController extends BaseController {
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
-
 		//保存
 		try{
 			mdCusOtherService.save(mdCusOther);
@@ -371,7 +366,6 @@ public class MdCusOtherController extends BaseController {
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
-
 		//保存
 		try{
 			mdCusOtherService.saveOrUpdate(mdCusOther);
