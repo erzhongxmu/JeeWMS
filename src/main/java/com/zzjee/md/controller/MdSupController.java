@@ -133,7 +133,6 @@ public class MdSupController extends BaseController {
 					Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "供应商删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -161,7 +160,6 @@ public class MdSupController extends BaseController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "供应商删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -194,7 +192,6 @@ public class MdSupController extends BaseController {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "供应商添加失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -221,7 +218,6 @@ public class MdSupController extends BaseController {
 					Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "供应商更新失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
