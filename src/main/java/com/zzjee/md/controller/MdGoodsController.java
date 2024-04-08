@@ -1,9 +1,7 @@
 package com.zzjee.md.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URI;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -75,11 +73,6 @@ public class MdGoodsController extends BaseController {
 	private MdGoodsServiceI mdGoodsService;
 	@Autowired
 	private SystemService systemService;
-	@Autowired
-	private Validator validator;
-
-	@Autowired
-	private WmOmNoticeHServiceI wmOmNoticeHService;
 	/**
 	 * 商品信息列表 页面跳转
 	 *
