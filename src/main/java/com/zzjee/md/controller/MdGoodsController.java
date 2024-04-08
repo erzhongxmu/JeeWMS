@@ -102,15 +102,9 @@ public class MdGoodsController extends BaseController {
 		// 查询条件组装器
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq,
 				mdGoods, request.getParameterMap());
-
 		if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
 			cq.eq("suoShuKeHu", wmUtil.getCusCode());
 		}
-
-
-//		if(mdGoods.getZhuangTai()==null){
-//			cq.notEq("zhuangTai", "Y");
-//		}
 		cq.add();
 		this.mdGoodsService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
@@ -203,7 +197,6 @@ public class MdGoodsController extends BaseController {
 		try {
 			if(StringUtil.isEmpty(mdGoods.getChlKongZhi()) ){
 				mdGoods.setChlKongZhi("N");
-
 			}
 			if(StringUtil.isEmpty(mdGoods.getChlShl())){
 				mdGoods.setChlShl("1");
