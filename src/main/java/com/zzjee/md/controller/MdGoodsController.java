@@ -136,7 +136,6 @@ public class MdGoodsController extends BaseController {
 		mdGoods = systemService.getEntity(MdGoodsEntity.class, mdGoods.getId());
 		message = "商品删除成功";
 		try {
-//			mdGoods.setZhuangTai("Y");
 			if(wmUtil.checkishavestock("goods",mdGoods.getShpBianMa())){
 				message = "商品存在库存";
 				j.setSuccess(false);
@@ -148,7 +147,6 @@ public class MdGoodsController extends BaseController {
 					Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "商品删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -192,7 +190,6 @@ public class MdGoodsController extends BaseController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "商品信息删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -260,7 +257,6 @@ public class MdGoodsController extends BaseController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "商品信息添加失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -289,7 +285,6 @@ public class MdGoodsController extends BaseController {
 					Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "商品信息更新失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
