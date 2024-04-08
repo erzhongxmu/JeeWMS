@@ -415,7 +415,6 @@ public class MdGoodsController extends BaseController {
 
 							if(StringUtil.isEmpty(mdGoods.getChlKongZhi()) ){
 								mdGoods.setChlKongZhi("N");
-
 							}
 							if(StringUtil.isEmpty(mdGoods.getChlShl())){
 								mdGoods.setChlShl("1");
@@ -426,7 +425,6 @@ public class MdGoodsController extends BaseController {
 									int bzhiq = Integer.parseInt(mdGoods.getBzhiQi());
 									mdGoods.setZhlKgm(Integer.toString(bzhiq));
 								}
-
 							}
 						}catch (Exception e){
 							e.printStackTrace();
@@ -439,11 +437,9 @@ public class MdGoodsController extends BaseController {
 									int bzhiq = Integer.parseInt(mdGoods.getBzhiQi());
 									mdGoods.setZhlKgm(Integer.toString(bzhiq));
 								}
-
 							}
 						} catch (Exception e) {
 							e.printStackTrace();
-							// TODO: handle exception
 						}
 				  		MyBeanUtils.copyBeanNotNull2Bean(mdGoods, mdGoods1);
 				  		mdGoodsService.updateEntitie(mdGoods1);
@@ -474,10 +470,7 @@ public class MdGoodsController extends BaseController {
 									@RequestParam(value="searchstrin1", required=false)String searchstrin1,
 									@RequestParam(value="searchstrin2", required=false)String searchstrin2,
 									@RequestParam(value="searchstrin3", required=false)String searchstrin3) {
-
-
 		ResultDO D0 = new  ResultDO();
-
 		String hql = " from MdGoodsEntity where 1 = 1    ";
 		D0.setOK(true);
 		if(!StringUtil.isEmpty(searchstr)) {
@@ -497,7 +490,6 @@ public class MdGoodsController extends BaseController {
 					}
 			result.add(t);
 		}
-
 		D0.setObj(result);
 		return new ResponseEntity(D0, HttpStatus.OK);
 	}
@@ -518,7 +510,6 @@ public class MdGoodsController extends BaseController {
 			UriComponentsBuilder uriBuilder) {
 		ResultDO D0 = new  ResultDO();
 		MdGoodsEntity mdGoods  = (MdGoodsEntity)JSONHelper.json2Object(mdGoodsstr,MdGoodsEntity.class);
-
 		// 保存
 		try {
 			mdGoodsService.save(mdGoods);
@@ -550,10 +541,7 @@ public class MdGoodsController extends BaseController {
 				mdGoodsService.saveOrUpdate(t);
 			}else{
 				mdGoodsService.save(mdGoodsEntity);
-
 			}
-
-
 			try{
 				MdCusEntity mdcus1 = systemService.findUniqueByProperty(MdCusEntity.class, "keHuBianMa", mdGoodsEntity.getSuoShuKeHu());
 				if(mdcus1==null){
@@ -562,11 +550,8 @@ public class MdGoodsController extends BaseController {
 					mdcus1.setZhongWenQch(mdGoodsEntity.getCusName());
 					systemService.save(mdcus1);
  				}
-
 			}catch(Exception e){
-
 			}
-
 			D0.setOK(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -589,15 +574,12 @@ public class MdGoodsController extends BaseController {
 				mdGoodsService.saveOrUpdate(t);
 			}else{
 				mdGoodsService.save(mdGoods);
-
 			}
-
 			D0.setOK(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 			D0.setOK(false);
 		}
-
 		// 按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
 		return new ResponseEntity(D0, HttpStatus.OK);
 	}
@@ -618,7 +600,6 @@ public class MdGoodsController extends BaseController {
 			e.printStackTrace();
 			D0.setOK(false);
 		}
-
 		// 按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
 		return new ResponseEntity(D0, HttpStatus.OK);
 	}
@@ -629,10 +610,8 @@ public class MdGoodsController extends BaseController {
 									UriComponentsBuilder uriBuilder) {		// 调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
 		ResultDO D0 = new  ResultDO();
 		WmOmNoticeImpnewPage pageheader  = (WmOmNoticeImpnewPage)JSONHelper.json2Object(mdGoodsstr,WmOmNoticeImpnewPage.class);
-
 		WmOmNoticeHEntity wmOmNoticeH = null;
 		MdGoodsEntity t = systemService.get(MdGoodsEntity.class,pageheader.getId());
-
 		List<WmOmNoticeHEntity>  wmomh = systemService.findByProperty(WmOmNoticeHEntity.class, "imCusCode", pageheader.getImCusCode());
 		if(wmomh!=null&&wmomh.size()>0){
 			wmOmNoticeH = wmomh.get(0);
@@ -646,7 +625,6 @@ public class MdGoodsController extends BaseController {
 			wmOmNoticeH.setImCusCode(pageheader.getImCusCode());
 			wmOmNoticeH.setReCarno(pageheader.getReCarno());
 			wmOmNoticeH.setOmBeizhu(pageheader.getImBeizhu());
-
 			systemService.save(wmOmNoticeH);
 		}
 		WmOmNoticeIEntity wmi = new WmOmNoticeIEntity();
@@ -662,7 +640,6 @@ public class MdGoodsController extends BaseController {
 		try{
 			wmi.setGoodsQua(pageheader.getGoodsQua());//
 		}catch (Exception e){
-
 		}
 		systemService.save(wmi);
 			D0.setErrorMsg("订单生成成功");
