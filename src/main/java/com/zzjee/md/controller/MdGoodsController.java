@@ -411,7 +411,7 @@ public class MdGoodsController extends BaseController {
 							if(StringUtil.isEmpty(mdGoods.getShpBianMa())){//商品编码为空则自动编码
 								if (StringUtils.isEmpty(mdGoods.getCategoryCode())) {
 									j.setSuccess(false);
-									j.setMsg("类目编码为空：");
+									j.setMsg("类目编码为空");
 									return j;
 								}
 								Map<String, Object> countMap = systemService.findOneForJdbc("select right(shp_bian_ma,7) shp_bian_ma  from md_goods where category_code =? and suo_shu_ke_hu  = ? and shp_bian_ma like ? ORDER BY shp_bian_ma desc LIMIT 1",mdGoods.getCategoryCode(),mdGoods.getSuoShuKeHu(),mdGoods.getSuoShuKeHu()+mdGoods.getCategoryCode()+"%");
