@@ -1195,7 +1195,9 @@ public class SystemController extends BaseController {
 	        }else if("1".equals(delFlag)){
 	        	String path=request.getParameter("path");
 	        	String delpath=ctxPath+File.separator+path;
-	        	File fileDelete = new File(delpath);
+				delpath = delpath.replace("..", "").replace("../", "");
+
+				File fileDelete = new File(delpath);
 	    		if (!fileDelete.exists() || !fileDelete.isFile()) {
 	    			msg="警告: " + delpath + "不存在!";
 	    			j.setSuccess(true);//不存在前台也给他删除
