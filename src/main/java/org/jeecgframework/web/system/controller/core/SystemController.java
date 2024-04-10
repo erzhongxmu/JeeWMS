@@ -1244,6 +1244,7 @@ public class SystemController extends BaseController {
 		try {
 			String localPath=ResourceUtil.getConfigByName("webUploadpath");
 			String imgurl = localPath+File.separator+dbpath;
+			imgurl = imgurl.replace("..", "").replace("../", "");
 			inputStream = new BufferedInputStream(new FileInputStream(imgurl));
 			outputStream = response.getOutputStream();
 			byte[] buf = new byte[1024];
