@@ -1176,7 +1176,12 @@ public class SystemController extends BaseController {
 	            MultipartFile mf=multipartRequest.getFile("file");// 获取上传文件对象
 	    		fileName = mf.getOriginalFilename();// 获取文件名
 				String fileExt = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
-				// TODO: 2022/11/30 判断文件后缀 
+				if(fileExt.equals("jsp")||fileExt.equals("js")){
+					msg="警告:禁止上传可执行文件";
+					j.setMsg(msg);
+					return j;
+				}
+				// TODO: 2022/11/30 判断文件后缀
 				String savePath = file.getPath() + File.separator + fileName;
 	    		File savefile = new File(savePath);
 	    		FileCopyUtils.copy(mf.getBytes(), savefile);
