@@ -98,7 +98,6 @@ public class MdCusController extends BaseController {
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -187,7 +186,6 @@ public class MdCusController extends BaseController {
 	/**
 	 * 添加客户
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -218,7 +216,6 @@ public class MdCusController extends BaseController {
 	/**
 	 * 更新客户
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
