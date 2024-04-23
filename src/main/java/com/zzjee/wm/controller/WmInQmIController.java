@@ -479,7 +479,7 @@ public class WmInQmIController extends BaseController {
             }
         } catch (Exception e) {
             j.setSuccess(false);
-            message = "数量 错误";
+            message = "数量格式错误";
             j.setMsg(message);
             return j;
             // TODO: handle exception
@@ -487,7 +487,7 @@ public class WmInQmIController extends BaseController {
         if (StringUtil.isNotEmpty(wmInQmI.getBinId())) {
             if (!wmUtil.checkbin(wmInQmI.getBinId())) {
                 j.setSuccess(false);
-                message = wmInQmI.getBinId() + "储位不存在或已停用";
+                message = wmInQmI.getBinId() + "：储位不存在或已停用";
                 j.setMsg(message);
                 return j;
             }
@@ -496,7 +496,7 @@ public class WmInQmIController extends BaseController {
             //托盘占用判断
             if ("yes".equals(ResourceUtil.getConfigByName("usetuopan"))) {
                 if (StringUtils.isEmpty(wmInQmI.getTinId())) {
-                    throw new BusinessException("请填写托盘");
+                    throw new BusinessException("启用托盘管理，请填写或扫描托盘");
                 }
             } else {
                 if (StringUtil.isEmpty(wmInQmI.getTinId())) {
