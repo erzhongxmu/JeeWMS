@@ -272,7 +272,6 @@ public class WmOmQmIController extends BaseController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "添加到下架任务清单失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -286,8 +285,6 @@ public class WmOmQmIController extends BaseController {
         String message = null;
         AjaxJson j = new AjaxJson();
         message = "波次删除成功";
-        String waveId = "";
-        waveId = DateUtils.date2Str(DateUtils.yyyymmddhhmmss);
         try {
             for (String id : ids.split(",")) {
                 WmOmQmIEntity t = wmOmQmIService.get(WmOmQmIEntity.class, id);
@@ -303,7 +300,6 @@ public class WmOmQmIController extends BaseController {
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    message = "波次删除失败";
                     throw new BusinessException(e.getMessage());
                 }
 

@@ -158,7 +158,6 @@ public class WmNoticeConfController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "回单管理删除失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -202,7 +201,6 @@ public class WmNoticeConfController extends BaseController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "回单管理删除失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -245,7 +243,6 @@ public class WmNoticeConfController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "回单管理添加失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -271,7 +268,6 @@ public class WmNoticeConfController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "回单管理更新失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
