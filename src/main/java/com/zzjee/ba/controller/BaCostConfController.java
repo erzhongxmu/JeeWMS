@@ -130,7 +130,6 @@ public class BaCostConfController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "计费配置删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -158,7 +157,6 @@ public class BaCostConfController extends BaseController {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "计费配置删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -183,7 +181,6 @@ public class BaCostConfController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "计费配置添加失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -209,7 +206,6 @@ public class BaCostConfController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "计费配置更新失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);

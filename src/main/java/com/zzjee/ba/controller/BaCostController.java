@@ -65,12 +65,12 @@ import java.net.URI;
 import org.springframework.http.MediaType;
 import org.springframework.web.util.UriComponentsBuilder;
 
-/**   
- * @Title: Controller  
+/**
+ * @Title: Controller
  * @Description: 费用名称
  * @author erzhongxmu
  * @date 2017-09-28 10:46:28
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Controller
@@ -87,12 +87,12 @@ public class BaCostController extends BaseController {
 	private SystemService systemService;
 	@Autowired
 	private Validator validator;
-	
+
 
 
 	/**
 	 * 费用名称列表 页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "list")
@@ -102,7 +102,7 @@ public class BaCostController extends BaseController {
 
 	/**
 	 * easyui AJAX请求数据
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @param dataGrid
@@ -123,10 +123,10 @@ public class BaCostController extends BaseController {
 		this.baCostService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
 	}
-	
+
 	/**
 	 * 删除费用名称
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -141,16 +141,15 @@ public class BaCostController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "费用名称删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 批量删除费用名称
-	 * 
+	 *
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")
@@ -161,7 +160,7 @@ public class BaCostController extends BaseController {
 		message = "费用名称删除成功";
 		try{
 			for(String id:ids.split(",")){
-				BaCostEntity baCost = systemService.getEntity(BaCostEntity.class, 
+				BaCostEntity baCost = systemService.getEntity(BaCostEntity.class,
 				id
 				);
 				baCostService.delete(baCost);
@@ -169,7 +168,6 @@ public class BaCostController extends BaseController {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "费用名称删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -179,7 +177,7 @@ public class BaCostController extends BaseController {
 
 	/**
 	 * 添加费用名称
-	 * 
+	 *
 	 * @param ids
 	 * @return
 	 */
@@ -194,16 +192,15 @@ public class BaCostController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "费用名称添加失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 更新费用名称
-	 * 
+	 *
 	 * @param ids
 	 * @return
 	 */
@@ -220,17 +217,16 @@ public class BaCostController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "费用名称更新失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
+
 
 	/**
 	 * 费用名称新增页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -243,7 +239,7 @@ public class BaCostController extends BaseController {
 	}
 	/**
 	 * 费用名称编辑页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -254,10 +250,10 @@ public class BaCostController extends BaseController {
 		}
 		return new ModelAndView("com/zzjee/ba/baCost-update");
 	}
-	
+
 	/**
 	 * 导入功能跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "upload")
@@ -265,10 +261,10 @@ public class BaCostController extends BaseController {
 		req.setAttribute("controller_name","baCostController");
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
-	
+
 	/**
 	 * 导出excel
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -287,7 +283,7 @@ public class BaCostController extends BaseController {
 	}
 	/**
 	 * 导出excel 使模板
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -301,13 +297,13 @@ public class BaCostController extends BaseController {
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-		
+
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
@@ -335,14 +331,14 @@ public class BaCostController extends BaseController {
 		}
 		return j;
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<BaCostEntity> list() {
 		List<BaCostEntity> listBaCosts=baCostService.getList(BaCostEntity.class);
 		return listBaCosts;
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {

@@ -90,15 +90,9 @@ public class BaGoodsCategoryController extends BaseController {
 	@RequestMapping(params = "getComboTreeData")
 	@ResponseBody
 	public List<ComboTree> getComboTreeData(HttpServletRequest request, ComboTree comboTree1) {
-		System.out.println("======================getComboTreeData comboTree:==================="+comboTree1);
 		List<BaGoodsCategoryVoo> balist=new ArrayList<BaGoodsCategoryVoo>();
 		balist = jeecgMinidaoDao.getAllBaGoodsCategorys();
-
 		List<ComboTree> comboTrees = new ArrayList<ComboTree>();
-//		ComboTreeModel comboTreeModel = new ComboTreeModel("id", "categoryName", "baGoodsCategory");
-//		comboTrees = systemService.ComboTree(balist, comboTreeModel, balist,true);
-//		return comboTrees;
-
 		if (balist.size() > 0) {
 			for (BaGoodsCategoryVoo baGoodsCategoryVoo : balist) {
 				ComboTree comboTree = new ComboTree();
@@ -124,45 +118,6 @@ public class BaGoodsCategoryController extends BaseController {
 			}
 		}
 		return comboTrees;
-
-
-
-
-		/*for (int i = 0; i < demoList.size(); i++) {
-			BaGoodsCategoryVoo cat = new BaGoodsCategoryVoo();
-			String id=String.valueOf(demoList.get(i).get("id"));
-			String categoryName=String.valueOf(demoList.get(i).get("categoryName"));
-//			System.out.println(id+"   "+categoryName);
-			cat.setId(id);
-			cat.setCategoryName(categoryName);
-			if (demoList.get(i).get("pid")!=null) {
-				String pid=String.valueOf(demoList.get(i).get("pid"));
-				cat.setPid(pid);
-			}
-			System.out.println(cat.toString());
-			balist.add(cat);
-		}*/
-//		for (int i = 0; i <balist.size(); i++) {
-//			String id = balist.get(i).getId();
-//			List<BaGoodsCategoryVoo> allBaGoodsCategorys = jeecgMinidaoDao.getAllBaGoodsCategorys(id);
-//			for (int j = 0; j <allBaGoodsCategorys.size() ; j++) {
-//				String id1 = allBaGoodsCategorys.get(j).getId();
-//				List<BaGoodsCategoryVoo> allBaGoodsCategorys1 = jeecgMinidaoDao.getAllBaGoodsCategorys(id1);
-//				for (int k = 0; k <allBaGoodsCategorys.size() ; k++) {
-//					String id2 = allBaGoodsCategorys.get(j).getId();
-//					List<BaGoodsCategoryVoo> allBaGoodsCategorys2 = jeecgMinidaoDao.getAllBaGoodsCategorys(id2);
-//					allBaGoodsCategorys.get(k).setBaGoodsCategory(allBaGoodsCategorys2);
-//				}
-//				allBaGoodsCategorys.get(j).setBaGoodsCategory(allBaGoodsCategorys1);
-//			}
-//			balist.get(i).setBaGoodsCategory(allBaGoodsCategorys);
-//		}
-////
-////		List<ComboTree> comboTrees = new ArrayList<ComboTree>();
-//		ComboTreeModel comboTreeModel = new ComboTreeModel("id", "categoryName", "baGoodsCategory");
-//		System.out.println("======================getComboTreeData demoList:==================="+balist.size());
-//		List<ComboTree> comboTrees = systemService.ComboTree(balist, comboTreeModel, null, true);
-//		return comboTrees;
 	}
 
 	private ComboTree findParent(List<ComboTree> comboTrees, String pid) {
@@ -181,77 +136,6 @@ public class BaGoodsCategoryController extends BaseController {
 		return find;
 
 	}
-
-	/**
-	 * 加载ztree
-	 *
-	 * @param response
-	 * @param request
-	 * @return
-	 */
-	/*@RequestMapping(params = "getTreeData", method = {RequestMethod.GET, RequestMethod.POST})
-	@ResponseBody
-	public AjaxJson getTreeData(BaGoodsCategoryEntity baGoodsCategory1, HttpServletResponse response, HttpServletRequest request) {
-		AjaxJson j = new AjaxJson();
-		try {
-//			List<TSDepart> depatrList = new ArrayList<TSDepart>();
-			StringBuffer hql = new StringBuffer(" from BaGoodsCategoryEntity t");
-			//hql.append(" and (parent.id is null or parent.id='')");
-			List<BaGoodsCategoryEntity> catList = this.systemService.findHql(hql.toString());
-			List<Map<String, Object>> dataList = new ArrayList<Map<String, Object>>();
-			Map<String, Object> map = null;
-			for (BaGoodsCategoryEntity baGoodsCategory : catList) {
-				String sqls = null;
-				Object[] paramss = null;
-				map = new HashMap<String, Object>();
-				map.put("id", baGoodsCategory.getId());
-				map.put("name", baGoodsCategory.getCategoryName());
-				if (baGoodsCategory.getPid() != 0) {
-					map.put("pId", baGoodsCategory.getPid());
-					map.put("open", false);
-				} else {
-					map.put("pId", "1");
-					map.put("open", false);
-				}
-				sqls = "select count(1) from ba_goods_category t where t.pid = ?";
-				paramss = new Object[]{baGoodsCategory.getId()};
-				long counts = this.systemService.getCountForJdbcParam(sqls, paramss);
-				if (counts > 0) {
-					dataList.add(map);
-				} else {
-					TSDepart de = this.systemService.get(TSDepart.class, baGoodsCategory.getId());
-					if (de != null) {
-						map.put("id", de.getId());
-						map.put("name", de.getDepartname());
-						if (baGoodsCategory.getPid() != 0) {
-							map.put("pId", baGoodsCategory.getPid());
-							map.put("open", false);
-						} else {
-							map.put("pId", "1");
-							map.put("open", false);
-						}
-						dataList.add(map);
-					} else {
-						map.put("open", false);
-						dataList.add(map);
-					}
-				}
-			}
-			j.setObj(dataList);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return j;
-	}*/
-	/**
-	 * easyui AJAX请求数据
-	 *
-	 * @param request
-	 * @param response
-	 * @param dataGrid
-//	 * @param user
-	 */
-
 	@RequestMapping(params = "datagrid")
 	public void datagrid(BaGoodsCategoryEntity baGoodsCategory,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
 		CriteriaQuery cq = new CriteriaQuery(BaGoodsCategoryEntity.class, dataGrid);
@@ -298,7 +182,6 @@ public class BaGoodsCategoryController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "商品类目删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -326,7 +209,6 @@ public class BaGoodsCategoryController extends BaseController {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "商品类目删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -354,7 +236,6 @@ public class BaGoodsCategoryController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "商品类目添加失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -383,7 +264,6 @@ public class BaGoodsCategoryController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "商品类目更新失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
