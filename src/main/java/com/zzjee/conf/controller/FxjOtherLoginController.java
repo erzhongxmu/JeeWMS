@@ -50,12 +50,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.zzjee.conf.entity.FxjOtherLoginEntity;
 import com.zzjee.conf.service.FxjOtherLoginServiceI;
 
-/**   
- * @Title: Controller  
+/**
+ * @Title: Controller
  * @Description: 第三方登录
  * @author onlineGenerator
  * @date 2019-04-21 23:11:19
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Controller
@@ -72,12 +72,12 @@ public class FxjOtherLoginController extends BaseController {
 	private SystemService systemService;
 	@Autowired
 	private Validator validator;
-	
+
 
 
 	/**
 	 * 第三方登录列表 页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "list")
@@ -87,7 +87,7 @@ public class FxjOtherLoginController extends BaseController {
 
 	/**
 	 * easyui AJAX请求数据
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @param dataGrid
@@ -108,10 +108,10 @@ public class FxjOtherLoginController extends BaseController {
 		this.fxjOtherLoginService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
 	}
-	
+
 	/**
 	 * 删除第三方登录
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -126,16 +126,15 @@ public class FxjOtherLoginController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "第三方登录删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 批量删除第三方登录
-	 * 
+	 *
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")
@@ -146,7 +145,7 @@ public class FxjOtherLoginController extends BaseController {
 		message = "第三方登录删除成功";
 		try{
 			for(String id:ids.split(",")){
-				FxjOtherLoginEntity fxjOtherLogin = systemService.getEntity(FxjOtherLoginEntity.class, 
+				FxjOtherLoginEntity fxjOtherLogin = systemService.getEntity(FxjOtherLoginEntity.class,
 				id
 				);
 				fxjOtherLoginService.delete(fxjOtherLogin);
@@ -154,7 +153,6 @@ public class FxjOtherLoginController extends BaseController {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "第三方登录删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -164,7 +162,7 @@ public class FxjOtherLoginController extends BaseController {
 
 	/**
 	 * 添加第三方登录
-	 * 
+	 *
 	 * @param ids
 	 * @return
 	 */
@@ -179,16 +177,15 @@ public class FxjOtherLoginController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "第三方登录添加失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 更新第三方登录
-	 * 
+	 *
 	 * @param ids
 	 * @return
 	 */
@@ -205,17 +202,16 @@ public class FxjOtherLoginController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "第三方登录更新失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
+
 
 	/**
 	 * 第三方登录新增页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -228,7 +224,7 @@ public class FxjOtherLoginController extends BaseController {
 	}
 	/**
 	 * 第三方登录编辑页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -239,10 +235,10 @@ public class FxjOtherLoginController extends BaseController {
 		}
 		return new ModelAndView("com/zzjee/conf/fxjOtherLogin-update");
 	}
-	
+
 	/**
 	 * 导入功能跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "upload")
@@ -250,10 +246,10 @@ public class FxjOtherLoginController extends BaseController {
 		req.setAttribute("controller_name","fxjOtherLoginController");
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
-	
+
 	/**
 	 * 导出excel
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -272,7 +268,7 @@ public class FxjOtherLoginController extends BaseController {
 	}
 	/**
 	 * 导出excel 使模板
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -286,13 +282,13 @@ public class FxjOtherLoginController extends BaseController {
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-		
+
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
@@ -320,14 +316,14 @@ public class FxjOtherLoginController extends BaseController {
 		}
 		return j;
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<FxjOtherLoginEntity> list() {
 		List<FxjOtherLoginEntity> listFxjOtherLogins=fxjOtherLoginService.getList(FxjOtherLoginEntity.class);
 		return listFxjOtherLogins;
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
@@ -346,7 +342,6 @@ public class FxjOtherLoginController extends BaseController {
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
-
 		//保存
 		try{
 			fxjOtherLoginService.save(fxjOtherLogin);
@@ -359,7 +354,6 @@ public class FxjOtherLoginController extends BaseController {
 		URI uri = uriBuilder.path("/rest/fxjOtherLoginController/" + id).build().toUri();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(uri);
-
 		return new ResponseEntity(headers, HttpStatus.CREATED);
 	}
 
@@ -370,7 +364,6 @@ public class FxjOtherLoginController extends BaseController {
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
-
 		//保存
 		try{
 			fxjOtherLoginService.saveOrUpdate(fxjOtherLogin);
@@ -378,7 +371,6 @@ public class FxjOtherLoginController extends BaseController {
 			e.printStackTrace();
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
-
 		//按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
 		return new ResponseEntity(HttpStatus.NO_CONTENT);
 	}
