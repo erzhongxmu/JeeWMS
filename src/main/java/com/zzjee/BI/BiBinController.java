@@ -23,8 +23,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class BiBinController extends BaseController {
     @Autowired
     private SystemService systemService;
-//    @Autowired
-//    private Validator validator;
     @RequestMapping(params = "homebi")
     public ModelAndView bi(HttpServletRequest request) {
         biEntity biEntity = getBi("");
@@ -32,7 +30,6 @@ public class BiBinController extends BaseController {
         request.setAttribute("num2",biEntity.getNum2());
         request.setAttribute("num3",biEntity.getNum3());
         request.setAttribute("num4",biEntity.getNum4());
-
         return new ModelAndView("com/zzjee/BI/home/reportbi");
     }
 
@@ -43,11 +40,9 @@ public class BiBinController extends BaseController {
         String num3= "0";
         String num4= "0";
         String ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_im_notice_i where bin_pre = 'N'" ;
-
         List<Map<String,Object>> ymaplist1=systemService.findForJdbc(ysql);
         for (Map<String,Object> object : ymaplist1) {
             Map<String, Object> obj = object;
-
             try {
                 num1 = obj.get("linecount").toString();
             } catch (Exception e) {
@@ -55,11 +50,9 @@ public class BiBinController extends BaseController {
             }
         }
         ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_in_qm_i where bin_sta = 'N'" ;
-
         List<Map<String,Object>> ymaplist2=systemService.findForJdbc(ysql);
         for (Map<String,Object> object : ymaplist2) {
             Map<String, Object> obj = object;
-
             try {
                 num2 = obj.get("linecount").toString();
             } catch (Exception e) {
@@ -67,11 +60,9 @@ public class BiBinController extends BaseController {
             }
         }
         ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_om_qm_i where bin_sta = 'I'" ;
-
         List<Map<String,Object>> ymaplist3=systemService.findForJdbc(ysql);
         for (Map<String,Object> object : ymaplist3) {
             Map<String, Object> obj = object;
-
             try {
                 num3 = obj.get("linecount").toString();
             } catch (Exception e) {
@@ -79,15 +70,12 @@ public class BiBinController extends BaseController {
             }
         }
         ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_om_qm_i where bin_sta = 'N'" ;
-
         List<Map<String,Object>> ymaplist4=systemService.findForJdbc(ysql);
         for (Map<String,Object> object : ymaplist4) {
             Map<String, Object> obj = object;
-
             try {
                 num4 = obj.get("linecount").toString();
             } catch (Exception e) {
-
             }
         }
         biEntity.setNum1(num1);
@@ -116,37 +104,17 @@ public class BiBinController extends BaseController {
                 "group by DATE_FORMAT(create_date, '%Y-%m-%d') " +
                 "order by DATE_FORMAT(create_date, '%Y-%m-%d') desc " +
                 "limit 7)  temptable order by create_date  ");
-//		List userBroswerList = systemService.(sb.toString());
         List<Map<String,Object>> maplist=systemService.findForJdbc(sb.toString());
-//        StringBuffer sbconut = new StringBuffer();
-//        sbconut.append("SELECT  floor(sum(or_Amount)) as amount  FROM T_Kp_Order_One  where cus_name is not null    ");
-//
-//        List<Map<String,Object>> mapcount=systemService.findForJdbc(sbconut.toString());
-//		Double count = systemService.getCountForJdbc("SELECT COUNT(1) FROM T_S_Log WHERE 1=1");
         List lt = new ArrayList();
-//        hc = new Highchart();
         hc.setName("近七日下架数量");
         hc.setType(reportType);
         Map<String, Object> map;
-//        Double count = Double.parseDouble(mapcount.get(0).get("amount").toString());
-
         if (maplist.size() > 0) {
             for (Map<String,Object> object : maplist) {
                 map = new HashMap<String, Object>();
                 Map<String,Object> obj =   object;
                 map.put("name", obj.get("create_date").toString());
                 map.put("y",  (int) Double.parseDouble(obj.get("amount").toString()));
-//                Double groupCount = 0.00;
-//                try{
-//                    groupCount =  Double.parseDouble(obj.get("amount").toString());
-//                }catch (Exception e){
-//
-//                }
-//                Double  percentage = 0.0;
-//                if (count != null && count.intValue() != 0) {
-//                    percentage = new Double(groupCount)/count;
-//                }
-//                map.put("percentage", percentage*100);
                 lt.add(map);
             }
         }
@@ -176,37 +144,17 @@ public class BiBinController extends BaseController {
                 "    wm_to_up_goods where ORDER_ID <> 'ZY'   " +
                 "group by GOODS_ID   " +
                 ")  temptable  order by amount desc limit 6  ");
-//		List userBroswerList = systemService.(sb.toString());
         List<Map<String,Object>> maplist=systemService.findForJdbc(sb.toString());
-//        StringBuffer sbconut = new StringBuffer();
-//        sbconut.append("SELECT  floor(sum(or_Amount)) as amount  FROM T_Kp_Order_One  where cus_name is not null    ");
-//
-//        List<Map<String,Object>> mapcount=systemService.findForJdbc(sbconut.toString());
-//		Double count = systemService.getCountForJdbc("SELECT COUNT(1) FROM T_S_Log WHERE 1=1");
         List lt = new ArrayList();
-//        hc = new Highchart();
         hc.setName("上架数量前6");
         hc.setType(reportType);
         Map<String, Object> map;
-//        Double count = Double.parseDouble(mapcount.get(0).get("amount").toString());
-
         if (maplist.size() > 0) {
             for (Map<String,Object> object : maplist) {
                 map = new HashMap<String, Object>();
                 Map<String,Object> obj =   object;
                 map.put("name", obj.get("goodsid").toString());
                 map.put("y",  (int) Double.parseDouble(obj.get("amount").toString()));
-//                Double groupCount = 0.00;
-//                try{
-//                    groupCount =  Double.parseDouble(obj.get("amount").toString());
-//                }catch (Exception e){
-//
-//                }
-//                Double  percentage = 0.0;
-//                if (count != null && count.intValue() != 0) {
-//                    percentage = new Double(groupCount)/count;
-//                }
-//                map.put("percentage", percentage*100);
                 lt.add(map);
             }
         }
@@ -235,37 +183,17 @@ public class BiBinController extends BaseController {
                 "    wm_to_down_goods where ORDER_ID <> 'ZY'   " +
                 "group by GOODS_ID   " +
                 ")  temptable   order by amount desc limit 6 ");
-//		List userBroswerList = systemService.(sb.toString());
         List<Map<String,Object>> maplist=systemService.findForJdbc(sb.toString());
-//        StringBuffer sbconut = new StringBuffer();
-//        sbconut.append("SELECT  floor(sum(or_Amount)) as amount  FROM T_Kp_Order_One  where cus_name is not null    ");
-//
-//        List<Map<String,Object>> mapcount=systemService.findForJdbc(sbconut.toString());
-//		Double count = systemService.getCountForJdbc("SELECT COUNT(1) FROM T_S_Log WHERE 1=1");
         List lt = new ArrayList();
-        //hc = new Highchart();
         hc.setName("下架数量前6");
         hc.setType(reportType);
         Map<String, Object> map;
-//        Double count = Double.parseDouble(mapcount.get(0).get("amount").toString());
-
         if (maplist.size() > 0) {
             for (Map<String,Object> object : maplist) {
                 map = new HashMap<String, Object>();
                 Map<String,Object> obj =   object;
                 map.put("name", obj.get("goodsid").toString());
                 map.put("y",  (int) Double.parseDouble(obj.get("amount").toString()));
-//                Double groupCount = 0.00;
-//                try{
-//                    groupCount =  Double.parseDouble(obj.get("amount").toString());
-//                }catch (Exception e){
-//
-//                }
-//                Double  percentage = 0.0;
-//                if (count != null && count.intValue() != 0) {
-//                    percentage = new Double(groupCount)/count;
-//                }
-//                map.put("percentage", percentage*100);
                 lt.add(map);
             }
         }
