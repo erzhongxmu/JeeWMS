@@ -72,9 +72,6 @@ public class WxConfigController extends BaseController {
 	private SystemService systemService;
 	@Autowired
 	private Validator validator;
-
-
-
 	/**
 	 * 配置信息列表 页面跳转
 	 *
