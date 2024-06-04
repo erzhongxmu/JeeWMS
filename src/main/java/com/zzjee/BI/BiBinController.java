@@ -32,7 +32,6 @@ public class BiBinController extends BaseController {
         request.setAttribute("num4",biEntity.getNum4());
         return new ModelAndView("com/zzjee/BI/home/reportbi");
     }
-
     public biEntity getBi(String username){
         biEntity biEntity    = new biEntity();
         String num1= "0";
@@ -46,7 +45,6 @@ public class BiBinController extends BaseController {
             try {
                 num1 = obj.get("linecount").toString();
             } catch (Exception e) {
-
             }
         }
         ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_in_qm_i where bin_sta = 'N'" ;
@@ -56,7 +54,6 @@ public class BiBinController extends BaseController {
             try {
                 num2 = obj.get("linecount").toString();
             } catch (Exception e) {
-
             }
         }
         ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_om_qm_i where bin_sta = 'I'" ;
@@ -118,7 +115,6 @@ public class BiBinController extends BaseController {
                 lt.add(map);
             }
         }
-
         hc.setData(lt);
         list.add(hc);
         return list;
@@ -158,7 +154,6 @@ public class BiBinController extends BaseController {
                 lt.add(map);
             }
         }
-
         hc.setData(lt);
         list.add(hc);
         return list;
@@ -197,7 +192,6 @@ public class BiBinController extends BaseController {
                 lt.add(map);
             }
         }
-
         hc.setData(lt);
         list.add(hc);
         return list;
