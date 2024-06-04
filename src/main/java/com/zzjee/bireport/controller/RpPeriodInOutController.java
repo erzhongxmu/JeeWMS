@@ -40,11 +40,8 @@ public class RpPeriodInOutController extends BaseController {
      * Logger for this class
      */
     private static final Logger logger = Logger.getLogger(RpPeriodInOutController.class);
-
     @Autowired
     private RpPeriodInOutServiceI rpPeriodInOutService;
-
-
     /**
      * 期间出货统计列表 页面跳转
      *
@@ -54,7 +51,6 @@ public class RpPeriodInOutController extends BaseController {
     public ModelAndView list(HttpServletRequest request) {
         return new ModelAndView("com/zzjee/bireport/rpPeriodInOutList");
     }
-
     /**
      * easyui AJAX请求数据
      *
@@ -66,7 +62,6 @@ public class RpPeriodInOutController extends BaseController {
     @RequestMapping(params = "datagrid")
     public void datagrid(RpPeriodInOutEntity rpPeriodInOut, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
         rpPeriodInOut.setCreateDate(null);
-
         CriteriaQuery cq = new CriteriaQuery(RpPeriodInOutEntity.class, dataGrid);
         //查询条件组装器
         try {
@@ -87,7 +82,6 @@ public class RpPeriodInOutController extends BaseController {
             }
             rpPeriodInOut.setCreateDate(null);
             org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, rpPeriodInOut, request.getParameterMap());
-
             cq.eq("username", ResourceUtil.getSessionUserName().getUserName());
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
