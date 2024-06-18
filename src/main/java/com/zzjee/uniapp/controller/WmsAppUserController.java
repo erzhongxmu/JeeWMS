@@ -65,12 +65,12 @@ import java.net.URI;
 import org.springframework.http.MediaType;
 import org.springframework.web.util.UriComponentsBuilder;
 
-/**   
- * @Title: Controller  
- * @Description: APP角色分配 
+/**
+ * @Title: Controller
+ * @Description: APP角色分配
  * @author onlineGenerator
  * @date 2022-06-13 08:41:32
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Controller
@@ -87,12 +87,12 @@ public class WmsAppUserController extends BaseController {
 	private SystemService systemService;
 	@Autowired
 	private Validator validator;
-	
+
 
 
 	/**
 	 * APP角色分配 列表 页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "list")
@@ -102,7 +102,7 @@ public class WmsAppUserController extends BaseController {
 
 	/**
 	 * easyui AJAX请求数据
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @param dataGrid
@@ -123,10 +123,10 @@ public class WmsAppUserController extends BaseController {
 		this.wmsAppUserService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
 	}
-	
+
 	/**
-	 * 删除APP角色分配 
-	 * 
+	 * 删除APP角色分配
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -141,16 +141,15 @@ public class WmsAppUserController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "APP角色分配 删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
-	 * 批量删除APP角色分配 
-	 * 
+	 * 批量删除APP角色分配
+	 *
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")
@@ -161,7 +160,7 @@ public class WmsAppUserController extends BaseController {
 		message = "APP角色分配 删除成功";
 		try{
 			for(String id:ids.split(",")){
-				WmsAppUserEntity wmsAppUser = systemService.getEntity(WmsAppUserEntity.class, 
+				WmsAppUserEntity wmsAppUser = systemService.getEntity(WmsAppUserEntity.class,
 				id
 				);
 				wmsAppUserService.delete(wmsAppUser);
@@ -169,7 +168,6 @@ public class WmsAppUserController extends BaseController {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "APP角色分配 删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -178,8 +176,8 @@ public class WmsAppUserController extends BaseController {
 
 
 	/**
-	 * 添加APP角色分配 
-	 * 
+	 * 添加APP角色分配
+	 *
 	 * @param ids
 	 * @return
 	 */
@@ -194,16 +192,15 @@ public class WmsAppUserController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "APP角色分配 添加失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
-	 * 更新APP角色分配 
-	 * 
+	 * 更新APP角色分配
+	 *
 	 * @param ids
 	 * @return
 	 */
@@ -220,17 +217,16 @@ public class WmsAppUserController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "APP角色分配 更新失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
+
 
 	/**
 	 * APP角色分配 新增页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -243,7 +239,7 @@ public class WmsAppUserController extends BaseController {
 	}
 	/**
 	 * APP角色分配 编辑页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -254,10 +250,10 @@ public class WmsAppUserController extends BaseController {
 		}
 		return new ModelAndView("com/zzjee/uniapp/wmsAppUser-update");
 	}
-	
+
 	/**
 	 * 导入功能跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "upload")
@@ -265,10 +261,10 @@ public class WmsAppUserController extends BaseController {
 		req.setAttribute("controller_name","wmsAppUserController");
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
-	
+
 	/**
 	 * 导出excel
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -287,7 +283,7 @@ public class WmsAppUserController extends BaseController {
 	}
 	/**
 	 * 导出excel 使模板
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -301,13 +297,13 @@ public class WmsAppUserController extends BaseController {
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-		
+
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
@@ -335,14 +331,14 @@ public class WmsAppUserController extends BaseController {
 		}
 		return j;
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<WmsAppUserEntity> list() {
 		List<WmsAppUserEntity> listWmsAppUsers=wmsAppUserService.getList(WmsAppUserEntity.class);
 		return listWmsAppUsers;
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
