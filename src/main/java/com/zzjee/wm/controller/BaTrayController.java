@@ -89,8 +89,6 @@ public class BaTrayController extends BaseController {
 	@Autowired
 	private Validator validator;
 
-
-
 	/**
 	 * ba_tray列表 页面跳转
 	 *
@@ -312,7 +310,6 @@ public class BaTrayController extends BaseController {
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
@@ -366,7 +363,6 @@ public class BaTrayController extends BaseController {
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
-
 		//保存
 		try{
 			baTrayService.save(baTray);
@@ -390,7 +386,6 @@ public class BaTrayController extends BaseController {
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
-
 		//保存
 		try{
 			baTrayService.saveOrUpdate(baTray);
@@ -398,7 +393,6 @@ public class BaTrayController extends BaseController {
 			e.printStackTrace();
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
-
 		//按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
 		return new ResponseEntity(HttpStatus.NO_CONTENT);
 	}
