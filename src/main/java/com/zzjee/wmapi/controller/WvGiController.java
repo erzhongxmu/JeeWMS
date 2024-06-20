@@ -82,17 +82,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Controller
 @RequestMapping("/wvGiController")
 public class WvGiController extends BaseController {
-    /**
-     * Logger for this class
-     */
-    private static final Logger logger = Logger.getLogger(WvGiController.class);
 
     @Autowired
     private WvGiServiceI wvGiService;
-    @Autowired
-    private SystemService systemService;
-    @Autowired
-    private Validator validator;
 
 
     @RequestMapping(method = RequestMethod.GET)
@@ -104,7 +96,7 @@ public class WvGiController extends BaseController {
         String hql = " from WvGiEntity where downSta is null ";
         D0.setOK(true);
         if (!StringUtil.isEmpty(searchstr)) {
-            hql = hql + "  and orderId = '" + searchstr + "'" +   "  or imCusCode like '%" + searchstr + "%'";
+            hql = hql + "  and orderId = '" + searchstr + "'" + "  or imCusCode like '%" + searchstr + "%'";
         }
         if (!StringUtil.isEmpty(searchstr2)) {
             try {
@@ -113,7 +105,7 @@ public class WvGiController extends BaseController {
                     searchstr2 = shpbianma;
                 }
             } catch (Exception e) {
-
+                e.printStackTrace();
             }
             String[] ss = searchstr2.split(",");
             if (ss.length == 1) {
@@ -126,7 +118,6 @@ public class WvGiController extends BaseController {
                     } else {
                         insearch = "goodsId = '" + s + "'";
                     }
-
                 }
                 hql = hql + "  and  (" + insearch + ")";
             }
