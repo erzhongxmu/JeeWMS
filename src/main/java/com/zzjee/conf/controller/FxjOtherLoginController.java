@@ -72,9 +72,6 @@ public class FxjOtherLoginController extends BaseController {
 	private SystemService systemService;
 	@Autowired
 	private Validator validator;
-
-
-
 	/**
 	 * 第三方登录列表 页面跳转
 	 *
@@ -99,11 +96,6 @@ public class FxjOtherLoginController extends BaseController {
 		CriteriaQuery cq = new CriteriaQuery(FxjOtherLoginEntity.class, dataGrid);
 		//查询条件组装器
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, fxjOtherLogin, request.getParameterMap());
-		try{
-		//自定义追加查询条件
-		}catch (Exception e) {
-			throw new BusinessException(e.getMessage());
-		}
 		cq.add();
 		this.fxjOtherLoginService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);

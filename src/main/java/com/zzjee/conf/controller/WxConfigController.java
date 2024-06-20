@@ -96,11 +96,6 @@ public class WxConfigController extends BaseController {
 		CriteriaQuery cq = new CriteriaQuery(WxConfigEntity.class, dataGrid);
 		//查询条件组装器
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wxConfig, request.getParameterMap());
-		try{
-		//自定义追加查询条件
-		}catch (Exception e) {
-			throw new BusinessException(e.getMessage());
-		}
 		cq.add();
 		this.wxConfigService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);

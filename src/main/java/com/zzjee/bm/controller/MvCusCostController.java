@@ -116,7 +116,6 @@ public class MvCusCostController extends BaseController {
     @RequestMapping(params = "datagrid")
     public void datagrid(MvCusCostEntity mvCusCost, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
         CriteriaQuery cq = new CriteriaQuery(MvCusCostEntity.class, dataGrid);
-
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, mvCusCost, request.getParameterMap());
         try {
             if (StringUtil.isNotEmpty(wmUtil.getCusCode())) {
@@ -147,7 +146,6 @@ public class MvCusCostController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "删除失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -1220,7 +1218,6 @@ public class MvCusCostController extends BaseController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "删除失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -1244,7 +1241,6 @@ public class MvCusCostController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "添加失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -1269,7 +1265,6 @@ public class MvCusCostController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "更新失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -1436,7 +1431,6 @@ public class MvCusCostController extends BaseController {
         if (!failures.isEmpty()) {
             return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
         }
-
         //保存
         try {
             mvCusCostService.saveOrUpdate(mvCusCost);
@@ -1444,7 +1438,6 @@ public class MvCusCostController extends BaseController {
             e.printStackTrace();
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
-
         //按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
