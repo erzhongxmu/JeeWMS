@@ -174,9 +174,6 @@ public class TmsYwDingdanController extends BaseController {
 
 		}
 		cq.eq("zhuangtai","已下单");
-//		cq.notEq("zhuangtai","已派车");
-//		cq.notEq("zhuangtai","已装车");
-
 		cq.add();
 		this.tmsYwDingdanService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
@@ -202,17 +199,6 @@ public class TmsYwDingdanController extends BaseController {
 			throw new BusinessException(e.getMessage());
 		}
 		cq.eq("zhuangtai","已下单");
-//		TSUser user = ResourceUtil.getSessionUser();
-//		if(!StringUtil.isEmpty(user.getCurrentDepart().getOrgCode())){
-//			cq.like("sysOrgCode",user.getCurrentDepart().getOrgCode()+"%");
-//
-//		}
-//		if(!StringUtil.isEmpty(user.getUserType())){
-//			if(user.getUserType().equals("4")){
-//				cq.eq("username",user.getUserName());
-//			}
-//
-//		}
 		cq.add();
 		this.tmsYwDingdanService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
@@ -238,22 +224,6 @@ public class TmsYwDingdanController extends BaseController {
 		}
 		cq.eq("zhuangtai","已派车");
 		TSUser user = ResourceUtil.getSessionUser();
-//		if(!StringUtil.isEmpty(user.getCurrentDepart().getOrgCode())){
-//			cq.like("sysOrgCode",user.getCurrentDepart().getOrgCode()+"%");
-//
-//		}
-//		if(!StringUtil.isEmpty(user.getUserType())){
-//			if(user.getUserType().equals("4")){
-//				cq.eq("siji",user.getUserName());
-//			}
-//
-//		}
-//		if(!StringUtil.isEmpty(user.getUserType())){
-//			if(user.getUserType().equals("4")){
-//				cq.eq("username",user.getUserName());
-//			}
-//
-//		}
 
 		cq.add();
 		this.tmsYwDingdanService.getDataGridReturn(cq, true);
@@ -318,12 +288,6 @@ public class TmsYwDingdanController extends BaseController {
 			cq.like("sysOrgCode",user.getCurrentDepart().getOrgCode()+"%");
 
 		}
-//		if(!StringUtil.isEmpty(user.getUserType())){
-//			if(user.getUserType().equals("4")){
-//				cq.eq("username",user.getUserName());
-//			}
-//
-//		}
 		cq.add();
 		this.tmsYwDingdanService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
@@ -376,10 +340,6 @@ public class TmsYwDingdanController extends BaseController {
 					String omnoticeid = tmsYwDingdan.getFadh();
 					List<WmTmsNoticeIEntity> listtemp = systemService.findByProperty(WmTmsNoticeIEntity.class,"omNoticeId",omnoticeid);
                    for(WmTmsNoticeIEntity t: listtemp){
-//                   	<td class=xl65 style='border:1.0pt solid black;text-align: center'>收货人</td>
-//			<td class=xl65 style='border:1.0pt solid black;text-align: center'>收货人电话</td>
-//			<td class=xl65 style='border:1.0pt solid black;text-align: center'>车号</td>
-//			<td class=xl65 style='border:1.0pt solid black;text-align: center'>收货人地址</td>
                    	t.setBaseUnit(tmsYwDingdan.getShouhuoren());
                    	t.setBaseGoodscount(tmsYwDingdan.getShrsj());
                    	t.setPlanSta(tmsYwDingdan.getChehao());
@@ -413,7 +373,6 @@ public class TmsYwDingdanController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "运输订单删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -521,7 +480,6 @@ public class TmsYwDingdanController extends BaseController {
 			}
 			}catch(Exception e){
 			e.printStackTrace();
-			message = "运输订单派车失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -575,16 +533,7 @@ public class TmsYwDingdanController extends BaseController {
 			}catch (Exception e){
 			}
 		}
-//		tout.setPiClass( (int) Math.round(Double.parseDouble(dt2.getBaseGoodscount()))  + "份");
-
 		D0.setObj(listWaveToDowns);
-        try{
-			System.out.println("/listdetail/songhuolistWaveToDowns==="+listWaveToDowns.get(0).toString()+listWaveToDowns.size());
-
-		}catch (Exception e){
-
-		}
-
 		return new ResponseEntity(D0, HttpStatus.OK);
     }
 
@@ -710,7 +659,6 @@ public class TmsYwDingdanController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "运输订单取消派车失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -734,7 +682,6 @@ public class TmsYwDingdanController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "运输订单到WMS失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -761,7 +708,6 @@ public class TmsYwDingdanController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "运输订单取消装车失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -784,10 +730,8 @@ public class TmsYwDingdanController extends BaseController {
 		try{
 			tmsYwDingdan.setZhuangtai("已装车");
 			tmsYwDingdanService.updateEntitie(tmsYwDingdan);
-//			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFuO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "运输订单取消回单失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -812,7 +756,6 @@ public class TmsYwDingdanController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "运输订单取消结算失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -841,7 +784,6 @@ public class TmsYwDingdanController extends BaseController {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "运输订单删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -872,24 +814,6 @@ public class TmsYwDingdanController extends BaseController {
 							'0');
 			}
 			tmsYwDingdan.setFadh(noticeid);
-//			try{
-//				if(StringUtil.isEmpty(tmsYwDingdan.getUsername())){
-//					TmsMdDzEntity tmsdz = new TmsMdDzEntity();
-//					tmsdz.setUsername(ResourceUtil.getSessionUser().getUserName());
-//					tmsdz.setLianxiren(tmsYwDingdan.getFahuoren());
-//					tmsdz.setDianhua(tmsYwDingdan.getFhrdh());
-//					tmsdz.setXiangxidizhi(tmsYwDingdan.getFhrdz());
-//					systemService.save(tmsdz);
-//					TmsMdDzEntity tmsdzs = new TmsMdDzEntity();
-//					tmsdzs.setUsername(ResourceUtil.getSessionUser().getUserName());
-//					tmsdzs.setLianxiren(tmsYwDingdan.getShouhuoren());
-//					tmsdzs.setDianhua(tmsYwDingdan.getShrsj());
-//					tmsdzs.setXiangxidizhi(tmsYwDingdan.getShrdh());
-//					systemService.save(tmsdzs);
-//				}
-//			}catch (Exception e){
-//
-//			}
 			try{
 			if(StringUtil.isNotEmpty(tmsYwDingdan.getFahuoren())){
 				String sfhr[];
@@ -951,7 +875,6 @@ public class TmsYwDingdanController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "运输订单添加失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -977,7 +900,6 @@ public class TmsYwDingdanController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "运输订单更新失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -994,20 +916,15 @@ public class TmsYwDingdanController extends BaseController {
 	public ModelAndView goAdd(TmsYwDingdanEntity tmsYwDingdan, HttpServletRequest req) {
 		if (StringUtil.isNotEmpty(tmsYwDingdan.getId())) {
 			tmsYwDingdan = tmsYwDingdanService.getEntity(TmsYwDingdanEntity.class, tmsYwDingdan.getId());
-//			req.setAttribute("tmsYwDingdanPage", tmsYwDingdan);
 		}
 		TSUser user = ResourceUtil.getSessionUser();
-
 		if(!StringUtil.isEmpty(user.getUserType())){
 			if(user.getUserType().equals("4")){
 				tmsYwDingdan.setUsername(user.getUserName());
 				tmsYwDingdan.setXdrmz(user.getRealName());
 			}
-
 		}
-
 		req.setAttribute("tmsYwDingdanPage", tmsYwDingdan);
-
 		return new ModelAndView("com/zzjee/tms/tmsYwDingdan-add");
 	}
 	/**
@@ -1031,7 +948,6 @@ public class TmsYwDingdanController extends BaseController {
 	public ModelAndView goUpdatehd(TmsYwDingdanEntity tmsYwDingdan, HttpServletRequest req) {
 		if (StringUtil.isNotEmpty(tmsYwDingdan.getId())) {
 			tmsYwDingdan = tmsYwDingdanService.getEntity(TmsYwDingdanEntity.class, tmsYwDingdan.getId());
-//			tmsYwDingdan.setZhuangtai("已回单");
 			req.setAttribute("tmsYwDingdanPage", tmsYwDingdan);
 		}
 		return new ModelAndView("com/zzjee/tms/tmsYwDingdanhd-update");
@@ -1040,7 +956,6 @@ public class TmsYwDingdanController extends BaseController {
 	public ModelAndView goUpdatejs(TmsYwDingdanEntity tmsYwDingdan, HttpServletRequest req) {
 		if (StringUtil.isNotEmpty(tmsYwDingdan.getId())) {
 			tmsYwDingdan = tmsYwDingdanService.getEntity(TmsYwDingdanEntity.class, tmsYwDingdan.getId());
-//			tmsYwDingdan.setZhuangtai("已回单");
 			req.setAttribute("tmsYwDingdanPage", tmsYwDingdan);
 		}
 		return new ModelAndView("com/zzjee/tms/tmsYwDingdanjs-update");

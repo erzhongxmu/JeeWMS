@@ -49,12 +49,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/**   
- * @Title: Controller  
+/**
+ * @Title: Controller
  * @Description: 客户地址
  * @author onlineGenerator
  * @date 2018-01-29 21:57:16
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Api(value="TmsMdDz",description="客户地址",tags="tmsMdDzController")
@@ -72,12 +72,12 @@ public class TmsMdDzController extends BaseController {
 	private SystemService systemService;
 	@Autowired
 	private Validator validator;
-	
+
 
 
 	/**
 	 * 客户地址列表 页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "list")
@@ -90,7 +90,7 @@ public class TmsMdDzController extends BaseController {
 	}
 	/**
 	 * easyui AJAX请求数据
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @param dataGrid
@@ -102,21 +102,14 @@ public class TmsMdDzController extends BaseController {
 		CriteriaQuery cq = new CriteriaQuery(TmsMdDzEntity.class, dataGrid);
 		//查询条件组装器
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, tmsMdDz, request.getParameterMap());
-		try{
-		//自定义追加查询条件
-		}catch (Exception e) {
-			throw new BusinessException(e.getMessage());
-		}
 		TSUser user = ResourceUtil.getSessionUser();
 		if(!StringUtil.isEmpty(user.getCurrentDepart().getOrgCode())){
 			cq.like("sysOrgCode",user.getCurrentDepart().getOrgCode()+"%");
-
 		}
 		if(!StringUtil.isEmpty(user.getUserType())){
 			if(user.getUserType().equals("4")){
 				cq.eq("username",user.getUserName());
 			}
-
 		}
 		cq.add();
 		this.tmsMdDzService.getDataGridReturn(cq, true);
@@ -127,11 +120,6 @@ public class TmsMdDzController extends BaseController {
 		CriteriaQuery cq = new CriteriaQuery(TmsMdDzEntity.class, dataGrid);
 		//查询条件组装器
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, tmsMdDz, request.getParameterMap());
-		try{
-			//自定义追加查询条件
-		}catch (Exception e) {
-			throw new BusinessException(e.getMessage());
-		}
 		TSUser user = ResourceUtil.getSessionUser();
 		if(!StringUtil.isEmpty(user.getCurrentDepart().getOrgCode())){
 			cq.like("sysOrgCode",user.getCurrentDepart().getOrgCode()+"%");
@@ -141,7 +129,6 @@ public class TmsMdDzController extends BaseController {
 			if(user.getUserType().equals("4")){
 				cq.eq("username",user.getUserName());
 			}
-
 		}
 		cq.add();
 		this.tmsMdDzService.getDataGridReturn(cq, true);
@@ -149,7 +136,7 @@ public class TmsMdDzController extends BaseController {
 	}
 	/**
 	 * 删除客户地址
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -165,16 +152,15 @@ public class TmsMdDzController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "客户地址删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 批量删除客户地址
-	 * 
+	 *
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")
@@ -194,7 +180,6 @@ public class TmsMdDzController extends BaseController {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "客户地址删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -204,7 +189,7 @@ public class TmsMdDzController extends BaseController {
 
 	/**
 	 * 添加客户地址
-	 * 
+	 *
 	 * @param ids
 	 * @return
 	 */
@@ -219,16 +204,15 @@ public class TmsMdDzController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "客户地址添加失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 更新客户地址
-	 * 
+	 *
 	 * @param ids
 	 * @return
 	 */
@@ -245,17 +229,16 @@ public class TmsMdDzController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "客户地址更新失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
+
 
 	/**
 	 * 客户地址新增页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -268,7 +251,7 @@ public class TmsMdDzController extends BaseController {
 	}
 	/**
 	 * 客户地址编辑页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -279,10 +262,10 @@ public class TmsMdDzController extends BaseController {
 		}
 		return new ModelAndView("com/zzjee/tms/tmsMdDz-update");
 	}
-	
+
 	/**
 	 * 导入功能跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "upload")
@@ -290,10 +273,10 @@ public class TmsMdDzController extends BaseController {
 		req.setAttribute("controller_name","tmsMdDzController");
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
-	
+
 	/**
 	 * 导出excel
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -312,7 +295,7 @@ public class TmsMdDzController extends BaseController {
 	}
 	/**
 	 * 导出excel 使模板
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -326,13 +309,13 @@ public class TmsMdDzController extends BaseController {
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-		
+
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
@@ -359,85 +342,5 @@ public class TmsMdDzController extends BaseController {
 			}
 		}
 		return j;
-	}
-	
-	@RequestMapping(method = RequestMethod.GET)
-	@ResponseBody
-	@ApiOperation(value="客户地址列表信息",produces="application/json",httpMethod="GET")
-	public ResponseMessage<List<TmsMdDzEntity>> list() {
-		List<TmsMdDzEntity> listTmsMdDzs=tmsMdDzService.getList(TmsMdDzEntity.class);
-		return Result.success(listTmsMdDzs);
-	}
-	
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	@ResponseBody
-	@ApiOperation(value="根据ID获取客户地址信息",notes="根据ID获取客户地址信息",httpMethod="GET",produces="application/json")
-	public ResponseMessage<?> get(@ApiParam(required=true,name="id",value="ID")@PathVariable("id") String id) {
-		TmsMdDzEntity task = tmsMdDzService.get(TmsMdDzEntity.class, id);
-		if (task == null) {
-			return Result.error("根据ID获取客户地址信息为空");
-		}
-		return Result.success(task);
-	}
-
-	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	@ApiOperation(value="创建客户地址")
-	public ResponseMessage<?> create(@ApiParam(name="客户地址对象")@RequestBody TmsMdDzEntity tmsMdDz, UriComponentsBuilder uriBuilder) {
-		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
-		Set<ConstraintViolation<TmsMdDzEntity>> failures = validator.validate(tmsMdDz);
-		if (!failures.isEmpty()) {
-			return Result.error(JSONArray.toJSONString(BeanValidators.extractPropertyAndMessage(failures)));
-		}
-
-		//保存
-		try{
-			tmsMdDzService.save(tmsMdDz);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return Result.error("客户地址信息保存失败");
-		}
-		return Result.success(tmsMdDz);
-	}
-
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	@ApiOperation(value="更新客户地址",notes="更新客户地址")
-	public ResponseMessage<?> update(@ApiParam(name="客户地址对象")@RequestBody TmsMdDzEntity tmsMdDz) {
-		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
-		Set<ConstraintViolation<TmsMdDzEntity>> failures = validator.validate(tmsMdDz);
-		if (!failures.isEmpty()) {
-			return Result.error(JSONArray.toJSONString(BeanValidators.extractPropertyAndMessage(failures)));
-		}
-
-		//保存
-		try{
-			tmsMdDzService.saveOrUpdate(tmsMdDz);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return Result.error("更新客户地址信息失败");
-		}
-
-		//按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
-		return Result.success("更新客户地址信息成功");
-	}
-
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@ApiOperation(value="删除客户地址")
-	public ResponseMessage<?> delete(@ApiParam(name="id",value="ID",required=true)@PathVariable("id") String id) {
-		logger.info("delete[{}]" + id);
-		// 验证
-		if (StringUtils.isEmpty(id)) {
-			return Result.error("ID不能为空");
-		}
-		try {
-			tmsMdDzService.deleteEntityById(TmsMdDzEntity.class, id);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return Result.error("客户地址删除失败");
-		}
-
-		return Result.success();
 	}
 }

@@ -48,12 +48,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/**   
- * @Title: Controller  
+/**
+ * @Title: Controller
  * @Description: v_tms_dz
  * @author onlineGenerator
  * @date 2018-08-08 01:31:13
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Api(value="VTmsDz",description="v_tms_dz",tags="vTmsDzController")
@@ -71,12 +71,12 @@ public class VTmsDzController extends BaseController {
 	private SystemService systemService;
 	@Autowired
 	private Validator validator;
-	
+
 
 
 	/**
 	 * v_tms_dz列表 页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "list")
@@ -86,7 +86,7 @@ public class VTmsDzController extends BaseController {
 
 	/**
 	 * easyui AJAX请求数据
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @param dataGrid
@@ -107,10 +107,10 @@ public class VTmsDzController extends BaseController {
 		this.vTmsDzService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
 	}
-	
+
 	/**
 	 * 删除v_tms_dz
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -125,16 +125,15 @@ public class VTmsDzController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "v_tms_dz删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 批量删除v_tms_dz
-	 * 
+	 *
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")
@@ -153,7 +152,6 @@ public class VTmsDzController extends BaseController {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "v_tms_dz删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -163,7 +161,7 @@ public class VTmsDzController extends BaseController {
 
 	/**
 	 * 添加v_tms_dz
-	 * 
+	 *
 	 * @param ids
 	 * @return
 	 */
@@ -178,16 +176,15 @@ public class VTmsDzController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "v_tms_dz添加失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 更新v_tms_dz
-	 * 
+	 *
 	 * @param ids
 	 * @return
 	 */
@@ -204,17 +201,16 @@ public class VTmsDzController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "v_tms_dz更新失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
+
 
 	/**
 	 * v_tms_dz新增页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -227,7 +223,7 @@ public class VTmsDzController extends BaseController {
 	}
 	/**
 	 * v_tms_dz编辑页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -238,10 +234,10 @@ public class VTmsDzController extends BaseController {
 		}
 		return new ModelAndView("com/zzjee/tms/vTmsDz-update");
 	}
-	
+
 	/**
 	 * 导入功能跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "upload")
@@ -249,10 +245,10 @@ public class VTmsDzController extends BaseController {
 		req.setAttribute("controller_name","vTmsDzController");
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
-	
+
 	/**
 	 * 导出excel
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -269,134 +265,6 @@ public class VTmsDzController extends BaseController {
 		modelMap.put(NormalExcelConstants.DATA_LIST,vTmsDzs);
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
-	/**
-	 * 导出excel 使模板
-	 * 
-	 * @param request
-	 * @param response
-	 */
-	@RequestMapping(params = "exportXlsByT")
-	public String exportXlsByT(VTmsDzEntity vTmsDz, HttpServletRequest request, HttpServletResponse response
-			, DataGrid dataGrid, ModelMap modelMap) {
-    	modelMap.put(NormalExcelConstants.FILE_NAME,"v_tms_dz");
-    	modelMap.put(NormalExcelConstants.CLASS,VTmsDzEntity.class);
-    	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("v_tms_dz列表", "导出人:"+ResourceUtil.getSessionUser().getRealName(),
-    	"导出信息"));
-    	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
-    	return NormalExcelConstants.JEECG_EXCEL_VIEW;
-	}
-	
-	@SuppressWarnings("unchecked")
-	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
-	@ResponseBody
-	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
-		AjaxJson j = new AjaxJson();
-		
-		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
-		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
-			MultipartFile file = entity.getValue();// 获取上传文件对象
-			ImportParams params = new ImportParams();
-			params.setTitleRows(2);
-			params.setHeadRows(1);
-			params.setNeedSave(true);
-			try {
-				List<VTmsDzEntity> listVTmsDzEntitys = ExcelImportUtil.importExcel(file.getInputStream(),VTmsDzEntity.class,params);
-				for (VTmsDzEntity vTmsDz : listVTmsDzEntitys) {
-					vTmsDzService.save(vTmsDz);
-				}
-				j.setMsg("文件导入成功！");
-			} catch (Exception e) {
-				j.setMsg("文件导入失败！");
-				logger.error(ExceptionUtil.getExceptionMessage(e));
-			}finally{
-				try {
-					file.getInputStream().close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return j;
-	}
-	
-	@RequestMapping(method = RequestMethod.GET)
-	@ResponseBody
-	@ApiOperation(value="v_tms_dz列表信息",produces="application/json",httpMethod="GET")
-	public ResponseMessage<List<VTmsDzEntity>> list() {
-		List<VTmsDzEntity> listVTmsDzs=vTmsDzService.getList(VTmsDzEntity.class);
-		return Result.success(listVTmsDzs);
-	}
-	
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	@ResponseBody
-	@ApiOperation(value="根据ID获取v_tms_dz信息",notes="根据ID获取v_tms_dz信息",httpMethod="GET",produces="application/json")
-	public ResponseMessage<?> get(@ApiParam(required=true,name="id",value="ID")@PathVariable("id") String id) {
-		VTmsDzEntity task = vTmsDzService.get(VTmsDzEntity.class, id);
-		if (task == null) {
-			return Result.error("根据ID获取v_tms_dz信息为空");
-		}
-		return Result.success(task);
-	}
 
-	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	@ApiOperation(value="创建v_tms_dz")
-	public ResponseMessage<?> create(@ApiParam(name="v_tms_dz对象")@RequestBody VTmsDzEntity vTmsDz, UriComponentsBuilder uriBuilder) {
-		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
-		Set<ConstraintViolation<VTmsDzEntity>> failures = validator.validate(vTmsDz);
-		if (!failures.isEmpty()) {
-			return Result.error(JSONArray.toJSONString(BeanValidators.extractPropertyAndMessage(failures)));
-		}
 
-		//保存
-		try{
-			vTmsDzService.save(vTmsDz);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return Result.error("v_tms_dz信息保存失败");
-		}
-		return Result.success(vTmsDz);
 	}
-
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	@ApiOperation(value="更新v_tms_dz",notes="更新v_tms_dz")
-	public ResponseMessage<?> update(@ApiParam(name="v_tms_dz对象")@RequestBody VTmsDzEntity vTmsDz) {
-		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
-		Set<ConstraintViolation<VTmsDzEntity>> failures = validator.validate(vTmsDz);
-		if (!failures.isEmpty()) {
-			return Result.error(JSONArray.toJSONString(BeanValidators.extractPropertyAndMessage(failures)));
-		}
-
-		//保存
-		try{
-			vTmsDzService.saveOrUpdate(vTmsDz);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return Result.error("更新v_tms_dz信息失败");
-		}
-
-		//按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
-		return Result.success("更新v_tms_dz信息成功");
-	}
-
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@ApiOperation(value="删除v_tms_dz")
-	public ResponseMessage<?> delete(@ApiParam(name="id",value="ID",required=true)@PathVariable("id") String id) {
-		logger.info("delete[{}]" + id);
-		// 验证
-		if (StringUtils.isEmpty(id)) {
-			return Result.error("ID不能为空");
-		}
-		try {
-			vTmsDzService.deleteEntityById(VTmsDzEntity.class, id);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return Result.error("v_tms_dz删除失败");
-		}
-
-		return Result.success();
-	}
-}
