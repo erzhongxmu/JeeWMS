@@ -119,8 +119,6 @@ public class BiBinController extends BaseController {
         list.add(hc);
         return list;
     }
-
-
     /**
      * highchart
      *

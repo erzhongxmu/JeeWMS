@@ -25,8 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class BiController extends BaseController {
     @Autowired
     private SystemService systemService;
-//    @Autowired
-//    private Validator validator;
+
     @RequestMapping(params = "homebi")
     public ModelAndView bi(HttpServletRequest request) {
         String num1= "0";
