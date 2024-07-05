@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * 大屏仓位
+ */
 @Controller
 @RequestMapping("/BiBinController")
 public class BiBinController extends BaseController {

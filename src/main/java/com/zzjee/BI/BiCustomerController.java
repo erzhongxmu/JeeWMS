@@ -18,6 +18,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 大屏客户
+ */
 @Controller
 @RequestMapping("/BiCustomerController")
 public class BiCustomerController extends BaseController {
