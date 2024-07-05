@@ -118,11 +118,13 @@ public class WmsApiController {
         try {
             MdGoodsEntity mdGoods1 = systemService.findUniqueByProperty(
                     MdGoodsEntity.class, "sku", mdGoods.getSku());
+            // 检查类目编码是否为空
             if (StringUtils.isEmpty(mdGoods.getCategoryCode())) {
                 j.setSuccess(false);
                 j.setMsg("类目编码为空");
                 return j;
             }
+            // 如果商品不存在，则创建新商品
             if(mdGoods1 ==null ){
                 Map<String, Object> countMap = systemService.findOneForJdbc("select right(shp_bian_ma,7) shp_bian_ma  from md_goods where category_code =? and suo_shu_ke_hu  = ? and shp_bian_ma like ? ORDER BY shp_bian_ma desc LIMIT 1",mdGoods.getCategoryCode(),mdGoods.getSuoShuKeHu(),mdGoods.getSuoShuKeHu()+mdGoods.getCategoryCode()+"%");
                 if (countMap == null) {
@@ -142,6 +144,7 @@ public class WmsApiController {
                     mdGoods.setChlShl("1");
                     mdGoods.setJshDanWei(mdGoods.getShlDanWei());
                 }
+                // 尝试设置重量单位
                 try {
                     if(StringUtil.isEmpty(mdGoods.getZhlKgm())){
                         if(!StringUtil.isEmpty(mdGoods.getBzhiQi())){
@@ -157,6 +160,7 @@ public class WmsApiController {
                         Globals.Log_Leavel_INFO);
                 j.setObj(mdGoods);
             }else{
+                // 如果商品已存在，则更新商品信息
                 try {
                     if(StringUtil.isEmpty(mdGoods.getZhlKgm())){
                         if(!StringUtil.isEmpty(mdGoods.getBzhiQi())){

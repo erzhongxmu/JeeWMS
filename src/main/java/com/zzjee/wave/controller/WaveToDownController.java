@@ -107,15 +107,20 @@ public class WaveToDownController extends BaseController {
      */
     @RequestMapping(params = "doPrintpage")
     public ModelAndView doPrint(String waveid, HttpServletRequest request) {
+        // 定义一个HQL查询语句，用于从WmOmQmIEntity表中查询waveId等于传入的waveid的记录
         String hql = "from WmOmQmIEntity where waveId = ? ";
         List<WmOmQmIEntity> wavelist = systemService.findHql(hql, waveid);
+        // 将当前日期转换为字符串格式，并设置到request的属性"kprq"中
         request.setAttribute("kprq", DateUtils.date2Str(DateUtils.date_sdf));
+        // 从配置文件中获取公司名称，并设置到request的属性"comname"中
         request.setAttribute("comname", ResourceUtil.getConfigByName("comname"));
+        // 将传入的waveid设置到request的属性"waveid"中
         request.setAttribute("waveid", waveid);
+        // 定义另一个HQL查询语句，用于从WaveToDownEntity表中查询waveId等于传入的waveid的记录
         String hqlwave = "from WaveToDownEntity where waveId = ?";
         List<WaveToDownEntity> wmOmQmIEntityList = systemService.findHql(hqlwave, waveid);
+        // 将查询到的WaveToDownEntity列表设置到request的属性"wmOmQmIList"中
         request.setAttribute("wmOmQmIList", wmOmQmIEntityList);
-
         return new ModelAndView("com/zzjee/wm/print/wavejianhuo-print");
     }
 
