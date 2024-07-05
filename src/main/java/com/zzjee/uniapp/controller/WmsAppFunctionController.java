@@ -222,7 +222,6 @@ public class WmsAppFunctionController extends BaseController {
 		return j;
 	}
 
-
 	/**
 	 * APP功能新增页面跳转
 	 *
