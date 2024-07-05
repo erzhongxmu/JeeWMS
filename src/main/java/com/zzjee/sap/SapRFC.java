@@ -29,7 +29,7 @@ public class SapRFC {
 
 	// SAP系统别名
 	private static String ABAP_AS = "ABAP_AS_WITHOUT_POOL";
-
+	// SAP目的地对象
 	private JCoDestination destination;
 
 	// 构造函数，用于初始化连接
@@ -46,6 +46,7 @@ public class SapRFC {
 
 	// 连接 SAP
 	public void connect() {
+		// SAP连接参数
 		String clientName  ;
 		String userid  ;
 		String password  ;
@@ -62,6 +63,7 @@ public class SapRFC {
 			 system = ResourceUtil.getConfigByName("rfc.system");
 			// router = ResourceUtil.getConfigByName("rfc.router");
 		}catch (Exception e){
+			// 如果配置文件读取失败，使用默认参数
 			clientName = "300";
 			userid = "**";
 			password = "123123";
@@ -87,7 +89,7 @@ public class SapRFC {
 //		connectProperties.setProperty(DestinationDataProvider.JCO_SAPROUTER, router);
 
 		try {
-			// 创建DestinationDataProvider，
+			// 创建DestinationDataProvider，创建连接配置文件并获取SAP目的地
 			createDataFile(ABAP_AS, "jcoDestination", connectProperties);
 			destination = JCoDestinationManager.getDestination(ABAP_AS);
 

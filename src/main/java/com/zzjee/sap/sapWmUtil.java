@@ -16,10 +16,14 @@ public class sapWmUtil {
         try {
             // 创建SAP RFC连接实例
             SapRFC saprfc = SapRFC.getInstance();
+            // 准备调用SAP函数Z_WM_GET_LAGP
             saprfc.prepare("Z_WM_GET_LAGP");
+            // 添加参数LGNUM
             saprfc.addParameter("LGNUM", lgnum);
+            // 执行RFC调用
             saprfc.execCall();
 //            saprfc.getParamTableList()
+            // 获取输出表IT_OUT
             JCoTable tab = saprfc.getParamTableList("IT_OUT");
             System.out.print("rows:" + tab.getNumRows());
             result.put("IT_OUT", tab);

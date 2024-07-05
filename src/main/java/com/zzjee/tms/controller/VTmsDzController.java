@@ -61,6 +61,7 @@ import java.util.Set;
 @RequestMapping("/vTmsDzController")
 public class VTmsDzController extends BaseController {
 	/**
+	 * 日志记录器
 	 * Logger for this class
 	 */
 	private static final Logger logger = Logger.getLogger(VTmsDzController.class);
@@ -79,8 +80,8 @@ public class VTmsDzController extends BaseController {
 
 	/**
 	 * v_tms_dz列表 页面跳转
-	 *
-	 * @return
+	 * @param request HTTP请求
+	 * @return 返回ModelAndView对象
 	 */
 	@RequestMapping(params = "list")
 	public ModelAndView list(HttpServletRequest request) {
@@ -113,7 +114,8 @@ public class VTmsDzController extends BaseController {
 
 	/**
 	 * 删除v_tms_dz
-	 *
+	 * @param vTmsDz 实体对象
+	 * @param request HTTP请求
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
