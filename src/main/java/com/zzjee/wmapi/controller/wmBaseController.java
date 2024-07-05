@@ -99,7 +99,7 @@ public class wmBaseController extends BaseController {
             } else {
                 fileName = new String(fileName.getBytes("UTF-8"), "iso-8859-1");
             }
-            response.setHeader("Content-disposition", "attachment; filename=" + fileName);
+            response.setHeader("Content-disposition", "attachment; filename=" + fileName); // 设置响应头，告诉浏览器以附件形式下载文件
         } else {
             response.setContentType("image/jpeg;charset=utf-8");
         }
