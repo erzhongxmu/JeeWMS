@@ -468,6 +468,9 @@ public interface CommonConstant {
     String IM_TYPE_GYSTH = "gysth";
     String TABLE_NAME_BUSI_STOCK_TRIM_LOG = "busi_stock_trim_log";
     String ACT_LC_KEY_TZSP = "tzsp";
+    /**
+     * 异常类型
+     */
     String UNNORMAL_NAME = "帐实不符";
     String TABLE_NAME_BUSI_STOCK = "busi_stock";
     /**

@@ -188,7 +188,12 @@ public class ApiController {
         return waveToDownController.list(username, searchstr, searchstr2, searchstr3);
     }
 
-    //波次下架保存
+    /**
+     * 波次下架保存
+     * @param waveToDownstr
+     * @param uriBuilder
+     * @return
+     */
     @RequestMapping(value = "/waveToDownController/save", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<?> create5(@RequestParam String waveToDownstr, UriComponentsBuilder uriBuilder) {

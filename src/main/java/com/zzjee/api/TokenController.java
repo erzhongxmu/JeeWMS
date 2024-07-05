@@ -53,6 +53,12 @@ public class TokenController {
     SystemService systemService;
 
 
+	/**
+	 * 获取token
+	 * @param username
+	 * @param password
+	 * @return
+	 */
 	@ApiOperation(value = "获取token")
 	@RequestMapping(value = "/tmslogin", method = RequestMethod.POST)
 	@ResponseBody

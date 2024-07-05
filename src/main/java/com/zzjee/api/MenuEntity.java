@@ -10,7 +10,10 @@ package com.zzjee.api;
  */
 
 public class MenuEntity {
-    private String menuImg;//图片
+    /**
+     * 图片
+     */
+    private String menuImg;
     private String menuText;//名称
     private String	menuSrc;//地址
 
