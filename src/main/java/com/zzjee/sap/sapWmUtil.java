@@ -6,6 +6,9 @@ import org.jeecgframework.core.util.StringUtil;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 提供与SAP系统的WM模块交互的工具类，主要负责调用SAP的RFC函数。
+ */
 public class sapWmUtil {
    //获取储位
     public  static Map<String,Object> getWmbin(String lgnum) {

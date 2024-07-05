@@ -54,7 +54,7 @@ import java.util.Set;
  * @author onlineGenerator
  * @date 2018-08-08 01:31:13
  * @version V1.0
- *
+ * 控制器类，用于处理与v_tms_dz相关的请求
  */
 @Api(value="VTmsDz",description="v_tms_dz",tags="vTmsDzController")
 @Controller

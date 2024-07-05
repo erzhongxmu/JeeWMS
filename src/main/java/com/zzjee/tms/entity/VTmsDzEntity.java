@@ -11,7 +11,7 @@ import javax.persistence.*;
  * @author onlineGenerator
  * @date 2018-08-08 01:31:13
  * @version V1.0   
- *
+ * 电子地图地址实体类，用于表示电子地图中的地址信息。
  */
 @Entity
 @Table(name = "v_tms_dz", schema = "")

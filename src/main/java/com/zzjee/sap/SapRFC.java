@@ -13,7 +13,7 @@ import java.util.Properties;
  */
 
 public class SapRFC {
-	private JCoFunction function;
+	private JCoFunction function;//SAP函数对象
 
 	// 输入参数列表
 	private JCoParameterList inPara = null;
