@@ -17,14 +17,14 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class RpPeriodInOutServiceImpl extends CommonServiceImpl implements RpPeriodInOutServiceI {
 
-	
+
  	@Override
     public void delete(RpPeriodInOutEntity entity) throws Exception{
  		super.delete(entity);
  		//执行删除操作增强业务
 		this.doDelBus(entity);
  	}
- 	
+
  	@Override
     public Serializable save(RpPeriodInOutEntity entity) throws Exception{
  		Serializable t = super.save(entity);
@@ -32,14 +32,14 @@ public class RpPeriodInOutServiceImpl extends CommonServiceImpl implements RpPer
  		this.doAddBus(entity);
  		return t;
  	}
- 	
+
  	@Override
     public void saveOrUpdate(RpPeriodInOutEntity entity) throws Exception{
  		super.saveOrUpdate(entity);
  		//执行更新操作增强业务
  		this.doUpdateBus(entity);
  	}
- 	
+
  	/**
 	 * 新增操作增强业务
 	 * @param t
@@ -48,7 +48,7 @@ public class RpPeriodInOutServiceImpl extends CommonServiceImpl implements RpPer
 	private void doAddBus(RpPeriodInOutEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -60,7 +60,7 @@ public class RpPeriodInOutServiceImpl extends CommonServiceImpl implements RpPer
 	private void doUpdateBus(RpPeriodInOutEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -72,11 +72,11 @@ public class RpPeriodInOutServiceImpl extends CommonServiceImpl implements RpPer
 	private void doDelBus(RpPeriodInOutEntity t) throws Exception{
 	    //-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
- 	
+
  	private Map<String,Object> populationMap(RpPeriodInOutEntity t){
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("id", t.getId());
@@ -100,7 +100,7 @@ public class RpPeriodInOutServiceImpl extends CommonServiceImpl implements RpPer
 		map.put("goods_now", t.getGoodsNow());
 		return map;
 	}
- 	
+
  	/**
 	 * 替换sql中的变量
 	 * @param sql
@@ -130,7 +130,7 @@ public class RpPeriodInOutServiceImpl extends CommonServiceImpl implements RpPer
  		sql  = sql.replace("#{UUID}",UUID.randomUUID().toString());
  		return sql;
  	}
- 	
+
  	/**
 	 * 执行JAVA增强
 	 */
@@ -140,18 +140,20 @@ public class RpPeriodInOutServiceImpl extends CommonServiceImpl implements RpPer
 			try {
 				if("class".equals(cgJavaType)){
 					//因新增时已经校验了实例化是否可以成功，所以这块就不需要再做一次判断
+					//使用自定义类加载器加载并实例化类
 					obj = MyClassLoader.getClassByScn(cgJavaValue).newInstance();
 				}else if("spring".equals(cgJavaType)){
 					obj = ApplicationContextUtil.getContext().getBean(cgJavaValue);
 				}
 				if(obj instanceof CgformEnhanceJavaInter){
 					CgformEnhanceJavaInter javaInter = (CgformEnhanceJavaInter) obj;
+					//调用execute方法，执行Java增强逻辑
 					javaInter.execute("rp_period_in_out",data);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new Exception("执行JAVA增强出现异常！");
-			} 
+			}
 		}
  	}
 }
