@@ -17,7 +17,9 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class WaveToFjServiceImpl extends CommonServiceImpl implements WaveToFjServiceI {
 
-	
+	/**
+	 * 执行删除操作增强业务
+	 */
  	@Override
     public void delete(WaveToFjEntity entity) throws Exception{
  		super.delete(entity);
