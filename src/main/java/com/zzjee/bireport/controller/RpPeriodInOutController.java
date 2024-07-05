@@ -52,7 +52,7 @@ public class RpPeriodInOutController extends BaseController {
         return new ModelAndView("com/zzjee/bireport/rpPeriodInOutList");
     }
     /**
-     * easyui AJAX请求数据
+     * easyui 处理AJAX请求以返回RpPeriodInOutEntity数据列表的datagrid
      *
      * @param request
      * @param response
