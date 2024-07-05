@@ -91,7 +91,7 @@ public class wmBaseController extends BaseController {
             e.printStackTrace();
         }
         if ("1".equals(flag)) {
-            response.setContentType("application/x-msdownload;charset=utf-8");
+            response.setContentType("application/x-msdownload;charset=utf-8"); // 设置响应类型为下载文件
             String fileName = dbpath.substring(dbpath.lastIndexOf(File.separator) + 1);
             String userAgent = request.getHeader("user-agent").toLowerCase();
             if (userAgent.contains("msie") || userAgent.contains("like gecko")) {
