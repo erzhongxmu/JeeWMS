@@ -30,7 +30,9 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	 * 创建人登录名称
 	 */
 	private String createBy;
-	/**创建日期*/
+	/**
+	 * 创建日期
+	 */
 	private Date createDate;
 	/**更新人名称*/
 	private String updateName;

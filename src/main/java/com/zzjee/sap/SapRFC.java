@@ -46,6 +46,7 @@ public class SapRFC {
 
 	// 连接 SAP
 	public void connect() {
+		// SAP连接参数
 		String clientName  ;
 		String userid  ;
 		String password  ;
