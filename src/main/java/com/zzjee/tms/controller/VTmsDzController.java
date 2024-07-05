@@ -61,6 +61,7 @@ import java.util.Set;
 @RequestMapping("/vTmsDzController")
 public class VTmsDzController extends BaseController {
 	/**
+	 * 日志记录器
 	 * Logger for this class
 	 */
 	private static final Logger logger = Logger.getLogger(VTmsDzController.class);

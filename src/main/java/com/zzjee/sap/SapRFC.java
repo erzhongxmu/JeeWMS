@@ -29,7 +29,7 @@ public class SapRFC {
 
 	// SAP系统别名
 	private static String ABAP_AS = "ABAP_AS_WITHOUT_POOL";
-
+	// SAP目的地对象
 	private JCoDestination destination;
 
 	// 构造函数，用于初始化连接

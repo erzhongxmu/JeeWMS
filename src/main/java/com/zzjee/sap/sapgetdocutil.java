@@ -12,13 +12,14 @@ import java.util.Map;
 public class sapgetdocutil {
 
 //获取WM文档信息
-public static List<wmientity>    getWmdoc(String DOCTYPE,String DOCID,String tablename,String par[]) {
+public static List<wmientity>   getWmdoc(String DOCTYPE,String DOCID,String tablename,String par[]) {
 //    Map<String, Object> result = new HashMap<String, Object>();
     // 创建一个wmientity类型的列表来存储结果
     List<wmientity> reslit = new ArrayList<wmientity>();
     try {
         // 调用sapWmUtil的getWmdoc方法获取数据
     	Map<String, Object> result = sapWmUtil.getWmdoc(DOCTYPE,DOCID,tablename);
+        // 将返回的结果转换为JCoTable类型
         JCoTable restable =  (JCoTable)result.get("IT_OUT");
         org.jeecgframework.core.util.LogUtil.info("===================获取凭证开始===================");
         reslit = getlistbyparandrable(restable,par);

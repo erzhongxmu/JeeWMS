@@ -16,6 +16,7 @@ public class sapWmUtil {
         try {
             // 创建SAP RFC连接实例
             SapRFC saprfc = SapRFC.getInstance();
+            // 准备调用SAP函数Z_WM_GET_LAGP
             saprfc.prepare("Z_WM_GET_LAGP");
             saprfc.addParameter("LGNUM", lgnum);
             saprfc.execCall();
