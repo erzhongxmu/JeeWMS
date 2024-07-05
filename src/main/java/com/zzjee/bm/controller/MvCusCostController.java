@@ -1381,7 +1381,11 @@ public class MvCusCostController extends BaseController {
         }
         return j;
     }
-
+    /**
+     * 获取所有MvCusCostEntity实体的列表
+     *
+     * @return
+     */
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<MvCusCostEntity> list() {

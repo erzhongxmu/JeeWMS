@@ -407,6 +407,11 @@ public class WvDayCostSumController extends BaseController {
 		return j;
 	}
 
+	/**
+	 * 获取所有WvDayCostSumEntity实体的列表
+	 *
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<WvDayCostSumEntity> list() {

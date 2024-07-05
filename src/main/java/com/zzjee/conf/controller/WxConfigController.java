@@ -154,7 +154,7 @@ public class WxConfigController extends BaseController {
 	/**
 	 * 添加配置信息
 	 *
-	 * @param ids
+	 * @param wxConfig
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -177,7 +177,7 @@ public class WxConfigController extends BaseController {
 	/**
 	 * 更新配置信息
 	 *
-	 * @param ids
+	 * @param wxConfig
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
