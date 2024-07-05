@@ -124,7 +124,9 @@ public class WaveToDownController extends BaseController {
         //查询条件组装器
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, waveToDown, request.getParameterMap());
         cq.add();
+        // 调用waveToDownService的getDataGridReturn方法，传入cq参数和true作为第二个参数
         this.waveToDownService.getDataGridReturn(cq, true);
+        // 使用TagUtil工具类的datagrid方法，将response和dataGrid作为参数传递
         TagUtil.datagrid(response, dataGrid);
     }
 
