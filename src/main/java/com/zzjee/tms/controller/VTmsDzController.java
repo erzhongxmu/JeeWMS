@@ -81,7 +81,7 @@ public class VTmsDzController extends BaseController {
 	/**
 	 * v_tms_dz列表 页面跳转
 	 * @param request HTTP请求
-	 * @return
+	 * @return 返回ModelAndView对象
 	 */
 	@RequestMapping(params = "list")
 	public ModelAndView list(HttpServletRequest request) {

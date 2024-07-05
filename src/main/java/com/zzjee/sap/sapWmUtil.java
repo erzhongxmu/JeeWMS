@@ -20,6 +20,7 @@ public class sapWmUtil {
             saprfc.prepare("Z_WM_GET_LAGP");
             // 添加参数LGNUM
             saprfc.addParameter("LGNUM", lgnum);
+            // 执行RFC调用
             saprfc.execCall();
 //            saprfc.getParamTableList()
             JCoTable tab = saprfc.getParamTableList("IT_OUT");

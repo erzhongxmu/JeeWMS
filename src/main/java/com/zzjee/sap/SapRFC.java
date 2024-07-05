@@ -63,6 +63,7 @@ public class SapRFC {
 			 system = ResourceUtil.getConfigByName("rfc.system");
 			// router = ResourceUtil.getConfigByName("rfc.router");
 		}catch (Exception e){
+			// 如果配置文件读取失败，使用默认参数
 			clientName = "300";
 			userid = "**";
 			password = "123123";
