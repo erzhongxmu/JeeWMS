@@ -18,9 +18,13 @@ import java.util.Date;
 @Table(name = "tms_md_cheliang", schema = "")
 @SuppressWarnings("serial")
 public class TmsMdCheliangEntity implements java.io.Serializable {
-	/**主键*/
+	/**
+	 * 主键
+	 */
 	private String id;
-	/**创建人名称*/
+	/**
+	 * 创建人名称
+	 */
 	private String createName;
 	/**创建人登录名称*/
 	private String createBy;

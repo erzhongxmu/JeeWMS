@@ -17,6 +17,7 @@ public static List<wmientity>    getWmdoc(String DOCTYPE,String DOCID,String tab
     // 创建一个wmientity类型的列表来存储结果
     List<wmientity> reslit = new ArrayList<wmientity>();
     try {
+        // 调用sapWmUtil的getWmdoc方法获取数据
     	Map<String, Object> result = sapWmUtil.getWmdoc(DOCTYPE,DOCID,tablename);
         JCoTable restable =  (JCoTable)result.get("IT_OUT");
         org.jeecgframework.core.util.LogUtil.info("===================获取凭证开始===================");
