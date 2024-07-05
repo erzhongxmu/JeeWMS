@@ -168,7 +168,7 @@ public class MdSupController extends BaseController {
 	/**
 	 * 添加供应商
 	 *
-	 * @param ids
+	 * @param mdSup
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")

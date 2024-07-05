@@ -164,7 +164,7 @@ public class MdCusOtherController extends BaseController {
 	/**
 	 * 添加第三方客户
 	 *
-	 * @param ids
+	 * @param mdCusOther
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")

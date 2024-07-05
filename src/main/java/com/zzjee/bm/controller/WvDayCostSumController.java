@@ -253,7 +253,7 @@ public class WvDayCostSumController extends BaseController {
 	/**
 	 * 添加
 	 *
-	 * @param ids
+	 * @param wvDayCostSum
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -276,7 +276,7 @@ public class WvDayCostSumController extends BaseController {
 	/**
 	 * 更新wv_day_cost_sum
 	 *
-	 * @param ids
+	 * @param wvDayCostSum
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")

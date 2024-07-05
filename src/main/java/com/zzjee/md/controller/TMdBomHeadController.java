@@ -203,7 +203,8 @@ public class TMdBomHeadController extends BaseController {
 	/**
 	 * 更新BOM抬头
 	 *
-	 * @param ids
+	 * @param tMdBomHead
+	 * @param tMdBomHeadPage
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
