@@ -17,9 +17,13 @@ import javax.persistence.*;
 @Table(name = "v_tms_dz", schema = "")
 @SuppressWarnings("serial")
 public class VTmsDzEntity implements java.io.Serializable {
-	/**id*/
+	/**
+	 * id
+	 */
 	private String id;
-	/**dizhi*/
+	/**
+	 * dizhi
+	 */
 	@Excel(name="dizhi",width=15)
 	private String dizhi;
 	

@@ -9,7 +9,8 @@ import java.io.FileOutputStream;
 import java.util.Properties;
 
 /**
- * 连接SAP
+ *   连接SAP
+ *
  */
 
 public class SapRFC {
@@ -26,10 +27,12 @@ public class SapRFC {
 
 //	private String functionName;
 
+	// SAP系统别名
 	private static String ABAP_AS = "ABAP_AS_WITHOUT_POOL";
 
 	private JCoDestination destination;
 
+	// 构造函数，用于初始化连接
 	public SapRFC() {
 		connect(); // 连接SAP
 	}

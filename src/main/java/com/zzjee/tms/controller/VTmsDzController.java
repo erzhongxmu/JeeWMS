@@ -65,6 +65,9 @@ public class VTmsDzController extends BaseController {
 	 */
 	private static final Logger logger = Logger.getLogger(VTmsDzController.class);
 
+	/**
+	 * 注入vTmsDz服务接口
+	 */
 	@Autowired
 	private VTmsDzServiceI vTmsDzService;
 	@Autowired
