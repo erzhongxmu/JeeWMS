@@ -106,7 +106,6 @@ public class WmsAppUserController extends BaseController {
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -178,7 +177,6 @@ public class WmsAppUserController extends BaseController {
 	/**
 	 * 添加APP角色分配
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -201,7 +199,6 @@ public class WmsAppUserController extends BaseController {
 	/**
 	 * 更新APP角色分配
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -231,8 +228,11 @@ public class WmsAppUserController extends BaseController {
 	 */
 	@RequestMapping(params = "goAdd")
 	public ModelAndView goAdd(WmsAppUserEntity wmsAppUser, HttpServletRequest req) {
+		// 判断wmsAppUser对象的id属性是否不为空
 		if (StringUtil.isNotEmpty(wmsAppUser.getId())) {
+			// 如果id不为空，通过wmsAppUserService的getEntity方法根据id获取对应的WmsAppUserEntity对象
 			wmsAppUser = wmsAppUserService.getEntity(WmsAppUserEntity.class, wmsAppUser.getId());
+			// 将获取到的WmsAppUserEntity对象设置为请求属性"wmsAppUserPage"的值
 			req.setAttribute("wmsAppUserPage", wmsAppUser);
 		}
 		return new ModelAndView("com/zzjee/uniapp/wmsAppUser-add");

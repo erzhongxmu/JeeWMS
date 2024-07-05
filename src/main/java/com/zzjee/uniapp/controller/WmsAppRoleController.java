@@ -106,7 +106,6 @@ public class WmsAppRoleController extends BaseController {
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -163,7 +162,9 @@ public class WmsAppRoleController extends BaseController {
 				WmsAppRoleEntity wmsAppRole = systemService.getEntity(WmsAppRoleEntity.class,
 				id
 				);
+				// 删除获取到的WmsAppRoleEntity对象
 				wmsAppRoleService.delete(wmsAppRole);
+				// 记录日志，表示已删除指定id的WmsAppRoleEntity对象
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}
 		}catch(Exception e){
@@ -178,7 +179,6 @@ public class WmsAppRoleController extends BaseController {
 	/**
 	 * 添加APP角色
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -201,7 +201,6 @@ public class WmsAppRoleController extends BaseController {
 	/**
 	 * 更新APP角色
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")

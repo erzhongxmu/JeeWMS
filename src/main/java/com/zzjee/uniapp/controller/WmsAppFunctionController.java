@@ -106,7 +106,6 @@ public class WmsAppFunctionController extends BaseController {
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -137,9 +136,12 @@ public class WmsAppFunctionController extends BaseController {
 		wmsAppFunction = systemService.getEntity(WmsAppFunctionEntity.class, wmsAppFunction.getId());
 		message = "APP功能删除成功";
 		try{
+			// 调用wmsAppFunctionService的delete方法，传入wmsAppFunction对象进行删除操作
 			wmsAppFunctionService.delete(wmsAppFunction);
+			// 调用wmsAppFunctionService的delete方法，传入wmsAppFunction对象进行删除操作
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
+			// 打印异常堆栈信息
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
@@ -178,7 +180,6 @@ public class WmsAppFunctionController extends BaseController {
 	/**
 	 * 添加APP功能
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -201,7 +202,6 @@ public class WmsAppFunctionController extends BaseController {
 	/**
 	 * 更新APP功能
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")

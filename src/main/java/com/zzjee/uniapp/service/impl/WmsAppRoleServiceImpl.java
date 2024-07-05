@@ -17,7 +17,10 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class WmsAppRoleServiceImpl extends CommonServiceImpl implements WmsAppRoleServiceI {
 
-	
+	/**
+	 * 定义一个名为delete的方法，接收一个WmsAppFunctionEntity类型的参数entity，并抛出异常
+	 * @return
+	 */
  	public void delete(WmsAppRoleEntity entity) throws Exception{
  		super.delete(entity);
  		//执行删除操作增强业务
@@ -63,7 +66,6 @@ public class WmsAppRoleServiceImpl extends CommonServiceImpl implements WmsAppRo
  	}
  	/**
 	 * 删除操作增强业务
-	 * @param id
 	 * @return
 	 */
 	private void doDelBus(WmsAppRoleEntity t) throws Exception{
