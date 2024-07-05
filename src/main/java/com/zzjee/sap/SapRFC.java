@@ -89,7 +89,7 @@ public class SapRFC {
 //		connectProperties.setProperty(DestinationDataProvider.JCO_SAPROUTER, router);
 
 		try {
-			// 创建DestinationDataProvider，
+			// 创建DestinationDataProvider，创建连接配置文件并获取SAP目的地
 			createDataFile(ABAP_AS, "jcoDestination", connectProperties);
 			destination = JCoDestinationManager.getDestination(ABAP_AS);
 

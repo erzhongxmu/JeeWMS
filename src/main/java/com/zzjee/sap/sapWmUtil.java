@@ -23,6 +23,7 @@ public class sapWmUtil {
             // 执行RFC调用
             saprfc.execCall();
 //            saprfc.getParamTableList()
+            // 获取输出表IT_OUT
             JCoTable tab = saprfc.getParamTableList("IT_OUT");
             System.out.print("rows:" + tab.getNumRows());
             result.put("IT_OUT", tab);

@@ -25,6 +25,7 @@ public static List<wmientity>   getWmdoc(String DOCTYPE,String DOCID,String tabl
         org.jeecgframework.core.util.LogUtil.info("===================获取凭证开始===================");
         // 调用getlistbyparandrable方法处理数据
         reslit = getlistbyparandrable(restable,par);
+        // 打印日志信息
         org.jeecgframework.core.util.LogUtil.info("===================获取凭证结束===================");
 
     } catch (Exception e) {

@@ -114,7 +114,8 @@ public class VTmsDzController extends BaseController {
 
 	/**
 	 * 删除v_tms_dz
-	 *
+	 * @param vTmsDz 实体对象
+	 * @param request HTTP请求
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")

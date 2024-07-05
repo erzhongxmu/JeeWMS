@@ -15,7 +15,6 @@ public class DdPage {
     private List<TmsYwDingdanEntity> demos;
     /**
      * 获取分页查询返回的订单数据列表。
-     *
      * @return 包含订单实体的列表
      */
     public List<TmsYwDingdanEntity> getDemos() {
@@ -23,7 +22,6 @@ public class DdPage {
     }
     /**
      * 设置分页查询返回的订单数据列表。
-     *
      * @param demos 包含订单实体的列表
      */
     public void setDemos(List<TmsYwDingdanEntity> demos) {
