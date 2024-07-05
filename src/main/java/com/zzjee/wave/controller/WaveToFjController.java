@@ -126,6 +126,7 @@ public class WaveToFjController extends BaseController {
     public AjaxJson doDel(WaveToFjEntity waveToFj, HttpServletRequest request) {
         String message = null;
         AjaxJson j = new AjaxJson();
+        // 调用systemService的getEntity方法，传入WaveToFjEntity.class和waveToFj对象的id作为参数，获取对应的实体对象，并将其赋值给waveToFj变量
         waveToFj = systemService.getEntity(WaveToFjEntity.class, waveToFj.getId());
         message = "wave_to_fj";
         try {

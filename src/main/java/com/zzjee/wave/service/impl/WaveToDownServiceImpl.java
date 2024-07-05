@@ -17,14 +17,19 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class WaveToDownServiceImpl extends CommonServiceImpl implements WaveToDownServiceI {
 
-	
+	/**
+	 * 删除操作增强业务
+	 */
  	@Override
     public void delete(WaveToDownEntity entity) throws Exception{
  		super.delete(entity);
  		//执行删除操作增强业务
 		this.doDelBus(entity);
  	}
- 	
+
+	/**
+	 * 新增操作增强业务
+	 */
  	@Override
     public Serializable save(WaveToDownEntity entity) throws Exception{
  		Serializable t = super.save(entity);

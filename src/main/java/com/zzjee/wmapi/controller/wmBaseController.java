@@ -77,14 +77,13 @@ public class wmBaseController extends BaseController {
      * @param request  code128 格式
      * @throws Exception http://localhost:8080/zzjee/wmOmNoticeHController/showOrDownbarcodeByurl.do?&qrvalue=1111223333  调用
      */
-
     @RequestMapping(value = "showOrDownbarcodeByurl", method = RequestMethod.GET)
     public void getbarcodeImgByurl(HttpServletResponse response, HttpServletRequest request) throws Exception {
         request.setCharacterEncoding("UTF-8");
         String flag = request.getParameter("down");//是否下载否则展示图片
-        String qrvalue = request.getParameter("qrvalue");
+        String qrvalue = request.getParameter("qrvalue");// 获取请求参数qrvalue，用于生成二维码的内容
         String dbpath = qrvalue + ".jpg";
-        String localPath = ResourceUtil.getConfigByName("webUploadpath");
+        String localPath = ResourceUtil.getConfigByName("webUploadpath"); // 获取配置文件中的上传路径
         try {
             String imgurl = localPath + File.separator + dbpath;
             BarcodeUtil.generateFile(qrvalue, imgurl);

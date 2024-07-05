@@ -101,6 +101,7 @@ public class WmsApiController {
             cq.eq("shpBianMakh", mdGoods.getShpBianMakh());
         }
         cq.add();
+        // 调用mdGoodsService的getDataGridReturn方法执行查询，并将结果包装成Result对象返回
        return Result.success(this.mdGoodsService.getDataGridReturn(cq, true));
     }
 
