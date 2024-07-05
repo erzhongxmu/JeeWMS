@@ -85,7 +85,6 @@ public class WmsApiController {
      * @param response
      * @param dataGrid
      */
-
     @RequestMapping(params = "goodsList")
     @ResponseBody
     public ResponseMessage<DataGridReturn> datagrid(MdGoodsEntity mdGoods, HttpServletRequest request,

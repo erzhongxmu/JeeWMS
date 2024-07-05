@@ -88,7 +88,6 @@ public class WaveToDownController extends BaseController {
     @Autowired
     private SystemService systemService;
 
-
     /**
      * wave_to_down列表 页面跳转
      *

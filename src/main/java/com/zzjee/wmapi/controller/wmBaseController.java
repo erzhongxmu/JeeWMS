@@ -135,7 +135,6 @@ public class wmBaseController extends BaseController {
      * @param request
      * @throws Exception http://localhost:8080/zzjee/wmOmNoticeHController/showOrDownqrcodeByurl.do?&qrvalue=1111223333  调用
      */
-
     @RequestMapping(value = "showOrDownqrcodeByurl", method = RequestMethod.GET)
     public void getQrImgByurl(HttpServletResponse response, HttpServletRequest request) throws Exception {
         request.setCharacterEncoding("UTF-8");

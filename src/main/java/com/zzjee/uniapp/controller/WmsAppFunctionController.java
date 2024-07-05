@@ -176,7 +176,6 @@ public class WmsAppFunctionController extends BaseController {
 		return j;
 	}
 
-
 	/**
 	 * 添加APP功能
 	 *
