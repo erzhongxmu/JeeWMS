@@ -89,18 +89,29 @@ import org.springframework.web.util.UriComponentsBuilder;
  * @Description: PLC指令
  * @date 2022-09-12 18:33:25
  */
+/**
+ * 控制器类，处理与 WMS PLC 相关的请求
+ */
 @Controller
 @RequestMapping("/wmsPlcController")
 public class WmsPlcController extends BaseController {
     /**
-     * Logger for this class
+     * 日志记录器
      */
     private static final Logger logger = Logger.getLogger(WmsPlcController.class);
-
+    /**
+     * WmsPlcServiceI 服务接口，用于处理  WMS PLC相关的业务逻辑
+     */
     @Autowired
     private WmsPlcServiceI wmsPlcService;
+    /**
+     * SystemService，用于处理系统相关的逻辑
+     */
     @Autowired
     private SystemService systemService;
+    /**
+     * 校验器，用于验证输入的数据
+     */
     @Autowired
     private Validator validator;
 
@@ -125,11 +136,14 @@ public class WmsPlcController extends BaseController {
 
     @RequestMapping(params = "datagrid")
     public void datagrid(WmsPlcEntity wmsPlc, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
+        //创建CriteriaQuery对象，用来查询实体
         CriteriaQuery cq = new CriteriaQuery(WmsPlcEntity.class, dataGrid);
         //查询条件组装器
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wmsPlc, request.getParameterMap());
+        //根据条件查询数据
         cq.add();
         this.wmsPlcService.getDataGridReturn(cq, true);
+        //将查询结果封装成json格式返回给客户端，显示在easyUI的datagrid中
         TagUtil.datagrid(response, dataGrid);
     }
 

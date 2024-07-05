@@ -82,21 +82,31 @@ import org.springframework.web.util.UriComponentsBuilder;
  * @Description: 效期预警
  * @author erzhongxmu
  * @date 2017-09-17 22:13:08
- * @version V1.0   
- *
+ * @version V1.0
+ */
+/**
+ * 控制器类，处理与 MvStockYj 相关的请求
  */
 @Controller
 @RequestMapping("/mvStockYjController")
 public class MvStockYjController extends BaseController {
 	/**
-	 * Logger for this class
+	 * 日志记录器
 	 */
 	private static final Logger logger = Logger.getLogger(MvStockYjController.class);
-
+	/**
+	 * MvStockYjServiceI 服务接口，用于处理 MvStockYj 相关的业务逻辑
+	 */
 	@Autowired
 	private MvStockYjServiceI mvStockYjService;
+	/**
+	 * SystemService，用于处理系统相关的逻辑
+	 */
 	@Autowired
 	private SystemService systemService;
+	/**
+	 * 校验器，用于验证输入的数据
+	 */
 	@Autowired
 	private Validator validator;
 	
@@ -104,7 +114,6 @@ public class MvStockYjController extends BaseController {
 
 	/**
 	 * 效期预警列表 页面跳转
-	 * 
 	 * @return
 	 */
 	@RequestMapping(params = "list")
