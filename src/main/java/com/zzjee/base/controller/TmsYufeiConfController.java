@@ -177,7 +177,6 @@ public class TmsYufeiConfController extends BaseController {
 	/**
 	 * 添加运费配置
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")

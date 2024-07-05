@@ -326,7 +326,7 @@ public class TmsYufeiConfEntity implements java.io.Serializable {
 
 	/**
 	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  备注2
+	 *@param: java.lang.String  备注3
 	 */
 	public void setYfBz2(String yfBz2){
 		this.yfBz2 = yfBz2;

@@ -17,7 +17,11 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class TmsYufeiConfServiceImpl extends CommonServiceImpl implements TmsYufeiConfServiceI {
 
-	
+	/**
+	 * 删除
+	 * @param entity
+	 * @throws Exception
+	 */
  	@Override
     public void delete(TmsYufeiConfEntity entity) throws Exception{
  		super.delete(entity);

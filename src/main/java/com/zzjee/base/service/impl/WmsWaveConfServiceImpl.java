@@ -28,7 +28,13 @@ public class WmsWaveConfServiceImpl extends CommonServiceImpl implements WmsWave
  		//执行删除操作增强业务
 		this.doDelBus(entity);
  	}
- 	
+
+	/**
+	 * 保存
+	 * @param entity
+	 * @return
+	 * @throws Exception
+	 */
  	@Override
     public Serializable save(WmsWaveConfEntity entity) throws Exception{
  		Serializable t = super.save(entity);
