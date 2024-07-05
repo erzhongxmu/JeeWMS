@@ -136,9 +136,7 @@ public class FxjOtherLoginController extends BaseController {
 		message = "第三方登录删除成功";
 		try{
 			for(String id:ids.split(",")){
-				FxjOtherLoginEntity fxjOtherLogin = systemService.getEntity(FxjOtherLoginEntity.class,
-				id
-				);
+				FxjOtherLoginEntity fxjOtherLogin = systemService.getEntity(FxjOtherLoginEntity.class,id);
 				fxjOtherLoginService.delete(fxjOtherLogin);
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}
@@ -152,8 +150,8 @@ public class FxjOtherLoginController extends BaseController {
 
 
 	/**
-	 * 添加第三方登录
-	 *
+	 * 添加第三方登录信息
+	 * 用于将第三方登录的详细信息保存到数据库中，并在成功时记录日志
 	 * @param ids
 	 * @return
 	 */
@@ -164,7 +162,9 @@ public class FxjOtherLoginController extends BaseController {
 		AjaxJson j = new AjaxJson();
 		message = "第三方登录添加成功";
 		try{
+			//保存第三方登录信息
 			fxjOtherLoginService.save(fxjOtherLogin);
+			//记录操作日志
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();

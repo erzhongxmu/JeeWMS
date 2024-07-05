@@ -98,9 +98,6 @@ public class WvDayCostSumController extends BaseController {
 	 * @param response
 	 * @param dataGrid
 	 */
-
-
-
 	@RequestMapping(params = "datagridy")
 	public void datagridy(WvDayCostSumEntity wvDayCostSum,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
 		CriteriaQuery cq = new CriteriaQuery(WvDayCostSumEntity.class, dataGrid);

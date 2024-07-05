@@ -54,6 +54,7 @@ public class RpPeriodInOutController extends BaseController {
     /**
      * easyui 处理AJAX请求以返回RpPeriodInOutEntity数据列表的datagrid
      *
+     * @param rpPeriodInOut
      * @param request
      * @param response
      * @param dataGrid
