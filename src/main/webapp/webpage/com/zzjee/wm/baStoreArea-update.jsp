@@ -6,7 +6,7 @@
   <title>ba_store_area</title>
   <t:base type="jquery,easyui,tools,DatePicker"></t:base>
   <script type="text/javascript">
-  //编写自定义JS代码
+  //编写自定义JS代码--
   </script>
  </head>
  <body>
