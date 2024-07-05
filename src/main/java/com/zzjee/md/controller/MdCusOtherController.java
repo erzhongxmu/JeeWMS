@@ -93,7 +93,6 @@ public class MdCusOtherController extends BaseController {
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -165,7 +164,7 @@ public class MdCusOtherController extends BaseController {
 	/**
 	 * 添加第三方客户
 	 *
-	 * @param ids
+	 * @param mdCusOther
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")

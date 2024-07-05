@@ -88,8 +88,6 @@ public class WmsAppFunctionController extends BaseController {
 	@Autowired
 	private Validator validator;
 
-
-
 	/**
 	 * APP功能列表 页面跳转
 	 *
@@ -107,7 +105,6 @@ public class WmsAppFunctionController extends BaseController {
 	 * @param response
 	 * @param dataGrid
 	 */
-
 	@RequestMapping(params = "datagrid")
 	public void datagrid(WmsAppFunctionEntity wmsAppFunction,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
 		CriteriaQuery cq = new CriteriaQuery(WmsAppFunctionEntity.class, dataGrid);
@@ -133,6 +130,8 @@ public class WmsAppFunctionController extends BaseController {
 	public AjaxJson doDel(WmsAppFunctionEntity wmsAppFunction, HttpServletRequest request) {
 		String message = null;
 		AjaxJson j = new AjaxJson();
+		// 通过systemService的getEntity方法获取WmsAppFunctionEntity类的实例，并将其赋值给wmsAppFunction变量
+		// 参数为WmsAppFunctionEntity.class和wmsAppFunction.getId()，分别表示实体类类型和实体的ID
 		wmsAppFunction = systemService.getEntity(WmsAppFunctionEntity.class, wmsAppFunction.getId());
 		message = "APP功能删除成功";
 		try{
@@ -162,9 +161,11 @@ public class WmsAppFunctionController extends BaseController {
 		message = "APP功能删除成功";
 		try{
 			for(String id:ids.split(",")){
+				// 根据id获取WmsAppFunctionEntity实例
 				WmsAppFunctionEntity wmsAppFunction = systemService.getEntity(WmsAppFunctionEntity.class,
 				id
 				);
+				// 调用wmsAppFunctionService的delete方法删除wmsAppFunction实例
 				wmsAppFunctionService.delete(wmsAppFunction);
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}
@@ -189,6 +190,7 @@ public class WmsAppFunctionController extends BaseController {
 		message = "APP功能添加成功";
 		try{
 			wmsAppFunctionService.save(wmsAppFunction);
+			// 添加日志记录，类型为删除，级别为信息
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();

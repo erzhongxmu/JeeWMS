@@ -94,6 +94,7 @@ public class wmBaseController extends BaseController {
             response.setContentType("application/x-msdownload;charset=utf-8"); // 设置响应类型为下载文件
             String fileName = dbpath.substring(dbpath.lastIndexOf(File.separator) + 1);
             String userAgent = request.getHeader("user-agent").toLowerCase();
+            // 根据浏览器类型对文件名进行编码
             if (userAgent.contains("msie") || userAgent.contains("like gecko")) {
                 fileName = URLEncoder.encode(fileName, "UTF-8");
             } else {
@@ -103,14 +104,19 @@ public class wmBaseController extends BaseController {
         } else {
             response.setContentType("image/jpeg;charset=utf-8");
         }
+        // 定义输入输出流
         InputStream inputStream = null;
         OutputStream outputStream = null;
         try {
             String imgurl = localPath + File.separator + dbpath;
+            // 创建输入流读取二维码图片文件
             inputStream = new BufferedInputStream(new FileInputStream(imgurl));
+            // 获取响应的输出流
             outputStream = response.getOutputStream();
+            // 定义缓冲区
             byte[] buf = new byte[1024];
             int len;
+            // 将图片文件写入响应输出流
             while ((len = inputStream.read(buf)) > 0) {
                 outputStream.write(buf, 0, len);
             }

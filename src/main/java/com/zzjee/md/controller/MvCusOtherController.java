@@ -50,12 +50,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.zzjee.md.entity.MvCusOtherEntity;
 import com.zzjee.md.service.MvCusOtherServiceI;
 
-/**   
- * @Title: Controller  
+/**
+ * @Title: Controller
  * @Description: mv_cus_other
  * @author erzhongxmu
  * @date 2018-09-16 09:22:47
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Controller
@@ -72,12 +72,12 @@ public class MvCusOtherController extends BaseController {
 	private SystemService systemService;
 	@Autowired
 	private Validator validator;
-	
+
 
 
 	/**
 	 * mv_cus_other列表 页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "list")
@@ -87,11 +87,10 @@ public class MvCusOtherController extends BaseController {
 
 	/**
 	 * easyui AJAX请求数据
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -108,10 +107,10 @@ public class MvCusOtherController extends BaseController {
 		this.mvCusOtherService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
 	}
-	
+
 	/**
 	 * 删除mv_cus_other
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -132,10 +131,10 @@ public class MvCusOtherController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 批量删除mv_cus_other
-	 * 
+	 *
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")
@@ -146,7 +145,7 @@ public class MvCusOtherController extends BaseController {
 		message = "mv_cus_other删除成功";
 		try{
 			for(String id:ids.split(",")){
-				MvCusOtherEntity mvCusOther = systemService.getEntity(MvCusOtherEntity.class, 
+				MvCusOtherEntity mvCusOther = systemService.getEntity(MvCusOtherEntity.class,
 				id
 				);
 				mvCusOtherService.delete(mvCusOther);
@@ -164,8 +163,8 @@ public class MvCusOtherController extends BaseController {
 
 	/**
 	 * 添加mv_cus_other
-	 * 
-	 * @param ids
+	 *
+	 * @param mvCusOther
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -185,11 +184,11 @@ public class MvCusOtherController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 更新mv_cus_other
-	 * 
-	 * @param ids
+	 *
+	 * @param mvCusOther
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -211,11 +210,11 @@ public class MvCusOtherController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
+
 
 	/**
 	 * mv_cus_other新增页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -228,7 +227,7 @@ public class MvCusOtherController extends BaseController {
 	}
 	/**
 	 * mv_cus_other编辑页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -239,10 +238,10 @@ public class MvCusOtherController extends BaseController {
 		}
 		return new ModelAndView("com/zzjee/md/mvCusOther-update");
 	}
-	
+
 	/**
 	 * 导入功能跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "upload")
@@ -250,10 +249,10 @@ public class MvCusOtherController extends BaseController {
 		req.setAttribute("controller_name","mvCusOtherController");
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
-	
+
 	/**
 	 * 导出excel
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -272,7 +271,7 @@ public class MvCusOtherController extends BaseController {
 	}
 	/**
 	 * 导出excel 使模板
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -286,13 +285,13 @@ public class MvCusOtherController extends BaseController {
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-		
+
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
@@ -320,14 +319,14 @@ public class MvCusOtherController extends BaseController {
 		}
 		return j;
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<MvCusOtherEntity> list() {
 		List<MvCusOtherEntity> listMvCusOthers=mvCusOtherService.getList(MvCusOtherEntity.class);
 		return listMvCusOthers;
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {

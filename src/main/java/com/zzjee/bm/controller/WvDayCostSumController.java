@@ -97,11 +97,7 @@ public class WvDayCostSumController extends BaseController {
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
-
-
-
 	@RequestMapping(params = "datagridy")
 	public void datagridy(WvDayCostSumEntity wvDayCostSum,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
 		CriteriaQuery cq = new CriteriaQuery(WvDayCostSumEntity.class, dataGrid);
@@ -257,7 +253,7 @@ public class WvDayCostSumController extends BaseController {
 	/**
 	 * 添加
 	 *
-	 * @param ids
+	 * @param wvDayCostSum
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -280,7 +276,7 @@ public class WvDayCostSumController extends BaseController {
 	/**
 	 * 更新wv_day_cost_sum
 	 *
-	 * @param ids
+	 * @param wvDayCostSum
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
