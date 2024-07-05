@@ -93,8 +93,12 @@ public class TokenController {
 		return new ResponseEntity(D0, HttpStatus.OK);
 	}
 
-
-
+	/**
+	 * 登录接口
+	 * @param tsBaseUser 系统用户
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<?> login(@RequestBody TSBaseUser tsBaseUser, HttpServletRequest request) {

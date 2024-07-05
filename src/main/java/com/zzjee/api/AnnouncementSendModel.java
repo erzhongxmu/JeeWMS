@@ -5,6 +5,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
+/**
+ * 消息主体
+ */
 public class AnnouncementSendModel {
     /**发布时间*/
 

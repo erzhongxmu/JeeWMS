@@ -140,6 +140,11 @@ public class ResultApi<T> implements Serializable {
 		return r;
 	}
 
+	/**
+	 * 不带参返回成功
+	 * @return
+	 * @param <T>
+	 */
 	public static<T> ResultApi<T> OK() {
 		ResultApi<T> r = new ResultApi<T>();
 		r.setSuccess(true);
