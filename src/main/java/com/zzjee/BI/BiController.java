@@ -20,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * 大屏
+ */
 @Controller
 @RequestMapping("/BiController")
 public class BiController extends BaseController {

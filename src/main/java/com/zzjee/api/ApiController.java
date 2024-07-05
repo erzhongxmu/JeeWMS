@@ -399,6 +399,12 @@ public class ApiController {
         return new ResponseEntity(D0, HttpStatus.OK);
     }
 
+    /**
+     * 获取用户消息
+     * @param username
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/annountCement/listByUser/{username}", method = RequestMethod.GET)
     @ResponseBody
     public ResponseMessage<?> messagelist(@PathVariable("username") String username,

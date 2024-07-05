@@ -17,7 +17,11 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class WmsWaveConfServiceImpl extends CommonServiceImpl implements WmsWaveConfServiceI {
 
-	
+	/**
+	 * 删除
+	 * @param entity
+	 * @throws Exception
+	 */
  	@Override
     public void delete(WmsWaveConfEntity entity) throws Exception{
  		super.delete(entity);

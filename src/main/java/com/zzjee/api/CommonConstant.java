@@ -470,5 +470,8 @@ public interface CommonConstant {
     String ACT_LC_KEY_TZSP = "tzsp";
     String UNNORMAL_NAME = "帐实不符";
     String TABLE_NAME_BUSI_STOCK = "busi_stock";
+    /**
+     * 库存唯一码
+     */
     String STOCK_UNIQUE_NO = "unique_no";
 }
