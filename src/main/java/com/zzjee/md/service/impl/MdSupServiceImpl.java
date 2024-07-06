@@ -76,7 +76,11 @@ public class MdSupServiceImpl extends CommonServiceImpl implements MdSupServiceI
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
-
+	/**
+	 * 将MdSupEntity对象的属性转换为一个Map
+	 * @param t
+	 * @return
+	 */
  	private Map<String,Object> populationMap(MdSupEntity t){
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("id", t.getId());

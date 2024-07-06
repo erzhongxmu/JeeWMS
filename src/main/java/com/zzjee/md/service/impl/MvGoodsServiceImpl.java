@@ -76,7 +76,11 @@ public class MvGoodsServiceImpl extends CommonServiceImpl implements MvGoodsServ
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
-
+	/**
+	 * 将MvGoodsEntity对象的属性转换为一个Map
+	 * @param t
+	 * @return
+	 */
  	private Map<String,Object> populationMap(MvGoodsEntity t){
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("cus_code", t.getCusCode());

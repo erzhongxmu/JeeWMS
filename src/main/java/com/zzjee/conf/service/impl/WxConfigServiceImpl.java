@@ -76,7 +76,11 @@ public class WxConfigServiceImpl extends CommonServiceImpl implements WxConfigSe
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
-
+	/**
+	 * 将WxConfigEntity对象的属性转换为一个Map
+	 * @param t
+	 * @return
+	 */
  	private Map<String,Object> populationMap(WxConfigEntity t){
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("id", t.getId());

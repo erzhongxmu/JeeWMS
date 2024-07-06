@@ -76,7 +76,11 @@ public class MvCusOtherServiceImpl extends CommonServiceImpl implements MvCusOth
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
-
+	/**
+	 * 将MvCusOtherEntity对象的属性转换为一个Map
+	 * @param t
+	 * @return
+	 */
  	private Map<String,Object> populationMap(MvCusOtherEntity t){
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("id", t.getId());
