@@ -53,8 +53,10 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	/**
 	 * 所属公司
 	 * /
-	private String sysCompanyCode;
-	/**流程状态*/
+	 private String sysCompanyCode;
+	 /**
+	 * 流程状态
+	 */
 	private String bpmStatus;
 	/**车牌号*/
     @Excel(name="车号",width=15)

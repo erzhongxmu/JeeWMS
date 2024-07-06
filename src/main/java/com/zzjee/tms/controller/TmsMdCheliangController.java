@@ -126,7 +126,6 @@ public class TmsMdCheliangController extends BaseController {
 
     /**
      * 删除车辆管理
-     *
      * @return
      */
     @RequestMapping(params = "doDel")
@@ -150,7 +149,6 @@ public class TmsMdCheliangController extends BaseController {
 
     /**
      * 批量删除车辆管理
-     *
      * @return
      */
     @RequestMapping(params = "doBatchDel")
@@ -179,7 +177,6 @@ public class TmsMdCheliangController extends BaseController {
 
     /**
      * 添加车辆管理
-     *
      * @param ids
      * @return
      */

@@ -37,9 +37,10 @@ public static List<wmientity>   getWmdoc(String DOCTYPE,String DOCID,String tabl
 }
 
 
-//获取储位库存
+    //获取储位库存信息
     public static List<wmientity>   getcwkc(String LGNUM,String MATNR,String LGPLA,String par[]){
-//        Map<String, Object> result = new HashMap<String, Object>();
+        // Map<String, Object> result = new HashMap<String, Object>();
+        // 创建一个wmientity类型的列表来存储结果
         List<wmientity> reslit = new ArrayList<wmientity>();
         try {
         	 Map<String, Object> result = sapWmUtil.getcwkc(LGNUM,MATNR,LGPLA);

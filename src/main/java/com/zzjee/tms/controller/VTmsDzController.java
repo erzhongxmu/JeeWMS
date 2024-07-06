@@ -254,8 +254,8 @@ public class VTmsDzController extends BaseController {
 	/**
 	 * 导出excel文件
 	 *	@param vTmsDz 实体对象
-	 * @param request
-	 * @param response
+	 * @param request HTTP请求
+	 * @param response HTTP响应
 	 */
 	@RequestMapping(params = "exportXls")
 	public String exportXls(VTmsDzEntity vTmsDz, HttpServletRequest request, HttpServletResponse response

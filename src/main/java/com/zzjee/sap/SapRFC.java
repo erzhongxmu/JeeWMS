@@ -114,7 +114,7 @@ public class SapRFC {
 		return this;
 	}
 
-	// 执行方法
+	// 执行方法，准备调用SAP函数
 	public SapRFC prepare(String functionName) {
 		//this.functionName = functionName;
 		//Unread field: com.zzjee.sap.SapRFC.functionName
