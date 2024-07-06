@@ -13,7 +13,7 @@ import org.jeecgframework.poi.excel.annotation.Excel;
 
 /**
  * @Title: Entity
- * @Description: 第三方客户
+ * @Description: 第三方客户实体类
  * @author erzhongxmu
  * @date 2018-09-01 21:06:14
  * @version V1.0

@@ -9,12 +9,12 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.jeecgframework.poi.excel.annotation.Excel;
 
-/**   
+/**
  * @Title: Entity
- * @Description: mv_cus_other
+ * @Description: mv_cus_other实体类
  * @author erzhongxmu
  * @date 2018-09-16 09:22:47
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Entity
@@ -32,7 +32,7 @@ public class MvCusOtherEntity implements java.io.Serializable {
 	/**cusName*/
 	@Excel(name="cusName")
 	private String cusName;
-	
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  主键
