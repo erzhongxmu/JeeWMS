@@ -60,7 +60,7 @@ import java.util.Set;
 @RequestMapping("/baGoodsCategoryController")
 public class BaGoodsCategoryController extends BaseController {
 	/**
-	 * Logger for this class
+	 * Logger  for this class
 	 */
 	private static final Logger logger = Logger.getLogger(BaGoodsCategoryController.class);
 

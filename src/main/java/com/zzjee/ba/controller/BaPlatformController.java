@@ -77,7 +77,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RequestMapping("/baPlatformController")
 public class BaPlatformController extends BaseController {
 	/**
-	 * Logger for this class
+	 * Logger  for this class
 	 */
 	private static final Logger logger = Logger.getLogger(BaPlatformController.class);
 
