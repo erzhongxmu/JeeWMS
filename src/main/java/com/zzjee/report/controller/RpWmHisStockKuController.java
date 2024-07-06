@@ -80,6 +80,7 @@ public class RpWmHisStockKuController extends BaseController {
 	 * 
 	 * @return
 	 */
+	//list方法的作用是跳转到名为"com/zzjee/report/rpWmHisStockKuList"的页面
 	@RequestMapping(params = "list")
 	public ModelAndView list(HttpServletRequest request) {
 		return new ModelAndView("com/zzjee/report/rpWmHisStockKuList");
@@ -176,6 +177,7 @@ public class RpWmHisStockKuController extends BaseController {
 		message = "rp_wm_his_stock_ku添加成功";
 		try{
 			rpWmHisStockKuService.save(rpWmHisStockKu);
+			//记录日记
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
