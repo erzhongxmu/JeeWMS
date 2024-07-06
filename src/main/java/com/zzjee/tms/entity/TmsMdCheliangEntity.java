@@ -50,7 +50,9 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	 * 所属部门
 	 */
 	private String sysOrgCode;
-	/**所属公司*/
+	/**
+	 * 所属公司
+	 * /
 	private String sysCompanyCode;
 	/**流程状态*/
 	private String bpmStatus;

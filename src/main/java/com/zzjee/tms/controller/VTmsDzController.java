@@ -252,8 +252,8 @@ public class VTmsDzController extends BaseController {
 	}
 
 	/**
-	 * 导出excel
-	 *
+	 * 导出excel文件
+	 *	@param vTmsDz 实体对象
 	 * @param request
 	 * @param response
 	 */
