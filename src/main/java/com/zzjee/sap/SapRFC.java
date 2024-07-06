@@ -169,15 +169,15 @@ public class SapRFC {
 	// Creates a connection configuration file based on parameters given above
 	static void createDataFile(String name, String suffix, Properties properties) {
 		File cfg = new File(name + "." + suffix);
-		 if (!cfg.exists()) {
-		try {
-			FileOutputStream fos = new FileOutputStream(cfg, false);
-			properties.store(fos, "Destination - ABAP_AS_WITHOUT_POOL");
-			fos.close();
-		} catch (Exception e) {
-			System.out.print("creat********"+e.getMessage());
+		if (!cfg.exists()) {
+			try {
+				FileOutputStream fos = new FileOutputStream(cfg, false);
+				properties.store(fos, "Destination - ABAP_AS_WITHOUT_POOL");
+				fos.close();
+			} catch (Exception e) {
+				System.out.print("creat********"+e.getMessage());
+			}
 		}
-		 }
 	}
 
 	// 将null字符串转换为空字符串

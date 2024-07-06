@@ -47,6 +47,7 @@ public static List<wmientity>   getWmdoc(String DOCTYPE,String DOCID,String tabl
         	Map<String, Object> result = sapWmUtil.getcwkc(LGNUM,MATNR,LGPLA);
             // 将返回的结果转换为JCoTable类型
             JCoTable restable =  (JCoTable)result.get("IT_OUT");
+            // 打印日志信息
             org.jeecgframework.core.util.LogUtil.info("===================获取库存开始===================");
             reslit = getlistbyparandrable(restable,par);
             org.jeecgframework.core.util.LogUtil.info("===================获取库存结束===================");

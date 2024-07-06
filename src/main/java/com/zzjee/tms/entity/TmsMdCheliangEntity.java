@@ -68,7 +68,9 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	 */
     @Excel(name="车型",width=15)
 	private String chexing;
-	/**最大体积*/
+	/**
+	 * 最大体积
+	 */
     @Excel(name="最大体积",width=15)
 	private String zuidatiji;
 	/**载重*/

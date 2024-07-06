@@ -39,6 +39,7 @@ public class sapWmUtil {
     /**
      * 获取物流凭证信息
      * @param mblnr 物流凭证编号
+     * @return 包含物流凭证信息的Map，其中键为"IT_OUT"，值为包含物流凭证信息的JCoTable对象
      */
     public  static Map<String,Object> getWmmseg(String mblnr) {
         Map<String, Object> result = new HashMap<String, Object>();
