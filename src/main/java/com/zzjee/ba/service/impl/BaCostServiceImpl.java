@@ -17,7 +17,11 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class BaCostServiceImpl extends CommonServiceImpl implements BaCostServiceI {
 
-	
+	/**
+	 * 删除
+	 * @param entity
+	 * @throws Exception
+	 */
  	@Override
     public void delete(BaCostEntity entity) throws Exception{
  		super.delete(entity);

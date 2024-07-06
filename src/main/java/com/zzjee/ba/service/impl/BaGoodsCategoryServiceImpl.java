@@ -17,7 +17,11 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class BaGoodsCategoryServiceImpl extends CommonServiceImpl implements BaGoodsCategoryServiceI {
 
-	
+	/**
+	 * 删除
+	 * @param entity
+	 * @throws Exception
+	 */
  	public void delete(BaGoodsCategoryEntity entity) throws Exception{
  		super.delete(entity);
  		//执行删除操作增强业务

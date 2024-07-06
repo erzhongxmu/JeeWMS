@@ -17,7 +17,11 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class BaPlatformServiceImpl extends CommonServiceImpl implements BaPlatformServiceI {
 
-	
+	/**
+	 * 删除
+	 * @param entity
+	 * @throws Exception
+	 */
  	@Override
     public void delete(BaPlatformEntity entity) throws Exception{
  		super.delete(entity);
