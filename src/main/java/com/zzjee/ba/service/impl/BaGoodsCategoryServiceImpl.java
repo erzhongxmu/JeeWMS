@@ -27,7 +27,13 @@ public class BaGoodsCategoryServiceImpl extends CommonServiceImpl implements BaG
  		//执行删除操作增强业务
 		this.doDelBus(entity);
  	}
- 	
+
+	/**
+	 * 保存
+	 * @param entity
+	 * @return
+	 * @throws Exception
+	 */
  	public Serializable save(BaGoodsCategoryEntity entity) throws Exception{
  		Serializable t = super.save(entity);
  		//执行新增操作增强业务

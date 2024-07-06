@@ -28,7 +28,13 @@ public class BaPlatformServiceImpl extends CommonServiceImpl implements BaPlatfo
  		//执行删除操作增强业务
 		this.doDelBus(entity);
  	}
- 	
+
+	/**
+	 * 保存
+	 * @param entity
+	 * @return
+	 * @throws Exception
+	 */
  	@Override
     public Serializable save(BaPlatformEntity entity) throws Exception{
  		Serializable t = super.save(entity);
