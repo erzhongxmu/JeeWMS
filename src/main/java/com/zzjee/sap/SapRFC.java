@@ -29,7 +29,7 @@ public class SapRFC {
 
 	// SAP系统别名
 	private static String ABAP_AS = "ABAP_AS_WITHOUT_POOL";
-
+	// SAP目的地对象
 	private JCoDestination destination;
 
 	// 构造函数，用于初始化连接
@@ -46,6 +46,7 @@ public class SapRFC {
 
 	// 连接 SAP
 	public void connect() {
+		// SAP连接参数
 		String clientName  ;
 		String userid  ;
 		String password  ;
@@ -62,6 +63,7 @@ public class SapRFC {
 			 system = ResourceUtil.getConfigByName("rfc.system");
 			// router = ResourceUtil.getConfigByName("rfc.router");
 		}catch (Exception e){
+			// 如果配置文件读取失败，使用默认参数
 			clientName = "300";
 			userid = "**";
 			password = "123123";
@@ -87,7 +89,7 @@ public class SapRFC {
 //		connectProperties.setProperty(DestinationDataProvider.JCO_SAPROUTER, router);
 
 		try {
-			// 创建DestinationDataProvider，
+			// 创建DestinationDataProvider，创建连接配置文件并获取SAP目的地
 			createDataFile(ABAP_AS, "jcoDestination", connectProperties);
 			destination = JCoDestinationManager.getDestination(ABAP_AS);
 
@@ -98,6 +100,7 @@ public class SapRFC {
 	}
 
 	/*
+	 * 添加参数到输入参数列表
 	 * 设置参数 name - the name of the field to set value - the value to set for the
 	 * field
 	 */
@@ -105,13 +108,13 @@ public class SapRFC {
 		inPara.setValue(name, value);
 		return this;
 	}
-
+	// 添加参数到输入参数列表（使用整数索引）
 	public SapRFC addParameter(int name, String value) {
 		inPara.setValue(name, value);
 		return this;
 	}
 
-	// 执行方法
+	// 执行方法，准备调用SAP函数
 	public SapRFC prepare(String functionName) {
 		//this.functionName = functionName;
 		//Unread field: com.zzjee.sap.SapRFC.functionName
@@ -162,21 +165,22 @@ public class SapRFC {
 		// if (client != null)
 		// client.disconnect();
 	}
-
+	// 创建连接
 	// Creates a connection configuration file based on parameters given above
 	static void createDataFile(String name, String suffix, Properties properties) {
 		File cfg = new File(name + "." + suffix);
-		 if (!cfg.exists()) {
-		try {
-			FileOutputStream fos = new FileOutputStream(cfg, false);
-			properties.store(fos, "Destination - ABAP_AS_WITHOUT_POOL");
-			fos.close();
-		} catch (Exception e) {
-			System.out.print("creat********"+e.getMessage());
+		if (!cfg.exists()) {
+			try {
+				FileOutputStream fos = new FileOutputStream(cfg, false);
+				properties.store(fos, "Destination - ABAP_AS_WITHOUT_POOL");
+				fos.close();
+			} catch (Exception e) {
+				System.out.print("creat********"+e.getMessage());
+			}
 		}
-		 }
 	}
 
+	// 将null字符串转换为空字符串
 	public String convertNull(String str) {
 		if (str == null) {
             return "";

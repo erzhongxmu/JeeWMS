@@ -9,12 +9,12 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.jeecgframework.poi.excel.annotation.Excel;
 
-/**   
+/**
  * @Title: Entity
- * @Description: 客户
+ * @Description: 客户实体类
  * @author erzhongxmu
  * @date 2017-08-15 23:17:09
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Entity
@@ -139,7 +139,7 @@ public class MdCusEntity implements java.io.Serializable {
 	/**备注*/
 	@Excel(name="备注")
 	private java.lang.String beiZhu;
-	
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  主键
@@ -655,9 +655,9 @@ public class MdCusEntity implements java.io.Serializable {
 	public void setDianHua(java.lang.String dianHua){
 		this.dianHua = dianHua;
 	}
-	
-	
-	
+
+
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  联系人1
@@ -690,11 +690,11 @@ public class MdCusEntity implements java.io.Serializable {
 	public void setDianHua1(java.lang.String dianHua1){
 		this.dianHua1 = dianHua1;
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  手机

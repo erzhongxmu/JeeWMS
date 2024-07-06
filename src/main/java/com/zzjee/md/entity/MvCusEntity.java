@@ -9,12 +9,12 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.jeecgframework.poi.excel.annotation.Excel;
 
-/**   
+/**
  * @Title: Entity
- * @Description: 客户
+ * @Description: 客户实体类
  * @author erzhongxmu
  * @date 2017-09-24 21:40:56
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Entity
@@ -29,7 +29,7 @@ public class MvCusEntity implements java.io.Serializable {
 	/**客户名称*/
 	@Excel(name="客户名称")
 	private java.lang.String cusName;
-	
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  主键

@@ -26,29 +26,51 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	 * 创建人名称
 	 */
 	private String createName;
-	/**创建人登录名称*/
+	/**
+	 * 创建人登录名称
+	 */
 	private String createBy;
-	/**创建日期*/
+	/**
+	 * 创建日期
+	 */
 	private Date createDate;
-	/**更新人名称*/
+	/**
+	 * 更新人名称
+	 */
 	private String updateName;
-	/**更新人登录名称*/
+	/**
+	 * 更新人登录名称
+	 */
 	private String updateBy;
-	/**更新日期*/
+	/**
+	 * 更新日期
+	 */
 	private Date updateDate;
-	/**所属部门*/
+	/**
+	 * 所属部门
+	 */
 	private String sysOrgCode;
-	/**所属公司*/
-	private String sysCompanyCode;
-	/**流程状态*/
+	/**
+	 * 所属公司
+	 * /
+	 private String sysCompanyCode;
+	 /**
+	 * 流程状态
+	 */
 	private String bpmStatus;
-	/**车牌号*/
-    @Excel(name="车号",width=15)
+	/**
+	 * 车牌号
+	 */
+    @Excel(name = "车号",width = 15)
 	private String chepaihao;
-	/**车型*/
+	/**
+	 * 车型
+	 */
     @Excel(name="车型",width=15)
 	private String chexing;
-	/**最大体积*/
+	/**
+	 * 最大体积
+	 */
     @Excel(name="最大体积",width=15)
 	private String zuidatiji;
 	/**载重*/

@@ -16,21 +16,31 @@ public class sapWmUtil {
         try {
             // 创建SAP RFC连接实例
             SapRFC saprfc = SapRFC.getInstance();
+            // 准备调用SAP函数Z_WM_GET_LAGP
             saprfc.prepare("Z_WM_GET_LAGP");
+            // 添加参数LGNUM
             saprfc.addParameter("LGNUM", lgnum);
+            // 执行RFC调用
             saprfc.execCall();
 //            saprfc.getParamTableList()
+            // 获取输出表IT_OUT
             JCoTable tab = saprfc.getParamTableList("IT_OUT");
+            // 打印输出表的行数
             System.out.print("rows:" + tab.getNumRows());
+            // 将输出表添加到结果Map中
             result.put("IT_OUT", tab);
         } catch (Exception e) {
+            // 打印异常信息
             System.out.print(e.getMessage());
         }
         return result;
     }
 
-
-    //获取物流凭证
+    /**
+     * 获取物流凭证信息
+     * @param mblnr 物流凭证编号
+     * @return 包含物流凭证信息的Map，其中键为"IT_OUT"，值为包含物流凭证信息的JCoTable对象
+     */
     public  static Map<String,Object> getWmmseg(String mblnr) {
         Map<String, Object> result = new HashMap<String, Object>();
         try {

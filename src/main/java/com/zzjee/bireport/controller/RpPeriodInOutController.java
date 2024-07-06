@@ -63,12 +63,15 @@ public class RpPeriodInOutController extends BaseController {
     @RequestMapping(params = "datagrid")
     public void datagrid(RpPeriodInOutEntity rpPeriodInOut, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
         rpPeriodInOut.setCreateDate(null);
+        //创建CriteriaQuery对象，用于构建数据库查询
         CriteriaQuery cq = new CriteriaQuery(RpPeriodInOutEntity.class, dataGrid);
         //查询条件组装器
         try {
             //自定义追加查询条件
+            //从请求中获取日期范围参数
             String query_datePeriod_begin = request.getParameter("createDate1_begin");
             String query_datePeriod_end = request.getParameter("createDate1_end");
+            //打印日期范围参数
             System.out.println("query_datePeriod_begin:"+query_datePeriod_begin+" query_datePeriod_end:"+query_datePeriod_end);
             try {
                 if (!StringUtil.isNotEmpty(query_datePeriod_begin)) {

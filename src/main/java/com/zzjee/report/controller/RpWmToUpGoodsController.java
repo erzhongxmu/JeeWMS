@@ -119,10 +119,12 @@ public class RpWmToUpGoodsController extends BaseController {
 	public AjaxJson doDel(RpWmToUpGoodsEntity rpWmToUpGoods, HttpServletRequest request) {
 		String message = null;
 		AjaxJson j = new AjaxJson();
+		//用于传递要删除的实体对象
 		rpWmToUpGoods = systemService.getEntity(RpWmToUpGoodsEntity.class, rpWmToUpGoods.getId());
 		message = "rp_wm_to_up_goods删除成功";
 		try{
 			rpWmToUpGoodsService.delete(rpWmToUpGoods);
+			//记录日志
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
@@ -134,8 +136,9 @@ public class RpWmToUpGoodsController extends BaseController {
 	}
 	
 	/**
-	 * 批量删除rp_wm_to_up_goods
-	 * 
+	 * 处理带有参数 "doBatchDel" 的请求，
+	 * 批量删除指定的实体对象，并记录日志。
+	 * 将操作结果封装为 AjaxJson 对象，并返回给前端。
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")

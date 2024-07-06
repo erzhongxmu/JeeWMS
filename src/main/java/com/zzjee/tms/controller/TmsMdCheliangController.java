@@ -126,7 +126,6 @@ public class TmsMdCheliangController extends BaseController {
 
     /**
      * 删除车辆管理
-     *
      * @return
      */
     @RequestMapping(params = "doDel")
@@ -150,7 +149,6 @@ public class TmsMdCheliangController extends BaseController {
 
     /**
      * 批量删除车辆管理
-     *
      * @return
      */
     @RequestMapping(params = "doBatchDel")
@@ -179,7 +177,6 @@ public class TmsMdCheliangController extends BaseController {
 
     /**
      * 添加车辆管理
-     *
      * @param ids
      * @return
      */
@@ -203,7 +200,6 @@ public class TmsMdCheliangController extends BaseController {
 
     /**
      * 更新车辆管理
-     *
      * @param ids
      * @return
      */
@@ -229,7 +225,6 @@ public class TmsMdCheliangController extends BaseController {
 
     /**
      * 车辆管理新增页面跳转
-     *
      * @return
      */
     @RequestMapping(params = "goAdd")
@@ -243,7 +238,6 @@ public class TmsMdCheliangController extends BaseController {
 
     /**
      * 车辆管理编辑页面跳转
-     *
      * @return
      */
     @RequestMapping(params = "goUpdate")
@@ -257,7 +251,6 @@ public class TmsMdCheliangController extends BaseController {
 
     /**
      * 导入功能跳转
-     *
      * @return
      */
     @RequestMapping(params = "upload")
@@ -267,8 +260,7 @@ public class TmsMdCheliangController extends BaseController {
     }
 
     /**
-     * 导出excel
-     *
+     * 导出excel列表
      * @param request
      * @param response
      */
@@ -287,8 +279,7 @@ public class TmsMdCheliangController extends BaseController {
     }
 
     /**
-     * 导出excel 使模板
-     *
+     * 导出excel模板
      * @param request
      * @param response
      */
@@ -312,7 +303,7 @@ public class TmsMdCheliangController extends BaseController {
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
         for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
-            MultipartFile file = entity.getValue();// 获取上传文件对象
+            MultipartFile file = entity.getValue();// 获取上传的文件对象
             ImportParams params = new ImportParams();
             params.setTitleRows(2);
             params.setHeadRows(1);

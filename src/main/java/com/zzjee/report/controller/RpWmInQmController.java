@@ -65,11 +65,13 @@ public class RpWmInQmController extends BaseController {
 	 * Logger for this class
 	 */
 	private static final Logger logger = Logger.getLogger(RpWmInQmController.class);
-
+    //类型为 RpWmInQmServiceI 的服务组件
 	@Autowired
 	private RpWmInQmServiceI rpWmInQmService;
+	//类型为 SystemService 的服务组件
 	@Autowired
 	private SystemService systemService;
+	//类型为 Validator 的验证器组件
 	@Autowired
 	private Validator validator;
 	
@@ -80,6 +82,7 @@ public class RpWmInQmController extends BaseController {
 	 * 
 	 * @return
 	 */
+	//映射请求参数为 "list" 的请求
 	@RequestMapping(params = "list")
 	public ModelAndView list(HttpServletRequest request) {
 		return new ModelAndView("com/zzjee/report/rpWmInQmList");

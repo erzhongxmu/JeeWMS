@@ -61,6 +61,7 @@ import java.util.Set;
 @RequestMapping("/vTmsDzController")
 public class VTmsDzController extends BaseController {
 	/**
+	 * 日志记录器
 	 * Logger for this class
 	 */
 	private static final Logger logger = Logger.getLogger(VTmsDzController.class);
@@ -79,8 +80,8 @@ public class VTmsDzController extends BaseController {
 
 	/**
 	 * v_tms_dz列表 页面跳转
-	 *
-	 * @return
+	 * @param request HTTP请求
+	 * @return 返回ModelAndView对象
 	 */
 	@RequestMapping(params = "list")
 	public ModelAndView list(HttpServletRequest request) {
@@ -113,8 +114,9 @@ public class VTmsDzController extends BaseController {
 
 	/**
 	 * 删除v_tms_dz
-	 *
-	 * @return
+	 * @param vTmsDz 实体对象
+	 * @param request HTTP请求
+	 * @return 返回ModelAndView对象
 	 */
 	@RequestMapping(params = "doDel")
 	@ResponseBody
@@ -250,10 +252,13 @@ public class VTmsDzController extends BaseController {
 	}
 
 	/**
-	 * 导出excel
-	 *
-	 * @param request
-	 * @param response
+	 * 导出excel文件
+	 * @param vTmsDz 实体对象
+	 * @param request HTTP请求
+	 * @param response HTTP响应
+	 * @param dataGrid 数据网格
+	 * @param modelMap 模型映射
+	 * @return 返回视图名称
 	 */
 	@RequestMapping(params = "exportXls")
 	public String exportXls(VTmsDzEntity vTmsDz, HttpServletRequest request, HttpServletResponse response
