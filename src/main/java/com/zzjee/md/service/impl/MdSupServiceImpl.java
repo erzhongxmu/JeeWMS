@@ -209,6 +209,7 @@ public class MdSupServiceImpl extends CommonServiceImpl implements MdSupServiceI
 				}
 				if(obj instanceof CgformEnhanceJavaInter){
 					CgformEnhanceJavaInter javaInter = (CgformEnhanceJavaInter) obj;
+					//调用execute方法，执行Java增强逻辑
 					javaInter.execute("md_sup",data);
 				}
 			} catch (Exception e) {

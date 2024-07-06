@@ -117,6 +117,7 @@ public class MvCusOtherServiceImpl extends CommonServiceImpl implements MvCusOth
 				}
 				if(obj instanceof CgformEnhanceJavaInter){
 					CgformEnhanceJavaInter javaInter = (CgformEnhanceJavaInter) obj;
+					//调用execute方法，执行Java增强逻辑
 					javaInter.execute("mv_cus_other",data);
 				}
 			} catch (Exception e) {

@@ -135,6 +135,7 @@ public class MvGoodsServiceImpl extends CommonServiceImpl implements MvGoodsServ
 				}
 				if(obj instanceof CgformEnhanceJavaInter){
 					CgformEnhanceJavaInter javaInter = (CgformEnhanceJavaInter) obj;
+					//调用execute方法，执行Java增强逻辑
 					javaInter.execute("mv_goods",data);
 				}
 			} catch (Exception e) {

@@ -198,6 +198,7 @@ public class MdGoodsServiceImpl extends CommonServiceImpl implements MdGoodsServ
 				}
 				if(obj instanceof CgformEnhanceJavaInter){
 					CgformEnhanceJavaInter javaInter = (CgformEnhanceJavaInter) obj;
+					//调用execute方法，执行Java增强逻辑
 					javaInter.execute("md_goods",data);
 				}
 			} catch (Exception e) {
