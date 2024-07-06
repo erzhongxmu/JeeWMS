@@ -74,17 +74,25 @@ import org.springframework.web.util.UriComponentsBuilder;
  *
  */
 @Controller
+//用于映射控制器的方法到特定的 URL
 @RequestMapping("/rfidBuseController")
 public class RfidBuseController extends BaseController {
 	/**
 	 * Logger for this class
 	 */
+	//记录日志信息
 	private static final Logger logger = Logger.getLogger(RfidBuseController.class);
-
+    //记录日志信息
 	@Autowired
 	private RfidBuseServiceI rfidBuseService;
+	/**使用 @Autowired 进行自动装配，
+	 * 注入一个 SystemService 服务对象
+	 */
 	@Autowired
 	private SystemService systemService;
+	/**使用 @Autowired 注解的实例，
+	 * 用于自动注入一个 Validator 对象
+	 */
 	@Autowired
 	private Validator validator;
 
