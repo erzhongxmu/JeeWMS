@@ -22,14 +22,14 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class MdBinServiceImpl extends CommonServiceImpl implements MdBinServiceI {
 
-	
+
  	@Override
     public void delete(MdBinEntity entity) throws Exception{
  		super.delete(entity);
  		//执行删除操作增强业务
 		this.doDelBus(entity);
  	}
- 	
+
  	@Override
     public Serializable save(MdBinEntity entity) throws Exception{
  		Serializable t = super.save(entity);
@@ -37,14 +37,14 @@ public class MdBinServiceImpl extends CommonServiceImpl implements MdBinServiceI
  		this.doAddBus(entity);
  		return t;
  	}
- 	
+
  	@Override
     public void saveOrUpdate(MdBinEntity entity) throws Exception{
  		super.saveOrUpdate(entity);
  		//执行更新操作增强业务
  		this.doUpdateBus(entity);
  	}
- 	
+
  	/**
 	 * 新增操作增强业务
 	 * @param t
@@ -53,7 +53,7 @@ public class MdBinServiceImpl extends CommonServiceImpl implements MdBinServiceI
 	private void doAddBus(MdBinEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -65,7 +65,7 @@ public class MdBinServiceImpl extends CommonServiceImpl implements MdBinServiceI
 	private void doUpdateBus(MdBinEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -77,11 +77,11 @@ public class MdBinServiceImpl extends CommonServiceImpl implements MdBinServiceI
 	private void doDelBus(MdBinEntity t) throws Exception{
 	    //-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
- 	
+
  	private Map<String,Object> populationMap(MdBinEntity t){
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("id", t.getId());
@@ -120,7 +120,7 @@ public class MdBinServiceImpl extends CommonServiceImpl implements MdBinServiceI
 		map.put("bin_store", t.getBinStore());
 		return map;
 	}
- 	
+
  	/**
 	 * 替换sql中的变量
 	 * @param sql
@@ -166,7 +166,7 @@ public class MdBinServiceImpl extends CommonServiceImpl implements MdBinServiceI
  		sql  = sql.replace("#{UUID}",UUID.randomUUID().toString());
  		return sql;
  	}
- 	
+
  	/**
 	 * 执行JAVA增强
 	 */
@@ -176,18 +176,20 @@ public class MdBinServiceImpl extends CommonServiceImpl implements MdBinServiceI
 			try {
 				if("class".equals(cgJavaType)){
 					//因新增时已经校验了实例化是否可以成功，所以这块就不需要再做一次判断
+					//使用自定义类加载器加载并实例化类
 					obj = MyClassLoader.getClassByScn(cgJavaValue).newInstance();
 				}else if("spring".equals(cgJavaType)){
 					obj = ApplicationContextUtil.getContext().getBean(cgJavaValue);
 				}
 				if(obj instanceof CgformEnhanceJavaInter){
 					CgformEnhanceJavaInter javaInter = (CgformEnhanceJavaInter) obj;
+					//调用execute方法，执行Java增强逻辑
 					javaInter.execute("md_bin",data);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new Exception("执行JAVA增强出现异常！");
-			} 
+			}
 		}
  	}
 }

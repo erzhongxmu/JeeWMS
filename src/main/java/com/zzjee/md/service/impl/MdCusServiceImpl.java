@@ -17,14 +17,14 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class MdCusServiceImpl extends CommonServiceImpl implements MdCusServiceI {
 
-	
+
  	@Override
     public void delete(MdCusEntity entity) throws Exception{
  		super.delete(entity);
  		//执行删除操作增强业务
 		this.doDelBus(entity);
  	}
- 	
+
  	@Override
     public Serializable save(MdCusEntity entity) throws Exception{
  		Serializable t = super.save(entity);
@@ -32,14 +32,14 @@ public class MdCusServiceImpl extends CommonServiceImpl implements MdCusServiceI
  		this.doAddBus(entity);
  		return t;
  	}
- 	
+
  	@Override
     public void saveOrUpdate(MdCusEntity entity) throws Exception{
  		super.saveOrUpdate(entity);
  		//执行更新操作增强业务
  		this.doUpdateBus(entity);
  	}
- 	
+
  	/**
 	 * 新增操作增强业务
 	 * @param t
@@ -48,7 +48,7 @@ public class MdCusServiceImpl extends CommonServiceImpl implements MdCusServiceI
 	private void doAddBus(MdCusEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -60,7 +60,7 @@ public class MdCusServiceImpl extends CommonServiceImpl implements MdCusServiceI
 	private void doUpdateBus(MdCusEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -72,11 +72,11 @@ public class MdCusServiceImpl extends CommonServiceImpl implements MdCusServiceI
 	private void doDelBus(MdCusEntity t) throws Exception{
 	    //-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
- 	
+
  	private Map<String,Object> populationMap(MdCusEntity t){
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("id", t.getId());
@@ -133,7 +133,7 @@ public class MdCusServiceImpl extends CommonServiceImpl implements MdCusServiceI
 		map.put("bei_zhu", t.getBeiZhu());
 		return map;
 	}
- 	
+
  	/**
 	 * 替换sql中的变量
 	 * @param sql
@@ -196,7 +196,7 @@ public class MdCusServiceImpl extends CommonServiceImpl implements MdCusServiceI
  		sql  = sql.replace("#{UUID}",UUID.randomUUID().toString());
  		return sql;
  	}
- 	
+
  	/**
 	 * 执行JAVA增强
 	 */
@@ -212,12 +212,13 @@ public class MdCusServiceImpl extends CommonServiceImpl implements MdCusServiceI
 				}
 				if(obj instanceof CgformEnhanceJavaInter){
 					CgformEnhanceJavaInter javaInter = (CgformEnhanceJavaInter) obj;
+					//调用execute方法，执行Java增强逻辑
 					javaInter.execute("md_cus",data);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new Exception("执行JAVA增强出现异常！");
-			} 
+			}
 		}
  	}
 }
