@@ -208,6 +208,7 @@ public class MdCusOtherServiceImpl extends CommonServiceImpl implements MdCusOth
 			try {
 				if("class".equals(cgJavaType)){
 					//因新增时已经校验了实例化是否可以成功，所以这块就不需要再做一次判断
+					//使用自定义类加载器加载并实例化类
 					obj = MyClassLoader.getClassByScn(cgJavaValue).newInstance();
 				}else if("spring".equals(cgJavaType)){
 					obj = ApplicationContextUtil.getContext().getBean(cgJavaValue);

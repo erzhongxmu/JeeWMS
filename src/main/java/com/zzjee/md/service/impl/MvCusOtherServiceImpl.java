@@ -17,14 +17,14 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class MvCusOtherServiceImpl extends CommonServiceImpl implements MvCusOtherServiceI {
 
-	
+
  	@Override
     public void delete(MvCusOtherEntity entity) throws Exception{
  		super.delete(entity);
  		//执行删除操作增强业务
 		this.doDelBus(entity);
  	}
- 	
+
  	@Override
     public Serializable save(MvCusOtherEntity entity) throws Exception{
  		Serializable t = super.save(entity);
@@ -32,14 +32,14 @@ public class MvCusOtherServiceImpl extends CommonServiceImpl implements MvCusOth
  		this.doAddBus(entity);
  		return t;
  	}
- 	
+
  	@Override
     public void saveOrUpdate(MvCusOtherEntity entity) throws Exception{
  		super.saveOrUpdate(entity);
  		//执行更新操作增强业务
  		this.doUpdateBus(entity);
  	}
- 	
+
  	/**
 	 * 新增操作增强业务
 	 * @param t
@@ -48,7 +48,7 @@ public class MvCusOtherServiceImpl extends CommonServiceImpl implements MvCusOth
 	private void doAddBus(MvCusOtherEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -60,7 +60,7 @@ public class MvCusOtherServiceImpl extends CommonServiceImpl implements MvCusOth
 	private void doUpdateBus(MvCusOtherEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -72,11 +72,11 @@ public class MvCusOtherServiceImpl extends CommonServiceImpl implements MvCusOth
 	private void doDelBus(MvCusOtherEntity t) throws Exception{
 	    //-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
- 	
+
  	private Map<String,Object> populationMap(MvCusOtherEntity t){
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("id", t.getId());
@@ -85,7 +85,7 @@ public class MvCusOtherServiceImpl extends CommonServiceImpl implements MvCusOth
 		map.put("cus_name", t.getCusName());
 		return map;
 	}
- 	
+
  	/**
 	 * 替换sql中的变量
 	 * @param sql
@@ -100,7 +100,7 @@ public class MvCusOtherServiceImpl extends CommonServiceImpl implements MvCusOth
  		sql  = sql.replace("#{UUID}",UUID.randomUUID().toString());
  		return sql;
  	}
- 	
+
  	/**
 	 * 执行JAVA增强
 	 */
@@ -110,6 +110,7 @@ public class MvCusOtherServiceImpl extends CommonServiceImpl implements MvCusOth
 			try {
 				if("class".equals(cgJavaType)){
 					//因新增时已经校验了实例化是否可以成功，所以这块就不需要再做一次判断
+					//使用自定义类加载器加载并实例化类
 					obj = MyClassLoader.getClassByScn(cgJavaValue).newInstance();
 				}else if("spring".equals(cgJavaType)){
 					obj = ApplicationContextUtil.getContext().getBean(cgJavaValue);
@@ -121,7 +122,7 @@ public class MvCusOtherServiceImpl extends CommonServiceImpl implements MvCusOth
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new Exception("执行JAVA增强出现异常！");
-			} 
+			}
 		}
  	}
 }
