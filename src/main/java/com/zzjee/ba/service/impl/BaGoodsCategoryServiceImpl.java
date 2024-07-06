@@ -40,7 +40,12 @@ public class BaGoodsCategoryServiceImpl extends CommonServiceImpl implements BaG
  		this.doAddBus(entity);
  		return t;
  	}
- 	
+
+	/**
+	 * 保存更新
+	 * @param entity
+	 * @throws Exception
+	 */
  	public void saveOrUpdate(BaGoodsCategoryEntity entity) throws Exception{
  		super.saveOrUpdate(entity);
  		//执行更新操作增强业务

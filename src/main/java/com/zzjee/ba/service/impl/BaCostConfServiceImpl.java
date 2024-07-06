@@ -42,7 +42,12 @@ public class BaCostConfServiceImpl extends CommonServiceImpl implements BaCostCo
  		this.doAddBus(entity);
  		return t;
  	}
- 	
+
+	/**
+	 * 保存更新
+	 * @param entity
+	 * @throws Exception
+	 */
  	@Override
     public void saveOrUpdate(BaCostConfEntity entity) throws Exception{
  		super.saveOrUpdate(entity);

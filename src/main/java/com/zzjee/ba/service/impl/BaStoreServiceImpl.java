@@ -42,7 +42,12 @@ public class BaStoreServiceImpl extends CommonServiceImpl implements BaStoreServ
  		this.doAddBus(entity);
  		return t;
  	}
- 	
+
+	/**
+	 * 保存更新
+	 * @param entity
+	 * @throws Exception
+	 */
  	@Override
     public void saveOrUpdate(BaStoreEntity entity) throws Exception{
  		super.saveOrUpdate(entity);

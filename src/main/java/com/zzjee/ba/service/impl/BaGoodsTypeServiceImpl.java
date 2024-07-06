@@ -42,7 +42,12 @@ public class BaGoodsTypeServiceImpl extends CommonServiceImpl implements BaGoods
  		this.doAddBus(entity);
  		return t;
  	}
- 	
+
+	/**
+	 * 保存更新
+	 * @param entity
+	 * @throws Exception
+	 */
  	@Override
     public void saveOrUpdate(BaGoodsTypeEntity entity) throws Exception{
  		super.saveOrUpdate(entity);
