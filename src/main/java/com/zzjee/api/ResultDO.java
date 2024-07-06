@@ -18,6 +18,9 @@ public class ResultDO<T>  implements Serializable {
     private static final long serialVersionUID = -2042618546543630713L;
     private boolean isOK = true;
     private T obj;
+    /**
+     * 错误消息
+     */
     private String errorMsg;
     private String errorCode;
 

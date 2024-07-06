@@ -11,7 +11,7 @@ package com.zzjee.api;
 
 public class MenuEntity {
     /**
-     * 图片
+     * 图 片
      */
     private String menuImg;
     private String menuText;//名称
