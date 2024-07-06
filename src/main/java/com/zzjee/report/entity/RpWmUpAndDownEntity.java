@@ -26,6 +26,10 @@ import org.jeecgframework.poi.excel.annotation.Excel;
  * @version V1.0   
  *
  */
+/**
+ * 定义了一个实体类 RpWmUpAndDown，
+ * 用于映射数据库中名为 "rp_wm_up_and_down" 的表
+ */
 @Entity
 @Table(name = "rp_wm_up_and_down", schema = "")
 @SuppressWarnings("serial")
