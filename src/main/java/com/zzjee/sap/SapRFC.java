@@ -165,7 +165,7 @@ public class SapRFC {
 		// if (client != null)
 		// client.disconnect();
 	}
-
+	// 创建连接
 	// Creates a connection configuration file based on parameters given above
 	static void createDataFile(String name, String suffix, Properties properties) {
 		File cfg = new File(name + "." + suffix);

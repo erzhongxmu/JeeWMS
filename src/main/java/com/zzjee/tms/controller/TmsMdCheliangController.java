@@ -281,7 +281,7 @@ public class TmsMdCheliangController extends BaseController {
     }
 
     /**
-     * 导出excel 使模板
+     * 导出excel模板
      *
      * @param request
      * @param response
