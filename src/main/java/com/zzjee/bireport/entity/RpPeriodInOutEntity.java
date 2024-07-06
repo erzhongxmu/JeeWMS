@@ -20,7 +20,7 @@ import org.jeecgframework.poi.excel.annotation.Excel;
 
 /**
  * @Title: Entity
- * @Description: 期间出货统计
+ * @Description: 期间出货统计实体类
  * @author onlineGenerator
  * @date 2019-01-17 12:55:46
  * @version V1.0
