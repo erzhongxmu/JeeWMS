@@ -36,8 +36,9 @@ public class sapWmUtil {
         return result;
     }
 
-
-    //获取物流凭证
+    /**
+     * 获取物流凭证信息
+     */
     public  static Map<String,Object> getWmmseg(String mblnr) {
         Map<String, Object> result = new HashMap<String, Object>();
         try {

@@ -180,6 +180,7 @@ public class SapRFC {
 		 }
 	}
 
+	// 将null字符串转换为空字符串
 	public String convertNull(String str) {
 		if (str == null) {
             return "";

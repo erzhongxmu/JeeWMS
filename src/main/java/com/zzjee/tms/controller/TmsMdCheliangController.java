@@ -200,7 +200,6 @@ public class TmsMdCheliangController extends BaseController {
 
     /**
      * 更新车辆管理
-     *
      * @param ids
      * @return
      */
@@ -226,7 +225,6 @@ public class TmsMdCheliangController extends BaseController {
 
     /**
      * 车辆管理新增页面跳转
-     *
      * @return
      */
     @RequestMapping(params = "goAdd")
@@ -240,7 +238,6 @@ public class TmsMdCheliangController extends BaseController {
 
     /**
      * 车辆管理编辑页面跳转
-     *
      * @return
      */
     @RequestMapping(params = "goUpdate")
@@ -264,7 +261,7 @@ public class TmsMdCheliangController extends BaseController {
     }
 
     /**
-     * 导出excel
+     * 导出excel列表
      *
      * @param request
      * @param response

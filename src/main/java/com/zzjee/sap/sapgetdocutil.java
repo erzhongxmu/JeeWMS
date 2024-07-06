@@ -43,7 +43,8 @@ public static List<wmientity>   getWmdoc(String DOCTYPE,String DOCID,String tabl
         // 创建一个wmientity类型的列表来存储结果
         List<wmientity> reslit = new ArrayList<wmientity>();
         try {
-        	 Map<String, Object> result = sapWmUtil.getcwkc(LGNUM,MATNR,LGPLA);
+            // 调用sapWmUtil的getcwkc方法获取数据
+        	Map<String, Object> result = sapWmUtil.getcwkc(LGNUM,MATNR,LGPLA);
             JCoTable restable =  (JCoTable)result.get("IT_OUT");
             org.jeecgframework.core.util.LogUtil.info("===================获取库存开始===================");
             reslit = getlistbyparandrable(restable,par);
