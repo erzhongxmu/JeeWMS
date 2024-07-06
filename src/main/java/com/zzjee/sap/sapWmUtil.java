@@ -25,6 +25,7 @@ public class sapWmUtil {
 //            saprfc.getParamTableList()
             // 获取输出表IT_OUT
             JCoTable tab = saprfc.getParamTableList("IT_OUT");
+            // 打印输出表的行数
             System.out.print("rows:" + tab.getNumRows());
             result.put("IT_OUT", tab);
         } catch (Exception e) {

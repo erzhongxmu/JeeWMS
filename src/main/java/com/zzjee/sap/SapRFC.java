@@ -100,6 +100,7 @@ public class SapRFC {
 	}
 
 	/*
+	 * 添加参数到输入参数列表
 	 * 设置参数 name - the name of the field to set value - the value to set for the
 	 * field
 	 */

@@ -29,6 +29,7 @@ public static List<wmientity>   getWmdoc(String DOCTYPE,String DOCID,String tabl
         org.jeecgframework.core.util.LogUtil.info("===================获取凭证结束===================");
 
     } catch (Exception e) {
+        // 如果出现异常，打印堆栈跟踪
         e.printStackTrace();
     }
     return  reslit;

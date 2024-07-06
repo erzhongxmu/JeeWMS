@@ -46,7 +46,9 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	 * 更新日期
 	 */
 	private Date updateDate;
-	/**所属部门*/
+	/**
+	 * 所属部门
+	 */
 	private String sysOrgCode;
 	/**所属公司*/
 	private String sysCompanyCode;
