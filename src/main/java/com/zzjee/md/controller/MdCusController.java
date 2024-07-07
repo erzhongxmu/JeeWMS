@@ -121,6 +121,7 @@ public class MdCusController extends BaseController {
 	/**
 	 * 删除客户
 	 *
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")

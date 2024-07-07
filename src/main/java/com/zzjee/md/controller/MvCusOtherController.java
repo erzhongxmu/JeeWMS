@@ -165,6 +165,7 @@ public class MvCusOtherController extends BaseController {
 	 * 添加mv_cus_other
 	 *
 	 * @param mvCusOther
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
