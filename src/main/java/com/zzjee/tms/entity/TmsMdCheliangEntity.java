@@ -98,7 +98,9 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	 */
     @Excel(name="电话",width=15)
 	private String beizhu;
-	/**默认司机*/
+	/**
+	 * 默认司机
+	 */
     @Excel(name="默认司机",width=15)
 	private String username;
 	/**gps*/

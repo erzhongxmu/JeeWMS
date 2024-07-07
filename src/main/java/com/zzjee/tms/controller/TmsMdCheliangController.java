@@ -237,7 +237,7 @@ public class TmsMdCheliangController extends BaseController {
 
     /**
      * 车辆管理编辑页面跳转
-     * @return
+     * @return ModelAndView
      */
     @RequestMapping(params = "goUpdate")
     public ModelAndView goUpdate(TmsMdCheliangEntity tmsMdCheliang, HttpServletRequest req) {
@@ -250,7 +250,7 @@ public class TmsMdCheliangController extends BaseController {
 
     /**
      * 导入功能跳转
-     * @return
+     * @return ModelAndView
      */
     @RequestMapping(params = "upload")
     public ModelAndView upload(HttpServletRequest req) {

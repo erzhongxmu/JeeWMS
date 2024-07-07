@@ -43,19 +43,18 @@ public class SysParaServiceImpl extends CommonServiceImpl implements SysParaServ
  	/**
 	 * 新增操作增强业务
 	 * @param t
-	 * @return
+	 * @return null
 	 */
 	private void doAddBus(SysParaEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
  	/**
 	 * 更新操作增强业务
 	 * @param t
-	 * @return
+	 * @return null
 	 */
 	private void doUpdateBus(SysParaEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
