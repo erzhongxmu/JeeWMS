@@ -120,7 +120,7 @@ public class MdCusController extends BaseController {
 
 	/**
 	 * 删除客户
-	 *
+	 * @param mdCus
 	 * @param request
 	 * @return
 	 */

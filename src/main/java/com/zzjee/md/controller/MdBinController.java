@@ -165,6 +165,7 @@ public class MdBinController extends BaseController {
     /**
      * 删除仓位定义
      *
+     * @param request
      * @return
      */
     @RequestMapping(params = "doHad")

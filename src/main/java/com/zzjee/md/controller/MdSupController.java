@@ -201,7 +201,7 @@ public class MdSupController extends BaseController {
 	/**
 	 * 更新供应商
 	 *
-	 * @param ids
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")

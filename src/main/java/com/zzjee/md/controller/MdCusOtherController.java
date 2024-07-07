@@ -187,7 +187,7 @@ public class MdCusOtherController extends BaseController {
  	/**
 	 * 更新第三方客户
 	 *
-	 * @param ids
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")

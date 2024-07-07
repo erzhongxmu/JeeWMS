@@ -113,6 +113,7 @@ public class MdGoodsController extends BaseController {
 	/**
 	 * 删除商品信息
 	 *
+	 * @param mdGoods
 	 * @param request
 	 * @return
 	 */

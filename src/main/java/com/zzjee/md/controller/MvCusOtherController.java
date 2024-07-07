@@ -190,6 +190,7 @@ public class MvCusOtherController extends BaseController {
 	 * 更新mv_cus_other
 	 *
 	 * @param mvCusOther
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
