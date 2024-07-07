@@ -178,7 +178,7 @@ public class TmsMdCheliangController extends BaseController {
     /**
      * 添加车辆管理
      * @param ids
-     * @return
+     * @return j
      */
     @RequestMapping(params = "doAdd")
     @ResponseBody
@@ -201,7 +201,7 @@ public class TmsMdCheliangController extends BaseController {
     /**
      * 更新车辆管理
      * @param ids
-     * @return
+     * @return j
      */
     @RequestMapping(params = "doUpdate")
     @ResponseBody
@@ -222,7 +222,6 @@ public class TmsMdCheliangController extends BaseController {
         return j;
     }
 
-
     /**
      * 车辆管理新增页面跳转
      * @return
@@ -238,7 +237,7 @@ public class TmsMdCheliangController extends BaseController {
 
     /**
      * 车辆管理编辑页面跳转
-     * @return
+     * @return ModelAndView
      */
     @RequestMapping(params = "goUpdate")
     public ModelAndView goUpdate(TmsMdCheliangEntity tmsMdCheliang, HttpServletRequest req) {
@@ -251,7 +250,7 @@ public class TmsMdCheliangController extends BaseController {
 
     /**
      * 导入功能跳转
-     * @return
+     * @return ModelAndView
      */
     @RequestMapping(params = "upload")
     public ModelAndView upload(HttpServletRequest req) {
@@ -280,8 +279,8 @@ public class TmsMdCheliangController extends BaseController {
 
     /**
      * 导出excel模板
-     * @param request
-     * @param response
+     * @param request 请求
+     * @param response 响应
      */
     @RequestMapping(params = "exportXlsByT")
     public String exportXlsByT(TmsMdCheliangEntity tmsMdCheliang, HttpServletRequest request, HttpServletResponse response
@@ -302,6 +301,7 @@ public class TmsMdCheliangController extends BaseController {
 
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+        // for循环，遍历
         for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
             MultipartFile file = entity.getValue();// 获取上传的文件对象
             ImportParams params = new ImportParams();
@@ -321,6 +321,7 @@ public class TmsMdCheliangController extends BaseController {
                 try {
                     file.getInputStream().close();
                 } catch (IOException e) {
+                    // 如果出现异常，打印堆栈跟踪
                     e.printStackTrace();
                 }
             }

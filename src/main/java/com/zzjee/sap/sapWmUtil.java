@@ -44,12 +44,18 @@ public class sapWmUtil {
     public  static Map<String,Object> getWmmseg(String mblnr) {
         Map<String, Object> result = new HashMap<String, Object>();
         try {
+            // 创建SAP RFC连接实例
             SapRFC saprfc = SapRFC.getInstance();
+            // 准备调用SAP函数Z_WM_GET_LAGP
             saprfc.prepare("Z_WM_GET_LAGP");
             saprfc.addParameter("LGNUM", mblnr);
+            // 执行RFC调用
             saprfc.execCall();
+            // 获取输出表IT_OUT
             JCoTable tab = saprfc.getResultTable("IT_OUT");
+            // 打印输出表的行数
             System.out.print("rows:" + tab.getNumRows());
+            // 将输出表添加到结果Map中
             result.put("IT_OUT", tab);
         } catch (Exception e) {
             System.out.print(e.getMessage());

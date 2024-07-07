@@ -20,12 +20,12 @@ public class SapRFC {
 	private JCoParameterList inPara = null;
 
 	// 输出参数列表
-//	private JCoParameterList outPara = null;
+	//	private JCoParameterList outPara = null;
 	private JCoParameterList outPara = null;
 
 	private JCoParameterList tabPara = null;
 
-//	private String functionName;
+	//	private String functionName;
 
 	// SAP系统别名
 	private static String ABAP_AS = "ABAP_AS_WITHOUT_POOL";
@@ -37,7 +37,7 @@ public class SapRFC {
 		connect(); // 连接SAP
 	}
 
-	// 调用SapRFC
+	// 调用 SapRFC，创建对象
 	public static SapRFC getInstance(){
 		// RFC接口调用开始 ==========
 		SapRFC common = new SapRFC();
@@ -54,7 +54,6 @@ public class SapRFC {
 		String host  ;
 		String system ;
 		try{
-
 			 clientName = ResourceUtil.getConfigByName("rfc.clientName");
 			 userid = ResourceUtil.getConfigByName("rfc.userid");
 			 password = ResourceUtil.getConfigByName("rfc.password");
@@ -63,7 +62,7 @@ public class SapRFC {
 			 system = ResourceUtil.getConfigByName("rfc.system");
 			// router = ResourceUtil.getConfigByName("rfc.router");
 		}catch (Exception e){
-			// 如果配置文件读取失败，使用默认参数
+			// 如果配置文件读取失败，则使用默认参数
 			clientName = "300";
 			userid = "**";
 			password = "123123";
@@ -72,8 +71,6 @@ public class SapRFC {
 			system = "00";
 
 		}
-;
-
 		// 设置SAP的连接参数
 		Properties connectProperties = new Properties();
 		connectProperties.setProperty(DestinationDataProvider.JCO_ASHOST, host);
@@ -86,7 +83,7 @@ public class SapRFC {
 				password);
 		connectProperties.setProperty(DestinationDataProvider.JCO_LANG,
 				language);
-//		connectProperties.setProperty(DestinationDataProvider.JCO_SAPROUTER, router);
+		//	connectProperties.setProperty(DestinationDataProvider.JCO_SAPROUTER, router);
 
 		try {
 			// 创建DestinationDataProvider，创建连接配置文件并获取SAP目的地
@@ -94,7 +91,6 @@ public class SapRFC {
 			destination = JCoDestinationManager.getDestination(ABAP_AS);
 
 		} catch (JCoException ex) {
-
 			System.out.print("destinoo**++++++"+ex.getMessage());
 		}
 	}
@@ -108,13 +104,13 @@ public class SapRFC {
 		inPara.setValue(name, value);
 		return this;
 	}
-	// 添加参数到输入参数列表（使用整数索引）
+	// 添加参数到输入参数列表，（使用整数索引）
 	public SapRFC addParameter(int name, String value) {
 		inPara.setValue(name, value);
 		return this;
 	}
 
-	// 执行方法，准备调用SAP函数
+	// 执行方法，调用SAP函数
 	public SapRFC prepare(String functionName) {
 		//this.functionName = functionName;
 		//Unread field: com.zzjee.sap.SapRFC.functionName
@@ -145,7 +141,7 @@ public class SapRFC {
 		return outPara;
 	}
 
-	// 取得返回结果
+	// 取得返回的结果
 	public JCoTable getResultTable(String tableName) {
 		return tabPara.getTable(tableName);
 	}

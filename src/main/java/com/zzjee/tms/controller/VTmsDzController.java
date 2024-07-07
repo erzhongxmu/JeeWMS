@@ -227,9 +227,10 @@ public class VTmsDzController extends BaseController {
 		return new ModelAndView("com/zzjee/tms/vTmsDz-add");
 	}
 	/**
-	 * v_tms_dz编辑页面跳转
-	 *
-	 * @return
+	 * 跳转到v_tms_dz编辑页面
+	 * @param vTmsDz 实体对象
+	 * @param req HTTP请求
+	 * @return	返回ModelAndView对象
 	 */
 	@RequestMapping(params = "goUpdate")
 	public ModelAndView goUpdate(VTmsDzEntity vTmsDz, HttpServletRequest req) {
@@ -242,8 +243,8 @@ public class VTmsDzController extends BaseController {
 
 	/**
 	 * 导入功能跳转
-	 *
-	 * @return
+	 * @param req HTTP请求
+	 * @return 返回ModelAndView对象
 	 */
 	@RequestMapping(params = "upload")
 	public ModelAndView upload(HttpServletRequest req) {
