@@ -1230,6 +1230,8 @@ public class MvCusCostController extends BaseController {
     /**
      * 添加mv_cus_cost
      *
+     * @param mvCusCost
+     * @param request
      * @return
      */
     @RequestMapping(params = "doAdd")

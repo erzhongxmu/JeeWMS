@@ -178,6 +178,7 @@ public class WxConfigController extends BaseController {
 	 * 更新配置信息
 	 *
 	 * @param wxConfig
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
