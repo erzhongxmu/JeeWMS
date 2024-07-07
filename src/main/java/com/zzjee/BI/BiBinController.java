@@ -35,6 +35,12 @@ public class BiBinController extends BaseController {
         request.setAttribute("num4",biEntity.getNum4());
         return new ModelAndView("com/zzjee/BI/home/reportbi");
     }
+
+    /**
+     * bi
+     * @param username
+     * @return
+     */
     public biEntity getBi(String username){
         biEntity biEntity    = new biEntity();
         String num1= "0";

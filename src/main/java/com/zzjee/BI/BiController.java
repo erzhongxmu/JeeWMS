@@ -29,6 +29,11 @@ public class BiController extends BaseController {
     @Autowired
     private SystemService systemService;
 
+    /**
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping(params = "homebi")
     public ModelAndView bi(HttpServletRequest request) {
         String num1= "0";

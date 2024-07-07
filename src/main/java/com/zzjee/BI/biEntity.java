@@ -1,7 +1,7 @@
 package com.zzjee.BI;
 
 /**
- * 大屏实体
+ * 大屏实 体
  */
 public class biEntity {
     String num1;

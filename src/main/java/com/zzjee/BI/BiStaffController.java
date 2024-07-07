@@ -76,7 +76,7 @@ public class BiStaffController extends BaseController {
         return new ModelAndView("com/zzjee/BI/home/reportbi");
     }
     /**
-     * highchart
+     *  highchart
      *
      * @return
      */
