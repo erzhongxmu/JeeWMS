@@ -75,8 +75,12 @@ public class BiStaffController extends BaseController {
         request.setAttribute("num4",num4);
         return new ModelAndView("com/zzjee/BI/home/reportbi");
     }
+
     /**
-     *  highchart
+     * highchart
+     * @param request
+     * @param reportType
+     * @param response
      * @return
      */
     @RequestMapping(params = "dayCount")

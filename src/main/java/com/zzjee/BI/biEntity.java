@@ -5,7 +5,7 @@ package com.zzjee.BI;
  */
 public class biEntity {
     /**
-     *
+     *字段1
      */
     String num1;
     String num2;

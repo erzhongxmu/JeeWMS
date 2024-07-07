@@ -90,8 +90,12 @@ public class BiBinController extends BaseController {
         biEntity.setNum4(num4);
         return biEntity;
     }
+
     /**
      * highchart
+     * @param request
+     * @param reportType
+     * @param response
      * @return
      */
     @RequestMapping(params = "dayCount")
