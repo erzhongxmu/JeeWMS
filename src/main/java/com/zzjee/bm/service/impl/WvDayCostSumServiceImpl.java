@@ -76,7 +76,11 @@ public class WvDayCostSumServiceImpl extends CommonServiceImpl implements WvDayC
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
-
+	/**
+	 * 将WvDayCostSumEntity对象的属性转换为一个Map
+	 * @param t
+	 * @return
+	 */
  	private Map<String,Object> populationMap(WvDayCostSumEntity t){
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("id", t.getId());

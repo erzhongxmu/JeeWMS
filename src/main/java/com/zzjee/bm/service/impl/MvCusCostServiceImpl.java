@@ -72,7 +72,11 @@ public class MvCusCostServiceImpl extends CommonServiceImpl implements MvCusCost
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
-
+	/**
+	 * 将MvCusCostEntity对象的属性转换为一个Map
+	 * @param t
+	 * @return
+	 */
  	private Map<String,Object> populationMap(MvCusCostEntity t){
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("id", t.getId());
@@ -96,7 +100,7 @@ public class MvCusCostServiceImpl extends CommonServiceImpl implements MvCusCost
  		sql  = sql.replace("#{UUID}",UUID.randomUUID().toString());
  		return sql;
  	}
-	 
+
  	/**
 	 * 执行JAVA增强
 	 */

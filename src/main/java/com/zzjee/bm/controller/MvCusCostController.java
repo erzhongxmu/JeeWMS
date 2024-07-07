@@ -1200,6 +1200,8 @@ public class MvCusCostController extends BaseController {
     /**
      * 批量删除mv_cus_cost
      *
+     * @param ids
+     * @param request
      * @return
      */
     @RequestMapping(params = "doBatchDel")

@@ -76,7 +76,11 @@ public class RpPeriodInOutServiceImpl extends CommonServiceImpl implements RpPer
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
-
+	/**
+	 * 将RpPeriodInOutEntity对象的属性转换为一个Map
+	 * @param t
+	 * @return
+	 */
  	private Map<String,Object> populationMap(RpPeriodInOutEntity t){
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("id", t.getId());
