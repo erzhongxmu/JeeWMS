@@ -229,7 +229,7 @@ public class VTmsDzController extends BaseController {
 	/**
 	 * 跳转到v_tms_dz编辑页面
 	 * @param vTmsDz 实体对象
-	 * @return
+	 * @return	返回ModelAndView对象
 	 */
 	@RequestMapping(params = "goUpdate")
 	public ModelAndView goUpdate(VTmsDzEntity vTmsDz, HttpServletRequest req) {

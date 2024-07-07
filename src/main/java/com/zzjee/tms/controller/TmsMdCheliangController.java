@@ -178,7 +178,7 @@ public class TmsMdCheliangController extends BaseController {
     /**
      * 添加车辆管理
      * @param ids
-     * @return
+     * @return j
      */
     @RequestMapping(params = "doAdd")
     @ResponseBody
@@ -201,7 +201,7 @@ public class TmsMdCheliangController extends BaseController {
     /**
      * 更新车辆管理
      * @param ids
-     * @return
+     * @return j
      */
     @RequestMapping(params = "doUpdate")
     @ResponseBody
@@ -221,7 +221,6 @@ public class TmsMdCheliangController extends BaseController {
         j.setMsg(message);
         return j;
     }
-
 
     /**
      * 车辆管理新增页面跳转

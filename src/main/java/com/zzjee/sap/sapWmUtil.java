@@ -53,6 +53,7 @@ public class sapWmUtil {
             saprfc.execCall();
             // 获取输出表IT_OUT
             JCoTable tab = saprfc.getResultTable("IT_OUT");
+            // 打印输出表的行数
             System.out.print("rows:" + tab.getNumRows());
             result.put("IT_OUT", tab);
         } catch (Exception e) {

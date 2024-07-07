@@ -20,12 +20,12 @@ public class SapRFC {
 	private JCoParameterList inPara = null;
 
 	// 输出参数列表
-//	private JCoParameterList outPara = null;
+	//	private JCoParameterList outPara = null;
 	private JCoParameterList outPara = null;
 
 	private JCoParameterList tabPara = null;
 
-//	private String functionName;
+	//	private String functionName;
 
 	// SAP系统别名
 	private static String ABAP_AS = "ABAP_AS_WITHOUT_POOL";
