@@ -64,7 +64,6 @@ wmomController {
 	 * @param username
 	 * @param pageNumber
 	 * @param pageSize
-	 * @param request
 	 * @return
 	 */
 	@RequestMapping(value = "/alllist/{username}", method = RequestMethod.GET)

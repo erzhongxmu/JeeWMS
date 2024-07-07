@@ -54,7 +54,7 @@ public class TokenController {
 
 
 	/**
-	 * 获取 token
+	 * 获取token
 	 * @param username
 	 * @param password
 	 * @return

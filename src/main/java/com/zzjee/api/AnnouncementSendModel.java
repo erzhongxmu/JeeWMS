@@ -15,9 +15,7 @@ public class AnnouncementSendModel {
     private java.lang.String titile;
     /**内容*/
     private java.lang.String msgContent;
-    /**
-     * 摘要
-     */
+    /**摘要*/
     private java.lang.String msgAbstract;
 
     public String getStartTime() {

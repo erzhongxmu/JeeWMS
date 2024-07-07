@@ -201,8 +201,16 @@ public class ApiController {
         return waveToDownController.create(waveToDownstr, uriBuilder);
     }
 
-    //波次分拣列表
-
+    /**
+     * 波次分拣列表
+     * @param username
+     * @param searchstr
+     * @param searchstr2
+     * @param searchstr3
+     * @param searchstr4
+     * @param searchstr5
+     * @return
+     */
     @RequestMapping(value = "/waveToFjController/list/tofj", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<?> list6(@RequestParam(value = "username", required = false) String username,

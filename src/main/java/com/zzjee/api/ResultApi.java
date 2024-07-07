@@ -154,7 +154,7 @@ public class ResultApi<T> implements Serializable {
 	}
 
 	/**
-	 * 带参返 回成功
+	 * 带参返回成功
 	 * @param data
 	 * @return
 	 * @param <T>

@@ -22,6 +22,9 @@ public class ResultDO<T>  implements Serializable {
      * 错误消息
      */
     private String errorMsg;
+    /**
+     * 错误代码
+     */
     private String errorCode;
 
     public ResultDO() {
