@@ -31,7 +31,7 @@ public class ResultDO<T>  implements Serializable {
     }
 
     /**
-     *
+     *返回错误编码
      * @return
      */
     public String getErrorCode() {

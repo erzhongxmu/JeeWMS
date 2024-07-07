@@ -135,7 +135,13 @@ public class TokenController {
 		return new ResponseEntity(D0, HttpStatus.OK);
 	}
 
-	// 文件上传
+	/**
+	 * 文件上传
+	 * @param request
+	 * @return
+	 * @throws IllegalStateException
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/saveImage", method = RequestMethod.PUT)
 	@ResponseBody
 	public  ResultDO<?> saveImage(HttpServletRequest request) throws IllegalStateException, IOException {

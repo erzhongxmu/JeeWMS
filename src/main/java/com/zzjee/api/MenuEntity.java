@@ -23,6 +23,10 @@ public class MenuEntity {
      */
     private String	menuSrc;
 
+    /**
+     *
+     * @return
+     */
     public String getMenuImg() {
         return menuImg;
     }
