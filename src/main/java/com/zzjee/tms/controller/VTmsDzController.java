@@ -227,7 +227,7 @@ public class VTmsDzController extends BaseController {
 		return new ModelAndView("com/zzjee/tms/vTmsDz-add");
 	}
 	/**
-	 * v_tms_dz编辑页面跳转
+	 * 跳转到v_tms_dz编辑页面
 	 *
 	 * @return
 	 */

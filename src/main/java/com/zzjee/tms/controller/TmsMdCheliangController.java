@@ -302,6 +302,7 @@ public class TmsMdCheliangController extends BaseController {
 
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+        // for循环，遍历
         for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
             MultipartFile file = entity.getValue();// 获取上传的文件对象
             ImportParams params = new ImportParams();

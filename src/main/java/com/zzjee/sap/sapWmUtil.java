@@ -49,6 +49,7 @@ public class sapWmUtil {
             // 准备调用SAP函数Z_WM_GET_LAGP
             saprfc.prepare("Z_WM_GET_LAGP");
             saprfc.addParameter("LGNUM", mblnr);
+            // 执行RFC调用
             saprfc.execCall();
             JCoTable tab = saprfc.getResultTable("IT_OUT");
             System.out.print("rows:" + tab.getNumRows());

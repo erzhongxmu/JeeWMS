@@ -37,7 +37,7 @@ public class SapRFC {
 		connect(); // 连接SAP
 	}
 
-	// 调用 SapRFC
+	// 调用 SapRFC，创建对象
 	public static SapRFC getInstance(){
 		// RFC接口调用开始 ==========
 		SapRFC common = new SapRFC();
@@ -72,7 +72,6 @@ public class SapRFC {
 			system = "00";
 
 		}
-
 
 		// 设置SAP的连接参数
 		Properties connectProperties = new Properties();
