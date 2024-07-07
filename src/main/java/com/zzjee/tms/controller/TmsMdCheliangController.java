@@ -322,6 +322,7 @@ public class TmsMdCheliangController extends BaseController {
                 try {
                     file.getInputStream().close();
                 } catch (IOException e) {
+                    // 如果出现异常，打印堆栈跟踪
                     e.printStackTrace();
                 }
             }

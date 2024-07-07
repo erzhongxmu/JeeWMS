@@ -51,6 +51,7 @@ public class sapWmUtil {
             saprfc.addParameter("LGNUM", mblnr);
             // 执行RFC调用
             saprfc.execCall();
+            // 获取输出表IT_OUT
             JCoTable tab = saprfc.getResultTable("IT_OUT");
             System.out.print("rows:" + tab.getNumRows());
             result.put("IT_OUT", tab);

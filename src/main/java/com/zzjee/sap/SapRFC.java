@@ -54,7 +54,6 @@ public class SapRFC {
 		String host  ;
 		String system ;
 		try{
-
 			 clientName = ResourceUtil.getConfigByName("rfc.clientName");
 			 userid = ResourceUtil.getConfigByName("rfc.userid");
 			 password = ResourceUtil.getConfigByName("rfc.password");
@@ -72,7 +71,6 @@ public class SapRFC {
 			system = "00";
 
 		}
-
 		// 设置SAP的连接参数
 		Properties connectProperties = new Properties();
 		connectProperties.setProperty(DestinationDataProvider.JCO_ASHOST, host);
@@ -93,7 +91,6 @@ public class SapRFC {
 			destination = JCoDestinationManager.getDestination(ABAP_AS);
 
 		} catch (JCoException ex) {
-
 			System.out.print("destinoo**++++++"+ex.getMessage());
 		}
 	}
@@ -113,7 +110,7 @@ public class SapRFC {
 		return this;
 	}
 
-	// 执行方法，准备调用SAP函数
+	// 执行方法，调用SAP函数
 	public SapRFC prepare(String functionName) {
 		//this.functionName = functionName;
 		//Unread field: com.zzjee.sap.SapRFC.functionName

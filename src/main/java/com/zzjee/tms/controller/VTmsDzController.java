@@ -228,7 +228,7 @@ public class VTmsDzController extends BaseController {
 	}
 	/**
 	 * 跳转到v_tms_dz编辑页面
-	 *
+	 * @param vTmsDz 实体对象
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
