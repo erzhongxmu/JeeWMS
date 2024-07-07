@@ -280,7 +280,7 @@ public class TmsMdCheliangController extends BaseController {
 
     /**
      * 导出excel模板
-     * @param request
+     * @param request 请求
      * @param response
      */
     @RequestMapping(params = "exportXlsByT")

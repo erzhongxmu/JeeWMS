@@ -37,7 +37,7 @@ public class SapRFC {
 		connect(); // 连接SAP
 	}
 
-	// 调用SapRFC
+	// 调用 SapRFC
 	public static SapRFC getInstance(){
 		// RFC接口调用开始 ==========
 		SapRFC common = new SapRFC();
@@ -63,7 +63,7 @@ public class SapRFC {
 			 system = ResourceUtil.getConfigByName("rfc.system");
 			// router = ResourceUtil.getConfigByName("rfc.router");
 		}catch (Exception e){
-			// 如果配置文件读取失败，使用默认参数
+			// 如果配置文件读取失败，则使用默认参数
 			clientName = "300";
 			userid = "**";
 			password = "123123";
@@ -86,7 +86,7 @@ public class SapRFC {
 				password);
 		connectProperties.setProperty(DestinationDataProvider.JCO_LANG,
 				language);
-//		connectProperties.setProperty(DestinationDataProvider.JCO_SAPROUTER, router);
+		//	connectProperties.setProperty(DestinationDataProvider.JCO_SAPROUTER, router);
 
 		try {
 			// 创建DestinationDataProvider，创建连接配置文件并获取SAP目的地
