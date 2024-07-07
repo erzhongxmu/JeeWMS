@@ -92,7 +92,6 @@ public class BiBinController extends BaseController {
     }
     /**
      * highchart
-     *
      * @return
      */
     @RequestMapping(params = "dayCount")

@@ -76,7 +76,6 @@ public class BiCustomerController extends BaseController {
     }
     /**
      * highchart
-     *
      * @return
      */
     @RequestMapping(params = "dayCount")

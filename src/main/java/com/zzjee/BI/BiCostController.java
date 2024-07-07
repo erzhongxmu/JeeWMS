@@ -84,7 +84,6 @@ public class BiCostController extends BaseController {
     }
     /**
      * highchart
-     *
      * @return
      */
     @RequestMapping(params = "dayCount")

@@ -4,6 +4,9 @@ package com.zzjee.BI;
  * 大屏实 体
  */
 public class biEntity {
+    /**
+     *
+     */
     String num1;
     String num2;
     String num3;

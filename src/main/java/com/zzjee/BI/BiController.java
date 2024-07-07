@@ -197,7 +197,6 @@ public class BiController extends BaseController {
 
     /**
      * highchart
-     *
      * @return
      */
     @RequestMapping(params = "cpNameupCount")
