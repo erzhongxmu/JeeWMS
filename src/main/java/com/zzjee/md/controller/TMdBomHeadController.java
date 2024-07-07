@@ -360,8 +360,10 @@ public class TMdBomHeadController extends BaseController {
 			return j;
 	}
 	/**
-	* 导出excel 使模板
-	*/
+	 * 导出excel 使模板
+	 *
+	 * @param map
+	 */
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(ModelMap map) {
 		map.put(NormalExcelConstants.FILE_NAME,"BOM抬头");

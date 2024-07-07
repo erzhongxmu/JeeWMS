@@ -217,6 +217,7 @@ public class MvCusOtherController extends BaseController {
 	/**
 	 * mv_cus_other新增页面跳转
 	 *
+	 * @param mvCusOther
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
