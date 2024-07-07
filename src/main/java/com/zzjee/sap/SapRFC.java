@@ -72,7 +72,7 @@ public class SapRFC {
 			system = "00";
 
 		}
-;
+
 
 		// 设置SAP的连接参数
 		Properties connectProperties = new Properties();
@@ -108,7 +108,7 @@ public class SapRFC {
 		inPara.setValue(name, value);
 		return this;
 	}
-	// 添加参数到输入参数列表（使用整数索引）
+	// 添加参数到输入参数列表，（使用整数索引）
 	public SapRFC addParameter(int name, String value) {
 		inPara.setValue(name, value);
 		return this;
@@ -145,7 +145,7 @@ public class SapRFC {
 		return outPara;
 	}
 
-	// 取得返回结果
+	// 取得返回的结果
 	public JCoTable getResultTable(String tableName) {
 		return tabPara.getTable(tableName);
 	}

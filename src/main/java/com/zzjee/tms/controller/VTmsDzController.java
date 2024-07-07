@@ -243,7 +243,7 @@ public class VTmsDzController extends BaseController {
 	/**
 	 * 导入功能跳转
 	 * @param req HTTP请求
-	 * @return
+	 * @return 返回ModelAndView对象
 	 */
 	@RequestMapping(params = "upload")
 	public ModelAndView upload(HttpServletRequest req) {

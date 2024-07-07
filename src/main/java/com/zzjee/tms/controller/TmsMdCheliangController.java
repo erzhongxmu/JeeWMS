@@ -281,7 +281,7 @@ public class TmsMdCheliangController extends BaseController {
     /**
      * 导出excel模板
      * @param request 请求
-     * @param response
+     * @param response 响应
      */
     @RequestMapping(params = "exportXlsByT")
     public String exportXlsByT(TmsMdCheliangEntity tmsMdCheliang, HttpServletRequest request, HttpServletResponse response
