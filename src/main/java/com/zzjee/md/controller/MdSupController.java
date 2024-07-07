@@ -227,6 +227,7 @@ public class MdSupController extends BaseController {
 	/**
 	 * 供应商新增页面跳转
 	 *
+	 * @param mdSup
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")

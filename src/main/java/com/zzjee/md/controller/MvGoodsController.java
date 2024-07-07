@@ -305,6 +305,7 @@ public class MvGoodsController extends BaseController {
 	/**
 	 * 导出excel
 	 *
+	 * @param mvGoods
 	 * @param request
 	 * @param response
 	 */

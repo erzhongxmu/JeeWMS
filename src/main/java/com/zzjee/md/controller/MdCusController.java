@@ -152,6 +152,7 @@ public class MdCusController extends BaseController {
 	/**
 	 * 批量删除客户
 	 *
+	 * @param request
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")

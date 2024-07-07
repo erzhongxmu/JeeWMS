@@ -155,6 +155,7 @@ public class MdGoodsController extends BaseController {
 	/**
 	 * 批量删除商品信息
 	 *
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doBatchDel")
