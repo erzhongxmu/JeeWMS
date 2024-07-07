@@ -102,7 +102,6 @@ public class TokenController {
 	/**
 	 * 登录接口
 	 * @param tsBaseUser 系统用户
-	 * @param request
 	 * @return
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)

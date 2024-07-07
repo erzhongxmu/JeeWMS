@@ -18,7 +18,10 @@ public class MenuEntity {
      * 名称
      */
     private String menuText;
-    private String	menuSrc;//地址
+    /**
+     * 地址
+     */
+    private String	menuSrc;
 
     public String getMenuImg() {
         return menuImg;

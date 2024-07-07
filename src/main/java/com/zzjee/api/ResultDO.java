@@ -29,6 +29,11 @@ public class ResultDO<T>  implements Serializable {
 
     public ResultDO() {
     }
+
+    /**
+     *
+     * @return
+     */
     public String getErrorCode() {
         return this.errorCode;
     }
