@@ -308,6 +308,7 @@ public class MvGoodsController extends BaseController {
 	 * @param mvGoods
 	 * @param request
 	 * @param response
+	 * @param dataGrid
 	 */
 	@RequestMapping(params = "exportXls")
 	public String exportXls(MvGoodsEntity mvGoods,HttpServletRequest request,HttpServletResponse response

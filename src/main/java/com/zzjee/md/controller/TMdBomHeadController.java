@@ -375,10 +375,11 @@ public class TMdBomHeadController extends BaseController {
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 	/**
-	* 导入功能跳转
-	*
-	* @return
-	*/
+	 * 导入功能跳转
+	 *
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping(params = "upload")
 	public ModelAndView upload(HttpServletRequest req) {
 		req.setAttribute("controller_name", "tMdBomHeadController");

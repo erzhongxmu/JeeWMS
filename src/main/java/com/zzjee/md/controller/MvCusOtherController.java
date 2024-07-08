@@ -232,6 +232,7 @@ public class MvCusOtherController extends BaseController {
 	/**
 	 * mv_cus_other编辑页面跳转
 	 *
+	 * @param mvCusOther
 	 * @param req
 	 * @return
 	 */
