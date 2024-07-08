@@ -188,7 +188,7 @@ public class VTmsDzController extends BaseController {
 	}
 
 	/**
-	 * 更新v_tms_dz
+	 * 更新v_tms_dz记录
 	 *
 	 * @param ids
 	 * @return

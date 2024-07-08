@@ -111,7 +111,7 @@ public class VYsddController extends BaseController {
 			Calendar c = Calendar.getInstance();
 			System.out.println("当前日期:"+sf.format(c.getTime()));
 			c.add(Calendar.DAY_OF_MONTH, -1);
-//			System.out.println("增加一天后日期:"+sf.format(c.getTime()));
+			//	System.out.println("增加一天后日期:"+sf.format(c.getTime()));
 			cq.ge("createDate", DateUtils.str2Date(sf.format(c.getTime()),DateUtils.date_sdf));
 		}
 		if(StringUtil.isNotEmpty(query_createDate_end)){
