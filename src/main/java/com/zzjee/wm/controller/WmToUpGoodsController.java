@@ -84,7 +84,6 @@ public class WmToUpGoodsController extends BaseController {
 	private Validator validator;
 
 
-
 	/**
 	 * 上架列表列表 页面跳转
 	 *

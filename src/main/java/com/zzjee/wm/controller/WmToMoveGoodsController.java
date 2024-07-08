@@ -66,6 +66,7 @@ import static com.xiaoleilu.hutool.date.DateTime.now;
  * @Description: 库存转移
  * @date 2017-09-08 21:03:22
  */
+
 @Controller
 @RequestMapping("/wmToMoveGoodsController")
 public class WmToMoveGoodsController extends BaseController {

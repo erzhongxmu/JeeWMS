@@ -87,6 +87,7 @@ public class WmToDownGoodsController extends BaseController {
     @Autowired
     private Validator validator;
 
+
     /**
      * 下架商品明细列表 页面跳转
      *

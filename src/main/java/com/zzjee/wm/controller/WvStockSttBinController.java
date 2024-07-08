@@ -101,6 +101,7 @@ public class WvStockSttBinController extends BaseController {
 	@Autowired
 	private Validator validator;
 
+
 	/**
 	 * 储位盘点列表 页面跳转
 	 *

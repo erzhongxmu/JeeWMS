@@ -115,7 +115,6 @@ public class WmSttInGoodsController extends BaseController {
         try {
             //自定义追加查询条件
 
-
             // 自定义追加查询条件
             String query_createDate_begin = request.getParameter("createDate_begin1");
             String query_createDate_end = request.getParameter("createDate_end2");
