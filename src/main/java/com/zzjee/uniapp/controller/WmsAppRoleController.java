@@ -188,9 +188,11 @@ public class WmsAppRoleController extends BaseController {
 		AjaxJson j = new AjaxJson();
 		message = "APP角色添加成功";
 		try{
+			// 调用wmsAppRoleService的save方法保存WmsAppRoleEntity对象
 			wmsAppRoleService.save(wmsAppRole);
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
+			// 打印异常堆栈信息
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
