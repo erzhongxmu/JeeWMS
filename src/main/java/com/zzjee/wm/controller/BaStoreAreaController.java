@@ -65,7 +65,6 @@ import java.net.URI;
 import org.springframework.http.MediaType;
 import org.springframework.web.util.UriComponentsBuilder;
 
-
 @Controller
 @RequestMapping("/baStoreAreaController")
 public class BaStoreAreaController extends BaseController {
@@ -80,7 +79,6 @@ public class BaStoreAreaController extends BaseController {
 	private SystemService systemService;
 	@Autowired
 	private Validator validator;
-
 
 	/**
 	 * ba_store_area列表 页面跳转
