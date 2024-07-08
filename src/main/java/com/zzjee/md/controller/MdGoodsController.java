@@ -287,6 +287,7 @@ public class MdGoodsController extends BaseController {
 	/**
 	 * 商品信息新增页面跳转
 	 *
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")

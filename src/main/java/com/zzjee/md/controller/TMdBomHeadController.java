@@ -283,6 +283,7 @@ public class TMdBomHeadController extends BaseController {
 	 * @param tMdBomHead
 	 * @param request
 	 * @param response
+	 * @param map
 	 */
     @RequestMapping(params = "exportXls")
     public String exportXls(TMdBomHeadEntity tMdBomHead,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid,ModelMap map) {
