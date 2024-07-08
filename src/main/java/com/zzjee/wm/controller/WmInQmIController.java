@@ -152,11 +152,8 @@ public class WmInQmIController extends BaseController {
                         t.setGoodsName(goods.getGoodsName());
                     }
                 } catch (Exception e) {
-
                 }
-
             }
-
             resultnew.add(t);
         }
         dataGrid.setResults(resultnew);
@@ -243,9 +240,7 @@ public class WmInQmIController extends BaseController {
                 j.setSuccess(false);
                 message = "上架失败";
                 return j;
-
             }
-
             systemService.addLog(message, Globals.Log_Type_DEL,
                     Globals.Log_Leavel_INFO);
         } catch (Exception e) {

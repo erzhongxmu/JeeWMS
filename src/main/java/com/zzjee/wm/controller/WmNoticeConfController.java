@@ -122,7 +122,6 @@ public class WmNoticeConfController extends BaseController {
      * @param dataGrid
      * @param user
      */
-
     @RequestMapping(params = "datagrid")
     public void datagrid(WmNoticeConfEntity wmNoticeConf, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
         CriteriaQuery cq = new CriteriaQuery(WmNoticeConfEntity.class, dataGrid);
@@ -176,7 +175,6 @@ public class WmNoticeConfController extends BaseController {
             j.setSuccess(false);
             j.setMsg("不允许此操作");
         }
-
         return j;
     }
 
@@ -221,7 +219,6 @@ public class WmNoticeConfController extends BaseController {
         AjaxJson j = new AjaxJson();
         message = "回单管理添加成功";
         try {
-
             WmOmNoticeHEntity wmOmNoticeHEntity = systemService.findUniqueByProperty(WmOmNoticeHEntity.class, "omNoticeId", wmNoticeConf.getWmNoticeId());
             if (wmOmNoticeHEntity != null) {
                 if (wmOmNoticeHEntity.getOmSta().equals(Constants.wm_sta4)) {
@@ -233,9 +230,7 @@ public class WmNoticeConfController extends BaseController {
                     systemService.saveOrUpdate(wmOmNoticeHEntity);
                     wmNoticeConfService.save(wmNoticeConf);
                 }
-
             } else {
-
                 j.setSuccess(false);
                 j.setMsg("不存在此出货单");
                 return j;

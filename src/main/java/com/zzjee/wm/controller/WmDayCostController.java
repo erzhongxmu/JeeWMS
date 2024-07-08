@@ -100,8 +100,6 @@ public class WmDayCostController extends BaseController {
 	@Autowired
 	private Validator validator;
 
-
-
 	/**
 	 * 费用维护列表 页面跳转
 	 *

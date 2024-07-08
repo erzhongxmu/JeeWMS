@@ -166,11 +166,17 @@ public class WmOmNoticeHController extends BaseController {
                     WmOmNoticeIEntity t = systemService.get(WmOmNoticeIEntity.class, jeecgDemo.getId());
                     try {
                         message = "保存成功";
+                        // 更新实体对象t的binId属性
                         t.setBinId(jeecgDemo.getBinId());
+                        // 更新实体对象t的planSta属性
                         t.setPlanSta(jeecgDemo.getPlanSta());
+                        // 更新实体对象t的goodsProData属性
                         t.setGoodsProData(jeecgDemo.getGoodsProData());
+                        // 更新实体对象t的baseGoodscount属性
                         t.setBaseGoodscount(jeecgDemo.getBaseGoodscount());
+                        // 更新实体对象t的goodsQua属性
                         t.setGoodsQua(jeecgDemo.getGoodsQua());
+                        // 调用systemService的updateEntitie方法更新实体对象t
                         systemService.updateEntitie(t);
                         systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
                     } catch (Exception e) {

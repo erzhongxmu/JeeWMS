@@ -136,14 +136,18 @@ public class WmOmQmIController extends BaseController {
         Map<String, Object> map1 = new HashMap<String, Object>();
         map1.put("createDate", "desc");
         cq.setOrder(map1);
+        // 如果wmOmQmI对象的binSta属性为空，则添加一个等于"N"的条件
         if (wmOmQmI.getBinSta() == null) {
             cq.eq("binSta", "N");
         }
+        // 如果wmUtil对象的cusCode属性不为空，则添加一个等于cusCode的条件
         if (StringUtil.isNotEmpty(wmUtil.getCusCode())) {
             cq.eq("cusCode", wmUtil.getCusCode());
         }
         cq.add();
+        // 调用wmOmQmIService的getDataGridReturn方法执行查询并返回结果
         this.wmOmQmIService.getDataGridReturn(cq, true);
+        // 将查询结果封装成DataGrid对象并返回给客户端
         TagUtil.datagrid(response, dataGrid);
     }
 
