@@ -192,6 +192,7 @@ public class MdCusOtherController extends BaseController {
  	/**
 	 * 更新第三方客户
 	 *
+	 * @param mdCusOther
 	 * @param request
 	 * @return
 	 */

@@ -120,6 +120,7 @@ public class MdCusController extends BaseController {
 
 	/**
 	 * 删除客户
+	 *
 	 * @param mdCus
 	 * @param request
 	 * @return
@@ -152,6 +153,7 @@ public class MdCusController extends BaseController {
 	/**
 	 * 批量删除客户
 	 *
+	 * @param ids
 	 * @param request
 	 * @return
 	 */

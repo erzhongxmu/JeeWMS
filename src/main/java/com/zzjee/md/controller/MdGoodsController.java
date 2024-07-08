@@ -260,6 +260,7 @@ public class MdGoodsController extends BaseController {
 	 * 更新商品信息
 	 *
 	 * @param mdGoods
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")

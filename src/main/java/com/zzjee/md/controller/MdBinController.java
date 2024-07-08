@@ -112,6 +112,7 @@ public class MdBinController extends BaseController {
     /**
      * easyui AJAX请求数据
      *
+     * @param mdBin
      * @param request
      * @param response
      * @param dataGrid
