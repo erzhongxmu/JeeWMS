@@ -174,16 +174,20 @@ public class MvStockYjController extends BaseController {
 	public AjaxJson doDel(MvStockYjEntity mvStockYj, HttpServletRequest request) {
 		String message = null;
 		AjaxJson j = new AjaxJson();
+		//获取指定的 MvStockYjEntity 对象
 		mvStockYj = systemService.getEntity(MvStockYjEntity.class, mvStockYj.getId());
 		message = "效期预警删除成功";
 		try{
+			//删除 MvStockYjEntity 对象
 			mvStockYjService.delete(mvStockYj);
+			//添加日志记录
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
 			message = "效期预警删除失败";
 			throw new BusinessException(e.getMessage());
 		}
+		//设置返回消息
 		j.setMsg(message);
 		return j;
 	}
