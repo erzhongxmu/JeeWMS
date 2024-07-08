@@ -146,9 +146,11 @@ public class WaveToDownController extends BaseController {
     public AjaxJson doDel(WaveToDownEntity waveToDown, HttpServletRequest request) {
         String message = null;
         AjaxJson j = new AjaxJson();
+        // 根据ID获取WaveToDownEntity实体
         waveToDown = systemService.getEntity(WaveToDownEntity.class, waveToDown.getId());
         message = "wave_to_down删除成功";
         try {
+            // 调用waveToDownService的delete方法删除实体
             waveToDownService.delete(waveToDown);
             systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
