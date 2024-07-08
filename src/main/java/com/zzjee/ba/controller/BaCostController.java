@@ -177,7 +177,7 @@ public class BaCostController extends BaseController {
 	/**
 	 * 添加费用名称
 	 *
-	 * @param ids
+	 * @param baCost
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")

@@ -189,7 +189,6 @@ public class BaGoodsCategoryController extends BaseController {
 
 	/**
 	 * 批量删除商品类目
-	 *
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")

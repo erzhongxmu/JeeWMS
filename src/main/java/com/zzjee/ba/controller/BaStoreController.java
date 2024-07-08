@@ -102,8 +102,7 @@ public class BaStoreController extends BaseController {
 
 	/**
 	 * easyui AJAX请求数据
-	 *
-	 * @param request
+	 * @param request 请求
 	 * @param response
 	 * @param dataGrid
 	 */
