@@ -382,17 +382,20 @@ public class MvStockYjController extends BaseController {
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-		
+		//获取上传的文件对象
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
-			MultipartFile file = entity.getValue();// 获取上传文件对象
+			MultipartFile file = entity.getValue();
+			//设置导入参数
 			ImportParams params = new ImportParams();
 			params.setTitleRows(2);
 			params.setHeadRows(1);
 			params.setNeedSave(true);
 			try {
+				//导入Excel文件，并返回一个包含导入数据的列表
 				List<MvStockYjEntity> listMvStockYjEntitys = ExcelImportUtil.importExcel(file.getInputStream(),MvStockYjEntity.class,params);
+				//遍历导入的数据列表，并保存到数据库中
 				for (MvStockYjEntity mvStockYj : listMvStockYjEntitys) {
 					mvStockYjService.save(mvStockYj);
 				}
