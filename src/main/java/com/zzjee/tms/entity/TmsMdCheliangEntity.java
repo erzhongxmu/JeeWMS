@@ -12,101 +12,61 @@ import java.util.Date;
  * @author onlineGenerator
  * @date 2018-01-29 21:57:07
  * @version V1.0
- * 车辆管理实体类，用于表示车辆信息的数据模型。
+ *
  */
 @Entity
 @Table(name = "tms_md_cheliang", schema = "")
 @SuppressWarnings("serial")
 public class TmsMdCheliangEntity implements java.io.Serializable {
-	/**
-	 * 主键
-	 */
+	/**主键*/
 	private String id;
-	/**
-	 * 创建人名称
-	 */
+	/**创建人名称*/
 	private String createName;
-	/**
-	 * 创建人登录名称
-	 */
+	/**创建人登录名称*/
 	private String createBy;
-	/**
-	 * 创建日期
-	 */
+	/**创建日期*/
 	private Date createDate;
-	/**
-	 * 更新人名称
-	 */
+	/**更新人名称*/
 	private String updateName;
-	/**
-	 * 更新人登录名称
-	 */
+	/**更新人登录名称*/
 	private String updateBy;
-	/**
-	 * 更新日期
-	 */
+	/**更新日期*/
 	private Date updateDate;
-	/**
-	 * 所属部门
-	 */
+	/**所属部门*/
 	private String sysOrgCode;
-	/**
-	 * 所属公司
-	 * /
-	 private String sysCompanyCode;
-	 /**
-	 * 流程状态
-	 */
+	/**所属公司*/
+	private String sysCompanyCode;
+	/**流程状态*/
 	private String bpmStatus;
-	/**
-	 * 车牌号
-	 */
-    @Excel(name = "车号",width = 15)
+	/**车牌号*/
+	@Excel(name="车号",width=15)
 	private String chepaihao;
-	/**
-	 * 车型
-	 */
-    @Excel(name="车型",width=15)
+	/**车型*/
+	@Excel(name="车型",width=15)
 	private String chexing;
-	/**
-	 * 最大体积
-	 */
-    @Excel(name="最大体积",width=15)
+	/**最大体积*/
+	@Excel(name="最大体积",width=15)
 	private String zuidatiji;
-	/**
-	 * 载重
-	 */
-    @Excel(name="载重",width=15)
+	/**载重*/
+	@Excel(name="载重",width=15)
 	private String zaizhong;
-	/**
-	 * 载人数
-	 */
-    @Excel(name="载人数",width=15)
+	/**载人数*/
+	@Excel(name="载人数",width=15)
 	private String zairen;
-	/**
-	 * 准假驾照
-	 */
-    @Excel(name="准假驾照",width=15)
+	/**准假驾照*/
+	@Excel(name="准假驾照",width=15)
 	private String jiazhao;
-	/**
-	 * 是否可用
-	 */
-    @Excel(name="姓名",width=15)
+	/**是否可用*/
+	@Excel(name="姓名",width=15)
 	private String zhuangtai;
-	/**
-	 * 备注
-	 */
-    @Excel(name="电话",width=15)
+	/**备注*/
+	@Excel(name="电话",width=15)
 	private String beizhu;
-	/**
-	 * 默认司机
-	 */
-    @Excel(name="默认司机",width=15)
+	/**默认司机*/
+	@Excel(name="默认司机",width=15)
 	private String username;
-	/**
-	 * gps
-	 */
-    @Excel(name="车牌号",width=15)
+	/**gps*/
+	@Excel(name="车牌号",width=15)
 	private String gpsid;
 	@Excel(name="区域",width=15)
 	private java.lang.String quyu;
