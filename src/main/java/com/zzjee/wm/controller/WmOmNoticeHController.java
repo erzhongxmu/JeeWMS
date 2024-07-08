@@ -152,8 +152,6 @@ public class WmOmNoticeHController extends BaseController {
         this.wmOmNoticeHService.getDataGridReturn(cq, true);
         TagUtil.datagrid(response, dataGrid);
     }
-
-
     @RequestMapping(params = "saveOmnotice")
     @ResponseBody
     public AjaxJson saveOmnotice(wmomnoticeipage page) {

@@ -79,7 +79,6 @@ public class WmSttInGoodsController extends BaseController {
     @Autowired
     private Validator validator;
 
-
     /**
      * 库存盘点列表 页面跳转
      *
@@ -114,8 +113,6 @@ public class WmSttInGoodsController extends BaseController {
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wmSttInGoods, request.getParameterMap());
         try {
             //自定义追加查询条件
-
-            // 自定义追加查询条件
             String query_createDate_begin = request.getParameter("createDate_begin1");
             String query_createDate_end = request.getParameter("createDate_end2");
 
@@ -127,8 +124,6 @@ public class WmSttInGoodsController extends BaseController {
                 cq.le("createDate", new SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
                         .parse(query_createDate_end));
             }
-
-
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
         }
@@ -140,7 +135,6 @@ public class WmSttInGoodsController extends BaseController {
         this.wmSttInGoodsService.getDataGridReturn(cq, true);
         TagUtil.datagrid(response, dataGrid);
     }
-
 
     @RequestMapping(params = "datagridcygz")
     public void datagridcygz(WmSttInGoodsEntity wmSttInGoods, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {

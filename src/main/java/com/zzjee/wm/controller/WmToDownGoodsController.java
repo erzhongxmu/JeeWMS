@@ -71,6 +71,7 @@ import static org.jeecgframework.web.system.sms.util.Constants.wm_sta6;
  * @Description: 下架商品明细
  * @date 2017-08-25 10:40:39
  */
+
 @Controller
 @RequestMapping("/wmToDownGoodsController")
 public class WmToDownGoodsController extends BaseController {
@@ -87,7 +88,6 @@ public class WmToDownGoodsController extends BaseController {
     @Autowired
     private Validator validator;
 
-
     /**
      * 下架商品明细列表 页面跳转
      *
@@ -98,7 +98,6 @@ public class WmToDownGoodsController extends BaseController {
         return new ModelAndView("com/zzjee/wm/wmToDownGoodsList");
     }
 
-
     /**
      * easyui AJAX请求数据
      *
@@ -106,7 +105,6 @@ public class WmToDownGoodsController extends BaseController {
      * @param response
      * @param dataGrid
      */
-
     @RequestMapping(params = "datagrid")
     public void datagrid(WmToDownGoodsEntity wmToDownGoods,
                          HttpServletRequest request, HttpServletResponse response,
@@ -116,6 +114,7 @@ public class WmToDownGoodsController extends BaseController {
         // 查询条件组装器
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq,
                 wmToDownGoods, request.getParameterMap());
+        // 设置排序规则，按创建日期降序排列
         Map<String, Object> map1 = new HashMap<String, Object>();
         map1.put("createDate", "desc");
         cq.setOrder(map1);
@@ -124,6 +123,7 @@ public class WmToDownGoodsController extends BaseController {
         List<WmToDownGoodsEntity> resultold = dataGrid.getResults();
         List<WmToDownGoodsEntity> resultnew = new ArrayList<>();
         for (WmToDownGoodsEntity t : resultold) {
+            // 如果商品名称为空，则尝试从数据库中获取商品名称并设置
             if (StringUtil.isEmpty(t.getGoodsName())) {
                 try {
                     MvGoodsEntity goods = systemService.findUniqueByProperty(MvGoodsEntity.class, "goodsCode", t.getGoodsId());
@@ -133,9 +133,12 @@ public class WmToDownGoodsController extends BaseController {
                 } catch (Exception e) {
                 }
             }
+            // 设置排序规则，按创建日期降序排列
             resultnew.add(t);
         }
+        // 将处理后的结果设置到dataGrid对象中
         dataGrid.setResults(resultnew);
+        // 将dataGrid对象转换为响应数据并返回给客户端
         TagUtil.datagrid(response, dataGrid);
     }
 

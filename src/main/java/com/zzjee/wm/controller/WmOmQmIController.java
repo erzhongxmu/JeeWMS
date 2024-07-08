@@ -165,14 +165,16 @@ public class WmOmQmIController extends BaseController {
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.eq("binSta", "I");
+        // 如果wmUtil中的cusCode不为空，则添加查询条件：cusCode字段等于wmUtil中的cusCode值
         if (StringUtil.isNotEmpty(wmUtil.getCusCode())) {
             cq.eq("cusCode", wmUtil.getCusCode());
         }
         cq.add();
+        // 调用服务层方法获取查询结果，并将结果封装到dataGrid对象中
         this.wmOmQmIService.getDataGridReturn(cq, true);
+        // 将dataGrid对象转换为响应数据并返回给客户端
         TagUtil.datagrid(response, dataGrid);
     }
-
 
     @RequestMapping(params = "dogetbin", method = {RequestMethod.GET,
             RequestMethod.POST})
@@ -197,7 +199,6 @@ public class WmOmQmIController extends BaseController {
         j.setObj(wmOmQmI);
         return j;
     }
-
 
     @RequestMapping(params = "doassign")
     @ResponseBody

@@ -141,9 +141,11 @@ public class WmPrintModelController extends BaseController {
     public AjaxJson doDel(WmPrintModelEntity wmPrintModel, HttpServletRequest request) {
         String message = null;
         AjaxJson j = new AjaxJson();
+        // 通过ID获取打印模板实体
         wmPrintModel = systemService.getEntity(WmPrintModelEntity.class, wmPrintModel.getId());
         message = "打印模板删除成功";
         try {
+            // 调用服务层方法删除打印模板实体
             wmPrintModelService.delete(wmPrintModel);
             systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
@@ -151,6 +153,7 @@ public class WmPrintModelController extends BaseController {
             message = "打印模板删除失败";
             throw new BusinessException(e.getMessage());
         }
+        // 设置返回消息
         j.setMsg(message);
         return j;
     }

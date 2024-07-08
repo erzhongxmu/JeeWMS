@@ -77,7 +77,6 @@ public class WmPlatIoController extends BaseController {
     @Autowired
     private Validator validator;
 
-
     /**
      * 月台进出列表 页面跳转
      *
