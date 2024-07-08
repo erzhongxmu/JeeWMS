@@ -159,8 +159,6 @@ public class WmDayCostController extends BaseController {
 		cq.add();
 		this.wmDayCostService.getDataGridReturn(cq, true);
 		try {
-
-
 			List<WmDayCostEntity> resultold = dataGrid.getResults();
 			Double dayCostYj = 0.0000;
 			Double dayCostBhs = 0.0000;

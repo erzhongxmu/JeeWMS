@@ -139,9 +139,11 @@ public class WmCusCostHController extends BaseController {
 	@ResponseBody
 	public AjaxJson doDel(WmCusCostHEntity wmCusCostH, HttpServletRequest request) {
 		AjaxJson j = new AjaxJson();
+		// 根据传入的wmCusCostH对象的id获取对应的实体
 		wmCusCostH = systemService.getEntity(WmCusCostHEntity.class, wmCusCostH.getId());
 		String message = "客户费用删除成功";
 		try{
+			// 调用服务层方法删除实体
 			wmCusCostHService.delMain(wmCusCostH);
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){

@@ -108,9 +108,11 @@ public class BaStoreAreaController extends BaseController {
 		//自定义追加查询条件
 		String query_createDate_begin = request.getParameter("createDate_begin");
 		String query_createDate_end = request.getParameter("createDate_end");
+		// 如果createDate_begin不为空，则添加大于等于该日期的条件
 		if(StringUtil.isNotEmpty(query_createDate_begin)){
 			cq.ge("createDate", new SimpleDateFormat("yyyy-MM-dd").parse(query_createDate_begin));
 		}
+		// 如果createDate_end不为空，则添加小于等于该日期的条件
 		if(StringUtil.isNotEmpty(query_createDate_end)){
 			cq.le("createDate", new SimpleDateFormat("yyyy-MM-dd").parse(query_createDate_end));
 		}
@@ -119,6 +121,7 @@ public class BaStoreAreaController extends BaseController {
 		}
 		cq.add();
 		this.baStoreAreaService.getDataGridReturn(cq, true);
+		// 将查询结果封装成DataGrid对象并返回给前端
 		TagUtil.datagrid(response, dataGrid);
 	}
 

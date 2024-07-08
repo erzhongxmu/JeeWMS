@@ -140,9 +140,11 @@ public class BaTrayController extends BaseController {
 	public AjaxJson doDel(BaTrayEntity baTray, HttpServletRequest request) {
 		String message = null;
 		AjaxJson j = new AjaxJson();
+		// 根据传入的baTray对象的id获取对应的实体
 		baTray = systemService.getEntity(BaTrayEntity.class, baTray.getId());
 		message = "ba_tray删除成功";
 		try{
+			// 调用服务层方法删除实体
 			baTrayService.delete(baTray);
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){

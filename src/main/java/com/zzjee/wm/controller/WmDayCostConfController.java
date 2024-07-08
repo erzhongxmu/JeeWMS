@@ -153,10 +153,13 @@ public class WmDayCostConfController extends BaseController {
     public AjaxJson doDel(WmDayCostConfEntity wmDayCostConf, HttpServletRequest request) {
         String message = null;
         AjaxJson j = new AjaxJson();
+        // 根据传入的wmDayCostConf对象的id获取对应的实体
         wmDayCostConf = systemService.getEntity(WmDayCostConfEntity.class, wmDayCostConf.getId());
         message = "计费日期配置删除成功";
         try {
+            // 将计费状态设置为"N"（不计费）
             wmDayCostConf.setCostSf("N");
+            // 保存或更新实体
             wmDayCostConfService.saveOrUpdate(wmDayCostConf);
             systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
