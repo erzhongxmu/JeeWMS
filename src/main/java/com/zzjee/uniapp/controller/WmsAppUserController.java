@@ -220,7 +220,6 @@ public class WmsAppUserController extends BaseController {
 		return j;
 	}
 
-
 	/**
 	 * APP角色分配 新增页面跳转
 	 *
