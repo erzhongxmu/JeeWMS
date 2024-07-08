@@ -333,7 +333,7 @@ public class TmsYufeiConfEntity implements java.io.Serializable {
 	}
 	/**
 	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  备注3
+	 *@return: java.lang.String  备注4
 	 */
 	@Column(name ="YF_BZ3",nullable=true,length=32)
 	public String getYfBz3(){

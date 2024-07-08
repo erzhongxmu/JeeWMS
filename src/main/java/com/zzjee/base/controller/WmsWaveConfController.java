@@ -149,7 +149,6 @@ public class WmsWaveConfController extends BaseController {
 	
 	/**
 	 * 批量删除波次配置
-	 *
 	 */
 	 @RequestMapping(params = "doBatchDel")
 	@ResponseBody

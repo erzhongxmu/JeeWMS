@@ -30,9 +30,7 @@ import org.jeecgframework.poi.excel.annotation.Excel;
 @Table(name = "wms_wave_conf", schema = "")
 @SuppressWarnings("serial")
 public class WmsWaveConfEntity implements java.io.Serializable {
-	/**
-	 * 主键
-	 * */
+	/**主键*/
 	private String id;
 	/**创建人名称*/
 	private String createName;

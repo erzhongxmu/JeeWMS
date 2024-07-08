@@ -42,7 +42,12 @@ public class TmsYufeiConfServiceImpl extends CommonServiceImpl implements TmsYuf
  		this.doAddBus(entity);
  		return t;
  	}
- 	
+
+	/**
+	 * 保存更新
+	 * @param entity
+	 * @throws Exception
+	 */
  	@Override
     public void saveOrUpdate(TmsYufeiConfEntity entity) throws Exception{
  		super.saveOrUpdate(entity);
