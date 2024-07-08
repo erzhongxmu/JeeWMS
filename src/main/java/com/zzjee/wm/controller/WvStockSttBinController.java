@@ -200,14 +200,12 @@ public class WvStockSttBinController extends BaseController {
 		AjaxJson j = new AjaxJson();
 		message = "储位盘点添加成功";
 		try{
-
 			try{
 				MdCusEntity mdcus = systemService.findUniqueByProperty(MdCusEntity.class,"keHuBianMa",wvStockSttBin.getCusCode());
 				wvStockSttBin.setZhongWenQch(mdcus.getZhongWenQch());
 			}catch (Exception e){
 
 			}
-
 			wvStockSttBinService.save(wvStockSttBin);
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
@@ -288,7 +286,6 @@ public class WvStockSttBinController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-
 
 	/**
 	 * 储位盘点新增页面跳转

@@ -135,9 +135,11 @@ public class BaStoreAreaController extends BaseController {
 	public AjaxJson doDel(BaStoreAreaEntity baStoreArea, HttpServletRequest request) {
 		String message = null;
 		AjaxJson j = new AjaxJson();
+		// 通过ID获取实体类对象
 		baStoreArea = systemService.getEntity(BaStoreAreaEntity.class, baStoreArea.getId());
 		message = "ba_store_area删除成功";
 		try{
+			// 调用服务层方法删除实体
 			baStoreAreaService.delete(baStoreArea);
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
