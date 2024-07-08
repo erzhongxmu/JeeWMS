@@ -17,20 +17,28 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class WmsPlcServiceImpl extends CommonServiceImpl implements WmsPlcServiceI {
 
-	
- 	public void delete(WmsPlcEntity entity) throws Exception{
+	/**
+	 * 删除WmsPlcEntity实体对象
+	 */
+	 public void delete(WmsPlcEntity entity) throws Exception{
  		super.delete(entity);
  		//执行删除操作增强业务
 		this.doDelBus(entity);
  	}
- 	
+
+	/**
+	 * 保存WmsPlcEntity实体对象
+	 */
  	public Serializable save(WmsPlcEntity entity) throws Exception{
  		Serializable t = super.save(entity);
  		//执行新增操作增强业务
  		this.doAddBus(entity);
  		return t;
  	}
- 	
+
+	/**
+	 * 保存或更新WmsPlcEntity实体对象
+	 */
  	public void saveOrUpdate(WmsPlcEntity entity) throws Exception{
  		super.saveOrUpdate(entity);
  		//执行更新操作增强业务
