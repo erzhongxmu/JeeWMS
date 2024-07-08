@@ -82,7 +82,6 @@ public class BaStoreAreaController extends BaseController {
 	private Validator validator;
 
 
-
 	/**
 	 * ba_store_area列表 页面跳转
 	 *

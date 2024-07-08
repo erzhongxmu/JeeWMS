@@ -107,7 +107,6 @@ public class BaTrayController extends BaseController {
 	 * @param dataGrid
 	 * @param user
 	 */
-
 	@RequestMapping(params = "datagrid")
 	public void datagrid(BaTrayEntity baTray,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
 		CriteriaQuery cq = new CriteriaQuery(BaTrayEntity.class, dataGrid);
