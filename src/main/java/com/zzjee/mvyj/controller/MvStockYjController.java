@@ -364,11 +364,16 @@ public class MvStockYjController extends BaseController {
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(MvStockYjEntity mvStockYj,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
+		//设置导出文件名
     	modelMap.put(NormalExcelConstants.FILE_NAME,"效期预警");
+		//设置导出数据对象的类型
     	modelMap.put(NormalExcelConstants.CLASS,MvStockYjEntity.class);
+		//设置导出参数，包括导出文件的标题、导出人和导出信息
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("效期预警列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
     	"导出信息"));
+		//设置导出数据列表，这里使用一个空的ArrayList，实际导出的数据需要根据具体情况进行设置
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
+		//返回视图名称，用于导出Excel文件
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 	
