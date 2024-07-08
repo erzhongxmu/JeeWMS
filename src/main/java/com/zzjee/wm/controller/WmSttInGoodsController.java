@@ -107,7 +107,6 @@ public class WmSttInGoodsController extends BaseController {
      * @param response
      * @param dataGrid
      */
-
     @RequestMapping(params = "datagrid")
     public void datagrid(WmSttInGoodsEntity wmSttInGoods, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
         CriteriaQuery cq = new CriteriaQuery(WmSttInGoodsEntity.class, dataGrid);
