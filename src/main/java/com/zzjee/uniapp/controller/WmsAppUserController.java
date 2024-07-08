@@ -88,8 +88,6 @@ public class WmsAppUserController extends BaseController {
 	@Autowired
 	private Validator validator;
 
-
-
 	/**
 	 * APP角色分配 列表 页面跳转
 	 *
@@ -107,7 +105,6 @@ public class WmsAppUserController extends BaseController {
 	 * @param response
 	 * @param dataGrid
 	 */
-
 	@RequestMapping(params = "datagrid")
 	public void datagrid(WmsAppUserEntity wmsAppUser,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
 		CriteriaQuery cq = new CriteriaQuery(WmsAppUserEntity.class, dataGrid);
@@ -172,7 +169,6 @@ public class WmsAppUserController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-
 
 	/**
 	 * 添加APP角色分配
@@ -280,6 +276,7 @@ public class WmsAppUserController extends BaseController {
 		modelMap.put(NormalExcelConstants.DATA_LIST,wmsAppUsers);
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
+
 	/**
 	 * 导出excel 使模板
 	 *
