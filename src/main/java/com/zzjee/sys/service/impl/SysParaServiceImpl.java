@@ -59,7 +59,6 @@ public class SysParaServiceImpl extends CommonServiceImpl implements SysParaServ
 	private void doUpdateBus(SysParaEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -71,7 +70,6 @@ public class SysParaServiceImpl extends CommonServiceImpl implements SysParaServ
 	private void doDelBus(SysParaEntity t) throws Exception{
 	    //-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}

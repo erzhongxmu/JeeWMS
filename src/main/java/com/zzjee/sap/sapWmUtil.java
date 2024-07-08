@@ -58,6 +58,7 @@ public class sapWmUtil {
             // 将输出表添加到结果Map中
             result.put("IT_OUT", tab);
         } catch (Exception e) {
+            // 打印异常信息
             System.out.print(e.getMessage());
         }
         return result;
@@ -65,7 +66,6 @@ public class sapWmUtil {
 
 
     //获取WM单据
-    //
     //DOCID
     public  static Map<String,Object> getWmdoc(String DOCTYPE,String DOCID,String tablename) {
         Map<String, Object> result = new HashMap<String, Object>();

@@ -103,7 +103,9 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	 */
     @Excel(name="默认司机",width=15)
 	private String username;
-	/**gps*/
+	/**
+	 * gps
+	 */
     @Excel(name="车牌号",width=15)
 	private String gpsid;
 	@Excel(name="区域",width=15)

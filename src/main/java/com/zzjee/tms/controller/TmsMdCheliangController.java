@@ -74,7 +74,6 @@ public class TmsMdCheliangController extends BaseController {
 
     /**
      * 车辆管理列表 页面跳转
-     *
      * @return
      */
     @RequestMapping(params = "list")
@@ -100,7 +99,6 @@ public class TmsMdCheliangController extends BaseController {
         this.tmsMdCheliangService.getDataGridReturn(cq, true);
         TagUtil.datagrid(response, dataGrid);
     }
-
 
     @RequestMapping(params = "doassignwave")
     @ResponseBody

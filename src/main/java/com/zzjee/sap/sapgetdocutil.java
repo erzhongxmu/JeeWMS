@@ -68,6 +68,7 @@ public static List<wmientity>   getWmdoc(String DOCTYPE,String DOCID,String tabl
         try {
             // 调用sapWmUtil的getcw方法获取数据
         	Map<String, Object> result = sapWmUtil.getcw(LGNUM,LGPLA);
+            //  将返回的结果转换为JCoTable类型
             JCoTable restable =  (JCoTable)result.get("IT_OUT");
             org.jeecgframework.core.util.LogUtil.info("===================获取储位开始===================");
             reslit = getlistbyparandrable(restable,par);

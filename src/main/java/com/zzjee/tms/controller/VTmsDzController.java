@@ -215,7 +215,7 @@ public class VTmsDzController extends BaseController {
 
 	/**
 	 * v_tms_dz新增页面跳转
-	 *
+	 *	@param vTmsDz 实体对象
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
