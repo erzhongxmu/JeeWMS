@@ -97,6 +97,7 @@ public class WmToDownGoodsController extends BaseController {
         return new ModelAndView("com/zzjee/wm/wmToDownGoodsList");
     }
 
+
     /**
      * easyui AJAX请求数据
      *
