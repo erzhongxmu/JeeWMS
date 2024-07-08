@@ -276,6 +276,7 @@ public class WvStockController extends BaseController {
         return j;
     }
 
+
     /**
      * 添加生成盘点单
      *
