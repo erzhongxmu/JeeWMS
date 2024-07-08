@@ -100,7 +100,6 @@ public class WaveToFjController extends BaseController {
      * @param response
      * @param dataGrid
      */
-
     @RequestMapping(params = "datagrid")
     public void datagrid(WaveToFjEntity waveToFj, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
         CriteriaQuery cq = new CriteriaQuery(WaveToFjEntity.class, dataGrid);
@@ -141,7 +140,6 @@ public class WaveToFjController extends BaseController {
         return j;
     }
 
-
     /**
      * 批量删除wave_to_fj
      *
@@ -154,7 +152,9 @@ public class WaveToFjController extends BaseController {
         AjaxJson j = new AjaxJson();
         message = "wave_to_fj";
         try {
+            // 遍历传入的id字符串，以逗号分隔
             for (String id : ids.split(",")) {
+                // 根据id获取WaveToFjEntity实体
                 WaveToFjEntity waveToFj = systemService.getEntity(WaveToFjEntity.class,
                         id
                 );
@@ -169,7 +169,6 @@ public class WaveToFjController extends BaseController {
         j.setMsg(message);
         return j;
     }
-
 
     /**
      * 添加wave_to_fj
