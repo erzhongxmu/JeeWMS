@@ -121,7 +121,6 @@ public class BiStaffController extends BaseController {
 
     /**
      * highchart
-     *
      * @return
      */
     @RequestMapping(params = "cpNameupCount")
