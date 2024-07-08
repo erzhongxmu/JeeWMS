@@ -229,7 +229,6 @@ public class BaTrayController extends BaseController {
 		return j;
 	}
 
-
 	/**
 	 * ba_tray新增页面跳转
 	 *
