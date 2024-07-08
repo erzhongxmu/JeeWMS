@@ -244,6 +244,7 @@ public class MdSupController extends BaseController {
 	/**
 	 * 供应商编辑页面跳转
 	 *
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")

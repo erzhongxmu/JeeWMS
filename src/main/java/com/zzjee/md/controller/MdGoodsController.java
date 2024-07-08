@@ -191,6 +191,7 @@ public class MdGoodsController extends BaseController {
 	 * 添加商品信息
 	 *
 	 * @param mdGoods
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
