@@ -202,8 +202,10 @@ public class MvStockYjController extends BaseController {
 	public AjaxJson doBatchDel(String ids,HttpServletRequest request){
 		String message = null;
 		AjaxJson j = new AjaxJson();
+		//设置消息
 		message = "效期预警删除成功";
 		try{
+			//遍历提供的ids，并删除对应的MvStockYjEntity对象
 			for(String id:ids.split(",")){
 				MvStockYjEntity mvStockYj = systemService.getEntity(MvStockYjEntity.class, 
 				id
@@ -232,8 +234,10 @@ public class MvStockYjController extends BaseController {
 	public AjaxJson doAdd(MvStockYjEntity mvStockYj, HttpServletRequest request) {
 		String message = null;
 		AjaxJson j = new AjaxJson();
+		//设置消息
 		message = "效期预警添加成功";
 		try{
+			//保存MvStockYjEntity对象
 			mvStockYjService.save(mvStockYj);
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
@@ -256,10 +260,14 @@ public class MvStockYjController extends BaseController {
 	public AjaxJson doUpdate(MvStockYjEntity mvStockYj, HttpServletRequest request) {
 		String message = null;
 		AjaxJson j = new AjaxJson();
+		//设置消息
 		message = "效期预警更新成功";
+		//获取要更新的MvStockYjEntity对象
 		MvStockYjEntity t = mvStockYjService.get(MvStockYjEntity.class, mvStockYj.getId());
 		try {
+			//将mvStockYj的非空属性复制到t对象中
 			MyBeanUtils.copyBeanNotNull2Bean(mvStockYj, t);
+			//保存或更新t对象
 			mvStockYjService.saveOrUpdate(t);
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
