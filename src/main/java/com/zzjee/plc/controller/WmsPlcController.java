@@ -219,11 +219,12 @@ public class WmsPlcController extends BaseController {
             return;
         }
         WmsPlcEntity wmsPlc = null;
+        //根据 id 获取 WmsPlcEntity 对象
         if (StringUtil.isNotEmpty(id)) {
             wmsPlc = systemService.getEntity(WmsPlcEntity.class, id);
         }
+        //根据 comNo 查询 WmsPlcEntity 对象
         if (StringUtil.isNotEmpty(comNo)) {
-
             String hql = "";
             List<WmsPlcEntity> wmsPlcEntityList = new ArrayList<WmsPlcEntity>();
             hql = "from WmsPlcEntity t where  t.comNo =  ? ";
@@ -232,13 +233,17 @@ public class WmsPlcController extends BaseController {
                 wmsPlc = wmsPlcEntityList.get(0);
             }
         }
+        //如果存在 WmsPlcEntity 对象
         if (wmsPlc != null) {
+            //设置 SiemensS7Net 对象的参数
             SiemensPLCS siemensPLCS = SiemensPLCS.S200Smart;
             SiemensS7Net siemensS7Net = null;
             siemensS7Net = new SiemensS7Net(siemensPLCS);
             siemensS7Net.setIpAddress(wmsPlc.getPlcIp());
             siemensS7Net.setPort(Integer.parseInt(wmsPlc.getPlcPort()));
+            //连接到 PLC 服务器
             OperateResult connect = siemensS7Net.ConnectServer();
+            //判断连接是否成功
             if (connect.IsSuccess) {
                 System.out.println("connect success");
             } else {
