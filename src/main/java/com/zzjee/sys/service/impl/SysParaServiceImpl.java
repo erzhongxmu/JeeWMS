@@ -17,7 +17,7 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class SysParaServiceImpl extends CommonServiceImpl implements SysParaServiceI {
 
-	
+
  	@Override
     public void delete(SysParaEntity entity) throws Exception{
  		super.delete(entity);
@@ -134,6 +134,7 @@ public class SysParaServiceImpl extends CommonServiceImpl implements SysParaServ
 					javaInter.execute("sys_para",data);
 				}
 			} catch (Exception e) {
+				// 打印异常信息
 				e.printStackTrace();
 				throw new Exception("执行JAVA增强出现异常！");
 			} 

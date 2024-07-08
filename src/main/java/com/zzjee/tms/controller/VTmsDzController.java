@@ -217,7 +217,7 @@ public class VTmsDzController extends BaseController {
 	 * v_tms_dz新增页面跳转
 	 * @param vTmsDz 实体对象
 	 * @param req HTTP请求
-	 * @return
+	 * @return 返回AjaxJson对象
 	 */
 	@RequestMapping(params = "goAdd")
 	public ModelAndView goAdd(VTmsDzEntity vTmsDz, HttpServletRequest req) {
