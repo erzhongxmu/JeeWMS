@@ -86,7 +86,6 @@ public class WvGiController extends BaseController {
     @Autowired
     private WvGiServiceI wvGiService;
 
-
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<?> list(@RequestParam(value = "username", required = false) String username,

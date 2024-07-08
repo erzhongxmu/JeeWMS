@@ -75,7 +75,6 @@ public class WvNoticeController extends BaseController {
     @Autowired
     private Validator validator;
 
-
     //PDA接口
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody

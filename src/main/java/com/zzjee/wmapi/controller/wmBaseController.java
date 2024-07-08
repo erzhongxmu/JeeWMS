@@ -70,6 +70,7 @@ public class wmBaseController extends BaseController {
     @Autowired
     private CostTask costTask;
 
+
     /**
      * 获取图片流/获取文件用于下载
      *
@@ -132,6 +133,7 @@ public class wmBaseController extends BaseController {
             }
         }
     }
+
 
     /**
      * 获取图片流/获取文件用于下载
