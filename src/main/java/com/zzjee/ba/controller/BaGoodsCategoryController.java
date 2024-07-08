@@ -167,7 +167,6 @@ public class BaGoodsCategoryController extends BaseController {
 
 	/**
 	 * 删除商品类目
-	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")

@@ -114,7 +114,7 @@ public class BaCostConfController extends BaseController {
 	}
 
 	/**
-	 * 删除计 费配置
+	 * 删除计费配置
 	 *
 	 * @return
 	 */
