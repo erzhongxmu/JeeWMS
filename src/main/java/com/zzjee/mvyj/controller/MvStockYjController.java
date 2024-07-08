@@ -282,12 +282,13 @@ public class MvStockYjController extends BaseController {
 
 	/**
 	 * 效期预警新增页面跳转
-	 * 
+	 * 要新增的MvStockYjEntity对象
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
 	public ModelAndView goAdd(MvStockYjEntity mvStockYj, HttpServletRequest req) {
 		if (StringUtil.isNotEmpty(mvStockYj.getId())) {
+			//如果mvStockYj的id不为空，则从数据库中获取对应的实体对象
 			mvStockYj = mvStockYjService.getEntity(MvStockYjEntity.class, mvStockYj.getId());
 			req.setAttribute("mvStockYjPage", mvStockYj);
 		}
@@ -301,6 +302,7 @@ public class MvStockYjController extends BaseController {
 	@RequestMapping(params = "goUpdate")
 	public ModelAndView goUpdate(MvStockYjEntity mvStockYj, HttpServletRequest req) {
 		if (StringUtil.isNotEmpty(mvStockYj.getId())) {
+			//如果mvStockYj的id不为空，则从数据库中获取对应的实体对象
 			mvStockYj = mvStockYjService.getEntity(MvStockYjEntity.class, mvStockYj.getId());
 			req.setAttribute("mvStockYjPage", mvStockYj);
 		}
