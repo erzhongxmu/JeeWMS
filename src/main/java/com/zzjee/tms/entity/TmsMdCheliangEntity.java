@@ -12,7 +12,6 @@ import java.util.Date;
  * @author onlineGenerator
  * @date 2018-01-29 21:57:07
  * @version V1.0
- *
  */
 @Entity
 @Table(name = "tms_md_cheliang", schema = "")
