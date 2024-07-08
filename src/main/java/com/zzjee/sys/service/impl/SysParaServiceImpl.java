@@ -136,6 +136,7 @@ public class SysParaServiceImpl extends CommonServiceImpl implements SysParaServ
 			} catch (Exception e) {
 				// 如果出现异常，打印堆栈跟踪
 				e.printStackTrace();
+				// 抛出异常
 				throw new Exception("执行JAVA增强出现异常！");
 			} 
 		}

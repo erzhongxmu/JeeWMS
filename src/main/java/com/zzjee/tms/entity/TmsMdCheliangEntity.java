@@ -89,8 +89,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 		this.id = id;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  创建人名称
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  创建人名称
 	 */
 	@Column(name ="CREATE_NAME",nullable=true,length=50)
 	public String getCreateName(){

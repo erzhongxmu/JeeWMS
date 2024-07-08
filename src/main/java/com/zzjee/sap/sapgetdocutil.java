@@ -79,6 +79,7 @@ public static List<wmientity>   getWmdoc(String DOCTYPE,String DOCID,String tabl
             // 如果出现异常，打印堆栈跟踪
             e.printStackTrace();
         }
+        // 返回处理后的数据列表
         return  reslit;
     }
 
