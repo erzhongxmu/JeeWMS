@@ -326,14 +326,14 @@ public class TmsYufeiConfEntity implements java.io.Serializable {
 
 	/**
 	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  备注3
+	 *@param: java.lang.String  备注2
 	 */
 	public void setYfBz2(String yfBz2){
 		this.yfBz2 = yfBz2;
 	}
 	/**
 	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  备注4
+	 *@return: java.lang.String  备注3
 	 */
 	@Column(name ="YF_BZ3",nullable=true,length=32)
 	public String getYfBz3(){

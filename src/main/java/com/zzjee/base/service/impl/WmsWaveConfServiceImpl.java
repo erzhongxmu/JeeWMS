@@ -91,7 +91,12 @@ public class WmsWaveConfServiceImpl extends CommonServiceImpl implements WmsWave
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
- 	
+
+	/**
+	 * 转map
+	 * @param t
+	 * @return
+	 */
  	private Map<String,Object> populationMap(WmsWaveConfEntity t){
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("id", t.getId());

@@ -19,7 +19,12 @@ public interface TmsYufeiConfServiceI extends CommonService{
 	 * @throws Exception
 	 */
  	public Serializable save(TmsYufeiConfEntity entity) throws Exception;
- 	
+
+	/**
+	 * 保存更新
+	 * @param entity
+	 * @throws Exception
+	 */
  	public void saveOrUpdate(TmsYufeiConfEntity entity) throws Exception;
  	
 }

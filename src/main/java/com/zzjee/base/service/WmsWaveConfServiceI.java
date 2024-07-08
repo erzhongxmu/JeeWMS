@@ -11,7 +11,13 @@ public interface WmsWaveConfServiceI extends CommonService{
 	 * @throws Exception
 	 */
  	public void delete(WmsWaveConfEntity entity) throws Exception;
- 	
+
+	/**
+	 * 保存
+	 * @param entity
+	 * @return
+	 * @throws Exception
+	 */
  	public Serializable save(WmsWaveConfEntity entity) throws Exception;
  	
  	public void saveOrUpdate(WmsWaveConfEntity entity) throws Exception;
