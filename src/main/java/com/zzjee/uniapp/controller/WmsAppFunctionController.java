@@ -71,11 +71,12 @@ import org.springframework.web.util.UriComponentsBuilder;
  * @author onlineGenerator
  * @date 2022-06-13 08:41:27
  * @version V1.0
- *
  */
+
 @Controller
 @RequestMapping("/wmsAppFunctionController")
 public class WmsAppFunctionController extends BaseController {
+
 	/**
 	 * Logger for this class
 	 */
@@ -394,9 +395,13 @@ public class WmsAppFunctionController extends BaseController {
 		return new ResponseEntity(HttpStatus.NO_CONTENT);
 	}
 
+	/**
+	 * 使用Spring MVC注解定义一个处理HTTP DELETE请求的方法
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable("id") String id) {
+		// 调用服务层的方法，根据id删除对应的实体记录
 		wmsAppFunctionService.deleteEntityById(WmsAppFunctionEntity.class, id);
 	}
 }
