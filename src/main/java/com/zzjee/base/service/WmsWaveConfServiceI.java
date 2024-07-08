@@ -19,7 +19,12 @@ public interface WmsWaveConfServiceI extends CommonService{
 	 * @throws Exception
 	 */
  	public Serializable save(WmsWaveConfEntity entity) throws Exception;
- 	
+
+	/**
+	 * 保存更新
+	 * @param entity
+	 * @throws Exception
+	 */
  	public void saveOrUpdate(WmsWaveConfEntity entity) throws Exception;
  	
 }

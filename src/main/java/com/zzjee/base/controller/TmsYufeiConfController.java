@@ -198,7 +198,7 @@ public class TmsYufeiConfController extends BaseController {
 	/**
 	 * 更新运费配置
 	 *
-	 * @param tmsYufeiConf
+	 * @param tmsYufeiConf 运费配置
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")

@@ -177,7 +177,7 @@ public class WmsWaveConfController extends BaseController {
 	/**
 	 * 添加波次配置
 	 * 
-	 * @param wmsWaveConf
+	 * @param wmsWaveConf 波次配置
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")

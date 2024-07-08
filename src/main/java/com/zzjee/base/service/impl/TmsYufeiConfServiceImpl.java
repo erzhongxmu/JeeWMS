@@ -94,7 +94,7 @@ public class TmsYufeiConfServiceImpl extends CommonServiceImpl implements TmsYuf
 
 	/**
 	 * 转map
-	 * @param t
+	 * @param t 待转实体
 	 * @return
 	 */
  	private Map<String,Object> populationMap(TmsYufeiConfEntity t){

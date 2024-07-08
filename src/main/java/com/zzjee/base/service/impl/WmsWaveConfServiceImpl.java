@@ -57,7 +57,7 @@ public class WmsWaveConfServiceImpl extends CommonServiceImpl implements WmsWave
  	
  	/**
 	 * 新增操作增强业务
-	 * @param t
+	 * @param t 待转实体
 	 * @return
 	 */
 	private void doAddBus(WmsWaveConfEntity t) throws Exception{
