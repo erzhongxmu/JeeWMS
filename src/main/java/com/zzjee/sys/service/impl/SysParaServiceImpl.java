@@ -96,7 +96,7 @@ public class SysParaServiceImpl extends CommonServiceImpl implements SysParaServ
 	 * 替换sql中的变量
 	 * @param sql
 	 * @param t
-	 * @return
+	 * @return sql
 	 */
  	public String replaceVal(String sql,SysParaEntity t){
  		sql  = sql.replace("#{id}",String.valueOf(t.getId()));

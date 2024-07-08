@@ -71,6 +71,7 @@ public static List<wmientity>   getWmdoc(String DOCTYPE,String DOCID,String tabl
             //  将返回的结果转换为JCoTable类型
             JCoTable restable =  (JCoTable)result.get("IT_OUT");
             org.jeecgframework.core.util.LogUtil.info("===================获取储位开始===================");
+            // 调用getlistbyparandrable方法处理数据
             reslit = getlistbyparandrable(restable,par);
             org.jeecgframework.core.util.LogUtil.info("===================获取储位结束===================");
         } catch (Exception e) {

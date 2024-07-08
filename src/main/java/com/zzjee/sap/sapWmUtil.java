@@ -64,9 +64,11 @@ public class sapWmUtil {
         return result;
     }
 
-
-    //获取WM单据
-    //DOCID
+    /*
+    * 获取WM单据信息
+    * DOCID
+    *
+    */
     public  static Map<String,Object> getWmdoc(String DOCTYPE,String DOCID,String tablename) {
         Map<String, Object> result = new HashMap<String, Object>();
         try {
