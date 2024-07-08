@@ -113,6 +113,7 @@ public class MdCusOtherController extends BaseController {
 	/**
 	 * 删除第三方客户
 	 *
+	 * @param mdCusOther
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")

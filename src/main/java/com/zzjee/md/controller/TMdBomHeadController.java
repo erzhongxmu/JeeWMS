@@ -277,12 +277,13 @@ public class TMdBomHeadController extends BaseController {
 		return new ModelAndView("com/zzjee/md/tMdBomItemList");
 	}
 
-    /**
-    * 导出excel
-    *
-    * @param request
-    * @param response
-    */
+	/**
+	 * 导出excel
+	 *
+	 * @param tMdBomHead
+	 * @param request
+	 * @param response
+	 */
     @RequestMapping(params = "exportXls")
     public String exportXls(TMdBomHeadEntity tMdBomHead,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid,ModelMap map) {
     	CriteriaQuery cq = new CriteriaQuery(TMdBomHeadEntity.class, dataGrid);

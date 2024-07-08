@@ -190,6 +190,7 @@ public class MdGoodsController extends BaseController {
 	/**
 	 * 添加商品信息
 	 *
+	 * @param mdGoods
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
