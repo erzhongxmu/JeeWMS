@@ -65,7 +65,7 @@ public class SysParaServiceImpl extends CommonServiceImpl implements SysParaServ
  	/**
 	 * 删除操作增强业务
 	 * @param t
-	 * @return
+	 * @return null
 	 */
 	private void doDelBus(SysParaEntity t) throws Exception{
 	    //-----------------sql增强 start----------------------------

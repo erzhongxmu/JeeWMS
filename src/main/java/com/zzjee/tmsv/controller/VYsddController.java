@@ -86,7 +86,6 @@ public class VYsddController extends BaseController {
 
 	/**
 	 * easyui AJAX请求数据
-	 * 
 	 * @param request
 	 * @param response
 	 * @param dataGrid
@@ -158,9 +157,9 @@ public class VYsddController extends BaseController {
 	}
 	
 	/**
-	 * 批量删除v_ysdd
+	 * 批量删除 v_ysdd
 	 * 
-	 * @return
+	 * @return j
 	 */
 	 @RequestMapping(params = "doBatchDel")
 	@ResponseBody

@@ -69,6 +69,7 @@ public class sapWmUtil {
     * @param DOCID 单据ID
     * @param DOCTYPE 单据类型
     * @param tablename 表格名称
+    * @return 包含WM单据信息的Map，其中键为"IT_OUT"，值为包含WM单据信息的JCoTable对象
     */
     public  static Map<String,Object> getWmdoc(String DOCTYPE,String DOCID,String tablename) {
         Map<String, Object> result = new HashMap<String, Object>();

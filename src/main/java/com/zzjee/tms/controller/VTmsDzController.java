@@ -89,12 +89,11 @@ public class VTmsDzController extends BaseController {
 	}
 
 	/**
-	 * easyui AJAX请求数据
-	 *
-	 * @param request
-	 * @param response
-	 * @param dataGrid
-	 * @param user
+	 * 处理easyui AJAX请求数据
+	 * @param vTmsDz 实体对象
+	 * @param request HTTP请求
+	 * @param response HTTP响应
+	 * @param dataGrid 数据网格
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -165,10 +164,10 @@ public class VTmsDzController extends BaseController {
 
 
 	/**
-	 * 添加v_tms_dz
-	 *
-	 * @param ids
-	 * @return
+	 * 添加v_tms_dz记录
+	 * @param vTmsDz 实体对象
+	 * @param request HTTP请求
+	 * @return 返回AjaxJson对象
 	 */
 	@RequestMapping(params = "doAdd")
 	@ResponseBody

@@ -82,7 +82,7 @@ public static List<wmientity>   getWmdoc(String DOCTYPE,String DOCID,String tabl
         // 返回处理后的数据列表
         return  reslit;
     }
-
+    // 将JCoTable数据转换为wmientity列表
     private static List<wmientity> getlistbyparandrable(JCoTable restable, String par[]){
         List<wmientity> reslit = new ArrayList<wmientity>();
         for(int i=0;i<restable.getNumRows();i++){
