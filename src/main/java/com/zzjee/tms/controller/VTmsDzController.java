@@ -76,8 +76,6 @@ public class VTmsDzController extends BaseController {
 	@Autowired
 	private Validator validator;
 
-
-
 	/**
 	 * v_tms_dz列表 页面跳转
 	 * @param request HTTP请求
@@ -104,6 +102,7 @@ public class VTmsDzController extends BaseController {
 		try{
 		//自定义追加查询条件
 		}catch (Exception e) {
+			// 抛出异常
 			throw new BusinessException(e.getMessage());
 		}
 		cq.add();

@@ -58,8 +58,8 @@ public class VTmsDzEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  dizhi
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  dizhi
 	 */
 	public void setDizhi(String dizhi){
 		this.dizhi = dizhi;

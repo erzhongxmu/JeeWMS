@@ -84,6 +84,7 @@ public class sapWmUtil {
             saprfc.addParameter("DOCID", DOCID);
             // 执行RFC调用
             saprfc.execCall();
+            // 获取指定表格名称的输出表
             JCoTable tab = saprfc.getResultTable(tablename);
             result.put("IT_OUT", tab);
         } catch (Exception e) {

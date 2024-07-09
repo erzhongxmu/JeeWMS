@@ -99,6 +99,7 @@ public static List<wmientity>   getWmdoc(String DOCTYPE,String DOCID,String tabl
                     String methodstr = "setWmX"+j;
                     // 获取对应的setter方法
                     Method method = cl.getMethod(methodstr,String.class);
+                    // 调用setter方法设置属性值
                     method.invoke(obj,restable.getString(par[j-1]));
                 }
                 wmientity t = (wmientity) obj;
