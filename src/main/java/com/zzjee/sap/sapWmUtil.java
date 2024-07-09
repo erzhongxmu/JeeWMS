@@ -80,6 +80,7 @@ public class sapWmUtil {
             saprfc.prepare("Z_WM_GET_WM_DOC");
             // 添加参数DOCTYPE
             saprfc.addParameter("DOCTYPE", DOCTYPE);
+            // 添加参数DOCID
             saprfc.addParameter("DOCID", DOCID);
             saprfc.execCall();
             JCoTable tab = saprfc.getResultTable(tablename);

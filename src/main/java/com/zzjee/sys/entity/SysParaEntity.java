@@ -89,8 +89,8 @@ public class SysParaEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  创建人名称
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  创建人名称
 	 */
 	public void setCreateName(String createName){
 		this.createName = createName;

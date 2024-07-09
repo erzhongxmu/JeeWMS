@@ -95,6 +95,7 @@ public static List<wmientity>   getWmdoc(String DOCTYPE,String DOCID,String tabl
                 // 创建wmientity的一个新实例
                 Object obj = cl.newInstance();
                 for(int j = 1;j<=par.length;j++){
+                    // 根据参数生成setter方法名
                     String methodstr = "setWmX"+j;
                     Method method = cl.getMethod(methodstr,String.class);
                     method.invoke(obj,restable.getString(par[j-1]));

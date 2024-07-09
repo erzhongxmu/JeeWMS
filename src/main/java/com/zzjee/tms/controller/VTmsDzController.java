@@ -139,7 +139,7 @@ public class VTmsDzController extends BaseController {
 	 * 批量删除v_tms_dz记录
 	 * @param ids 记录ID字符串
 	 * @param request HTTP请求
-	 * @return
+	 * @return 返回AjaxJson对象
 	 */
 	 @RequestMapping(params = "doBatchDel")
 	@ResponseBody
