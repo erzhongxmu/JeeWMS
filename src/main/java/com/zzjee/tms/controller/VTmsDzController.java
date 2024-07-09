@@ -136,7 +136,7 @@ public class VTmsDzController extends BaseController {
 	}
 
 	/**
-	 * 批量删除v_tms_dz
+	 * 批量删除v_tms_dz记录
 	 *
 	 * @return
 	 */

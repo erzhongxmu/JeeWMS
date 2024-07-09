@@ -88,7 +88,8 @@ public static List<wmientity>   getWmdoc(String DOCTYPE,String DOCID,String tabl
         for(int i=0;i<restable.getNumRows();i++){
             //wmientity t = new wmientity();
             try {
-                Class cl = Class.forName("com.zzjee.wmapi.entity.wmientity");//反射得到类
+                // 使用反射获取wmientity类
+                Class cl = Class.forName("com.zzjee.wmapi.entity.wmientity");
                 restable.setRow(i);
                 Object obj = cl.newInstance();//新建一个实例
                 for(int j = 1;j<=par.length;j++){

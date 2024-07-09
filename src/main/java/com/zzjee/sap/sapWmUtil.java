@@ -74,6 +74,7 @@ public class sapWmUtil {
     public  static Map<String,Object> getWmdoc(String DOCTYPE,String DOCID,String tablename) {
         Map<String, Object> result = new HashMap<String, Object>();
         try {
+            // 创建SAP RFC连接实例
             SapRFC saprfc = SapRFC.getInstance();
             saprfc.prepare("Z_WM_GET_WM_DOC");
             saprfc.addParameter("DOCTYPE", DOCTYPE);

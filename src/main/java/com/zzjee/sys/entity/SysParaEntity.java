@@ -61,8 +61,8 @@ public class SysParaEntity implements java.io.Serializable {
 	private String parValue;
 	
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  主键
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  主键
 	 */
 	@Id
 	@GeneratedValue(generator = "paymentableGenerator")
