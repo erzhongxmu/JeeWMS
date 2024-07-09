@@ -323,17 +323,22 @@ public class RpWmToDownGoodsController extends BaseController {
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-		
+		//将HttpServletRequest对象转换为MultipartHttpServletRequest对象，以获取上传的文件
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		//获取上传的文件Map，其中Key为文件名，Value为MultipartFile对象
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+		//遍历上传的文件Map
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
-			MultipartFile file = entity.getValue();// 获取上传文件对象
+			MultipartFile file = entity.getValue();         //获取上传文件对象
+			//创建一个ImportParams对象，设置导入参数，包括标题行数、表头行数和是否需要保存
 			ImportParams params = new ImportParams();
 			params.setTitleRows(2);
 			params.setHeadRows(1);
 			params.setNeedSave(true);
 			try {
+				//使用ExcelImportUtil的importExcel方法导入Excel文件
 				List<RpWmToDownGoodsEntity> listRpWmToDownGoodsEntitys = ExcelImportUtil.importExcel(file.getInputStream(),RpWmToDownGoodsEntity.class,params);
+				//遍历RpWmToDownGoodsEntity对象列表，并将每个对象保存到数据库中
 				for (RpWmToDownGoodsEntity rpWmToDownGoods : listRpWmToDownGoodsEntitys) {
 					rpWmToDownGoodsService.save(rpWmToDownGoods);
 				}
@@ -355,6 +360,7 @@ public class RpWmToDownGoodsController extends BaseController {
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<RpWmToDownGoodsEntity> list() {
+		//调用rpWmToDownGoodsService的getList方法，获取RpWmToDownGoodsEntity对象列表
 		List<RpWmToDownGoodsEntity> listRpWmToDownGoodss=rpWmToDownGoodsService.getList(RpWmToDownGoodsEntity.class);
 		return listRpWmToDownGoodss;
 	}
@@ -362,10 +368,13 @@ public class RpWmToDownGoodsController extends BaseController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
+		//调用rpWmToDownGoodsService的get方法，根据id获取RpWmToDownGoodsEntity对象
 		RpWmToDownGoodsEntity task = rpWmToDownGoodsService.get(RpWmToDownGoodsEntity.class, id);
+		//如果获取的对象为空，返回一个HTTP状态码为404的ResponseEntity对象
 		if (task == null) {
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
 		}
+		//返回包含RpWmToDownGoodsEntity对象的ResponseEntity对象，HTTP状态码为200
 		return new ResponseEntity(task, HttpStatus.OK);
 	}
 
