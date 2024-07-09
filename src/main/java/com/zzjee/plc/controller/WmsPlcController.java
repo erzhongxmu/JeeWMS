@@ -471,11 +471,14 @@ public class WmsPlcController extends BaseController {
     @RequestMapping(params = "exportXlsByT")
     public String exportXlsByT(WmsPlcEntity wmsPlc, HttpServletRequest request, HttpServletResponse response
             , DataGrid dataGrid, ModelMap modelMap) {
+        //处理导出Excel请求
         modelMap.put(NormalExcelConstants.FILE_NAME, "PLC指令");
         modelMap.put(NormalExcelConstants.CLASS, WmsPlcEntity.class);
         modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("PLC指令列表", "导出人:" + ResourceUtil.getSessionUserName().getRealName(),
                 "导出信息"));
+        //创建一个空的数据列表
         modelMap.put(NormalExcelConstants.DATA_LIST, new ArrayList());
+        //返回视图名，以导出Excel文件
         return NormalExcelConstants.JEECG_EXCEL_VIEW;
     }
 
@@ -484,17 +487,20 @@ public class WmsPlcController extends BaseController {
     @ResponseBody
     public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
         AjaxJson j = new AjaxJson();
-
+        //获取上传的文件
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+        //遍历上传的文件
         for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
             MultipartFile file = entity.getValue();// 获取上传文件对象
+            //创建导入参数对象
             ImportParams params = new ImportParams();
             params.setTitleRows(2);
             params.setHeadRows(1);
             params.setNeedSave(true);
             try {
                 List<WmsPlcEntity> listWmsPlcEntitys = ExcelImportUtil.importExcel(file.getInputStream(), WmsPlcEntity.class, params);
+                //遍历导入的实体类对象列表，并保存到数据库中
                 for (WmsPlcEntity wmsPlc : listWmsPlcEntitys) {
                     wmsPlcService.save(wmsPlc);
                 }
@@ -516,17 +522,21 @@ public class WmsPlcController extends BaseController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<WmsPlcEntity> list() {
+        //获取WmsPlcEntity实体类的列表
         List<WmsPlcEntity> listWmsPlcs = wmsPlcService.getList(WmsPlcEntity.class);
+        //返回WmsPlcEntity实体类的列表作为响应
         return listWmsPlcs;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<?> get(@PathVariable("id") String id) {
+        //根据给定的id获取对应的WmsPlcEntity实体类对象
         WmsPlcEntity task = wmsPlcService.get(WmsPlcEntity.class, id);
         if (task == null) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
+        //返回对应id的WmsPlcEntity对象作为响应
         return new ResponseEntity(task, HttpStatus.OK);
     }
 
