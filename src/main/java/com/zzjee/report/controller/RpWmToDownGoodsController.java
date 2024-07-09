@@ -381,13 +381,12 @@ public class RpWmToDownGoodsController extends BaseController {
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> create(@RequestBody RpWmToDownGoodsEntity rpWmToDownGoods, UriComponentsBuilder uriBuilder) {
-		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
+		//使用JSR303 Bean Validator进行字段验证，如果验证失败返回400错误码及错误信息
 		Set<ConstraintViolation<RpWmToDownGoodsEntity>> failures = validator.validate(rpWmToDownGoods);
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
-
-		//保存
+		//尝试保存RpWmToDownGoodsEntity对象到数据库
 		try{
 			rpWmToDownGoodsService.save(rpWmToDownGoods);
 		} catch (Exception e) {
@@ -399,10 +398,10 @@ public class RpWmToDownGoodsController extends BaseController {
 		URI uri = uriBuilder.path("/rest/rpWmToDownGoodsController/" + id).build().toUri();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(uri);
-
 		return new ResponseEntity(headers, HttpStatus.CREATED);
 	}
 
+	//处理PUT请求，用于更新已存在的RpWmToDownGoodsEntity对象
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> update(@RequestBody RpWmToDownGoodsEntity rpWmToDownGoods) {
 		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
@@ -410,22 +409,22 @@ public class RpWmToDownGoodsController extends BaseController {
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
-
-		//保存
+		//尝试更新RpWmToDownGoodsEntity对象到数据库
 		try{
 			rpWmToDownGoodsService.saveOrUpdate(rpWmToDownGoods);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
-
 		//按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
 		return new ResponseEntity(HttpStatus.NO_CONTENT);
 	}
 
+	//处理DELETE请求，用于删除RpWmToDownGoodsEntity对象
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable("id") String id) {
+		//使用服务层方法删除对象
 		rpWmToDownGoodsService.deleteEntityById(RpWmToDownGoodsEntity.class, id);
 	}
 }
