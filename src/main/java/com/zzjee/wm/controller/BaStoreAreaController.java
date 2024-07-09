@@ -226,7 +226,6 @@ public class BaStoreAreaController extends BaseController {
 		return j;
 	}
 
-
 	/**
 	 * ba_store_area新增页面跳转
 	 *
