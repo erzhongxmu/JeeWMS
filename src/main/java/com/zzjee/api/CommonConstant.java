@@ -462,6 +462,9 @@ public interface CommonConstant {
     String TASK_TYPE_OM = "om";
     String TABLE_NAME_BUSI_TASK_SHENGJU = "busi_task_shengju";
     String TASK_TYPE_HUIKONG = "huikong";
+    /**
+     * 盛具回空完成
+     */
     String TASK_TYPE_HUIKONG_FULFIL = "huikong_fulfil";
     /**
      * 释放

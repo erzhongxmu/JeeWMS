@@ -174,7 +174,7 @@ public class TokenController {
 
 	/**
 	 * 根据username获取用户信息
-	 * @param username
+	 * @param username 用户名
 	 * @param password
 	 * @return
 	 */
