@@ -352,11 +352,13 @@ public class WmsPlcController extends BaseController {
     @RequestMapping(params = "doAdd")
     @ResponseBody
     public AjaxJson doAdd(WmsPlcEntity wmsPlc, HttpServletRequest request) {
+        //处理添加PLC指令的请求
         String message = null;
         AjaxJson j = new AjaxJson();
         message = "PLC指令添加成功";
         try {
             wmsPlcService.save(wmsPlc);
+            //记录日志
             systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
@@ -374,6 +376,7 @@ public class WmsPlcController extends BaseController {
     @RequestMapping(params = "doUpdate")
     @ResponseBody
     public AjaxJson doUpdate(WmsPlcEntity wmsPlc, HttpServletRequest request) {
+        //处理更新PLC指令的请求
         String message = null;
         AjaxJson j = new AjaxJson();
         message = "PLC指令更新成功";
@@ -381,6 +384,7 @@ public class WmsPlcController extends BaseController {
         try {
             MyBeanUtils.copyBeanNotNull2Bean(wmsPlc, t);
             wmsPlcService.saveOrUpdate(t);
+            //记录日志
             systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
@@ -398,7 +402,9 @@ public class WmsPlcController extends BaseController {
      */
     @RequestMapping(params = "goAdd")
     public ModelAndView goAdd(WmsPlcEntity wmsPlc, HttpServletRequest req) {
+        //处理跳转到添加PLC指令页面的请求，并返回一个ModelAndView对象
         if (StringUtil.isNotEmpty(wmsPlc.getId())) {
+            //如果wmsPlc的id不为空，则根据id获取对应的WmsPlcEntity对象
             wmsPlc = wmsPlcService.getEntity(WmsPlcEntity.class, wmsPlc.getId());
             req.setAttribute("wmsPlcPage", wmsPlc);
         }
@@ -412,6 +418,7 @@ public class WmsPlcController extends BaseController {
      */
     @RequestMapping(params = "goUpdate")
     public ModelAndView goUpdate(WmsPlcEntity wmsPlc, HttpServletRequest req) {
+        //处理跳转到更新PLC指令页面的请求
         if (StringUtil.isNotEmpty(wmsPlc.getId())) {
             wmsPlc = wmsPlcService.getEntity(WmsPlcEntity.class, wmsPlc.getId());
             req.setAttribute("wmsPlcPage", wmsPlc);
@@ -426,6 +433,7 @@ public class WmsPlcController extends BaseController {
      */
     @RequestMapping(params = "upload")
     public ModelAndView upload(HttpServletRequest req) {
+        //处理上传请求
         req.setAttribute("controller_name", "wmsPlcController");
         return new ModelAndView("common/upload/pub_excel_upload");
     }
@@ -439,9 +447,13 @@ public class WmsPlcController extends BaseController {
     @RequestMapping(params = "exportXls")
     public String exportXls(WmsPlcEntity wmsPlc, HttpServletRequest request, HttpServletResponse response
             , DataGrid dataGrid, ModelMap modelMap) {
+        //处理导出Excel请求
         CriteriaQuery cq = new CriteriaQuery(WmsPlcEntity.class, dataGrid);
+        //根据请求参数构造查询条件
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wmsPlc, request.getParameterMap());
+        //根据查询条件执行查询，获取符合条件的WmsPlcEntity对象列表
         List<WmsPlcEntity> wmsPlcs = this.wmsPlcService.getListByCriteriaQuery(cq, false);
+        //设置导出Excel的相关参数
         modelMap.put(NormalExcelConstants.FILE_NAME, "PLC指令");
         modelMap.put(NormalExcelConstants.CLASS, WmsPlcEntity.class);
         modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("PLC指令列表", "导出人:" + ResourceUtil.getSessionUserName().getRealName(),
