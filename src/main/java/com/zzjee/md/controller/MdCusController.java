@@ -191,6 +191,7 @@ public class MdCusController extends BaseController {
 	/**
 	 * 添加客户
 	 *
+	 * @param mdCus
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
