@@ -302,6 +302,7 @@ public class MdGoodsController extends BaseController {
 	/**
 	 * 商品信息编辑页面跳转
 	 *
+	 * @param mdGoods
 	 * @param req
 	 * @return
 	 */
