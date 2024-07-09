@@ -28,8 +28,8 @@ public class VTmsDzEntity implements java.io.Serializable {
 	private String dizhi;
 	
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  id
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  id
 	 */
 	@Id
 	@GeneratedValue(generator = "paymentableGenerator")
