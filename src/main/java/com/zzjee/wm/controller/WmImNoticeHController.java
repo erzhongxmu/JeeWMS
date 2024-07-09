@@ -306,6 +306,7 @@ public class WmImNoticeHController extends BaseController {
         TagUtil.datagrid(response, dataGrid);
 
     }
+
     /**
      * easyui AJAX请求数据
      *
@@ -314,7 +315,6 @@ public class WmImNoticeHController extends BaseController {
      * @param dataGrid
      * @param
      */
-
     @RequestMapping(params = "datagrid")
     public void datagrid(WmImNoticeHEntity wmImNoticeH,
                          HttpServletRequest request, HttpServletResponse response,
