@@ -219,6 +219,7 @@ public class MdCusOtherController extends BaseController {
 	/**
 	 * 第三方客户新增页面跳转
 	 *
+	 * @param mdCusOther
 	 * @param req
 	 * @return
 	 */

@@ -95,6 +95,7 @@ public class MdCusController extends BaseController {
 	/**
 	 * easyui AJAX请求数据
 	 *
+	 * @param mdCus
 	 * @param request
 	 * @param response
 	 * @param dataGrid

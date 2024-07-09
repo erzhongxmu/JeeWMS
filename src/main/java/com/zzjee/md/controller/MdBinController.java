@@ -410,6 +410,7 @@ public class MdBinController extends BaseController {
     /**
      * 批量删除仓位定义
      *
+     * @param request
      * @return
      */
     @RequestMapping(params = "doBatchDel")
