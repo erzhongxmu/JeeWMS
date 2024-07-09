@@ -226,7 +226,6 @@ public class RpWmToDownGoodsController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
 
 	/**
 	 * rp_wm_to_down_goods新增页面跳转
@@ -237,10 +236,13 @@ public class RpWmToDownGoodsController extends BaseController {
 	public ModelAndView goAdd(RpWmToDownGoodsEntity rpWmToDownGoods, HttpServletRequest req) {
 		if (StringUtil.isNotEmpty(rpWmToDownGoods.getId())) {
 			rpWmToDownGoods = rpWmToDownGoodsService.getEntity(RpWmToDownGoodsEntity.class, rpWmToDownGoods.getId());
+			//将rpWmToDownGoodsPage属性设置为rpWmToDownGoods对象
 			req.setAttribute("rpWmToDownGoodsPage", rpWmToDownGoods);
 		}
+		//返回一个新的ModelAndView对象，视图名称为"com/zzjee/report/rpWmToDownGoods-add"
 		return new ModelAndView("com/zzjee/report/rpWmToDownGoods-add");
 	}
+
 	/**
 	 * rp_wm_to_down_goods编辑页面跳转
 	 * 
@@ -250,8 +252,10 @@ public class RpWmToDownGoodsController extends BaseController {
 	public ModelAndView goUpdate(RpWmToDownGoodsEntity rpWmToDownGoods, HttpServletRequest req) {
 		if (StringUtil.isNotEmpty(rpWmToDownGoods.getId())) {
 			rpWmToDownGoods = rpWmToDownGoodsService.getEntity(RpWmToDownGoodsEntity.class, rpWmToDownGoods.getId());
+			//将rpWmToDownGoodsPage属性设置为rpWmToDownGoods对象
 			req.setAttribute("rpWmToDownGoodsPage", rpWmToDownGoods);
 		}
+		//返回一个新的ModelAndView对象，视图名称为"com/zzjee/report/rpWmToDownGoods-add"
 		return new ModelAndView("com/zzjee/report/rpWmToDownGoods-update");
 	}
 	
@@ -262,7 +266,9 @@ public class RpWmToDownGoodsController extends BaseController {
 	 */
 	@RequestMapping(params = "upload")
 	public ModelAndView upload(HttpServletRequest req) {
+		//将"controller_name"属性设置为"rpWmToDownGoodsController"
 		req.setAttribute("controller_name","rpWmToDownGoodsController");
+		//返回一个新的ModelAndView对象，视图名称为"common/upload/pub_excel_upload"
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
 	
@@ -275,13 +281,20 @@ public class RpWmToDownGoodsController extends BaseController {
 	@RequestMapping(params = "exportXls")
 	public String exportXls(RpWmToDownGoodsEntity rpWmToDownGoods,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
+		//创建一个CriteriaQuery对象，用于构建查询条件
 		CriteriaQuery cq = new CriteriaQuery(RpWmToDownGoodsEntity.class, dataGrid);
+		//使用HqlGenerateUtil的installHql方法根据请求参数map，将查询条件安装到cq对象中
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, rpWmToDownGoods, request.getParameterMap());
+		//使用rpWmToDownGoodsService的getListByCriteriaQuery方法根据cq对象获取符合条件的RpWmToDownGoodsEntity对象列表
 		List<RpWmToDownGoodsEntity> rpWmToDownGoodss = this.rpWmToDownGoodsService.getListByCriteriaQuery(cq,false);
+		//将文件名设置为"rp_wm_to_down_goods"
 		modelMap.put(NormalExcelConstants.FILE_NAME,"rp_wm_to_down_goods");
+		//将类设置为RpWmToDownGoodsEntity.class
 		modelMap.put(NormalExcelConstants.CLASS,RpWmToDownGoodsEntity.class);
+		//创建一个ExportParams对象，设置导出参数，包括导出标题、导出人等信息
 		modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("rp_wm_to_down_goods列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
 			"导出信息"));
+		//将数据列表设置为rpWmToDownGoodss
 		modelMap.put(NormalExcelConstants.DATA_LIST,rpWmToDownGoodss);
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
@@ -294,11 +307,15 @@ public class RpWmToDownGoodsController extends BaseController {
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(RpWmToDownGoodsEntity rpWmToDownGoods,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
-    	modelMap.put(NormalExcelConstants.FILE_NAME,"rp_wm_to_down_goods");
-    	modelMap.put(NormalExcelConstants.CLASS,RpWmToDownGoodsEntity.class);
-    	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("rp_wm_to_down_goods列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
+		//将文件名设置为"rp_wm_to_down_goods"
+		modelMap.put(NormalExcelConstants.FILE_NAME,"rp_wm_to_down_goods");
+		//将类设置为RpWmToDownGoodsEntity.class
+		modelMap.put(NormalExcelConstants.CLASS,RpWmToDownGoodsEntity.class);
+		//创建一个ExportParams对象，设置导出参数，包括导出标题、导出人等信息
+		modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("rp_wm_to_down_goods列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
     	"导出信息"));
-    	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
+		//创建一个空的ArrayList作为数据列表
+		modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 	
