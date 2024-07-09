@@ -332,6 +332,7 @@ public class MdGoodsController extends BaseController {
 	/**
 	 * 导出excel
 	 *
+	 * @param mdGoods
 	 * @param request
 	 * @param response
 	 */

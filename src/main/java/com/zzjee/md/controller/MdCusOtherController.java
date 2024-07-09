@@ -250,6 +250,7 @@ public class MdCusOtherController extends BaseController {
 	/**
 	 * 导入功能跳转
 	 *
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "upload")
@@ -264,6 +265,7 @@ public class MdCusOtherController extends BaseController {
 	 * @param mdCusOther
 	 * @param request
 	 * @param response
+	 * @param dataGrid
 	 */
 	@RequestMapping(params = "exportXls")
 	public String exportXls(MdCusOtherEntity mdCusOther,HttpServletRequest request,HttpServletResponse response
