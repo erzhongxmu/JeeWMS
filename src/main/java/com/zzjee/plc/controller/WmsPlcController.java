@@ -157,10 +157,12 @@ public class WmsPlcController extends BaseController {
     public AjaxJson doDel(WmsPlcEntity wmsPlc, HttpServletRequest request) {
         String message = null;
         AjaxJson j = new AjaxJson();
+        //获取WmsPlcEntity对象
         wmsPlc = systemService.getEntity(WmsPlcEntity.class, wmsPlc.getId());
         message = "PLC指令删除成功";
         try {
             wmsPlcService.delete(wmsPlc);
+            //用systemService的addLog方法记录日志
             systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
@@ -178,6 +180,7 @@ public class WmsPlcController extends BaseController {
     @RequestMapping(params = "dotoup")
     @ResponseBody
     public AjaxJson dotoup(String ids, HttpServletRequest request) {
+        //处理执行PLC指令的请求，并返回一个AjaxJson对象
         String message = null;
         AjaxJson j = new AjaxJson();
         message = "PLC指令执行成功";
@@ -198,7 +201,9 @@ public class WmsPlcController extends BaseController {
         WmsPlcEntity wmsPlc = null;
         String hql = "";
         List<WmsPlcEntity> wmsPlcEntityList = new ArrayList<WmsPlcEntity>();
+        //构造查询hql语句
         hql = "from WmsPlcEntity t where  t.comNo =  ? ";
+        //执行hql查询
         wmsPlcEntityList = systemService.findHql(hql, "runu");
         if (!CollectionUtils.isEmpty(wmsPlcEntityList)) {
             wmsPlc = wmsPlcEntityList.get(0);
@@ -316,15 +321,18 @@ public class WmsPlcController extends BaseController {
     @RequestMapping(params = "doBatchDel")
     @ResponseBody
     public AjaxJson doBatchDel(String ids, HttpServletRequest request) {
+        //处理批量删除PLC指令的请求，并返回一个AjaxJson对象
         String message = null;
         AjaxJson j = new AjaxJson();
         message = "PLC指令删除成功";
         try {
             for (String id : ids.split(",")) {
+                //根据id获取对象
                 WmsPlcEntity wmsPlc = systemService.getEntity(WmsPlcEntity.class,
                         id
                 );
                 wmsPlcService.delete(wmsPlc);
+                //记录日志
                 systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
             }
         } catch (Exception e) {
