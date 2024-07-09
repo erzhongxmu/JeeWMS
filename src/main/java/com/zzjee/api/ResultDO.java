@@ -38,6 +38,10 @@ public class ResultDO<T>  implements Serializable {
         return this.errorCode;
     }
 
+    /**
+     * 设置错误编码
+     * @param errorCode
+     */
     public void setErrorCode(String errorCode) {
         this.errorCode = errorCode;
     }

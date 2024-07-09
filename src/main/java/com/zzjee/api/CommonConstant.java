@@ -465,6 +465,9 @@ public interface CommonConstant {
     String TASK_TYPE_HUIKONG_FULFIL = "huikong_fulfil";
     String RESOURCE_STATUS_RELEASE = "release";
     String IM_TYPE_FXCK = "fxck";
+    /**
+     * 供应商退货
+     */
     String IM_TYPE_GYSTH = "gysth";
     /**
      * 调账记录表名

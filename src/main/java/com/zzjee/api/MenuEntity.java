@@ -31,6 +31,10 @@ public class MenuEntity {
         return menuImg;
     }
 
+    /**
+     * 设置图片
+     * @param menuImg
+     */
     public void setMenuImg(String menuImg) {
         this.menuImg = menuImg;
     }

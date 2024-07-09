@@ -142,8 +142,7 @@ public class ResultApi<T> implements Serializable {
 
 	/**
 	 * 不带参返回成功
-	 * @return
-	 * @param <T>
+	 * @param <T> 泛型
 	 */
 	public static<T> ResultApi<T> OK() {
 		ResultApi<T> r = new ResultApi<T>();

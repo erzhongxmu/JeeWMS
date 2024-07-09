@@ -204,7 +204,7 @@ public class ApiController {
     /**
      * 波次分拣列表
      * @param username 用户名
-     * @param searchstr
+     * @param searchstr 搜索条件
      * @param searchstr2
      * @param searchstr3
      * @return

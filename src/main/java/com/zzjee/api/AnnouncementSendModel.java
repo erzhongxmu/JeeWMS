@@ -26,6 +26,10 @@ public class AnnouncementSendModel {
         return startTime;
     }
 
+    /**
+     * 设置发布时间
+     * @param startTime
+     */
     public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
