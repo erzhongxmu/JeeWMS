@@ -268,6 +268,7 @@ public class MvGoodsController extends BaseController {
 	 * 商品视图新增页面跳转
 	 *
 	 * @param mvGoods
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
