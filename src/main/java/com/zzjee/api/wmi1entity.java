@@ -13,6 +13,9 @@ public class wmi1entity {
      * 字段3
      */
     public String wmX3;
+    /**
+     * 字段4
+     */
     public String wmX4;
     public String wmX5;
     public String wmX6;

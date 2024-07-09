@@ -12,6 +12,9 @@ public class wmientity {
      * 字段1
      */
     public String wmX1;
+    /**
+     * 字段2
+     */
     public String wmX2;
     public String wmX3;
     public String wmX4;

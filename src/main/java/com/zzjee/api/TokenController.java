@@ -172,6 +172,12 @@ public class TokenController {
 		return D0;
 	}
 
+	/**
+	 * 根据username获取用户信息
+	 * @param username
+	 * @param password
+	 * @return
+	 */
 	@RequestMapping(value = "/getuser/{username}", method = RequestMethod.GET)
 	@ResponseBody
 	@ApiOperation(value="根据username获取用户信息",notes="根据username获取用户信息",httpMethod="GET",produces="application/json")

@@ -62,7 +62,7 @@ wmomController {
 	/**
 	 * 获取全部订单列表信息
 	 * @param username 用户名
-	 * @param pageNumber
+	 * @param pageNumber 当前页
 	 * @param pageSize
 	 * @return
 	 */
