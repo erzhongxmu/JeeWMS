@@ -126,7 +126,6 @@ public class WmOmNoticeHController extends BaseController {
         return new ModelAndView("com/zzjee/wm/wmOmNoticeitemList");
     }
 
-
     @RequestMapping(params = "datagriditem")
     public void datagriditem(WmOmNoticeIEntity wmOmNoticeitem, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
         CriteriaQuery cq = new CriteriaQuery(WmOmNoticeIEntity.class, dataGrid);
