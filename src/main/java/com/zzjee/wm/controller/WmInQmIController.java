@@ -253,7 +253,6 @@ public class WmInQmIController extends BaseController {
         return j;
     }
 
-
     public boolean toup(String id,String kuweiBianMa,String username,String realname) {
 //		List<WmToUpGoodsEntity> wmToUpGoodsList = new ArrayList<WmToUpGoodsEntity>();
         String hql0 = "from WmInQmIEntity where binSta = 'N' and  id = ?";
