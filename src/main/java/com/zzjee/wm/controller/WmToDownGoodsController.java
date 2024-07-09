@@ -156,20 +156,26 @@ public class WmToDownGoodsController extends BaseController {
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
         }
+        // 设置排序规则
         Map<String, Object> map1 = new HashMap<String, Object>();
         map1.put("createDate", "desc");
         cq.setOrder(map1);
+        // 添加查询条件：downSta字段为空
         cq.isNull("downSta");
         cq.add();
         this.wmToDownGoodsService.getDataGridReturn(cq, true);
         List<WmToDownGoodsEntity> resultnew = new ArrayList<WmToDownGoodsEntity>();
         List<WmToDownGoodsEntity> resultold = dataGrid.getResults();
+        // 遍历原始结果列表，进行处理
         for (WmToDownGoodsEntity wmToDownGoodsEntity : resultold) {
+            // 将goodsQuaok的值赋给goodsQua，并将goodsQuaok置为空
             wmToDownGoodsEntity.setGoodsQua(wmToDownGoodsEntity.getGoodsQuaok());
             wmToDownGoodsEntity.setGoodsQuaok("");
+            // 将处理后的对象添加到新列表中
             resultnew.add(wmToDownGoodsEntity);
 
         }
+        // 将处理后的结果列表设置为dataGrid的结果
         dataGrid.setResults(resultnew);
         TagUtil.datagrid(response, dataGrid);
     }
@@ -307,7 +313,6 @@ public class WmToDownGoodsController extends BaseController {
         j.setMsg(message);
         return j;
     }
-
 
     /**
      * gengxin

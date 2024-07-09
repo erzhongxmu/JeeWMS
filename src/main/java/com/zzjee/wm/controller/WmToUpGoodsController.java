@@ -116,7 +116,6 @@ public class WmToUpGoodsController extends BaseController {
 		cq.setOrder(map1);
 		cq.add();
 		this.wmToUpGoodsService.getDataGridReturn(cq, true);
-
 		List<WmToUpGoodsEntity> resultold = dataGrid.getResults();
 		List<WmToUpGoodsEntity> resultnew = new ArrayList<>();
 		for(WmToUpGoodsEntity t:resultold){

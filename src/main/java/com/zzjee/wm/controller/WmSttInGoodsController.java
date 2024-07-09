@@ -115,7 +115,7 @@ public class WmSttInGoodsController extends BaseController {
             //自定义追加查询条件
             String query_createDate_begin = request.getParameter("createDate_begin1");
             String query_createDate_end = request.getParameter("createDate_end2");
-
+            // 如果开始时间不为空，则设置查询条件
             if (StringUtil.isNotEmpty(query_createDate_begin)) {
                 cq.ge("createDate", new SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
                         .parse(query_createDate_begin));
@@ -127,11 +127,14 @@ public class WmSttInGoodsController extends BaseController {
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
         }
+        // 设置排序规则
         Map<String, Object> map1 = new HashMap<String, Object>();
         map1.put("createDate", "desc");
         cq.setOrder(map1);
+        // 设置查询条件：状态不等于"已删除"
         cq.notEq("sttSta", "已删除");
         cq.add();
+        // 调用服务层方法获取数据并返回
         this.wmSttInGoodsService.getDataGridReturn(cq, true);
         TagUtil.datagrid(response, dataGrid);
     }
@@ -164,7 +167,6 @@ public class WmSttInGoodsController extends BaseController {
         TagUtil.datagrid(response, dataGrid);
 
     }
-
 
     @RequestMapping(params = "datagridfp")
     public void datagridfp(WmSttInGoodsEntity wmSttInGoods, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
