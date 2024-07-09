@@ -130,7 +130,6 @@ public class WmDayCostController extends BaseController {
 
 
 
-
 	@RequestMapping(params = "datagridqf")
 	public void datagridqf(WmDayCostEntity wmDayCost,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
 		CriteriaQuery cq = new CriteriaQuery(WmDayCostEntity.class, dataGrid);
