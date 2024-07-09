@@ -463,6 +463,9 @@ public interface CommonConstant {
     String TABLE_NAME_BUSI_TASK_SHENGJU = "busi_task_shengju";
     String TASK_TYPE_HUIKONG = "huikong";
     String TASK_TYPE_HUIKONG_FULFIL = "huikong_fulfil";
+    /**
+     * 释放
+     */
     String RESOURCE_STATUS_RELEASE = "release";
     /**
      * 返修出库

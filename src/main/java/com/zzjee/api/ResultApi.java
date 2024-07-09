@@ -164,6 +164,13 @@ public class ResultApi<T> implements Serializable {
 		return r;
 	}
 
+	/**
+	 * 带参带消息返回成功
+	 * @param msg
+	 * @param data
+	 * @return
+	 * @param <T>
+	 */
 	public static<T> ResultApi<T> OK(String msg, T data) {
 		ResultApi<T> r = new ResultApi<T>();
 		r.setSuccess(true);

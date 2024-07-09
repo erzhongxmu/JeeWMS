@@ -39,6 +39,10 @@ public class MenuEntity {
         this.menuImg = menuImg;
     }
 
+    /**
+     * 获取菜单文本
+     * @return
+     */
     public String getMenuText() {
         return menuText;
     }

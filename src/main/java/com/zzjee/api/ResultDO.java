@@ -40,7 +40,7 @@ public class ResultDO<T>  implements Serializable {
 
     /**
      * 设置错误编码
-     * @param errorCode
+     * @param errorCode 错误编码
      */
     public void setErrorCode(String errorCode) {
         this.errorCode = errorCode;

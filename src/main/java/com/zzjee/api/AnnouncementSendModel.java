@@ -34,6 +34,10 @@ public class AnnouncementSendModel {
         this.startTime = startTime;
     }
 
+    /**
+     * 获取标题
+     * @return
+     */
     public String getTitile() {
         return titile;
     }
