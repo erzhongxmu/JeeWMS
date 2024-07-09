@@ -154,10 +154,11 @@ public class RpWmToDownGoodsController extends BaseController {
 		message = "rp_wm_to_down_goods删除成功";
 		try{
 			for(String id:ids.split(",")){
-				RpWmToDownGoodsEntity rpWmToDownGoods = systemService.getEntity(RpWmToDownGoodsEntity.class, 
-				id
-				);
+				//使用systemService的getEntity方法根据RpWmToDownGoodsEntity类和给定的ID获取实体对象
+				RpWmToDownGoodsEntity rpWmToDownGoods = systemService.getEntity(RpWmToDownGoodsEntity.class, id);
+				//调用rpWmToDownGoodsService的delete方法删除rpWmToDownGoods对象
 				rpWmToDownGoodsService.delete(rpWmToDownGoods);
+				//使用systemService的addLog方法添加日志信息
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}
 		}catch(Exception e){
@@ -183,7 +184,9 @@ public class RpWmToDownGoodsController extends BaseController {
 		AjaxJson j = new AjaxJson();
 		message = "rp_wm_to_down_goods添加成功";
 		try{
+			//调用rpWmToDownGoodsService的save方法保存rpWmToDownGoods对象
 			rpWmToDownGoodsService.save(rpWmToDownGoods);
+			//使用systemService的addLog方法添加日志信息
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
@@ -206,10 +209,14 @@ public class RpWmToDownGoodsController extends BaseController {
 		String message = null;
 		AjaxJson j = new AjaxJson();
 		message = "rp_wm_to_down_goods更新成功";
+		//使用rpWmToDownGoodsService的get方法根据RpWmToDownGoodsEntity类和给定的ID获取实体对象
 		RpWmToDownGoodsEntity t = rpWmToDownGoodsService.get(RpWmToDownGoodsEntity.class, rpWmToDownGoods.getId());
 		try {
+			//使用MyBeanUtils的copyBeanNotNull2Bean方法将rpWmToDownGoods对象的非空属性复制到t对象中
 			MyBeanUtils.copyBeanNotNull2Bean(rpWmToDownGoods, t);
+			//调用rpWmToDownGoodsService的saveOrUpdate方法保存或更新t对象
 			rpWmToDownGoodsService.saveOrUpdate(t);
+			//使用systemService的addLog方法添加日志信息
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
