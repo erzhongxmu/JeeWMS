@@ -64,16 +64,17 @@ public class RpWmToDownGoodsController extends BaseController {
 	/**
 	 * Logger for this class
 	 */
+	//日志记录器，用于记录类的相关日志信息
 	private static final Logger logger = Logger.getLogger(RpWmToDownGoodsController.class);
-
+	//使用@Autowired注解注入了RP仓库商品下架服务接口
 	@Autowired
 	private RpWmToDownGoodsServiceI rpWmToDownGoodsService;
+	//使用@Autowired注解注入了系统服务接口
 	@Autowired
 	private SystemService systemService;
+	//使用@Autowired注解注入了验证器接口
 	@Autowired
 	private Validator validator;
-	
-
 
 	/**
 	 * rp_wm_to_down_goods列表 页面跳转
@@ -82,6 +83,7 @@ public class RpWmToDownGoodsController extends BaseController {
 	 */
 	@RequestMapping(params = "list")
 	public ModelAndView list(HttpServletRequest request) {
+		//创建一个新的ModelAndView对象，并指定视图名称为"com/zzjee/report/rpWmToDownGoodsList"
 		return new ModelAndView("com/zzjee/report/rpWmToDownGoodsList");
 	}
 
@@ -104,8 +106,11 @@ public class RpWmToDownGoodsController extends BaseController {
 		}catch (Exception e) {
 			throw new BusinessException(e.getMessage());
 		}
+		//将cq对象添加到查询条件中
 		cq.add();
+		//调用rpWmToDownGoodsService的getDataGridReturn方法，传入cq对象和true参数
 		this.rpWmToDownGoodsService.getDataGridReturn(cq, true);
+		//使用TagUtil工具类将dataGrid对象转换为JSON格式，并写入HttpServletResponse对象中
 		TagUtil.datagrid(response, dataGrid);
 	}
 	
@@ -119,10 +124,13 @@ public class RpWmToDownGoodsController extends BaseController {
 	public AjaxJson doDel(RpWmToDownGoodsEntity rpWmToDownGoods, HttpServletRequest request) {
 		String message = null;
 		AjaxJson j = new AjaxJson();
+		//使用systemService的getEntity方法根据RpWmToDownGoodsEntity类和给定的ID获取实体对象
 		rpWmToDownGoods = systemService.getEntity(RpWmToDownGoodsEntity.class, rpWmToDownGoods.getId());
 		message = "rp_wm_to_down_goods删除成功";
 		try{
+			//使用systemService的getEntity方法根据RpWmToDownGoodsEntity类和给定的ID获取实体对象
 			rpWmToDownGoodsService.delete(rpWmToDownGoods);
+			//使用systemService的addLog方法添加日志信息
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
