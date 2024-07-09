@@ -182,7 +182,6 @@ public class BaTrayController extends BaseController {
 		return j;
 	}
 
-
 	/**
 	 * 添加ba_tray
 	 *
