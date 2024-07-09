@@ -8,6 +8,9 @@ public class wmientity {
     public wmientity(){
 
     }
+    /**
+     * 字段1
+     */
     public String wmX1;
     public String wmX2;
     public String wmX3;

@@ -1,6 +1,9 @@
 package com.zzjee.api;
 
 public class wmi2entity {
+    /**
+     * 字段1
+     */
     public String wmX1;
     public String wmX2;
     public String wmX3;

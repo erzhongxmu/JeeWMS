@@ -466,6 +466,9 @@ public interface CommonConstant {
     String RESOURCE_STATUS_RELEASE = "release";
     String IM_TYPE_FXCK = "fxck";
     String IM_TYPE_GYSTH = "gysth";
+    /**
+     * 调账记录表名
+     */
     String TABLE_NAME_BUSI_STOCK_TRIM_LOG = "busi_stock_trim_log";
     String ACT_LC_KEY_TZSP = "tzsp";
     /**
