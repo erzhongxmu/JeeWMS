@@ -8,11 +8,11 @@ import java.io.Serializable;
  * 方法中使用了 Exception 类型的异常，以应对操作中可能出现的问题。
  */
 public interface MvStockYjServiceI extends CommonService{
-	//delete(MvStockYjEntity entity)方法：根据实体类对象删除记录；
+	//根据实体类对象删除记录；
  	public void delete(MvStockYjEntity entity) throws Exception;
- 	//save(MvStockYjEntity entity)方法：保存实体类对象，并返回新记录的 id；
+ 	//保存实体类对象，并返回新记录的 id；
  	public Serializable save(MvStockYjEntity entity) throws Exception;
- 	//saveOrUpdate(MvStockYjEntity entity)方法：如果实体类对象已存在，更新其记录；否则，保存一条新记录。
+ 	//如果实体类对象已存在，更新其记录；否则，保存一条新记录。
  	public void saveOrUpdate(MvStockYjEntity entity) throws Exception;
  	
 }
