@@ -280,6 +280,7 @@ public class MvGoodsController extends BaseController {
 	/**
 	 * 商品视图编辑页面跳转
 	 *
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")

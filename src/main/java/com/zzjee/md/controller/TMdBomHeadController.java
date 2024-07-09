@@ -257,6 +257,7 @@ public class TMdBomHeadController extends BaseController {
 	/**
 	 * 加载明细列表[BOM项目]
 	 *
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "tMdBomItemList")
