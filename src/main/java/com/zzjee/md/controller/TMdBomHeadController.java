@@ -242,6 +242,7 @@ public class TMdBomHeadController extends BaseController {
 	/**
 	 * BOM抬头编辑页面跳转
 	 *
+	 * @param tMdBomHead
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
