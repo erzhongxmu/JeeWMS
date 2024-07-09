@@ -155,7 +155,7 @@ public class ResultApi<T> implements Serializable {
 
 	/**
 	 * 带参返回成功
-	 * @param data
+	 * @param data 返回数据
 	 */
 	public static<T> ResultApi<T> OK(T data) {
 		ResultApi<T> r = new ResultApi<T>();

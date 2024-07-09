@@ -18,6 +18,10 @@ public class AnnouncementSendModel {
     /**摘要*/
     private java.lang.String msgAbstract;
 
+    /**
+     * 获取发布时间
+     * @return
+     */
     public String getStartTime() {
         return startTime;
     }

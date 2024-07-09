@@ -24,7 +24,7 @@ public class MenuEntity {
     private String	menuSrc;
 
     /**
-     *
+     * 获取图片
      * @return
      */
     public String getMenuImg() {

@@ -203,7 +203,7 @@ public class ApiController {
 
     /**
      * 波次分拣列表
-     * @param username
+     * @param username 用户名
      * @param searchstr
      * @param searchstr2
      * @param searchstr3

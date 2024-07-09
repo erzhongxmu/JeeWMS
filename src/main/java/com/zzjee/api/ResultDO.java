@@ -31,8 +31,8 @@ public class ResultDO<T>  implements Serializable {
     }
 
     /**
-     *返回错误编码
-     * @return
+     * 返回错误编码
+     * @return 错误编码
      */
     public String getErrorCode() {
         return this.errorCode;
