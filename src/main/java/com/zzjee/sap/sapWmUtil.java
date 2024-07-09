@@ -82,6 +82,7 @@ public class sapWmUtil {
             saprfc.addParameter("DOCTYPE", DOCTYPE);
             // 添加参数DOCID
             saprfc.addParameter("DOCID", DOCID);
+            // 执行RFC调用
             saprfc.execCall();
             JCoTable tab = saprfc.getResultTable(tablename);
             result.put("IT_OUT", tab);

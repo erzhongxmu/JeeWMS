@@ -48,8 +48,8 @@ public class VTmsDzEntity implements java.io.Serializable {
 		this.id = id;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  dizhi
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  dizhi
 	 */
 
 	@Column(name ="DIZHI",nullable=true,length=131)

@@ -191,7 +191,7 @@ public class VTmsDzController extends BaseController {
 	 * 更新v_tms_dz记录
 	 * @param vTmsDz 实体对象
 	 * @param request HTTP请求
-	 * @return
+	 * @return 返回AjaxJson对象
 	 */
 	@RequestMapping(params = "doUpdate")
 	@ResponseBody
