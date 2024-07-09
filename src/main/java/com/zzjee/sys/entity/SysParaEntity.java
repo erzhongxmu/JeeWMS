@@ -73,8 +73,8 @@ public class SysParaEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  主键
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  主键
 	 */
 	public void setId(String id){
 		this.id = id;

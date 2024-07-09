@@ -137,7 +137,7 @@ public class VTmsDzController extends BaseController {
 
 	/**
 	 * 批量删除v_tms_dz记录
-	 *
+	 * @param ids 记录ID字符串
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")

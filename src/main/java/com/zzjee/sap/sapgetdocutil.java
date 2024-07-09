@@ -90,6 +90,7 @@ public static List<wmientity>   getWmdoc(String DOCTYPE,String DOCID,String tabl
             try {
                 // 使用反射获取wmientity类
                 Class cl = Class.forName("com.zzjee.wmapi.entity.wmientity");
+                // 设置JCoTable的当前行
                 restable.setRow(i);
                 Object obj = cl.newInstance();//新建一个实例
                 for(int j = 1;j<=par.length;j++){

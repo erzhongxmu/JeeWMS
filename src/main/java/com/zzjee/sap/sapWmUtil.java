@@ -76,6 +76,7 @@ public class sapWmUtil {
         try {
             // 创建SAP RFC连接实例
             SapRFC saprfc = SapRFC.getInstance();
+            // 准备调用SAP函数Z_WM_GET_WM_DOC
             saprfc.prepare("Z_WM_GET_WM_DOC");
             saprfc.addParameter("DOCTYPE", DOCTYPE);
             saprfc.addParameter("DOCID", DOCID);

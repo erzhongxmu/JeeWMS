@@ -114,8 +114,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  创建人登录名称
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  创建人登录名称
 	 */
 	public void setCreateBy(String createBy){
 		this.createBy = createBy;
