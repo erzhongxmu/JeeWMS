@@ -241,7 +241,6 @@ public class WvStockSttBinController extends BaseController {
 		return j;
 	}
 
-
 	@RequestMapping(params = "dostt")
 	@ResponseBody
 	public AjaxJson doStt(WvStockSttBinEntity wvStock, HttpServletRequest request) {

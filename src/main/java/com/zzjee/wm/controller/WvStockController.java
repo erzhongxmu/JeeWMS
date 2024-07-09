@@ -299,6 +299,7 @@ public class WvStockController extends BaseController {
         return j;
     }
 
+
     @RequestMapping(params = "doBatchStt")
     @ResponseBody
     public AjaxJson doBatchStt(String ids, HttpServletRequest request) {

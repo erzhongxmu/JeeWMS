@@ -184,6 +184,7 @@ public class WmOmQmIController extends BaseController {
         WmOmQmIEntity wmOmQmI = new WmOmQmIEntity();
         String goods = request.getParameter("goodsid");
         String tinid = request.getParameter("tinid");
+        // 定义一个SQL查询语句，用于查询库存信息
         String tsql = "select  ws.ku_wei_bian_ma,  ws.goods_pro_data"
                 + "  from wv_stock ws, md_bin mb  where "
                 + "   ws.ku_wei_bian_ma = mb.ku_wei_bian_ma and mb.ting_yong <> 'Y' and (ws.kuctype = '库存' )"
@@ -193,9 +194,11 @@ public class WmOmQmIController extends BaseController {
 
         List<Map<String, Object>> result = systemService.findForJdbc(tsql, tinid, goods);
         if (result.size() > 0) {
+            // 如果查询结果不为空，则将查询结果中的库位编码和商品属性数据分别设置到wmOmQmI对象中
             wmOmQmI.setBinId(result.get(0).get("ku_wei_bian_ma").toString());
             wmOmQmI.setProData(result.get(0).get("goods_pro_data").toString());
         }
+        // 将wmOmQmI对象设置为AjaxJson对象的obj属性
         j.setObj(wmOmQmI);
         return j;
     }
@@ -317,7 +320,6 @@ public class WmOmQmIController extends BaseController {
         return j;
 
     }
-
 
     @RequestMapping(params = "doassignbatch")
     @ResponseBody
