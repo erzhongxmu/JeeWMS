@@ -292,6 +292,7 @@ public class MdSupController extends BaseController {
 		modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("供应商列表",
 				"导出人:" + ResourceUtil.getSessionUserName().getRealName(),
 				"导出信息"));
+		// 设置需要导出的数据列表
 		modelMap.put(NormalExcelConstants.DATA_LIST, mdSups);
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}

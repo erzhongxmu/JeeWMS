@@ -300,6 +300,7 @@ public class MdCusController extends BaseController {
 		modelMap.put(NormalExcelConstants.CLASS,MdCusEntity.class);
 		modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("客户列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
 			"导出信息"));
+		// 设置需要导出的数据列表
 		modelMap.put(NormalExcelConstants.DATA_LIST,mdCuss);
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}

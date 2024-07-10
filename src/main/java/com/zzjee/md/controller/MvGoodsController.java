@@ -309,7 +309,7 @@ public class MvGoodsController extends BaseController {
 	}
 
 	/**
-	 * 导出excel
+	 * 导出信息到excel
 	 *
 	 * @param mvGoods
 	 * @param request
@@ -323,10 +323,15 @@ public class MvGoodsController extends BaseController {
 		CriteriaQuery cq = new CriteriaQuery(MvGoodsEntity.class, dataGrid);
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, mvGoods, request.getParameterMap());
 		List<MvGoodsEntity> mvGoodss = this.mvGoodsService.getListByCriteriaQuery(cq,false);
+		// 设置Excel文件的基础信息
+		//文件名
 		modelMap.put(NormalExcelConstants.FILE_NAME,"商品视图");
+		//导出数据的类类型
 		modelMap.put(NormalExcelConstants.CLASS,MvGoodsEntity.class);
+		//设置导出参数
 		modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("商品视图列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
 			"导出信息"));
+		// 设置需要导出的数据列表
 		modelMap.put(NormalExcelConstants.DATA_LIST,mvGoodss);
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
