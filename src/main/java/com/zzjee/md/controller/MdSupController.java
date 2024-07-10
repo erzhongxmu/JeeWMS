@@ -287,6 +287,7 @@ public class MdSupController extends BaseController {
 				mdSup, request.getParameterMap());
 		List<MdSupEntity> mdSups = this.mdSupService.getListByCriteriaQuery(cq,
 				false);
+		// 设置Excel文件的基础信息
 		modelMap.put(NormalExcelConstants.FILE_NAME, "供应商");
 		modelMap.put(NormalExcelConstants.CLASS, MdSupEntity.class);
 		modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("供应商列表",

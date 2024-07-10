@@ -348,6 +348,7 @@ public class MdGoodsController extends BaseController {
 				mdGoods, request.getParameterMap());
 		List<MdGoodsEntity> mdGoodss = this.mdGoodsService
 				.getListByCriteriaQuery(cq, false);
+		// 设置Excel文件的基础信息
 		modelMap.put(NormalExcelConstants.FILE_NAME, "商品信息");
 		modelMap.put(NormalExcelConstants.CLASS, MdGoodsEntity.class);
 		modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("商品信息列表",

@@ -296,6 +296,7 @@ public class MdCusController extends BaseController {
 		CriteriaQuery cq = new CriteriaQuery(MdCusEntity.class, dataGrid);
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, mdCus, request.getParameterMap());
 		List<MdCusEntity> mdCuss = this.mdCusService.getListByCriteriaQuery(cq,false);
+		// 设置Excel文件的基础信息
 		modelMap.put(NormalExcelConstants.FILE_NAME,"客户");
 		modelMap.put(NormalExcelConstants.CLASS,MdCusEntity.class);
 		modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("客户列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),

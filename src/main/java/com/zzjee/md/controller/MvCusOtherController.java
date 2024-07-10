@@ -273,6 +273,7 @@ public class MvCusOtherController extends BaseController {
 		CriteriaQuery cq = new CriteriaQuery(MvCusOtherEntity.class, dataGrid);
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, mvCusOther, request.getParameterMap());
 		List<MvCusOtherEntity> mvCusOthers = this.mvCusOtherService.getListByCriteriaQuery(cq,false);
+		// 设置Excel文件的基础信息
 		modelMap.put(NormalExcelConstants.FILE_NAME,"mv_cus_other");
 		modelMap.put(NormalExcelConstants.CLASS,MvCusOtherEntity.class);
 		modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("mv_cus_other列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
