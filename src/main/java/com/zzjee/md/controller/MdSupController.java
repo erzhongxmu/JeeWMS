@@ -290,6 +290,7 @@ public class MdSupController extends BaseController {
 		//设置Excel文件的基础信息
 		//文件名
 		modelMap.put(NormalExcelConstants.FILE_NAME, "供应商");
+		//导出数据的类类型
 		modelMap.put(NormalExcelConstants.CLASS, MdSupEntity.class);
 		modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("供应商列表",
 				"导出人:" + ResourceUtil.getSessionUserName().getRealName(),
