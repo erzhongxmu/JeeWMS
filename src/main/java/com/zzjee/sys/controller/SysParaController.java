@@ -103,7 +103,6 @@ public class SysParaController extends BaseController {
 	 * @param request 请求
 	 * @param response 响应
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")

@@ -59,6 +59,7 @@ public static List<wmientity>   getWmdoc(String DOCTYPE,String DOCID,String tabl
         // 返回处理后的数据列表
         return  reslit;
     }
+
     //获取储位
     public static List<wmientity>   getcw(String LGNUM,String LGPLA,String par[]){
         // Map<String, Object> result = new HashMap<String, Object>();
@@ -81,6 +82,7 @@ public static List<wmientity>   getWmdoc(String DOCTYPE,String DOCID,String tabl
         // 返回处理后的数据列表
         return  reslit;
     }
+
     // 将JCoTable数据转换为wmientity列表
     private static List<wmientity> getlistbyparandrable(JCoTable restable, String par[]){
         List<wmientity> reslit = new ArrayList<wmientity>();
@@ -106,7 +108,7 @@ public static List<wmientity>   getWmdoc(String DOCTYPE,String DOCID,String tabl
                 // 将处理后的数据添加到列表中
                 reslit.add(t);
             }catch (Exception e){
-                // 如果出现异常，可以在这里进行错误处理
+                // 出现异常，可以在这里进行错误处理
             }
 
         }

@@ -20,6 +20,7 @@ public class SapRFC {
 	private JCoParameterList inPara = null;
 
 	// 输出参数列表
+
 	//	private JCoParameterList outPara = null;
 	private JCoParameterList outPara = null;
 
@@ -37,7 +38,7 @@ public class SapRFC {
 		connect(); // 连接SAP
 	}
 
-	// 调用 SapRFC，创建对象
+	// 调用 SapRFC，创建SapRFC对象
 	public static SapRFC getInstance(){
 		// RFC接口调用开始 ==========
 		SapRFC common = new SapRFC();

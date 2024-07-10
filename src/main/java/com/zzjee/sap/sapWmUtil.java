@@ -105,7 +105,6 @@ public class sapWmUtil {
             if(StringUtil.isNotEmpty(LGNUM)){
                 saprfc.addParameter("LGNUM", LGNUM);
             }
-
             if(StringUtil.isNotEmpty(LGPLA)){
                 saprfc.addParameter("LGPLA", LGPLA);
             }
@@ -113,11 +112,12 @@ public class sapWmUtil {
             JCoTable tab = saprfc.getResultTable("IT_OUT");
             result.put("IT_OUT", tab);
         } catch (Exception e) {
+            // 抛出异常信息
             System.out.print(e.getMessage());
         }
         return result;
     }
-    //
+
     public  static Map<String,Object> getcwkc(String LGNUM,String MATNR,String LGPLA) {
         Map<String, Object> result = new HashMap<String, Object>();
         try {
