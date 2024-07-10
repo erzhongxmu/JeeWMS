@@ -79,6 +79,7 @@ public class MvGoodsController extends BaseController {
 	/**
 	 * 商品视图列表 页面跳转
 	 *
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "list")

@@ -80,6 +80,7 @@ public class MdCusOtherController extends BaseController {
 	/**
 	 * 第三方客户列表 页面跳转
 	 *
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "list")

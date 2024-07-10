@@ -90,6 +90,7 @@ public class MdGoodsController extends BaseController {
 	/**
 	 * easyui AJAX请求数据
 	 *
+	 * @param mdGoods
 	 * @param request
 	 * @param response
 	 * @param dataGrid

@@ -78,6 +78,7 @@ public class MvCusOtherController extends BaseController {
 	/**
 	 * mv_cus_other列表 页面跳转
 	 *
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "list")

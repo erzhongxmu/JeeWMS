@@ -131,6 +131,7 @@ public class TMdBomHeadController extends BaseController {
 	 * 删除指定的BOM抬头信息
 	 * 通过ID从数据库中检索BOM抬头实体，然后调用服务层方法删除该实体，并在成功时记录日志。
 	 *
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
