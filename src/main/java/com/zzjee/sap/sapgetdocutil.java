@@ -107,7 +107,7 @@ public static List<wmientity>   getWmdoc(String DOCTYPE,String DOCID,String tabl
                 // 将处理后的数据添加到列表中
                 reslit.add(t);
             }catch (Exception e){
-
+                // 如果出现异常，可以在这里进行错误处理
             }
 
         }

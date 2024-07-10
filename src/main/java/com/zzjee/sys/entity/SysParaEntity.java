@@ -128,8 +128,8 @@ public class SysParaEntity implements java.io.Serializable {
 		this.createDate = createDate;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  更新人名称
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  更新人名称
 	 */
 	@Column(name ="UPDATE_NAME",nullable=true,length=50)
 	public String getUpdateName(){

@@ -28,7 +28,7 @@ public class VTmsDzEntity implements java.io.Serializable {
 	private String dizhi;
 	
 	/**
-	 * get方法: 取得String
+	 * get方法: 取得java.lang.String
 	 * @return: java.lang.String  id
 	 */
 	@Id
@@ -41,7 +41,7 @@ public class VTmsDzEntity implements java.io.Serializable {
 	}
 
 	/**
-	 * set方法: 设置String
+	 * set方法: 设置java.lang.String
 	 * @param: java.lang.String  id
 	 */
 	public void setId(String id){

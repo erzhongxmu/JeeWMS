@@ -169,8 +169,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 		this.updateBy = updateBy;
 	}
 	/**
-	 *方法: 取得java.util.Date
-	 *@return: java.util.Date  更新日期
+	 * get方法: 取得java.util.Date
+	 * @return: java.util.Date  更新日期
 	 */
 	@Column(name ="UPDATE_DATE",nullable=true)
 	public Date getUpdateDate(){
