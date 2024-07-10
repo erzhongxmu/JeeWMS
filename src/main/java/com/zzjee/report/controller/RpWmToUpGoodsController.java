@@ -276,13 +276,19 @@ public class RpWmToUpGoodsController extends BaseController {
 	@RequestMapping(params = "exportXls")
 	public String exportXls(RpWmToUpGoodsEntity rpWmToUpGoods,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
+		//数据查询和准备
 		CriteriaQuery cq = new CriteriaQuery(RpWmToUpGoodsEntity.class, dataGrid);
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, rpWmToUpGoods, request.getParameterMap());
+		//通过查询条件获取数据列表。
 		List<RpWmToUpGoodsEntity> rpWmToUpGoodss = this.rpWmToUpGoodsService.getListByCriteriaQuery(cq,false);
+		//设置导出的 Excel 文件名
 		modelMap.put(NormalExcelConstants.FILE_NAME,"rp_wm_to_up_goods");
+		//设置导出数据的类型
 		modelMap.put(NormalExcelConstants.CLASS,RpWmToUpGoodsEntity.class);
+		//设置导出参数，包括 Excel 的标题和导出人信息
 		modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("rp_wm_to_up_goods列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
 			"导出信息"));
+		//设置要导出的数据列表
 		modelMap.put(NormalExcelConstants.DATA_LIST,rpWmToUpGoodss);
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
@@ -295,10 +301,14 @@ public class RpWmToUpGoodsController extends BaseController {
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(RpWmToUpGoodsEntity rpWmToUpGoods,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
+		//设置导出文件名
     	modelMap.put(NormalExcelConstants.FILE_NAME,"rp_wm_to_up_goods");
+		//设置导出数据的类类型
     	modelMap.put(NormalExcelConstants.CLASS,RpWmToUpGoodsEntity.class);
+		//设置导出参数，包括标题、导出人信息等
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("rp_wm_to_up_goods列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
     	"导出信息"));
+		//设置空的数据列表，即导出一个空的 Excel 文件
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
