@@ -65,11 +65,13 @@ public class RpWmToUpGoodsController extends BaseController {
 	 * Logger for this class
 	 */
 	private static final Logger logger = Logger.getLogger(RpWmToUpGoodsController.class);
-
+	//用于处理商品上架服务的业务逻辑
 	@Autowired
 	private RpWmToUpGoodsServiceI rpWmToUpGoodsService;
+	//用于处理系统服务的业务逻辑
 	@Autowired
 	private SystemService systemService;
+	//用于验证数据的有效性
 	@Autowired
 	private Validator validator;
 	
@@ -144,15 +146,17 @@ public class RpWmToUpGoodsController extends BaseController {
 	 @RequestMapping(params = "doBatchDel")
 	@ResponseBody
 	public AjaxJson doBatchDel(String ids,HttpServletRequest request){
+		 //用于保存操作的消息。
 		String message = null;
 		AjaxJson j = new AjaxJson();
 		message = "rp_wm_to_up_goods删除成功";
 		try{
 			for(String id:ids.split(",")){
-				RpWmToUpGoodsEntity rpWmToUpGoods = systemService.getEntity(RpWmToUpGoodsEntity.class, 
-				id
-				);
+				//根据id从数据库中获取RpWmToUpGoodsEntity对象。
+				RpWmToUpGoodsEntity rpWmToUpGoods = systemService.getEntity(RpWmToUpGoodsEntity.class, id);
+				//调用rpWmToUpGoodsService的delete方法删除rpWmToUpGoods对象
 				rpWmToUpGoodsService.delete(rpWmToUpGoods);
+				//调用systemService的addLog方法记录日志
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}
 		}catch(Exception e){
@@ -178,7 +182,9 @@ public class RpWmToUpGoodsController extends BaseController {
 		AjaxJson j = new AjaxJson();
 		message = "rp_wm_to_up_goods添加成功";
 		try{
+			//调用rpWmToUpGoodsService的save方法将rpWmToUpGoods对象保存到数据库中
 			rpWmToUpGoodsService.save(rpWmToUpGoods);
+			//调用systemService的addLog方法记录日志
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
