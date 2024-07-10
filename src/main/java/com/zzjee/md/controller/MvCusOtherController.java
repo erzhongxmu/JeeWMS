@@ -278,6 +278,7 @@ public class MvCusOtherController extends BaseController {
 		modelMap.put(NormalExcelConstants.FILE_NAME,"mv_cus_other");
 		//导出数据的类类型
 		modelMap.put(NormalExcelConstants.CLASS,MvCusOtherEntity.class);
+		//设置导出参数
 		modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("mv_cus_other列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
 			"导出信息"));
 		//设置需要导出的数据列表

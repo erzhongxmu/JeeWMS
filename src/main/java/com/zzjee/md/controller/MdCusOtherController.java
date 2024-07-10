@@ -280,6 +280,7 @@ public class MdCusOtherController extends BaseController {
 		modelMap.put(NormalExcelConstants.FILE_NAME,"第三方客户");
 		//导出数据的类类型
 		modelMap.put(NormalExcelConstants.CLASS,MdCusOtherEntity.class);
+		//设置导出参数
 		modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("第三方客户列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
 			"导出信息"));
 		modelMap.put(NormalExcelConstants.DATA_LIST,mdCusOthers);
