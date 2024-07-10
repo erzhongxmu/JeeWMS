@@ -348,13 +348,14 @@ public class MdGoodsController extends BaseController {
 				mdGoods, request.getParameterMap());
 		List<MdGoodsEntity> mdGoodss = this.mdGoodsService
 				.getListByCriteriaQuery(cq, false);
-		// 设置Excel文件的基础信息
+		//设置Excel文件的基础信息
+		//文件名
 		modelMap.put(NormalExcelConstants.FILE_NAME, "商品信息");
 		modelMap.put(NormalExcelConstants.CLASS, MdGoodsEntity.class);
 		modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("商品信息列表",
 				"导出人:" + ResourceUtil.getSessionUserName().getRealName(),
 				"导出信息"));
-		// 设置需要导出的数据列表
+		//设置需要导出的数据列表
 		modelMap.put(NormalExcelConstants.DATA_LIST, mdGoodss);
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}

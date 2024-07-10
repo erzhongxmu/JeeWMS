@@ -554,11 +554,13 @@ public class MdBinController extends BaseController {
         CriteriaQuery cq = new CriteriaQuery(MdBinEntity.class, dataGrid);
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, mdBin, request.getParameterMap());
         List<MdBinEntity> mdBins = this.mdBinService.getListByCriteriaQuery(cq, false);
-        // 设置Excel文件的基础信息
+        //设置Excel文件的基础信息
+        //文件名
         modelMap.put(NormalExcelConstants.FILE_NAME, "仓位定义");
         modelMap.put(NormalExcelConstants.CLASS, MdBinEntity.class);
         modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("仓位定义列表", "导出人:" + ResourceUtil.getSessionUserName().getRealName(),
                 "导出信息"));
+        //设置需要导出的数据列表
         modelMap.put(NormalExcelConstants.DATA_LIST, mdBins);
         return NormalExcelConstants.JEECG_EXCEL_VIEW;
     }
