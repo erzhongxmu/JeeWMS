@@ -104,6 +104,7 @@ public class SapRFC {
 		inPara.setValue(name, value);
 		return this;
 	}
+
 	// 添加参数到输入参数列表，（使用整数索引）
 	public SapRFC addParameter(int name, String value) {
 		inPara.setValue(name, value);

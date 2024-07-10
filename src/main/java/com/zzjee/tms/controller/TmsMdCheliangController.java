@@ -71,7 +71,6 @@ public class TmsMdCheliangController extends BaseController {
     @Autowired
     private Validator validator;
 
-
     /**
      * 车辆管理列表 页面跳转
      * @return
@@ -84,7 +83,7 @@ public class TmsMdCheliangController extends BaseController {
     /**
      * easyui AJAX请求数据
      *
-     * @param request
+     * @param request 请求
      * @param response
      * @param dataGrid
      * @param user

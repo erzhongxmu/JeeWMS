@@ -22,7 +22,7 @@ public class sapWmUtil {
             saprfc.addParameter("LGNUM", lgnum);
             // 执行RFC调用
             saprfc.execCall();
-//            saprfc.getParamTableList()
+            //  saprfc.getParamTableList()
             // 获取输出表IT_OUT
             JCoTable tab = saprfc.getParamTableList("IT_OUT");
             // 打印输出表的行数

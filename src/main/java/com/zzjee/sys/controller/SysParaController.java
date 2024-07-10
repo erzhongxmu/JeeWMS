@@ -87,8 +87,6 @@ public class SysParaController extends BaseController {
 	private SystemService systemService;
 	@Autowired
 	private Validator validator;
-	
-
 
 	/**
 	 * 全局参数列表 页面跳转
@@ -103,7 +101,7 @@ public class SysParaController extends BaseController {
 	/**
 	 * easyui AJAX请求数据
 	 * 
-	 * @param request
+	 * @param request 请求
 	 * @param response
 	 * @param dataGrid
 	 * @param user
