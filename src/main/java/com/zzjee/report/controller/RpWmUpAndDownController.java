@@ -207,10 +207,14 @@ public class RpWmUpAndDownController extends BaseController {
 		String message = null;
 		AjaxJson j = new AjaxJson();
 		message = "rp_wm_up_and_down更新成功";
+		//根据传入的 rpWmUpAndDown 对象的 id 获取数据库中对应的实体对象 t
 		RpWmUpAndDownEntity t = rpWmUpAndDownService.get(RpWmUpAndDownEntity.class, rpWmUpAndDown.getId());
 		try {
+			//将rpWmUpAndDown对象的非空属性拷贝到t对象中
 			MyBeanUtils.copyBeanNotNull2Bean(rpWmUpAndDown, t);
+			//调用服务层的保存或更新方法
 			rpWmUpAndDownService.saveOrUpdate(t);
+			//记录操作日志
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -220,7 +224,6 @@ public class RpWmUpAndDownController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
 
 	/**
 	 * rp_wm_up_and_down新增页面跳转
@@ -230,7 +233,9 @@ public class RpWmUpAndDownController extends BaseController {
 	@RequestMapping(params = "goAdd")
 	public ModelAndView goAdd(RpWmUpAndDownEntity rpWmUpAndDown, HttpServletRequest req) {
 		if (StringUtil.isNotEmpty(rpWmUpAndDown.getId())) {
+			//如果传入的 rpWmUpAndDown 对象的 id 不为空，从数据库中获取对应的实体对象
 			rpWmUpAndDown = rpWmUpAndDownService.getEntity(RpWmUpAndDownEntity.class, rpWmUpAndDown.getId());
+			//将获取的实体对象设置到请求的属性中，通常用于在页面中显示已有数据
 			req.setAttribute("rpWmUpAndDownPage", rpWmUpAndDown);
 		}
 		return new ModelAndView("com/zzjee/report/rpWmUpAndDown-add");
