@@ -227,10 +227,13 @@ public class RpWmToUpGoodsController extends BaseController {
 	 * 
 	 * @return
 	 */
+	//用于跳转到新增页面
 	@RequestMapping(params = "goAdd")
 	public ModelAndView goAdd(RpWmToUpGoodsEntity rpWmToUpGoods, HttpServletRequest req) {
 		if (StringUtil.isNotEmpty(rpWmToUpGoods.getId())) {
+			//获取对应的实体对象
 			rpWmToUpGoods = rpWmToUpGoodsService.getEntity(RpWmToUpGoodsEntity.class, rpWmToUpGoods.getId());
+			//获取和显示该实体对象的信息
 			req.setAttribute("rpWmToUpGoodsPage", rpWmToUpGoods);
 		}
 		return new ModelAndView("com/zzjee/report/rpWmToUpGoods-add");
@@ -240,9 +243,11 @@ public class RpWmToUpGoodsController extends BaseController {
 	 * 
 	 * @return
 	 */
+	//用于跳转到编辑页面
 	@RequestMapping(params = "goUpdate")
 	public ModelAndView goUpdate(RpWmToUpGoodsEntity rpWmToUpGoods, HttpServletRequest req) {
 		if (StringUtil.isNotEmpty(rpWmToUpGoods.getId())) {
+			//如果rpWmToUpGoods对象的id不为空，则从数据库中获取对应id的RpWmToUpGoodsEntity实体对象
 			rpWmToUpGoods = rpWmToUpGoodsService.getEntity(RpWmToUpGoodsEntity.class, rpWmToUpGoods.getId());
 			req.setAttribute("rpWmToUpGoodsPage", rpWmToUpGoods);
 		}
@@ -254,8 +259,10 @@ public class RpWmToUpGoodsController extends BaseController {
 	 * 
 	 * @return
 	 */
+	//用于跳转到导入功能页面
 	@RequestMapping(params = "upload")
 	public ModelAndView upload(HttpServletRequest req) {
+		//将名为"controller_name"的属性设置为"rpWmToUpGoodsController"，存储在HttpServletRequest对象req中
 		req.setAttribute("controller_name","rpWmToUpGoodsController");
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
