@@ -119,16 +119,20 @@ public class RpWmUpAndDownController extends BaseController {
 	public AjaxJson doDel(RpWmUpAndDownEntity rpWmUpAndDown, HttpServletRequest request) {
 		String message = null;
 		AjaxJson j = new AjaxJson();
+		//根据请求参数获取对应的 RpWmUpAndDownEntity 实体对象
 		rpWmUpAndDown = systemService.getEntity(RpWmUpAndDownEntity.class, rpWmUpAndDown.getId());
 		message = "rp_wm_up_and_down删除成功";
 		try{
+			//调用服务层方法删除 RpWmUpAndDownEntity 实体对象
 			rpWmUpAndDownService.delete(rpWmUpAndDown);
+			//记录操作日志
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
 			message = "rp_wm_up_and_down删除失败";
 			throw new BusinessException(e.getMessage());
 		}
+		//设置 AjaxJson 对象的消息
 		j.setMsg(message);
 		return j;
 	}
@@ -145,11 +149,14 @@ public class RpWmUpAndDownController extends BaseController {
 		AjaxJson j = new AjaxJson();
 		message = "rp_wm_up_and_down删除成功";
 		try{
+			//根据每个 id 获取对应的 RpWmUpAndDownEntity 实体对象
 			for(String id:ids.split(",")){
 				RpWmUpAndDownEntity rpWmUpAndDown = systemService.getEntity(RpWmUpAndDownEntity.class, 
 				id
 				);
+				//调用服务层方法删除 RpWmUpAndDownEntity 实体对象
 				rpWmUpAndDownService.delete(rpWmUpAndDown);
+				//记录操作日志
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}
 		}catch(Exception e){
@@ -175,7 +182,9 @@ public class RpWmUpAndDownController extends BaseController {
 		AjaxJson j = new AjaxJson();
 		message = "rp_wm_up_and_down添加成功";
 		try{
+			//调用服务层方法保存 RpWmUpAndDownEntity 实体对象
 			rpWmUpAndDownService.save(rpWmUpAndDown);
+			//记录操作日志
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
