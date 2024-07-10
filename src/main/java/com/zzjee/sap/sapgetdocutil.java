@@ -102,6 +102,7 @@ public static List<wmientity>   getWmdoc(String DOCTYPE,String DOCID,String tabl
                     // 调用setter方法设置属性值
                     method.invoke(obj,restable.getString(par[j-1]));
                 }
+                // 强制转换为wmientity类型
                 wmientity t = (wmientity) obj;
                 reslit.add(t);
             }catch (Exception e){

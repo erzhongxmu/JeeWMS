@@ -86,6 +86,7 @@ public class sapWmUtil {
             saprfc.execCall();
             // 获取指定表格名称的输出表
             JCoTable tab = saprfc.getResultTable(tablename);
+            // 将输出表添加到结果Map中
             result.put("IT_OUT", tab);
         } catch (Exception e) {
             System.out.print(e.getMessage());

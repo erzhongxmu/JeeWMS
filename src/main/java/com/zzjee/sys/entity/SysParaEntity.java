@@ -112,8 +112,8 @@ public class SysParaEntity implements java.io.Serializable {
 		this.createBy = createBy;
 	}
 	/**
-	 *方法: 取得java.util.Date
-	 *@return: java.util.Date  创建日期
+	 * get方法: 取得java.util.Date
+	 * @return: java.util.Date  创建日期
 	 */
 	@Column(name ="CREATE_DATE",nullable=true,length=20)
 	public Date getCreateDate(){
