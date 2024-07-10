@@ -11,10 +11,10 @@ import java.util.Map;
 
 public class sapgetdocutil {
 
-//获取WM文档信息
+// 获取WM文档信息
 public static List<wmientity>   getWmdoc(String DOCTYPE,String DOCID,String tablename,String par[]) {
 //    Map<String, Object> result = new HashMap<String, Object>();
-    // 创建一个wmientity类型的列表来存储结果
+    // 创建一个 wmientity 类型的列表来存储结果
     List<wmientity> reslit = new ArrayList<wmientity>();
     try {
         // 调用sapWmUtil的getWmdoc方法获取数据
@@ -35,7 +35,6 @@ public static List<wmientity>   getWmdoc(String DOCTYPE,String DOCID,String tabl
     // 返回处理后的数据列表
     return  reslit;
 }
-
 
     //获取储位库存信息
     public static List<wmientity>   getcwkc(String LGNUM,String MATNR,String LGPLA,String par[]){

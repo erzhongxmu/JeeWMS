@@ -97,7 +97,6 @@ public class sapWmUtil {
     }
 
     //获取储位
-    //
     public  static Map<String,Object> getcw(String LGNUM,String LGPLA) {
         Map<String, Object> result = new HashMap<String, Object>();
         try {

@@ -100,9 +100,8 @@ public class SysParaController extends BaseController {
 
 	/**
 	 * easyui AJAX请求数据
-	 * 
 	 * @param request 请求
-	 * @param response
+	 * @param response 响应
 	 * @param dataGrid
 	 * @param user
 	 */

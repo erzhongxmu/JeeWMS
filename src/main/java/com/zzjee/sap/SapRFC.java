@@ -147,7 +147,7 @@ public class SapRFC {
 		return tabPara.getTable(tableName);
 	}
 
-	// //取得参数列表
+	//取得参数列表
 	// public JCoTable getParamTable(String tableName) {
 	// return tabPara.getTable(tableName);
 	// }

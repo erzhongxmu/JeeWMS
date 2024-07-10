@@ -144,8 +144,8 @@ public class SysParaEntity implements java.io.Serializable {
 		this.updateName = updateName;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  更新人登录名称
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  更新人登录名称
 	 */
 	@Column(name ="UPDATE_BY",nullable=true,length=50)
 	public String getUpdateBy(){
