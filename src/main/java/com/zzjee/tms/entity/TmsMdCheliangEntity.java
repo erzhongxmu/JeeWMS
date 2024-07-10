@@ -162,8 +162,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  更新人登录名称
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  更新人登录名称
 	 */
 	public void setUpdateBy(String updateBy){
 		this.updateBy = updateBy;

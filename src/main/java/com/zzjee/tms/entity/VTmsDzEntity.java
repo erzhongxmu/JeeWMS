@@ -41,7 +41,7 @@ public class VTmsDzEntity implements java.io.Serializable {
 	}
 
 	/**
-	 * set方法: 设置java.lang.String
+	 * set方法: 设置String
 	 * @param: java.lang.String  id
 	 */
 	public void setId(String id){

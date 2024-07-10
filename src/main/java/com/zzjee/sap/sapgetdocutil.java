@@ -104,6 +104,7 @@ public static List<wmientity>   getWmdoc(String DOCTYPE,String DOCID,String tabl
                 }
                 // 强制转换为wmientity类型
                 wmientity t = (wmientity) obj;
+                // 将处理后的数据添加到列表中
                 reslit.add(t);
             }catch (Exception e){
 

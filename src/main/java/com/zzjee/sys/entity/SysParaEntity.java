@@ -121,8 +121,8 @@ public class SysParaEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.util.Date
-	 *@param: java.util.Date  创建日期
+	 * set方法: 设置java.util.Date
+	 * @param: java.util.Date  创建日期
 	 */
 	public void setCreateDate(Date createDate){
 		this.createDate = createDate;

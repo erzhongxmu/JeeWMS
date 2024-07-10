@@ -89,6 +89,7 @@ public class sapWmUtil {
             // 将输出表添加到结果Map中
             result.put("IT_OUT", tab);
         } catch (Exception e) {
+            // 打印异常信息
             System.out.print(e.getMessage());
         }
         return result;
