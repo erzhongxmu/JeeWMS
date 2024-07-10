@@ -317,9 +317,10 @@ public class RpWmToUpGoodsController extends BaseController {
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-		
+		//将请求转换为多部分请求（支持文件上传）
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+		// 遍历上传的文件
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
 			MultipartFile file = entity.getValue();// 获取上传文件对象
 			ImportParams params = new ImportParams();
@@ -327,13 +328,18 @@ public class RpWmToUpGoodsController extends BaseController {
 			params.setHeadRows(1);
 			params.setNeedSave(true);
 			try {
+				//使用ExcelImportUtil导入Excel文件并转换为指定类型的对象列表
 				List<RpWmToUpGoodsEntity> listRpWmToUpGoodsEntitys = ExcelImportUtil.importExcel(file.getInputStream(),RpWmToUpGoodsEntity.class,params);
+				//遍历导入的实体对象列表，逐个保存到数据库
 				for (RpWmToUpGoodsEntity rpWmToUpGoods : listRpWmToUpGoodsEntitys) {
+					//调用服务层方法保存实体对象
 					rpWmToUpGoodsService.save(rpWmToUpGoods);
 				}
 				j.setMsg("文件导入成功！");
 			} catch (Exception e) {
+				//设置失败消息
 				j.setMsg("文件导入失败！");
+				//记录异常信息
 				logger.error(ExceptionUtil.getExceptionMessage(e));
 			}finally{
 				try {
@@ -349,6 +355,7 @@ public class RpWmToUpGoodsController extends BaseController {
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<RpWmToUpGoodsEntity> list() {
+		//调用服务层获取所有 RpWmToUpGoodsEntity 实体对象的列表
 		List<RpWmToUpGoodsEntity> listRpWmToUpGoodss=rpWmToUpGoodsService.getList(RpWmToUpGoodsEntity.class);
 		return listRpWmToUpGoodss;
 	}
@@ -356,6 +363,7 @@ public class RpWmToUpGoodsController extends BaseController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
+		//根据路径中的 id 参数，调用服务层获取对应的 RpWmToUpGoodsEntity 实体对象
 		RpWmToUpGoodsEntity task = rpWmToUpGoodsService.get(RpWmToUpGoodsEntity.class, id);
 		if (task == null) {
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
