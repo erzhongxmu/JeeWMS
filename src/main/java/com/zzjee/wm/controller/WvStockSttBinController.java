@@ -435,6 +435,7 @@ public class WvStockSttBinController extends BaseController {
 		return new ResponseEntity(headers, HttpStatus.CREATED);
 	}
 
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> update(@RequestBody WvStockSttBinEntity wvStockSttBin) {
 		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
