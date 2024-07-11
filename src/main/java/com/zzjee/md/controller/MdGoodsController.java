@@ -397,9 +397,10 @@ public class MdGoodsController extends BaseController {
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
 			MultipartFile file = entity.getValue();// 获取上传文件对象
+			//设置Excel导入参数
 			ImportParams params = new ImportParams();
-			params.setTitleRows(2);
-			params.setHeadRows(1);
+			params.setTitleRows(2);//标题行
+			params.setHeadRows(1);//表头行
 			params.setNeedSave(true);
 			try {
 				List<MdGoodsEntity> listMdGoodsEntitys = ExcelImportUtil
