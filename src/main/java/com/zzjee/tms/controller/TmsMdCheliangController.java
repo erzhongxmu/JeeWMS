@@ -258,8 +258,8 @@ public class TmsMdCheliangController extends BaseController {
 
     /**
      * 导出excel列表
-     * @param request
-     * @param response
+     * @param request 请求
+     * @param response 响应
      */
     @RequestMapping(params = "exportXls")
     public String exportXls(TmsMdCheliangEntity tmsMdCheliang, HttpServletRequest request, HttpServletResponse response

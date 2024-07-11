@@ -39,7 +39,7 @@ public class SapRFC {
 
 	// 调用 SapRFC，创建SapRFC对象
 	public static SapRFC getInstance(){
-		// RFC接口调用开始 ==========
+		// RFC接口调用开始
 		SapRFC common = new SapRFC();
 		return common;
 	}

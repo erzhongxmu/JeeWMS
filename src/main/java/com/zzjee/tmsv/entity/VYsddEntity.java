@@ -124,8 +124,8 @@ public class VYsddEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  下单日期
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  下单日期
 	 */
 	public void setCreateDate(Date createDate){
 		this.createDate = createDate;

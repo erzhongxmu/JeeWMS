@@ -94,7 +94,7 @@ public class TmsMdDzController extends BaseController {
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
+	 * @param tmsMdDz
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -136,7 +136,6 @@ public class TmsMdDzController extends BaseController {
 	}
 	/**
 	 * 删除客户地址
-	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")

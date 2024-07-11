@@ -61,6 +61,7 @@ public class sapWmUtil {
             // 打印异常信息
             System.out.print(e.getMessage());
         }
+        // 返回结果
         return result;
     }
 
