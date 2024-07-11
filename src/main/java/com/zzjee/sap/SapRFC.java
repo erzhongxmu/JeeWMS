@@ -158,7 +158,7 @@ public class SapRFC {
 		return function.getTableParameterList().getTable(tableName);
 	}
 
-	// DisConnect
+	// DisConnect, 关闭连接
 	public void close() {
 		// if (client != null)
 		// client.disconnect();

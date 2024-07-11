@@ -122,8 +122,7 @@ public class SysParaController extends BaseController {
 	
 	/**
 	 * 删除全局参数
-	 * 
-	 * @return
+	 * @return j
 	 */
 	@RequestMapping(params = "doDel")
 	@ResponseBody

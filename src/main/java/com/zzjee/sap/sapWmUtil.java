@@ -136,6 +136,7 @@ public class sapWmUtil {
             JCoTable tab = saprfc.getResultTable("IT_OUT");
             result.put("IT_OUT", tab);
         } catch (Exception e) {
+            // 输出异常信息
             System.out.print(e.getMessage());
         }
         return result;
