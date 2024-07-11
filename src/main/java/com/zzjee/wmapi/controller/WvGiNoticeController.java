@@ -97,9 +97,11 @@ public class WvGiNoticeController extends BaseController {
         ResultDO D0 = new ResultDO();
         String hql = " from WvGiNoticeEntity where 1 = 1 ";
         D0.setOK(true);
+        // 如果searchstr不为空，则拼接HQL查询条件
         if (!StringUtil.isEmpty(searchstr)) {
             hql = hql + "  and omNoticeId like '%" + searchstr + "%'" + "  or imCusCode like '%" + searchstr + "%'";
         }
+        // 如果searchstr2不为空，则尝试获取商品编码，并拼接HQL查询条件
         if (!StringUtil.isEmpty(searchstr2)) {
             try {
                 String shpbianma = wmUtil.getmdgoodsbytiaoma(searchstr2);

@@ -94,9 +94,11 @@ public class WvGiController extends BaseController {
         ResultDO D0 = new ResultDO();
         String hql = " from WvGiEntity where downSta is null ";
         D0.setOK(true);
+        // 如果searchstr不为空，则拼接HQL查询条件
         if (!StringUtil.isEmpty(searchstr)) {
             hql = hql + "  and orderId = '" + searchstr + "'" + "  or imCusCode like '%" + searchstr + "%'";
         }
+        // 如果searchstr2不为空，则尝试获取商品编码，并拼接HQL查询条件
         if (!StringUtil.isEmpty(searchstr2)) {
             try {
                 String shpbianma = wmUtil.getmdgoodsbytiaoma(searchstr2);
@@ -121,10 +123,12 @@ public class WvGiController extends BaseController {
                 hql = hql + "  and  (" + insearch + ")";
             }
         }
+        // 根据HQL查询条件获取WvNoticeEntity列表
         List<WvGiEntity> listWvGis = wvGiService.findHql(hql);
         D0.setOK(true);
         List<WvGiEntity> result = new ArrayList<WvGiEntity>();
         int i = 0;
+        // 遍历查询结果，最多取前100条记录
         for (WvGiEntity t : listWvGis) {
             i++;
             if (i > 100) {
@@ -132,6 +136,7 @@ public class WvGiController extends BaseController {
             }
             result.add(t);
         }
+        // 将结果存入ResultDO对象
         D0.setObj(result);
         return new ResponseEntity(D0, HttpStatus.OK);
     }
