@@ -325,7 +325,7 @@ public class MdCusController extends BaseController {
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 	/**
-	 * excel导入
+	 * 通过excel导入数据
 	 *
 	 * @param request
 	 * @param response
