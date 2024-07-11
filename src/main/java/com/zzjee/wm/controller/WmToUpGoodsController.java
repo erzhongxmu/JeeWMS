@@ -161,6 +161,7 @@ public class WmToUpGoodsController extends BaseController {
 		return j;
 	}
 
+
 	/**
 	 * 批量删除上架列表
 	 *
