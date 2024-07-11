@@ -11,8 +11,7 @@ import java.util.Date;
  * @Description: v_ysdd
  * @author onlineGenerator
  * @date 2018-05-04 00:07:37
- * @version V1.0   
- *
+ * @version V1.0
  */
 @Entity
 @Table(name = "v_ysdd", schema = "")

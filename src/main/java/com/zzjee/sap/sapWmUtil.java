@@ -121,6 +121,7 @@ public class sapWmUtil {
     public  static Map<String,Object> getcwkc(String LGNUM,String MATNR,String LGPLA) {
         Map<String, Object> result = new HashMap<String, Object>();
         try {
+            // 创建SapRFC对象
             SapRFC saprfc = SapRFC.getInstance();
             saprfc.prepare("Z_WM_GET_LQUA");
             if(StringUtil.isNotEmpty(LGNUM)){
