@@ -199,6 +199,7 @@ public class SysParaController extends BaseController {
 	/**
 	 * 更新全局参数
 	 * @param sysPara
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")

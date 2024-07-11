@@ -173,6 +173,7 @@ public class SapRFC {
 				properties.store(fos, "Destination - ABAP_AS_WITHOUT_POOL");
 				fos.close();
 			} catch (Exception e) {
+				// 输出异常信息
 				System.out.print("creat********"+e.getMessage());
 			}
 		}

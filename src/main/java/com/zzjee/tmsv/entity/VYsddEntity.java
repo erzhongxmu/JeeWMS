@@ -115,8 +115,8 @@ public class VYsddEntity implements java.io.Serializable {
 		this.id = id;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  下单日期
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  下单日期
 	 */
 	@Column(name ="CREATE_DATE",nullable=true,length=10)
 	public Date getCreateDate(){
