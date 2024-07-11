@@ -126,6 +126,7 @@ public class FxjOtherLoginController extends BaseController {
 	/**
 	 * 批量删除第三方登录
 	 *
+	 * @param request
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")

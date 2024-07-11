@@ -103,6 +103,7 @@ public class WxConfigController extends BaseController {
 	/**
 	 * 删除配置信息
 	 *
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
