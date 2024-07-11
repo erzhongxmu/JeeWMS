@@ -142,6 +142,7 @@ public class WmToDownGoodsController extends BaseController {
         TagUtil.datagrid(response, dataGrid);
     }
 
+
     @RequestMapping(params = "datagridwave")
     public void wavedatagridzzfh(WmToDownGoodsEntity wmToDownGoods,
                                  HttpServletRequest request, HttpServletResponse response,
