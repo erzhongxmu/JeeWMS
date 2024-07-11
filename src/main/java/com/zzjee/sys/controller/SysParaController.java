@@ -145,8 +145,7 @@ public class SysParaController extends BaseController {
 	
 	/**
 	 * 批量删除全局参数
-	 * 
-	 * @return
+	 * @return j
 	 */
 	 @RequestMapping(params = "doBatchDel")
 	@ResponseBody
