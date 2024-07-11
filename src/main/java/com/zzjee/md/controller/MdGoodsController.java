@@ -380,7 +380,12 @@ public class MdGoodsController extends BaseController {
 		modelMap.put(NormalExcelConstants.DATA_LIST, new ArrayList());
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
-
+	/**
+	 * excel导入
+	 *
+	 * @param request
+	 * @param response
+	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
