@@ -52,6 +52,7 @@ public class RpPeriodInOutController extends BaseController {
     public ModelAndView list(HttpServletRequest request) {
         return new ModelAndView("com/zzjee/bireport/rpPeriodInOutList");
     }
+
     /**
      * easyui 处理AJAX请求以返回RpPeriodInOutEntity数据列表的datagrid
      *
@@ -60,7 +61,6 @@ public class RpPeriodInOutController extends BaseController {
      * @param response
      * @param dataGrid
      */
-
     @RequestMapping(params = "datagrid")
     public void datagrid(RpPeriodInOutEntity rpPeriodInOut, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
         rpPeriodInOut.setCreateDate(null);
@@ -96,7 +96,6 @@ public class RpPeriodInOutController extends BaseController {
         TagUtil.datagrid(response, dataGrid);
     }
 
-
     /**
      * 导出excel
      *
@@ -104,6 +103,7 @@ public class RpPeriodInOutController extends BaseController {
      * @param request
      * @param response
      * @param dataGrid
+     * @param modelMap
      */
     @RequestMapping(params = "exportXls")
     public String exportXls(RpPeriodInOutEntity rpPeriodInOut, HttpServletRequest request, HttpServletResponse response

@@ -103,6 +103,7 @@ public class WxConfigController extends BaseController {
 	/**
 	 * 删除配置信息
 	 *
+	 * @param wxConfig
 	 * @param request
 	 * @return
 	 */

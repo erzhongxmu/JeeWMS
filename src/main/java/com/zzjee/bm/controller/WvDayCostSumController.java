@@ -202,6 +202,7 @@ public class WvDayCostSumController extends BaseController {
 	/**
 	 * 删除wv_day_cost_sum
 	 *
+	 * @param wvDayCostSum
 	 * @param request
 	 * @return
 	 */
