@@ -174,8 +174,8 @@ public class SysParaController extends BaseController {
 	/**
 	 * 添加全局参数
 	 * 
-	 * @param ids
-	 * @return
+	 * @param sysPara
+	 * @return j
 	 */
 	@RequestMapping(params = "doAdd")
 	@ResponseBody

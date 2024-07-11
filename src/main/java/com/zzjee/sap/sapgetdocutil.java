@@ -53,7 +53,7 @@ public static List<wmientity>   getWmdoc(String DOCTYPE,String DOCID,String tabl
             // 打印日志信息
             org.jeecgframework.core.util.LogUtil.info("===================获取库存结束===================");
         } catch (Exception e) {
-            // 如果出现异常，打印堆栈跟踪
+            // 打印堆栈跟踪
             e.printStackTrace();
         }
         // 返回处理后的数据列表
@@ -77,7 +77,7 @@ public static List<wmientity>   getWmdoc(String DOCTYPE,String DOCID,String tabl
             // 打印日志信息
             org.jeecgframework.core.util.LogUtil.info("===================获取储位结束===================");
         } catch (Exception e) {
-            // 如果出现异常，打印堆栈跟踪
+            // 打印堆栈跟踪
             e.printStackTrace();
         }
         // 返回处理后的数据列表

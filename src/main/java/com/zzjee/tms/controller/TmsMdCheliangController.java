@@ -173,7 +173,7 @@ public class TmsMdCheliangController extends BaseController {
 
     /**
      * 添加车辆管理
-     * @param ids
+     * @param tmsMdCheliang
      * @param request
      * @return j
      */
