@@ -139,6 +139,7 @@ public class WmSttInGoodsController extends BaseController {
         TagUtil.datagrid(response, dataGrid);
     }
 
+
     @RequestMapping(params = "datagridcygz")
     public void datagridcygz(WmSttInGoodsEntity wmSttInGoods, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
         CriteriaQuery cq = new CriteriaQuery(WmSttInGoodsEntity.class, dataGrid);
