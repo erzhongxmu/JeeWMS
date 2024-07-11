@@ -277,6 +277,12 @@ public class WxConfigController extends BaseController {
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 
+	/**
+	 * 通过excel导入数据
+	 *
+	 * @param request
+	 * @param response
+	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody

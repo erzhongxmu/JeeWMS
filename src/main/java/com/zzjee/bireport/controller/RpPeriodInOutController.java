@@ -109,6 +109,7 @@ public class RpPeriodInOutController extends BaseController {
     public String exportXls(RpPeriodInOutEntity rpPeriodInOut, HttpServletRequest request, HttpServletResponse response
             , DataGrid dataGrid, ModelMap modelMap) {
         //自定义追加查询条件
+        //从请求中获取日期范围参数
         String query_datePeriod_begin = request.getParameter("createDate1_begin");
         String query_datePeriod_end = request.getParameter("createDate1_end");
         try {
