@@ -87,7 +87,6 @@ public class WvGiNoticeController extends BaseController {
         return new ResponseEntity(D0, HttpStatus.OK);
     }
 
-
     //下架任务  PDA接口
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     @ResponseBody
