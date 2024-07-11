@@ -17,8 +17,8 @@ import java.util.Date;
 @Table(name = "v_ysdd", schema = "")
 @SuppressWarnings("serial")
 public class VYsddEntity implements java.io.Serializable {
-	/**主键*/
 
+	/**主键*/
 	private String id;
 	/**下单日期*/
     @Excel(name="下单日期",width=15)
@@ -108,8 +108,8 @@ public class VYsddEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  主键
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  主键
 	 */
 	public void setId(String id){
 		this.id = id;

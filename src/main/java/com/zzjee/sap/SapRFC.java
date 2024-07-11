@@ -10,7 +10,6 @@ import java.util.Properties;
 
 /**
  *   连接SAP
- *
  */
 
 public class SapRFC {
