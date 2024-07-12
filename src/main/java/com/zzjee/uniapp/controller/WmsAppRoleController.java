@@ -196,6 +196,7 @@ public class WmsAppRoleController extends BaseController {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
+		// 将message设置为j对象的msg属性
 		j.setMsg(message);
 		return j;
 	}
@@ -211,8 +212,10 @@ public class WmsAppRoleController extends BaseController {
 		String message = null;
 		AjaxJson j = new AjaxJson();
 		message = "APP角色更新成功";
+		// 根据传入的wmsAppFunction对象的id获取对应的WmsAppFunctionEntity对象t
 		WmsAppRoleEntity t = wmsAppRoleService.get(WmsAppRoleEntity.class, wmsAppRole.getId());
 		try {
+			// 将wmsAppFunction对象的属性复制到t对象中，只复制非空属性
 			MyBeanUtils.copyBeanNotNull2Bean(wmsAppRole, t);
 			wmsAppRoleService.saveOrUpdate(t);
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
@@ -220,6 +223,7 @@ public class WmsAppRoleController extends BaseController {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
+		// 将message设置为j对象的msg属性
 		j.setMsg(message);
 		return j;
 	}

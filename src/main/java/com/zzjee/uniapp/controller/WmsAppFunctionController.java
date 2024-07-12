@@ -145,6 +145,7 @@ public class WmsAppFunctionController extends BaseController {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
+		// 将message设置为j对象的msg属性
 		j.setMsg(message);
 		return j;
 	}
@@ -174,6 +175,7 @@ public class WmsAppFunctionController extends BaseController {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
+		 // 将message设置为j对象的msg属性
 		j.setMsg(message);
 		return j;
 	}
@@ -197,6 +199,7 @@ public class WmsAppFunctionController extends BaseController {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
+		// 将message设置为j对象的msg属性
 		j.setMsg(message);
 		return j;
 	}
@@ -212,8 +215,10 @@ public class WmsAppFunctionController extends BaseController {
 		String message = null;
 		AjaxJson j = new AjaxJson();
 		message = "APP功能更新成功";
+		// 根据传入的wmsAppFunction对象的id获取对应的WmsAppFunctionEntity对象t
 		WmsAppFunctionEntity t = wmsAppFunctionService.get(WmsAppFunctionEntity.class, wmsAppFunction.getId());
 		try {
+			// 将wmsAppFunction对象的属性复制到t对象中，只复制非空属性
 			MyBeanUtils.copyBeanNotNull2Bean(wmsAppFunction, t);
 			wmsAppFunctionService.saveOrUpdate(t);
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
@@ -221,6 +226,7 @@ public class WmsAppFunctionController extends BaseController {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
+		// 将message设置为j对象的msg属性
 		j.setMsg(message);
 		return j;
 	}
