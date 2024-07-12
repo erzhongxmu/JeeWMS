@@ -380,6 +380,7 @@ public class TMdBomHeadController extends BaseController {
 		//设置导出参数
 		map.put(NormalExcelConstants.PARAMS,new ExportParams("BOM抬头列表", "导出人:"+ ResourceUtil.getSessionUser().getRealName(),
 		"导出信息"));
+		//设置一个空的数据列表
 		map.put(NormalExcelConstants.DATA_LIST,new ArrayList());
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}

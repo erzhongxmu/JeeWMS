@@ -276,6 +276,7 @@ public class WxConfigController extends BaseController {
 		//设置导出参数
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("配置信息列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
     	"导出信息"));
+		//设置一个空的数据列表
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
