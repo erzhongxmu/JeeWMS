@@ -140,8 +140,8 @@ public class VYsddEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  发货人
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  发货人
 	 */
 	public void setFahuoren(String fahuoren){
 		this.fahuoren = fahuoren;

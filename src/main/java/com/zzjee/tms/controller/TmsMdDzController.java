@@ -189,7 +189,7 @@ public class TmsMdDzController extends BaseController {
 	/**
 	 * 添加客户地址
 	 *
-	 * @param ids
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")

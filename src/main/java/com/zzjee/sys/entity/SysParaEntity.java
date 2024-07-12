@@ -224,8 +224,8 @@ public class SysParaEntity implements java.io.Serializable {
 		this.bpmStatus = bpmStatus;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  参数类型
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  参数类型
 	 */
 	@Column(name ="PAR_TYPE",nullable=true,length=32)
 	public String getParType(){

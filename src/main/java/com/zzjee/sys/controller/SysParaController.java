@@ -262,7 +262,7 @@ public class SysParaController extends BaseController {
 	 * 导出excel
 	 * 
 	 * @param request 请求
-	 * @param response
+	 * @param response 响应
 	 */
 	@RequestMapping(params = "exportXls")
 	public String exportXls(SysParaEntity sysPara,HttpServletRequest request,HttpServletResponse response

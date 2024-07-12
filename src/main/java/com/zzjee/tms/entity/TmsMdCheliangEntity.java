@@ -178,8 +178,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.util.Date
-	 *@param: java.util.Date  更新日期
+	 * set方法: 设置java.util.Date
+	 * @param: java.util.Date  更新日期
 	 */
 	public void setUpdateDate(Date updateDate){
 		this.updateDate = updateDate;
