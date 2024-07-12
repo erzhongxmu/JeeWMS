@@ -201,8 +201,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 		this.sysOrgCode = sysOrgCode;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  所属公司
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  所属公司
 	 */
 	@Column(name ="SYS_COMPANY_CODE",nullable=true,length=50)
 	public String getSysCompanyCode(){

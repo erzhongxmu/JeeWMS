@@ -163,8 +163,8 @@ public class VYsddEntity implements java.io.Serializable {
 		this.huowu = huowu;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  件数
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  件数
 	 */
 	@Column(name ="HWSHJS",nullable=true,length=32)
 	public String getHwshjs(){
