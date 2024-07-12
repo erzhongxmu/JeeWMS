@@ -220,7 +220,6 @@ public class SysParaController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
 
 	/**
 	 * 全局参数新增页面跳转

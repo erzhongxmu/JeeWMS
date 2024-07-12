@@ -256,8 +256,8 @@ public class SysParaEntity implements java.io.Serializable {
 		this.parUsername = parUsername;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  参数值
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  参数值
 	 */
 	@Column(name ="PAR_VALUE",nullable=true,length=32)
 	public String getParValue(){

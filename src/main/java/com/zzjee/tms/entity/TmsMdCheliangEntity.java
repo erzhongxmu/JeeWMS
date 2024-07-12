@@ -210,8 +210,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  所属公司
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  所属公司
 	 */
 	public void setSysCompanyCode(String sysCompanyCode){
 		this.sysCompanyCode = sysCompanyCode;

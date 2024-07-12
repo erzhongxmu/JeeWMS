@@ -172,8 +172,8 @@ public class VYsddEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  件数
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  件数
 	 */
 	public void setHwshjs(String hwshjs){
 		this.hwshjs = hwshjs;
