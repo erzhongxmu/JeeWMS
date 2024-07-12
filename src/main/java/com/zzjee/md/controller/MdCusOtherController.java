@@ -286,11 +286,13 @@ public class MdCusOtherController extends BaseController {
 		modelMap.put(NormalExcelConstants.DATA_LIST,mdCusOthers);
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
+
 	/**
 	 * 导出excel 使模板
 	 *
 	 * @param request
 	 * @param response
+	 * @param dataGrid
 	 */
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(MdCusOtherEntity mdCusOther,HttpServletRequest request,HttpServletResponse response
@@ -303,7 +305,6 @@ public class MdCusOtherController extends BaseController {
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 
-	
 	/**
 	 * 通过excel导入数据
 	 *
