@@ -156,8 +156,8 @@ public class VYsddEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  货物
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  货物
 	 */
 	public void setHuowu(String huowu){
 		this.huowu = huowu;

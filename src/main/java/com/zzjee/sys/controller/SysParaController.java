@@ -173,7 +173,6 @@ public class SysParaController extends BaseController {
 
 	/**
 	 * 添加全局参数
-	 * 
 	 * @param sysPara
 	 * @param request
 	 * @return j
