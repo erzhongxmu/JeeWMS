@@ -150,8 +150,10 @@ public class RfidBuseController extends BaseController {
 	public AjaxJson doDel(RfidBuseEntity rfidBuse, HttpServletRequest request) {
 		String message = null;
 		AjaxJson j = new AjaxJson();
+		//获取要删除的RfidBuseEntity实体
 		rfidBuse = systemService.getEntity(RfidBuseEntity.class, rfidBuse.getId());
 		message = "RFID表删除成功";
+		//尝试执行删除操作，将记录设置为"del"状态，更新数据并记录日志
 		try{
 			rfidBuse.setBpmStatus("del");
 			rfidBuseService.updateEntitie(rfidBuse);
@@ -176,13 +178,15 @@ public class RfidBuseController extends BaseController {
 		String message = null;
 		AjaxJson j = new AjaxJson();
 		message = "RFID表删除成功";
+		 //尝试执行批量删除操作，将记录设置为"del"状态，更新数据并记录日志
 		try{
 			for(String id:ids.split(",")){
-				RfidBuseEntity rfidBuse = systemService.getEntity(RfidBuseEntity.class,
-				id
-				);
+				//获取要删除的RfidBuseEntity实体
+				RfidBuseEntity rfidBuse = systemService.getEntity(RfidBuseEntity.class, id);
  				rfidBuse.setBpmStatus("del");
+				//更新实体数据，将其状态更新为删除标记
 				rfidBuseService.updateEntitie(rfidBuse);
+				//记录操作日志
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}
 		}catch(Exception e){
@@ -193,7 +197,6 @@ public class RfidBuseController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-
 
 	/**
 	 * 添加RFID表
@@ -207,7 +210,9 @@ public class RfidBuseController extends BaseController {
 		String message = null;
 		AjaxJson j = new AjaxJson();
 		message = "RFID表添加成功";
+		//尝试执行添加操作，保存RfidBuseEntity实体并记录日志
 		try{
+			//保存RfidBuseEntity实体
 			rfidBuseService.save(rfidBuse);
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
@@ -244,7 +249,6 @@ public class RfidBuseController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-
 
 	/**
 	 * RFID表新增页面跳转
