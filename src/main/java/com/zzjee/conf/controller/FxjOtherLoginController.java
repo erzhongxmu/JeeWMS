@@ -273,6 +273,7 @@ public class FxjOtherLoginController extends BaseController {
 		//设置Excel文件的名称
     	modelMap.put(NormalExcelConstants.FILE_NAME,"第三方登录");
     	modelMap.put(NormalExcelConstants.CLASS,FxjOtherLoginEntity.class);
+		//设置导出参数
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("第三方登录列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
     	"导出信息"));
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());

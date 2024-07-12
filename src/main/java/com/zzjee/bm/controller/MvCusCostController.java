@@ -1349,6 +1349,7 @@ public class MvCusCostController extends BaseController {
         //设置Excel文件的名称
         modelMap.put(NormalExcelConstants.FILE_NAME, "mv_cus_cost");
         modelMap.put(NormalExcelConstants.CLASS, MvCusCostEntity.class);
+        //设置导出参数
         modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("mv_cus_cost列表", "导出人:" + ResourceUtil.getSessionUserName().getRealName(),
                 "导出信息"));
         modelMap.put(NormalExcelConstants.DATA_LIST, new ArrayList());

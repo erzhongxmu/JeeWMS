@@ -377,6 +377,7 @@ public class TMdBomHeadController extends BaseController {
 		//设置Excel文件的名称
 		map.put(NormalExcelConstants.FILE_NAME,"BOM抬头");
 		map.put(NormalExcelConstants.CLASS,TMdBomHeadPage.class);
+		//设置导出参数
 		map.put(NormalExcelConstants.PARAMS,new ExportParams("BOM抬头列表", "导出人:"+ ResourceUtil.getSessionUser().getRealName(),
 		"导出信息"));
 		map.put(NormalExcelConstants.DATA_LIST,new ArrayList());

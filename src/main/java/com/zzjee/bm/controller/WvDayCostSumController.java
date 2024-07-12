@@ -372,6 +372,7 @@ public class WvDayCostSumController extends BaseController {
 		//设置Excel文件的名称
     	modelMap.put(NormalExcelConstants.FILE_NAME,"wv_day_cost_sum");
     	modelMap.put(NormalExcelConstants.CLASS,WvDayCostSumEntity.class);
+		//设置导出参数
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("wv_day_cost_sum列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
     	"导出信息"));
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
