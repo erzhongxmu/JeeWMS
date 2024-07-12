@@ -194,8 +194,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  所属部门
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  所属部门
 	 */
 	public void setSysOrgCode(String sysOrgCode){
 		this.sysOrgCode = sysOrgCode;
