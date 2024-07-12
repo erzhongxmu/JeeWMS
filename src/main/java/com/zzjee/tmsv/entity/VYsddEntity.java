@@ -131,8 +131,8 @@ public class VYsddEntity implements java.io.Serializable {
 		this.createDate = createDate;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  发货人
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  发货人
 	 */
 	@Column(name ="FAHUOREN",nullable=true,length=32)
 	public String getFahuoren(){

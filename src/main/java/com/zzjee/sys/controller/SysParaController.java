@@ -250,7 +250,6 @@ public class SysParaController extends BaseController {
 	
 	/**
 	 * 导入功能跳转
-	 * 
 	 * @return
 	 */
 	@RequestMapping(params = "upload")
@@ -262,7 +261,7 @@ public class SysParaController extends BaseController {
 	/**
 	 * 导出excel
 	 * 
-	 * @param request
+	 * @param request 请求
 	 * @param response
 	 */
 	@RequestMapping(params = "exportXls")

@@ -217,8 +217,8 @@ public class SysParaEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  流程状态
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  流程状态
 	 */
 	public void setBpmStatus(String bpmStatus){
 		this.bpmStatus = bpmStatus;
