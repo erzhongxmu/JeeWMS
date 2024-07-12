@@ -136,6 +136,7 @@ public class WaveToFjController extends BaseController {
             message = "wave_to_fj";
             throw new BusinessException(e.getMessage());
         }
+        // 将message设置为j对象的msg属性
         j.setMsg(message);
         return j;
     }
@@ -166,6 +167,7 @@ public class WaveToFjController extends BaseController {
             message = "wave_to_fj";
             throw new BusinessException(e.getMessage());
         }
+        // 将message设置为j对象的msg属性
         j.setMsg(message);
         return j;
     }
@@ -189,6 +191,7 @@ public class WaveToFjController extends BaseController {
             message = "wave_to_fj添加失败";
             throw new BusinessException(e.getMessage());
         }
+        // 将message设置为j对象的msg属性
         j.setMsg(message);
         return j;
     }
@@ -214,6 +217,7 @@ public class WaveToFjController extends BaseController {
             message = "wave_to_fj更新失败";
             throw new BusinessException(e.getMessage());
         }
+        // 将message设置为j对象的msg属性
         j.setMsg(message);
         return j;
     }
