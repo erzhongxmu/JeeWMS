@@ -215,7 +215,6 @@ public class MvGoodsController extends BaseController {
 		return j;
 	}
 
-
 	/**
 	 * 添加商品视图
 	 *
@@ -242,6 +241,7 @@ public class MvGoodsController extends BaseController {
 	/**
 	 * 更新商品视图
 	 *
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -264,7 +264,6 @@ public class MvGoodsController extends BaseController {
 		return j;
 	}
 
-
 	/**
 	 * 商品视图新增页面跳转
 	 *
@@ -280,6 +279,7 @@ public class MvGoodsController extends BaseController {
 		}
 		return new ModelAndView("com/zzjee/md/mvGoods-add");
 	}
+
 	/**
 	 * 商品视图编辑页面跳转
 	 *

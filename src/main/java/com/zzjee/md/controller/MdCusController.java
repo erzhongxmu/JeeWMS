@@ -317,10 +317,13 @@ public class MdCusController extends BaseController {
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(MdCusEntity mdCus,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
+		//设置Excel文件的名称
     	modelMap.put(NormalExcelConstants.FILE_NAME,"客户");
     	modelMap.put(NormalExcelConstants.CLASS,MdCusEntity.class);
+		//设置导出参数
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("客户列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
     	"导出信息"));
+		//设置一个空的数据列表
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
