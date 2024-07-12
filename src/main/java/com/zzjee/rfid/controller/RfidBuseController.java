@@ -236,10 +236,14 @@ public class RfidBuseController extends BaseController {
 		String message = null;
 		AjaxJson j = new AjaxJson();
 		message = "RFID表更新成功";
+		//获取要更新的RFidBuseEntity实体
 		RfidBuseEntity t = rfidBuseService.get(RfidBuseEntity.class, rfidBuse.getId());
 		try {
+			//复制rfidBuse实体的非空属性到t实体
 			MyBeanUtils.copyBeanNotNull2Bean(rfidBuse, t);
+			//保存或更新t实体
 			rfidBuseService.saveOrUpdate(t);
+			//记录操作日志
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -255,10 +259,13 @@ public class RfidBuseController extends BaseController {
 	 *
 	 * @return
 	 */
-	@RequestMapping(params = "goAdd")
+	@RequestMapping(params = "goAdd")    //注解处理HTTP GET请求，参数为"goAdd"
+	//接收RfidBuseEntity实体类和HttpServletRequest对象
 	public ModelAndView goAdd(RfidBuseEntity rfidBuse, HttpServletRequest req) {
 		if (StringUtil.isNotEmpty(rfidBuse.getId())) {
+			//从RFID表中获取对应ID的RFidBuseEntity实体
 			rfidBuse = rfidBuseService.getEntity(RfidBuseEntity.class, rfidBuse.getId());
+			//将RFidBuseEntity实体设置到请求的属性中
 			req.setAttribute("rfidBusePage", rfidBuse);
 		}
 		return new ModelAndView("com/zzjee/rfid/rfidBuse-add");
@@ -268,10 +275,12 @@ public class RfidBuseController extends BaseController {
 	 *
 	 * @return
 	 */
-	@RequestMapping(params = "goUpdate")
+	@RequestMapping(params = "goUpdate")    //注解处理HTTP GET请求，参数为"goUpdate"
 	public ModelAndView goUpdate(RfidBuseEntity rfidBuse, HttpServletRequest req) {
 		if (StringUtil.isNotEmpty(rfidBuse.getId())) {
+			//从RFID表中获取对应ID的RFidBuseEntity实体
 			rfidBuse = rfidBuseService.getEntity(RfidBuseEntity.class, rfidBuse.getId());
+			//将RFidBuseEntity实体设置到请求的属性中
 			req.setAttribute("rfidBusePage", rfidBuse);
 		}
 		return new ModelAndView("com/zzjee/rfid/rfidBuse-update");
@@ -284,6 +293,7 @@ public class RfidBuseController extends BaseController {
 	 */
 	@RequestMapping(params = "upload")
 	public ModelAndView upload(HttpServletRequest req) {
+		//接收HttpServletRequest对象
 		req.setAttribute("controller_name","rfidBuseController");
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
