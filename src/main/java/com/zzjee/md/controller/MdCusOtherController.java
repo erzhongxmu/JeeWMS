@@ -302,6 +302,7 @@ public class MdCusOtherController extends BaseController {
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
+	
 	/**
 	 * 通过excel导入数据
 	 *
@@ -313,8 +314,9 @@ public class MdCusOtherController extends BaseController {
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-
+		// 将HttpServletRequest转换为MultipartHttpServletRequest，以便处理文件上传
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		//获取上传的文件映射
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
 			MultipartFile file = entity.getValue();// 获取上传文件对象

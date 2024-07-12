@@ -363,9 +363,10 @@ public class TMdBomHeadController extends BaseController {
 					e.printStackTrace();
 				}
 			}
-			}
+		}
 			return j;
 	}
+
 	/**
 	 * 导出excel 使模板
 	 *
@@ -380,6 +381,7 @@ public class TMdBomHeadController extends BaseController {
 		map.put(NormalExcelConstants.DATA_LIST,new ArrayList());
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
+
 	/**
 	 * 导入功能跳转
 	 *
@@ -391,7 +393,6 @@ public class TMdBomHeadController extends BaseController {
 		req.setAttribute("controller_name", "tMdBomHeadController");
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
-
 
  	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody

@@ -161,7 +161,6 @@ public class MvCusOtherController extends BaseController {
 		return j;
 	}
 
-
 	/**
 	 * 添加mv_cus_other
 	 *
@@ -213,7 +212,6 @@ public class MvCusOtherController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-
 
 	/**
 	 * mv_cus_other新增页面跳转
@@ -285,6 +283,7 @@ public class MvCusOtherController extends BaseController {
 		modelMap.put(NormalExcelConstants.DATA_LIST,mvCusOthers);
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
+
 	/**
 	 * 导出excel 使模板
 	 *
@@ -304,6 +303,7 @@ public class MvCusOtherController extends BaseController {
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
+
 	/**
 	 *  通过excel导入数据
 	 *
@@ -315,8 +315,9 @@ public class MvCusOtherController extends BaseController {
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-
+		// 将HttpServletRequest转换为MultipartHttpServletRequest，以便处理文件上传
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		//获取上传的文件映射
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
 			MultipartFile file = entity.getValue();// 获取上传文件对象
