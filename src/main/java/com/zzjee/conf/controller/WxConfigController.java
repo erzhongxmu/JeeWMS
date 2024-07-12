@@ -270,6 +270,7 @@ public class WxConfigController extends BaseController {
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(WxConfigEntity wxConfig,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
+		//设置Excel文件的名称
     	modelMap.put(NormalExcelConstants.FILE_NAME,"配置信息");
     	modelMap.put(NormalExcelConstants.CLASS,WxConfigEntity.class);
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("配置信息列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),

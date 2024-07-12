@@ -270,6 +270,7 @@ public class FxjOtherLoginController extends BaseController {
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(FxjOtherLoginEntity fxjOtherLogin,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
+		//设置Excel文件的名称
     	modelMap.put(NormalExcelConstants.FILE_NAME,"第三方登录");
     	modelMap.put(NormalExcelConstants.CLASS,FxjOtherLoginEntity.class);
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("第三方登录列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),

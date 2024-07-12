@@ -374,6 +374,7 @@ public class TMdBomHeadController extends BaseController {
 	 */
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(ModelMap map) {
+		//设置Excel文件的名称
 		map.put(NormalExcelConstants.FILE_NAME,"BOM抬头");
 		map.put(NormalExcelConstants.CLASS,TMdBomHeadPage.class);
 		map.put(NormalExcelConstants.PARAMS,new ExportParams("BOM抬头列表", "导出人:"+ ResourceUtil.getSessionUser().getRealName(),

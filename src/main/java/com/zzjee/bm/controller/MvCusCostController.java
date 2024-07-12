@@ -1346,6 +1346,7 @@ public class MvCusCostController extends BaseController {
     @RequestMapping(params = "exportXlsByT")
     public String exportXlsByT(MvCusCostEntity mvCusCost, HttpServletRequest request, HttpServletResponse response
             , DataGrid dataGrid, ModelMap modelMap) {
+        //设置Excel文件的名称
         modelMap.put(NormalExcelConstants.FILE_NAME, "mv_cus_cost");
         modelMap.put(NormalExcelConstants.CLASS, MvCusCostEntity.class);
         modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("mv_cus_cost列表", "导出人:" + ResourceUtil.getSessionUserName().getRealName(),

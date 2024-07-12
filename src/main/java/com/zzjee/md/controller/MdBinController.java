@@ -577,6 +577,7 @@ public class MdBinController extends BaseController {
     @RequestMapping(params = "exportXlsByT")
     public String exportXlsByT(MdBinEntity mdBin, HttpServletRequest request, HttpServletResponse response
             , DataGrid dataGrid, ModelMap modelMap) {
+        //设置Excel文件的名称
         modelMap.put(NormalExcelConstants.FILE_NAME, "仓位定义");
         modelMap.put(NormalExcelConstants.CLASS, MdBinEntity.class);
         modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("仓位定义列表", "导出人:" + ResourceUtil.getSessionUserName().getRealName(),

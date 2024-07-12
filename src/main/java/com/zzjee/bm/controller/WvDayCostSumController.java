@@ -369,6 +369,7 @@ public class WvDayCostSumController extends BaseController {
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(WvDayCostSumEntity wvDayCostSum,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
+		//设置Excel文件的名称
     	modelMap.put(NormalExcelConstants.FILE_NAME,"wv_day_cost_sum");
     	modelMap.put(NormalExcelConstants.CLASS,WvDayCostSumEntity.class);
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("wv_day_cost_sum列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
