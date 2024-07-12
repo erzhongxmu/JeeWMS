@@ -211,7 +211,6 @@ public class WmToMoveGoodsController extends BaseController {
         return j;
     }
 
-
     @RequestMapping(params = "doGetstock", method = {RequestMethod.GET,
             RequestMethod.POST})
     @ResponseBody
