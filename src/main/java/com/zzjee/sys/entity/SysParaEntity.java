@@ -233,8 +233,8 @@ public class SysParaEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  参数类型
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  参数类型
 	 */
 	public void setParType(String parType){
 		this.parType = parType;

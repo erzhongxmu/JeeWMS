@@ -147,8 +147,8 @@ public class VYsddEntity implements java.io.Serializable {
 		this.fahuoren = fahuoren;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  货物
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  货物
 	 */
 	@Column(name ="HUOWU",nullable=true,length=32)
 	public String getHuowu(){

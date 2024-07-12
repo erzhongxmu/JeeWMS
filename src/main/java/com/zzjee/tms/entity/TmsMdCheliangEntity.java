@@ -185,8 +185,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 		this.updateDate = updateDate;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  所属部门
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  所属部门
 	 */
 	@Column(name ="SYS_ORG_CODE",nullable=true,length=50)
 	public String getSysOrgCode(){
