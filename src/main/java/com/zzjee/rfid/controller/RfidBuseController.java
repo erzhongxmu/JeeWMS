@@ -308,12 +308,17 @@ public class RfidBuseController extends BaseController {
 	public String exportXls(RfidBuseEntity rfidBuse,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
 		CriteriaQuery cq = new CriteriaQuery(RfidBuseEntity.class, dataGrid);
+		//根据RFidBuseEntity实体和请求参数生成HQL查询
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, rfidBuse, request.getParameterMap());
+		//根据生成的HQL查询获取RFidBuseEntity列表
 		List<RfidBuseEntity> rfidBuses = this.rfidBuseService.getListByCriteriaQuery(cq,false);
+		//设置导出文件名
 		modelMap.put(NormalExcelConstants.FILE_NAME,"RFID表");
+		//设置导出数据的类型
 		modelMap.put(NormalExcelConstants.CLASS,RfidBuseEntity.class);
 		modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("RFID表列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
 			"导出信息"));
+		//将RFidBuseEntity列表设置到ModelMap中
 		modelMap.put(NormalExcelConstants.DATA_LIST,rfidBuses);
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
@@ -323,13 +328,15 @@ public class RfidBuseController extends BaseController {
 	 * @param request
 	 * @param response
 	 */
-	@RequestMapping(params = "exportXlsByT")
+	@RequestMapping(params = "exportXlsByT")    //注解处理HTTP GET请求，参数为"exportXlsByT"
 	public String exportXlsByT(RfidBuseEntity rfidBuse,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
+		//设置导出文件名
     	modelMap.put(NormalExcelConstants.FILE_NAME,"RFID表");
     	modelMap.put(NormalExcelConstants.CLASS,RfidBuseEntity.class);
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("RFID表列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
-    	"导出信息"));
+    	"导出信息"));  //设置导出参数
+		//设置导出数据的列表
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
@@ -339,23 +346,28 @@ public class RfidBuseController extends BaseController {
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
-			MultipartFile file = entity.getValue();// 获取上传文件对象
+			//获取上传文件对象
+			MultipartFile file = entity.getValue();
 			ImportParams params = new ImportParams();
+			//设置表头行数
 			params.setTitleRows(2);
+			//设置数据行数
 			params.setHeadRows(1);
+			//设置是否保存到数据库
 			params.setNeedSave(true);
 			try {
 				List<RfidBuseEntity> listRfidBuseEntitys = ExcelImportUtil.importExcel(file.getInputStream(),RfidBuseEntity.class,params);
 				for (RfidBuseEntity rfidBuse : listRfidBuseEntitys) {
+					//将导入的数据保存到数据库
 					rfidBuseService.save(rfidBuse);
 				}
 				j.setMsg("文件导入成功！");
 			} catch (Exception e) {
 				j.setMsg("文件导入失败！");
+				//记录异常信息
 				logger.error(ExceptionUtil.getExceptionMessage(e));
 			}finally{
 				try {
@@ -368,16 +380,24 @@ public class RfidBuseController extends BaseController {
 		return j;
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)      //注解处理HTTP GET请求
 	@ResponseBody
 	public List<RfidBuseEntity> list() {
+		//获取RFID表列表
 		List<RfidBuseEntity> listRfidBuses=rfidBuseService.getList(RfidBuseEntity.class);
 		return listRfidBuses;
 	}
 
+	/**
+	 * 根据ID获取RFID表信息
+	 *
+	 * @param id RFID表的ID
+	 * @return ResponseEntity<?>类型
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
+		//根据ID获取RFID表信息
 		RfidBuseEntity task = rfidBuseService.get(RfidBuseEntity.class, id);
 		if (task == null) {
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
