@@ -136,6 +136,7 @@ public class MvCusOtherController extends BaseController {
 	/**
 	 * 批量删除mv_cus_other
 	 *
+	 * @param request
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")

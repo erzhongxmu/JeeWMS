@@ -142,6 +142,7 @@ public class MdSupController extends BaseController {
 	/**
 	 * 批量删除供应商
 	 *
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doBatchDel")
