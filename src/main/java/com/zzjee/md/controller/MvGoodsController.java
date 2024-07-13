@@ -190,6 +190,7 @@ public class MvGoodsController extends BaseController {
 	/**
 	 * 批量删除商品视图
 	 *
+	 * @param ids
 	 * @param request
 	 * @return
 	 */
