@@ -179,8 +179,8 @@ public class VYsddEntity implements java.io.Serializable {
 		this.hwshjs = hwshjs;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  重量
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  重量
 	 */
 	@Column(name ="ZHONGL",nullable=true,length=32)
 	public String getZhongl(){

@@ -211,7 +211,7 @@ public class TmsMdDzController extends BaseController {
 
 	/**
 	 * 更新客户地址
-	 * @param request
+	 * @param request 请求
 	 * @return j
 	 */
 	@RequestMapping(params = "doUpdate")

@@ -217,8 +217,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 		this.sysCompanyCode = sysCompanyCode;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  流程状态
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  流程状态
 	 */
 	@Column(name ="BPM_STATUS",nullable=true,length=32)
 	public String getBpmStatus(){

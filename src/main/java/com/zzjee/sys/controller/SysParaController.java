@@ -276,8 +276,7 @@ public class SysParaController extends BaseController {
 	}
 	/**
 	 * 导出excel 使模板
-	 * 
-	 * @param request
+	 * @param request 请求
 	 * @param response
 	 */
 	@RequestMapping(params = "exportXlsByT")
