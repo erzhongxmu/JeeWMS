@@ -204,8 +204,8 @@ public class VYsddEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  立方米
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  立方米
 	 */
 	public void setTiji(String tiji){
 		this.tiji = tiji;
