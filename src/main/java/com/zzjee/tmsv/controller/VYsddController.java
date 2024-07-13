@@ -187,8 +187,8 @@ public class VYsddController extends BaseController {
 
 	/**
 	 * 添加v_ysdd
-	 * 
 	 * @param vYsdd
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -212,7 +212,7 @@ public class VYsddController extends BaseController {
 	/**
 	 * 更新v_ysdd
 	 * 
-	 * @param ids
+	 * @param vYsdd
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")

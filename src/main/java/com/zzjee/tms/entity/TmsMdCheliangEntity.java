@@ -249,8 +249,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 		this.chepaihao = chepaihao;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  车型
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  车型
 	 */
 	@Column(name ="CHEXING",nullable=true,length=32)
 	public String getChexing(){

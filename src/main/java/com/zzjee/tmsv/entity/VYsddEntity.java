@@ -211,8 +211,8 @@ public class VYsddEntity implements java.io.Serializable {
 		this.tiji = tiji;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  收货人地址
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  收货人地址
 	 */
 	@Column(name ="SHRDH",nullable=true,length=32)
 	public String getShrdh(){
