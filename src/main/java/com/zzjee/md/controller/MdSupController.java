@@ -118,6 +118,7 @@ public class MdSupController extends BaseController {
 	/**
 	 * 删除供应商
 	 *
+	 * @param mdSup
 	 * @param request
 	 * @return
 	 */

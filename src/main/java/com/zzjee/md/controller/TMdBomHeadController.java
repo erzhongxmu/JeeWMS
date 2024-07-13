@@ -182,6 +182,7 @@ public class TMdBomHeadController extends BaseController {
 	/**
 	 * 添加BOM抬头
 	 *
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
