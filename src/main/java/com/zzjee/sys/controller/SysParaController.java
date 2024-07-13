@@ -382,6 +382,7 @@ public class SysParaController extends BaseController {
 		try{
 			sysParaService.saveOrUpdate(sysPara);
 		} catch (Exception e) {
+			// 抛出异常
 			e.printStackTrace();
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}

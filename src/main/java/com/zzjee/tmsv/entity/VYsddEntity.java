@@ -220,8 +220,8 @@ public class VYsddEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  收货人地址
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  收货人地址
 	 */
 	public void setShrdh(String shrdh){
 		this.shrdh = shrdh;

@@ -258,8 +258,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  车型
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  车型
 	 */
 	public void setChexing(String chexing){
 		this.chexing = chexing;
