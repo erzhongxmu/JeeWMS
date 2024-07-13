@@ -112,6 +112,7 @@ public class MvCusOtherController extends BaseController {
 	/**
 	 * 删除mv_cus_other
 	 *
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
