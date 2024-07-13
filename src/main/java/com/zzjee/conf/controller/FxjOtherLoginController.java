@@ -219,6 +219,7 @@ public class FxjOtherLoginController extends BaseController {
 	/**
 	 * 第三方登录编辑页面跳转
 	 *
+	 * @param fxjOtherLogin
 	 * @param req
 	 * @return
 	 */

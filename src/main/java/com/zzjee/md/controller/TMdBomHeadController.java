@@ -201,11 +201,13 @@ public class TMdBomHeadController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
+
 	/**
 	 * 更新BOM抬头
 	 *
 	 * @param tMdBomHead
 	 * @param tMdBomHeadPage
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")

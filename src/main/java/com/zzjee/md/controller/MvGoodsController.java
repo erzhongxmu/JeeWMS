@@ -167,6 +167,7 @@ public class MvGoodsController extends BaseController {
 	 * 通过传入的商品视图ID，从数据库中查询并删除相应的商品视图记录。
 	 * 如果删除成功，将返回“商品视图删除成功”的消息，并记录一条删除操作的日志。
 	 *
+	 * @param mvGoods
 	 * @param request
 	 * @return
 	 */

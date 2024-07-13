@@ -219,6 +219,7 @@ public class WxConfigController extends BaseController {
 	/**
 	 * 配置信息编辑页面跳转
 	 *
+	 * @param wxConfig
 	 * @param req
 	 * @return
 	 */
