@@ -233,8 +233,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 		this.bpmStatus = bpmStatus;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  车牌号
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  车牌号
 	 */
 	@Column(name ="CHEPAIHAO",nullable=true,length=32)
 	public String getChepaihao(){

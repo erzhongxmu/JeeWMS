@@ -134,7 +134,7 @@ public class VYsddController extends BaseController {
 	
 	/**
 	 * 删除v_ysdd
-	 * @param vTmsDz 实体对象
+	 * @param vYsdd 实体对象
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")

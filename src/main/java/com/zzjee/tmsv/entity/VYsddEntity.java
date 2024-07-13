@@ -195,8 +195,8 @@ public class VYsddEntity implements java.io.Serializable {
 		this.zhongl = zhongl;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  立方米
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  立方米
 	 */
 	@Column(name ="TIJI",nullable=true,length=32)
 	public String getTiji(){
