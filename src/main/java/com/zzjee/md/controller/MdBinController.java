@@ -545,6 +545,7 @@ public class MdBinController extends BaseController {
     /**
      * 导出excel
      *
+     * @param mdBin
      * @param request
      * @param response
      */
