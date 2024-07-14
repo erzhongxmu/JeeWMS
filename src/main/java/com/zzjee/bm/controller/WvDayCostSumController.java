@@ -317,6 +317,7 @@ public class WvDayCostSumController extends BaseController {
 	/**
 	 * wv_day_cost_sum编辑页面跳转
 	 *
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
