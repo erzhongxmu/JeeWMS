@@ -290,8 +290,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  载重
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  载重
 	 */
 	public void setZaizhong(String zaizhong){
 		this.zaizhong = zaizhong;

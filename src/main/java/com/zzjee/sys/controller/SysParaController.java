@@ -393,6 +393,7 @@ public class SysParaController extends BaseController {
 	}
 	/**
 	 * 删除指定ID的系统参数实体。
+	 * @param id 要删除的实体的唯一标识符
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)

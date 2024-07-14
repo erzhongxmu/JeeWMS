@@ -252,8 +252,8 @@ public class VYsddEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  送货方式
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  送货方式
 	 */
 	public void setHwshfs(String hwshfs){
 		this.hwshfs = hwshfs;
