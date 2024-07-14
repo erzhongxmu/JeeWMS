@@ -391,7 +391,9 @@ public class SysParaController extends BaseController {
 		// 也可以选择返回200 OK状态码。
 		return new ResponseEntity(HttpStatus.NO_CONTENT);
 	}
-
+	/**
+	 * 删除指定ID的系统参数实体。
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable("id") String id) {

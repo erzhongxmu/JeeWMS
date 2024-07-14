@@ -278,7 +278,7 @@ public class TmsMdDzController extends BaseController {
 	 * 导出excel
 	 * @param request 请求
 	 * @param tmsMdDz
-	 * @param response
+	 * @param response 响应
 	 */
 	@RequestMapping(params = "exportXls")
 	public String exportXls(TmsMdDzEntity tmsMdDz, HttpServletRequest request, HttpServletResponse response

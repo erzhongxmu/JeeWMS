@@ -243,8 +243,8 @@ public class VYsddEntity implements java.io.Serializable {
 		this.shouhuoren = shouhuoren;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  送货方式
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  送货方式
 	 */
 	@Column(name ="HWSHFS",nullable=true,length=32)
 	public String getHwshfs(){

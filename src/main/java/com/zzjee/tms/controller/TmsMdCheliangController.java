@@ -113,6 +113,7 @@ public class TmsMdCheliangController extends BaseController {
                 tmsMdCheliangService.updateEntitie(t);
             }
         } catch (Exception e) {
+            // 抛出异常信息
             e.printStackTrace();
             throw new BusinessException(e.getMessage());
         }

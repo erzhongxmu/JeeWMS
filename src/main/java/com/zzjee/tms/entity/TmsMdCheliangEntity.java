@@ -281,8 +281,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 		this.zuidatiji = zuidatiji;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  载重
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  载重
 	 */
 	@Column(name ="ZAIZHONG",nullable=true,length=32)
 	public String getZaizhong(){
