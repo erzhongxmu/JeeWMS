@@ -250,6 +250,7 @@ public class FxjOtherLoginController extends BaseController {
 	/**
 	 * 导出excel
 	 *
+	 * @param fxjOtherLogin
 	 * @param request
 	 * @param response
 	 */

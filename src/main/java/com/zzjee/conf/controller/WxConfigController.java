@@ -270,6 +270,7 @@ public class WxConfigController extends BaseController {
 	/**
 	 * 导出excel 使模板
 	 *
+	 * @param wxConfig
 	 * @param request
 	 * @param response
 	 */
