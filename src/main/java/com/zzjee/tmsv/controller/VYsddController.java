@@ -290,22 +290,22 @@ public class VYsddController extends BaseController {
             Calendar c = Calendar.getInstance();
             System.out.println("当前日期:" + sf.format(c.getTime()));
             c.add(Calendar.DAY_OF_MONTH, -1);
-//			System.out.println("增加一天后日期:"+sf.format(c.getTime()));
+			//	System.out.println("增加一天后日期:"+sf.format(c.getTime()));
             cq.ge("createDate", DateUtils.str2Date(sf.format(c.getTime()), DateUtils.date_sdf));
         }
         List<VYsddEntity> vYsdds = this.vYsddService.getListByCriteriaQuery(cq,false);
 		OutputStream fileOut = null;
-//		BufferedImage bufferImg = null;
-//		String codedFileName = null;
+		//	BufferedImage bufferImg = null;
+		//	String codedFileName = null;
 
 		// 先把读进来的图片放到一个ByteArrayOutputStream中，以便产生ByteArray
 		try {
-//			codedFileName = java.net.URLEncoder.encode("中文", "UTF-8");
+			//	codedFileName = java.net.URLEncoder.encode("中文", "UTF-8");
 			response.setHeader("content-disposition", "attachment;filename=zhangdan.xls"
 					);
 			HSSFWorkbook wb = new HSSFWorkbook();
 			HSSFSheet sheet = wb.createSheet("zhangdan");
-//			ByteArrayOutputStream byteArrayOut = new ByteArrayOutputStream();
+			//	ByteArrayOutputStream byteArrayOut = new ByteArrayOutputStream();
 
 			sheet.setMargin(HSSFSheet.TopMargin,0.1);// 页边距（上）
 			sheet.setMargin(HSSFSheet.BottomMargin,0.1);// 页边距（下）

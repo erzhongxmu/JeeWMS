@@ -374,6 +374,7 @@ public class SysParaController extends BaseController {
 	public ResponseEntity<?> update(@RequestBody SysParaEntity sysPara) {
 		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
 		Set<ConstraintViolation<SysParaEntity>> failures = validator.validate(sysPara);
+		// 判断failures是否为空
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}

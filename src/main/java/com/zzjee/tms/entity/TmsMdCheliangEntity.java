@@ -306,8 +306,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  载人数
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  载人数
 	 */
 	public void setZairen(String zairen){
 		this.zairen = zairen;
