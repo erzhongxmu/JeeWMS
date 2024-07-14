@@ -304,6 +304,7 @@ public class WvDayCostSumController extends BaseController {
 	/**
 	 * wv_day_cost_sum新增页面跳转
 	 *
+	 * @param wvDayCostSum
 	 * @param req
 	 * @return
 	 */

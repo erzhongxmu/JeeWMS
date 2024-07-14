@@ -506,6 +506,7 @@ public class MdBinController extends BaseController {
     /**
      * 仓位定义新增页面跳转
      *
+     * @param req
      * @return
      */
     @RequestMapping(params = "goAdd")
