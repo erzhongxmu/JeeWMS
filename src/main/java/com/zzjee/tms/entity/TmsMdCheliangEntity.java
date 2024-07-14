@@ -265,8 +265,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 		this.chexing = chexing;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  最大体积
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  最大体积
 	 */
 	@Column(name ="ZUIDATIJI",nullable=true,length=32)
 	public String getZuidatiji(){

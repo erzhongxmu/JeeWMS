@@ -223,7 +223,7 @@ public class TmsMdCheliangController extends BaseController {
     /**
      * 车辆管理新增页面跳转
      * @param tmsMdCheliang
-     * @param req
+     * @param req 请求
      * @return  new ModelAndView
      */
     @RequestMapping(params = "goAdd")

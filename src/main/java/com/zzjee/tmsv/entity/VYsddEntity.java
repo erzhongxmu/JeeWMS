@@ -227,8 +227,8 @@ public class VYsddEntity implements java.io.Serializable {
 		this.shrdh = shrdh;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  收货人
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  收货人
 	 */
 	@Column(name ="SHOUHUOREN",nullable=true,length=32)
 	public String getShouhuoren(){

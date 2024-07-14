@@ -378,7 +378,7 @@ public class SysParaController extends BaseController {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
 
-		//保存
+		// 尝试保存或更新实体
 		try{
 			sysParaService.saveOrUpdate(sysPara);
 		} catch (Exception e) {
