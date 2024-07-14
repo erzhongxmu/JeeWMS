@@ -181,6 +181,7 @@ public class FxjOtherLoginController extends BaseController {
 	 * 更新第三方登录
 	 *
 	 * @param fxjOtherLogin
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
