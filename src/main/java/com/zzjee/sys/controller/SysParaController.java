@@ -398,6 +398,7 @@ public class SysParaController extends BaseController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable("id") String id) {
+		// 删除具有给定ID的系统参数实体
 		sysParaService.deleteEntityById(SysParaEntity.class, id);
 	}
 }

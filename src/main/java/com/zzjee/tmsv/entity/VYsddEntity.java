@@ -259,8 +259,8 @@ public class VYsddEntity implements java.io.Serializable {
 		this.hwshfs = hwshfs;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  收货人电话
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  收货人电话
 	 */
 	@Column(name ="SHRSJ",nullable=true,length=32)
 	public String getShrsj(){

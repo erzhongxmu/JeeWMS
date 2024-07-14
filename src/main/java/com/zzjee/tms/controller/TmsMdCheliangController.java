@@ -125,6 +125,7 @@ public class TmsMdCheliangController extends BaseController {
 
     /**
      * 删除车辆管理
+     * @param request 请求
      * @return j
      */
     @RequestMapping(params = "doDel")

@@ -297,8 +297,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 		this.zaizhong = zaizhong;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  载人数
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  载人数
 	 */
 	@Column(name ="ZAIREN",nullable=true,length=32)
 	public String getZairen(){
