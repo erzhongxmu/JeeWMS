@@ -387,7 +387,8 @@ public class SysParaController extends BaseController {
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
 
-		//按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
+		// 根据Restful约定，返回204 No Content状态码，表示请求已成功但没有返回数据。
+		// 也可以选择返回200 OK状态码。
 		return new ResponseEntity(HttpStatus.NO_CONTENT);
 	}
 

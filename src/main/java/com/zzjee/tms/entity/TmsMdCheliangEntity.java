@@ -274,8 +274,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  最大体积
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  最大体积
 	 */
 	public void setZuidatiji(String zuidatiji){
 		this.zuidatiji = zuidatiji;

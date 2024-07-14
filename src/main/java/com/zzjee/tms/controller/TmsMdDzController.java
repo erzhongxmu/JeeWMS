@@ -276,7 +276,7 @@ public class TmsMdDzController extends BaseController {
 
 	/**
 	 * 导出excel
-	 * @param request
+	 * @param request 请求
 	 * @param tmsMdDz
 	 * @param response
 	 */
