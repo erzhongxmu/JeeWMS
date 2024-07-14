@@ -290,6 +290,7 @@ public class MdCusController extends BaseController {
 	/**
 	 * 导出excel
 	 *
+	 * @param mdCus
 	 * @param request
 	 * @param response
 	 */
