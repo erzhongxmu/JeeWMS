@@ -520,6 +520,7 @@ public class MdBinController extends BaseController {
     /**
      * 仓位定义编辑页面跳转
      *
+     * @param mdBin
      * @return
      */
     @RequestMapping(params = "goUpdate")
