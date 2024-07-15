@@ -279,7 +279,6 @@ public class WmToMoveGoodsController extends BaseController {
         return j;
     }
 
-
     /**
      * @param page
      * @return
