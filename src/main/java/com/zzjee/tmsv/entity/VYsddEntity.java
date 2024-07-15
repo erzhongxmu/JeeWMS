@@ -275,8 +275,8 @@ public class VYsddEntity implements java.io.Serializable {
 		this.shrsj = shrsj;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  代收款金额
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  代收款金额
 	 */
 	@Column(name ="DAISHOUK",nullable=true,length=32)
 	public String getDaishouk(){

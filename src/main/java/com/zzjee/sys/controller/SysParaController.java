@@ -275,7 +275,7 @@ public class SysParaController extends BaseController {
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 	/**
-	 * 导出excel 使模板
+	 * 导出excel模板，导出SysParaEntity数据到Excel文件
 	 * @param request 请求
 	 * @param sysPara
 	 * @param response 响应

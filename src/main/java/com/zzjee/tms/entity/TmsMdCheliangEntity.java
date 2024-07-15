@@ -313,8 +313,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 		this.zairen = zairen;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  准假驾照
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  准假驾照
 	 */
 	@Column(name ="JIAZHAO",nullable=true,length=32)
 	public String getJiazhao(){
