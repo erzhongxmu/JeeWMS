@@ -354,8 +354,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  备注
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  备注
 	 */
 	public void setBeizhu(String beizhu){
 		this.beizhu = beizhu;

@@ -323,8 +323,8 @@ public class VYsddEntity implements java.io.Serializable {
 		this.hwzfy = hwzfy;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  卸货费
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  卸货费
 	 */
 	@Column(name ="HWXHF",nullable=true,length=32)
 	public String getHwxhf(){

@@ -278,7 +278,9 @@ public class SysParaController extends BaseController {
 	 * 导出excel模板，导出SysParaEntity数据到Excel文件
 	 * @param request HttpServletRequest对象，提供对当前HTTP请求的访问
 	 * @param sysPara SysParaEntity对象，用于查询或过滤要导出的数据.
-	 * @param response 响应
+	 * @param response HttpServletResponse对象，用于发送响应到客户端.
+	 * @param dataGrid DataGrid对象，可能包含分页和排序信息.
+	 * @param modelMap ModelMap对象，用于将模型属性放入model，以供视图使用.
 	 */
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(SysParaEntity sysPara,HttpServletRequest request,HttpServletResponse response
