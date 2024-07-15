@@ -341,7 +341,6 @@ public class WmOmQmIController extends BaseController {
                         systemService.addLog(message, Globals.Log_Type_UPDATE,
                                 Globals.Log_Leavel_INFO);
                     }
-
                 } catch (Exception e) {
                     e.printStackTrace();
                     message = "添加到下架任务清单失败";
