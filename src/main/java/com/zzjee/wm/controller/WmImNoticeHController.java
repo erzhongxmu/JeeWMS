@@ -359,7 +359,6 @@ public class WmImNoticeHController extends BaseController {
      * @param dataGrid
      * @param
      */
-
     @RequestMapping(params = "datagridqt")
     public void datagridqt(WmImNoticeHEntity wmImNoticeH,
                            HttpServletRequest request, HttpServletResponse response,
