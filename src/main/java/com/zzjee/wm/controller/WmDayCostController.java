@@ -119,6 +119,7 @@ public class WmDayCostController extends BaseController {
 	public ModelAndView listsk(HttpServletRequest request) {
 		return new ModelAndView("com/zzjee/wm/wmDayCostskList");
 	}
+
 	/**
 	 * easyui AJAX请求数据
 	 *
@@ -127,7 +128,6 @@ public class WmDayCostController extends BaseController {
 	 * @param dataGrid
 	 * @param user
 	 */
-
 
 
 	@RequestMapping(params = "datagridqf")
