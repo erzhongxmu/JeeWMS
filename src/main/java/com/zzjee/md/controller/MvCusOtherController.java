@@ -89,6 +89,7 @@ public class MvCusOtherController extends BaseController {
 	/**
 	 * easyui AJAX请求数据
 	 *
+	 * @param mvCusOther
 	 * @param request
 	 * @param response
 	 * @param dataGrid

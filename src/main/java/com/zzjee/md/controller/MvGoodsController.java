@@ -223,6 +223,7 @@ public class MvGoodsController extends BaseController {
 	/**
 	 * 添加商品视图
 	 *
+	 * @param mvGoods
 	 * @param request
 	 * @return
 	 */

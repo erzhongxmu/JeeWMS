@@ -249,6 +249,7 @@ public class MdCusController extends BaseController {
 	/**
 	 * 客户新增页面跳转
 	 *
+	 * @param mdCus
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")

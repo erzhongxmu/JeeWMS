@@ -337,6 +337,7 @@ public class MdGoodsController extends BaseController {
 	 * @param request
 	 * @param response
 	 * @param dataGrid
+	 * @param modelMap
 	 */
 	@RequestMapping(params = "exportXls")
 	public String exportXls(MdGoodsEntity mdGoods, HttpServletRequest request,
