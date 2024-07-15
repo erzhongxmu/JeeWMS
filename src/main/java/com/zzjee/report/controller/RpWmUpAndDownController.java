@@ -71,9 +71,7 @@ public class RpWmUpAndDownController extends BaseController {
 	@Autowired
 	private SystemService systemService;
 	@Autowired
-	private Validator validator;
-	
-
+	private Validator validator;         //注入Validator对象，用于进行数据验证
 
 	/**
 	 * rp_wm_up_and_down列表 页面跳转

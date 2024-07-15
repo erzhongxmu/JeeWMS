@@ -74,8 +74,6 @@ public class RpWmInQmController extends BaseController {
 	//类型为 Validator 的验证器组件
 	@Autowired
 	private Validator validator;
-	
-
 
 	/**
 	 * rp_wm_in_qm列表 页面跳转

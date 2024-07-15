@@ -74,8 +74,6 @@ public class RpWmToUpGoodsController extends BaseController {
 	//用于验证数据的有效性
 	@Autowired
 	private Validator validator;
-	
-
 
 	/**
 	 * rp_wm_to_up_goods列表 页面跳转

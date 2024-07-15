@@ -96,14 +96,12 @@ public class RfidBuseController extends BaseController {
 	@Autowired
 	private Validator validator;
 
-
-
 	/**
 	 * RFID表列表 页面跳转
 	 *
 	 * @return
 	 */
-	@RequestMapping(params = "list")
+	@RequestMapping(params = "list")    //处理HTTP GET请
 	public ModelAndView list(HttpServletRequest request) {
 		return new ModelAndView("com/zzjee/rfid/rfidBuseList");
 	}

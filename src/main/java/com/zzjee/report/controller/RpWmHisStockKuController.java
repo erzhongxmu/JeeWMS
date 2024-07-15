@@ -65,15 +65,12 @@ public class RpWmHisStockKuController extends BaseController {
 	 * Logger for this class
 	 */
 	private static final Logger logger = Logger.getLogger(RpWmHisStockKuController.class);
-
 	@Autowired
 	private RpWmHisStockKuServiceI rpWmHisStockKuService;
 	@Autowired
 	private SystemService systemService;
 	@Autowired
 	private Validator validator;
-	
-
 
 	/**
 	 * rp_wm_his_stock_ku列表 页面跳转
@@ -161,7 +158,6 @@ public class RpWmHisStockKuController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-
 
 	/**
 	 * 添加rp_wm_his_stock_ku
