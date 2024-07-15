@@ -300,8 +300,8 @@ public class VYsddEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  运费
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  运费
 	 */
 	public void setHwyf(String hwyf){
 		this.hwyf = hwyf;
