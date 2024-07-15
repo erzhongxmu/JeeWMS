@@ -178,6 +178,7 @@ public class BaTrayController extends BaseController {
 			e.printStackTrace();
  			throw new BusinessException(e.getMessage());
 		}
+		 // 将message设置为j对象的msg属性
 		j.setMsg(message);
 		return j;
 	}
