@@ -279,7 +279,6 @@ public class WmToDownGoodsController extends BaseController {
         return new ModelAndView("com/zzjee/wm/wavedel_rowedtior");
     }
 
-
     /**
      * 更新下架商品明细
      *
