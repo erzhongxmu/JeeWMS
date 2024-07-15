@@ -103,6 +103,7 @@ public class FxjOtherLoginController extends BaseController {
 	/**
 	 * 删除第三方登录
 	 *
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -154,6 +155,7 @@ public class FxjOtherLoginController extends BaseController {
 	/**
 	 * 添加第三方登录信息
 	 * 用于将第三方登录的详细信息保存到数据库中，并在成功时记录日志
+	 *
 	 * @param fxjOtherLogin
 	 * @param request
 	 * @return
