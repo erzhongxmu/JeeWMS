@@ -482,6 +482,7 @@ public class MdBinController extends BaseController {
      * 更新仓位定义
      *
      * @param mdBin
+     * @param request
      * @return
      */
     @RequestMapping(params = "doUpdate")

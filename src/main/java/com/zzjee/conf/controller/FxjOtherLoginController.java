@@ -103,6 +103,7 @@ public class FxjOtherLoginController extends BaseController {
 	/**
 	 * 删除第三方登录
 	 *
+	 * @param fxjOtherLogin
 	 * @param request
 	 * @return
 	 */

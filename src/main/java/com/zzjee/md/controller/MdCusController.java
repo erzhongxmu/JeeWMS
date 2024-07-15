@@ -223,6 +223,7 @@ public class MdCusController extends BaseController {
 	/**
 	 * 更新客户
 	 *
+	 * @param mdCus
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")

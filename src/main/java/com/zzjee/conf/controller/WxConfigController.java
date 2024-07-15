@@ -129,6 +129,7 @@ public class WxConfigController extends BaseController {
 	 * 批量删除配置信息
 	 *
 	 * @param ids
+	 * @param request
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")
