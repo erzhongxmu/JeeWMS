@@ -85,6 +85,7 @@ public class FxjOtherLoginController extends BaseController {
 	/**
 	 * easyui AJAX请求数据
 	 *
+	 * @param fxjOtherLogin
 	 * @param request
 	 * @param response
 	 * @param dataGrid

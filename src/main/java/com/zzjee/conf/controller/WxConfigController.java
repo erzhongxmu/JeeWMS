@@ -85,6 +85,7 @@ public class WxConfigController extends BaseController {
 	/**
 	 * easyui AJAX请求数据
 	 *
+	 * @param wxConfig
 	 * @param request
 	 * @param response
 	 * @param dataGrid

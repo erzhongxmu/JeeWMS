@@ -227,6 +227,7 @@ public class WvDayCostSumController extends BaseController {
 	/**
 	 * 批量删除wv_day_cost_sum
 	 *
+	 * @param request
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")

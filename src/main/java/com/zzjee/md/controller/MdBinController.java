@@ -446,6 +446,7 @@ public class MdBinController extends BaseController {
     /**
      * 添加仓位定义
      *
+     * @param mdBin
      * @param request
      * @return
      */
