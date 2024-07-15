@@ -204,7 +204,7 @@ public class TmsMdCheliangController extends BaseController {
     /**
      * 更新车辆管理
      * @param tmsMdCheliang
-     * @param request
+     * @param request 请求
      * @return j
      */
     @RequestMapping(params = "doUpdate")

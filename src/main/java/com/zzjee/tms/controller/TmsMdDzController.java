@@ -238,6 +238,7 @@ public class TmsMdDzController extends BaseController {
 	/**
 	 * 客户地址新增页面跳转
 	 * @param req 请求
+	 * @param tmsMdDz
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -294,7 +295,7 @@ public class TmsMdDzController extends BaseController {
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 	/**
-	 * 导出excel 使模板
+	 * 导出excel 模板
 	 * @param request 请求
 	 * @param response 响应
 	 */

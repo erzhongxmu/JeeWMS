@@ -277,7 +277,7 @@ public class SysParaController extends BaseController {
 	/**
 	 * 导出excel模板，导出SysParaEntity数据到Excel文件
 	 * @param request 请求
-	 * @param sysPara
+	 *  @param sysPara SysParaEntity对象，用于查询或过滤要导出的数据.
 	 * @param response 响应
 	 */
 	@RequestMapping(params = "exportXlsByT")

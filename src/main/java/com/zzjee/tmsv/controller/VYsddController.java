@@ -412,12 +412,11 @@ public class VYsddController extends BaseController {
 			  Row rowColumnNameta = sheet.createRow((short) rows); // 列名
 			  rows++;
 			  coli = 0;
-//             try{
-//				 setcellvalue(rowColumnNameta,coli, (short)300,DateUtils.date2Str(vYsdds.get(j).getCreateDate(),DateUtils.date_sdf),cs3);
-//
-//			 }catch (Exception e){
-//				 setcellvalue(rowColumnNameta,coli, (short)300,"",cs3);
-//			 }
+			  //   ry{
+			  //	   setcellvalue(rowColumnNameta,coli, (short)300,DateUtils.date2Str(vYsdds.get(j).getCreateDate(),DateUtils.date_sdf),cs3);
+			  //	}catch (Exception e){
+			  //		setcellvalue(rowColumnNameta,coli, (short)300,"",cs3);
+			  //	}
 			  try{
 				  setcellvalue(rowColumnNameta,coli, (short)300,vYsdds.get(j).getSdsj().toString(),cs3);
 

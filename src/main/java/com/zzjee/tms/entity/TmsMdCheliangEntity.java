@@ -322,8 +322,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  准假驾照
+	 *set方法: 设置java.lang.String
+	 * @param: java.lang.String  准假驾照
 	 */
 	public void setJiazhao(String jiazhao){
 		this.jiazhao = jiazhao;

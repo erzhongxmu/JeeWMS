@@ -284,8 +284,8 @@ public class VYsddEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  代收款金额
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  代收款金额
 	 */
 	public void setDaishouk(String daishouk){
 		this.daishouk = daishouk;
