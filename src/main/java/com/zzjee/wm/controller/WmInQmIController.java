@@ -339,7 +339,6 @@ public class WmInQmIController extends BaseController {
                 e.printStackTrace();
             }
 
-
             wmInQmIEntity.setBinSta("Y");
             systemService.saveOrUpdate(wmInQmIEntity);
             //重复增加二次判断
