@@ -392,7 +392,7 @@ public class VYsddController extends BaseController {
 			cs3r.setBorderTop(CellStyle.BORDER_MEDIUM);
 			cs3r.setBorderBottom(CellStyle.BORDER_MEDIUM);
 			cs3r.setAlignment(HSSFCellStyle.ALIGN_RIGHT);
-//			String[] columnNames = { "送达时间","发货人","货物	","件数","重量","体积","收货人地址","收货人","送货方式","收货人电话","代收款","运费","卸货费","总费用","车号","状态","回单备注" };
+			//	String[] columnNames = { "送达时间","发货人","货物	","件数","重量","体积","收货人地址","收货人","送货方式","收货人电话","代收款","运费","卸货费","总费用","车号","状态","回单备注" };
 			String[] columnNames = { "送达时间","发货人","货物	","件数","重量","体积","货号","收货人地址","收货人","送货方式","收货人电话","代收款","运费", "回单备注","车号","上午或下午" };
 
 			Row rowColumnName = sheet.createRow((short) 0); // 列名

@@ -345,8 +345,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 		this.zhuangtai = zhuangtai;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  备注
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  备注
 	 */
 	@Column(name ="BEIZHU",nullable=true,length=32)
 	public String getBeizhu(){

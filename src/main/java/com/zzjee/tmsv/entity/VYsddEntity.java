@@ -316,8 +316,8 @@ public class VYsddEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  货物总费用
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  货物总费用
 	 */
 	public void setHwzfy(String hwzfy){
 		this.hwzfy = hwzfy;

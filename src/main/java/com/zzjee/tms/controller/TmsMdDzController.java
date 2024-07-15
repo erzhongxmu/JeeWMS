@@ -314,6 +314,7 @@ public class TmsMdDzController extends BaseController {
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
+		// 创建对象
 		AjaxJson j = new AjaxJson();
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();

@@ -332,6 +332,7 @@ public class SysParaController extends BaseController {
 	@ResponseBody
 	public List<SysParaEntity> list() {
 		List<SysParaEntity> listSysParas=sysParaService.getList(SysParaEntity.class);
+		// 返回列表
 		return listSysParas;
 	}
 	
@@ -354,8 +355,8 @@ public class SysParaController extends BaseController {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
 
-		//保存
 		try{
+			//保存
 			sysParaService.save(sysPara);
 		} catch (Exception e) {
 			e.printStackTrace();
