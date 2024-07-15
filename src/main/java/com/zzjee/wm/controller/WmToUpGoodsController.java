@@ -188,7 +188,6 @@ public class WmToUpGoodsController extends BaseController {
 		return j;
 	}
 
-
 	@RequestMapping(params = "doGettextzy",method ={RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
 	public AjaxJson doGettextzy(HttpServletRequest request) {
