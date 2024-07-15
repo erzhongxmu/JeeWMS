@@ -94,6 +94,7 @@ import static com.xiaoleilu.hutool.date.DateTime.now;
 @Controller
 @RequestMapping("/wmOmNoticeHController")
 public class WmOmNoticeHController extends BaseController {
+
     /**
      * Logger for this class
      */
