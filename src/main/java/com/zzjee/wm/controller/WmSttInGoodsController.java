@@ -222,7 +222,6 @@ public class WmSttInGoodsController extends BaseController {
         return j;
     }
 
-
     @RequestMapping(params = "dorun")
     @ResponseBody
     public AjaxJson dorun(WmSttInGoodsEntity wmSttInGoods, HttpServletRequest request) {
