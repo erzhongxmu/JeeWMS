@@ -307,8 +307,8 @@ public class VYsddEntity implements java.io.Serializable {
 		this.hwyf = hwyf;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  货物总费用
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  货物总费用
 	 */
 	@Column(name ="HWZFY",nullable=true,length=256)
 	public String getHwzfy(){

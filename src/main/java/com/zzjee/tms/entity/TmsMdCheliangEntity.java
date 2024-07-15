@@ -338,8 +338,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  是否可用
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  是否可用
 	 */
 	public void setZhuangtai(String zhuangtai){
 		this.zhuangtai = zhuangtai;

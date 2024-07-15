@@ -292,6 +292,7 @@ public class TmsMdCheliangController extends BaseController {
      * @param request 请求
      * @param tmsMdCheliang
      * @param response 响应
+     * @return JEECG_EXCEL_VIEW
      */
     @RequestMapping(params = "exportXlsByT")
     public String exportXlsByT(TmsMdCheliangEntity tmsMdCheliang, HttpServletRequest request, HttpServletResponse response
