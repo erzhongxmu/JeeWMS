@@ -58,7 +58,7 @@ import com.zzjee.report.service.RpWmHisStockKuServiceI;
  * @version V1.0   
  *
  */
-@Controller
+@Controller    //用于处理HTTP请求
 @RequestMapping("/rpWmHisStockKuController")
 public class RpWmHisStockKuController extends BaseController {
 	/**

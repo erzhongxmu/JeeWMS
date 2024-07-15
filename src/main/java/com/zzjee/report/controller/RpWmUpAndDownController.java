@@ -65,7 +65,6 @@ public class RpWmUpAndDownController extends BaseController {
 	 * Logger for this class
 	 */
 	private static final Logger logger = Logger.getLogger(RpWmUpAndDownController.class);
-
 	@Autowired
 	private RpWmUpAndDownServiceI rpWmUpAndDownService;
 	@Autowired

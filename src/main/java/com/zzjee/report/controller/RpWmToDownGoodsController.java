@@ -95,7 +95,6 @@ public class RpWmToDownGoodsController extends BaseController {
 	 * @param dataGrid
 	 * @param user
 	 */
-
 	@RequestMapping(params = "datagrid")
 	public void datagrid(RpWmToDownGoodsEntity rpWmToDownGoods,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
 		CriteriaQuery cq = new CriteriaQuery(RpWmToDownGoodsEntity.class, dataGrid);

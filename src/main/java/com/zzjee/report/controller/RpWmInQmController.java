@@ -64,7 +64,7 @@ public class RpWmInQmController extends BaseController {
 	/**
 	 * Logger for this class
 	 */
-	private static final Logger logger = Logger.getLogger(RpWmInQmController.class);
+	private static final Logger logger = Logger.getLogger(RpWmInQmController.class);   //用于记录日志
     //类型为 RpWmInQmServiceI 的服务组件
 	@Autowired
 	private RpWmInQmServiceI rpWmInQmService;
