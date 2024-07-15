@@ -96,7 +96,6 @@ public class WmPrintModelController extends BaseController {
     @Autowired
     private Validator validator;
 
-
     /**
      * 打印模板列表 页面跳转
      *
