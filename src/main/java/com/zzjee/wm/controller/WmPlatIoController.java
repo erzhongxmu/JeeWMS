@@ -65,6 +65,7 @@ import com.zzjee.wm.service.WmPlatIoServiceI;
 @Controller
 @RequestMapping("/wmPlatIoController")
 public class WmPlatIoController extends BaseController {
+
     /**
      * Logger for this class
      */
