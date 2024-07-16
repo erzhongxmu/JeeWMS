@@ -394,8 +394,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  区域
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  区域
 	 */
 
 	@Column(name ="QUYU",nullable=true,length=32)

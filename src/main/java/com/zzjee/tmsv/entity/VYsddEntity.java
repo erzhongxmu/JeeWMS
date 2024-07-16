@@ -355,8 +355,8 @@ public class VYsddEntity implements java.io.Serializable {
 		this.chehao = chehao;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  状态
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  状态
 	 */
 	@Column(name ="ZHUANGTAI",nullable=true,length=32)
 	public String getZhuangtai(){

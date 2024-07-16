@@ -188,6 +188,7 @@ public class TmsMdCheliangController extends BaseController {
     @ResponseBody
     public AjaxJson doAdd(TmsMdCheliangEntity tmsMdCheliang, HttpServletRequest request) {
         String message = null;
+        // 创建对象
         AjaxJson j = new AjaxJson();
         message = "车辆管理添加成功";
         try {

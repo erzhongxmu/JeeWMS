@@ -357,6 +357,7 @@ public class SysParaController extends BaseController {
 		// 如果校验失败，获取所有校验失败的信息集合。
 		Set<ConstraintViolation<SysParaEntity>> failures = validator.validate(sysPara);
 		if (!failures.isEmpty()) {
+			// 捕获并处理任何可能发生的异常，这里只是简单地打印堆栈跟踪
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
 
