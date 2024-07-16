@@ -279,11 +279,16 @@ public class WmsAppRoleController extends BaseController {
 		CriteriaQuery cq = new CriteriaQuery(WmsAppRoleEntity.class, dataGrid);
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wmsAppRole, request.getParameterMap());
 		List<WmsAppRoleEntity> wmsAppRoles = this.wmsAppRoleService.getListByCriteriaQuery(cq,false);
+		// 设置导出的Excel文件名
 		modelMap.put(NormalExcelConstants.FILE_NAME,"APP角色");
+		// 设置导出的实体类类型
 		modelMap.put(NormalExcelConstants.CLASS,WmsAppRoleEntity.class);
+		// 设置导出参数，包括标题、导出人和导出信息
 		modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("APP角色列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
 			"导出信息"));
+		// 将查询到的数据列表放入modelMap中
 		modelMap.put(NormalExcelConstants.DATA_LIST,wmsAppRoles);
+		// 返回视图名称，用于跳转到导出Excel的页面
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 	/**

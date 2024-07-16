@@ -66,6 +66,7 @@ public class WaveToFjServiceImpl extends CommonServiceImpl implements WaveToFjSe
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
+
  	/**
 	 * 删除操作增强业务
 	 * @param t

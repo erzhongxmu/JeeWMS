@@ -148,10 +148,13 @@ public class WmsAppFunctionServiceImpl extends CommonServiceImpl implements WmsA
 					//因新增时已经校验了实例化是否可以成功，所以这块就不需要再做一次判断
 					obj = MyClassLoader.getClassByScn(cgJavaValue).newInstance();
 				}else if("spring".equals(cgJavaType)){
+					// 如果cgJavaType为"spring"，则从Spring上下文中获取bean
 					obj = ApplicationContextUtil.getContext().getBean(cgJavaValue);
 				}
 				if(obj instanceof CgformEnhanceJavaInter){
+					// 将obj转换为CgformEnhanceJavaInter类型
 					CgformEnhanceJavaInter javaInter = (CgformEnhanceJavaInter) obj;
+					// 调用execute方法执行增强逻辑
 					javaInter.execute("wms_app_function",data);
 				}
 			} catch (Exception e) {
