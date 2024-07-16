@@ -558,9 +558,9 @@ public class VYsddController extends BaseController {
 	}
 	/**
 	 * 导出excel 使模板
-	 * @param request
+	 * @param request 请求
 	 * @param vYsdd
-	 * @param response
+	 * @param response 响应
 	 */
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(VYsddEntity vYsdd, HttpServletRequest request, HttpServletResponse response

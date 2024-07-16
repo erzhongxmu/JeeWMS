@@ -361,7 +361,7 @@ public class SysParaController extends BaseController {
 		}
 
 		try{
-			//保存
+			// 调用服务层的save方法来保存SysParaEntity对象到数据库。
 			sysParaService.save(sysPara);
 		} catch (Exception e) {
 			e.printStackTrace();

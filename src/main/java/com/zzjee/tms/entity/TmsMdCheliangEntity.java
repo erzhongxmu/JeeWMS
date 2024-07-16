@@ -377,8 +377,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 		this.username = username;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  gps
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  gps
 	 */
 	@Column(name ="GPSID",nullable=true,length=32)
 	public String getGpsid(){
@@ -386,8 +386,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  gps
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  gps
 	 */
 	public void setGpsid(String gpsid){
 		this.gpsid = gpsid;

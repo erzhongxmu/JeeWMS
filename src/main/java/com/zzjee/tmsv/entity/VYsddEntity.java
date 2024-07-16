@@ -348,8 +348,8 @@ public class VYsddEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  车号
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  车号
 	 */
 	public void setChehao(String chehao){
 		this.chehao = chehao;
