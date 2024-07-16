@@ -268,6 +268,7 @@ public class RfidBuseController extends BaseController {
 		}
 		return new ModelAndView("com/zzjee/rfid/rfidBuse-add");
 	}
+
 	/**
 	 * RFID表编辑页面跳转
 	 *

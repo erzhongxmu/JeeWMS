@@ -206,6 +206,7 @@ public class RpWmToUpGoodsController extends BaseController {
 		// 使用systemService的get方法根据RpWmToUpGoodsEntity类和给定的ID获取实体对象
 		RpWmToUpGoodsEntity t = rpWmToUpGoodsService.get(RpWmToUpGoodsEntity.class, rpWmToUpGoods.getId());
 		try {
+			//使用MyBeanUtils.copyBeanNotNull2Bean方法将rpWmToUpGoods对象的非空属性值复制到t对象
 			MyBeanUtils.copyBeanNotNull2Bean(rpWmToUpGoods, t);
 			rpWmToUpGoodsService.saveOrUpdate(t);
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);

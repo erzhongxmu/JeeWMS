@@ -127,7 +127,7 @@ public class RpWmToDownGoodsController extends BaseController {
 		rpWmToDownGoods = systemService.getEntity(RpWmToDownGoodsEntity.class, rpWmToDownGoods.getId());
 		message = "rp_wm_to_down_goods删除成功";
 		try{
-			//使用systemService的getEntity方法根据RpWmToDownGoodsEntity类和给定的ID获取实体对象
+			//使用rpWmToDownGoodsService的delete方法删除实体对象
 			rpWmToDownGoodsService.delete(rpWmToDownGoods);
 			//使用systemService的addLog方法添加日志信息
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);

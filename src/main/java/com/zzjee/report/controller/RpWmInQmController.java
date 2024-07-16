@@ -80,7 +80,7 @@ public class RpWmInQmController extends BaseController {
 	 * 
 	 * @return
 	 */
-	//映射请求参数为 "list" 的请求
+	//处理HTTP请求的/list路径
 	@RequestMapping(params = "list")
 	//用于获取HTTP请求的相关信息
 	public ModelAndView list(HttpServletRequest request) {

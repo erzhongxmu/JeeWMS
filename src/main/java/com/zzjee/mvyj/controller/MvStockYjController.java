@@ -141,8 +141,11 @@ public class MvStockYjController extends BaseController {
 		}catch (Exception e) {
 			throw new BusinessException(e.getMessage());
 		}
+		//获取当前登录用户信息
 		TSUser user = ResourceUtil.getSessionUserName();
+		//检查用户的角色
 		String roles = "";
+		//如果用户存在，获取与用户的关联角色，并构建角色代码的字符串
 		if (user != null) {
 			List<TSRoleUser> rUsers = systemService.findByProperty(TSRoleUser.class, "TSUser.id", user.getId());
 			for (TSRoleUser ru : rUsers) {
@@ -152,6 +155,7 @@ public class MvStockYjController extends BaseController {
 			if (roles.length() > 0) {
 				roles = roles.substring(0, roles.length() - 1);
 			}
+			//判断角色是否为"CUS"，如果是，则添加特定的查询条件
 			if(roles.equals("CUS")){
 				cq.eq("cusCode", user.getUserName());
 				
