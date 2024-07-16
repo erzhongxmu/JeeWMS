@@ -82,6 +82,7 @@ public class RpWmInQmController extends BaseController {
 	 */
 	//映射请求参数为 "list" 的请求
 	@RequestMapping(params = "list")
+	//用于获取HTTP请求的相关信息
 	public ModelAndView list(HttpServletRequest request) {
 		return new ModelAndView("com/zzjee/report/rpWmInQmList");
 	}

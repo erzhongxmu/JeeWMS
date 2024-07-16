@@ -178,7 +178,7 @@ public class RpWmUpAndDownController extends BaseController {
 		AjaxJson j = new AjaxJson();
 		message = "rp_wm_up_and_down添加成功";
 		try{
-			//调用服务层方法保存 RpWmUpAndDownEntity 实体对象
+			//调用rpWmUpAndDownService的save方法保存RpWmUpAndDownEntity实体对象
 			rpWmUpAndDownService.save(rpWmUpAndDown);
 			//记录操作日志
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);

@@ -59,7 +59,7 @@ import com.zzjee.report.service.RpWmHisStockKuServiceI;
  *
  */
 @Controller    //用于处理HTTP请求
-@RequestMapping("/rpWmHisStockKuController")
+@RequestMapping("/rpWmHisStockKuController")  //映射请求的URL路径
 //用于记录日志
 public class RpWmHisStockKuController extends BaseController {
 	/**
@@ -72,7 +72,6 @@ public class RpWmHisStockKuController extends BaseController {
 	private SystemService systemService;
 	@Autowired
 	private Validator validator;
-
 
 	/**
 	 * rp_wm_his_stock_ku列表 页面跳转

@@ -132,6 +132,7 @@ public class MvStockYjController extends BaseController {
 
 	@RequestMapping(params = "datagrid")
 	public void datagrid(MvStockYjEntity mvStockYj,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
+		//创建一个CriteriaQuery对象，指定实体类为MvStockYjEntity，数据网格为dataGrid
 		CriteriaQuery cq = new CriteriaQuery(MvStockYjEntity.class, dataGrid);
 		//查询条件组装器
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, mvStockYj, request.getParameterMap());
