@@ -371,8 +371,8 @@ public class VYsddEntity implements java.io.Serializable {
 		this.zhuangtai = zhuangtai;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  回单备注
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  回单备注
 	 */
 	@Column(name ="YWHDBZ",nullable=true,length=256)
 	public String getYwhdbz(){

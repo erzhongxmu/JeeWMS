@@ -11,7 +11,7 @@ import java.util.Date;
  * @Description: 车辆管理
  * @author onlineGenerator
  * @date 2018-01-29 21:57:07
- * @version V1.0
+ * @version V 1.0
  */
 @Entity
 @Table(name = "tms_md_cheliang", schema = "")
@@ -70,7 +70,7 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	@Excel(name="区域",width=15)
 	private java.lang.String quyu;
 	/**
-	 *方法: 取得java.lang.String
+	 *方法: 取得 java.lang.String
 	 *@return: java.lang.String  主键
 	 */
 	@Id
@@ -82,7 +82,7 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	}
 
 	/**
-	 * set方法: 设置java.lang.String
+	 * set方法: 设置 java.lang.String
 	 * @param: java.lang.String  主键
 	 */
 	public void setId(String id){
@@ -98,14 +98,14 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	}
 
 	/**
-	 * set方法: 设置java.lang.String
+	 * set方法: 设置 java.lang.String
 	 * @param: java.lang.String  创建人名称
 	 */
 	public void setCreateName(String createName){
 		this.createName = createName;
 	}
 	/**
-	 * get方法: 取得java.lang.String
+	 * get方法: 取得 java.lang.String
 	 * @return: java.lang.String  创建人登录名称
 	 */
 	@Column(name ="CREATE_BY",nullable=true,length=50)
@@ -114,7 +114,7 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	}
 
 	/**
-	 * set方法: 设置java.lang.String
+	 * set方法: 设置 java.lang.String
 	 * @param: java.lang.String  创建人登录名称
 	 */
 	public void setCreateBy(String createBy){
