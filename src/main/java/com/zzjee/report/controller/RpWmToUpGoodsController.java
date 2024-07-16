@@ -208,7 +208,9 @@ public class RpWmToUpGoodsController extends BaseController {
 		try {
 			//使用MyBeanUtils.copyBeanNotNull2Bean方法将rpWmToUpGoods对象的非空属性值复制到t对象
 			MyBeanUtils.copyBeanNotNull2Bean(rpWmToUpGoods, t);
+			//使用rpWmToUpGoodsService的saveOrUpdate方法保存或更新实体对象
 			rpWmToUpGoodsService.saveOrUpdate(t);
+			//使用systemService的addLog方法添加日志信息
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -162,6 +162,7 @@ public class RpWmToDownGoodsController extends BaseController {
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}
 		}catch(Exception e){
+			//打印异常堆栈信息
 			e.printStackTrace();
 			message = "rp_wm_to_down_goods删除失败";
 			throw new BusinessException(e.getMessage());

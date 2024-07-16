@@ -209,7 +209,6 @@ public class RpWmHisStockKuController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
 
 	/**
 	 * rp_wm_his_stock_ku新增页面跳转
