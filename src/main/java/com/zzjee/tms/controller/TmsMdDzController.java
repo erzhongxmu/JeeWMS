@@ -344,7 +344,7 @@ public class TmsMdDzController extends BaseController {
 				}
 			}
 		}
-		// 返回结果
+		// 返回封装了操作结果和消息的AjaxJson对象
 		return j;
 	}
 }

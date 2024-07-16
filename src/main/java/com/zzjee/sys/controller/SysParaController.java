@@ -347,7 +347,9 @@ public class SysParaController extends BaseController {
 		}
 		return new ResponseEntity(task, HttpStatus.OK);
 	}
-
+	/**
+	 * 控制器方法用于创建系统参数实体（SysParaEntity）。
+	 */
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> create(@RequestBody SysParaEntity sysPara, UriComponentsBuilder uriBuilder) {

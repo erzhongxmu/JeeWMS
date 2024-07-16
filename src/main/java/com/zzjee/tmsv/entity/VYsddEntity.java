@@ -332,8 +332,8 @@ public class VYsddEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  卸货费
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  卸货费
 	 */
 	public void setHwxhf(String hwxhf){
 		this.hwxhf = hwxhf;

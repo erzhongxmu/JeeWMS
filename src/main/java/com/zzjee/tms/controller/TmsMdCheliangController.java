@@ -173,6 +173,7 @@ public class TmsMdCheliangController extends BaseController {
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
+        // 返回结果
         return j;
     }
 
@@ -314,7 +315,7 @@ public class TmsMdCheliangController extends BaseController {
         AjaxJson j = new AjaxJson();
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
-        // 使用entrySet进行for循环，遍历map
+        // 使用entrySet进行增强for循环，遍历map
         for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
             // 获取上传的文件对象
             MultipartFile file = entity.getValue();

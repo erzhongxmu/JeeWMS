@@ -361,8 +361,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 		this.beizhu = beizhu;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  默认司机
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  默认司机
 	 */
 	@Column(name ="USERNAME",nullable=true,length=32)
 	public String getUsername(){
