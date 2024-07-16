@@ -72,6 +72,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Controller
 @RequestMapping("/waveToFjController")
 public class WaveToFjController extends BaseController {
+
     /**
      * Logger for this class
      */
@@ -184,9 +185,12 @@ public class WaveToFjController extends BaseController {
         AjaxJson j = new AjaxJson();
         message = "wave_to_fj添加成功";
         try {
+            // 调用waveToFjService的save方法保存waveToFj对象
             waveToFjService.save(waveToFj);
+            // 调用systemService的addLog方法记录日志，传入message、Globals.Log_Type_INSERT和Globals.Log_Leavel_INFO作为参数
             systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
+            // 如果发生异常，打印异常堆栈信息
             e.printStackTrace();
             message = "wave_to_fj添加失败";
             throw new BusinessException(e.getMessage());
