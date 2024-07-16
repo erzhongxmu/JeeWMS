@@ -325,23 +325,26 @@ public class MvCusOtherController extends BaseController {
 		AjaxJson j = new AjaxJson();
 		// 将HttpServletRequest转换为MultipartHttpServletRequest，以便处理文件上传
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-		//获取上传的文件映射
+		// 获取上传的文件映射
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
 			MultipartFile file = entity.getValue();// 获取上传文件对象
-			//设置Excel导入参数
+			// 设置Excel导入参数
 			ImportParams params = new ImportParams();
 			params.setTitleRows(2);//标题行
 			params.setHeadRows(1);//表头行
 			params.setNeedSave(true);
 			try {
 				List<MvCusOtherEntity> listMvCusOtherEntitys = ExcelImportUtil.importExcel(file.getInputStream(),MvCusOtherEntity.class,params);
+				// 遍历列表，保存到数据库
 				for (MvCusOtherEntity mvCusOther : listMvCusOtherEntitys) {
 					mvCusOtherService.save(mvCusOther);
 				}
 				j.setMsg("文件导入成功！");
 			} catch (Exception e) {
+				// 如果在导入过程中出现异常，则设置AjaxJson对象的消息，表示文件导入失败
 				j.setMsg("文件导入失败！");
+				// 记录异常信息，便于后续问题排查
 				logger.error(ExceptionUtil.getExceptionMessage(e));
 			}finally{
 				try {
