@@ -329,6 +329,7 @@ public class TmsMdDzController extends BaseController {
 			try {
 				// 使用ExcelImportUtil工具类从InputStream导入数据到指定的实体类型
 				List<TmsMdDzEntity> listTmsMdDzEntitys = ExcelImportUtil.importExcel(file.getInputStream(),TmsMdDzEntity.class,params);
+				// 遍历导入的实体列表，将每个实体保存到数据库
 				for (TmsMdDzEntity tmsMdDz : listTmsMdDzEntitys) {
 					tmsMdDzService.save(tmsMdDz);
 				}

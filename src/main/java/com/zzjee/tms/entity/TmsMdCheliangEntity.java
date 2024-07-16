@@ -404,8 +404,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  区域
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  区域
 	 */
 	public void setQuyu(java.lang.String quyu){
 		this.quyu = quyu;

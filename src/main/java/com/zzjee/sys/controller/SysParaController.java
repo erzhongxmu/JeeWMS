@@ -371,6 +371,7 @@ public class SysParaController extends BaseController {
 		//按照Restful风格约定，创建指向新任务的url, 也可以直接返回id或对象.
 		String id = sysPara.getId();
 		URI uri = uriBuilder.path("/rest/sysParaController/" + id).build().toUri();
+		// 设置Location头，指向新创建资源的位置
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(uri);
 
@@ -385,7 +386,6 @@ public class SysParaController extends BaseController {
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
-
 		// 尝试保存或更新实体
 		try{
 			sysParaService.saveOrUpdate(sysPara);
@@ -394,7 +394,6 @@ public class SysParaController extends BaseController {
 			e.printStackTrace();
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
-
 		// 根据Restful约定，返回204 No Content状态码，表示请求已成功但没有返回数据。
 		// 也可以选择返回200 OK状态码。
 		return new ResponseEntity(HttpStatus.NO_CONTENT);

@@ -364,8 +364,8 @@ public class VYsddEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  状态
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  状态
 	 */
 	public void setZhuangtai(String zhuangtai){
 		this.zhuangtai = zhuangtai;

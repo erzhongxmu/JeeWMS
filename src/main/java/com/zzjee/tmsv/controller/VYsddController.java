@@ -600,6 +600,7 @@ public class VYsddController extends BaseController {
 				try {
 					file.getInputStream().close();
 				} catch (IOException e) {
+					// 抛出异常信息
 					e.printStackTrace();
 				}
 			}
