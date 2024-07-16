@@ -169,7 +169,6 @@ public class RpWmToDownGoodsController extends BaseController {
 		return j;
 	}
 
-
 	/**
 	 * 添加rp_wm_to_down_goods
 	 * 

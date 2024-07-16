@@ -165,7 +165,6 @@ public class RpWmUpAndDownController extends BaseController {
 		return j;
 	}
 
-
 	/**
 	 * 添加rp_wm_up_and_down
 	 * 

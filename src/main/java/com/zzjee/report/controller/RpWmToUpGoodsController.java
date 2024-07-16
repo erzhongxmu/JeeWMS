@@ -165,7 +165,6 @@ public class RpWmToUpGoodsController extends BaseController {
 		return j;
 	}
 
-
 	/**
 	 * 添加rp_wm_to_up_goods
 	 * 

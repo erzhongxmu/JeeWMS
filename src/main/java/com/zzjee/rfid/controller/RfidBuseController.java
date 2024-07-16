@@ -320,6 +320,7 @@ public class RfidBuseController extends BaseController {
 		modelMap.put(NormalExcelConstants.DATA_LIST,rfidBuses);
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
+
 	/**
 	 * 导出excel 使模板
 	 *
