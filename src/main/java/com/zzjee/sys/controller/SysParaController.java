@@ -353,7 +353,8 @@ public class SysParaController extends BaseController {
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> create(@RequestBody SysParaEntity sysPara, UriComponentsBuilder uriBuilder) {
-		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
+		// 调用JSR303 Bean Validator进行校验，确保SysParaEntity对象符合预定义的约束规则。
+		// 如果校验失败，获取所有校验失败的信息集合。
 		Set<ConstraintViolation<SysParaEntity>> failures = validator.validate(sysPara);
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);

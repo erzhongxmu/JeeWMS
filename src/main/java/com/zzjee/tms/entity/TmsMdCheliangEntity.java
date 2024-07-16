@@ -370,8 +370,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  默认司机
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  默认司机
 	 */
 	public void setUsername(String username){
 		this.username = username;

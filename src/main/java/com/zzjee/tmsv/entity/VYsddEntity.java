@@ -339,8 +339,8 @@ public class VYsddEntity implements java.io.Serializable {
 		this.hwxhf = hwxhf;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  车号
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  车号
 	 */
 	@Column(name ="CHEHAO",nullable=true,length=32)
 	public String getChehao(){
