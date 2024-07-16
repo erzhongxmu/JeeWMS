@@ -155,6 +155,7 @@ public class TMdBomHeadController extends BaseController {
 	/**
 	 * 批量删除BOM抬头
 	 *
+	 * @param ids
 	 * @param request
 	 * @return
 	 */

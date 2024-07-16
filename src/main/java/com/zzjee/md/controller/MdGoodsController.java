@@ -561,7 +561,6 @@ public class MdGoodsController extends BaseController {
 		return new ResponseEntity(D0, HttpStatus.OK);
 	}
 
-
 	@RequestMapping(value = "/apicreategoods")
 	@ResponseBody
 	public ResponseEntity<?> creategoods(@RequestBody MdGoodsEntity mdGoodsEntity ) {

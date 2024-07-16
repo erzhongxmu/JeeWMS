@@ -75,6 +75,7 @@ public class WxConfigController extends BaseController {
 	/**
 	 * 配置信息列表 页面跳转
 	 *
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "list")

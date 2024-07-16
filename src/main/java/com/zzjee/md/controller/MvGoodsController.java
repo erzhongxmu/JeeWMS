@@ -111,6 +111,7 @@ public class MvGoodsController extends BaseController {
 	/**
 	 * easyui AJAX请求数据
 	 *
+	 * @param mvGoods
 	 * @param request
 	 * @param response
 	 * @param dataGrid
