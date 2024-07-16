@@ -143,17 +143,21 @@ public class RpWmInQmController extends BaseController {
 	 * 
 	 * @return
 	 */
-	 @RequestMapping(params = "doBatchDel")
-	@ResponseBody
+	 @RequestMapping(params = "doBatchDel")   //请求参数为"doBatchDel"的请求映射到该方法
+	@ResponseBody      //作为HTTP响应的内容
 	public AjaxJson doBatchDel(String ids,HttpServletRequest request){
 		String message = null;
+		 //创建一个用于返回结果的AjaxJson对象
 		AjaxJson j = new AjaxJson();
 		message = "rp_wm_in_qm删除成功";
+		//尝试执行批量删除操作
 		try{
 			for(String id:ids.split(",")){
+				//根据id获取要删除的实体对象。
 				RpWmInQmEntity rpWmInQm = systemService.getEntity(RpWmInQmEntity.class, 
 				id
 				);
+				//删除获取到的实体对象。
 				rpWmInQmService.delete(rpWmInQm);
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}
@@ -163,6 +167,7 @@ public class RpWmInQmController extends BaseController {
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
+		//返回AjaxJson对象作为HTTP响应的内容
 		return j;
 	}
 
