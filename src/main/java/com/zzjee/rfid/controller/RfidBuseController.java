@@ -381,7 +381,7 @@ public class RfidBuseController extends BaseController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET)      //注解处理HTTP GET请求
-	@ResponseBody      //表示方法返回的结果直接作为HTTP响应的内容返回给客户端
+	@ResponseBody     //作为HTTP响应的内容返回给客户端
 	public List<RfidBuseEntity> list() {
 		//获取RFID表列表
 		List<RfidBuseEntity> listRfidBuses=rfidBuseService.getList(RfidBuseEntity.class);

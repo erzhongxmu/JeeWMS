@@ -421,7 +421,7 @@ public class RpWmToDownGoodsController extends BaseController {
 		return new ResponseEntity(HttpStatus.NO_CONTENT);
 	}
 
-	//处理DELETE请求，用于删除RpWmToDownGoodsEntity对象
+	//将HTTP DELETE请求映射到此方法，路径变量id指定要删除的实体对象的ID
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable("id") String id) {

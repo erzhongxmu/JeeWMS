@@ -196,10 +196,14 @@ public class RpWmHisStockKuController extends BaseController {
 		String message = null;
 		AjaxJson j = new AjaxJson();
 		message = "rp_wm_his_stock_ku更新成功";
+		//根据传入的实体对象ID，获取指定的 RpWmHisStockKuEntity 对象
 		RpWmHisStockKuEntity t = rpWmHisStockKuService.get(RpWmHisStockKuEntity.class, rpWmHisStockKu.getId());
 		try {
+			//将传入对象的非空属性复制到目标对象
 			MyBeanUtils.copyBeanNotNull2Bean(rpWmHisStockKu, t);
+			//保存或更新目标对象
 			rpWmHisStockKuService.saveOrUpdate(t);
+			//添加日志记录
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();

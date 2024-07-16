@@ -548,7 +548,6 @@ public class WmsPlcController extends BaseController {
         if (!failures.isEmpty()) {
             return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
         }
-
         //保存
         try {
             wmsPlcService.save(wmsPlc);
@@ -561,7 +560,6 @@ public class WmsPlcController extends BaseController {
         URI uri = uriBuilder.path("/rest/wmsPlcController/" + id).build().toUri();
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(uri);
-
         return new ResponseEntity(headers, HttpStatus.CREATED);
     }
 

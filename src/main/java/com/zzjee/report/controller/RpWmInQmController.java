@@ -121,10 +121,13 @@ public class RpWmInQmController extends BaseController {
 	public AjaxJson doDel(RpWmInQmEntity rpWmInQm, HttpServletRequest request) {
 		String message = null;
 		AjaxJson j = new AjaxJson();
+		//获取指定的 RpWmInQmEntity 对象
 		rpWmInQm = systemService.getEntity(RpWmInQmEntity.class, rpWmInQm.getId());
 		message = "rp_wm_in_qm删除成功";
 		try{
+			//删除 RpWmInQmEntity 对象
 			rpWmInQmService.delete(rpWmInQm);
+			//添加日志记录
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
