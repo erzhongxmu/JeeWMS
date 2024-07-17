@@ -149,7 +149,7 @@ public class FxjOtherLoginServiceImpl extends CommonServiceImpl implements FxjOt
 				}
 				if(obj instanceof CgformEnhanceJavaInter){
 					CgformEnhanceJavaInter javaInter = (CgformEnhanceJavaInter) obj;
-					// 调用execute方法，执行Java增强逻辑
+					//调用execute方法，执行Java增强逻辑
 					javaInter.execute("fxj_other_login",data);
 				}
 			} catch (Exception e) {

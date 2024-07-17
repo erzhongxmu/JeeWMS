@@ -20,6 +20,7 @@ public class MdSupServiceImpl extends CommonServiceImpl implements MdSupServiceI
 
  	@Override
     public void delete(MdSupEntity entity) throws Exception{
+		//调用父类的delete方法
  		super.delete(entity);
  		//执行删除操作增强业务
 		this.doDelBus(entity);

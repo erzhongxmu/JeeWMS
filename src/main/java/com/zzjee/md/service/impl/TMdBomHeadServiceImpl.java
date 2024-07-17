@@ -17,20 +17,20 @@ import java.util.UUID;
 @Service("tMdBomHeadService")
 @Transactional
 public class TMdBomHeadServiceImpl extends CommonServiceImpl implements TMdBomHeadServiceI {
-	
+
  	@Override
     public <T> void delete(T entity) {
  		super.delete(entity);
  		//执行删除操作配置的sql增强
 		this.doDelSql((TMdBomHeadEntity)entity);
  	}
-	
+
 	@Override
     public void addMain(TMdBomHeadEntity tMdBomHead,
                         List<TMdBomItemEntity> tMdBomItemList){
 			//保存主信息
 			this.save(tMdBomHead);
-		
+
 			/**保存-BOM项目*/
 			for(TMdBomItemEntity tMdBomItem:tMdBomItemList){
 				//外键设置
@@ -41,7 +41,12 @@ public class TMdBomHeadServiceImpl extends CommonServiceImpl implements TMdBomHe
  			this.doAddSql(tMdBomHead);
 	}
 
-	
+	/**
+	 * 更新主BOM表及其关联的明细BOM项目。
+	 *
+	 * @param tMdBomHead
+	 * @param tMdBomItemList
+	 */
 	@Override
     public void updateMain(TMdBomHeadEntity tMdBomHead,
                            List<TMdBomItemEntity> tMdBomItemList) {
@@ -76,7 +81,7 @@ public class TMdBomHeadServiceImpl extends CommonServiceImpl implements TMdBomHe
 		    		//如果数据库存在的明细，前台没有传递过来则是删除-BOM项目
 		    		super.delete(oldE);
 	    		}
-	    		
+
 			}
 			//3.持久化新增的数据-BOM项目
 			for(TMdBomItemEntity tMdBomItem:tMdBomItemList){
@@ -91,7 +96,7 @@ public class TMdBomHeadServiceImpl extends CommonServiceImpl implements TMdBomHe
  		this.doUpdateSql(tMdBomHead);
 	}
 
-	
+
 	@Override
     public void delMain(TMdBomHeadEntity tMdBomHead) {
 		//删除主表信息
@@ -105,8 +110,8 @@ public class TMdBomHeadServiceImpl extends CommonServiceImpl implements TMdBomHe
 	    List<TMdBomItemEntity> tMdBomItemOldList = this.findHql(hql0,id0);
 		this.deleteAllEntitie(tMdBomItemOldList);
 	}
-	
- 	
+
+
  	/**
 	 * 默认按钮-sql增强-新增操作
 	 * @param t
@@ -134,7 +139,7 @@ public class TMdBomHeadServiceImpl extends CommonServiceImpl implements TMdBomHe
     public boolean doDelSql(TMdBomHeadEntity t){
 	 	return true;
  	}
- 	
+
  	/**
 	 * 替换sql中的变量
 	 * @param sql
