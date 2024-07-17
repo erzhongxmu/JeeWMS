@@ -236,6 +236,7 @@ public class WmDayCostController extends BaseController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		// 将查询结果封装成DataGrid对象并返回给前端
 		TagUtil.datagrid(response, dataGrid);
 	}
 

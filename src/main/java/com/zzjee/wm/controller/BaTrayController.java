@@ -126,6 +126,7 @@ public class BaTrayController extends BaseController {
 			throw new BusinessException(e.getMessage());
 		}
 		cq.add();
+		// 调用wmOmQmIService的getDataGridReturn方法执行查询并返回结果
 		this.baTrayService.getDataGridReturn(cq, true);
 		// 将查询结果封装成DataGrid对象并返回给前端
 		TagUtil.datagrid(response, dataGrid);
