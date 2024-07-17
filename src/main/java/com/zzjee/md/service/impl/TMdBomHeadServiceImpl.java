@@ -20,6 +20,7 @@ public class TMdBomHeadServiceImpl extends CommonServiceImpl implements TMdBomHe
 
  	@Override
     public <T> void delete(T entity) {
+		//调用父类的delete方法
  		super.delete(entity);
  		//执行删除操作配置的sql增强
 		this.doDelSql((TMdBomHeadEntity)entity);
