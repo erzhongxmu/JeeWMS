@@ -396,8 +396,8 @@ public class VYsddEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.util.Date
-	 *@param: java.util.Date  送达时间
+	 * set方法: 设置java.util.Date
+	 * @param: java.util.Date  送达时间
 	 */
 	public void setSdsj(Date sdsj){
 		this.sdsj = sdsj;

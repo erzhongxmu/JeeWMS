@@ -390,6 +390,7 @@ public class SysParaController extends BaseController {
 		}
 		// 尝试保存或更新实体
 		try{
+			// 调用服务层的save方法来保存或更新SysParaEntity对象到数据库。
 			sysParaService.saveOrUpdate(sysPara);
 		} catch (Exception e) {
 			// 抛出异常
