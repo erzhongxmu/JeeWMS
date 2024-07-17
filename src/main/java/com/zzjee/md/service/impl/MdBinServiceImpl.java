@@ -62,6 +62,7 @@ public class MdBinServiceImpl extends CommonServiceImpl implements MdBinServiceI
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
+
  	/**
 	 * 更新操作增强业务
 	 * @param t
@@ -74,6 +75,7 @@ public class MdBinServiceImpl extends CommonServiceImpl implements MdBinServiceI
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
+
  	/**
 	 * 删除操作增强业务
 	 * @param t
@@ -86,6 +88,7 @@ public class MdBinServiceImpl extends CommonServiceImpl implements MdBinServiceI
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
+	 
 	/**
 	 * 将MdBinEntity对象的属性转换为一个Map
 	 * @param t

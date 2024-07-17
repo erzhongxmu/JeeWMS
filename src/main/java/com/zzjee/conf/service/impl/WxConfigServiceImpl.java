@@ -24,6 +24,7 @@ public class WxConfigServiceImpl extends CommonServiceImpl implements WxConfigSe
 	 */
  	@Override
 	public void delete(WxConfigEntity entity) throws Exception{
+		//调用父类的delete方法
  		super.delete(entity);
  		//执行删除操作增强业务
 		this.doDelBus(entity);

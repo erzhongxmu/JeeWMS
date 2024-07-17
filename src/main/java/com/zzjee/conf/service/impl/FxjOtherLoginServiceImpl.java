@@ -24,6 +24,7 @@ public class FxjOtherLoginServiceImpl extends CommonServiceImpl implements FxjOt
 	 */
  	@Override
     public void delete(FxjOtherLoginEntity entity) throws Exception{
+		//调用父类的delete方法
  		super.delete(entity);
  		//执行删除操作增强业务
 		this.doDelBus(entity);
