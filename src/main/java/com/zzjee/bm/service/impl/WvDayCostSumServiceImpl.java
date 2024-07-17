@@ -17,7 +17,11 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class WvDayCostSumServiceImpl extends CommonServiceImpl implements WvDayCostSumServiceI {
 
-
+	/**
+	 * 删除指定的客户其他信息实体，并在删除后执行额外的业务逻辑增强。
+	 *
+	 * @param entity
+	 */
  	@Override
 	public void delete(WvDayCostSumEntity entity) throws Exception{
  		super.delete(entity);
