@@ -6,6 +6,7 @@ import org.jeecgframework.poi.excel.annotation.Excel;
 import javax.persistence.*;
 import java.util.Date;
 
+
 /**
  * @Title: Entity
  * @Description: 车辆管理

@@ -365,6 +365,7 @@ public class SysParaController extends BaseController {
 			// 调用服务层的save方法来保存SysParaEntity对象到数据库。
 			sysParaService.save(sysPara);
 		} catch (Exception e) {
+			// 捕获并处理任何可能发生的异常，这里只是打印堆栈跟踪
 			e.printStackTrace();
 			// 返回一个没有内容的响应，HTTP状态码为204（NO_CONTENT）
 			return new ResponseEntity(HttpStatus.NO_CONTENT);

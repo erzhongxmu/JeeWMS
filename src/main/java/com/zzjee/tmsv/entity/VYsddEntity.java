@@ -387,7 +387,7 @@ public class VYsddEntity implements java.io.Serializable {
 		this.ywhdbz = ywhdbz;
 	}
 	/**
-	 *方法: 取得java.util.Date
+	 *get方法: 取得java.util.Date
 	 *@return: java.util.Date  送达时间
 	 */
 	@Column(name ="SDSJ",nullable=true)

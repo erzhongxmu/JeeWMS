@@ -132,6 +132,7 @@ public class TmsMdCheliangController extends BaseController {
     @ResponseBody
     public AjaxJson doDel(TmsMdCheliangEntity tmsMdCheliang, HttpServletRequest request) {
         String message = null;
+        // 创建对象
         AjaxJson j = new AjaxJson();
         tmsMdCheliang = systemService.getEntity(TmsMdCheliangEntity.class, tmsMdCheliang.getId());
         message = "车辆管理删除成功";
