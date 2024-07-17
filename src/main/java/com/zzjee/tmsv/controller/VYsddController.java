@@ -588,7 +588,7 @@ public class VYsddController extends BaseController {
 			ImportParams params = new ImportParams();
 			params.setTitleRows(2);		// 假设标题行有两行
 			params.setHeadRows(1);		// 假设头部行有一行
-			params.setNeedSave(true);
+			params.setNeedSave(true);	// 表示导入的数据需要被保存
 			try {
 				List<VYsddEntity> listVYsddEntitys = ExcelImportUtil.importExcel(file.getInputStream(),VYsddEntity.class,params);
 				for (VYsddEntity vYsdd : listVYsddEntitys) {

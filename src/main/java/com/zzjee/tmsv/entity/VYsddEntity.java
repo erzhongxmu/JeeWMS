@@ -419,8 +419,8 @@ public class VYsddEntity implements java.io.Serializable {
 		this.ywkhdh = ywkhdh;
 	}
 	/**
-	 *方法: 设置java.lang.String
-	 *@return: java.lang.String  客户单号
+	 * get方法: 设置java.lang.String
+	 * @return: java.lang.String  客户单号
 	 */
 	@Column(name ="BY1",nullable=true,length=32)
 	public String getBy1(){

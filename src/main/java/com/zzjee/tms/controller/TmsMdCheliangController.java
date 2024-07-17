@@ -330,7 +330,7 @@ public class TmsMdCheliangController extends BaseController {
             // 创建导入参数对象，设置标题行、头部行、是否需要保存等参数
             ImportParams params = new ImportParams();
             params.setTitleRows(2); // 假设标题行有两行
-            params.setHeadRows(1);
+            params.setHeadRows(1);  // 假设头部行有一行
             params.setNeedSave(true);
             try {
                 List<TmsMdCheliangEntity> listTmsMdCheliangEntitys = ExcelImportUtil.importExcel(file.getInputStream(), TmsMdCheliangEntity.class, params);

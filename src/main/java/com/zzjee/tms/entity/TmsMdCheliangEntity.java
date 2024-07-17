@@ -222,7 +222,6 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	public String getBpmStatus(){
 		return this.bpmStatus;
 	}
-
 	/**
 	 * set方法: 设置java.lang.String
 	 * @param: java.lang.String  流程状态
@@ -238,7 +237,6 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	public String getChepaihao(){
 		return this.chepaihao;
 	}
-
 	/**
 	 * set方法: 设置java.lang.String
 	 * @param: java.lang.String  车牌号
@@ -254,7 +252,6 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	public String getChexing(){
 		return this.chexing;
 	}
-
 	/**
 	 * set方法: 设置java.lang.String
 	 * @param: java.lang.String  车型
@@ -302,7 +299,6 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	public String getZairen(){
 		return this.zairen;
 	}
-
 	/**
 	 * set方法: 设置java.lang.String
 	 * @param: java.lang.String  载人数
@@ -318,7 +314,6 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	public String getJiazhao(){
 		return this.jiazhao;
 	}
-
 	/**
 	 *set方法: 设置java.lang.String
 	 * @param: java.lang.String  准假驾照
@@ -408,4 +403,5 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	public void setQuyu(java.lang.String quyu){
 		this.quyu = quyu;
 	}
+
 }
