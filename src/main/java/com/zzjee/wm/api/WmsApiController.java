@@ -77,7 +77,6 @@ public class WmsApiController {
     @Autowired
     private MdSupServiceI mdSupServiceI;
 
-
     /**
      * 获取商品
      *

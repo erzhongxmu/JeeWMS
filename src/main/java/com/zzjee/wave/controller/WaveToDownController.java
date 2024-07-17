@@ -230,11 +230,16 @@ public class WaveToDownController extends BaseController {
         message = "wave_to_down更新成功";
         WaveToDownEntity t = waveToDownService.get(WaveToDownEntity.class, waveToDown.getId());
         try {
+            // 将waveToFj对象的属性复制到t对象中，只复制非空属性
             MyBeanUtils.copyBeanNotNull2Bean(waveToDown, t);
+            // 保存或更新t对象
             waveToDownService.saveOrUpdate(t);
+            // 记录日志，类型为更新，级别为信息
             systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
+            // 如果发生异常，打印异常堆栈信息
             e.printStackTrace();
+            // 抛出一个BusinessException异常，传入异常信息
              throw new BusinessException(e.getMessage());
         }
         // 将message设置为j对象的msg属性

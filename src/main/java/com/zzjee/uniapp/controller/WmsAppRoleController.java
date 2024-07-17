@@ -300,11 +300,16 @@ public class WmsAppRoleController extends BaseController {
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(WmsAppRoleEntity wmsAppRole,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
+		// 设置导出的Excel文件名
     	modelMap.put(NormalExcelConstants.FILE_NAME,"APP角色");
+		// 设置导出的数据实体类
     	modelMap.put(NormalExcelConstants.CLASS,WmsAppRoleEntity.class);
+		// 设置导出参数，包括标题、导出人和导出信息
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("APP角色列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
     	"导出信息"));
+		// 设置导出的数据列表，这里使用空列表作为示例
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
+		// 返回视图名称，用于跳转到导出Excel的页面
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 
