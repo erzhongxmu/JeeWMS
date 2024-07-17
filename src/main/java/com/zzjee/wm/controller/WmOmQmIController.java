@@ -236,7 +236,6 @@ public class WmOmQmIController extends BaseController {
                  throw new BusinessException(e.getMessage());
             }
         }
-
         j.setMsg(message);
         return j;
     }

@@ -127,6 +127,7 @@ public class WmCusCostHController extends BaseController {
 		}
 		cq.add();
 		this.wmCusCostHService.getDataGridReturn(cq, true);
+		// 将查询结果封装成DataGrid对象并返回给前端
 		TagUtil.datagrid(response, dataGrid);
 	}
 

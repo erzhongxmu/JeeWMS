@@ -137,6 +137,7 @@ public class WmNoticeConfController extends BaseController {
         cq.setOrder(map1);
         cq.add();
         this.wmNoticeConfService.getDataGridReturn(cq, true);
+        // 将查询结果封装成DataGrid对象并返回给前端
         TagUtil.datagrid(response, dataGrid);
     }
 

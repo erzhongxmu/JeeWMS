@@ -199,6 +199,7 @@ public class WmInQmIController extends BaseController {
             resultnew.add(t);
         }
         dataGrid.setResults(resultnew);
+        // 将查询结果封装成DataGrid对象并返回给前端
         TagUtil.datagrid(response, dataGrid);
     }
 
