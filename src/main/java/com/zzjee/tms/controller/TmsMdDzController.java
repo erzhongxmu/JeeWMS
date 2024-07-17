@@ -324,7 +324,7 @@ public class TmsMdDzController extends BaseController {
 			MultipartFile file = entity.getValue();
 			// 创建导入参数对象，设置标题行、头部行、是否需要保存等参数
 			ImportParams params = new ImportParams();
-			params.setTitleRows(2);
+			params.setTitleRows(2); // 假设标题行有两行
 			params.setHeadRows(1);
 			params.setNeedSave(true);
 			try {

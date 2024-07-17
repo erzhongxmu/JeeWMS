@@ -402,7 +402,10 @@ public class VYsddEntity implements java.io.Serializable {
 	public void setSdsj(Date sdsj){
 		this.sdsj = sdsj;
 	}
-
+	/**
+	 * get方法: 设置java.lang.String
+	 * @param:  java.lang.String  客户单号
+	 */
 	@Column(name ="YWKHDH",nullable=true,length=32)
 	public String getYwkhdh(){
 		return this.ywkhdh;

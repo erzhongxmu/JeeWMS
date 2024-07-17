@@ -132,14 +132,14 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 
 	/**
 	 * set方法: 设置java.util.Date
-	 * @param: java.util.Date  创建日期
+	 * @ param: java.util.Date  创建日期
 	 */
 	public void setCreateDate(Date createDate){
 		this.createDate = createDate;
 	}
 	/**
 	 * get方法: 取得java.lang.String
-	 * @return: java.lang.String  更新人名称
+	 * @ return: java.lang.String  更新人名称
 	 */
 	@Column(name ="UPDATE_NAME",nullable=true,length=50)
 	public String getUpdateName(){
@@ -148,14 +148,14 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 
 	/**
 	 * set方法: 设置java.lang.String
-	 * @param: java.lang.String  更新人名称
+	 * @ param: java.lang.String  更新人名称
 	 */
 	public void setUpdateName(String updateName){
 		this.updateName = updateName;
 	}
 	/**
 	 * get方法: 取得java.lang.String
-	 * @return: java.lang.String  更新人登录名称
+	 * @ return: java.lang.String  更新人登录名称
 	 */
 	@Column(name ="UPDATE_BY",nullable=true,length=50)
 	public String getUpdateBy(){
@@ -164,14 +164,14 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 
 	/**
 	 * set方法: 设置java.lang.String
-	 * @param: java.lang.String  更新人登录名称
+	 * @ param: java.lang.String  更新人登录名称
 	 */
 	public void setUpdateBy(String updateBy){
 		this.updateBy = updateBy;
 	}
 	/**
 	 * get方法: 取得java.util.Date
-	 * @return: java.util.Date  更新日期
+	 * @ return: java.util.Date  更新日期
 	 */
 	@Column(name ="UPDATE_DATE",nullable=true)
 	public Date getUpdateDate(){
@@ -180,7 +180,7 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 
 	/**
 	 * set方法: 设置java.util.Date
-	 * @param: java.util.Date  更新日期
+	 * @ param: java.util.Date  更新日期
 	 */
 	public void setUpdateDate(Date updateDate){
 		this.updateDate = updateDate;
