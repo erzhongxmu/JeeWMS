@@ -412,8 +412,8 @@ public class VYsddEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  客户单号
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  客户单号
 	 */
 	public void setYwkhdh(String ywkhdh){
 		this.ywkhdh = ywkhdh;
