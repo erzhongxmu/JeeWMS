@@ -18,6 +18,11 @@ import java.util.UUID;
 @Transactional
 public class TMdBomHeadServiceImpl extends CommonServiceImpl implements TMdBomHeadServiceI {
 
+	/**
+	 * 删除指定的客户其他信息实体，并在删除后执行额外的业务逻辑增强。
+	 *
+	 * @param entity
+	 */
  	@Override
     public <T> void delete(T entity) {
 		//调用父类的delete方法

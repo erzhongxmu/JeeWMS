@@ -17,7 +17,11 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class MdCusOtherServiceImpl extends CommonServiceImpl implements MdCusOtherServiceI {
 
-
+	/**
+	 * 删除指定的客户其他信息实体，并在删除后执行额外的业务逻辑增强。
+	 *
+	 * @param entity
+	 */
  	@Override
     public void delete(MdCusOtherEntity entity) throws Exception{
 		//调用父类的delete方法
