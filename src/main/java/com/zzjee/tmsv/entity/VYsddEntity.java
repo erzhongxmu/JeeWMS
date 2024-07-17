@@ -380,8 +380,8 @@ public class VYsddEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  回单备注
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  回单备注
 	 */
 	public void setYwhdbz(String ywhdbz){
 		this.ywhdbz = ywhdbz;

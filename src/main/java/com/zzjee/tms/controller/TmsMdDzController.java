@@ -333,6 +333,7 @@ public class TmsMdDzController extends BaseController {
 				for (TmsMdDzEntity tmsMdDz : listTmsMdDzEntitys) {
 					tmsMdDzService.save(tmsMdDz);
 				}
+				// 设置AjaxJson对象的消息，表示文件导入成功。
 				j.setMsg("文件导入成功！");
 			} catch (Exception e) {
 				// 如果在导入过程中出现异常，则设置AjaxJson对象的消息，表示文件导入失败

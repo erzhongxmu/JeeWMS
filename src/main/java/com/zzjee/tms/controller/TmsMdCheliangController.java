@@ -140,6 +140,7 @@ public class TmsMdCheliangController extends BaseController {
             tmsMdCheliangService.updateEntitie(tmsMdCheliang);
             systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
+            // 抛出异常
             e.printStackTrace();
             throw new BusinessException(e.getMessage());
         }

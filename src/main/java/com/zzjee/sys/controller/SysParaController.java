@@ -366,6 +366,7 @@ public class SysParaController extends BaseController {
 			sysParaService.save(sysPara);
 		} catch (Exception e) {
 			e.printStackTrace();
+			// 返回一个没有内容的响应，HTTP状态码为204（NO_CONTENT）
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
 		//按照Restful风格约定，创建指向新任务的url, 也可以直接返回id或对象.

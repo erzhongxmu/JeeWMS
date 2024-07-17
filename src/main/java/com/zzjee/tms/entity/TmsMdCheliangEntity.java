@@ -70,8 +70,8 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	@Excel(name="区域",width=15)
 	private java.lang.String quyu;
 	/**
-	 *方法: 取得 java.lang.String
-	 *@return: java.lang.String  主键
+	 * get方法: 取得 java.lang.String
+	 * @return: java.lang.String  主键
 	 */
 	@Id
 	@GeneratedValue(generator = "paymentableGenerator")
