@@ -113,7 +113,6 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	public String getCreateBy(){
 		return this.createBy;
 	}
-
 	/**
 	 * set方法: 设置 java.lang.String
 	 * @param: java.lang.String  创建人登录名称
@@ -129,7 +128,6 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	public Date getCreateDate(){
 		return this.createDate;
 	}
-
 	/**
 	 * set方法: 设置java.util.Date
 	 * @param: java.util.Date  创建日期
@@ -145,7 +143,6 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	public String getUpdateName(){
 		return this.updateName;
 	}
-
 	/**
 	 * set方法: 设置java.lang.String
 	 * @param: java.lang.String  更新人名称
@@ -171,7 +168,7 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	}
 	/**
 	 * get方法: 取得java.util.Date
-	 * @ return: java.util.Date  更新日期
+	 * @return: java.util.Date  更新日期
 	 */
 	@Column(name ="UPDATE_DATE",nullable=true)
 	public Date getUpdateDate(){
@@ -180,7 +177,7 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 
 	/**
 	 * set方法: 设置java.util.Date
-	 * @ param: java.util.Date  更新日期
+	 * @param: java.util.Date  更新日期
 	 */
 	public void setUpdateDate(Date updateDate){
 		this.updateDate = updateDate;
