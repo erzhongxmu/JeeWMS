@@ -106,8 +106,9 @@ public class RpWmHisStockKuController extends BaseController {
 		//查询条件组装器
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, rpWmHisStockKu, request.getParameterMap());
 		try{
-		//自定义追加查询条件
+		// 执行追加操作
 		}catch (Exception e) {
+			//若出现异常，抛出一个带有原错误信息的BusinessException异常
 			throw new BusinessException(e.getMessage());
 		}
 		cq.add();

@@ -356,7 +356,9 @@ public class MvStockYjController extends BaseController {
 	@RequestMapping(params = "exportXls")
 	public String exportXls(MvStockYjEntity mvStockYj,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
+		//创建CriteriaQuery实例，用于生成HQL查询语句
 		CriteriaQuery cq = new CriteriaQuery(MvStockYjEntity.class, dataGrid);
+		//获取当前用户
 		TSUser user = ResourceUtil.getSessionUserName();
 		String roles = "";
 		if (user != null) {

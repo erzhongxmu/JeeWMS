@@ -399,10 +399,10 @@ public class RfidBuseController extends BaseController {
 	}
 
 	/**
-	 * 根据ID获取RFID表信息
+	 * 根据RFID表的ID获取RFID表信息.
 	 *
 	 * @param id RFID表的ID
-	 * @return ResponseEntity<?>类型
+	 * @return ResponseEntity<?> 类型的数据，可能包含具体RFID表信息或错误响应
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody

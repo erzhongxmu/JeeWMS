@@ -306,6 +306,7 @@ public class RpWmUpAndDownController extends BaseController {
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(RpWmUpAndDownEntity rpWmUpAndDown,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
+		//设置Excel导出的文件名
     	modelMap.put(NormalExcelConstants.FILE_NAME,"rp_wm_up_and_down");
     	modelMap.put(NormalExcelConstants.CLASS,RpWmUpAndDownEntity.class);
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("rp_wm_up_and_down列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),

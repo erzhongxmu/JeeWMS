@@ -392,6 +392,7 @@ public class RpWmToUpGoodsController extends BaseController {
 		//根据路径中的 id 参数，调用服务层获取对应的 RpWmToUpGoodsEntity 实体对象
 		RpWmToUpGoodsEntity task = rpWmToUpGoodsService.get(RpWmToUpGoodsEntity.class, id);
 		if (task == null) {
+			//如果没有找到对应数据，则返回404 Not Found错误码
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity(task, HttpStatus.OK);

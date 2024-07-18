@@ -266,7 +266,9 @@ public class RpWmInQmController extends BaseController {
 	@RequestMapping(params = "goUpdate")
 	public ModelAndView goUpdate(RpWmInQmEntity rpWmInQm, HttpServletRequest req) {
 		if (StringUtil.isNotEmpty(rpWmInQm.getId())) {
+			//根据ID获取实体对象
 			rpWmInQm = rpWmInQmService.getEntity(RpWmInQmEntity.class, rpWmInQm.getId());
+			//将获取到的实体对象放入模型对象中
 			req.setAttribute("rpWmInQmPage", rpWmInQm);
 		}
 		return new ModelAndView("com/zzjee/report/rpWmInQm-update");
