@@ -423,6 +423,7 @@ public class RpWmToDownGoodsController extends BaseController {
 		try{
 			rpWmToDownGoodsService.saveOrUpdate(rpWmToDownGoods);
 		} catch (Exception e) {
+			//如果在更新过程中发生异常，捕获异常并打印堆栈跟踪.
 			e.printStackTrace();
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}

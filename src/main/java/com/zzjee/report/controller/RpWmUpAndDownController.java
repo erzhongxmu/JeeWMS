@@ -277,6 +277,7 @@ public class RpWmUpAndDownController extends BaseController {
 			, DataGrid dataGrid,ModelMap modelMap) {
 		//创建CriteriaQuery对象，用于构建HQL查询条件
 		CriteriaQuery cq = new CriteriaQuery(RpWmUpAndDownEntity.class, dataGrid);
+		//生成HQL查询条件，用于根据请求参数过滤数据
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, rpWmUpAndDown, request.getParameterMap());
 		List<RpWmUpAndDownEntity> rpWmUpAndDowns = this.rpWmUpAndDownService.getListByCriteriaQuery(cq,false);
 		modelMap.put(NormalExcelConstants.FILE_NAME,"rp_wm_up_and_down");

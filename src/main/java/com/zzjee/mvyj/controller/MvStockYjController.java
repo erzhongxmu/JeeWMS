@@ -306,10 +306,14 @@ public class MvStockYjController extends BaseController {
 		}
 		return new ModelAndView("com/zzjee/mvyj/mvStockYj-add");
 	}
+
 	/**
-	 * 效期预警编辑页面跳转
-	 * 
-	 * @return
+	 * 当请求参数为 "goUpdate" 时，该方法将处理请求并返回跳转页面 "com/zzjee/mvyj/mvStockYj-update"。
+	 * 如果 mvStockYj 实例中的 id 不为空，则从数据库获取对应的实体对象，并将其属性复制到 request 对象中，
+	 * 以便在跳转到指定页面时可以访问这些数据。
+	 * @param mvStockYj mvStockYj 实例，包含请求的数据
+	 * @param req HttpServletRequest 对象，用于处理请求和响应
+	 * @return ModelAndView 对象，用于指定跳转到的页面和模型数据
 	 */
 	@RequestMapping(params = "goUpdate")
 	public ModelAndView goUpdate(MvStockYjEntity mvStockYj, HttpServletRequest req) {
