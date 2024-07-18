@@ -85,12 +85,19 @@ public class RpWmHisStockKuController extends BaseController {
 	}
 
 	/**
-	 * easyui AJAX请求数据
-	 * 
-	 * @param request
-	 * @param response
-	 * @param dataGrid
-	 * @param user
+	 * 处理数据表格请求的控制器方法。
+	 * @param rpWmHisStockKu 实体对象
+	 * @param request HTTP请求对象
+	 * @param response HTTP响应对象
+	 * @param dataGrid 分页数据对象
+	 * 此方法根据提供的参数处理数据表格的请求。具体步骤如下：
+	 * 1. 创建一个CriteriaQuery实例，用于构建查询语句。
+	 * 2. 使用HqlGenerateUtil工具来组装HQL查询条件，根据request中的参数构建条件。
+	 * 3. 防止异常情况，如果在组装查询条件过程中出现异常，将抛出一个BusinessException。
+	 * 4. 将组装好的查询条件应用到查询中。
+	 * 5. 调用rpWmHisStockKuService的getDataGridReturn方法执行数据查询并返回分页结果。
+	 * 6. 使用TagUtil工具将查询结果以特定的格式输出到响应中。
+	 *
 	 */
 	@RequestMapping(params = "datagrid")
 	public void datagrid(RpWmHisStockKuEntity rpWmHisStockKu,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {

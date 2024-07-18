@@ -363,6 +363,7 @@ public class RpWmToUpGoodsController extends BaseController {
 				try {
 					file.getInputStream().close();
 				} catch (IOException e) {
+					//打印异常堆栈信息
 					e.printStackTrace();
 				}
 			}

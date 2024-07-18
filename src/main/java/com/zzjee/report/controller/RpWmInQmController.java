@@ -236,16 +236,20 @@ public class RpWmInQmController extends BaseController {
 	}
 
 	/**
-	 * 跳转到rp_wm_in_qm新增页面
-	 * @param rpWmInQm rpWmInQm实体对象
-	 * @param req HTTP请求对象
-	 * @return ModelAndView对象，用于跳转到指定页面
+	 * 处理跳转至添加页面的请求。
+	 * @param rpWmInQm 实体对象
+	 * 此方法在接收到带有"goAdd"参数的请求时执行，其作用是获取传入实体对象（rpWmInQm）的信息，并在请求（request）对象中设置相关数据。如果实体对象的id非空，会从数据库查询对应实体对象的信息并填充到请求对象中，便于后续页面使用这些信息。否则，直接返回默认的添加页面。
+	 *
+	 * @param rpWmInQm 实体对象，包含待操作的对象信息
+	 * @return ModelAndView，包含视图名，用于指示跳转到哪个页面
 	 */
 	@RequestMapping(params = "goAdd")
 	public ModelAndView goAdd(RpWmInQmEntity rpWmInQm, HttpServletRequest req) {
+		//如果传入的实体对象的id非空，则从数据库获取该实体对象并填充到request中
 		if (StringUtil.isNotEmpty(rpWmInQm.getId())) {
 			//如果id不为空，则获取对应的实体对象并填充到request中
 			rpWmInQm = rpWmInQmService.getEntity(RpWmInQmEntity.class, rpWmInQm.getId());
+			// 将获取到的实体对象设置到request中，便于后续页面操作
 			req.setAttribute("rpWmInQmPage", rpWmInQm);
 		}
 		//返回指定的跳转页面

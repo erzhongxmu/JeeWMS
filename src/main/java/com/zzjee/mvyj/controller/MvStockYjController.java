@@ -326,15 +326,21 @@ public class MvStockYjController extends BaseController {
 		//返回用于跳转到更新页面的ModelAndView对象，视图名称为"com/zzjee/mvyj/mvStockYj-update"
 		return new ModelAndView("com/zzjee/mvyj/mvStockYj-update");
 	}
-	
+
 	/**
-	 * 导入功能跳转
-	 * 
-	 * @return
+	 * 处理上传请求的控制器方法
+	 * @param req HTTP请求对象
+	 * 此方法响应"upload"参数的请求，并设置相应的控制器名称为"mvStockYjController"。
+	 * 然后返回一个ModelAndView对象，该对象包含一个视图名称"common/upload/pub_excel_upload"。
+	 *
+	 * @param req HttpServletRequest对象，包含请求信息
+	 * @return ModelAndView，用于表示视图和模型数据
 	 */
 	@RequestMapping(params = "upload")
 	public ModelAndView upload(HttpServletRequest req) {
+		//设置控制器名称的属性
 		req.setAttribute("controller_name","mvStockYjController");
+		//创建并返回一个包含视图名称的ModelAndView对象
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
 	

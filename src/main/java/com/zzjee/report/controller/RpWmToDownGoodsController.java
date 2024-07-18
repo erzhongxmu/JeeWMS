@@ -441,7 +441,7 @@ public class RpWmToDownGoodsController extends BaseController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable("id") String id) {
-		//使用服务层方法删除对象
+		//使用服务层方法删除指定ID的对象。
 		rpWmToDownGoodsService.deleteEntityById(RpWmToDownGoodsEntity.class, id);
 	}
 }
