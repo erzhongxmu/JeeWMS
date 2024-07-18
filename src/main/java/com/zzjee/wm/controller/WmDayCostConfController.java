@@ -163,6 +163,7 @@ public class WmDayCostConfController extends BaseController {
             wmDayCostConf.setCostSf("N");
             // 保存或更新实体
             wmDayCostConfService.saveOrUpdate(wmDayCostConf);
+            // 添加日志记录，记录类型为删除，级别为信息
             systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             // 如果发生异常，打印堆栈跟踪信息

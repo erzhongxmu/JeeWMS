@@ -147,6 +147,7 @@ public class WmCusCostHController extends BaseController {
 		try{
 			// 调用服务层方法删除实体
 			wmCusCostHService.delMain(wmCusCostH);
+			// 添加日志记录，记录类型为删除，级别为信息
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();

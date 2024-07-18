@@ -164,11 +164,14 @@ public class BaStoreAreaController extends BaseController {
 		AjaxJson j = new AjaxJson();
 		message = "ba_store_area删除成功";
 		try{
+			// 添加日志记录，记录类型为删除，级别为信息
 			for(String id:ids.split(",")){
 				BaStoreAreaEntity baStoreArea = systemService.getEntity(BaStoreAreaEntity.class,
 				id
 				);
+				// 调用baStoreAreaService的delete方法删除baStoreArea对象
 				baStoreAreaService.delete(baStoreArea);
+				// 添加日志记录，记录类型为删除，级别为信息
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}
 		}catch(Exception e){

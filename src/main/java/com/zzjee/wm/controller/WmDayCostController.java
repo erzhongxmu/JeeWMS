@@ -308,7 +308,9 @@ public class WmDayCostController extends BaseController {
 		wmDayCost = systemService.getEntity(WmDayCostEntity.class, wmDayCost.getId());
 		message = "费用维护删除成功";
 		try{
+			// 调用服务层方法删除实体
 			wmDayCostService.delete(wmDayCost);
+			// 调用baStoreAreaService的delete方法删除baStoreArea对象
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			// 如果发生异常，打印堆栈跟踪信息

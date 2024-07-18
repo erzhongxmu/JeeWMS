@@ -281,6 +281,7 @@ public class WmImNoticeHController extends BaseController {
         // 将查询结果封装成DataGrid对象并返回给前端
         TagUtil.datagrid(response, dataGrid);
     }
+
     @RequestMapping(params = "datagridtbatch")
     public void datagridtbatch(WmImNoticeIEntity wmImNoticeI,
                                HttpServletRequest request, HttpServletResponse response,
@@ -305,7 +306,6 @@ public class WmImNoticeHController extends BaseController {
         dataGrid.setResults(resultnew);
         dataGrid.setTotal(resultnew.size());
         TagUtil.datagrid(response, dataGrid);
-
     }
 
     /**
@@ -347,7 +347,6 @@ public class WmImNoticeHController extends BaseController {
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.add();
-
         this.wmImNoticeHService.getDataGridReturn(cq, true);
         TagUtil.datagrid(response, dataGrid);
     }

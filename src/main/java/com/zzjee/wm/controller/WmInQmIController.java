@@ -140,7 +140,6 @@ public class WmInQmIController extends BaseController {
         }
 //		cq.like("imNoticeId", "RK%");
         cq.add();
-
         this.wmInQmIService.getDataGridReturn(cq, true);
         List<WmInQmIEntity> resultold = dataGrid.getResults();
         List<WmInQmIEntity> resultnew = new ArrayList<>();
@@ -196,7 +195,6 @@ public class WmInQmIController extends BaseController {
                 }
 
             }
-
             resultnew.add(t);
         }
         dataGrid.setResults(resultnew);
