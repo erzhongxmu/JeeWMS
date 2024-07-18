@@ -287,24 +287,31 @@ public class RpWmInQmController extends BaseController {
 		//返回视图名
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
-	
+
 	/**
-	 * 导出excel
-	 * 
-	 * @param request
-	 * @param response
+	 * 操作导出Excel
+	 *
+	 * @param rpWmInQm 实体类对象，包含导出的数据条件
+	 * @param request HttpServletRequest 对象，用于获取请求参数
+	 * @param response HttpServletResponse 对象，用于响应导出的Excel文件
+	 * @return String 视图名
 	 */
 	@RequestMapping(params = "exportXls")
 	public String exportXls(RpWmInQmEntity rpWmInQm,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
+		//创建CriteriaQuery对象，用于构建HQL查询语句
 		CriteriaQuery cq = new CriteriaQuery(RpWmInQmEntity.class, dataGrid);
+		//使用HqlGenerateUtil方法，根据实体对象和请求参数组装查询条件
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, rpWmInQm, request.getParameterMap());
+		//执行查询，获取符合条件的数据列表
 		List<RpWmInQmEntity> rpWmInQms = this.rpWmInQmService.getListByCriteriaQuery(cq,false);
+		//定义文件名、导出类、导出参数和数据列表等信息
 		modelMap.put(NormalExcelConstants.FILE_NAME,"rp_wm_in_qm");
 		modelMap.put(NormalExcelConstants.CLASS,RpWmInQmEntity.class);
 		modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("rp_wm_in_qm列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
 			"导出信息"));
 		modelMap.put(NormalExcelConstants.DATA_LIST,rpWmInQms);
+		//返回视图名，表示后续的处理逻辑
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 	/**
