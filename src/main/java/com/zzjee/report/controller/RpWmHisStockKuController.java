@@ -274,13 +274,20 @@ public class RpWmHisStockKuController extends BaseController {
 			, DataGrid dataGrid,ModelMap modelMap) {
 		//创建CriteriaQuery对象，用于执行查询操作
 		CriteriaQuery cq = new CriteriaQuery(RpWmHisStockKuEntity.class, dataGrid);
+		//使用HqlGenerateUtil安装HQL查询语句
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, rpWmHisStockKu, request.getParameterMap());
+		//执行查询，并获取所有结果
 		List<RpWmHisStockKuEntity> rpWmHisStockKus = this.rpWmHisStockKuService.getListByCriteriaQuery(cq,false);
+		//设置excel文件名称
 		modelMap.put(NormalExcelConstants.FILE_NAME,"rp_wm_his_stock_ku");
+		//设置excel类对象
 		modelMap.put(NormalExcelConstants.CLASS,RpWmHisStockKuEntity.class);
+		//设置excel参数信息
 		modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("rp_wm_his_stock_ku列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
 			"导出信息"));
+		//设置导出的数据列表
 		modelMap.put(NormalExcelConstants.DATA_LIST,rpWmHisStockKus);
+		//返回Excel视图页面
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 
