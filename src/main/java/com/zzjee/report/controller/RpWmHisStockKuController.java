@@ -160,6 +160,7 @@ public class RpWmHisStockKuController extends BaseController {
 	 @RequestMapping(params = "doBatchDel")
 	@ResponseBody
 	public AjaxJson doBatchDel(String ids,HttpServletRequest request){
+		//初始化返回对象和信息字符串
 		String message = null;
 		AjaxJson j = new AjaxJson();
 		message = "rp_wm_his_stock_ku删除成功";

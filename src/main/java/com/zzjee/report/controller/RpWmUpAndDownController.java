@@ -366,11 +366,17 @@ public class RpWmUpAndDownController extends BaseController {
 		}
 		return j;
 	}
-	
+
+	/**
+	 * 根据GET请求方法获取一组 `RpWmUpAndDownEntity` 实体。
+	 * 返回所有 `RpWmUpAndDownEntity` 实体的列表。
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<RpWmUpAndDownEntity> list() {
+		//调用服务方法获取所有 RpWmUpAndDownEntity 实体
 		List<RpWmUpAndDownEntity> listRpWmUpAndDowns=rpWmUpAndDownService.getList(RpWmUpAndDownEntity.class);
+		//返回获取到的实体列表
 		return listRpWmUpAndDowns;
 	}
 	

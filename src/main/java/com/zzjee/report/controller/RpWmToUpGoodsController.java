@@ -435,6 +435,13 @@ public class RpWmToUpGoodsController extends BaseController {
 		return new ResponseEntity(headers, HttpStatus.CREATED);
 	}
 
+	/**
+	 * 处理PUT请求，用于更新rp_wm_to_up_goods实体数据。
+	 * 请求体应包含要更新的实体数据，JSON格式。
+	 * 使用JSR303 Bean Validator验证实体数据，验证失败返回400错误。
+	 *
+	 * @param rpWmToUpGoods 将要更新的实体对象
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> update(@RequestBody RpWmToUpGoodsEntity rpWmToUpGoods) {
 		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.

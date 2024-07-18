@@ -417,6 +417,15 @@ public class RfidBuseController extends BaseController {
 		return new ResponseEntity(task, HttpStatus.OK);
 	}
 
+	/**
+	 * 处理POST请求，用于创建一个新的 `RfidBuseEntity` 实体。
+	 * 请求体应包含要创建的实体数据，JSON格式。
+	 * 使用JSR303 Bean Validator对实体数据进行验证，验证失败返回400错误。
+	 *
+	 * @param rfidBuse 要创建的 `RfidBuseEntity` 实体对象
+	 * @param uriBuilder 用于构建URI的 `UriComponentsBuilder` 实例
+	 * @return 如果创建成功，返回响应实体，HTTP状态码为201 Created；如果创建失败，返回响应实体，HTTP状态码为400 Bad Request。
+	 */
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> create(@RequestBody RfidBuseEntity rfidBuse, UriComponentsBuilder uriBuilder) {

@@ -455,6 +455,7 @@ public class MvStockYjController extends BaseController {
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<MvStockYjEntity> list() {
+		//获取MVStockYjEntity实体列表
 		List<MvStockYjEntity> listMvStockYjs=mvStockYjService.getList(MvStockYjEntity.class);
 		return listMvStockYjs;
 	}
