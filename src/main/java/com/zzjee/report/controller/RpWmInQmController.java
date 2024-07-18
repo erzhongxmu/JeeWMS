@@ -180,7 +180,7 @@ public class RpWmInQmController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
-	@ResponseBody
+	@ResponseBody         //将方法的返回值自动转换为 JSON 并写入 HTTP 响应体
 	public AjaxJson doAdd(RpWmInQmEntity rpWmInQm, HttpServletRequest request) {
 		String message = null;
 		AjaxJson j = new AjaxJson();

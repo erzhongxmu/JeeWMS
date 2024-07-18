@@ -221,6 +221,7 @@ public class RpWmHisStockKuController extends BaseController {
 	 */
 	@RequestMapping(params = "goAdd")
 	public ModelAndView goAdd(RpWmHisStockKuEntity rpWmHisStockKu, HttpServletRequest req) {
+		//如果rpWmHisStockKu对象的ID不为空
 		if (StringUtil.isNotEmpty(rpWmHisStockKu.getId())) {
 			rpWmHisStockKu = rpWmHisStockKuService.getEntity(RpWmHisStockKuEntity.class, rpWmHisStockKu.getId());
 			req.setAttribute("rpWmHisStockKuPage", rpWmHisStockKu);

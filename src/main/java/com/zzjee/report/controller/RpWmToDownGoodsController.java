@@ -380,7 +380,7 @@ public class RpWmToDownGoodsController extends BaseController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
+	@ResponseBody         //将方法的返回值自动转换为 JSON 并写入 HTTP 响应体
 	public ResponseEntity<?> create(@RequestBody RpWmToDownGoodsEntity rpWmToDownGoods, UriComponentsBuilder uriBuilder) {
 		//使用JSR303 Bean Validator进行字段验证，如果验证失败返回400错误码及错误信息
 		Set<ConstraintViolation<RpWmToDownGoodsEntity>> failures = validator.validate(rpWmToDownGoods);

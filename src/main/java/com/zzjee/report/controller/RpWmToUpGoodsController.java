@@ -201,6 +201,7 @@ public class RpWmToUpGoodsController extends BaseController {
 	@ResponseBody
 	public AjaxJson doUpdate(RpWmToUpGoodsEntity rpWmToUpGoods, HttpServletRequest request) {
 		String message = null;
+		//创建一个 AjaxJson 对象用于返回结果
 		AjaxJson j = new AjaxJson();
 		message = "rp_wm_to_up_goods更新成功";
 		// 使用systemService的get方法根据RpWmToUpGoodsEntity类和给定的ID获取实体对象
