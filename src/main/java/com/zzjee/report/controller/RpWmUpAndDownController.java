@@ -379,7 +379,13 @@ public class RpWmUpAndDownController extends BaseController {
 		//返回获取到的实体列表
 		return listRpWmUpAndDowns;
 	}
-	
+
+	/**
+	 * 根据GET请求方法获取特定 `id` 的 `RpWmUpAndDownEntity` 实体。
+	 *
+	 * @param id 指定的实体ID
+	 * @return 如果找到实体，返回该实体；如果未找到（404 Not Found状态），返回404状态的响应实体。
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {

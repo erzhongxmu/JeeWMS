@@ -166,9 +166,8 @@ public class RpWmHisStockKuController extends BaseController {
 		message = "rp_wm_his_stock_ku删除成功";
 		try{
 			for(String id:ids.split(",")){
-				RpWmHisStockKuEntity rpWmHisStockKu = systemService.getEntity(RpWmHisStockKuEntity.class, 
-				id
-				);
+				// 通过ID获取实体
+				RpWmHisStockKuEntity rpWmHisStockKu = systemService.getEntity(RpWmHisStockKuEntity.class, id);
 				rpWmHisStockKuService.delete(rpWmHisStockKu);
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}

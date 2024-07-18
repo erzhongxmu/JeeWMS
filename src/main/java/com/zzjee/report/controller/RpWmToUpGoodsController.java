@@ -449,9 +449,8 @@ public class RpWmToUpGoodsController extends BaseController {
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
-
-		//保存
 		try{
+			//保存或更新实体数据
 			rpWmToUpGoodsService.saveOrUpdate(rpWmToUpGoods);
 		} catch (Exception e) {
 			e.printStackTrace();

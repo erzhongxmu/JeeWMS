@@ -325,6 +325,7 @@ public class RpWmInQmController extends BaseController {
 			, DataGrid dataGrid,ModelMap modelMap) {
 		//设置Excel导出的文件名
     	modelMap.put(NormalExcelConstants.FILE_NAME,"rp_wm_in_qm");
+		//设置导出的实体类
     	modelMap.put(NormalExcelConstants.CLASS,RpWmInQmEntity.class);
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("rp_wm_in_qm列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
     	"导出信息"));

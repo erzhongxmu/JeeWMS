@@ -459,7 +459,14 @@ public class MvStockYjController extends BaseController {
 		List<MvStockYjEntity> listMvStockYjs=mvStockYjService.getList(MvStockYjEntity.class);
 		return listMvStockYjs;
 	}
-	
+
+	/**
+	 * 根据指定ID获取MVStockYjEntity实体。
+	 * 如果找到实体，将其作为响应返回；如果未找到，返回404 Not Found响应。
+	 *
+	 * @param id 指定的实体ID
+	 * @return ResponseEntity<?> 包含实体或错误信息的响应
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
