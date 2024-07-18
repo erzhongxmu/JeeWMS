@@ -109,7 +109,7 @@ public class MvGoodsController extends BaseController {
 		return j;
 	}
 	/**
-	 * easyui AJAX请求数据
+	 * easyui 处理AJAX请求以返回MvGoodsEntity数据列表的datagrid
 	 *
 	 * @param mvGoods
 	 * @param request

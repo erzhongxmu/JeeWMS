@@ -88,7 +88,7 @@ public class MdGoodsController extends BaseController {
 		return new ModelAndView("com/zzjee/md/mdGoodsallList");
 	}
 	/**
-	 * easyui AJAX请求数据
+	 * easyui 处理AJAX请求以返回MdGoodsEntity数据列表的datagrid
 	 *
 	 * @param mdGoods
 	 * @param request

@@ -89,7 +89,7 @@ public class MdCusOtherController extends BaseController {
 	}
 
 	/**
-	 * easyui AJAX请求数据
+	 * easyui 处理AJAX请求以返回MdCusOtherEntity数据列表的datagrid
 	 *
 	 * @param mdCusOther
 	 * @param request

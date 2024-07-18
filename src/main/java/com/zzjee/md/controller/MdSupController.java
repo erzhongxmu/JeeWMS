@@ -90,7 +90,7 @@ public class MdSupController extends BaseController {
 	}
 
 	/**
-	 * easyui AJAX请求数据
+	 * 处理AJAX请求以返回MdSupEntity数据列表的datagrid
 	 *
 	 * @param mdSup
 	 * @param request

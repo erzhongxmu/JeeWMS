@@ -87,7 +87,7 @@ public class MvCusOtherController extends BaseController {
 	}
 
 	/**
-	 * easyui AJAX请求数据
+	 * easyui 处理AJAX请求以返回MvCusOtherEntity数据列表的datagrid
 	 *
 	 * @param mvCusOther
 	 * @param request
