@@ -499,6 +499,7 @@ public class WmsPlcController extends BaseController {
             params.setHeadRows(1);
             params.setNeedSave(true);
             try {
+                //使用ExcelImportUtil工具类导入Excel文件内容，并转换成WmsPlcEntity对象的列表
                 List<WmsPlcEntity> listWmsPlcEntitys = ExcelImportUtil.importExcel(file.getInputStream(), WmsPlcEntity.class, params);
                 //遍历导入的实体类对象列表，并保存到数据库中
                 for (WmsPlcEntity wmsPlc : listWmsPlcEntitys) {
@@ -507,6 +508,7 @@ public class WmsPlcController extends BaseController {
                 j.setMsg("文件导入成功！");
             } catch (Exception e) {
                 j.setMsg("文件导入失败！");
+                //记录错误日志
                 logger.error(ExceptionUtil.getExceptionMessage(e));
             } finally {
                 try {
@@ -516,6 +518,7 @@ public class WmsPlcController extends BaseController {
                 }
             }
         }
+        //返回AjaxJson对象作为HTTP响应的内容
         return j;
     }
 

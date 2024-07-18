@@ -216,13 +216,17 @@ public class MvStockYjController extends BaseController {
 				id
 				);
 				mvStockYjService.delete(mvStockYj);
+				//记录删除日志
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}
 		}catch(Exception e){
+			//捕捉并打印异常堆栈跟踪
 			e.printStackTrace();
+			//更新消息为删除失败
 			message = "效期预警删除失败";
 			throw new BusinessException(e.getMessage());
 		}
+		//设置AjaxJson对象的消息属性
 		j.setMsg(message);
 		return j;
 	}

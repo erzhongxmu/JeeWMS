@@ -162,10 +162,12 @@ public class RpWmInQmController extends BaseController {
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}
 		}catch(Exception e){
+			//捕捉并打印异常堆栈跟踪
 			e.printStackTrace();
 			message = "rp_wm_in_qm删除失败";
 			throw new BusinessException(e.getMessage());
 		}
+		//设置AjaxJson对象的消息属性
 		j.setMsg(message);
 		//返回AjaxJson对象作为HTTP响应的内容
 		return j;
