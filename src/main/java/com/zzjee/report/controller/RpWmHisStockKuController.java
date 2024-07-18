@@ -101,6 +101,7 @@ public class RpWmHisStockKuController extends BaseController {
 	 */
 	@RequestMapping(params = "datagrid")
 	public void datagrid(RpWmHisStockKuEntity rpWmHisStockKu,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
+		//创建CriteriaQuery对象，用于构建HQL查询语句
 		CriteriaQuery cq = new CriteriaQuery(RpWmHisStockKuEntity.class, dataGrid);
 		//查询条件组装器
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, rpWmHisStockKu, request.getParameterMap());

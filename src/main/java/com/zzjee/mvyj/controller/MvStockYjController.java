@@ -343,12 +343,15 @@ public class MvStockYjController extends BaseController {
 		//创建并返回一个包含视图名称的ModelAndView对象
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
-	
+
 	/**
-	 * 导出excel
-	 * 
-	 * @param request
-	 * @param response
+	 * 处理导出Excel的请求，实现将数据导出为Excel文件
+	 *
+	 * @param request HttpServletRequest 对象，用于获取请求参数
+	 * @param response HttpServletResponse 对象，用于返回导出的Excel文件
+	 * @param dataGrid 数据格对象，用于控制数据分页和排序等信息
+	 * @param modelMap 用于存储视图和数据的模型映射对象
+	 * @return String 返回视图名称，表示后续的处理逻辑
 	 */
 	@RequestMapping(params = "exportXls")
 	public String exportXls(MvStockYjEntity mvStockYj,HttpServletRequest request,HttpServletResponse response

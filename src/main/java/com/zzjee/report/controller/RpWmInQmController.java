@@ -255,10 +255,13 @@ public class RpWmInQmController extends BaseController {
 		//返回指定的跳转页面
 		return new ModelAndView("com/zzjee/report/rpWmInQm-add");
 	}
+
 	/**
-	 * rp_wm_in_qm编辑页面跳转
-	 * 
-	 * @return
+	 * 跳转至更新页面
+	 *
+	 * @param rpWmInQm 实体类对象，包含要更新的数据
+	 * @param req HttpServletRequest 对象，用于获取请求参数
+	 * @return ModelAndView 对象，包含视图名和模型信息
 	 */
 	@RequestMapping(params = "goUpdate")
 	public ModelAndView goUpdate(RpWmInQmEntity rpWmInQm, HttpServletRequest req) {

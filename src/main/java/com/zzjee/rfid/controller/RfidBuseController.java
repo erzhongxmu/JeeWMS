@@ -384,6 +384,12 @@ public class RfidBuseController extends BaseController {
 		return j;
 	}
 
+	/**
+	 * 处理HTTP GET请求以获取所有的RFID表列表.
+	 * 将获取的列表作为JSON数据直接作为响应返回给客户端.
+	 *
+	 * @return ResponseEntity<List<RfidBuseEntity>> 类型的数据
+	 */
 	@RequestMapping(method = RequestMethod.GET)      //注解处理HTTP GET请求
 	@ResponseBody     //作为HTTP响应的内容返回给客户端
 	public List<RfidBuseEntity> list() {

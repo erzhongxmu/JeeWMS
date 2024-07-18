@@ -294,10 +294,14 @@ public class RpWmUpAndDownController extends BaseController {
 	}
 
 	/**
-	 * 导出excel 使模板
-	 * 
-	 * @param request
-	 * @param response
+	 * 导出 Excel 操作（使用特定的逗号分隔参数 "exportXlsByT"）
+	 *
+	 * @param rpWmUpAndDown 需要导出的数据实体对象
+	 * @param request HTTP 请求对象
+	 * @param response HTTP 响应对象
+	 * @param dataGrid 数据网格对象
+	 * @param modelMap 模型属性映射对象
+	 * @return "NormalExcelConstants.JEECG_EXCEL_VIEW" 视图名
 	 */
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(RpWmUpAndDownEntity rpWmUpAndDown,HttpServletRequest request,HttpServletResponse response

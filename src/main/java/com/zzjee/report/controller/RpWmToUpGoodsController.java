@@ -378,7 +378,14 @@ public class RpWmToUpGoodsController extends BaseController {
 		List<RpWmToUpGoodsEntity> listRpWmToUpGoodss=rpWmToUpGoodsService.getList(RpWmToUpGoodsEntity.class);
 		return listRpWmToUpGoodss;
 	}
-	
+
+	/**
+	 * 根据指定的 id 参数获取 RpWmToUpGoodsEntity 实体对象，并返回。
+	 * 如果没有找到对应数据，则返回 404 Not Found 错误码。
+	 *
+	 * @param id 用于获取特定对象的唯一标识
+	 * @return ResponseEntity&lt;RpWmToUpGoodsEntity&gt; 包含请求的数据实体或者错误信息
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
