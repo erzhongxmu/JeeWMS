@@ -83,7 +83,7 @@ public class FxjOtherLoginController extends BaseController {
 	}
 
 	/**
-	 * easyui AJAX请求数据
+	 * easyui 处理AJAX请求以返回FxjOtherLoginEntity数据列表的datagrid
 	 *
 	 * @param fxjOtherLogin
 	 * @param request

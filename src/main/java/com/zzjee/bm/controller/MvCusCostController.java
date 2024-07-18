@@ -1201,6 +1201,7 @@ public class MvCusCostController extends BaseController {
 
     /**
      * 批量删除mv_cus_cost
+     * 通过接收一个包含多个ID的字符串，来删除对应的记录
      *
      * @param ids
      * @param request

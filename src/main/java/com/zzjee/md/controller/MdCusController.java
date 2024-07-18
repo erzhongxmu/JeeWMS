@@ -93,7 +93,7 @@ public class MdCusController extends BaseController {
 		return new ModelAndView("com/zzjee/md/mdCusallList");
 	}
 	/**
-	 * easyui AJAX请求数据
+	 * easyui 处理AJAX请求以返回MdCusEntity数据列表的datagrid
 	 *
 	 * @param mdCus
 	 * @param request

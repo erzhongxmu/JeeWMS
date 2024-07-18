@@ -226,6 +226,7 @@ public class WvDayCostSumController extends BaseController {
 
 	/**
 	 * 批量删除wv_day_cost_sum
+	 * 通过接收一个包含多个ID的字符串，来删除对应的记录
 	 *
 	 * @param request
 	 * @return
