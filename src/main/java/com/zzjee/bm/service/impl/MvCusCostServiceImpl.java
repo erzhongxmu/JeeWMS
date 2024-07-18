@@ -39,6 +39,7 @@ public class MvCusCostServiceImpl extends CommonServiceImpl implements MvCusCost
  	}
  	@Override
     public void saveOrUpdate(MvCusCostEntity entity) throws Exception{
+		//调用父类的saveOrUpdate方法
  		super.saveOrUpdate(entity);
  		//执行更新操作增强业务
  		this.doUpdateBus(entity);

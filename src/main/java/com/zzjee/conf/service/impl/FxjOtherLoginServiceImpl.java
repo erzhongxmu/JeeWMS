@@ -41,6 +41,7 @@ public class FxjOtherLoginServiceImpl extends CommonServiceImpl implements FxjOt
 
  	@Override
     public void saveOrUpdate(FxjOtherLoginEntity entity) throws Exception{
+		//调用父类的saveOrUpdate方法
  		super.saveOrUpdate(entity);
  		//执行更新操作增强业务
  		this.doUpdateBus(entity);
