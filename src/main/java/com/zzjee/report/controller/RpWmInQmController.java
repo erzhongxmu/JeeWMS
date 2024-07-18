@@ -190,13 +190,18 @@ public class RpWmInQmController extends BaseController {
 		try{
 			//保存rpWmInQm对象到数据库
 			rpWmInQmService.save(rpWmInQm);
+			//记录日志，日志类型为插入，日志级别为信息
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
+			//打印异常堆栈信息
 			e.printStackTrace();
+			//更新消息为“rp_wm_in_qm添加失败”
 			message = "rp_wm_in_qm添加失败";
 			throw new BusinessException(e.getMessage());
 		}
+		//设置AjaxJson对象的消息
 		j.setMsg(message);
+		//返回AjaxJson对象
 		return j;
 	}
 	

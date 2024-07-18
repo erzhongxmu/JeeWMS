@@ -392,11 +392,15 @@ public class RpWmToDownGoodsController extends BaseController {
 		try{
 			rpWmToDownGoodsService.save(rpWmToDownGoods);
 		} catch (Exception e) {
+			//打印异常堆栈信息
 			e.printStackTrace();
+			//如果保存失败，返回状态码为204 NO_CONTENT
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
-		//按照Restful风格约定，创建指向新任务的url, 也可以直接返回id或对象.
+		//按照Restful风格约定，创建指向新任务的URL
+		//获取新创建对象的ID
 		String id = rpWmToDownGoods.getId();
+		//构建 URI，路径为"/rest/rpWmToDownGoodsController/{id}"
 		URI uri = uriBuilder.path("/rest/rpWmToDownGoodsController/" + id).build().toUri();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(uri);
