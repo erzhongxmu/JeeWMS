@@ -399,6 +399,15 @@ public class RpWmToUpGoodsController extends BaseController {
 		return new ResponseEntity(task, HttpStatus.OK);
 	}
 
+	/**
+	 * 处理 POST 请求，创建新的 RpWmToUpGoodsEntity 实体对象。
+	 * 使用 JSR303 Bean Validator 进行校验，如果校验失败返回 400 错误码及含 JSON 格式的错误信息。
+	 * 成功保存后，返回包含状态码201 Created，并设置 Location 头部指向新创建对象的 URL。
+	 *
+	 * @param rpWmToUpGoods 需要创建的 RpWmToUpGoodsEntity 实体对象
+	 * @param uriBuilder 用于构建和返回创建对象的 URL
+	 * @return ResponseEntity&lt;Void&gt; 包含状态码、响应头和状态信息
+	 */
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> create(@RequestBody RpWmToUpGoodsEntity rpWmToUpGoods, UriComponentsBuilder uriBuilder) {

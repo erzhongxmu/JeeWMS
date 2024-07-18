@@ -113,7 +113,9 @@ public class RpWmHisStockKuController extends BaseController {
 		}
 		//确保执行的查询语句
 		cq.add();
+		//调用rpWmHisStockKuService的getDataGridReturn方法执行查询操作
 		this.rpWmHisStockKuService.getDataGridReturn(cq, true);
+		//使用TagUtil的datagrid方法将查询结果转换为响应格式并发送给客户端
 		TagUtil.datagrid(response, dataGrid);
 	}
 	

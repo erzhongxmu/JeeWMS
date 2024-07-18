@@ -310,6 +310,7 @@ public class RpWmUpAndDownController extends BaseController {
     	modelMap.put(NormalExcelConstants.FILE_NAME,"rp_wm_up_and_down");
 		//设置 Excel 导出的类
     	modelMap.put(NormalExcelConstants.CLASS,RpWmUpAndDownEntity.class);
+		//设置 Excel 导出的参数，包括标题、导出人和导出信息
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("rp_wm_up_and_down列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
     	"导出信息"));
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());

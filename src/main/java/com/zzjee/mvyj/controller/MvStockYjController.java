@@ -360,10 +360,12 @@ public class MvStockYjController extends BaseController {
 		CriteriaQuery cq = new CriteriaQuery(MvStockYjEntity.class, dataGrid);
 		//获取当前用户
 		TSUser user = ResourceUtil.getSessionUserName();
+
 		String roles = "";
 		if (user != null) {
 			//通过用户ID获取用户关联的所有角色
 			List<TSRoleUser> rUsers = systemService.findByProperty(TSRoleUser.class, "TSUser.id", user.getId());
+			//遍历用户角色，获取所有角色的roleCode
 			for (TSRoleUser ru : rUsers) {
 				TSRole role = ru.getTSRole();
 				roles += role.getRoleCode() + ",";

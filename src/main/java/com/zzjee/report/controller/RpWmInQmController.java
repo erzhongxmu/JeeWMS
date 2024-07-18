@@ -274,11 +274,11 @@ public class RpWmInQmController extends BaseController {
 		//返回视图名
 		return new ModelAndView("com/zzjee/report/rpWmInQm-update");
 	}
-	
+
 	/**
-	 * 导入功能跳转
-	 * 
-	 * @return
+	 * 导入功能的跳转页面
+	 *
+	 * @return ModelAndView 对象，包含视图名和控制器名称
 	 */
 	@RequestMapping(params = "upload")
 	public ModelAndView upload(HttpServletRequest req) {
