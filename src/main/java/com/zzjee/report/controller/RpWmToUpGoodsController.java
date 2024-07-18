@@ -454,6 +454,7 @@ public class RpWmToUpGoodsController extends BaseController {
 			rpWmToUpGoodsService.saveOrUpdate(rpWmToUpGoods);
 		} catch (Exception e) {
 			e.printStackTrace();
+			//如果出现任何异常，返回无内容状态码204
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
 

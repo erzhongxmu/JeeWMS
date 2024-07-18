@@ -440,6 +440,7 @@ public class RfidBuseController extends BaseController {
 			rfidBuseService.save(rfidBuse);
 		} catch (Exception e) {
 			e.printStackTrace();
+			//如果保存过程中出现任何异常，返回无内容状态码204
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
 		//按照Restful风格约定，创建指向新任务的url, 也可以直接返回id或对象.

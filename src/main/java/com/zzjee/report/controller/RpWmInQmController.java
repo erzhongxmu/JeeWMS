@@ -314,11 +314,17 @@ public class RpWmInQmController extends BaseController {
 		//返回视图名，表示后续的处理逻辑
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
+
 	/**
-	 * 导出excel 使模板
-	 * 
-	 * @param request
-	 * @param response
+	 * 处理导出指定报告类型（T）的rp_wm_in_qm实体列表的请求。
+	 * 使用Excel形式返回结果。
+	 *
+	 * @param rpWmInQm 实体对象，包含需要在Excel中导出的数据
+	 * @param request HTTP请求对象
+	 * @param response HTTP响应对象
+	 * @param dataGrid 分页参数对象，用于处理分页和排序逻辑
+	 * @param modelMap 模型映射对象
+	 * @return 页面视图，通常用于返回一个HTML页面路径
 	 */
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(RpWmInQmEntity rpWmInQm,HttpServletRequest request,HttpServletResponse response

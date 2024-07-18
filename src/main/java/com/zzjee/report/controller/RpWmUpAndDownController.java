@@ -389,6 +389,7 @@ public class RpWmUpAndDownController extends BaseController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
+		//调用服务方法根据给定的ID获取特定的 RpWmUpAndDownEntity 实体
 		RpWmUpAndDownEntity task = rpWmUpAndDownService.get(RpWmUpAndDownEntity.class, id);
 		if (task == null) {
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
