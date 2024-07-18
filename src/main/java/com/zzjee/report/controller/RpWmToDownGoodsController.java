@@ -385,6 +385,7 @@ public class RpWmToDownGoodsController extends BaseController {
 		//使用JSR303 Bean Validator进行字段验证，如果验证失败返回400错误码及错误信息
 		Set<ConstraintViolation<RpWmToDownGoodsEntity>> failures = validator.validate(rpWmToDownGoods);
 		if (!failures.isEmpty()) {
+			//将验证失败的信息提取出来并返回，状态码为400 BAD_REQUEST
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
 		//尝试保存RpWmToDownGoodsEntity对象到数据库

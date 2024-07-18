@@ -183,6 +183,7 @@ public class RpWmInQmController extends BaseController {
 	@ResponseBody         //将方法的返回值自动转换为 JSON 并写入 HTTP 响应体
 	public AjaxJson doAdd(RpWmInQmEntity rpWmInQm, HttpServletRequest request) {
 		String message = null;
+		//创建一个 AjaxJson 对象用于返回结果
 		AjaxJson j = new AjaxJson();
 		message = "rp_wm_in_qm添加成功";
 		try{

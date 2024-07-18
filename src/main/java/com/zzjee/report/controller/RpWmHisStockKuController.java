@@ -224,8 +224,10 @@ public class RpWmHisStockKuController extends BaseController {
 		//如果rpWmHisStockKu对象的ID不为空
 		if (StringUtil.isNotEmpty(rpWmHisStockKu.getId())) {
 			rpWmHisStockKu = rpWmHisStockKuService.getEntity(RpWmHisStockKuEntity.class, rpWmHisStockKu.getId());
+			//将获取到的对象设置到请求属性中，属性名为 "rpWmHisStockKuPage"
 			req.setAttribute("rpWmHisStockKuPage", rpWmHisStockKu);
 		}
+		//返回视图名称为 "com/zzjee/report/rpWmHisStockKu-add" 的 ModelAndView 对象
 		return new ModelAndView("com/zzjee/report/rpWmHisStockKu-add");
 	}
 	/**

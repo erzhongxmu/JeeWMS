@@ -266,6 +266,7 @@ public class MvStockYjController extends BaseController {
 	@RequestMapping(params = "doUpdate")
 	@ResponseBody   //将方法的返回值自动转换为 JSON 并写入 HTTP 响应体
 	public AjaxJson doUpdate(MvStockYjEntity mvStockYj, HttpServletRequest request) {
+		//定义一个消息字符串
 		String message = null;
 		AjaxJson j = new AjaxJson();
 		//设置消息
