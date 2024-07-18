@@ -257,13 +257,14 @@ public class RpWmHisStockKuController extends BaseController {
 	 */
 	@RequestMapping(params = "upload")
 	public ModelAndView upload(HttpServletRequest req) {
+		//设置请求时控制器的名称为 rpWmHisStockKuController
 		req.setAttribute("controller_name","rpWmHisStockKuController");
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
-	
+
 	/**
 	 * 导出excel
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -280,6 +281,7 @@ public class RpWmHisStockKuController extends BaseController {
 		modelMap.put(NormalExcelConstants.DATA_LIST,rpWmHisStockKus);
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
+
 	/**
 	 * 导出excel 使模板
 	 * 

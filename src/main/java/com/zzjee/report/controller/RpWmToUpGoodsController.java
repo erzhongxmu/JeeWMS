@@ -323,6 +323,7 @@ public class RpWmToUpGoodsController extends BaseController {
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
+		//创建AjaxJson对象用于保存返回的信息
 		AjaxJson j = new AjaxJson();
 		//将请求转换为多部分请求（支持文件上传）
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;

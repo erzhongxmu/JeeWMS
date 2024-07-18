@@ -275,6 +275,7 @@ public class RpWmUpAndDownController extends BaseController {
 	@RequestMapping(params = "exportXls")
 	public String exportXls(RpWmUpAndDownEntity rpWmUpAndDown,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
+		//创建CriteriaQuery对象，用于构建HQL查询条件
 		CriteriaQuery cq = new CriteriaQuery(RpWmUpAndDownEntity.class, dataGrid);
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, rpWmUpAndDown, request.getParameterMap());
 		List<RpWmUpAndDownEntity> rpWmUpAndDowns = this.rpWmUpAndDownService.getListByCriteriaQuery(cq,false);

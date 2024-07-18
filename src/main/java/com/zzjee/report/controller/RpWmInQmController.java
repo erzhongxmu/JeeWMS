@@ -219,6 +219,7 @@ public class RpWmInQmController extends BaseController {
 		message = "rp_wm_in_qm更新成功";
 		RpWmInQmEntity t = rpWmInQmService.get(RpWmInQmEntity.class, rpWmInQm.getId());
 		try {
+			//将需要更新的属性复制到原始对象中，忽略空值
 			MyBeanUtils.copyBeanNotNull2Bean(rpWmInQm, t);
 			rpWmInQmService.saveOrUpdate(t);
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
