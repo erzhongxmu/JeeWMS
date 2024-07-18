@@ -224,6 +224,7 @@ public class RpWmToUpGoodsController extends BaseController {
 		}
 		//设置AjaxJson对象的消息
 		j.setMsg(message);
+		//返回 AjaxJson 对象
 		return j;
 	}
 	

@@ -260,7 +260,9 @@ public class RpWmUpAndDownController extends BaseController {
 	 */
 	@RequestMapping(params = "upload")
 	public ModelAndView upload(HttpServletRequest req) {
+		//设置请求属性"controller_name"为"rpWmUpAndDownController"
 		req.setAttribute("controller_name","rpWmUpAndDownController");
+		//返回一个新的ModelAndView对象，视图名称为"common/upload/pub_excel_upload"
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
 	

@@ -402,8 +402,11 @@ public class RpWmToDownGoodsController extends BaseController {
 		String id = rpWmToDownGoods.getId();
 		//构建 URI，路径为"/rest/rpWmToDownGoodsController/{id}"
 		URI uri = uriBuilder.path("/rest/rpWmToDownGoodsController/" + id).build().toUri();
+
 		HttpHeaders headers = new HttpHeaders();
+		//设置Location头为新建对象的URI
 		headers.setLocation(uri);
+		//返回状态码为201 CREATED，并且包含Location头
 		return new ResponseEntity(headers, HttpStatus.CREATED);
 	}
 
