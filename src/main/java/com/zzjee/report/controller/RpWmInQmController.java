@@ -185,8 +185,10 @@ public class RpWmInQmController extends BaseController {
 		String message = null;
 		//创建一个 AjaxJson 对象用于返回结果
 		AjaxJson j = new AjaxJson();
+		//设置消息内容为“rp_wm_in_qm添加成功”
 		message = "rp_wm_in_qm添加成功";
 		try{
+			//保存rpWmInQm对象到数据库
 			rpWmInQmService.save(rpWmInQm);
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){

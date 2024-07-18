@@ -223,6 +223,7 @@ public class RpWmHisStockKuController extends BaseController {
 	public ModelAndView goAdd(RpWmHisStockKuEntity rpWmHisStockKu, HttpServletRequest req) {
 		//如果rpWmHisStockKu对象的ID不为空
 		if (StringUtil.isNotEmpty(rpWmHisStockKu.getId())) {
+			//根据ID获取对应的RpWmHisStockKuEntity对象
 			rpWmHisStockKu = rpWmHisStockKuService.getEntity(RpWmHisStockKuEntity.class, rpWmHisStockKu.getId());
 			//将获取到的对象设置到请求属性中，属性名为 "rpWmHisStockKuPage"
 			req.setAttribute("rpWmHisStockKuPage", rpWmHisStockKu);
@@ -237,10 +238,14 @@ public class RpWmHisStockKuController extends BaseController {
 	 */
 	@RequestMapping(params = "goUpdate")
 	public ModelAndView goUpdate(RpWmHisStockKuEntity rpWmHisStockKu, HttpServletRequest req) {
+		//如果rpWmHisStockKu对象的ID不为空
 		if (StringUtil.isNotEmpty(rpWmHisStockKu.getId())) {
+			//根据ID获取对应的RpWmHisStockKuEntity对象
 			rpWmHisStockKu = rpWmHisStockKuService.getEntity(RpWmHisStockKuEntity.class, rpWmHisStockKu.getId());
+			//将获取到的对象设置到请求属性中，属性名为"rpWmHisStockKuPage"
 			req.setAttribute("rpWmHisStockKuPage", rpWmHisStockKu);
 		}
+		//返回视图名称为"com/zzjee/report/rpWmHisStockKu-update"的ModelAndView对象
 		return new ModelAndView("com/zzjee/report/rpWmHisStockKu-update");
 	}
 	

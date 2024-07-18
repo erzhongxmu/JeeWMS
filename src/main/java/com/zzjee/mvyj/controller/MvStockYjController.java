@@ -287,7 +287,6 @@ public class MvStockYjController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
 
 	/**
 	 * 效期预警新增页面跳转
