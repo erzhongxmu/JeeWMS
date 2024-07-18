@@ -313,10 +313,19 @@ public class RpWmUpAndDownController extends BaseController {
 		//设置 Excel 导出的参数，包括标题、导出人和导出信息
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("rp_wm_up_and_down列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
     	"导出信息"));
+		//设置数据列表为空，若非空则直接使用
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
+		//返回视图名，用于后续的导出处理
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
-	
+
+	/**
+	 * 导入 Excel 文件操作
+	 *
+	 * @param request HTTP 请求对象
+	 * @param response HTTP 响应对象
+	 * @return AjaxJson 结果对象
+	 */
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {

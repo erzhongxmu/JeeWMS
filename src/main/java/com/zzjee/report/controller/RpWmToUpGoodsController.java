@@ -414,14 +414,16 @@ public class RpWmToUpGoodsController extends BaseController {
 		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
 		Set<ConstraintViolation<RpWmToUpGoodsEntity>> failures = validator.validate(rpWmToUpGoods);
 		if (!failures.isEmpty()) {
+			//如果校验出错，则返回400错误码及含JSON格式的错误信息
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
 
-		//保存
+		//保存新的任务数据
 		try{
 			rpWmToUpGoodsService.save(rpWmToUpGoods);
 		} catch (Exception e) {
 			e.printStackTrace();
+			//如果保存过程中出现异常，则返回 409 Conflict 错误码
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
 		//按照Restful风格约定，创建指向新任务的url, 也可以直接返回id或对象.
@@ -429,7 +431,7 @@ public class RpWmToUpGoodsController extends BaseController {
 		URI uri = uriBuilder.path("/rest/rpWmToUpGoodsController/" + id).build().toUri();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(uri);
-
+		//返回状态码201 Created，表示成功创建新资源，并设置响应头
 		return new ResponseEntity(headers, HttpStatus.CREATED);
 	}
 
