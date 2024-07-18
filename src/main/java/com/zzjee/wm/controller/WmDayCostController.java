@@ -311,6 +311,7 @@ public class WmDayCostController extends BaseController {
 			wmDayCostService.delete(wmDayCost);
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
+			// 如果发生异常，打印堆栈跟踪信息
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
@@ -339,9 +340,11 @@ public class WmDayCostController extends BaseController {
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}
 		}catch(Exception e){
+			// 如果发生异常，打印堆栈跟踪信息
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
+		 // 将message设置为j对象的msg属性
 		j.setMsg(message);
 		return j;
 	}
