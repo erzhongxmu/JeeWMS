@@ -37,6 +37,7 @@ public class MdBinServiceImpl extends CommonServiceImpl implements MdBinServiceI
 
  	@Override
     public Serializable save(MdBinEntity entity) throws Exception{
+		//调用父类的save方法,执行实际的保存操作
  		Serializable t = super.save(entity);
  		//执行新增操作增强业务
  		this.doAddBus(entity);
