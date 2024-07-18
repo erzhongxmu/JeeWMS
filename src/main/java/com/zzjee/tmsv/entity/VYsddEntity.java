@@ -291,8 +291,8 @@ public class VYsddEntity implements java.io.Serializable {
 		this.daishouk = daishouk;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  运费
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  运费
 	 */
 	@Column(name ="HWYF",nullable=true,length=32)
 	public String getHwyf(){
