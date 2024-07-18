@@ -395,6 +395,7 @@ public class RpWmToUpGoodsController extends BaseController {
 			//如果没有找到对应数据，则返回404 Not Found错误码
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
 		}
+		//如果找到数据，则返回数据实体及其状态码
 		return new ResponseEntity(task, HttpStatus.OK);
 	}
 

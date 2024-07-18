@@ -271,6 +271,7 @@ public class RpWmInQmController extends BaseController {
 			//将获取到的实体对象放入模型对象中
 			req.setAttribute("rpWmInQmPage", rpWmInQm);
 		}
+		//返回视图名
 		return new ModelAndView("com/zzjee/report/rpWmInQm-update");
 	}
 	

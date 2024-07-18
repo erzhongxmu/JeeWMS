@@ -362,6 +362,7 @@ public class MvStockYjController extends BaseController {
 		TSUser user = ResourceUtil.getSessionUserName();
 		String roles = "";
 		if (user != null) {
+			//通过用户ID获取用户关联的所有角色
 			List<TSRoleUser> rUsers = systemService.findByProperty(TSRoleUser.class, "TSUser.id", user.getId());
 			for (TSRoleUser ru : rUsers) {
 				TSRole role = ru.getTSRole();

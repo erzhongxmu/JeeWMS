@@ -410,6 +410,7 @@ public class RfidBuseController extends BaseController {
 		//根据ID获取RFID表信息
 		RfidBuseEntity task = rfidBuseService.get(RfidBuseEntity.class, id);
 		if (task == null) {
+			//如果找不到对应ID的RFID表信息，返回一个表示404 Not Found的响应
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity(task, HttpStatus.OK);
