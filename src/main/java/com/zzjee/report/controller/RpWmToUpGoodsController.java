@@ -319,7 +319,14 @@ public class RpWmToUpGoodsController extends BaseController {
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
-	
+
+	/**
+	 * 处理文件导入（Excel）的HTTP POST请求。
+	 *
+	 * @param request HTTP请求对象
+	 * @param response HTTP响应对象
+	 * @return AjaxJson对象，用于返回导入结果的JSON响应信息。
+	 */
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {

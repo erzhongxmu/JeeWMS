@@ -410,7 +410,12 @@ public class RpWmToDownGoodsController extends BaseController {
 		return new ResponseEntity(headers, HttpStatus.CREATED);
 	}
 
-	//处理PUT请求，用于更新已存在的RpWmToDownGoodsEntity对象
+	/**
+	 * 更新RpWmToDownGoodsEntity对象的HTTP PUT请求处理方法.
+	 *
+	 * @param rpWmToDownGoods 更新对象的实体类
+	 * @return ResponseEntity，状态码为204（无内容）或400（校验错误）
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> update(@RequestBody RpWmToDownGoodsEntity rpWmToDownGoods) {
 		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.

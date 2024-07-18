@@ -298,10 +298,13 @@ public class RfidBuseController extends BaseController {
 	}
 
 	/**
-	 * 导出excel
+	 * 导出数据至Excel的处理方法。
 	 *
-	 * @param request
-	 * @param response
+	 * @param request HTTP请求对象
+	 * @param response HTTP响应对象
+	 * @param dataGrid 分页数据对象
+	 * @param modelMap 模型映射对象，用于存储导出参数和结果
+	 * @return 返回导出页面的视图名称
 	 */
 	@RequestMapping(params = "exportXls")
 	public String exportXls(RfidBuseEntity rfidBuse,HttpServletRequest request,HttpServletResponse response
@@ -319,6 +322,7 @@ public class RfidBuseController extends BaseController {
 			"导出信息"));
 		//将RFidBuseEntity列表设置到ModelMap中
 		modelMap.put(NormalExcelConstants.DATA_LIST,rfidBuses);
+		//返回导出页面的视图名称
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 

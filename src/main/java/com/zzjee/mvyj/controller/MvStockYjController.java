@@ -320,8 +320,10 @@ public class MvStockYjController extends BaseController {
 		if (StringUtil.isNotEmpty(mvStockYj.getId())) {
 			//如果mvStockYj的id不为空，则从数据库中获取对应的实体对象
 			mvStockYj = mvStockYjService.getEntity(MvStockYjEntity.class, mvStockYj.getId());
+			//设置请求参数，将获取的数据传递给前端页面
 			req.setAttribute("mvStockYjPage", mvStockYj);
 		}
+		//返回用于跳转到更新页面的ModelAndView对象，视图名称为"com/zzjee/mvyj/mvStockYj-update"
 		return new ModelAndView("com/zzjee/mvyj/mvStockYj-update");
 	}
 	

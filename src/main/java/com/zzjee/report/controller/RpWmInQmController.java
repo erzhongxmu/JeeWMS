@@ -228,24 +228,27 @@ public class RpWmInQmController extends BaseController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			message = "rp_wm_in_qm更新失败";
+			//抛出业务异常，提示更新失败
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
 
 	/**
-	 * rp_wm_in_qm新增页面跳转
-	 * 
-	 * @return
+	 * 跳转到rp_wm_in_qm新增页面
+	 * @param rpWmInQm rpWmInQm实体对象
+	 * @param req HTTP请求对象
+	 * @return ModelAndView对象，用于跳转到指定页面
 	 */
 	@RequestMapping(params = "goAdd")
 	public ModelAndView goAdd(RpWmInQmEntity rpWmInQm, HttpServletRequest req) {
 		if (StringUtil.isNotEmpty(rpWmInQm.getId())) {
+			//如果id不为空，则获取对应的实体对象并填充到request中
 			rpWmInQm = rpWmInQmService.getEntity(RpWmInQmEntity.class, rpWmInQm.getId());
 			req.setAttribute("rpWmInQmPage", rpWmInQm);
 		}
+		//返回指定的跳转页面
 		return new ModelAndView("com/zzjee/report/rpWmInQm-add");
 	}
 	/**

@@ -249,17 +249,19 @@ public class RpWmHisStockKuController extends BaseController {
 		//返回视图名称为"com/zzjee/report/rpWmHisStockKu-update"的ModelAndView对象
 		return new ModelAndView("com/zzjee/report/rpWmHisStockKu-update");
 	}
-	
+
 	/**
-	 * 导入功能跳转
-	 * 
-	 * @return
+	 * 处理上传请求的处理方法。
+	 *
+	 * @param req HttpServletRequest 请求对象，用于获取和设置请求属性
+	 * @return ModelAndView 对象，包含视图名称和附加的数据，用于页面跳转
 	 */
 	@RequestMapping(params = "upload")
 	public ModelAndView upload(HttpServletRequest req) {
 		//设置请求时控制器的名称为 rpWmHisStockKuController
 		req.setAttribute("controller_name","rpWmHisStockKuController");
-		//返回指定的视图页面
+		// 返回指定的视图页面名称，用于前端页面加载时使用
+		// 在这个上下文中，页面名称被设置为 'common/upload/pub_excel_upload'
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
 

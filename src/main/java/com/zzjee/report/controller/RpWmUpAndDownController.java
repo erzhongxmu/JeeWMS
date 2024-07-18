@@ -265,12 +265,16 @@ public class RpWmUpAndDownController extends BaseController {
 		//返回一个新的ModelAndView对象，视图名称为"common/upload/pub_excel_upload"
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
-	
+
 	/**
-	 * 导出excel
-	 * 
-	 * @param request
-	 * @param response
+	 * 导出数据至Excel的处理方法。
+	 *
+	 * @param rpWmUpAndDown 导出数据的实体对象
+	 * @param request HTTP请求对象
+	 * @param response HTTP响应对象
+	 * @param dataGrid 分页数据对象
+	 * @param modelMap 模型映射对象，用于存储导出参数和结果
+	 * @return 返回导出页面的视图名称
 	 */
 	@RequestMapping(params = "exportXls")
 	public String exportXls(RpWmUpAndDownEntity rpWmUpAndDown,HttpServletRequest request,HttpServletResponse response
@@ -288,6 +292,7 @@ public class RpWmUpAndDownController extends BaseController {
 		modelMap.put(NormalExcelConstants.DATA_LIST,rpWmUpAndDowns);
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
+
 	/**
 	 * 导出excel 使模板
 	 * 
