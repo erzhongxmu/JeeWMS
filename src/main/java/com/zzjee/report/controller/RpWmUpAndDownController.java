@@ -342,15 +342,20 @@ public class RpWmUpAndDownController extends BaseController {
 			params.setHeadRows(1);
 			params.setNeedSave(true);
 			try {
+				//导入Excel文件，并获取数据列表
 				List<RpWmUpAndDownEntity> listRpWmUpAndDownEntitys = ExcelImportUtil.importExcel(file.getInputStream(),RpWmUpAndDownEntity.class,params);
+				//遍历数据列表，保存数据到数据库
 				for (RpWmUpAndDownEntity rpWmUpAndDown : listRpWmUpAndDownEntitys) {
 					rpWmUpAndDownService.save(rpWmUpAndDown);
 				}
+				//设置返回信息，表示导入成功
 				j.setMsg("文件导入成功！");
 			} catch (Exception e) {
+				//如果出现异常，设置返回信息，表示导入失败，并记录异常堆栈信息
 				j.setMsg("文件导入失败！");
 				logger.error(ExceptionUtil.getExceptionMessage(e));
 			}finally{
+				// 关闭文件输入流
 				try {
 					file.getInputStream().close();
 				} catch (IOException e) {
