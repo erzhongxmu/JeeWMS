@@ -336,7 +336,9 @@ public class RpWmInQmController extends BaseController {
 		//设置Excel导出的参数，包含报告标题、导出说明等信息
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("rp_wm_in_qm列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
     	"导出信息"));
+		//设置需要导出的实体列表数据
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
+		//返回页面视图用于展示导出结果，通常返回一个表示Excel页面路径的字符串
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 	

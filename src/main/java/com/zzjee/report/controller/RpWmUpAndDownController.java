@@ -395,6 +395,7 @@ public class RpWmUpAndDownController extends BaseController {
 		if (task == null) {
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
 		}
+		//如果实体存在，则返回实体和200 OK状态的响应实体
 		return new ResponseEntity(task, HttpStatus.OK);
 	}
 

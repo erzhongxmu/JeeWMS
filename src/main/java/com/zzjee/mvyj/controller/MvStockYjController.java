@@ -476,6 +476,7 @@ public class MvStockYjController extends BaseController {
 			//如果未找到，返回404 Not Found状态码
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
 		}
+		//如果找到，返回实体及其相应的状态码
 		return new ResponseEntity(task, HttpStatus.OK);
 	}
 

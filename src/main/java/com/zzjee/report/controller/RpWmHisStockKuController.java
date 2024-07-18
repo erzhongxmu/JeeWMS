@@ -174,10 +174,13 @@ public class RpWmHisStockKuController extends BaseController {
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}
 		}catch(Exception e){
+			//如果出现异常，打印堆栈信息并记录错误日志
 			e.printStackTrace();
+			//更新信息字符串为删除失败的信息
 			message = "rp_wm_his_stock_ku删除失败";
 			throw new BusinessException(e.getMessage());
 		}
+		//返回AjaxJson对象
 		j.setMsg(message);
 		return j;
 	}

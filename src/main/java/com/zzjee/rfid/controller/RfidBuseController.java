@@ -458,9 +458,8 @@ public class RfidBuseController extends BaseController {
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
-
-		//保存
 		try{
+			//保存实体数据
 			rfidBuseService.saveOrUpdate(rfidBuse);
 		} catch (Exception e) {
 			e.printStackTrace();
