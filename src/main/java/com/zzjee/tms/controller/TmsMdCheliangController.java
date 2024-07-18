@@ -340,6 +340,7 @@ public class TmsMdCheliangController extends BaseController {
                 j.setMsg("文件导入成功！");
             } catch (Exception e) {
                 j.setMsg("文件导入失败！");
+                // 记录异常信息，便于后续问题排查
                 logger.error(ExceptionUtil.getExceptionMessage(e));
             } finally {
                 try {
