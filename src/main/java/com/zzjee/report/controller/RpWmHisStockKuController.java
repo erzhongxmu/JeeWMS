@@ -259,6 +259,7 @@ public class RpWmHisStockKuController extends BaseController {
 	public ModelAndView upload(HttpServletRequest req) {
 		//设置请求时控制器的名称为 rpWmHisStockKuController
 		req.setAttribute("controller_name","rpWmHisStockKuController");
+		//返回指定的视图页面
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
 
