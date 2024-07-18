@@ -309,6 +309,7 @@ public class TmsMdDzController extends BaseController {
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("客户地址列表", "导出人:"+ ResourceUtil.getSessionUser().getRealName(),
     	"导出信息"));
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
+		// 返回视图名称，指明使用JEECG框架的Excel导出视图进行渲染和导出
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 
