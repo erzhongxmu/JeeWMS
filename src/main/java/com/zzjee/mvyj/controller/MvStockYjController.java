@@ -284,6 +284,7 @@ public class MvStockYjController extends BaseController {
 			message = "效期预警更新失败";
 			throw new BusinessException(e.getMessage());
 		}
+		//设置AjaxJson对象的消息
 		j.setMsg(message);
 		return j;
 	}

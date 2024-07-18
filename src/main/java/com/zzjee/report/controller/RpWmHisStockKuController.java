@@ -231,6 +231,7 @@ public class RpWmHisStockKuController extends BaseController {
 		//返回视图名称为 "com/zzjee/report/rpWmHisStockKu-add" 的 ModelAndView 对象
 		return new ModelAndView("com/zzjee/report/rpWmHisStockKu-add");
 	}
+
 	/**
 	 * rp_wm_his_stock_ku编辑页面跳转
 	 * 

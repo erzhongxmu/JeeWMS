@@ -215,10 +215,14 @@ public class RpWmToUpGoodsController extends BaseController {
 			//使用systemService的addLog方法添加日志信息
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
+			//打印异常堆栈信息
 			e.printStackTrace();
+			//更新消息为“rp_wm_to_up_goods更新失败”
 			message = "rp_wm_to_up_goods更新失败";
+			//抛出业务异常，并携带异常信息
 			throw new BusinessException(e.getMessage());
 		}
+		//设置AjaxJson对象的消息
 		j.setMsg(message);
 		return j;
 	}

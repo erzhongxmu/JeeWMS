@@ -247,6 +247,7 @@ public class RpWmUpAndDownController extends BaseController {
 		if (StringUtil.isNotEmpty(rpWmUpAndDown.getId())) {
 			//如果ID不为空，则使用rpWmUpAndDownService的getEntity方法根据RpWmUpAndDownEntity类和给定的ID获取实体对象
 			rpWmUpAndDown = rpWmUpAndDownService.getEntity(RpWmUpAndDownEntity.class, rpWmUpAndDown.getId());
+			//将获取到的实体对象设置为请求属性"rpWmUpAndDownPage"
 			req.setAttribute("rpWmUpAndDownPage", rpWmUpAndDown);
 		}
 		return new ModelAndView("com/zzjee/report/rpWmUpAndDown-update");
