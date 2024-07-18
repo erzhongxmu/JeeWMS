@@ -321,6 +321,7 @@ public class WmsAppRoleController extends BaseController {
 
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+		// 遍历文件映射
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
 			MultipartFile file = entity.getValue();// 获取上传文件对象
 			ImportParams params = new ImportParams();
@@ -328,15 +329,19 @@ public class WmsAppRoleController extends BaseController {
 			params.setHeadRows(1);
 			params.setNeedSave(true);
 			try {
+				// 使用ExcelImportUtil工具类导入Excel文件，并将结果转换为WmsAppFunctionEntity列表
 				List<WmsAppRoleEntity> listWmsAppRoleEntitys = ExcelImportUtil.importExcel(file.getInputStream(),WmsAppRoleEntity.class,params);
+				// 遍历导入的实体列表，并保存到数据库
 				for (WmsAppRoleEntity wmsAppRole : listWmsAppRoleEntitys) {
 					wmsAppRoleService.save(wmsAppRole);
 				}
 				j.setMsg("文件导入成功！");
 			} catch (Exception e) {
+				// 如果导入过程中发生异常，设置导入失败的提示信息，并记录错误日志
 				j.setMsg("文件导入失败！");
 				logger.error(ExceptionUtil.getExceptionMessage(e));
 			}finally{
+				// 最后关闭文件输入流
 				try {
 					file.getInputStream().close();
 				} catch (IOException e) {
@@ -372,7 +377,6 @@ public class WmsAppRoleController extends BaseController {
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
-
 		//保存
 		try{
 			wmsAppRoleService.save(wmsAppRole);
@@ -385,7 +389,6 @@ public class WmsAppRoleController extends BaseController {
 		URI uri = uriBuilder.path("/rest/wmsAppRoleController/" + id).build().toUri();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(uri);
-
 		return new ResponseEntity(headers, HttpStatus.CREATED);
 	}
 
@@ -396,7 +399,6 @@ public class WmsAppRoleController extends BaseController {
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
-
 		//保存
 		try{
 			wmsAppRoleService.saveOrUpdate(wmsAppRole);
@@ -404,7 +406,6 @@ public class WmsAppRoleController extends BaseController {
 			e.printStackTrace();
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
-
 		//按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
 		return new ResponseEntity(HttpStatus.NO_CONTENT);
 	}

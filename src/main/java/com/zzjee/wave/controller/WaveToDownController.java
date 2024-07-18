@@ -296,13 +296,17 @@ public class WaveToDownController extends BaseController {
     public String exportXls(WaveToDownEntity waveToDown, HttpServletRequest request, HttpServletResponse response
             , DataGrid dataGrid, ModelMap modelMap) {
         CriteriaQuery cq = new CriteriaQuery(WaveToDownEntity.class, dataGrid);
+        // 根据请求参数和实体类属性生成HQL查询语句
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, waveToDown, request.getParameterMap());
+        // 根据查询条件获取WaveToFjEntity对象列表
         List<WaveToDownEntity> waveToDowns = this.waveToDownService.getListByCriteriaQuery(cq, false);
         modelMap.put(NormalExcelConstants.FILE_NAME, "wave_to_down");
         modelMap.put(NormalExcelConstants.CLASS, WaveToDownEntity.class);
         modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("wave_to_down列表", "导出人:" + ResourceUtil.getSessionUserName().getRealName(),
                 "导出信息"));
+        // 将查询结果放入modelMap中
         modelMap.put(NormalExcelConstants.DATA_LIST, waveToDowns);
+        // 返回视图名称，用于跳转到导出Excel的页面
         return NormalExcelConstants.JEECG_EXCEL_VIEW;
     }
 

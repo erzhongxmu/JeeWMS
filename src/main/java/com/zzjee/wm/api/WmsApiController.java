@@ -173,7 +173,6 @@ public class WmsApiController {
                 MyBeanUtils.copyBeanNotNull2Bean(mdGoods, mdGoods1);
                 mdGoodsService.updateEntitie(mdGoods1);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             throw new BusinessException(e.getMessage());
