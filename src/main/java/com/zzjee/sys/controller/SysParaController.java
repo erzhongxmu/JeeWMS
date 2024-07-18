@@ -309,7 +309,7 @@ public class SysParaController extends BaseController {
 			ImportParams params = new ImportParams();
 			params.setTitleRows(2);	// 假设标题行有两行
 			params.setHeadRows(1);	// 假设头部行有一行
-			params.setNeedSave(true);
+			params.setNeedSave(true); // 表示导入的数据需要被保存
 			try {
 				List<SysParaEntity> listSysParaEntitys = ExcelImportUtil.importExcel(file.getInputStream(),SysParaEntity.class,params);
 				for (SysParaEntity sysPara : listSysParaEntitys) {

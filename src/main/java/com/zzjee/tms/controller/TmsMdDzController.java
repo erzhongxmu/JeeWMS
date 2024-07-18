@@ -325,8 +325,8 @@ public class TmsMdDzController extends BaseController {
 			MultipartFile file = entity.getValue();
 			// 创建导入参数对象，设置标题行、头部行、是否需要保存等参数
 			ImportParams params = new ImportParams();
-			params.setTitleRows(2); // 假设标题行有两行
-			params.setHeadRows(1);	// 假设头部行有一行
+			params.setTitleRows(2); // 设置标题行有两行
+			params.setHeadRows(1);	// 设置设头部行有一行
 			params.setNeedSave(true);	// 表示导入的数据需要被保存
 			try {
 				// 使用ExcelImportUtil工具类从InputStream导入数据到指定的实体类型
