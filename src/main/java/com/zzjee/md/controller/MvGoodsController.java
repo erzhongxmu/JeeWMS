@@ -95,6 +95,7 @@ public class MvGoodsController extends BaseController {
 	/**
 	 * 删除销售订单
 	 *
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "setvalue")
