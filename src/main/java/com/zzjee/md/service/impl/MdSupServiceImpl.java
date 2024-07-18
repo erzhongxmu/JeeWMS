@@ -42,6 +42,7 @@ public class MdSupServiceImpl extends CommonServiceImpl implements MdSupServiceI
 
  	@Override
     public void saveOrUpdate(MdSupEntity entity) throws Exception{
+		//调用父类的saveOrUpdate方法
  		super.saveOrUpdate(entity);
  		//执行更新操作增强业务
  		this.doUpdateBus(entity);
