@@ -462,6 +462,11 @@ public class RpWmToUpGoodsController extends BaseController {
 		return new ResponseEntity(HttpStatus.NO_CONTENT);
 	}
 
+	/**
+	 * 处理DELETE请求，用于删除指定id的rp_wm_to_up_goods实体。
+	 *
+	 * @param id 要删除的实体的id
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable("id") String id) {

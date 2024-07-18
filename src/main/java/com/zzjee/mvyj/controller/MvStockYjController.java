@@ -473,6 +473,7 @@ public class MvStockYjController extends BaseController {
 		//根据ID获取MVStockYjEntity实体
 		MvStockYjEntity task = mvStockYjService.get(MvStockYjEntity.class, id);
 		if (task == null) {
+			//如果未找到，返回404 Not Found状态码
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity(task, HttpStatus.OK);

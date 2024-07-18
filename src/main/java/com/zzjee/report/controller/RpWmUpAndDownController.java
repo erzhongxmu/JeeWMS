@@ -389,8 +389,9 @@ public class RpWmUpAndDownController extends BaseController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
-		//调用服务方法根据给定的ID获取特定的 RpWmUpAndDownEntity 实体
+		//调用服务方法根据给定的ID获取特定的RpWmUpAndDownEntity 实体
 		RpWmUpAndDownEntity task = rpWmUpAndDownService.get(RpWmUpAndDownEntity.class, id);
+		//如果实体不存在，则返回404 Not Found状态的响应实体
 		if (task == null) {
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
 		}

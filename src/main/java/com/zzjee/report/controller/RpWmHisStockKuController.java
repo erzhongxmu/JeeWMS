@@ -170,6 +170,7 @@ public class RpWmHisStockKuController extends BaseController {
 				RpWmHisStockKuEntity rpWmHisStockKu = systemService.getEntity(RpWmHisStockKuEntity.class, id);
 				//执行删除操作
 				rpWmHisStockKuService.delete(rpWmHisStockKu);
+				//记录系统日志
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}
 		}catch(Exception e){

@@ -448,7 +448,6 @@ public class RfidBuseController extends BaseController {
 		URI uri = uriBuilder.path("/rest/rfidBuseController/" + id).build().toUri();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(uri);
-
 		return new ResponseEntity(headers, HttpStatus.CREATED);
 	}
 
