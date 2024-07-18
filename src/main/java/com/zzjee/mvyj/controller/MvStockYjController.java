@@ -371,6 +371,7 @@ public class MvStockYjController extends BaseController {
 		modelMap.put(NormalExcelConstants.DATA_LIST,mvStockYjs);
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
+
 	/**
 	 * 导出excel 使模板
 	 * 

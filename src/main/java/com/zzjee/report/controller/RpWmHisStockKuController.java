@@ -272,6 +272,7 @@ public class RpWmHisStockKuController extends BaseController {
 	@RequestMapping(params = "exportXls")
 	public String exportXls(RpWmHisStockKuEntity rpWmHisStockKu,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
+		//创建CriteriaQuery对象，用于执行查询操作
 		CriteriaQuery cq = new CriteriaQuery(RpWmHisStockKuEntity.class, dataGrid);
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, rpWmHisStockKu, request.getParameterMap());
 		List<RpWmHisStockKuEntity> rpWmHisStockKus = this.rpWmHisStockKuService.getListByCriteriaQuery(cq,false);

@@ -329,9 +329,11 @@ public class RpWmToUpGoodsController extends BaseController {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		//通过请求映射获取文件对象的映射集合
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
-		// 遍历上传的文件
+		//遍历上传的文件
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
-			MultipartFile file = entity.getValue();// 获取上传文件对象
+			// 获取上传文件对象
+			MultipartFile file = entity.getValue();
+			//实例化导入参数对象
 			ImportParams params = new ImportParams();
 			params.setTitleRows(2);
 			params.setHeadRows(1);

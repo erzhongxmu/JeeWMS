@@ -425,6 +425,7 @@ public class RpWmToDownGoodsController extends BaseController {
 		} catch (Exception e) {
 			//如果在更新过程中发生异常，捕获异常并打印堆栈跟踪.
 			e.printStackTrace();
+			//返回无内容的HTTP响应状态码和默认的响应实体，表示请求已完成但无返回内容.
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
 		//按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.

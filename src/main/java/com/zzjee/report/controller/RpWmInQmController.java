@@ -223,6 +223,7 @@ public class RpWmInQmController extends BaseController {
 			MyBeanUtils.copyBeanNotNull2Bean(rpWmInQm, t);
 			//更新对象并保存
 			rpWmInQmService.saveOrUpdate(t);
+			//记录日志
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
