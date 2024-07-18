@@ -130,17 +130,24 @@ public class RpWmHisStockKuController extends BaseController {
 	@ResponseBody
 	public AjaxJson doDel(RpWmHisStockKuEntity rpWmHisStockKu, HttpServletRequest request) {
 		String message = null;
+		//创建AjaxJson对象，用于承载返回结果
 		AjaxJson j = new AjaxJson();
+		//尝试从数据库获取实体对象rpWmHisStockKu的详细信息
 		rpWmHisStockKu = systemService.getEntity(RpWmHisStockKuEntity.class, rpWmHisStockKu.getId());
+		//设置删除成功的消息
 		message = "rp_wm_his_stock_ku删除成功";
 		try{
+			//执行删除操作
 			rpWmHisStockKuService.delete(rpWmHisStockKu);
+			//记录操作日志
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
+			//若出现异常，则捕获异常并记录错误信息，同时抛出一个BusinessException异常
 			e.printStackTrace();
 			message = "rp_wm_his_stock_ku删除失败";
 			throw new BusinessException(e.getMessage());
 		}
+		//将处理结果信息设置到AjaxJson对象中并返回
 		j.setMsg(message);
 		return j;
 	}

@@ -282,7 +282,9 @@ public class RpWmInQmController extends BaseController {
 	 */
 	@RequestMapping(params = "upload")
 	public ModelAndView upload(HttpServletRequest req) {
+		//将控制器名称放入模型对象中
 		req.setAttribute("controller_name","rpWmInQmController");
+		//返回视图名
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
 	
