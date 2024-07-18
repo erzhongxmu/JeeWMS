@@ -118,11 +118,13 @@ public class RpWmHisStockKuController extends BaseController {
 		//使用TagUtil的datagrid方法将查询结果转换为响应格式并发送给客户端
 		TagUtil.datagrid(response, dataGrid);
 	}
-	
+
 	/**
-	 * 删除rp_wm_his_stock_ku
-	 * 
-	 * @return
+	 * 删除rp_wm_his_stock_ku数据
+	 *
+	 * @param rpWmHisStockKu 实体对象，包含待删除的数据（通过id）
+	 * @param request HttpServletRequest 对象，用于获取请求参数
+	 * @return AjaxJson 对象，包含处理结果信息
 	 */
 	@RequestMapping(params = "doDel")
 	@ResponseBody

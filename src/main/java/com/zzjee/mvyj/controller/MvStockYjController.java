@@ -373,18 +373,23 @@ public class MvStockYjController extends BaseController {
 			if (roles.length() > 0) {
 				roles = roles.substring(0, roles.length() - 1);
 			}
+			//根据角色code判断是否为CUST类型，如果是，则在查询条件中添加用户用户名的等于条件
 			if(roles.equals("CUS")){
 				cq.eq("cusCode", user.getUserName());
 				
 			}
 		}
+		//生成HQL查询语句
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, mvStockYj, request.getParameterMap());
+		//执行查询并获取结果列表
 		List<MvStockYjEntity> mvStockYjs = this.mvStockYjService.getListByCriteriaQuery(cq,false);
+		//设置Excel文件名、导出类、导出参数和数据列表
 		modelMap.put(NormalExcelConstants.FILE_NAME,"效期预警");
 		modelMap.put(NormalExcelConstants.CLASS,MvStockYjEntity.class);
 		modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("效期预警列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
 			"导出信息"));
 		modelMap.put(NormalExcelConstants.DATA_LIST,mvStockYjs);
+		//返回视图名称，表示后续的处理逻辑
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 
