@@ -343,6 +343,7 @@ public class TmsMdCheliangController extends BaseController {
                 logger.error(ExceptionUtil.getExceptionMessage(e));
             } finally {
                 try {
+                    // 尝试关闭文件流，防止资源泄露
                     file.getInputStream().close();
                 } catch (IOException e) {
                     // 如果出现异常，打印堆栈跟踪
