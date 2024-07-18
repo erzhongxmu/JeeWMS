@@ -305,6 +305,7 @@ public class TmsMdDzController extends BaseController {
 	public String exportXlsByT(TmsMdDzEntity tmsMdDz, HttpServletRequest request, HttpServletResponse response
 			, DataGrid dataGrid, ModelMap modelMap) {
     	modelMap.put(NormalExcelConstants.FILE_NAME,"客户地址");
+		// 设置要导出的实体类类型
     	modelMap.put(NormalExcelConstants.CLASS,TmsMdDzEntity.class);
 		// 设置导出参数ExportParams，包含标题、描述和作者信息
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("客户地址列表", "导出人:"+ ResourceUtil.getSessionUser().getRealName(),
