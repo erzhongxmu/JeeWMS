@@ -138,7 +138,7 @@ public class VYsddController extends BaseController {
 	/**
 	 * 删除v_ysdd
 	 * @param vYsdd 实体对象
-	 * @return
+	 * @return j
 	 */
 	@RequestMapping(params = "doDel")
 	@ResponseBody

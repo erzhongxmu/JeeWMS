@@ -242,7 +242,7 @@ public class TmsMdDzController extends BaseController {
 	 * 客户地址新增页面跳转
 	 * @param req 请求
 	 * @param tmsMdDz
-	 * @return
+	 * @return ModelAndView
 	 */
 	@RequestMapping(params = "goAdd")
 	public ModelAndView goAdd(TmsMdDzEntity tmsMdDz, HttpServletRequest req) {
@@ -256,7 +256,7 @@ public class TmsMdDzController extends BaseController {
 	 * 客户地址编辑页面跳转
 	 * @param req 请求
 	 * @param tmsMdDz
-	 * @return
+	 * @return ModelAndView
 	 */
 	@RequestMapping(params = "goUpdate")
 	public ModelAndView goUpdate(TmsMdDzEntity tmsMdDz, HttpServletRequest req) {

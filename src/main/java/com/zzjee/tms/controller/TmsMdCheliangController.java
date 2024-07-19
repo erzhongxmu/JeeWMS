@@ -166,8 +166,7 @@ public class TmsMdCheliangController extends BaseController {
         try {
             for (String id : ids.split(",")) {
                 TmsMdCheliangEntity tmsMdCheliang = systemService.getEntity(TmsMdCheliangEntity.class,
-                        id
-                );
+                        id);
                 tmsMdCheliang.setZhuangtai("N");
                 tmsMdCheliangService.updateEntitie(tmsMdCheliang);
                 systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
