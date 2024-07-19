@@ -127,6 +127,7 @@ public class VYsddController extends BaseController {
 			cq.le("sdsj", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(query_sdsj_end));
 		}
 		}catch (Exception e) {
+			// 抛出异常
 			throw new BusinessException(e.getMessage());
 		}
 		cq.add();
