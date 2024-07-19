@@ -227,6 +227,7 @@ public class TmsMdDzController extends BaseController {
 			tmsMdDzService.saveOrUpdate(t);
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
+			// 抛出异常
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}

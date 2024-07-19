@@ -197,6 +197,7 @@ public class TmsYwDingdanController extends BaseController {
 				cq.le("sdsj", Integer.parseInt(query_sdsj_end));
 			}
 		}catch (Exception e) {
+			// 抛出异常信息
 			throw new BusinessException(e.getMessage());
 		}
 		cq.eq("zhuangtai","已下单");

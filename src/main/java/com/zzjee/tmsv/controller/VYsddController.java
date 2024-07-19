@@ -105,7 +105,7 @@ public class VYsddController extends BaseController {
 			cq.ge("createDate", new SimpleDateFormat("yyyy-MM-dd").parse(query_createDate_begin));
 
 		}else{
-
+			// 创建时间格式
 			SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
 			Calendar c = Calendar.getInstance();
 			System.out.println("当前日期:"+sf.format(c.getTime()));

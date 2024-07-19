@@ -213,6 +213,7 @@ public class SysParaController extends BaseController {
 			sysParaService.saveOrUpdate(t);
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
+			// 抛出异常
 			e.printStackTrace();
 			message = "全局参数更新失败";
 			throw new BusinessException(e.getMessage());
