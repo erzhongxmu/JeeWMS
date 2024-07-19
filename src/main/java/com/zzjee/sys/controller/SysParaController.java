@@ -302,6 +302,7 @@ public class SysParaController extends BaseController {
 		
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+		// 遍历fileMap
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
 			// 获取上传文件对象
 			MultipartFile file = entity.getValue();

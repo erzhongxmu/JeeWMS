@@ -150,9 +150,7 @@ public class VTmsDzController extends BaseController {
 		message = "v_tms_dz删除成功";
 		try{
 			for(String id:ids.split(",")){
-				VTmsDzEntity vTmsDz = systemService.getEntity(VTmsDzEntity.class,
-				id
-				);
+				VTmsDzEntity vTmsDz = systemService.getEntity(VTmsDzEntity.class, id);
 				vTmsDzService.delete(vTmsDz);
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}

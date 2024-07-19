@@ -304,6 +304,7 @@ public class TmsMdDzController extends BaseController {
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(TmsMdDzEntity tmsMdDz, HttpServletRequest request, HttpServletResponse response
 			, DataGrid dataGrid, ModelMap modelMap) {
+		// 设置Excel文件的标题，此处为"客户地址"
     	modelMap.put(NormalExcelConstants.FILE_NAME,"客户地址");
 		// 设置要导出的实体类类型
     	modelMap.put(NormalExcelConstants.CLASS,TmsMdDzEntity.class);

@@ -574,7 +574,7 @@ public class VYsddController extends BaseController {
 		// 返回视图名称，指明使用JEECG框架的Excel导出视图进行渲染和导出
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
-	
+
 	//	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
@@ -583,6 +583,7 @@ public class VYsddController extends BaseController {
 		
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+		// 遍历fileMap
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
 			// 获取单个上传文件对象
 			MultipartFile file = entity.getValue();

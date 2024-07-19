@@ -322,6 +322,7 @@ public class TmsMdCheliangController extends BaseController {
         // 创建对象
         AjaxJson j = new AjaxJson();
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+        // 遍历fileMap
         Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
         // 使用entrySet进行增强for循环，遍历map
         for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
