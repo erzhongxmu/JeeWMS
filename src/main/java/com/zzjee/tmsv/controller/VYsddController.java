@@ -109,6 +109,7 @@ public class VYsddController extends BaseController {
 			SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
 			// 创建Calendar 对象
 			Calendar c = Calendar.getInstance();
+			// 输出格式化后的当前时间
 			System.out.println("当前日期:"+sf.format(c.getTime()));
 			c.add(Calendar.DAY_OF_MONTH, -1);
 			//	System.out.println("增加一天后日期:"+sf.format(c.getTime()));

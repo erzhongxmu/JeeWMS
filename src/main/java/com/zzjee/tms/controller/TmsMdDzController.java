@@ -219,6 +219,7 @@ public class TmsMdDzController extends BaseController {
 	@ResponseBody
 	public AjaxJson doUpdate(TmsMdDzEntity tmsMdDz, HttpServletRequest request) {
 		String message = null;
+		// 创建对象
 		AjaxJson j = new AjaxJson();
 		message = "客户地址更新成功";
 		TmsMdDzEntity t = tmsMdDzService.get(TmsMdDzEntity.class, tmsMdDz.getId());

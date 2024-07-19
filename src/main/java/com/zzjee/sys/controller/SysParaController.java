@@ -225,6 +225,7 @@ public class SysParaController extends BaseController {
 
 	/**
 	 * 全局参数新增页面跳转
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
