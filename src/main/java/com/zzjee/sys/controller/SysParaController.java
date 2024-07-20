@@ -238,7 +238,7 @@ public class SysParaController extends BaseController {
 	}
 	/**
 	 * 全局参数编辑页面跳转
-	 * @return
+	 * @return ModelAndView
 	 */
 	@RequestMapping(params = "goUpdate")
 	public ModelAndView goUpdate(SysParaEntity sysPara, HttpServletRequest req) {

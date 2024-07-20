@@ -175,6 +175,7 @@ public class VTmsDzController extends BaseController {
 	@ResponseBody
 	public AjaxJson doAdd(VTmsDzEntity vTmsDz, HttpServletRequest request) {
 		String message = null;
+		// 创建对象
 		AjaxJson j = new AjaxJson();
 		message = "v_tms_dz添加成功";
 		try{

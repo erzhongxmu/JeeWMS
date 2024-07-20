@@ -103,6 +103,7 @@ public class TmsMdCheliangController extends BaseController {
     @ResponseBody
     public AjaxJson dowavebatch(String ids, String waveid, HttpServletRequest request) {
         String message = null;
+        // 创建对象
         AjaxJson j = new AjaxJson();
         try {
             int aint = (int) Math.round(Math.random() * 9);

@@ -151,6 +151,7 @@ public class VYsddController extends BaseController {
 			vYsddService.delete(vYsdd);
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
+			// 抛出异常
 			e.printStackTrace();
 			message = "v_ysdd删除失败";
 			throw new BusinessException(e.getMessage());
