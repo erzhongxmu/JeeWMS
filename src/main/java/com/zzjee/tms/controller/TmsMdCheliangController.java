@@ -74,7 +74,7 @@ public class TmsMdCheliangController extends BaseController {
     /**
      * 车辆管理列表 页面跳转
      * @param request 请求
-     * @return
+     * @return ModelAndView
      */
     @RequestMapping(params = "list")
     public ModelAndView list(HttpServletRequest request) {

@@ -120,6 +120,7 @@ public class VTmsDzController extends BaseController {
 	@ResponseBody
 	public AjaxJson doDel(VTmsDzEntity vTmsDz, HttpServletRequest request) {
 		String message = null;
+		// 创建对象
 		AjaxJson j = new AjaxJson();
 		vTmsDz = systemService.getEntity(VTmsDzEntity.class, vTmsDz.getId());
 		message = "v_tms_dz删除成功";

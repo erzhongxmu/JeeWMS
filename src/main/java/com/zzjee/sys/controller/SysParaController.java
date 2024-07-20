@@ -263,6 +263,7 @@ public class SysParaController extends BaseController {
 	 * 导出excel
 	 * @param request 请求
 	 * @param response 响应
+	 * @return JEECG_EXCEL_VIEW
 	 */
 	@RequestMapping(params = "exportXls")
 	public String exportXls(SysParaEntity sysPara,HttpServletRequest request,HttpServletResponse response

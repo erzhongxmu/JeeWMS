@@ -144,6 +144,7 @@ public class VYsddController extends BaseController {
 	@ResponseBody
 	public AjaxJson doDel(VYsddEntity vYsdd, HttpServletRequest request) {
 		String message = null;
+		// 创建对象
 		AjaxJson j = new AjaxJson();
 		vYsdd = systemService.getEntity(VYsddEntity.class, vYsdd.getId());
 		message = "v_ysdd删除成功";
