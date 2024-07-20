@@ -120,7 +120,7 @@ public class TmsMdCheliangController extends BaseController {
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
-        // 返回结果
+        // 返回AjaxJson对象
         return j;
 
     }

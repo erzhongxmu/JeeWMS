@@ -196,6 +196,7 @@ public class TmsMdDzController extends BaseController {
 	@ResponseBody
 	public AjaxJson doAdd(TmsMdDzEntity tmsMdDz, HttpServletRequest request) {
 		String message = null;
+		// 创建对象
 		AjaxJson j = new AjaxJson();
 		message = "客户地址添加成功";
 		try{

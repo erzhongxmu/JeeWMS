@@ -164,8 +164,9 @@ public class VYsddController extends BaseController {
 	
 	/**
 	 * 批量删除 v_ysdd
-	 * 
-	 * @return j
+	 * @param ids
+	 * @param request 请求
+	 * @return 返回AjaxJson对象
 	 */
 	 @RequestMapping(params = "doBatchDel")
 	@ResponseBody
