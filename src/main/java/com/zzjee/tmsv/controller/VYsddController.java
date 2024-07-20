@@ -203,6 +203,7 @@ public class VYsddController extends BaseController {
 	@ResponseBody
 	public AjaxJson doAdd(VYsddEntity vYsdd, HttpServletRequest request) {
 		String message = null;
+		// 创建对象
 		AjaxJson j = new AjaxJson();
 		message = "v_ysdd添加成功";
 		try{
@@ -214,6 +215,7 @@ public class VYsddController extends BaseController {
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
+		// 返回AjaxJson对象
 		return j;
 	}
 	

@@ -205,6 +205,7 @@ public class SysParaController extends BaseController {
 	@ResponseBody
 	public AjaxJson doUpdate(SysParaEntity sysPara, HttpServletRequest request) {
 		String message = null;
+		// 创建对象
 		AjaxJson j = new AjaxJson();
 		message = "全局参数更新成功";
 		SysParaEntity t = sysParaService.get(SysParaEntity.class, sysPara.getId());
@@ -219,7 +220,7 @@ public class SysParaController extends BaseController {
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
-		// 返回结果
+		// 返回AjaxJson对象
 		return j;
 	}
 

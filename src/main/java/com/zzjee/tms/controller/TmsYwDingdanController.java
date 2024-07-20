@@ -325,6 +325,7 @@ public class TmsYwDingdanController extends BaseController {
 						tmsYwDingdanService.saveOrUpdate(t);
 						systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 					} catch (Exception e) {
+						// 抛出异常
 						e.printStackTrace();
 					}
 				}
