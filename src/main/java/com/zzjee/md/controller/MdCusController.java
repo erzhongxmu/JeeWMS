@@ -233,10 +233,13 @@ public class MdCusController extends BaseController {
 		String message = null;
 		AjaxJson j = new AjaxJson();
 		message = "客户更新成功";
+		//使用客户ID从数据库中检索现有的客户实体
 		MdCusEntity t = mdCusService.get(MdCusEntity.class, mdCus.getId());
 		try {
 			MyBeanUtils.copyBeanNotNull2Bean(mdCus, t);
+			//保存或更新existingCustomer到数据库中
 			mdCusService.saveOrUpdate(t);
+			//记录日志，表示客户信息已成功更新
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -95,6 +95,7 @@ public class MvGoodsController extends BaseController {
 	/**
 	 * 删除销售订单
 	 *
+	 * @param cusCode
 	 * @param request
 	 * @return
 	 */

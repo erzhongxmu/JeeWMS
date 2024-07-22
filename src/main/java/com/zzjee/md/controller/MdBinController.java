@@ -364,10 +364,13 @@ public class MdBinController extends BaseController {
 
     public void runagv(String binfrom, String binto, String startcom, String midcom, String endcom, String type) {
         if ("diaodu".equals(type)) {
+            //根据起始和结束库位编号查询对应的库位实体
             List<MdBinEntity> mdblistfrom = systemService.findByProperty(MdBinEntity.class, "kuWeiBianMa", binfrom);
             List<MdBinEntity> mdblistto = systemService.findByProperty(MdBinEntity.class, "kuWeiBianMa", binto);
+            //获取起始和结束库位的具体实体
             MdBinEntity mdBinEntityfrom = mdblistfrom.get(0);
             MdBinEntity mdBinEntityto = mdblistto.get(0);
+            //获取起始和结束库位的坐标信息
             String x0 = mdBinEntityfrom.getXnode();
             String x1 = mdBinEntityto.getXnode();
             int xStep = Integer.parseInt(x1) - Integer.parseInt(x0);
