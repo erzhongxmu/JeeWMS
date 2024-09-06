@@ -179,14 +179,14 @@ public class TmsMdCheliangController extends BaseController {
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
-        // 返回AjaxJson对象
+        // 返回 AjaxJson对象
         return j;
     }
 
 
     /**
      * 添加车辆管理
-     * @param tmsMdCheliang
+     * @param tmsMdCheliang 实体
      * @param request 请求
      * @return j
      */

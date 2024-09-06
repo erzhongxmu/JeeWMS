@@ -252,7 +252,7 @@ public class VTmsDzController extends BaseController {
 	/**
 	 * 导入功能跳转
 	 * @param req HTTP请求
-	 * @return 返回ModelAndView对象
+	 * @return 返回 ModelAndView对象
 	 */
 	@RequestMapping(params = "upload")
 	public ModelAndView upload(HttpServletRequest req) {
@@ -280,6 +280,7 @@ public class VTmsDzController extends BaseController {
 		modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("v_tms_dz列表", "导出人:"+ResourceUtil.getSessionUser().getRealName(),
 			"导出信息"));
 		modelMap.put(NormalExcelConstants.DATA_LIST,vTmsDzs);
+		// 返回结果
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 

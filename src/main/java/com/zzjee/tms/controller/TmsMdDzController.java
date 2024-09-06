@@ -243,7 +243,7 @@ public class TmsMdDzController extends BaseController {
 	/**
 	 * 客户地址新增页面跳转
 	 * @param req 请求
-	 * @param tmsMdDz
+	 * @param tmsMdDz 实体
 	 * @return ModelAndView
 	 */
 	@RequestMapping(params = "goAdd")

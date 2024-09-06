@@ -221,7 +221,8 @@ public class VYsddController extends BaseController {
 	
 	/**
 	 * 更新v_ysdd
-	 * @param vYsdd
+	 * @param vYsdd 实体
+	 * @param request 请求
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")

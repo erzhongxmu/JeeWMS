@@ -240,7 +240,7 @@ public class SysParaController extends BaseController {
 	/**
 	 * 全局参数编辑页面跳转
 	 * @param req 请求
-	 * @param sysPara
+	 * @param sysPara 实体
 	 * @return ModelAndView
 	 */
 	@RequestMapping(params = "goUpdate")
