@@ -124,15 +124,20 @@ public class MvStockYjServiceImpl extends CommonServiceImpl implements MvStockYj
  		sql  = sql.replace("#{UUID}",UUID.randomUUID().toString());
  		return sql;
  	}
- 	
- 	/**
-	 * 执行JAVA增强
+
+	/**
+	 * 执行Java扩展功能，根据类型实例化对象并调用相应方法。
+	 *
+	 * @param cgJavaType  Java扩展类型，可能的值为"class"或"spring"
+	 * @param cgJavaValue 要实例化的类的全名或Spring Bean的名称
+	 * @param data       传递给执行方法的数据映射
+	 * @throws Exception 当执行Java增强出现异常时抛出
 	 */
  	private void executeJavaExtend(String cgJavaType,String cgJavaValue,Map<String,Object> data) throws Exception {
  		if(StringUtil.isNotEmpty(cgJavaValue)){
 			Object obj = null;
 			try {
-				//通过MyClassLoader根据类全名cgJavaValue实例化一个对象
+				// 通过MyClassLoader根据类的全名cgJavaValue实例化一个对象
 				if("class".equals(cgJavaType)){
 					//因新增时已经校验了实例化是否可以成功，所以这块就不需要再做一次判断
 					obj = MyClassLoader.getClassByScn(cgJavaValue).newInstance();

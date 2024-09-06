@@ -346,10 +346,13 @@ public class RpWmInQmController extends BaseController {
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
+		//创建一个新的AjaxJson实例，用于存储文件导入的结果信息
 		AjaxJson j = new AjaxJson();
-		
+		//将HttpServletRequest对象转换为MultipartHttpServletRequest对象，以便处理文件上传
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		//获取上传的文件Map，其中Key为文件名，Value为MultipartFile对象
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+		//遍历上传的文件Map，处理每一个上传的文件
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
 			MultipartFile file = entity.getValue();// 获取上传文件对象
 			ImportParams params = new ImportParams();

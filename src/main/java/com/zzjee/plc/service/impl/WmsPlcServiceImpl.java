@@ -133,9 +133,14 @@ public class WmsPlcServiceImpl extends CommonServiceImpl implements WmsPlcServic
  		sql  = sql.replace("#{UUID}",UUID.randomUUID().toString());
  		return sql;
  	}
- 	
- 	/**
-	 * 执行JAVA增强
+
+	/**
+	 * 执行Java扩展功能，根据类型实例化对象并调用相应的方法。
+	 *
+	 * @param cgJavaType  Java扩展类型，可能的值为"class"或"spring"
+	 * @param cgJavaValue 要实例化的类的全名或Spring Bean的名称
+	 * @param data       传递给执行方法的数据映射
+	 * @throws Exception 当执行Java增强出现异常时抛出
 	 */
  	private void executeJavaExtend(String cgJavaType,String cgJavaValue,Map<String,Object> data) throws Exception {
  		if(StringUtil.isNotEmpty(cgJavaValue)){

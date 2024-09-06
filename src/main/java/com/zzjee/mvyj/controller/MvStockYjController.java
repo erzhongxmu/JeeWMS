@@ -416,12 +416,21 @@ public class MvStockYjController extends BaseController {
 	}
 	
 	@SuppressWarnings("unchecked")
+	/**
+	 * 导入Excel文件并将其内容保存到数据库中。
+	 *
+	 * @param request  HttpServletRequest 对象，包含客户端请求信息
+	 * @param response HttpServletResponse 对象，包含服务器响应信息
+	 * @return 返回AjaxJson对象，包含操作结果信息
+	 */
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
+		// 创建AjaxJson对象，用于返回操作结果
 		AjaxJson j = new AjaxJson();
 		//获取上传的文件对象
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		// 获取上传的文件列表
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
 			MultipartFile file = entity.getValue();

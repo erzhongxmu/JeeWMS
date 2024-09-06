@@ -196,14 +196,16 @@ public class WmsPlcController extends BaseController {
         return j;
     }
 
-   //U型指令运转
+    /**
+     * 运行方法，查询WmsPlcEntity实体，并根据查询结果执行相应逻辑。
+     */
     public void runu() {
         WmsPlcEntity wmsPlc = null;
         String hql = "";
         List<WmsPlcEntity> wmsPlcEntityList = new ArrayList<WmsPlcEntity>();
-        //构造查询hql语句
+        // 构造查询HQL语句，根据comNo字段进行查询
         hql = "from WmsPlcEntity t where  t.comNo =  ? ";
-        //执行hql查询
+        // 执行HQL查询，传入参数为"runu"
         wmsPlcEntityList = systemService.findHql(hql, "runu");
         if (!CollectionUtils.isEmpty(wmsPlcEntityList)) {
             wmsPlc = wmsPlcEntityList.get(0);
@@ -543,6 +545,17 @@ public class WmsPlcController extends BaseController {
         return new ResponseEntity(task, HttpStatus.OK);
     }
 
+    /**
+     * 处理POST请求，用于创建WmsPlcEntity实体的控制器方法。
+     *
+     * 该方法首先调用JSR303 Bean Validator进行校验，如果校验出错，则返回一个含400错误码和json格式的错误信息的响应。
+     * 如果校验通过，则尝试保存WmsPlcEntity实体到数据库。
+     * 在保存数据之后，根据RESTful风格的约定，创建一个指向新创建实体的URL。
+     *
+     * @param uriBuilder `UriComponentsBuilder`对象，用于构建URL。
+     * @param wmsPlc `WmsPlcEntity`对象，作为请求体数据。
+     * @return `ResponseEntity`对象，包含状态码和响应体信息。
+     */
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<?> create(@RequestBody WmsPlcEntity wmsPlc, UriComponentsBuilder uriBuilder) {
@@ -555,6 +568,7 @@ public class WmsPlcController extends BaseController {
         try {
             wmsPlcService.save(wmsPlc);
         } catch (Exception e) {
+            //打印异常堆栈
             e.printStackTrace();
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         }

@@ -470,6 +470,13 @@ public class RfidBuseController extends BaseController {
 		return new ResponseEntity(HttpStatus.NO_CONTENT);
 	}
 
+	/**
+	 * 处理基于资源ID的DELETE请求的控制器方法。
+	 *
+	 * 该控制器用于删除ID指定的RfidBuseEntity实体。
+	 *
+	 * @param id `String`类型ID，作为请求路径参数。
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable("id") String id) {
