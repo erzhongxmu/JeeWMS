@@ -195,10 +195,14 @@ public class wmBaseController extends BaseController {
     public ResponseEntity<?> listim() {
         ResultDO D0 = new ResultDO();
         String hql = " from WmToUpGoodsErpEntity where 1 = 1  ";
+        // 设置 ResultDO 的状态为成功
         D0.setOK(true);
+        // 使用系统服务执行 HQL 查询并获取结果列表
         List<WmToUpGoodsErpEntity> listerp = systemService.findHql(hql);
         D0.setOK(true);
+        // 将查询结果列表设置到 ResultDO 中
         D0.setObj(listerp);
+        // 返回封装好的 ResultDO 对象，并设置 HTTP 状态码为 200 OK
         return new ResponseEntity(D0, HttpStatus.OK);
     }
 

@@ -175,10 +175,13 @@ public class WvGiNoticeController extends BaseController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<?> get(@PathVariable("id") String id) {
+        // 通过服务层获取指定 ID 的 WvGiNotice 实体
         WvGiNoticeEntity task = wvGiNoticeService.get(WvGiNoticeEntity.class, id);
+        // 如果未找到对应的实体，则返回 404 Not Found 状态码
         if (task == null) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
+        // 如果找到了对应的实体，则返回 200 OK 状态码及实体数据
         return new ResponseEntity(task, HttpStatus.OK);
     }
 

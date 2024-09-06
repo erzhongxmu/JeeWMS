@@ -303,11 +303,16 @@ public class WaveToFjController extends BaseController {
     @RequestMapping(params = "exportXlsByT")
     public String exportXlsByT(WaveToFjEntity waveToFj, HttpServletRequest request, HttpServletResponse response
             , DataGrid dataGrid, ModelMap modelMap) {
+        // 设置 Excel 文件名
         modelMap.put(NormalExcelConstants.FILE_NAME, "wave_to_fj");
+        // 指定导出的数据实体类类型
         modelMap.put(NormalExcelConstants.CLASS, WaveToFjEntity.class);
+        // 设置导出参数，包括标题、作者和描述
         modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("wave_to_fj列表", "导出人:" + ResourceUtil.getSessionUserName().getRealName(),
                 "导出信息"));
+        // 设置数据列表为空列表，此处应根据实际需求填充数据
         modelMap.put(NormalExcelConstants.DATA_LIST, new ArrayList());
+        // 返回视图名称，用于展示或下载 Excel 文件
         return NormalExcelConstants.JEECG_EXCEL_VIEW;
     }
 
