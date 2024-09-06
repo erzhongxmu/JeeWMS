@@ -223,7 +223,7 @@ public class MdCusController extends BaseController {
 	/**
 	 * 更新客户
 	 *
-	 * @param mdCus
+	 * @param mdCus 实体对象
 	 * @param request
 	 * @return
 	 */

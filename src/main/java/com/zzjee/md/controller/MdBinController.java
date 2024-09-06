@@ -485,7 +485,7 @@ public class MdBinController extends BaseController {
     /**
      * 更新仓位定义
      *
-     * @param mdBin
+     * @param mdBin 实体对象
      * @param request
      * @return
      */
@@ -497,8 +497,11 @@ public class MdBinController extends BaseController {
         message = "仓位定义更新成功";
         MdBinEntity t = mdBinService.get(MdBinEntity.class, mdBin.getId());
         try {
+            // 将请求中的非空字段更新到现有实体上
             MyBeanUtils.copyBeanNotNull2Bean(mdBin, t);
+            // 保存或更新实体到数据库
             mdBinService.saveOrUpdate(t);
+            // 记录日志
             systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
