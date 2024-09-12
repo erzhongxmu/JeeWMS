@@ -513,6 +513,7 @@ public class WmImNoticeHController extends BaseController {
             // 如果发生异常，打印堆栈跟踪信息
             e.printStackTrace();
             message = "审核失败";
+            // 抛出业务异常，并附带异常信息
             throw new BusinessException(e.getMessage());
         }
         // 将message设置为j对象的msg属性

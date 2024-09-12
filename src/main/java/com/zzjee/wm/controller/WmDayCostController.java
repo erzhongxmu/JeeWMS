@@ -339,11 +339,13 @@ public class WmDayCostController extends BaseController {
 				id
 				);
 				wmDayCostService.delete(wmDayCost);
+				// 记录操作日志，类型为插入操作，级别为INFO
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}
 		}catch(Exception e){
 			// 如果发生异常，打印堆栈跟踪信息
 			e.printStackTrace();
+			// 抛出业务异常，并附带异常信息
 			throw new BusinessException(e.getMessage());
 		}
 		 // 将message设置为j对象的msg属性

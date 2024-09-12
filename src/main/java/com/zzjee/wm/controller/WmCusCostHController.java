@@ -174,10 +174,13 @@ public class WmCusCostHController extends BaseController {
 				id
 				);
 				wmCusCostHService.delMain(wmCusCostH);
+				// 记录操作日志，类型为插入操作，级别为INFO
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}
 		}catch(Exception e){
+			// 打印异常堆栈信息
 			e.printStackTrace();
+			// 抛出业务异常，并附带异常信息
  			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);

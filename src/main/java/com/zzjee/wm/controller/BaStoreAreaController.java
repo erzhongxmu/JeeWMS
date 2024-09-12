@@ -193,14 +193,21 @@ public class BaStoreAreaController extends BaseController {
 	@RequestMapping(params = "doAdd")
 	@ResponseBody
 	public AjaxJson doAdd(BaStoreAreaEntity baStoreArea, HttpServletRequest request) {
+		// 定义一个String类型的变量message用于存储消息内容
 		String message = null;
+		// 创建AjaxJson对象j，用于封装返回给前端的数据
 		AjaxJson j = new AjaxJson();
+		// 设置默认的消息内容为"ba_store_area添加成功"
 		message = "ba_store_area添加成功";
 		try{
+			// 调用baStoreAreaService的save方法保存传入的BaStoreAreaEntity对象到数据库
 			baStoreAreaService.save(baStoreArea);
+			// 记录操作日志，类型为插入操作，级别为INFO
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
+			// 打印异常堆栈信息
 			e.printStackTrace();
+			// 抛出业务异常，并附带异常信息
  			throw new BusinessException(e.getMessage());
 		}
 		// 将message设置为j对象的msg属性

@@ -197,7 +197,9 @@ public class WmDayCostConfController extends BaseController {
                 systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
             }
         } catch (Exception e) {
+            // 打印异常堆栈信息
             e.printStackTrace();
+            // 抛出业务异常，并附带异常信息
             throw new BusinessException(e.getMessage());
         }
         // 将message设置为j对象的msg属性
