@@ -81,7 +81,13 @@ public class WmsPlcServiceImpl extends CommonServiceImpl implements WmsPlcServic
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
- 	
+
+	/**
+	 * 将给定的 WmsPlcEntity 对象的属性值存储到一个 Map 中。
+	 *
+	 * @param t 要处理的 WmsPlcEntity 实体对象
+	 * @return 返回一个包含实体属性名和对应值的 Map 对象
+	 */
  	private Map<String,Object> populationMap(WmsPlcEntity t){
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("id", t.getId());

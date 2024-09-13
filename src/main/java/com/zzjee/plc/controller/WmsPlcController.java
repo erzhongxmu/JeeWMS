@@ -197,13 +197,14 @@ public class WmsPlcController extends BaseController {
     }
 
     /**
-     * 运行方法，查询WmsPlcEntity实体，并根据查询结果执行相应逻辑。
+     * 执行指定的操作，首先通过 comNo 字段查询 WmsPlcEntity 实体，
+     * 然后根据该实体的 comCons 属性分解出操作步骤并执行相应的操作。
      */
     public void runu() {
         WmsPlcEntity wmsPlc = null;
         String hql = "";
         List<WmsPlcEntity> wmsPlcEntityList = new ArrayList<WmsPlcEntity>();
-        // 构造查询HQL语句，根据comNo字段进行查询
+        // 构造查询HQL语句，根据 comNo 字段进行查询
         hql = "from WmsPlcEntity t where  t.comNo =  ? ";
         // 执行HQL查询，传入参数为"runu"
         wmsPlcEntityList = systemService.findHql(hql, "runu");

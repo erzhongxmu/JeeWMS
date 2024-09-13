@@ -76,7 +76,13 @@ public class MvStockYjServiceImpl extends CommonServiceImpl implements MvStockYj
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
- 	
+
+	/**
+	 * 根据给定的 MvStockYjEntity 对象构建一个包含其属性值的映射关系。
+	 *
+	 * @param t 要处理的 MvStockYjEntity 实体对象
+	 * @return 返回一个包含实体属性名和对应值的 Map 对象
+	 */
  	private Map<String,Object> populationMap(MvStockYjEntity t){
 		//进行存储数据
 		Map<String,Object> map = new HashMap<String,Object>();

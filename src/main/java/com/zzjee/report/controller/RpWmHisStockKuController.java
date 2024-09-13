@@ -338,6 +338,13 @@ public class RpWmHisStockKuController extends BaseController {
 	
 	//@SuppressWarnings("unchecked")
 
+	/**
+	 * 导入 Excel 文件并将其内容保存到数据库中。
+	 *
+	 * @param request HttpServletRequest 对象，包含客户端请求信息
+	 * @param response HttpServletResponse 对象，包含服务器响应信息
+	 * @return 返回 AjaxJson 对象，包含操作结果信息
+	 */
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {

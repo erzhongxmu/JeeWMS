@@ -451,6 +451,13 @@ public class RfidBuseController extends BaseController {
 		return new ResponseEntity(headers, HttpStatus.CREATED);
 	}
 
+	/**
+	 * 导入 Excel 文件并将其内容保存到数据库中。
+	 *
+	 * @param request HttpServletRequest 对象，包含客户端请求信息
+	 * @param response HttpServletResponse 对象，包含服务器响应信息
+	 * @return 返回 AjaxJson 对象，包含操作结果信息
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> update(@RequestBody RfidBuseEntity rfidBuse) {
 		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.

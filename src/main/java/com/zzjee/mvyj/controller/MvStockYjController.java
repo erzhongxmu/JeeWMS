@@ -460,11 +460,12 @@ public class MvStockYjController extends BaseController {
 		}
 		return j;
 	}
-	
+
+	// 该注解表示这是一个处理 HTTP 请求的方法，支持 GET 请求
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<MvStockYjEntity> list() {
-		//获取MVStockYjEntity实体列表
+		// 调用服务层的方法获取 MvStockYjEntity 实体的列表
 		List<MvStockYjEntity> listMvStockYjs=mvStockYjService.getList(MvStockYjEntity.class);
 		return listMvStockYjs;
 	}
@@ -489,6 +490,13 @@ public class MvStockYjController extends BaseController {
 		return new ResponseEntity(task, HttpStatus.OK);
 	}
 
+	/**
+	 * 创建一个 MvStockYjEntity 实体并将其保存到数据库中。
+	 *
+	 * @param mvStockYj   要创建的 MvStockYjEntity 实体，包含客户端发送的 JSON 数据
+	 * @param uriBuilder  `UriComponentsBuilder` 用于构建指向新实体的 URI
+	 * @return 返回一个包含响应状态及相关信息的 ResponseEntity 对象
+	 */
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> create(@RequestBody MvStockYjEntity mvStockYj, UriComponentsBuilder uriBuilder) {
