@@ -73,11 +73,8 @@ public class TmsMdDzController extends BaseController {
 	@Autowired
 	private Validator validator;
 
-
-
 	/**
 	 * 客户地址列表 页面跳转
-	 *
 	 * @return
 	 */
 	@RequestMapping(params = "list")
@@ -90,9 +87,8 @@ public class TmsMdDzController extends BaseController {
 	}
 	/**
 	 * easyui AJAX请求数据
-	 *
-	 * @param request
-	 * @param response
+	 * @param request 请求
+	 * @param response 响应
 	 * @param dataGrid
 	 * @param tmsMdDz
 	 */

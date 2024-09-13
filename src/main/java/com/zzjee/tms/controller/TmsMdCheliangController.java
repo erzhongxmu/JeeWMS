@@ -86,7 +86,7 @@ public class TmsMdCheliangController extends BaseController {
      * @param request 请求
      * @param response 响应
      * @param dataGrid
-     * @param tmsMdCheliang
+     * @param tmsMdCheliang 实体
      * @return 返回AjaxJson对象
      */
 

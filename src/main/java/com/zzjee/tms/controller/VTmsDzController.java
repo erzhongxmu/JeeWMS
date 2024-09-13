@@ -93,7 +93,6 @@ public class VTmsDzController extends BaseController {
 	 * @param response HTTP响应
 	 * @param dataGrid 数据网格
 	 */
-
 	@RequestMapping(params = "datagrid")
 	public void datagrid(VTmsDzEntity vTmsDz, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
 		CriteriaQuery cq = new CriteriaQuery(VTmsDzEntity.class, dataGrid);
@@ -138,7 +137,7 @@ public class VTmsDzController extends BaseController {
 	}
 
 	/**
-	 * 批量删除v_tms_dz记录
+	 * 批量删除 v_tms_dz记录
 	 * @param ids 记录ID字符串
 	 * @param request HTTP请求
 	 * @return 返回AjaxJson对象
@@ -162,7 +161,7 @@ public class VTmsDzController extends BaseController {
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
-		 // 返回AjaxJson对象
+		// 返回AjaxJson对象
 		return j;
 	}
 
@@ -251,7 +250,7 @@ public class VTmsDzController extends BaseController {
 
 	/**
 	 * 导入功能跳转
-	 * @param req HTTP请求
+	 * @param  req HTTP请求
 	 * @return 返回 ModelAndView对象
 	 */
 	@RequestMapping(params = "upload")
