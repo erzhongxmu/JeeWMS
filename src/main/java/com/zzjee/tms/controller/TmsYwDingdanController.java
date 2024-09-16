@@ -72,6 +72,7 @@ import static com.xiaoleilu.hutool.date.DateUtil.now;
 @RequestMapping("/tmsYwDingdanController")
 public class TmsYwDingdanController extends BaseController {
 	/**
+	 * 登录器
 	 * Logger for this class
 	 */
 	private static final Logger logger = Logger.getLogger(TmsYwDingdanController.class);

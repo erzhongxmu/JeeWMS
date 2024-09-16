@@ -284,7 +284,7 @@ public class TmsMdCheliangController extends BaseController {
      * 导出excel列表
      * @param request 请求
      * @param response 响应
-     * @param tmsMdCheliang
+     * @param tmsMdCheliang 实体
      * @return JEECG_EXCEL_VIEW
      */
     @RequestMapping(params = "exportXls")
@@ -304,7 +304,7 @@ public class TmsMdCheliangController extends BaseController {
     /**
      * 导出excel模板
      * @param request 请求
-     * @param tmsMdCheliang
+     * @param tmsMdCheliang 实体
      * @param response 响应
      * @return JEECG_EXCEL_VIEW
      */

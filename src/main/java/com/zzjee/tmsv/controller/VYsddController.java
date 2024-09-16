@@ -61,6 +61,7 @@ import java.util.*;
 @Api(value="VYsdd",description="v_ysdd",tags="vYsddController")
 public class VYsddController extends BaseController {
 	/**
+	 * 登录器
 	 * Logger for this class
 	 */
 	private static final Logger logger = Logger.getLogger(VYsddController.class);
@@ -71,8 +72,6 @@ public class VYsddController extends BaseController {
 	private SystemService systemService;
 	@Autowired
 	private Validator validator;
-	
-
 
 	/**
 	 * v_ysdd列表 页面跳转
