@@ -205,8 +205,10 @@ public class MdCusOtherController extends BaseController {
 		message = "第三方客户更新成功";
 		MdCusOtherEntity t = mdCusOtherService.get(MdCusOtherEntity.class, mdCusOther.getId());
 		try {
+			// 使用MyBeanUtils工具将非空属性从传入的mdCusOther复制到现有的记录t中
 			MyBeanUtils.copyBeanNotNull2Bean(mdCusOther, t);
 			mdCusOtherService.saveOrUpdate(t);
+			// 记录操作日志
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();

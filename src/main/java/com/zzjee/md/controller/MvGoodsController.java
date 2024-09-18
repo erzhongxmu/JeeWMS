@@ -265,6 +265,7 @@ public class MvGoodsController extends BaseController {
 		try {
 			MyBeanUtils.copyBeanNotNull2Bean(mvGoods, t);
 			mvGoodsService.saveOrUpdate(t);
+			// 记录操作日志
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();

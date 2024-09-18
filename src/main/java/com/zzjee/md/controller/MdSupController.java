@@ -220,6 +220,7 @@ public class MdSupController extends BaseController {
 		try {
 			MyBeanUtils.copyBeanNotNull2Bean(mdSup, t);
 			mdSupService.saveOrUpdate(t);
+			// 记录操作日志
 			systemService.addLog(message, Globals.Log_Type_UPDATE,
 					Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
