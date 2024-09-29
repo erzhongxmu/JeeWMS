@@ -75,7 +75,6 @@ public class WvNoticeController extends BaseController {
     @Autowired
     private Validator validator;
 
-
     //PDA接口
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
@@ -85,9 +84,11 @@ public class WvNoticeController extends BaseController {
         ResultDO D0 = new ResultDO();
         String hql = " from WvNoticeEntity where 1 = 1 ";
         D0.setOK(true);
+        // 如果searchstr不为空，则拼接HQL查询条件
         if (!StringUtil.isEmpty(searchstr)) {
             hql = hql + "  and noticeId like '%" + searchstr + "%'" + "  or imCusCode like '%" + searchstr + "%'";
         }
+        // 如果searchstr2不为空，则尝试获取商品编码，并拼接HQL查询条件
         if (!StringUtil.isEmpty(searchstr2)) {
             try {
                 String shpbianma = wmUtil.getmdgoodsbytiaoma(searchstr2);
@@ -112,10 +113,12 @@ public class WvNoticeController extends BaseController {
                 hql = hql + "  and  (" + insearch + ")";
             }
         }
+        // 根据HQL查询条件获取WvNoticeEntity列表
         List<WvNoticeEntity> listWvNotices = wvNoticeService.findHql(hql);
         D0.setOK(true);
         List<WvNoticeEntity> result = new ArrayList<WvNoticeEntity>();
         int i = 0;
+        // 遍历查询结果，最多取前100条记录
         for (WvNoticeEntity t : listWvNotices) {
             i++;
             if (i > 100) {
@@ -123,9 +126,8 @@ public class WvNoticeController extends BaseController {
             }
             result.add(t);
         }
-
+        // 将结果存入ResultDO对象
         D0.setObj(result);
         return new ResponseEntity(D0, HttpStatus.OK);
     }
-
 }

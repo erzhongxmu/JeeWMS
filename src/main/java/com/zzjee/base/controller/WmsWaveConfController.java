@@ -106,7 +106,6 @@ public class WmsWaveConfController extends BaseController {
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -150,8 +149,6 @@ public class WmsWaveConfController extends BaseController {
 	
 	/**
 	 * 批量删除波次配置
-	 * 
-	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")
 	@ResponseBody
@@ -180,7 +177,7 @@ public class WmsWaveConfController extends BaseController {
 	/**
 	 * 添加波次配置
 	 * 
-	 * @param ids
+	 * @param wmsWaveConf 波次配置
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")

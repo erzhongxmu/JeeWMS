@@ -72,6 +72,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Controller
 @RequestMapping("/waveToFjController")
 public class WaveToFjController extends BaseController {
+
     /**
      * Logger for this class
      */
@@ -100,7 +101,6 @@ public class WaveToFjController extends BaseController {
      * @param response
      * @param dataGrid
      */
-
     @RequestMapping(params = "datagrid")
     public void datagrid(WaveToFjEntity waveToFj, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
         CriteriaQuery cq = new CriteriaQuery(WaveToFjEntity.class, dataGrid);
@@ -126,6 +126,7 @@ public class WaveToFjController extends BaseController {
     public AjaxJson doDel(WaveToFjEntity waveToFj, HttpServletRequest request) {
         String message = null;
         AjaxJson j = new AjaxJson();
+        // 调用systemService的getEntity方法，传入WaveToFjEntity.class和waveToFj对象的id作为参数，获取对应的实体对象，并将其赋值给waveToFj变量
         waveToFj = systemService.getEntity(WaveToFjEntity.class, waveToFj.getId());
         message = "wave_to_fj";
         try {
@@ -136,6 +137,7 @@ public class WaveToFjController extends BaseController {
             message = "wave_to_fj";
             throw new BusinessException(e.getMessage());
         }
+        // 将message设置为j对象的msg属性
         j.setMsg(message);
         return j;
     }
@@ -152,7 +154,9 @@ public class WaveToFjController extends BaseController {
         AjaxJson j = new AjaxJson();
         message = "wave_to_fj";
         try {
+            // 遍历传入的id字符串，以逗号分隔
             for (String id : ids.split(",")) {
+                // 根据id获取WaveToFjEntity实体
                 WaveToFjEntity waveToFj = systemService.getEntity(WaveToFjEntity.class,
                         id
                 );
@@ -164,10 +168,10 @@ public class WaveToFjController extends BaseController {
             message = "wave_to_fj";
             throw new BusinessException(e.getMessage());
         }
+        // 将message设置为j对象的msg属性
         j.setMsg(message);
         return j;
     }
-
 
     /**
      * 添加wave_to_fj
@@ -181,13 +185,17 @@ public class WaveToFjController extends BaseController {
         AjaxJson j = new AjaxJson();
         message = "wave_to_fj添加成功";
         try {
+            // 调用waveToFjService的save方法保存waveToFj对象
             waveToFjService.save(waveToFj);
+            // 调用systemService的addLog方法记录日志，传入message、Globals.Log_Type_INSERT和Globals.Log_Leavel_INFO作为参数
             systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
+            // 如果发生异常，打印异常堆栈信息
             e.printStackTrace();
             message = "wave_to_fj添加失败";
             throw new BusinessException(e.getMessage());
         }
+        // 将message设置为j对象的msg属性
         j.setMsg(message);
         return j;
     }
@@ -205,18 +213,23 @@ public class WaveToFjController extends BaseController {
         message = "wave_to_fj更新成功";
         WaveToFjEntity t = waveToFjService.get(WaveToFjEntity.class, waveToFj.getId());
         try {
+            // 将waveToFj对象的属性复制到t对象中，只复制非空属性
             MyBeanUtils.copyBeanNotNull2Bean(waveToFj, t);
+            // 保存或更新t对象
             waveToFjService.saveOrUpdate(t);
+            // 记录日志，类型为更新，级别为信息
             systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
+            // 如果发生异常，打印异常堆栈信息
             e.printStackTrace();
             message = "wave_to_fj更新失败";
+            // 抛出一个BusinessException异常，传入异常信息
             throw new BusinessException(e.getMessage());
         }
+        // 将message设置为j对象的msg属性
         j.setMsg(message);
         return j;
     }
-
 
     /**
      * wave_to_fj新增页面跳转
@@ -267,13 +280,17 @@ public class WaveToFjController extends BaseController {
     public String exportXls(WaveToFjEntity waveToFj, HttpServletRequest request, HttpServletResponse response
             , DataGrid dataGrid, ModelMap modelMap) {
         CriteriaQuery cq = new CriteriaQuery(WaveToFjEntity.class, dataGrid);
+        // 根据请求参数和实体类属性生成HQL查询语句
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, waveToFj, request.getParameterMap());
+        // 根据查询条件获取WaveToFjEntity对象列表
         List<WaveToFjEntity> waveToFjs = this.waveToFjService.getListByCriteriaQuery(cq, false);
         modelMap.put(NormalExcelConstants.FILE_NAME, "wave_to_fj");
         modelMap.put(NormalExcelConstants.CLASS, WaveToFjEntity.class);
         modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("wave_to_fj列表", "导出人:" + ResourceUtil.getSessionUserName().getRealName(),
                 "导出信息"));
+        // 将查询结果放入modelMap中
         modelMap.put(NormalExcelConstants.DATA_LIST, waveToFjs);
+        // 返回视图名称，用于跳转到导出Excel的页面
         return NormalExcelConstants.JEECG_EXCEL_VIEW;
     }
 
@@ -286,11 +303,16 @@ public class WaveToFjController extends BaseController {
     @RequestMapping(params = "exportXlsByT")
     public String exportXlsByT(WaveToFjEntity waveToFj, HttpServletRequest request, HttpServletResponse response
             , DataGrid dataGrid, ModelMap modelMap) {
+        // 设置 Excel 文件名
         modelMap.put(NormalExcelConstants.FILE_NAME, "wave_to_fj");
+        // 指定导出的数据实体类类型
         modelMap.put(NormalExcelConstants.CLASS, WaveToFjEntity.class);
+        // 设置导出参数，包括标题、作者和描述
         modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("wave_to_fj列表", "导出人:" + ResourceUtil.getSessionUserName().getRealName(),
                 "导出信息"));
+        // 设置数据列表为空列表，此处应根据实际需求填充数据
         modelMap.put(NormalExcelConstants.DATA_LIST, new ArrayList());
+        // 返回视图名称，用于展示或下载 Excel 文件
         return NormalExcelConstants.JEECG_EXCEL_VIEW;
     }
 

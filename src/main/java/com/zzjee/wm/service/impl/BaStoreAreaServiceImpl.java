@@ -17,7 +17,6 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class BaStoreAreaServiceImpl extends CommonServiceImpl implements BaStoreAreaServiceI {
 
-	
  	public void delete(BaStoreAreaEntity entity) throws Exception{
  		super.delete(entity);
  		//执行删除操作增强业务

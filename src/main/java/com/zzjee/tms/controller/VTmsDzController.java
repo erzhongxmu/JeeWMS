@@ -54,17 +54,21 @@ import java.util.Set;
  * @author onlineGenerator
  * @date 2018-08-08 01:31:13
  * @version V1.0
- *
+ * 控制器类，用于处理与v_tms_dz相关的请求
  */
 @Api(value="VTmsDz",description="v_tms_dz",tags="vTmsDzController")
 @Controller
 @RequestMapping("/vTmsDzController")
 public class VTmsDzController extends BaseController {
 	/**
+	 * 日志记录器
 	 * Logger for this class
 	 */
 	private static final Logger logger = Logger.getLogger(VTmsDzController.class);
 
+	/**
+	 * 注入vTmsDz服务接口
+	 */
 	@Autowired
 	private VTmsDzServiceI vTmsDzService;
 	@Autowired
@@ -72,12 +76,10 @@ public class VTmsDzController extends BaseController {
 	@Autowired
 	private Validator validator;
 
-
-
 	/**
 	 * v_tms_dz列表 页面跳转
-	 *
-	 * @return
+	 * @param request HTTP请求
+	 * @return 返回ModelAndView对象
 	 */
 	@RequestMapping(params = "list")
 	public ModelAndView list(HttpServletRequest request) {
@@ -85,14 +87,12 @@ public class VTmsDzController extends BaseController {
 	}
 
 	/**
-	 * easyui AJAX请求数据
-	 *
-	 * @param request
-	 * @param response
-	 * @param dataGrid
-	 * @param user
+	 * 处理easyui AJAX请求数据
+	 * @param vTmsDz 实体对象
+	 * @param request HTTP请求
+	 * @param response HTTP响应
+	 * @param dataGrid 数据网格
 	 */
-
 	@RequestMapping(params = "datagrid")
 	public void datagrid(VTmsDzEntity vTmsDz, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
 		CriteriaQuery cq = new CriteriaQuery(VTmsDzEntity.class, dataGrid);
@@ -101,6 +101,7 @@ public class VTmsDzController extends BaseController {
 		try{
 		//自定义追加查询条件
 		}catch (Exception e) {
+			// 抛出异常
 			throw new BusinessException(e.getMessage());
 		}
 		cq.add();
@@ -110,13 +111,15 @@ public class VTmsDzController extends BaseController {
 
 	/**
 	 * 删除v_tms_dz
-	 *
-	 * @return
+	 * @param vTmsDz 实体对象
+	 * @param request HTTP请求
+	 * @return 返回AjaxJson对象
 	 */
 	@RequestMapping(params = "doDel")
 	@ResponseBody
 	public AjaxJson doDel(VTmsDzEntity vTmsDz, HttpServletRequest request) {
 		String message = null;
+		// 创建对象
 		AjaxJson j = new AjaxJson();
 		vTmsDz = systemService.getEntity(VTmsDzEntity.class, vTmsDz.getId());
 		message = "v_tms_dz删除成功";
@@ -124,69 +127,76 @@ public class VTmsDzController extends BaseController {
 			vTmsDzService.delete(vTmsDz);
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
+			// 抛出异常
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
+		// 返回AjaxJson对象
 		return j;
 	}
 
 	/**
-	 * 批量删除v_tms_dz
-	 *
-	 * @return
+	 * 批量删除 v_tms_dz记录
+	 * @param ids 记录ID字符串
+	 * @param request HTTP请求
+	 * @return 返回AjaxJson对象
 	 */
 	 @RequestMapping(params = "doBatchDel")
 	@ResponseBody
 	public AjaxJson doBatchDel(String ids, HttpServletRequest request){
 		String message = null;
+		// 创建对象
 		AjaxJson j = new AjaxJson();
 		message = "v_tms_dz删除成功";
 		try{
 			for(String id:ids.split(",")){
-				VTmsDzEntity vTmsDz = systemService.getEntity(VTmsDzEntity.class,
-				id
-				);
+				VTmsDzEntity vTmsDz = systemService.getEntity(VTmsDzEntity.class, id);
 				vTmsDzService.delete(vTmsDz);
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}
 		}catch(Exception e){
+			// 抛出异常
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
+		// 返回AjaxJson对象
 		return j;
 	}
 
 
 	/**
-	 * 添加v_tms_dz
-	 *
-	 * @param ids
-	 * @return
+	 * 添加v_tms_dz记录
+	 * @param vTmsDz 实体对象
+	 * @param request HTTP请求
+	 * @return 返回AjaxJson对象
 	 */
 	@RequestMapping(params = "doAdd")
 	@ResponseBody
 	public AjaxJson doAdd(VTmsDzEntity vTmsDz, HttpServletRequest request) {
 		String message = null;
+		// 创建对象
 		AjaxJson j = new AjaxJson();
 		message = "v_tms_dz添加成功";
 		try{
 			vTmsDzService.save(vTmsDz);
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
+			// 抛出异常
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
+		// 返回AjaxJson对象
 		return j;
 	}
 
 	/**
-	 * 更新v_tms_dz
-	 *
-	 * @param ids
-	 * @return
+	 * 更新v_tms_dz记录
+	 * @param vTmsDz 实体对象
+	 * @param request HTTP请求
+	 * @return 返回AjaxJson对象
 	 */
 	@RequestMapping(params = "doUpdate")
 	@ResponseBody
@@ -200,18 +210,20 @@ public class VTmsDzController extends BaseController {
 			vTmsDzService.saveOrUpdate(t);
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
+			// 抛出异常信息
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
+		// 返回AjaxJson对象
 		return j;
 	}
 
-
 	/**
-	 * v_tms_dz新增页面跳转
-	 *
-	 * @return
+	 * v_tms_dz新增页面跳转功能
+	 * @param vTmsDz 实体对象
+	 * @param req HTTP请求
+	 * @return 返回ModelAndView对象
 	 */
 	@RequestMapping(params = "goAdd")
 	public ModelAndView goAdd(VTmsDzEntity vTmsDz, HttpServletRequest req) {
@@ -222,9 +234,10 @@ public class VTmsDzController extends BaseController {
 		return new ModelAndView("com/zzjee/tms/vTmsDz-add");
 	}
 	/**
-	 * v_tms_dz编辑页面跳转
-	 *
-	 * @return
+	 * 跳转到v_tms_dz编辑页面
+	 * @param vTmsDz 实体对象
+	 * @param req HTTP请求
+	 * @return	返回ModelAndView对象
 	 */
 	@RequestMapping(params = "goUpdate")
 	public ModelAndView goUpdate(VTmsDzEntity vTmsDz, HttpServletRequest req) {
@@ -237,8 +250,8 @@ public class VTmsDzController extends BaseController {
 
 	/**
 	 * 导入功能跳转
-	 *
-	 * @return
+	 * @param  req HTTP请求
+	 * @return 返回 ModelAndView对象
 	 */
 	@RequestMapping(params = "upload")
 	public ModelAndView upload(HttpServletRequest req) {
@@ -247,10 +260,13 @@ public class VTmsDzController extends BaseController {
 	}
 
 	/**
-	 * 导出excel
-	 *
-	 * @param request
-	 * @param response
+	 * 导出excel文件
+	 * @param vTmsDz 实体对象
+	 * @param request HTTP请求
+	 * @param response HTTP响应
+	 * @param dataGrid 数据网格
+	 * @param modelMap 模型映射
+	 * @return JEECG_EXCEL_VIEW返回视图名称
 	 */
 	@RequestMapping(params = "exportXls")
 	public String exportXls(VTmsDzEntity vTmsDz, HttpServletRequest request, HttpServletResponse response
@@ -263,8 +279,8 @@ public class VTmsDzController extends BaseController {
 		modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("v_tms_dz列表", "导出人:"+ResourceUtil.getSessionUser().getRealName(),
 			"导出信息"));
 		modelMap.put(NormalExcelConstants.DATA_LIST,vTmsDzs);
+		// 返回结果
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 
-
-	}
+}

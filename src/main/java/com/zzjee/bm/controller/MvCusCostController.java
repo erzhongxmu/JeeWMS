@@ -132,6 +132,8 @@ public class MvCusCostController extends BaseController {
     /**
      * 删除mv_cus_cost
      *
+     * @param mvCusCost
+     * @param request
      * @return
      */
     @RequestMapping(params = "doDel")
@@ -1199,7 +1201,10 @@ public class MvCusCostController extends BaseController {
 
     /**
      * 批量删除mv_cus_cost
+     * 通过接收一个包含多个ID的字符串，来删除对应的记录
      *
+     * @param ids
+     * @param request
      * @return
      */
     @RequestMapping(params = "doBatchDel")
@@ -1228,6 +1233,8 @@ public class MvCusCostController extends BaseController {
     /**
      * 添加mv_cus_cost
      *
+     * @param mvCusCost
+     * @param request
      * @return
      */
     @RequestMapping(params = "doAdd")
@@ -1250,6 +1257,7 @@ public class MvCusCostController extends BaseController {
     /**
      * 更新mv_cus_cost
      *
+     * @param request
      * @return
      */
     @RequestMapping(params = "doUpdate")
@@ -1275,6 +1283,8 @@ public class MvCusCostController extends BaseController {
     /**
      * mv_cus_cost新增页面跳转
      *
+     * @param mvCusCost
+     * @param req
      * @return
      */
     @RequestMapping(params = "goAdd")
@@ -1289,6 +1299,8 @@ public class MvCusCostController extends BaseController {
     /**
      * mv_cus_cost编辑页面跳转
      *
+     * @param mvCusCost
+     * @param req
      * @return
      */
     @RequestMapping(params = "goUpdate")
@@ -1303,6 +1315,7 @@ public class MvCusCostController extends BaseController {
     /**
      * 导入功能跳转
      *
+     * @param req
      * @return
      */
     @RequestMapping(params = "upload")
@@ -1314,8 +1327,11 @@ public class MvCusCostController extends BaseController {
     /**
      * 导出excel
      *
+     * @param mvCusCost
      * @param request
      * @param response
+     * @param dataGrid
+     * @param modelMap
      */
     @RequestMapping(params = "exportXls")
     public String exportXls(MvCusCostEntity mvCusCost, HttpServletRequest request, HttpServletResponse response
@@ -1334,27 +1350,40 @@ public class MvCusCostController extends BaseController {
     /**
      * 导出excel 使模板
      *
+     * @param mvCusCost
      * @param request
      * @param response
+     * @param dataGrid
+     * @param modelMap
      */
     @RequestMapping(params = "exportXlsByT")
     public String exportXlsByT(MvCusCostEntity mvCusCost, HttpServletRequest request, HttpServletResponse response
             , DataGrid dataGrid, ModelMap modelMap) {
+        //设置Excel文件的名称
         modelMap.put(NormalExcelConstants.FILE_NAME, "mv_cus_cost");
         modelMap.put(NormalExcelConstants.CLASS, MvCusCostEntity.class);
+        //设置导出参数
         modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("mv_cus_cost列表", "导出人:" + ResourceUtil.getSessionUserName().getRealName(),
                 "导出信息"));
+        //设置一个空的数据列表
         modelMap.put(NormalExcelConstants.DATA_LIST, new ArrayList());
         return NormalExcelConstants.JEECG_EXCEL_VIEW;
     }
 
+    /**
+     * 通过excel导入数据
+     *
+     * @param request
+     * @param response
+     */
     @SuppressWarnings("unchecked")
     @RequestMapping(params = "importExcel", method = RequestMethod.POST)
     @ResponseBody
     public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
         AjaxJson j = new AjaxJson();
-
+        // 将HttpServletRequest转换为MultipartHttpServletRequest，以便处理文件上传
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+        //获取上传的文件映射
         Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
         for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
             MultipartFile file = entity.getValue();// 获取上传文件对象
@@ -1381,7 +1410,11 @@ public class MvCusCostController extends BaseController {
         }
         return j;
     }
-
+    /**
+     * 获取所有MvCusCostEntity实体的列表
+     *
+     * @return
+     */
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<MvCusCostEntity> list() {

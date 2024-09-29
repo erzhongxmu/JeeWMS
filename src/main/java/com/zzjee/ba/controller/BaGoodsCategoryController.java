@@ -60,7 +60,7 @@ import java.util.Set;
 @RequestMapping("/baGoodsCategoryController")
 public class BaGoodsCategoryController extends BaseController {
 	/**
-	 * Logger for this class
+	 * Logger  for this class
 	 */
 	private static final Logger logger = Logger.getLogger(BaGoodsCategoryController.class);
 
@@ -167,7 +167,6 @@ public class BaGoodsCategoryController extends BaseController {
 
 	/**
 	 * 删除商品类目
-	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -190,7 +189,6 @@ public class BaGoodsCategoryController extends BaseController {
 
 	/**
 	 * 批量删除商品类目
-	 *
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")

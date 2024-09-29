@@ -110,8 +110,9 @@ public class MdBinController extends BaseController {
     }
 
     /**
-     * easyui AJAX请求数据
+     * easyui 处理AJAX请求以返回MdBinEntity数据列表的datagrid
      *
+     * @param mdBin
      * @param request
      * @param response
      * @param dataGrid
@@ -130,6 +131,8 @@ public class MdBinController extends BaseController {
     /**
      * 删除仓位定义
      *
+     * @param mdBin
+     * @param request
      * @return
      */
     @RequestMapping(params = "doDel")
@@ -163,6 +166,8 @@ public class MdBinController extends BaseController {
     /**
      * 删除仓位定义
      *
+     * @param mdBin
+     * @param request
      * @return
      */
     @RequestMapping(params = "doHad")
@@ -359,10 +364,13 @@ public class MdBinController extends BaseController {
 
     public void runagv(String binfrom, String binto, String startcom, String midcom, String endcom, String type) {
         if ("diaodu".equals(type)) {
+            //根据起始和结束库位编号查询对应的库位实体
             List<MdBinEntity> mdblistfrom = systemService.findByProperty(MdBinEntity.class, "kuWeiBianMa", binfrom);
             List<MdBinEntity> mdblistto = systemService.findByProperty(MdBinEntity.class, "kuWeiBianMa", binto);
+            //获取起始和结束库位的具体实体
             MdBinEntity mdBinEntityfrom = mdblistfrom.get(0);
             MdBinEntity mdBinEntityto = mdblistto.get(0);
+            //获取起始和结束库位的坐标信息
             String x0 = mdBinEntityfrom.getXnode();
             String x1 = mdBinEntityto.getXnode();
             int xStep = Integer.parseInt(x1) - Integer.parseInt(x0);
@@ -378,6 +386,7 @@ public class MdBinController extends BaseController {
                 hxstepNum = "1";
                 wmsPlcController.run("", startcom, hxstepNum);
             }
+            // 根据起始位置的y坐标决定是沿x轴还是y轴移动
             if (y0.equals("01")) {
                 wmsPlcController.run("", "runx", xstepNum);
             } else {
@@ -405,6 +414,8 @@ public class MdBinController extends BaseController {
     /**
      * 批量删除仓位定义
      *
+     * @param ids
+     * @param request
      * @return
      */
     @RequestMapping(params = "doBatchDel")
@@ -439,6 +450,8 @@ public class MdBinController extends BaseController {
     /**
      * 添加仓位定义
      *
+     * @param mdBin
+     * @param request
      * @return
      */
     @RequestMapping(params = "doAdd")
@@ -473,6 +486,8 @@ public class MdBinController extends BaseController {
     /**
      * 更新仓位定义
      *
+     * @param mdBin 实体对象
+     * @param request
      * @return
      */
     @RequestMapping(params = "doUpdate")
@@ -483,8 +498,11 @@ public class MdBinController extends BaseController {
         message = "仓位定义更新成功";
         MdBinEntity t = mdBinService.get(MdBinEntity.class, mdBin.getId());
         try {
+            // 将请求中的非空字段更新到现有实体上
             MyBeanUtils.copyBeanNotNull2Bean(mdBin, t);
+            // 保存或更新实体到数据库
             mdBinService.saveOrUpdate(t);
+            // 记录日志
             systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
@@ -498,6 +516,8 @@ public class MdBinController extends BaseController {
     /**
      * 仓位定义新增页面跳转
      *
+     * @param mdBin
+     * @param req
      * @return
      */
     @RequestMapping(params = "goAdd")
@@ -512,6 +532,8 @@ public class MdBinController extends BaseController {
     /**
      * 仓位定义编辑页面跳转
      *
+     * @param mdBin
+     * @param req
      * @return
      */
     @RequestMapping(params = "goUpdate")
@@ -526,6 +548,7 @@ public class MdBinController extends BaseController {
     /**
      * 导入功能跳转
      *
+     * @param req
      * @return
      */
     @RequestMapping(params = "upload")
@@ -537,8 +560,11 @@ public class MdBinController extends BaseController {
     /**
      * 导出excel
      *
+     * @param mdBin
      * @param request
      * @param response
+     * @param dataGrid
+     * @param modelMap
      */
     @RequestMapping(params = "exportXls")
     public String exportXls(MdBinEntity mdBin, HttpServletRequest request, HttpServletResponse response
@@ -546,10 +572,15 @@ public class MdBinController extends BaseController {
         CriteriaQuery cq = new CriteriaQuery(MdBinEntity.class, dataGrid);
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, mdBin, request.getParameterMap());
         List<MdBinEntity> mdBins = this.mdBinService.getListByCriteriaQuery(cq, false);
+        //设置Excel文件的基础信息
+        //文件名
         modelMap.put(NormalExcelConstants.FILE_NAME, "仓位定义");
+        //导出数据的类类型
         modelMap.put(NormalExcelConstants.CLASS, MdBinEntity.class);
+        //设置导出参数
         modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("仓位定义列表", "导出人:" + ResourceUtil.getSessionUserName().getRealName(),
                 "导出信息"));
+        //设置需要导出的数据列表
         modelMap.put(NormalExcelConstants.DATA_LIST, mdBins);
         return NormalExcelConstants.JEECG_EXCEL_VIEW;
     }
@@ -557,33 +588,46 @@ public class MdBinController extends BaseController {
     /**
      * 导出excel 使模板
      *
+     * @param mdBin
      * @param request
      * @param response
+     * @param dataGrid
+     * @param modelMap
      */
     @RequestMapping(params = "exportXlsByT")
     public String exportXlsByT(MdBinEntity mdBin, HttpServletRequest request, HttpServletResponse response
             , DataGrid dataGrid, ModelMap modelMap) {
+        //设置Excel文件的名称
         modelMap.put(NormalExcelConstants.FILE_NAME, "仓位定义");
         modelMap.put(NormalExcelConstants.CLASS, MdBinEntity.class);
+        //设置导出参数
         modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("仓位定义列表", "导出人:" + ResourceUtil.getSessionUserName().getRealName(),
                 "导出信息"));
+        //设置一个空的数据列表
         modelMap.put(NormalExcelConstants.DATA_LIST, new ArrayList());
         return NormalExcelConstants.JEECG_EXCEL_VIEW;
     }
-
+    /**
+     * 通过excel导入数据
+     *
+     * @param request
+     * @param response
+     */
     @SuppressWarnings("unchecked")
     @RequestMapping(params = "importExcel", method = RequestMethod.POST)
     @ResponseBody
     public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
         AjaxJson j = new AjaxJson();
-
+        // 将HttpServletRequest转换为MultipartHttpServletRequest，以便处理文件上传
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+        //获取上传的文件映射
         Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
         for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
             MultipartFile file = entity.getValue();// 获取上传文件对象
+            //设置Excel导入参数
             ImportParams params = new ImportParams();
-            params.setTitleRows(2);
-            params.setHeadRows(1);
+            params.setTitleRows(2);//标题行
+            params.setHeadRows(1);//表头行
             params.setNeedSave(true);
             try {
                 List<MdBinEntity> listMdBinEntitys = ExcelImportUtil.importExcel(file.getInputStream(), MdBinEntity.class, params);
@@ -604,7 +648,9 @@ public class MdBinController extends BaseController {
                 }
                 j.setMsg("文件导入成功！");
             } catch (Exception e) {
+                // 如果在导入过程中出现异常，则设置AjaxJson对象的消息，表示文件导入失败
                 j.setMsg("文件导入失败！");
+                // 记录异常信息，便于后续问题排查
                 logger.error(ExceptionUtil.getExceptionMessage(e));
             } finally {
                 try {

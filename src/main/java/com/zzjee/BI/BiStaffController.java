@@ -18,6 +18,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 大屏员工
+ */
 @Controller
 @RequestMapping("/BiStaffController")
 public class BiStaffController extends BaseController {
@@ -72,9 +75,12 @@ public class BiStaffController extends BaseController {
         request.setAttribute("num4",num4);
         return new ModelAndView("com/zzjee/BI/home/reportbi");
     }
+
     /**
      * highchart
-     *
+     * @param request
+     * @param reportType
+     * @param response
      * @return
      */
     @RequestMapping(params = "dayCount")
@@ -115,7 +121,6 @@ public class BiStaffController extends BaseController {
 
     /**
      * highchart
-     *
      * @return
      */
     @RequestMapping(params = "cpNameupCount")

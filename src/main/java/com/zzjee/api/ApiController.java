@@ -187,8 +187,12 @@ public class ApiController {
                                    @RequestParam(value = "searchstr3", required = false) String searchstr3) {
         return waveToDownController.list(username, searchstr, searchstr2, searchstr3);
     }
-
-    //波次下架保存
+    /**
+     * 波次下架保存
+     * @param waveToDownstr
+     * @param uriBuilder
+     * @return
+     */
     @RequestMapping(value = "/waveToDownController/save", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<?> create5(@RequestParam String waveToDownstr, UriComponentsBuilder uriBuilder) {
@@ -197,8 +201,14 @@ public class ApiController {
         return waveToDownController.create(waveToDownstr, uriBuilder);
     }
 
-    //波次分拣列表
-
+    /**
+     * 波次分拣列表
+     * @param username 用户名
+     * @param searchstr 搜索条件
+     * @param searchstr2 搜索条件2
+     * @param searchstr3
+     * @return
+     */
     @RequestMapping(value = "/waveToFjController/list/tofj", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<?> list6(@RequestParam(value = "username", required = false) String username,
@@ -399,6 +409,12 @@ public class ApiController {
         return new ResponseEntity(D0, HttpStatus.OK);
     }
 
+    /**
+     * 获取用户消息
+     * @param username
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/annountCement/listByUser/{username}", method = RequestMethod.GET)
     @ResponseBody
     public ResponseMessage<?> messagelist(@PathVariable("username") String username,

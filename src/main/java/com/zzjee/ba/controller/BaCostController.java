@@ -77,7 +77,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RequestMapping("/baCostController")
 public class BaCostController extends BaseController {
 	/**
-	 * Logger for this class
+	 * Logger  for this class
 	 */
 	private static final Logger logger = Logger.getLogger(BaCostController.class);
 
@@ -106,7 +106,6 @@ public class BaCostController extends BaseController {
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -178,7 +177,7 @@ public class BaCostController extends BaseController {
 	/**
 	 * 添加费用名称
 	 *
-	 * @param ids
+	 * @param baCost
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")

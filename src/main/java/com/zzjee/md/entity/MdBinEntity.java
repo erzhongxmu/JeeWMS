@@ -11,7 +11,7 @@ import org.jeecgframework.poi.excel.annotation.Excel;
 
 /**
  * @Title: Entity
- * @Description: 仓位定义
+ * @Description: 仓位定义实体类
  * @author erzhongxmu
  * @date 2017-08-15 23:17:02
  * @version V1.0

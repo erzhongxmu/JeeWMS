@@ -18,12 +18,12 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.SequenceGenerator;
 import org.jeecgframework.poi.excel.annotation.Excel;
 
-/**   
+/**
  * @Title: Entity
- * @Description: mv_cus_cost
+ * @Description: mv_cus_cost实体类
  * @author erzhongxmu
  * @date 2017-10-19 12:23:14
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Entity
@@ -41,7 +41,7 @@ public class MvCusCostEntity implements java.io.Serializable {
 	/**costData*/
 	@Excel(name="costData",format = "yyyy-MM-dd")
 	private java.util.Date costData;
-	
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  主键

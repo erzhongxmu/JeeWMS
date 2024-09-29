@@ -94,6 +94,7 @@ import static com.xiaoleilu.hutool.date.DateTime.now;
 @Controller
 @RequestMapping("/wmOmNoticeHController")
 public class WmOmNoticeHController extends BaseController {
+
     /**
      * Logger for this class
      */
@@ -126,7 +127,6 @@ public class WmOmNoticeHController extends BaseController {
         return new ModelAndView("com/zzjee/wm/wmOmNoticeitemList");
     }
 
-
     @RequestMapping(params = "datagriditem")
     public void datagriditem(WmOmNoticeIEntity wmOmNoticeitem, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
         CriteriaQuery cq = new CriteriaQuery(WmOmNoticeIEntity.class, dataGrid);
@@ -152,8 +152,6 @@ public class WmOmNoticeHController extends BaseController {
         this.wmOmNoticeHService.getDataGridReturn(cq, true);
         TagUtil.datagrid(response, dataGrid);
     }
-
-
     @RequestMapping(params = "saveOmnotice")
     @ResponseBody
     public AjaxJson saveOmnotice(wmomnoticeipage page) {
@@ -166,11 +164,17 @@ public class WmOmNoticeHController extends BaseController {
                     WmOmNoticeIEntity t = systemService.get(WmOmNoticeIEntity.class, jeecgDemo.getId());
                     try {
                         message = "保存成功";
+                        // 更新实体对象t的binId属性
                         t.setBinId(jeecgDemo.getBinId());
+                        // 更新实体对象t的planSta属性
                         t.setPlanSta(jeecgDemo.getPlanSta());
+                        // 更新实体对象t的goodsProData属性
                         t.setGoodsProData(jeecgDemo.getGoodsProData());
+                        // 更新实体对象t的baseGoodscount属性
                         t.setBaseGoodscount(jeecgDemo.getBaseGoodscount());
+                        // 更新实体对象t的goodsQua属性
                         t.setGoodsQua(jeecgDemo.getGoodsQua());
+                        // 调用systemService的updateEntitie方法更新实体对象t
                         systemService.updateEntitie(t);
                         systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
                     } catch (Exception e) {
@@ -690,6 +694,7 @@ public class WmOmNoticeHController extends BaseController {
             resultnew.add(WmOmNoticeH);
         }
         dataGrid.setResults(resultnew);
+        // 将查询结果封装成DataGrid对象并返回给前端
         TagUtil.datagrid(response, dataGrid);
     }
 

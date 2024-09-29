@@ -18,15 +18,30 @@ public class ResultDO<T>  implements Serializable {
     private static final long serialVersionUID = -2042618546543630713L;
     private boolean isOK = true;
     private T obj;
+    /**
+     * 错误消息
+     */
     private String errorMsg;
+    /**
+     * 错误代码
+     */
     private String errorCode;
 
     public ResultDO() {
     }
+
+    /**
+     * 返回错误编码
+     * @return 错误编码
+     */
     public String getErrorCode() {
         return this.errorCode;
     }
 
+    /**
+     * 设置错误编码
+     * @param errorCode 错误编码
+     */
     public void setErrorCode(String errorCode) {
         this.errorCode = errorCode;
     }

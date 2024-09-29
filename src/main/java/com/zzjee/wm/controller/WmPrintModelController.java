@@ -96,7 +96,6 @@ public class WmPrintModelController extends BaseController {
     @Autowired
     private Validator validator;
 
-
     /**
      * 打印模板列表 页面跳转
      *
@@ -115,7 +114,6 @@ public class WmPrintModelController extends BaseController {
      * @param dataGrid
      * @param user
      */
-
     @RequestMapping(params = "datagrid")
     public void datagrid(WmPrintModelEntity wmPrintModel, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
         CriteriaQuery cq = new CriteriaQuery(WmPrintModelEntity.class, dataGrid);
@@ -141,9 +139,11 @@ public class WmPrintModelController extends BaseController {
     public AjaxJson doDel(WmPrintModelEntity wmPrintModel, HttpServletRequest request) {
         String message = null;
         AjaxJson j = new AjaxJson();
+        // 通过ID获取打印模板实体
         wmPrintModel = systemService.getEntity(WmPrintModelEntity.class, wmPrintModel.getId());
         message = "打印模板删除成功";
         try {
+            // 调用服务层方法删除打印模板实体
             wmPrintModelService.delete(wmPrintModel);
             systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
@@ -151,6 +151,7 @@ public class WmPrintModelController extends BaseController {
             message = "打印模板删除失败";
             throw new BusinessException(e.getMessage());
         }
+        // 设置返回消息
         j.setMsg(message);
         return j;
     }
@@ -167,10 +168,13 @@ public class WmPrintModelController extends BaseController {
         AjaxJson j = new AjaxJson();
         message = "打印模板删除成功";
         try {
+            // 遍历传入的id字符串，以逗号分隔
             for (String id : ids.split(",")) {
+                // 根据id获取打印模板实体
                 WmPrintModelEntity wmPrintModel = systemService.getEntity(WmPrintModelEntity.class,
                         id
                 );
+                // 删除打印模板实体
                 wmPrintModelService.delete(wmPrintModel);
                 systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
             }
@@ -179,10 +183,10 @@ public class WmPrintModelController extends BaseController {
             message = "打印模板删除失败";
             throw new BusinessException(e.getMessage());
         }
+        // 设置返回消息
         j.setMsg(message);
         return j;
     }
-
 
     /**
      * 添加打印模板

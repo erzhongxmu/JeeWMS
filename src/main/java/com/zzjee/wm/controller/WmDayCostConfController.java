@@ -139,7 +139,9 @@ public class WmDayCostConfController extends BaseController {
         map1.put("costDate", "desc");
         cq.setOrder(map1);
         cq.add();
+        // 调用wmOmQmIService的getDataGridReturn方法执行查询并返回结果
         this.wmDayCostConfService.getDataGridReturn(cq, true);
+        // 将查询结果封装成DataGrid对象并返回给前端
         TagUtil.datagrid(response, dataGrid);
     }
 
@@ -153,16 +155,22 @@ public class WmDayCostConfController extends BaseController {
     public AjaxJson doDel(WmDayCostConfEntity wmDayCostConf, HttpServletRequest request) {
         String message = null;
         AjaxJson j = new AjaxJson();
+        // 根据传入的wmDayCostConf对象的id获取对应的实体
         wmDayCostConf = systemService.getEntity(WmDayCostConfEntity.class, wmDayCostConf.getId());
         message = "计费日期配置删除成功";
         try {
+            // 将计费状态设置为"N"（不计费）
             wmDayCostConf.setCostSf("N");
+            // 保存或更新实体
             wmDayCostConfService.saveOrUpdate(wmDayCostConf);
+            // 添加日志记录，记录类型为删除，级别为信息
             systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
+            // 如果发生异常，打印堆栈跟踪信息
             e.printStackTrace();
             throw new BusinessException(e.getMessage());
         }
+        // 将message设置为j对象的msg属性
         j.setMsg(message);
         return j;
     }
@@ -189,13 +197,15 @@ public class WmDayCostConfController extends BaseController {
                 systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
             }
         } catch (Exception e) {
+            // 打印异常堆栈信息
             e.printStackTrace();
+            // 抛出业务异常，并附带异常信息
             throw new BusinessException(e.getMessage());
         }
+        // 将message设置为j对象的msg属性
         j.setMsg(message);
         return j;
     }
-
 
     /**
      * 添加计费日期配置
@@ -281,7 +291,6 @@ public class WmDayCostConfController extends BaseController {
         j.setMsg(message);
         return j;
     }
-
 
     /**
      * 计费日期配置新增页面跳转

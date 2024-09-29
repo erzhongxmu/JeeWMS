@@ -48,7 +48,7 @@
 
 
 
-//导入
+//导入excel
 function ImportXls() {
 	openwindow('Excel导入', 'mvStockCusController.do?upload', "mvStockCusList");
 }

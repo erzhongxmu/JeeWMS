@@ -79,7 +79,6 @@ public class WmSttInGoodsController extends BaseController {
     @Autowired
     private Validator validator;
 
-
     /**
      * 库存盘点列表 页面跳转
      *
@@ -107,7 +106,6 @@ public class WmSttInGoodsController extends BaseController {
      * @param response
      * @param dataGrid
      */
-
     @RequestMapping(params = "datagrid")
     public void datagrid(WmSttInGoodsEntity wmSttInGoods, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
         CriteriaQuery cq = new CriteriaQuery(WmSttInGoodsEntity.class, dataGrid);
@@ -115,12 +113,9 @@ public class WmSttInGoodsController extends BaseController {
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wmSttInGoods, request.getParameterMap());
         try {
             //自定义追加查询条件
-
-
-            // 自定义追加查询条件
             String query_createDate_begin = request.getParameter("createDate_begin1");
             String query_createDate_end = request.getParameter("createDate_end2");
-
+            // 如果开始时间不为空，则设置查询条件
             if (StringUtil.isNotEmpty(query_createDate_begin)) {
                 cq.ge("createDate", new SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
                         .parse(query_createDate_begin));
@@ -129,20 +124,20 @@ public class WmSttInGoodsController extends BaseController {
                 cq.le("createDate", new SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
                         .parse(query_createDate_end));
             }
-
-
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
         }
+        // 设置排序规则
         Map<String, Object> map1 = new HashMap<String, Object>();
         map1.put("createDate", "desc");
         cq.setOrder(map1);
+        // 设置查询条件：状态不等于"已删除"
         cq.notEq("sttSta", "已删除");
         cq.add();
+        // 调用服务层方法获取数据并返回
         this.wmSttInGoodsService.getDataGridReturn(cq, true);
         TagUtil.datagrid(response, dataGrid);
     }
-
 
     @RequestMapping(params = "datagridcygz")
     public void datagridcygz(WmSttInGoodsEntity wmSttInGoods, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
@@ -172,7 +167,6 @@ public class WmSttInGoodsController extends BaseController {
         TagUtil.datagrid(response, dataGrid);
 
     }
-
 
     @RequestMapping(params = "datagridfp")
     public void datagridfp(WmSttInGoodsEntity wmSttInGoods, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
@@ -227,7 +221,6 @@ public class WmSttInGoodsController extends BaseController {
         j.setMsg(message);
         return j;
     }
-
 
     @RequestMapping(params = "dorun")
     @ResponseBody

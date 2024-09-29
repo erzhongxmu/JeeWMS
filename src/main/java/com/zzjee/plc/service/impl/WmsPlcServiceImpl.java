@@ -17,20 +17,28 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class WmsPlcServiceImpl extends CommonServiceImpl implements WmsPlcServiceI {
 
-	
- 	public void delete(WmsPlcEntity entity) throws Exception{
+	/**
+	 * 删除WmsPlcEntity实体对象
+	 */
+	 public void delete(WmsPlcEntity entity) throws Exception{
  		super.delete(entity);
  		//执行删除操作增强业务
 		this.doDelBus(entity);
  	}
- 	
+
+	/**
+	 * 保存WmsPlcEntity实体对象
+	 */
  	public Serializable save(WmsPlcEntity entity) throws Exception{
  		Serializable t = super.save(entity);
  		//执行新增操作增强业务
  		this.doAddBus(entity);
  		return t;
  	}
- 	
+
+	/**
+	 * 保存或更新WmsPlcEntity实体对象
+	 */
  	public void saveOrUpdate(WmsPlcEntity entity) throws Exception{
  		super.saveOrUpdate(entity);
  		//执行更新操作增强业务
@@ -73,7 +81,13 @@ public class WmsPlcServiceImpl extends CommonServiceImpl implements WmsPlcServic
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
- 	
+
+	/**
+	 * 将给定的 WmsPlcEntity 对象的属性值存储到一个 Map 中。
+	 *
+	 * @param t 要处理的 WmsPlcEntity 实体对象
+	 * @return 返回一个包含实体属性名和对应值的 Map 对象
+	 */
  	private Map<String,Object> populationMap(WmsPlcEntity t){
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("id", t.getId());
@@ -125,9 +139,14 @@ public class WmsPlcServiceImpl extends CommonServiceImpl implements WmsPlcServic
  		sql  = sql.replace("#{UUID}",UUID.randomUUID().toString());
  		return sql;
  	}
- 	
- 	/**
-	 * 执行JAVA增强
+
+	/**
+	 * 执行Java扩展功能，根据类型实例化对象并调用相应的方法。
+	 *
+	 * @param cgJavaType  Java扩展类型，可能的值为"class"或"spring"
+	 * @param cgJavaValue 要实例化的类的全名或Spring Bean的名称
+	 * @param data       传递给执行方法的数据映射
+	 * @throws Exception 当执行Java增强出现异常时抛出
 	 */
  	private void executeJavaExtend(String cgJavaType,String cgJavaValue,Map<String,Object> data) throws Exception {
  		if(StringUtil.isNotEmpty(cgJavaValue)){

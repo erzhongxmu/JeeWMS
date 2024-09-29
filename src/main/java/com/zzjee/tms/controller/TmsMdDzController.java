@@ -73,11 +73,8 @@ public class TmsMdDzController extends BaseController {
 	@Autowired
 	private Validator validator;
 
-
-
 	/**
 	 * 客户地址列表 页面跳转
-	 *
 	 * @return
 	 */
 	@RequestMapping(params = "list")
@@ -90,11 +87,10 @@ public class TmsMdDzController extends BaseController {
 	}
 	/**
 	 * easyui AJAX请求数据
-	 *
-	 * @param request
-	 * @param response
+	 * @param request 请求
+	 * @param response 响应
 	 * @param dataGrid
-	 * @param user
+	 * @param tmsMdDz
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -136,8 +132,7 @@ public class TmsMdDzController extends BaseController {
 	}
 	/**
 	 * 删除客户地址
-	 *
-	 * @return
+	 * @return j
 	 */
 	@RequestMapping(params = "doDel")
 	@ResponseBody
@@ -155,6 +150,7 @@ public class TmsMdDzController extends BaseController {
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
+		// 返回结果
 		return j;
 	}
 
@@ -189,14 +185,15 @@ public class TmsMdDzController extends BaseController {
 
 	/**
 	 * 添加客户地址
-	 *
-	 * @param ids
-	 * @return
+	 * @param tmsMdDz
+	 * @param request
+	 * @return 返回AjaxJson对象
 	 */
 	@RequestMapping(params = "doAdd")
 	@ResponseBody
 	public AjaxJson doAdd(TmsMdDzEntity tmsMdDz, HttpServletRequest request) {
 		String message = null;
+		// 创建对象
 		AjaxJson j = new AjaxJson();
 		message = "客户地址添加成功";
 		try{
@@ -207,19 +204,21 @@ public class TmsMdDzController extends BaseController {
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
+		// 返回AjaxJson对象
 		return j;
 	}
 
 	/**
 	 * 更新客户地址
-	 *
-	 * @param ids
-	 * @return
+	 * @param request 请求
+	 * @param tmsMdDz
+	 * @return j
 	 */
 	@RequestMapping(params = "doUpdate")
 	@ResponseBody
 	public AjaxJson doUpdate(TmsMdDzEntity tmsMdDz, HttpServletRequest request) {
 		String message = null;
+		// 创建对象
 		AjaxJson j = new AjaxJson();
 		message = "客户地址更新成功";
 		TmsMdDzEntity t = tmsMdDzService.get(TmsMdDzEntity.class, tmsMdDz.getId());
@@ -228,18 +227,21 @@ public class TmsMdDzController extends BaseController {
 			tmsMdDzService.saveOrUpdate(t);
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
+			// 抛出异常
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
+		// 返回AjaxJson对象
 		return j;
 	}
 
 
 	/**
 	 * 客户地址新增页面跳转
-	 *
-	 * @return
+	 * @param req 请求
+	 * @param tmsMdDz 实体
+	 * @return ModelAndView
 	 */
 	@RequestMapping(params = "goAdd")
 	public ModelAndView goAdd(TmsMdDzEntity tmsMdDz, HttpServletRequest req) {
@@ -251,8 +253,9 @@ public class TmsMdDzController extends BaseController {
 	}
 	/**
 	 * 客户地址编辑页面跳转
-	 *
-	 * @return
+	 * @param req 请求
+	 * @param tmsMdDz
+	 * @return ModelAndView
 	 */
 	@RequestMapping(params = "goUpdate")
 	public ModelAndView goUpdate(TmsMdDzEntity tmsMdDz, HttpServletRequest req) {
@@ -265,8 +268,8 @@ public class TmsMdDzController extends BaseController {
 
 	/**
 	 * 导入功能跳转
-	 *
-	 * @return
+	 * @param req 请求
+	 * @return ModelAndView
 	 */
 	@RequestMapping(params = "upload")
 	public ModelAndView upload(HttpServletRequest req) {
@@ -276,9 +279,9 @@ public class TmsMdDzController extends BaseController {
 
 	/**
 	 * 导出excel
-	 *
-	 * @param request
-	 * @param response
+	 * @param request 请求
+	 * @param tmsMdDz
+	 * @param response 响应
 	 */
 	@RequestMapping(params = "exportXls")
 	public String exportXls(TmsMdDzEntity tmsMdDz, HttpServletRequest request, HttpServletResponse response
@@ -291,22 +294,28 @@ public class TmsMdDzController extends BaseController {
 		modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("客户地址列表", "导出人:"+ ResourceUtil.getSessionUser().getRealName(),
 			"导出信息"));
 		modelMap.put(NormalExcelConstants.DATA_LIST,tmsMdDzs);
+		// 返回结果
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 	/**
-	 * 导出excel 使模板
-	 *
-	 * @param request
-	 * @param response
+	 * 导出excel 模板
+	 * @param request 请求
+	 * @param response 响应
+	 * @param tmsMdDz TmsMdDzEntity类型的实体
 	 */
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(TmsMdDzEntity tmsMdDz, HttpServletRequest request, HttpServletResponse response
 			, DataGrid dataGrid, ModelMap modelMap) {
+		// 设置Excel文件的标题，此处为"客户地址"
     	modelMap.put(NormalExcelConstants.FILE_NAME,"客户地址");
+		// 设置要导出的实体类类型
     	modelMap.put(NormalExcelConstants.CLASS,TmsMdDzEntity.class);
+		// 设置导出参数ExportParams，包含标题、描述和作者信息
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("客户地址列表", "导出人:"+ ResourceUtil.getSessionUser().getRealName(),
     	"导出信息"));
+		// 设置数据列表
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
+		// 返回视图名称，指明使用JEECG框架的Excel导出视图进行渲染和导出
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 
@@ -314,33 +323,43 @@ public class TmsMdDzController extends BaseController {
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
+		// 创建对象
 		AjaxJson j = new AjaxJson();
-
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
-			MultipartFile file = entity.getValue();// 获取上传文件对象
+			// 获取单个上传文件对象
+			MultipartFile file = entity.getValue();
+			// 创建导入参数对象，设置标题行、头部行、是否需要保存等参数
 			ImportParams params = new ImportParams();
-			params.setTitleRows(2);
-			params.setHeadRows(1);
-			params.setNeedSave(true);
+			params.setTitleRows(2); // 设置标题行有两行
+			params.setHeadRows(1);	// 设置设头部行有一行
+			params.setNeedSave(true);	// 表示导入的数据需要被保存
 			try {
+				// 使用ExcelImportUtil工具类从InputStream导入数据到指定的实体类型
 				List<TmsMdDzEntity> listTmsMdDzEntitys = ExcelImportUtil.importExcel(file.getInputStream(),TmsMdDzEntity.class,params);
+				// 遍历导入的实体列表，将每个实体保存到数据库
 				for (TmsMdDzEntity tmsMdDz : listTmsMdDzEntitys) {
 					tmsMdDzService.save(tmsMdDz);
 				}
+				// 设置AjaxJson对象的消息，表示文件导入成功。
 				j.setMsg("文件导入成功！");
 			} catch (Exception e) {
+				// 如果在导入过程中出现异常，则设置AjaxJson对象的消息，表示文件导入失败
 				j.setMsg("文件导入失败！");
+				// 记录异常信息，便于后续问题排查
 				logger.error(ExceptionUtil.getExceptionMessage(e));
 			}finally{
 				try {
+					// 尝试关闭文件流，防止资源泄露
 					file.getInputStream().close();
 				} catch (IOException e) {
+					// 打印异常信息
 					e.printStackTrace();
 				}
 			}
 		}
+		// 返回封装了操作结果和消息的AjaxJson对象
 		return j;
 	}
 }

@@ -17,7 +17,6 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class WvGiServiceImpl extends CommonServiceImpl implements WvGiServiceI {
 
-	
  	@Override
 	public void delete(WvGiEntity entity) throws Exception{
  		super.delete(entity);
@@ -126,14 +125,18 @@ public class WvGiServiceImpl extends CommonServiceImpl implements WvGiServiceI {
  		if(StringUtil.isNotEmpty(cgJavaValue)){
 			Object obj = null;
 			try {
+				// 如果cgJavaType为"class"，则通过MyClassLoader获取类并实例化
 				if("class".equals(cgJavaType)){
 					//因新增时已经校验了实例化是否可以成功，所以这块就不需要再做一次判断
 					obj = MyClassLoader.getClassByScn(cgJavaValue).newInstance();
 				}else if("spring".equals(cgJavaType)){
+					// 如果cgJavaType为"spring"，则从Spring上下文中获取bean
 					obj = ApplicationContextUtil.getContext().getBean(cgJavaValue);
 				}
+				// 判断obj是否实现了CgformEnhanceJavaInter接口
 				if(obj instanceof CgformEnhanceJavaInter){
 					CgformEnhanceJavaInter javaInter = (CgformEnhanceJavaInter) obj;
+					// 调用execute方法执行增强逻辑
 					javaInter.execute("wv_gi",data);
 				}
 			} catch (Exception e) {

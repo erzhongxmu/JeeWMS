@@ -136,14 +136,18 @@ public class WmOmQmIController extends BaseController {
         Map<String, Object> map1 = new HashMap<String, Object>();
         map1.put("createDate", "desc");
         cq.setOrder(map1);
+        // 如果wmOmQmI对象的binSta属性为空，则添加一个等于"N"的条件
         if (wmOmQmI.getBinSta() == null) {
             cq.eq("binSta", "N");
         }
+        // 如果wmUtil对象的cusCode属性不为空，则添加一个等于cusCode的条件
         if (StringUtil.isNotEmpty(wmUtil.getCusCode())) {
             cq.eq("cusCode", wmUtil.getCusCode());
         }
         cq.add();
+        // 调用wmOmQmIService的getDataGridReturn方法执行查询并返回结果
         this.wmOmQmIService.getDataGridReturn(cq, true);
+        // 将查询结果封装成DataGrid对象并返回给客户端
         TagUtil.datagrid(response, dataGrid);
     }
 
@@ -161,14 +165,16 @@ public class WmOmQmIController extends BaseController {
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.eq("binSta", "I");
+        // 如果wmUtil中的cusCode不为空，则添加查询条件：cusCode字段等于wmUtil中的cusCode值
         if (StringUtil.isNotEmpty(wmUtil.getCusCode())) {
             cq.eq("cusCode", wmUtil.getCusCode());
         }
         cq.add();
+        // 调用服务层方法获取查询结果，并将结果封装到dataGrid对象中
         this.wmOmQmIService.getDataGridReturn(cq, true);
+        // 将dataGrid对象转换为响应数据并返回给客户端
         TagUtil.datagrid(response, dataGrid);
     }
-
 
     @RequestMapping(params = "dogetbin", method = {RequestMethod.GET,
             RequestMethod.POST})
@@ -178,6 +184,7 @@ public class WmOmQmIController extends BaseController {
         WmOmQmIEntity wmOmQmI = new WmOmQmIEntity();
         String goods = request.getParameter("goodsid");
         String tinid = request.getParameter("tinid");
+        // 定义一个SQL查询语句，用于查询库存信息
         String tsql = "select  ws.ku_wei_bian_ma,  ws.goods_pro_data"
                 + "  from wv_stock ws, md_bin mb  where "
                 + "   ws.ku_wei_bian_ma = mb.ku_wei_bian_ma and mb.ting_yong <> 'Y' and (ws.kuctype = '库存' )"
@@ -187,13 +194,14 @@ public class WmOmQmIController extends BaseController {
 
         List<Map<String, Object>> result = systemService.findForJdbc(tsql, tinid, goods);
         if (result.size() > 0) {
+            // 如果查询结果不为空，则将查询结果中的库位编码和商品属性数据分别设置到wmOmQmI对象中
             wmOmQmI.setBinId(result.get(0).get("ku_wei_bian_ma").toString());
             wmOmQmI.setProData(result.get(0).get("goods_pro_data").toString());
         }
+        // 将wmOmQmI对象设置为AjaxJson对象的obj属性
         j.setObj(wmOmQmI);
         return j;
     }
-
 
     @RequestMapping(params = "doassign")
     @ResponseBody
@@ -228,7 +236,6 @@ public class WmOmQmIController extends BaseController {
                  throw new BusinessException(e.getMessage());
             }
         }
-
         j.setMsg(message);
         return j;
     }
@@ -313,7 +320,6 @@ public class WmOmQmIController extends BaseController {
 
     }
 
-
     @RequestMapping(params = "doassignbatch")
     @ResponseBody
     public AjaxJson doassignbatch(String ids, HttpServletRequest request) {
@@ -334,7 +340,6 @@ public class WmOmQmIController extends BaseController {
                         systemService.addLog(message, Globals.Log_Type_UPDATE,
                                 Globals.Log_Leavel_INFO);
                     }
-
                 } catch (Exception e) {
                     e.printStackTrace();
                     message = "添加到下架任务清单失败";
@@ -349,7 +354,6 @@ public class WmOmQmIController extends BaseController {
         j.setMsg(message);
         return j;
     }
-
 
     /**
      * 删除下架任务

@@ -1,7 +1,16 @@
 package com.zzjee.BI;
 
+/**
+ * 大屏实 体
+ */
 public class biEntity {
+    /**
+     *字段1
+     */
     String num1;
+    /**
+     *字段2
+     */
     String num2;
     String num3;
     String num4;

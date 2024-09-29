@@ -75,6 +75,7 @@ public class WxConfigController extends BaseController {
 	/**
 	 * 配置信息列表 页面跳转
 	 *
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "list")
@@ -83,12 +84,12 @@ public class WxConfigController extends BaseController {
 	}
 
 	/**
-	 * easyui AJAX请求数据
+	 * easyui 处理AJAX请求以返回WxConfigEntity数据列表的datagrid
 	 *
+	 * @param wxConfig
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -104,6 +105,8 @@ public class WxConfigController extends BaseController {
 	/**
 	 * 删除配置信息
 	 *
+	 * @param wxConfig
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -127,6 +130,8 @@ public class WxConfigController extends BaseController {
 	/**
 	 * 批量删除配置信息
 	 *
+	 * @param ids
+	 * @param request
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")
@@ -155,7 +160,8 @@ public class WxConfigController extends BaseController {
 	/**
 	 * 添加配置信息
 	 *
-	 * @param ids
+	 * @param wxConfig
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -178,7 +184,8 @@ public class WxConfigController extends BaseController {
 	/**
 	 * 更新配置信息
 	 *
-	 * @param ids
+	 * @param wxConfig
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -204,6 +211,8 @@ public class WxConfigController extends BaseController {
 	/**
 	 * 配置信息新增页面跳转
 	 *
+	 * @param wxConfig
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -217,6 +226,8 @@ public class WxConfigController extends BaseController {
 	/**
 	 * 配置信息编辑页面跳转
 	 *
+	 * @param wxConfig
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -231,6 +242,7 @@ public class WxConfigController extends BaseController {
 	/**
 	 * 导入功能跳转
 	 *
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "upload")
@@ -242,8 +254,11 @@ public class WxConfigController extends BaseController {
 	/**
 	 * 导出excel
 	 *
+	 * @param wxConfig
 	 * @param request
 	 * @param response
+	 * @param dataGrid
+	 * @param modelMap
 	 */
 	@RequestMapping(params = "exportXls")
 	public String exportXls(WxConfigEntity wxConfig,HttpServletRequest request,HttpServletResponse response
@@ -258,29 +273,44 @@ public class WxConfigController extends BaseController {
 		modelMap.put(NormalExcelConstants.DATA_LIST,wxConfigs);
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
+
 	/**
 	 * 导出excel 使模板
 	 *
+	 * @param wxConfig
 	 * @param request
 	 * @param response
+	 * @param dataGrid
+	 * @param modelMap
 	 */
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(WxConfigEntity wxConfig,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
+		//设置Excel文件的名称
     	modelMap.put(NormalExcelConstants.FILE_NAME,"配置信息");
     	modelMap.put(NormalExcelConstants.CLASS,WxConfigEntity.class);
+		//设置导出参数
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("配置信息列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
     	"导出信息"));
+		//设置一个空的数据列表
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 
+	/**
+	 * 通过excel导入数据
+	 *
+	 * @param request
+	 * @param response
+	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
+		// 将HttpServletRequest转换为MultipartHttpServletRequest，以便处理文件上传
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		//获取上传的文件映射
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
 			MultipartFile file = entity.getValue();// 获取上传文件对象

@@ -88,8 +88,6 @@ public class WmsAppUserController extends BaseController {
 	@Autowired
 	private Validator validator;
 
-
-
 	/**
 	 * APP角色分配 列表 页面跳转
 	 *
@@ -106,9 +104,7 @@ public class WmsAppUserController extends BaseController {
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
-
 	@RequestMapping(params = "datagrid")
 	public void datagrid(WmsAppUserEntity wmsAppUser,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
 		CriteriaQuery cq = new CriteriaQuery(WmsAppUserEntity.class, dataGrid);
@@ -143,6 +139,7 @@ public class WmsAppUserController extends BaseController {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
+		// 将message设置为j对象的msg属性
 		j.setMsg(message);
 		return j;
 	}
@@ -170,15 +167,14 @@ public class WmsAppUserController extends BaseController {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
+		 // 将message设置为j对象的msg属性
 		j.setMsg(message);
 		return j;
 	}
 
-
 	/**
 	 * 添加APP角色分配
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -194,6 +190,7 @@ public class WmsAppUserController extends BaseController {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
+		// 将message设置为j对象的msg属性
 		j.setMsg(message);
 		return j;
 	}
@@ -201,7 +198,6 @@ public class WmsAppUserController extends BaseController {
 	/**
 	 * 更新APP角色分配
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -210,8 +206,10 @@ public class WmsAppUserController extends BaseController {
 		String message = null;
 		AjaxJson j = new AjaxJson();
 		message = "APP角色分配 更新成功";
+		// 根据传入的wmsAppFunction对象的id获取对应的WmsAppFunctionEntity对象t
 		WmsAppUserEntity t = wmsAppUserService.get(WmsAppUserEntity.class, wmsAppUser.getId());
 		try {
+			// 将wmsAppFunction对象的属性复制到t对象中，只复制非空属性
 			MyBeanUtils.copyBeanNotNull2Bean(wmsAppUser, t);
 			wmsAppUserService.saveOrUpdate(t);
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
@@ -219,10 +217,10 @@ public class WmsAppUserController extends BaseController {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
+		// 将message设置为j对象的msg属性
 		j.setMsg(message);
 		return j;
 	}
-
 
 	/**
 	 * APP角色分配 新增页面跳转
@@ -231,12 +229,16 @@ public class WmsAppUserController extends BaseController {
 	 */
 	@RequestMapping(params = "goAdd")
 	public ModelAndView goAdd(WmsAppUserEntity wmsAppUser, HttpServletRequest req) {
+		// 判断wmsAppUser对象的id属性是否不为空
 		if (StringUtil.isNotEmpty(wmsAppUser.getId())) {
+			// 如果id不为空，通过wmsAppUserService的getEntity方法根据id获取对应的WmsAppUserEntity对象
 			wmsAppUser = wmsAppUserService.getEntity(WmsAppUserEntity.class, wmsAppUser.getId());
+			// 将获取到的WmsAppUserEntity对象设置为请求属性"wmsAppUserPage"的值
 			req.setAttribute("wmsAppUserPage", wmsAppUser);
 		}
 		return new ModelAndView("com/zzjee/uniapp/wmsAppUser-add");
 	}
+
 	/**
 	 * APP角色分配 编辑页面跳转
 	 *
@@ -274,13 +276,19 @@ public class WmsAppUserController extends BaseController {
 		CriteriaQuery cq = new CriteriaQuery(WmsAppUserEntity.class, dataGrid);
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wmsAppUser, request.getParameterMap());
 		List<WmsAppUserEntity> wmsAppUsers = this.wmsAppUserService.getListByCriteriaQuery(cq,false);
+		// 设置导出的Excel文件名
 		modelMap.put(NormalExcelConstants.FILE_NAME,"APP角色分配 ");
+		// 设置导出的实体类类型
 		modelMap.put(NormalExcelConstants.CLASS,WmsAppUserEntity.class);
+		// 设置导出参数，包括标题、导出人和导出信息
 		modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("APP角色分配 列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
 			"导出信息"));
+		// 将查询到的数据列表放入modelMap中
 		modelMap.put(NormalExcelConstants.DATA_LIST,wmsAppUsers);
+		// 返回视图名称，用于跳转到导出Excel的页面
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
+
 	/**
 	 * 导出excel 使模板
 	 *
@@ -290,11 +298,16 @@ public class WmsAppUserController extends BaseController {
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(WmsAppUserEntity wmsAppUser,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
+		// 设置导出的Excel文件名
     	modelMap.put(NormalExcelConstants.FILE_NAME,"APP角色分配 ");
+		// 设置导出的数据实体类
     	modelMap.put(NormalExcelConstants.CLASS,WmsAppUserEntity.class);
+		// 设置导出参数，包括标题、导出人和导出信息
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("APP角色分配 列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
     	"导出信息"));
+		// 设置导出的数据列表，这里使用空列表作为示例
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
+		// 返回视图名称，用于跳转到导出Excel的页面
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 
@@ -306,6 +319,7 @@ public class WmsAppUserController extends BaseController {
 
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+		// 遍历文件映射
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
 			MultipartFile file = entity.getValue();// 获取上传文件对象
 			ImportParams params = new ImportParams();
@@ -313,15 +327,19 @@ public class WmsAppUserController extends BaseController {
 			params.setHeadRows(1);
 			params.setNeedSave(true);
 			try {
+				// 使用ExcelImportUtil工具类导入Excel文件，并将结果转换为WmsAppFunctionEntity列表
 				List<WmsAppUserEntity> listWmsAppUserEntitys = ExcelImportUtil.importExcel(file.getInputStream(),WmsAppUserEntity.class,params);
+				// 遍历导入的实体列表，并保存到数据库
 				for (WmsAppUserEntity wmsAppUser : listWmsAppUserEntitys) {
 					wmsAppUserService.save(wmsAppUser);
 				}
 				j.setMsg("文件导入成功！");
 			} catch (Exception e) {
+				// 如果导入过程中发生异常，设置导入失败的提示信息，并记录错误日志
 				j.setMsg("文件导入失败！");
 				logger.error(ExceptionUtil.getExceptionMessage(e));
 			}finally{
+				// 最后关闭文件输入流
 				try {
 					file.getInputStream().close();
 				} catch (IOException e) {
@@ -357,7 +375,6 @@ public class WmsAppUserController extends BaseController {
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
-
 		//保存
 		try{
 			wmsAppUserService.save(wmsAppUser);
@@ -370,7 +387,6 @@ public class WmsAppUserController extends BaseController {
 		URI uri = uriBuilder.path("/rest/wmsAppUserController/" + id).build().toUri();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(uri);
-
 		return new ResponseEntity(headers, HttpStatus.CREATED);
 	}
 
@@ -381,7 +397,6 @@ public class WmsAppUserController extends BaseController {
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
-
 		//保存
 		try{
 			wmsAppUserService.saveOrUpdate(wmsAppUser);
@@ -389,7 +404,6 @@ public class WmsAppUserController extends BaseController {
 			e.printStackTrace();
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
-
 		//按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
 		return new ResponseEntity(HttpStatus.NO_CONTENT);
 	}

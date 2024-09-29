@@ -5,7 +5,11 @@ import org.jeecgframework.core.common.service.CommonService;
 import java.io.Serializable;
 
 public interface BaPlatformServiceI extends CommonService{
-	
+	/**
+	 * 删除
+	 * @param entity
+	 * @throws Exception
+	 */
  	public void delete(BaPlatformEntity entity) throws Exception;
  	
  	public Serializable save(BaPlatformEntity entity) throws Exception;

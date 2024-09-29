@@ -1,10 +1,25 @@
 package com.zzjee.api;
 
 public class wmi1entity {
+    /**
+     * 字段1
+     */
     public String wmX1;
+    /**
+     * 字段2
+     */
     public String wmX2;
+    /**
+     * 字段3
+     */
     public String wmX3;
+    /**
+     * 字段4
+     */
     public String wmX4;
+    /**
+     * 字段5
+     */
     public String wmX5;
     public String wmX6;
     public String wmX7;

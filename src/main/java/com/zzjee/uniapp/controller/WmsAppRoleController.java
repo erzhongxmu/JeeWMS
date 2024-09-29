@@ -106,7 +106,6 @@ public class WmsAppRoleController extends BaseController {
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -163,7 +162,9 @@ public class WmsAppRoleController extends BaseController {
 				WmsAppRoleEntity wmsAppRole = systemService.getEntity(WmsAppRoleEntity.class,
 				id
 				);
+				// 删除获取到的WmsAppRoleEntity对象
 				wmsAppRoleService.delete(wmsAppRole);
+				// 记录日志，表示已删除指定id的WmsAppRoleEntity对象
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}
 		}catch(Exception e){
@@ -178,7 +179,6 @@ public class WmsAppRoleController extends BaseController {
 	/**
 	 * 添加APP角色
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -188,12 +188,15 @@ public class WmsAppRoleController extends BaseController {
 		AjaxJson j = new AjaxJson();
 		message = "APP角色添加成功";
 		try{
+			// 调用wmsAppRoleService的save方法保存WmsAppRoleEntity对象
 			wmsAppRoleService.save(wmsAppRole);
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
+			// 打印异常堆栈信息
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
+		// 将message设置为j对象的msg属性
 		j.setMsg(message);
 		return j;
 	}
@@ -201,7 +204,6 @@ public class WmsAppRoleController extends BaseController {
 	/**
 	 * 更新APP角色
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -210,8 +212,10 @@ public class WmsAppRoleController extends BaseController {
 		String message = null;
 		AjaxJson j = new AjaxJson();
 		message = "APP角色更新成功";
+		// 根据传入的wmsAppFunction对象的id获取对应的WmsAppFunctionEntity对象t
 		WmsAppRoleEntity t = wmsAppRoleService.get(WmsAppRoleEntity.class, wmsAppRole.getId());
 		try {
+			// 将wmsAppFunction对象的属性复制到t对象中，只复制非空属性
 			MyBeanUtils.copyBeanNotNull2Bean(wmsAppRole, t);
 			wmsAppRoleService.saveOrUpdate(t);
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
@@ -219,6 +223,7 @@ public class WmsAppRoleController extends BaseController {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
+		// 将message设置为j对象的msg属性
 		j.setMsg(message);
 		return j;
 	}
@@ -274,11 +279,16 @@ public class WmsAppRoleController extends BaseController {
 		CriteriaQuery cq = new CriteriaQuery(WmsAppRoleEntity.class, dataGrid);
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wmsAppRole, request.getParameterMap());
 		List<WmsAppRoleEntity> wmsAppRoles = this.wmsAppRoleService.getListByCriteriaQuery(cq,false);
+		// 设置导出的Excel文件名
 		modelMap.put(NormalExcelConstants.FILE_NAME,"APP角色");
+		// 设置导出的实体类类型
 		modelMap.put(NormalExcelConstants.CLASS,WmsAppRoleEntity.class);
+		// 设置导出参数，包括标题、导出人和导出信息
 		modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("APP角色列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
 			"导出信息"));
+		// 将查询到的数据列表放入modelMap中
 		modelMap.put(NormalExcelConstants.DATA_LIST,wmsAppRoles);
+		// 返回视图名称，用于跳转到导出Excel的页面
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 	/**
@@ -290,11 +300,16 @@ public class WmsAppRoleController extends BaseController {
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(WmsAppRoleEntity wmsAppRole,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
+		// 设置导出的Excel文件名
     	modelMap.put(NormalExcelConstants.FILE_NAME,"APP角色");
+		// 设置导出的数据实体类
     	modelMap.put(NormalExcelConstants.CLASS,WmsAppRoleEntity.class);
+		// 设置导出参数，包括标题、导出人和导出信息
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("APP角色列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
     	"导出信息"));
+		// 设置导出的数据列表，这里使用空列表作为示例
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
+		// 返回视图名称，用于跳转到导出Excel的页面
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 
@@ -306,6 +321,7 @@ public class WmsAppRoleController extends BaseController {
 
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+		// 遍历文件映射
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
 			MultipartFile file = entity.getValue();// 获取上传文件对象
 			ImportParams params = new ImportParams();
@@ -313,15 +329,19 @@ public class WmsAppRoleController extends BaseController {
 			params.setHeadRows(1);
 			params.setNeedSave(true);
 			try {
+				// 使用ExcelImportUtil工具类导入Excel文件，并将结果转换为WmsAppFunctionEntity列表
 				List<WmsAppRoleEntity> listWmsAppRoleEntitys = ExcelImportUtil.importExcel(file.getInputStream(),WmsAppRoleEntity.class,params);
+				// 遍历导入的实体列表，并保存到数据库
 				for (WmsAppRoleEntity wmsAppRole : listWmsAppRoleEntitys) {
 					wmsAppRoleService.save(wmsAppRole);
 				}
 				j.setMsg("文件导入成功！");
 			} catch (Exception e) {
+				// 如果导入过程中发生异常，设置导入失败的提示信息，并记录错误日志
 				j.setMsg("文件导入失败！");
 				logger.error(ExceptionUtil.getExceptionMessage(e));
 			}finally{
+				// 最后关闭文件输入流
 				try {
 					file.getInputStream().close();
 				} catch (IOException e) {
@@ -357,7 +377,6 @@ public class WmsAppRoleController extends BaseController {
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
-
 		//保存
 		try{
 			wmsAppRoleService.save(wmsAppRole);
@@ -370,7 +389,6 @@ public class WmsAppRoleController extends BaseController {
 		URI uri = uriBuilder.path("/rest/wmsAppRoleController/" + id).build().toUri();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(uri);
-
 		return new ResponseEntity(headers, HttpStatus.CREATED);
 	}
 
@@ -381,7 +399,6 @@ public class WmsAppRoleController extends BaseController {
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
-
 		//保存
 		try{
 			wmsAppRoleService.saveOrUpdate(wmsAppRole);
@@ -389,7 +406,6 @@ public class WmsAppRoleController extends BaseController {
 			e.printStackTrace();
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
-
 		//按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
 		return new ResponseEntity(HttpStatus.NO_CONTENT);
 	}

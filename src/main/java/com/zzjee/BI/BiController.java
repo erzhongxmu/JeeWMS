@@ -20,12 +20,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * 大屏
+ */
 @Controller
 @RequestMapping("/BiController")
 public class BiController extends BaseController {
     @Autowired
     private SystemService systemService;
 
+    /**
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping(params = "homebi")
     public ModelAndView bi(HttpServletRequest request) {
         String num1= "0";
@@ -189,7 +197,9 @@ public class BiController extends BaseController {
 
     /**
      * highchart
-     *
+     * @param request
+     * @param reportType
+     * @param response
      * @return
      */
     @RequestMapping(params = "cpNameupCount")
@@ -242,7 +252,6 @@ public class BiController extends BaseController {
 
     /**
      * highchart
-     *
      * @return
      */
     @RequestMapping(params = "cpNamedownCount")

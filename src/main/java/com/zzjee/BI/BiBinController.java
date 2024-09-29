@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * 大屏仓位
+ */
 @Controller
 @RequestMapping("/BiBinController")
 public class BiBinController extends BaseController {
@@ -32,6 +35,12 @@ public class BiBinController extends BaseController {
         request.setAttribute("num4",biEntity.getNum4());
         return new ModelAndView("com/zzjee/BI/home/reportbi");
     }
+
+    /**
+     * bi
+     * @param username
+     * @return
+     */
     public biEntity getBi(String username){
         biEntity biEntity    = new biEntity();
         String num1= "0";
@@ -81,9 +90,12 @@ public class BiBinController extends BaseController {
         biEntity.setNum4(num4);
         return biEntity;
     }
+
     /**
      * highchart
-     *
+     * @param request
+     * @param reportType
+     * @param response
      * @return
      */
     @RequestMapping(params = "dayCount")
@@ -121,7 +133,6 @@ public class BiBinController extends BaseController {
     }
     /**
      * highchart
-     *
      * @return
      */
     @RequestMapping(params = "cpNameupCount")

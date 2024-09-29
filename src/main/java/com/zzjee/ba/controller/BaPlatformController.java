@@ -77,7 +77,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RequestMapping("/baPlatformController")
 public class BaPlatformController extends BaseController {
 	/**
-	 * Logger for this class
+	 * Logger  for this class
 	 */
 	private static final Logger logger = Logger.getLogger(BaPlatformController.class);
 
@@ -102,11 +102,9 @@ public class BaPlatformController extends BaseController {
 
 	/**
 	 * easyui AJAX请求数据
-	 *
-	 * @param request
+	 * @param request 请求
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")

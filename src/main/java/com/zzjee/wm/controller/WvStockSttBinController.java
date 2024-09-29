@@ -102,7 +102,6 @@ public class WvStockSttBinController extends BaseController {
 	private Validator validator;
 
 
-
 	/**
 	 * 储位盘点列表 页面跳转
 	 *
@@ -201,14 +200,12 @@ public class WvStockSttBinController extends BaseController {
 		AjaxJson j = new AjaxJson();
 		message = "储位盘点添加成功";
 		try{
-
 			try{
 				MdCusEntity mdcus = systemService.findUniqueByProperty(MdCusEntity.class,"keHuBianMa",wvStockSttBin.getCusCode());
 				wvStockSttBin.setZhongWenQch(mdcus.getZhongWenQch());
 			}catch (Exception e){
 
 			}
-
 			wvStockSttBinService.save(wvStockSttBin);
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
@@ -243,7 +240,6 @@ public class WvStockSttBinController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-
 
 	@RequestMapping(params = "dostt")
 	@ResponseBody
@@ -289,7 +285,6 @@ public class WvStockSttBinController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-
 
 	/**
 	 * 储位盘点新增页面跳转
@@ -348,6 +343,7 @@ public class WvStockSttBinController extends BaseController {
 		modelMap.put(NormalExcelConstants.DATA_LIST,wvStockSttBins);
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
+
 	/**
 	 * 导出excel 使模板
 	 *
@@ -424,7 +420,6 @@ public class WvStockSttBinController extends BaseController {
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
-
 		//保存
 		try{
 			wvStockSttBinService.save(wvStockSttBin);
@@ -440,7 +435,6 @@ public class WvStockSttBinController extends BaseController {
 
 		return new ResponseEntity(headers, HttpStatus.CREATED);
 	}
-
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> update(@RequestBody WvStockSttBinEntity wvStockSttBin) {
 		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.

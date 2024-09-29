@@ -66,6 +66,7 @@ import static com.xiaoleilu.hutool.date.DateTime.now;
  * @Description: 库存转移
  * @date 2017-09-08 21:03:22
  */
+
 @Controller
 @RequestMapping("/wmToMoveGoodsController")
 public class WmToMoveGoodsController extends BaseController {
@@ -99,7 +100,6 @@ public class WmToMoveGoodsController extends BaseController {
      * @param response
      * @param dataGrid
      */
-
     @RequestMapping(params = "datagrid")
     public void datagrid(WmToMoveGoodsEntity wmToMoveGoods, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
         CriteriaQuery cq = new CriteriaQuery(WmToMoveGoodsEntity.class, dataGrid);
@@ -115,6 +115,7 @@ public class WmToMoveGoodsController extends BaseController {
         cq.setOrder(map1);
         cq.add();
         this.wmToMoveGoodsService.getDataGridReturn(cq, true);
+        // 将查询结果封装成DataGrid对象并返回给前端
         TagUtil.datagrid(response, dataGrid);
     }
 
@@ -210,7 +211,6 @@ public class WmToMoveGoodsController extends BaseController {
         return j;
     }
 
-
     @RequestMapping(params = "doGetstock", method = {RequestMethod.GET,
             RequestMethod.POST})
     @ResponseBody
@@ -278,7 +278,6 @@ public class WmToMoveGoodsController extends BaseController {
         j.setMsg(message);
         return j;
     }
-
 
     /**
      * @param page

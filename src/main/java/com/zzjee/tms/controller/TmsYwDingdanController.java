@@ -72,6 +72,7 @@ import static com.xiaoleilu.hutool.date.DateUtil.now;
 @RequestMapping("/tmsYwDingdanController")
 public class TmsYwDingdanController extends BaseController {
 	/**
+	 * 登录器
 	 * Logger for this class
 	 */
 	private static final Logger logger = Logger.getLogger(TmsYwDingdanController.class);
@@ -90,41 +91,38 @@ public class TmsYwDingdanController extends BaseController {
 
 	/**
 	 * 运输订单列表 页面跳转
-	 *
-	 * @return
+	 * @param request 请求
+	 * @return ModelAndView
 	 */
 	@RequestMapping(params = "list")
 	public ModelAndView list(HttpServletRequest request) {
 		return new ModelAndView("com/zzjee/tms/tmsYwDingdanList");
 	}
 
-
 	/**
 	 * 运输订单列表 页面跳转 派车
-	 *
-	 * @return
+	 * @param request 请求
+	 * @return ModelAndView
 	 */
 	@RequestMapping(params = "listpc")
 	public ModelAndView listpc(HttpServletRequest request) {
 		return new ModelAndView("com/zzjee/tms/tmsYwDingdanpcList");
 	}
 
-
 	/**
 	 * 运输订单列表 页面跳转 装车
-	 *
-	 * @return
+	 * @param request 请求
+	 * @return ModelAndView
 	 */
 	@RequestMapping(params = "listzc")
 	public ModelAndView listzc(HttpServletRequest request) {
 		return new ModelAndView("com/zzjee/tms/tmsYwDingdanzcList");
 	}
 
-
 	/**
 	 * 运输订单列表 页面跳转 回单
-	 *
-	 * @return
+	 * @param request 请求
+	 * @return ModelAndView
 	 */
 	@RequestMapping(params = "listhd")
 	public ModelAndView listhd(HttpServletRequest request) {
@@ -133,20 +131,19 @@ public class TmsYwDingdanController extends BaseController {
 
 	/**
 	 * 运输订单列表 页面跳转 回单
-	 *
-	 * @return
+	 * @param request 请求
+	 * @return ModelAndView
 	 */
 	@RequestMapping(params = "listjs")
 	public ModelAndView listjs(HttpServletRequest request) {
 		return new ModelAndView("com/zzjee/tms/tmsYwDingdanjsList");
 	}
 
-
 	/**
 	 * easyui AJAX请求数据
-	 *
-	 * @param request
-	 * @param response
+	 * @param request 请求
+	 * @param tmsYwDingdan
+	 * @param response 响应
 	 * @param dataGrid
 	 */
 
@@ -166,6 +163,7 @@ public class TmsYwDingdanController extends BaseController {
 			cq.le("sdsj", Integer.parseInt(query_sdsj_end));
 		}
 		}catch (Exception e) {
+			// 抛出异常信息
 			throw new BusinessException(e.getMessage());
 		}
 		TSUser user = ResourceUtil.getSessionUser();
@@ -196,6 +194,7 @@ public class TmsYwDingdanController extends BaseController {
 				cq.le("sdsj", Integer.parseInt(query_sdsj_end));
 			}
 		}catch (Exception e) {
+			// 抛出异常信息
 			throw new BusinessException(e.getMessage());
 		}
 		cq.eq("zhuangtai","已下单");
@@ -220,6 +219,7 @@ public class TmsYwDingdanController extends BaseController {
 				cq.le("sdsj", Integer.parseInt(query_sdsj_end));
 			}
 		}catch (Exception e) {
+			// 抛出异常
 			throw new BusinessException(e.getMessage());
 		}
 		cq.eq("zhuangtai","已派车");
@@ -246,6 +246,7 @@ public class TmsYwDingdanController extends BaseController {
 				cq.le("sdsj", Integer.parseInt(query_sdsj_end));
 			}
 		}catch (Exception e) {
+			// 抛出异常
 			throw new BusinessException(e.getMessage());
 		}
 		cq.eq("zhuangtai","已装车");
@@ -280,6 +281,7 @@ public class TmsYwDingdanController extends BaseController {
 				cq.le("sdsj", Integer.parseInt(query_sdsj_end));
 			}
 		}catch (Exception e) {
+			// 抛出异常
 			throw new BusinessException(e.getMessage());
 		}
 		cq.eq("zhuangtai","已回单");
@@ -297,7 +299,7 @@ public class TmsYwDingdanController extends BaseController {
 	/**
 	 * 保存新增/更新的行数据
 	 * @param page
-	 * @return
+	 * @return j
 	 */
 	@RequestMapping(params = "saveRows")
 	@ResponseBody
@@ -320,11 +322,13 @@ public class TmsYwDingdanController extends BaseController {
 						tmsYwDingdanService.saveOrUpdate(t);
 						systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 					} catch (Exception e) {
+						// 抛出异常
 						e.printStackTrace();
 					}
 				}
 			}
 		}
+		// 返回结果
 		return j;
 	}
 

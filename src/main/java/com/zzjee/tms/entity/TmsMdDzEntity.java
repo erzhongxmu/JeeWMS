@@ -70,7 +70,7 @@ public class TmsMdDzEntity implements java.io.Serializable {
 	private String dizhileixing;
 	
 	/**
-	 *方法: 取得java.lang.String
+	 *方法:    取得 java.lang.String
 	 *@return: java.lang.String  id
 	 */
 	@Id
@@ -82,14 +82,14 @@ public class TmsMdDzEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
+	 *方法:   设置 java.lang.String
 	 *@param: java.lang.String  id
 	 */
 	public void setId(String id){
 		this.id = id;
 	}
 	/**
-	 *方法: 取得java.lang.String
+	 *方法:  取得 java.lang.String
 	 *@return: java.lang.String  创建人名称
 	 */
 	@Column(name ="CREATE_NAME",nullable=true,length=50)

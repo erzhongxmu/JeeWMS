@@ -140,6 +140,10 @@ public class ResultApi<T> implements Serializable {
 		return r;
 	}
 
+	/**
+	 * 不带参返回成功
+	 * @param <T> 泛型
+	 */
 	public static<T> ResultApi<T> OK() {
 		ResultApi<T> r = new ResultApi<T>();
 		r.setSuccess(true);
@@ -148,6 +152,10 @@ public class ResultApi<T> implements Serializable {
 		return r;
 	}
 
+	/**
+	 * 带参返回成功
+	 * @param data 返回数据
+	 */
 	public static<T> ResultApi<T> OK(T data) {
 		ResultApi<T> r = new ResultApi<T>();
 		r.setSuccess(true);
@@ -156,6 +164,13 @@ public class ResultApi<T> implements Serializable {
 		return r;
 	}
 
+	/**
+	 * 带参带消息返回成功
+	 * @param msg
+	 * @param data
+	 * @return
+	 * @param <T>
+	 */
 	public static<T> ResultApi<T> OK(String msg, T data) {
 		ResultApi<T> r = new ResultApi<T>();
 		r.setSuccess(true);

@@ -100,8 +100,6 @@ public class WmDayCostController extends BaseController {
 	@Autowired
 	private Validator validator;
 
-
-
 	/**
 	 * 费用维护列表 页面跳转
 	 *
@@ -121,6 +119,7 @@ public class WmDayCostController extends BaseController {
 	public ModelAndView listsk(HttpServletRequest request) {
 		return new ModelAndView("com/zzjee/wm/wmDayCostskList");
 	}
+
 	/**
 	 * easyui AJAX请求数据
 	 *
@@ -129,8 +128,6 @@ public class WmDayCostController extends BaseController {
 	 * @param dataGrid
 	 * @param user
 	 */
-
-
 
 
 	@RequestMapping(params = "datagridqf")
@@ -159,8 +156,6 @@ public class WmDayCostController extends BaseController {
 		cq.add();
 		this.wmDayCostService.getDataGridReturn(cq, true);
 		try {
-
-
 			List<WmDayCostEntity> resultold = dataGrid.getResults();
 			Double dayCostYj = 0.0000;
 			Double dayCostBhs = 0.0000;
@@ -186,6 +181,7 @@ public class WmDayCostController extends BaseController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		// 将查询结果封装成DataGrid对象并返回给前端
 		TagUtil.datagrid(response, dataGrid);
 	}
 	@RequestMapping(params = "datagridsk")
@@ -240,6 +236,7 @@ public class WmDayCostController extends BaseController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		// 将查询结果封装成DataGrid对象并返回给前端
 		TagUtil.datagrid(response, dataGrid);
 	}
 
@@ -311,12 +308,16 @@ public class WmDayCostController extends BaseController {
 		wmDayCost = systemService.getEntity(WmDayCostEntity.class, wmDayCost.getId());
 		message = "费用维护删除成功";
 		try{
+			// 调用服务层方法删除实体
 			wmDayCostService.delete(wmDayCost);
+			// 调用baStoreAreaService的delete方法删除baStoreArea对象
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
+			// 如果发生异常，打印堆栈跟踪信息
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
+		// 将message设置为j对象的msg属性
 		j.setMsg(message);
 		return j;
 	}
@@ -338,12 +339,16 @@ public class WmDayCostController extends BaseController {
 				id
 				);
 				wmDayCostService.delete(wmDayCost);
+				// 记录操作日志，类型为插入操作，级别为INFO
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}
 		}catch(Exception e){
+			// 如果发生异常，打印堆栈跟踪信息
 			e.printStackTrace();
+			// 抛出业务异常，并附带异常信息
 			throw new BusinessException(e.getMessage());
 		}
+		 // 将message设置为j对象的msg属性
 		j.setMsg(message);
 		return j;
 	}

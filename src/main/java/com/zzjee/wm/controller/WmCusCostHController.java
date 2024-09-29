@@ -126,7 +126,9 @@ public class WmCusCostHController extends BaseController {
 			throw new BusinessException(e.getMessage());
 		}
 		cq.add();
+		// 调用wmOmQmIService的getDataGridReturn方法执行查询并返回结果
 		this.wmCusCostHService.getDataGridReturn(cq, true);
+		// 将查询结果封装成DataGrid对象并返回给前端
 		TagUtil.datagrid(response, dataGrid);
 	}
 
@@ -139,15 +141,19 @@ public class WmCusCostHController extends BaseController {
 	@ResponseBody
 	public AjaxJson doDel(WmCusCostHEntity wmCusCostH, HttpServletRequest request) {
 		AjaxJson j = new AjaxJson();
+		// 根据传入的wmCusCostH对象的id获取对应的实体
 		wmCusCostH = systemService.getEntity(WmCusCostHEntity.class, wmCusCostH.getId());
 		String message = "客户费用删除成功";
 		try{
+			// 调用服务层方法删除实体
 			wmCusCostHService.delMain(wmCusCostH);
+			// 添加日志记录，记录类型为删除，级别为信息
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
  			throw new BusinessException(e.getMessage());
 		}
+		// 将message设置为j对象的msg属性
 		j.setMsg(message);
 		return j;
 	}
@@ -168,10 +174,13 @@ public class WmCusCostHController extends BaseController {
 				id
 				);
 				wmCusCostHService.delMain(wmCusCostH);
+				// 记录操作日志，类型为插入操作，级别为INFO
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}
 		}catch(Exception e){
+			// 打印异常堆栈信息
 			e.printStackTrace();
+			// 抛出业务异常，并附带异常信息
  			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -201,6 +210,7 @@ public class WmCusCostHController extends BaseController {
 		j.setObj(wmCusCostH);
 		return j;
 	}
+
 	/**
 	 * 更新客户费用
 	 *
@@ -251,7 +261,6 @@ public class WmCusCostHController extends BaseController {
 		}
 		return new ModelAndView("com/zzjee/wm/wmCusCostH-update");
 	}
-
 
 	/**
 	 * 加载明细列表[费用项目]

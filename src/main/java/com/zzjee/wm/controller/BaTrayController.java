@@ -107,7 +107,6 @@ public class BaTrayController extends BaseController {
 	 * @param dataGrid
 	 * @param user
 	 */
-
 	@RequestMapping(params = "datagrid")
 	public void datagrid(BaTrayEntity baTray,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
 		CriteriaQuery cq = new CriteriaQuery(BaTrayEntity.class, dataGrid);
@@ -127,7 +126,9 @@ public class BaTrayController extends BaseController {
 			throw new BusinessException(e.getMessage());
 		}
 		cq.add();
+		// 调用wmOmQmIService的getDataGridReturn方法执行查询并返回结果
 		this.baTrayService.getDataGridReturn(cq, true);
+		// 将查询结果封装成DataGrid对象并返回给前端
 		TagUtil.datagrid(response, dataGrid);
 	}
 
@@ -141,15 +142,20 @@ public class BaTrayController extends BaseController {
 	public AjaxJson doDel(BaTrayEntity baTray, HttpServletRequest request) {
 		String message = null;
 		AjaxJson j = new AjaxJson();
+		// 根据传入的baTray对象的id获取对应的实体
 		baTray = systemService.getEntity(BaTrayEntity.class, baTray.getId());
 		message = "ba_tray删除成功";
 		try{
+			// 调用服务层方法删除实体
 			baTrayService.delete(baTray);
+			// 添加日志记录，记录类型为删除，级别为信息
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
+			// 如果发生异常，打印堆栈跟踪信息
 			e.printStackTrace();
  			throw new BusinessException(e.getMessage());
 		}
+		// 将message设置为j对象的msg属性
 		j.setMsg(message);
 		return j;
 	}
@@ -177,10 +183,10 @@ public class BaTrayController extends BaseController {
 			e.printStackTrace();
  			throw new BusinessException(e.getMessage());
 		}
+		 // 将message设置为j对象的msg属性
 		j.setMsg(message);
 		return j;
 	}
-
 
 	/**
 	 * 添加ba_tray
@@ -191,16 +197,24 @@ public class BaTrayController extends BaseController {
 	@RequestMapping(params = "doAdd")
 	@ResponseBody
 	public AjaxJson doAdd(BaTrayEntity baTray, HttpServletRequest request) {
+		// 定义一个String类型的变量message用于存储消息内容
 		String message = null;
+		// 创建AjaxJson对象j，用于封装返回给前端的数据
 		AjaxJson j = new AjaxJson();
+		// 设置默认的消息内容为"ba_store_area添加成功"
 		message = "ba_tray添加成功";
 		try{
+			// 调用baStoreAreaService的save方法保存传入的BaStoreAreaEntity对象到数据库
 			baTrayService.save(baTray);
+			// 记录操作日志，类型为插入操作，级别为INFO
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
+			// 打印异常堆栈信息
 			e.printStackTrace();
+			// 抛出业务异常，并附带异常信息
  			throw new BusinessException(e.getMessage());
 		}
+		// 将message设置为j对象的msg属性
 		j.setMsg(message);
 		return j;
 	}
@@ -229,7 +243,6 @@ public class BaTrayController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-
 
 	/**
 	 * ba_tray新增页面跳转

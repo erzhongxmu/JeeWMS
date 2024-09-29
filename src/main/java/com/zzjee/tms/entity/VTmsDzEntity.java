@@ -11,21 +11,25 @@ import javax.persistence.*;
  * @author onlineGenerator
  * @date 2018-08-08 01:31:13
  * @version V1.0   
- *
+ * 电子地图地址实体类，用于表示电子地图中的地址信息。
  */
 @Entity
 @Table(name = "v_tms_dz", schema = "")
 @SuppressWarnings("serial")
 public class VTmsDzEntity implements java.io.Serializable {
-	/**id*/
+	/**
+	 * id
+	 */
 	private String id;
-	/**dizhi*/
+	/**
+	 * dizhi
+	 */
 	@Excel(name="dizhi",width=15)
 	private String dizhi;
 	
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  id
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  id
 	 */
 	@Id
 	@GeneratedValue(generator = "paymentableGenerator")
@@ -37,25 +41,25 @@ public class VTmsDzEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  id
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  id
 	 */
 	public void setId(String id){
 		this.id = id;
 	}
-	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  dizhi
-	 */
 
+	/**
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  dizhi
+	 */
 	@Column(name ="DIZHI",nullable=true,length=131)
 	public String getDizhi(){
 		return this.dizhi;
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  dizhi
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  dizhi
 	 */
 	public void setDizhi(String dizhi){
 		this.dizhi = dizhi;

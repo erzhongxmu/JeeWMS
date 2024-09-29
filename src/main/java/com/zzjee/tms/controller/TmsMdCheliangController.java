@@ -71,11 +71,10 @@ public class TmsMdCheliangController extends BaseController {
     @Autowired
     private Validator validator;
 
-
     /**
      * 车辆管理列表 页面跳转
-     *
-     * @return
+     * @param request 请求
+     * @return ModelAndView
      */
     @RequestMapping(params = "list")
     public ModelAndView list(HttpServletRequest request) {
@@ -84,11 +83,11 @@ public class TmsMdCheliangController extends BaseController {
 
     /**
      * easyui AJAX请求数据
-     *
-     * @param request
-     * @param response
+     * @param request 请求
+     * @param response 响应
      * @param dataGrid
-     * @param user
+     * @param tmsMdCheliang 实体
+     * @return 返回AjaxJson对象
      */
 
     @RequestMapping(params = "datagrid")
@@ -101,11 +100,11 @@ public class TmsMdCheliangController extends BaseController {
         TagUtil.datagrid(response, dataGrid);
     }
 
-
     @RequestMapping(params = "doassignwave")
     @ResponseBody
     public AjaxJson dowavebatch(String ids, String waveid, HttpServletRequest request) {
         String message = null;
+        // 创建对象
         AjaxJson j = new AjaxJson();
         try {
             int aint = (int) Math.round(Math.random() * 9);
@@ -116,23 +115,26 @@ public class TmsMdCheliangController extends BaseController {
                 tmsMdCheliangService.updateEntitie(t);
             }
         } catch (Exception e) {
+            // 抛出异常信息
             e.printStackTrace();
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
+        // 返回AjaxJson对象
         return j;
 
     }
 
     /**
      * 删除车辆管理
-     *
-     * @return
+     * @param request 请求
+     * @return j
      */
     @RequestMapping(params = "doDel")
     @ResponseBody
     public AjaxJson doDel(TmsMdCheliangEntity tmsMdCheliang, HttpServletRequest request) {
         String message = null;
+        // 创建对象
         AjaxJson j = new AjaxJson();
         tmsMdCheliang = systemService.getEntity(TmsMdCheliangEntity.class, tmsMdCheliang.getId());
         message = "车辆管理删除成功";
@@ -141,52 +143,58 @@ public class TmsMdCheliangController extends BaseController {
             tmsMdCheliangService.updateEntitie(tmsMdCheliang);
             systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
+            // 抛出异常
             e.printStackTrace();
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
+        // 返回AjaxJson对象
         return j;
     }
 
     /**
      * 批量删除车辆管理
-     *
-     * @return
+     * @param request 请求
+     * @param ids
+     * @return j
      */
     @RequestMapping(params = "doBatchDel")
     @ResponseBody
     public AjaxJson doBatchDel(String ids, HttpServletRequest request) {
         String message = null;
+        // 创建对象
         AjaxJson j = new AjaxJson();
         message = "车辆管理删除成功";
         try {
             for (String id : ids.split(",")) {
                 TmsMdCheliangEntity tmsMdCheliang = systemService.getEntity(TmsMdCheliangEntity.class,
-                        id
-                );
+                        id);
                 tmsMdCheliang.setZhuangtai("N");
                 tmsMdCheliangService.updateEntitie(tmsMdCheliang);
                 systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
             }
         } catch (Exception e) {
+            // 抛出异常信息
             e.printStackTrace();
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
+        // 返回 AjaxJson对象
         return j;
     }
 
 
     /**
      * 添加车辆管理
-     *
-     * @param ids
-     * @return
+     * @param tmsMdCheliang 实体
+     * @param request 请求
+     * @return j
      */
     @RequestMapping(params = "doAdd")
     @ResponseBody
     public AjaxJson doAdd(TmsMdCheliangEntity tmsMdCheliang, HttpServletRequest request) {
         String message = null;
+        // 创建对象
         AjaxJson j = new AjaxJson();
         message = "车辆管理添加成功";
         try {
@@ -195,22 +203,25 @@ public class TmsMdCheliangController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
+            // 抛出异常信息
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
+        // 返回结果
         return j;
     }
 
     /**
      * 更新车辆管理
-     *
-     * @param ids
-     * @return
+     * @param tmsMdCheliang
+     * @param request 请求
+     * @return j
      */
     @RequestMapping(params = "doUpdate")
     @ResponseBody
     public AjaxJson doUpdate(TmsMdCheliangEntity tmsMdCheliang, HttpServletRequest request) {
         String message = null;
+        // 创建对象
         AjaxJson j = new AjaxJson();
         message = "车辆管理更新成功";
         TmsMdCheliangEntity t = tmsMdCheliangService.get(TmsMdCheliangEntity.class, tmsMdCheliang.getId());
@@ -219,18 +230,20 @@ public class TmsMdCheliangController extends BaseController {
             tmsMdCheliangService.saveOrUpdate(t);
             systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
+            // 抛出异常信息
             e.printStackTrace();
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
+        // 返回结果
         return j;
     }
 
-
     /**
      * 车辆管理新增页面跳转
-     *
-     * @return
+     * @param tmsMdCheliang
+     * @param req 请求
+     * @return  ModelAndView
      */
     @RequestMapping(params = "goAdd")
     public ModelAndView goAdd(TmsMdCheliangEntity tmsMdCheliang, HttpServletRequest req) {
@@ -243,8 +256,9 @@ public class TmsMdCheliangController extends BaseController {
 
     /**
      * 车辆管理编辑页面跳转
-     *
-     * @return
+     * @param tmsMdCheliang
+     * @param req 请求
+     * @return ModelAndView
      */
     @RequestMapping(params = "goUpdate")
     public ModelAndView goUpdate(TmsMdCheliangEntity tmsMdCheliang, HttpServletRequest req) {
@@ -257,8 +271,8 @@ public class TmsMdCheliangController extends BaseController {
 
     /**
      * 导入功能跳转
-     *
-     * @return
+     * @param req 请求
+     * @return ModelAndView
      */
     @RequestMapping(params = "upload")
     public ModelAndView upload(HttpServletRequest req) {
@@ -267,10 +281,11 @@ public class TmsMdCheliangController extends BaseController {
     }
 
     /**
-     * 导出excel
-     *
-     * @param request
-     * @param response
+     * 导出excel列表
+     * @param request 请求
+     * @param response 响应
+     * @param tmsMdCheliang 实体
+     * @return JEECG_EXCEL_VIEW
      */
     @RequestMapping(params = "exportXls")
     public String exportXls(TmsMdCheliangEntity tmsMdCheliang, HttpServletRequest request, HttpServletResponse response
@@ -287,10 +302,11 @@ public class TmsMdCheliangController extends BaseController {
     }
 
     /**
-     * 导出excel 使模板
-     *
-     * @param request
-     * @param response
+     * 导出excel模板
+     * @param request 请求
+     * @param tmsMdCheliang 实体
+     * @param response 响应
+     * @return JEECG_EXCEL_VIEW
      */
     @RequestMapping(params = "exportXlsByT")
     public String exportXlsByT(TmsMdCheliangEntity tmsMdCheliang, HttpServletRequest request, HttpServletResponse response
@@ -307,16 +323,20 @@ public class TmsMdCheliangController extends BaseController {
     @RequestMapping(params = "importExcel", method = RequestMethod.POST)
     @ResponseBody
     public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
+        // 创建对象
         AjaxJson j = new AjaxJson();
-
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+        // 遍历fileMap
         Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+        // 使用entrySet进行增强for循环，遍历map
         for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
-            MultipartFile file = entity.getValue();// 获取上传文件对象
+            // 获取上传的文件对象
+            MultipartFile file = entity.getValue();
+            // 创建导入参数对象，设置标题行、头部行、是否需要保存等参数
             ImportParams params = new ImportParams();
-            params.setTitleRows(2);
-            params.setHeadRows(1);
-            params.setNeedSave(true);
+            params.setTitleRows(2); // 设置标题行有两行
+            params.setHeadRows(1);  // 设置头部行有一行
+            params.setNeedSave(true);   // 表示导入的数据需要被保存
             try {
                 List<TmsMdCheliangEntity> listTmsMdCheliangEntitys = ExcelImportUtil.importExcel(file.getInputStream(), TmsMdCheliangEntity.class, params);
                 for (TmsMdCheliangEntity tmsMdCheliang : listTmsMdCheliangEntitys) {
@@ -324,16 +344,21 @@ public class TmsMdCheliangController extends BaseController {
                 }
                 j.setMsg("文件导入成功！");
             } catch (Exception e) {
+                // 如果在导入过程中出现异常，则设置AjaxJson对象的消息，表示文件导入失败
                 j.setMsg("文件导入失败！");
+                // 记录异常信息，便于后续问题排查
                 logger.error(ExceptionUtil.getExceptionMessage(e));
             } finally {
                 try {
+                    // 尝试关闭文件流，防止资源泄露
                     file.getInputStream().close();
                 } catch (IOException e) {
+                    // 如果出现异常，打印堆栈跟踪
                     e.printStackTrace();
                 }
             }
         }
+        // 返回结果
         return j;
     }
 

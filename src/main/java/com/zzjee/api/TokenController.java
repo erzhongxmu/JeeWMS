@@ -53,6 +53,12 @@ public class TokenController {
     SystemService systemService;
 
 
+	/**
+	 * 获取token
+	 * @param username
+	 * @param password
+	 * @return
+	 */
 	@ApiOperation(value = "获取token")
 	@RequestMapping(value = "/tmslogin", method = RequestMethod.POST)
 	@ResponseBody
@@ -93,8 +99,11 @@ public class TokenController {
 		return new ResponseEntity(D0, HttpStatus.OK);
 	}
 
-
-
+	/**
+	 * 登录接口
+	 * @param tsBaseUser 系统用户
+	 * @return
+	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<?> login(@RequestBody TSBaseUser tsBaseUser, HttpServletRequest request) {
@@ -126,7 +135,13 @@ public class TokenController {
 		return new ResponseEntity(D0, HttpStatus.OK);
 	}
 
-	// 文件上传
+	/**
+	 * 文件上传
+	 * @param request 请求
+	 * @return
+	 * @throws IllegalStateException
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/saveImage", method = RequestMethod.PUT)
 	@ResponseBody
 	public  ResultDO<?> saveImage(HttpServletRequest request) throws IllegalStateException, IOException {
@@ -157,6 +172,12 @@ public class TokenController {
 		return D0;
 	}
 
+	/**
+	 * 根据username获取用户信息
+	 * @param username 用户名
+	 * @param password
+	 * @return
+	 */
 	@RequestMapping(value = "/getuser/{username}", method = RequestMethod.GET)
 	@ResponseBody
 	@ApiOperation(value="根据username获取用户信息",notes="根据username获取用户信息",httpMethod="GET",produces="application/json")

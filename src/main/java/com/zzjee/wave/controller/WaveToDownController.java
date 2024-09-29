@@ -1,5 +1,6 @@
 package com.zzjee.wave.controller;
 
+
 import com.zzjee.api.ResultDO;
 import com.zzjee.md.entity.MdCusEntity;
 import com.zzjee.md.entity.MdCusOtherEntity;
@@ -19,6 +20,7 @@ import com.zzjee.wm.entity.WmOmNoticeIEntity;
 import com.zzjee.wm.entity.WmOmQmIEntity;
 import com.zzjee.wm.entity.WmToDownGoodsEntity;
 import org.apache.log4j.Logger;
+
 import org.jeecgframework.core.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -78,6 +80,7 @@ import static com.xiaoleilu.hutool.date.DateTime.now;
 @Controller
 @RequestMapping("/waveToDownController")
 public class WaveToDownController extends BaseController {
+
     /**
      * Logger for this class
      */
@@ -87,7 +90,6 @@ public class WaveToDownController extends BaseController {
     private WaveToDownServiceI waveToDownService;
     @Autowired
     private SystemService systemService;
-
 
     /**
      * wave_to_down列表 页面跳转
@@ -106,15 +108,20 @@ public class WaveToDownController extends BaseController {
      */
     @RequestMapping(params = "doPrintpage")
     public ModelAndView doPrint(String waveid, HttpServletRequest request) {
+        // 定义一个HQL查询语句，用于从WmOmQmIEntity表中查询waveId等于传入的waveid的记录
         String hql = "from WmOmQmIEntity where waveId = ? ";
         List<WmOmQmIEntity> wavelist = systemService.findHql(hql, waveid);
+        // 将当前日期转换为字符串格式，并设置到request的属性"kprq"中
         request.setAttribute("kprq", DateUtils.date2Str(DateUtils.date_sdf));
+        // 从配置文件中获取公司名称，并设置到request的属性"comname"中
         request.setAttribute("comname", ResourceUtil.getConfigByName("comname"));
+        // 将传入的waveid设置到request的属性"waveid"中
         request.setAttribute("waveid", waveid);
+        // 定义另一个HQL查询语句，用于从WaveToDownEntity表中查询waveId等于传入的waveid的记录
         String hqlwave = "from WaveToDownEntity where waveId = ?";
         List<WaveToDownEntity> wmOmQmIEntityList = systemService.findHql(hqlwave, waveid);
+        // 将查询到的WaveToDownEntity列表设置到request的属性"wmOmQmIList"中
         request.setAttribute("wmOmQmIList", wmOmQmIEntityList);
-
         return new ModelAndView("com/zzjee/wm/print/wavejianhuo-print");
     }
 
@@ -124,7 +131,9 @@ public class WaveToDownController extends BaseController {
         //查询条件组装器
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, waveToDown, request.getParameterMap());
         cq.add();
+        // 调用waveToDownService的getDataGridReturn方法，传入cq参数和true作为第二个参数
         this.waveToDownService.getDataGridReturn(cq, true);
+        // 使用TagUtil工具类的datagrid方法，将response和dataGrid作为参数传递
         TagUtil.datagrid(response, dataGrid);
     }
 
@@ -138,15 +147,18 @@ public class WaveToDownController extends BaseController {
     public AjaxJson doDel(WaveToDownEntity waveToDown, HttpServletRequest request) {
         String message = null;
         AjaxJson j = new AjaxJson();
+        // 根据ID获取WaveToDownEntity实体
         waveToDown = systemService.getEntity(WaveToDownEntity.class, waveToDown.getId());
         message = "wave_to_down删除成功";
         try {
+            // 调用waveToDownService的delete方法删除实体
             waveToDownService.delete(waveToDown);
             systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
               throw new BusinessException(e.getMessage());
         }
+        // 将message设置为j对象的msg属性
         j.setMsg(message);
         return j;
     }
@@ -174,10 +186,10 @@ public class WaveToDownController extends BaseController {
             e.printStackTrace();
              throw new BusinessException(e.getMessage());
         }
+        // 将message设置为j对象的msg属性
         j.setMsg(message);
         return j;
     }
-
 
     /**
      * 添加wave_to_down
@@ -191,12 +203,16 @@ public class WaveToDownController extends BaseController {
         AjaxJson j = new AjaxJson();
         message = "wave_to_down添加成功";
         try {
+            // 调用waveToFjService的save方法保存waveToFj对象
             waveToDownService.save(waveToDown);
+            // 调用systemService的addLog方法记录日志，传入message、Globals.Log_Type_INSERT和Globals.Log_Leavel_INFO作为参数
             systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
+            // 如果发生异常，打印异常堆栈信息
             e.printStackTrace();
              throw new BusinessException(e.getMessage());
         }
+        // 将message设置为j对象的msg属性
         j.setMsg(message);
         return j;
     }
@@ -214,17 +230,22 @@ public class WaveToDownController extends BaseController {
         message = "wave_to_down更新成功";
         WaveToDownEntity t = waveToDownService.get(WaveToDownEntity.class, waveToDown.getId());
         try {
+            // 将waveToFj对象的属性复制到t对象中，只复制非空属性
             MyBeanUtils.copyBeanNotNull2Bean(waveToDown, t);
+            // 保存或更新t对象
             waveToDownService.saveOrUpdate(t);
+            // 记录日志，类型为更新，级别为信息
             systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
+            // 如果发生异常，打印异常堆栈信息
             e.printStackTrace();
+            // 抛出一个BusinessException异常，传入异常信息
              throw new BusinessException(e.getMessage());
         }
+        // 将message设置为j对象的msg属性
         j.setMsg(message);
         return j;
     }
-
 
     /**
      * wave_to_down新增页面跳转
@@ -275,13 +296,17 @@ public class WaveToDownController extends BaseController {
     public String exportXls(WaveToDownEntity waveToDown, HttpServletRequest request, HttpServletResponse response
             , DataGrid dataGrid, ModelMap modelMap) {
         CriteriaQuery cq = new CriteriaQuery(WaveToDownEntity.class, dataGrid);
+        // 根据请求参数和实体类属性生成HQL查询语句
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, waveToDown, request.getParameterMap());
+        // 根据查询条件获取WaveToFjEntity对象列表
         List<WaveToDownEntity> waveToDowns = this.waveToDownService.getListByCriteriaQuery(cq, false);
         modelMap.put(NormalExcelConstants.FILE_NAME, "wave_to_down");
         modelMap.put(NormalExcelConstants.CLASS, WaveToDownEntity.class);
         modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("wave_to_down列表", "导出人:" + ResourceUtil.getSessionUserName().getRealName(),
                 "导出信息"));
+        // 将查询结果放入modelMap中
         modelMap.put(NormalExcelConstants.DATA_LIST, waveToDowns);
+        // 返回视图名称，用于跳转到导出Excel的页面
         return NormalExcelConstants.JEECG_EXCEL_VIEW;
     }
 
@@ -294,11 +319,16 @@ public class WaveToDownController extends BaseController {
     @RequestMapping(params = "exportXlsByT")
     public String exportXlsByT(WaveToDownEntity waveToDown, HttpServletRequest request, HttpServletResponse response
             , DataGrid dataGrid, ModelMap modelMap) {
+        // 设置 Excel 文件名
         modelMap.put(NormalExcelConstants.FILE_NAME, "wave_to_down");
+        // 指定导出的数据实体类类型
         modelMap.put(NormalExcelConstants.CLASS, WaveToDownEntity.class);
+        // 设置导出参数，包括标题、作者和描述
         modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("wave_to_down列表", "导出人:" + ResourceUtil.getSessionUserName().getRealName(),
                 "导出信息"));
+        // 设置数据列表为空列表，此处应根据实际需求填充数据
         modelMap.put(NormalExcelConstants.DATA_LIST, new ArrayList());
+        // 返回视图名称，用于展示或下载 Excel 文件
         return NormalExcelConstants.JEECG_EXCEL_VIEW;
     }
 
@@ -449,6 +479,7 @@ public class WaveToDownController extends BaseController {
         D0.setOK(true);
         return new ResponseEntity(D0, HttpStatus.OK);
     }
+
 
     @RequestMapping(value = "/jsondown", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> update(@RequestBody WaveToDownEntity waveToDown) {

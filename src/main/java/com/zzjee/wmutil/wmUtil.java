@@ -19,11 +19,15 @@ import org.jeecgframework.core.util.StringUtil;
 
 import java.util.*;
 
+/**
+ * 仓储公用类
+ */
 public class wmUtil {
 
     public synchronized static void genrp(String datafrom, String datato, String username) {
         SystemService systemService = ApplicationContextUtil.getContext().getBean(SystemService.class);
 
+        //调用主过程
         String tsql = "call update_rp_period_in_out(" + "'" + datafrom + "'," + "'" + datato + "'," + "'" + username + "'" + ")";
         try {
             systemService.executeSql(tsql);
@@ -32,6 +36,12 @@ public class wmUtil {
         }
     }
 
+    /**
+     * 检查允收配置
+     * @param goodsid
+     * @param scrq
+     * @return
+     */
     public static boolean checkys(String goodsid, String scrq) {
         boolean isaccept = true;
         String pz = "A";

@@ -59,6 +59,13 @@ wmomController {
 	SystemService systemService;
 
 
+	/**
+	 * 获取全部订单列表信息
+	 * @param username 用户名
+	 * @param pageNumber 当前页
+	 * @param pageSize 每页数量
+	 * @return
+	 */
 	@RequestMapping(value = "/alllist/{username}", method = RequestMethod.GET)
 	@ResponseBody
 	@ApiOperation(value = "获取全部订单列表信息", produces = "application/json", httpMethod = "GET")

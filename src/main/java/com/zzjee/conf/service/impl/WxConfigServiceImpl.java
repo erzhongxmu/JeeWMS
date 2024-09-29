@@ -17,29 +17,36 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class WxConfigServiceImpl extends CommonServiceImpl implements WxConfigServiceI {
 
-	
+	/**
+	 * 删除指定的客户其他信息实体，并在删除后执行额外的业务逻辑增强。
+	 *
+	 * @param entity
+	 */
  	@Override
 	public void delete(WxConfigEntity entity) throws Exception{
+		//调用父类的delete方法
  		super.delete(entity);
  		//执行删除操作增强业务
 		this.doDelBus(entity);
  	}
- 	
+
  	@Override
 	public Serializable save(WxConfigEntity entity) throws Exception{
+		//调用父类的save方法,执行实际的保存操作
  		Serializable t = super.save(entity);
  		//执行新增操作增强业务
  		this.doAddBus(entity);
  		return t;
  	}
- 	
+
  	@Override
 	public void saveOrUpdate(WxConfigEntity entity) throws Exception{
+		//调用父类的saveOrUpdate方法
  		super.saveOrUpdate(entity);
  		//执行更新操作增强业务
  		this.doUpdateBus(entity);
  	}
- 	
+
  	/**
 	 * 新增操作增强业务
 	 * @param t
@@ -48,7 +55,7 @@ public class WxConfigServiceImpl extends CommonServiceImpl implements WxConfigSe
 	private void doAddBus(WxConfigEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -60,7 +67,7 @@ public class WxConfigServiceImpl extends CommonServiceImpl implements WxConfigSe
 	private void doUpdateBus(WxConfigEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -72,11 +79,15 @@ public class WxConfigServiceImpl extends CommonServiceImpl implements WxConfigSe
 	private void doDelBus(WxConfigEntity t) throws Exception{
 	    //-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
- 	
+	/**
+	 * 将WxConfigEntity对象的属性转换为一个Map
+	 * @param t
+	 * @return
+	 */
  	private Map<String,Object> populationMap(WxConfigEntity t){
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("id", t.getId());
@@ -104,7 +115,7 @@ public class WxConfigServiceImpl extends CommonServiceImpl implements WxConfigSe
 		map.put("wx_by5", t.getWxBy5());
 		return map;
 	}
- 	
+
  	/**
 	 * 替换sql中的变量
 	 * @param sql
@@ -138,7 +149,7 @@ public class WxConfigServiceImpl extends CommonServiceImpl implements WxConfigSe
  		sql  = sql.replace("#{UUID}",UUID.randomUUID().toString());
  		return sql;
  	}
- 	
+
  	/**
 	 * 执行JAVA增强
 	 */
@@ -148,18 +159,20 @@ public class WxConfigServiceImpl extends CommonServiceImpl implements WxConfigSe
 			try {
 				if("class".equals(cgJavaType)){
 					//因新增时已经校验了实例化是否可以成功，所以这块就不需要再做一次判断
+					//使用自定义类加载器加载并实例化类
 					obj = MyClassLoader.getClassByScn(cgJavaValue).newInstance();
 				}else if("spring".equals(cgJavaType)){
 					obj = ApplicationContextUtil.getContext().getBean(cgJavaValue);
 				}
 				if(obj instanceof CgformEnhanceJavaInter){
 					CgformEnhanceJavaInter javaInter = (CgformEnhanceJavaInter) obj;
+					//调用execute方法，执行Java增强逻辑
 					javaInter.execute("wx_config",data);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new Exception("执行JAVA增强出现异常！");
-			} 
+			}
 		}
  	}
 }

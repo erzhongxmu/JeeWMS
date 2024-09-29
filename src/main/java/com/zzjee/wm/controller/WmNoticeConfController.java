@@ -122,7 +122,6 @@ public class WmNoticeConfController extends BaseController {
      * @param dataGrid
      * @param user
      */
-
     @RequestMapping(params = "datagrid")
     public void datagrid(WmNoticeConfEntity wmNoticeConf, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
         CriteriaQuery cq = new CriteriaQuery(WmNoticeConfEntity.class, dataGrid);
@@ -137,7 +136,9 @@ public class WmNoticeConfController extends BaseController {
         map1.put("wmNoticeId", "desc");
         cq.setOrder(map1);
         cq.add();
+        // 调用wmOmQmIService的getDataGridReturn方法执行查询并返回结果
         this.wmNoticeConfService.getDataGridReturn(cq, true);
+        // 将查询结果封装成DataGrid对象并返回给前端
         TagUtil.datagrid(response, dataGrid);
     }
 
@@ -176,7 +177,6 @@ public class WmNoticeConfController extends BaseController {
             j.setSuccess(false);
             j.setMsg("不允许此操作");
         }
-
         return j;
     }
 
@@ -207,7 +207,6 @@ public class WmNoticeConfController extends BaseController {
         return j;
     }
 
-
     /**
      * 添加回单管理
      *
@@ -221,7 +220,6 @@ public class WmNoticeConfController extends BaseController {
         AjaxJson j = new AjaxJson();
         message = "回单管理添加成功";
         try {
-
             WmOmNoticeHEntity wmOmNoticeHEntity = systemService.findUniqueByProperty(WmOmNoticeHEntity.class, "omNoticeId", wmNoticeConf.getWmNoticeId());
             if (wmOmNoticeHEntity != null) {
                 if (wmOmNoticeHEntity.getOmSta().equals(Constants.wm_sta4)) {
@@ -233,9 +231,7 @@ public class WmNoticeConfController extends BaseController {
                     systemService.saveOrUpdate(wmOmNoticeHEntity);
                     wmNoticeConfService.save(wmNoticeConf);
                 }
-
             } else {
-
                 j.setSuccess(false);
                 j.setMsg("不存在此出货单");
                 return j;
@@ -273,7 +269,6 @@ public class WmNoticeConfController extends BaseController {
         j.setMsg(message);
         return j;
     }
-
 
     /**
      * 回单管理新增页面跳转

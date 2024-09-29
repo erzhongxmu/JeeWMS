@@ -18,6 +18,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 大屏 计费
+ */
 @Controller
 @RequestMapping("/BiCostController")
 public class BiCostController extends BaseController {
@@ -79,9 +82,12 @@ public class BiCostController extends BaseController {
         request.setAttribute("num4",num4);
         return new ModelAndView("com/zzjee/BI/home/reportbi");
     }
+
     /**
      * highchart
-     *
+     * @param request
+     * @param reportType
+     * @param response
      * @return
      */
     @RequestMapping(params = "dayCount")
@@ -122,7 +128,6 @@ public class BiCostController extends BaseController {
 
     /**
      * highchart
-     *
      * @return
      */
     @RequestMapping(params = "cpNameupCount")

@@ -71,9 +71,11 @@ import java.util.*;
  * @version V1.0
  *
  */
+
 @Controller
 @RequestMapping("/wmImNoticeHController")
 public class WmImNoticeHController extends BaseController {
+
     /**
      * Logger for this class
      */
@@ -129,17 +131,18 @@ public class WmImNoticeHController extends BaseController {
         WmImNoticeHEntity wmImNoticeHEntity = wmImNoticeHService.getEntity(WmImNoticeHEntity.class, id);
 
         Object id0 = wmImNoticeHEntity.getNoticeId();
-
-
         List<WmImNoticeIEntity> wmImNoticeIEntitynewList = new ArrayList<>();
+        // 定义一个HQL查询语句，用于从数据库中查询与给定noticeId匹配的所有WmImNoticeIEntity记录
         String hql0 = "from WmImNoticeIEntity where  iM_NOTICE_ID = ? ";
         try {
             List<WmImNoticeIEntity> wmImNoticeIEntityList = systemService
                     .findHql(hql0, id0);
             for (WmImNoticeIEntity wmImNoticeIEntity : wmImNoticeIEntityList) {
                 try{
+                    // 根据商品编码查找对应的MdGoodsEntity实体对象
                     MdGoodsEntity mvgoods = systemService.findUniqueByProperty(
                             MdGoodsEntity.class, "shpBianMa", wmImNoticeIEntity.getGoodsCode());
+                    // 如果找到了对应的MdGoodsEntity实体对象，将该对象的一些属性值设置到当前的WmImNoticeIEntity对象中
                     if (mvgoods != null) {
                         wmImNoticeIEntity.setBzhiQi(mvgoods.getBzhiQi());
                         wmImNoticeIEntity.setShpGuiGe(mvgoods.getShpGuiGe());
@@ -151,6 +154,7 @@ public class WmImNoticeHController extends BaseController {
                 }
                 wmImNoticeIEntitynewList.add(wmImNoticeIEntity);
             }
+            // 将新的WmImNoticeIEntity列表设置为request的属性"wmImNoticeIList"
             request.setAttribute("wmImNoticeIList", wmImNoticeIEntitynewList);
 
         }catch (Exception e){
@@ -274,8 +278,10 @@ public class WmImNoticeHController extends BaseController {
         }
         dataGrid.setResults(resultnew);
         dataGrid.setTotal(resultnew.size());
+        // 将查询结果封装成DataGrid对象并返回给前端
         TagUtil.datagrid(response, dataGrid);
     }
+
     @RequestMapping(params = "datagridtbatch")
     public void datagridtbatch(WmImNoticeIEntity wmImNoticeI,
                                HttpServletRequest request, HttpServletResponse response,
@@ -300,8 +306,8 @@ public class WmImNoticeHController extends BaseController {
         dataGrid.setResults(resultnew);
         dataGrid.setTotal(resultnew.size());
         TagUtil.datagrid(response, dataGrid);
-
     }
+
     /**
      * easyui AJAX请求数据
      *
@@ -310,7 +316,6 @@ public class WmImNoticeHController extends BaseController {
      * @param dataGrid
      * @param
      */
-
     @RequestMapping(params = "datagrid")
     public void datagrid(WmImNoticeHEntity wmImNoticeH,
                          HttpServletRequest request, HttpServletResponse response,
@@ -342,7 +347,6 @@ public class WmImNoticeHController extends BaseController {
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.add();
-
         this.wmImNoticeHService.getDataGridReturn(cq, true);
         TagUtil.datagrid(response, dataGrid);
     }
@@ -355,7 +359,6 @@ public class WmImNoticeHController extends BaseController {
      * @param dataGrid
      * @param
      */
-
     @RequestMapping(params = "datagridqt")
     public void datagridqt(WmImNoticeHEntity wmImNoticeH,
                            HttpServletRequest request, HttpServletResponse response,
@@ -507,10 +510,13 @@ public class WmImNoticeHController extends BaseController {
 
             }
         } catch (Exception e) {
+            // 如果发生异常，打印堆栈跟踪信息
             e.printStackTrace();
             message = "审核失败";
+            // 抛出业务异常，并附带异常信息
             throw new BusinessException(e.getMessage());
         }
+        // 将message设置为j对象的msg属性
         j.setMsg(message);
         return j;
     }
@@ -551,10 +557,12 @@ public class WmImNoticeHController extends BaseController {
 
             }
         } catch (Exception e) {
+            // 如果发生异常，打印堆栈跟踪信息
             e.printStackTrace();
             message = "完成失败";
             throw new BusinessException(e.getMessage());
         }
+        // 将message设置为j对象的msg属性
         j.setMsg(message);
         return j;
     }

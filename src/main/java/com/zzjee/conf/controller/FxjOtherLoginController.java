@@ -83,12 +83,12 @@ public class FxjOtherLoginController extends BaseController {
 	}
 
 	/**
-	 * easyui AJAX请求数据
+	 * easyui 处理AJAX请求以返回FxjOtherLoginEntity数据列表的datagrid
 	 *
+	 * @param fxjOtherLogin
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -104,6 +104,8 @@ public class FxjOtherLoginController extends BaseController {
 	/**
 	 * 删除第三方登录
 	 *
+	 * @param fxjOtherLogin
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -127,6 +129,8 @@ public class FxjOtherLoginController extends BaseController {
 	/**
 	 * 批量删除第三方登录
 	 *
+	 * @param ids
+	 * @param request
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")
@@ -137,9 +141,7 @@ public class FxjOtherLoginController extends BaseController {
 		message = "第三方登录删除成功";
 		try{
 			for(String id:ids.split(",")){
-				FxjOtherLoginEntity fxjOtherLogin = systemService.getEntity(FxjOtherLoginEntity.class,
-				id
-				);
+				FxjOtherLoginEntity fxjOtherLogin = systemService.getEntity(FxjOtherLoginEntity.class,id);
 				fxjOtherLoginService.delete(fxjOtherLogin);
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}
@@ -153,9 +155,11 @@ public class FxjOtherLoginController extends BaseController {
 
 
 	/**
-	 * 添加第三方登录
+	 * 添加第三方登录信息
+	 * 用于将第三方登录的详细信息保存到数据库中，并在成功时记录日志
 	 *
-	 * @param ids
+	 * @param fxjOtherLogin
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -165,7 +169,9 @@ public class FxjOtherLoginController extends BaseController {
 		AjaxJson j = new AjaxJson();
 		message = "第三方登录添加成功";
 		try{
+			//保存第三方登录信息
 			fxjOtherLoginService.save(fxjOtherLogin);
+			//记录操作日志
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
@@ -178,7 +184,8 @@ public class FxjOtherLoginController extends BaseController {
 	/**
 	 * 更新第三方登录
 	 *
-	 * @param ids
+	 * @param fxjOtherLogin
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -204,6 +211,8 @@ public class FxjOtherLoginController extends BaseController {
 	/**
 	 * 第三方登录新增页面跳转
 	 *
+	 * @param fxjOtherLogin
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -217,6 +226,8 @@ public class FxjOtherLoginController extends BaseController {
 	/**
 	 * 第三方登录编辑页面跳转
 	 *
+	 * @param fxjOtherLogin
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -231,6 +242,7 @@ public class FxjOtherLoginController extends BaseController {
 	/**
 	 * 导入功能跳转
 	 *
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "upload")
@@ -242,8 +254,11 @@ public class FxjOtherLoginController extends BaseController {
 	/**
 	 * 导出excel
 	 *
+	 * @param fxjOtherLogin
 	 * @param request
 	 * @param response
+	 * @param dataGrid
+	 * @param modelMap
 	 */
 	@RequestMapping(params = "exportXls")
 	public String exportXls(FxjOtherLoginEntity fxjOtherLogin,HttpServletRequest request,HttpServletResponse response
@@ -258,30 +273,44 @@ public class FxjOtherLoginController extends BaseController {
 		modelMap.put(NormalExcelConstants.DATA_LIST,fxjOtherLogins);
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
+
 	/**
 	 * 导出excel 使模板
 	 *
+	 * @param fxjOtherLogin
 	 * @param request
 	 * @param response
+	 * @param dataGrid
+	 * @param modelMap
 	 */
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(FxjOtherLoginEntity fxjOtherLogin,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
+		//设置Excel文件的名称
     	modelMap.put(NormalExcelConstants.FILE_NAME,"第三方登录");
     	modelMap.put(NormalExcelConstants.CLASS,FxjOtherLoginEntity.class);
+		//设置导出参数
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("第三方登录列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
     	"导出信息"));
+		//设置一个空的数据列表
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 
+	/**
+	 * 通过excel导入数据
+	 *
+	 * @param request
+	 * @param response
+	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-
+		// 将HttpServletRequest转换为MultipartHttpServletRequest，以便处理文件上传
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		//获取上传的文件映射
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
 			MultipartFile file = entity.getValue();// 获取上传文件对象

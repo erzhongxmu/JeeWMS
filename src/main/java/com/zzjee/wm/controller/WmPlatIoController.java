@@ -65,6 +65,7 @@ import com.zzjee.wm.service.WmPlatIoServiceI;
 @Controller
 @RequestMapping("/wmPlatIoController")
 public class WmPlatIoController extends BaseController {
+
     /**
      * Logger for this class
      */
@@ -76,7 +77,6 @@ public class WmPlatIoController extends BaseController {
     private SystemService systemService;
     @Autowired
     private Validator validator;
-
 
     /**
      * 月台进出列表 页面跳转
@@ -101,7 +101,6 @@ public class WmPlatIoController extends BaseController {
      * @param dataGrid
      * @param user
      */
-
     @RequestMapping(params = "datagrid")
     public void datagrid(WmPlatIoEntity wmPlatIo, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
         CriteriaQuery cq = new CriteriaQuery(WmPlatIoEntity.class, dataGrid);
@@ -109,7 +108,6 @@ public class WmPlatIoController extends BaseController {
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wmPlatIo, request.getParameterMap());
         try {
             //自定义追加查询条件
-
             String query_planIndata_begin = DateUtils.date2Str(new Date(), DateUtils.date_sdf);
             Date today = new Date();
             Calendar c = Calendar.getInstance();
@@ -126,9 +124,11 @@ public class WmPlatIoController extends BaseController {
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
         }
+        // 添加查询条件：platSta不等于"完成"
         cq.notEq("platSta", "完成");
         cq.add();
         this.wmPlatIoService.getDataGridReturn(cq, true);
+        // 将查询结果封装成DataGrid对象并返回给前端
         TagUtil.datagrid(response, dataGrid);
     }
 
@@ -208,7 +208,6 @@ public class WmPlatIoController extends BaseController {
         j.setMsg(message);
         return j;
     }
-
 
     /**
      * 添加月台进出

@@ -77,14 +77,13 @@ public class wmBaseController extends BaseController {
      * @param request  code128 格式
      * @throws Exception http://localhost:8080/zzjee/wmOmNoticeHController/showOrDownbarcodeByurl.do?&qrvalue=1111223333  调用
      */
-
     @RequestMapping(value = "showOrDownbarcodeByurl", method = RequestMethod.GET)
     public void getbarcodeImgByurl(HttpServletResponse response, HttpServletRequest request) throws Exception {
         request.setCharacterEncoding("UTF-8");
         String flag = request.getParameter("down");//是否下载否则展示图片
-        String qrvalue = request.getParameter("qrvalue");
+        String qrvalue = request.getParameter("qrvalue");// 获取请求参数qrvalue，用于生成二维码的内容
         String dbpath = qrvalue + ".jpg";
-        String localPath = ResourceUtil.getConfigByName("webUploadpath");
+        String localPath = ResourceUtil.getConfigByName("webUploadpath"); // 获取配置文件中的上传路径
         try {
             String imgurl = localPath + File.separator + dbpath;
             BarcodeUtil.generateFile(qrvalue, imgurl);
@@ -92,26 +91,32 @@ public class wmBaseController extends BaseController {
             e.printStackTrace();
         }
         if ("1".equals(flag)) {
-            response.setContentType("application/x-msdownload;charset=utf-8");
+            response.setContentType("application/x-msdownload;charset=utf-8"); // 设置响应类型为下载文件
             String fileName = dbpath.substring(dbpath.lastIndexOf(File.separator) + 1);
             String userAgent = request.getHeader("user-agent").toLowerCase();
+            // 根据浏览器类型对文件名进行编码
             if (userAgent.contains("msie") || userAgent.contains("like gecko")) {
                 fileName = URLEncoder.encode(fileName, "UTF-8");
             } else {
                 fileName = new String(fileName.getBytes("UTF-8"), "iso-8859-1");
             }
-            response.setHeader("Content-disposition", "attachment; filename=" + fileName);
+            response.setHeader("Content-disposition", "attachment; filename=" + fileName); // 设置响应头，告诉浏览器以附件形式下载文件
         } else {
             response.setContentType("image/jpeg;charset=utf-8");
         }
+        // 定义输入输出流
         InputStream inputStream = null;
         OutputStream outputStream = null;
         try {
             String imgurl = localPath + File.separator + dbpath;
+            // 创建输入流读取二维码图片文件
             inputStream = new BufferedInputStream(new FileInputStream(imgurl));
+            // 获取响应的输出流
             outputStream = response.getOutputStream();
+            // 定义缓冲区
             byte[] buf = new byte[1024];
             int len;
+            // 将图片文件写入响应输出流
             while ((len = inputStream.read(buf)) > 0) {
                 outputStream.write(buf, 0, len);
             }
@@ -128,7 +133,6 @@ public class wmBaseController extends BaseController {
         }
     }
 
-
     /**
      * 获取图片流/获取文件用于下载
      *
@@ -136,7 +140,6 @@ public class wmBaseController extends BaseController {
      * @param request
      * @throws Exception http://localhost:8080/zzjee/wmOmNoticeHController/showOrDownqrcodeByurl.do?&qrvalue=1111223333  调用
      */
-
     @RequestMapping(value = "showOrDownqrcodeByurl", method = RequestMethod.GET)
     public void getQrImgByurl(HttpServletResponse response, HttpServletRequest request) throws Exception {
         request.setCharacterEncoding("UTF-8");
@@ -192,10 +195,14 @@ public class wmBaseController extends BaseController {
     public ResponseEntity<?> listim() {
         ResultDO D0 = new ResultDO();
         String hql = " from WmToUpGoodsErpEntity where 1 = 1  ";
+        // 设置 ResultDO 的状态为成功
         D0.setOK(true);
+        // 使用系统服务执行 HQL 查询并获取结果列表
         List<WmToUpGoodsErpEntity> listerp = systemService.findHql(hql);
         D0.setOK(true);
+        // 将查询结果列表设置到 ResultDO 中
         D0.setObj(listerp);
+        // 返回封装好的 ResultDO 对象，并设置 HTTP 状态码为 200 OK
         return new ResponseEntity(D0, HttpStatus.OK);
     }
 

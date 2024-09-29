@@ -10,18 +10,39 @@ package com.zzjee.api;
  */
 
 public class MenuEntity {
-    private String menuImg;//图片
-    private String menuText;//名称
-    private String	menuSrc;//地址
+    /**
+     * 图 片
+     */
+    private String menuImg;
+    /**
+     * 名称
+     */
+    private String menuText;
+    /**
+     * 地址
+     */
+    private String	menuSrc;
 
+    /**
+     * 获取图片
+     * @return
+     */
     public String getMenuImg() {
         return menuImg;
     }
 
+    /**
+     * 设置图片
+     * @param menuImg
+     */
     public void setMenuImg(String menuImg) {
         this.menuImg = menuImg;
     }
 
+    /**
+     * 获取菜单文本
+     * @return
+     */
     public String getMenuText() {
         return menuText;
     }

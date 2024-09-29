@@ -88,8 +88,9 @@ public class MdGoodsController extends BaseController {
 		return new ModelAndView("com/zzjee/md/mdGoodsallList");
 	}
 	/**
-	 * easyui AJAX请求数据
+	 * easyui 处理AJAX请求以返回MdGoodsEntity数据列表的datagrid
 	 *
+	 * @param mdGoods
 	 * @param request
 	 * @param response
 	 * @param dataGrid
@@ -113,6 +114,8 @@ public class MdGoodsController extends BaseController {
 	/**
 	 * 删除商品信息
 	 *
+	 * @param mdGoods
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -153,6 +156,8 @@ public class MdGoodsController extends BaseController {
 	/**
 	 * 批量删除商品信息
 	 *
+	 * @param ids
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doBatchDel")
@@ -186,6 +191,8 @@ public class MdGoodsController extends BaseController {
 	/**
 	 * 添加商品信息
 	 *
+	 * @param mdGoods
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -253,6 +260,8 @@ public class MdGoodsController extends BaseController {
 	/**
 	 * 更新商品信息
 	 *
+	 * @param mdGoods
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -279,6 +288,8 @@ public class MdGoodsController extends BaseController {
 	/**
 	 * 商品信息新增页面跳转
 	 *
+	 * @param mdGoods
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -293,6 +304,8 @@ public class MdGoodsController extends BaseController {
 	/**
 	 * 商品信息编辑页面跳转
 	 *
+	 * @param mdGoods
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -308,6 +321,7 @@ public class MdGoodsController extends BaseController {
 	/**
 	 * 导入功能跳转
 	 *
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "upload")
@@ -319,8 +333,11 @@ public class MdGoodsController extends BaseController {
 	/**
 	 * 导出excel
 	 *
+	 * @param mdGoods
 	 * @param request
 	 * @param response
+	 * @param dataGrid
+	 * @param modelMap
 	 */
 	@RequestMapping(params = "exportXls")
 	public String exportXls(MdGoodsEntity mdGoods, HttpServletRequest request,
@@ -333,11 +350,16 @@ public class MdGoodsController extends BaseController {
 				mdGoods, request.getParameterMap());
 		List<MdGoodsEntity> mdGoodss = this.mdGoodsService
 				.getListByCriteriaQuery(cq, false);
+		//设置Excel文件的基础信息
+		//文件名
 		modelMap.put(NormalExcelConstants.FILE_NAME, "商品信息");
+		//导出数据的类类型
 		modelMap.put(NormalExcelConstants.CLASS, MdGoodsEntity.class);
+		//设置导出参数
 		modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("商品信息列表",
 				"导出人:" + ResourceUtil.getSessionUserName().getRealName(),
 				"导出信息"));
+		//设置需要导出的数据列表
 		modelMap.put(NormalExcelConstants.DATA_LIST, mdGoodss);
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
@@ -345,36 +367,49 @@ public class MdGoodsController extends BaseController {
 	/**
 	 * 导出excel 使模板
 	 *
+	 * @param mdGoods
 	 * @param request
 	 * @param response
+	 * @param dataGrid
 	 */
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(MdGoodsEntity mdGoods,
 			HttpServletRequest request, HttpServletResponse response,
 			DataGrid dataGrid, ModelMap modelMap) {
+		//设置Excel文件的名称
 		modelMap.put(NormalExcelConstants.FILE_NAME, "商品信息");
 		modelMap.put(NormalExcelConstants.CLASS, MdGoodsEntity.class);
+		//设置导出参数
 		modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("商品信息列表",
 				"导出人:" + ResourceUtil.getSessionUserName().getRealName(),
 				"导出信息"));
+		//设置一个空的数据列表
 		modelMap.put(NormalExcelConstants.DATA_LIST, new ArrayList());
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 
+	/**
+	 * 通过excel导入数据
+	 *
+	 * @param request
+	 * @param response
+	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request,
 			HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-
+		// 将HttpServletRequest转换为MultipartHttpServletRequest，以便处理文件上传
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		//获取上传的文件映射
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
 			MultipartFile file = entity.getValue();// 获取上传文件对象
+			//设置Excel导入参数
 			ImportParams params = new ImportParams();
-			params.setTitleRows(2);
-			params.setHeadRows(1);
+			params.setTitleRows(2);//标题行
+			params.setHeadRows(1);//表头行
 			params.setNeedSave(true);
 			try {
 				List<MdGoodsEntity> listMdGoodsEntitys = ExcelImportUtil
@@ -526,7 +561,6 @@ public class MdGoodsController extends BaseController {
 
 		return new ResponseEntity(D0, HttpStatus.OK);
 	}
-
 
 	@RequestMapping(value = "/apicreategoods")
 	@ResponseBody

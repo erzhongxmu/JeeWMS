@@ -11,7 +11,7 @@ import org.jeecgframework.poi.excel.annotation.Excel;
 
 /**
  * @Title: Entity
- * @Description: 商品视图
+ * @Description: 商品视图实体类
  * @author erzhongxmu
  * @date 2017-09-11 20:01:15
  * @version V1.0

@@ -70,12 +70,12 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
-/**   
+/**
  * @Title: Controller
  * @Description: BOM抬头
  * @author onlineGenerator
  * @date 2018-05-05 12:56:55
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Api(value="TMdBomHead",description="BOM抬头",tags="tMdBomHeadController")
@@ -96,7 +96,8 @@ public class TMdBomHeadController extends BaseController {
 
 	/**
 	 * BOM抬头列表 页面跳转
-	 * 
+	 *
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "list")
@@ -105,8 +106,8 @@ public class TMdBomHeadController extends BaseController {
 	}
 
 	/**
-	 * easyui AJAX请求数据
-	 * 
+	 * easyui 处理AJAX请求以返回TMdBomHeadEntity数据列表的datagrid
+	 *
 	 * @param request
 	 * @param response
 	 * @param dataGrid
@@ -128,8 +129,11 @@ public class TMdBomHeadController extends BaseController {
 	}
 
 	/**
-	 * 删除BOM抬头
-	 * 
+	 * 删除指定的BOM抬头信息
+	 * 通过ID从数据库中检索BOM抬头实体，然后调用服务层方法删除该实体，并在成功时记录日志。
+	 *
+	 * @param tMdBomHead
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -152,7 +156,9 @@ public class TMdBomHeadController extends BaseController {
 
 	/**
 	 * 批量删除BOM抬头
-	 * 
+	 *
+	 * @param ids
+	 * @param request
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")
@@ -179,7 +185,10 @@ public class TMdBomHeadController extends BaseController {
 
 	/**
 	 * 添加BOM抬头
-	 * 
+	 *
+	 * @param tMdBomHead
+	 * @param tMdBomHeadPage
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -199,10 +208,13 @@ public class TMdBomHeadController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
+
 	/**
 	 * 更新BOM抬头
-	 * 
-	 * @param ids
+	 *
+	 * @param tMdBomHead
+	 * @param tMdBomHeadPage
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -213,6 +225,7 @@ public class TMdBomHeadController extends BaseController {
 		String message = "更新成功";
 		try{
 			tMdBomHeadService.updateMain(tMdBomHead, tMdBomItemList);
+			// 记录操作日志
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
@@ -225,7 +238,9 @@ public class TMdBomHeadController extends BaseController {
 
 	/**
 	 * BOM抬头新增页面跳转
-	 * 
+	 *
+	 * @param tMdBomHead
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -236,10 +251,12 @@ public class TMdBomHeadController extends BaseController {
 		}
 		return new ModelAndView("com/zzjee/md/tMdBomHead-add");
 	}
-	
+
 	/**
 	 * BOM抬头编辑页面跳转
-	 * 
+	 *
+	 * @param tMdBomHead
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -250,16 +267,18 @@ public class TMdBomHeadController extends BaseController {
 		}
 		return new ModelAndView("com/zzjee/md/tMdBomHead-update");
 	}
-	
-	
+
+
 	/**
 	 * 加载明细列表[BOM项目]
-	 * 
+	 *
+	 * @param tMdBomHead
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "tMdBomItemList")
 	public ModelAndView tMdBomItemList(TMdBomHeadEntity tMdBomHead, HttpServletRequest req) {
-	
+
 		//===================================================================================
 		//获取参数
 		Object id0 = tMdBomHead.getId();
@@ -275,12 +294,14 @@ public class TMdBomHeadController extends BaseController {
 		return new ModelAndView("com/zzjee/md/tMdBomItemList");
 	}
 
-    /**
-    * 导出excel
-    *
-    * @param request
-    * @param response
-    */
+	/**
+	 * 导出excel
+	 *
+	 * @param tMdBomHead
+	 * @param request
+	 * @param response
+	 * @param map
+	 */
     @RequestMapping(params = "exportXls")
     public String exportXls(TMdBomHeadEntity tMdBomHead,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid,ModelMap map) {
     	CriteriaQuery cq = new CriteriaQuery(TMdBomHeadEntity.class, dataGrid);
@@ -320,7 +341,7 @@ public class TMdBomHeadController extends BaseController {
     /**
 	 * 通过excel导入数据
 	 * @param request
-	 * @param
+	 * @param response
 	 * @return
 	 */
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
@@ -354,33 +375,40 @@ public class TMdBomHeadController extends BaseController {
 					e.printStackTrace();
 				}
 			}
-			}
+		}
 			return j;
 	}
+
 	/**
-	* 导出excel 使模板
-	*/
+	 * 导出excel 使模板
+	 *
+	 * @param map
+	 */
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(ModelMap map) {
+		//设置Excel文件的名称
 		map.put(NormalExcelConstants.FILE_NAME,"BOM抬头");
 		map.put(NormalExcelConstants.CLASS,TMdBomHeadPage.class);
+		//设置导出参数
 		map.put(NormalExcelConstants.PARAMS,new ExportParams("BOM抬头列表", "导出人:"+ ResourceUtil.getSessionUser().getRealName(),
 		"导出信息"));
+		//设置一个空的数据列表
 		map.put(NormalExcelConstants.DATA_LIST,new ArrayList());
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
+
 	/**
-	* 导入功能跳转
-	*
-	* @return
-	*/
+	 * 导入功能跳转
+	 *
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping(params = "upload")
 	public ModelAndView upload(HttpServletRequest req) {
 		req.setAttribute("controller_name", "tMdBomHeadController");
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
 
- 	
  	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	@ApiOperation(value="BOM抬头列表信息",produces="application/json",httpMethod="GET")
@@ -404,7 +432,7 @@ public class TMdBomHeadController extends BaseController {
         }
 		return Result.success(pageList);
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	@ApiOperation(value="根据ID获取BOM抬头信息",notes="根据ID获取BOM抬头信息",httpMethod="GET",produces="application/json")
@@ -425,7 +453,7 @@ public class TMdBomHeadController extends BaseController {
 		}
 		return Result.success(page);
 	}
- 	
+
  	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@ApiOperation(value="创建BOM抬头")
@@ -438,7 +466,7 @@ public class TMdBomHeadController extends BaseController {
 
 		//保存
 		List<TMdBomItemEntity> tMdBomItemList =  tMdBomHeadPage.getTMdBomItemList();
-		
+
 		TMdBomHeadEntity tMdBomHead = new TMdBomHeadEntity();
 		try{
 			MyBeanUtils.copyBeanNotNull2Bean(tMdBomHeadPage,tMdBomHead);
@@ -450,7 +478,7 @@ public class TMdBomHeadController extends BaseController {
 
 		return Result.success(tMdBomHead);
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@ApiOperation(value="更新BOM抬头",notes="更新BOM抬头")
@@ -463,7 +491,7 @@ public class TMdBomHeadController extends BaseController {
 
 		//保存
 		List<TMdBomItemEntity> tMdBomItemList =  tMdBomHeadPage.getTMdBomItemList();
-		
+
 		TMdBomHeadEntity tMdBomHead = new TMdBomHeadEntity();
 		try{
 			MyBeanUtils.copyBeanNotNull2Bean(tMdBomHeadPage,tMdBomHead);
@@ -476,7 +504,7 @@ public class TMdBomHeadController extends BaseController {
 		//按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
 		return Result.success();
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@ApiOperation(value="删除BOM抬头")

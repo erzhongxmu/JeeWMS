@@ -84,7 +84,6 @@ public class WmToUpGoodsController extends BaseController {
 	private Validator validator;
 
 
-
 	/**
 	 * 上架列表列表 页面跳转
 	 *
@@ -102,7 +101,6 @@ public class WmToUpGoodsController extends BaseController {
 	 * @param response
 	 * @param dataGrid
 	 */
-
 	@RequestMapping(params = "datagrid")
 	public void datagrid(WmToUpGoodsEntity wmToUpGoods,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
 		CriteriaQuery cq = new CriteriaQuery(WmToUpGoodsEntity.class, dataGrid);
@@ -118,7 +116,6 @@ public class WmToUpGoodsController extends BaseController {
 		cq.setOrder(map1);
 		cq.add();
 		this.wmToUpGoodsService.getDataGridReturn(cq, true);
-
 		List<WmToUpGoodsEntity> resultold = dataGrid.getResults();
 		List<WmToUpGoodsEntity> resultnew = new ArrayList<>();
 		for(WmToUpGoodsEntity t:resultold){
@@ -190,7 +187,6 @@ public class WmToUpGoodsController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-
 
 	@RequestMapping(params = "doGettextzy",method ={RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody

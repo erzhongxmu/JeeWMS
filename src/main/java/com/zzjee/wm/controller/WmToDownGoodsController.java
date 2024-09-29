@@ -71,6 +71,7 @@ import static org.jeecgframework.web.system.sms.util.Constants.wm_sta6;
  * @Description: 下架商品明细
  * @date 2017-08-25 10:40:39
  */
+
 @Controller
 @RequestMapping("/wmToDownGoodsController")
 public class WmToDownGoodsController extends BaseController {
@@ -104,7 +105,6 @@ public class WmToDownGoodsController extends BaseController {
      * @param response
      * @param dataGrid
      */
-
     @RequestMapping(params = "datagrid")
     public void datagrid(WmToDownGoodsEntity wmToDownGoods,
                          HttpServletRequest request, HttpServletResponse response,
@@ -114,6 +114,7 @@ public class WmToDownGoodsController extends BaseController {
         // 查询条件组装器
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq,
                 wmToDownGoods, request.getParameterMap());
+        // 设置排序规则，按创建日期降序排列
         Map<String, Object> map1 = new HashMap<String, Object>();
         map1.put("createDate", "desc");
         cq.setOrder(map1);
@@ -122,6 +123,7 @@ public class WmToDownGoodsController extends BaseController {
         List<WmToDownGoodsEntity> resultold = dataGrid.getResults();
         List<WmToDownGoodsEntity> resultnew = new ArrayList<>();
         for (WmToDownGoodsEntity t : resultold) {
+            // 如果商品名称为空，则尝试从数据库中获取商品名称并设置
             if (StringUtil.isEmpty(t.getGoodsName())) {
                 try {
                     MvGoodsEntity goods = systemService.findUniqueByProperty(MvGoodsEntity.class, "goodsCode", t.getGoodsId());
@@ -131,9 +133,12 @@ public class WmToDownGoodsController extends BaseController {
                 } catch (Exception e) {
                 }
             }
+            // 设置排序规则，按创建日期降序排列
             resultnew.add(t);
         }
+        // 将处理后的结果设置到dataGrid对象中
         dataGrid.setResults(resultnew);
+        // 将dataGrid对象转换为响应数据并返回给客户端
         TagUtil.datagrid(response, dataGrid);
     }
 
@@ -151,20 +156,26 @@ public class WmToDownGoodsController extends BaseController {
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
         }
+        // 设置排序规则
         Map<String, Object> map1 = new HashMap<String, Object>();
         map1.put("createDate", "desc");
         cq.setOrder(map1);
+        // 添加查询条件：downSta字段为空
         cq.isNull("downSta");
         cq.add();
         this.wmToDownGoodsService.getDataGridReturn(cq, true);
         List<WmToDownGoodsEntity> resultnew = new ArrayList<WmToDownGoodsEntity>();
         List<WmToDownGoodsEntity> resultold = dataGrid.getResults();
+        // 遍历原始结果列表，进行处理
         for (WmToDownGoodsEntity wmToDownGoodsEntity : resultold) {
+            // 将goodsQuaok的值赋给goodsQua，并将goodsQuaok置为空
             wmToDownGoodsEntity.setGoodsQua(wmToDownGoodsEntity.getGoodsQuaok());
             wmToDownGoodsEntity.setGoodsQuaok("");
+            // 将处理后的对象添加到新列表中
             resultnew.add(wmToDownGoodsEntity);
 
         }
+        // 将处理后的结果列表设置为dataGrid的结果
         dataGrid.setResults(resultnew);
         TagUtil.datagrid(response, dataGrid);
     }
@@ -268,7 +279,6 @@ public class WmToDownGoodsController extends BaseController {
         return new ModelAndView("com/zzjee/wm/wavedel_rowedtior");
     }
 
-
     /**
      * 更新下架商品明细
      *
@@ -302,7 +312,6 @@ public class WmToDownGoodsController extends BaseController {
         j.setMsg(message);
         return j;
     }
-
 
     /**
      * gengxin

@@ -106,7 +106,6 @@ public class TmsYufeiConfController extends BaseController {
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -177,8 +176,6 @@ public class TmsYufeiConfController extends BaseController {
 
 	/**
 	 * 添加运费配置
-	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -201,7 +198,7 @@ public class TmsYufeiConfController extends BaseController {
 	/**
 	 * 更新运费配置
 	 *
-	 * @param ids
+	 * @param tmsYufeiConf 运费配置
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
