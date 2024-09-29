@@ -25,12 +25,12 @@ public class SWFToolsSWFConverter implements SWFConverter {
     public void convert2SWF(String inputFile, String swfFile, String extend) {
 		File pdfFile = new File(inputFile);
 		File outFile = new File(swfFile);
-		
+
 		if (!pdfFile.exists()) {
 			 org.jeecgframework.core.util.LogUtil.info("PDF文件不存在！");
 			return;
 		}
-	
+
 		if (outFile.exists()) {
 			 org.jeecgframework.core.util.LogUtil.info("SWF文件已存在！");
 			return;
@@ -46,10 +46,13 @@ public class SWFToolsSWFConverter implements SWFConverter {
 	        	//String cmd = exePath + " \"" + fileDir + "\" -o \"" + filePath + "/" + fileName + ".swf\" -T 9 -f";
 	        	//ConStant.getSWFToolsPath(extend)
 	        	String command = ConStant.getSWFToolsPath(extend) + " \"" + inputFile
-
 	        					+ "\" -o " +" \""+ swfFile +" \""+ " -s languagedir=D:\\xpdf-chinese-simplified -T 9 -f";
 //	        					+ "\" -o " + swfFile + " -s languagedir=D:\\xpdf-chinese-simplified -T 9 -f";
 
+				if (command.contains(";") || command.contains("、") || command.contains("&&") || command.contains("|") || command.contains("？")) {
+					// 如果 command 不匹配正则表达式，则抛出 IllegalArgumentException
+					throw new IllegalArgumentException("字符串包含非法字符");
+				}
 	            //Runtime执行后返回创建的进程对象
 	        	process = Runtime.getRuntime().exec(command);
 	        } else {
@@ -62,8 +65,8 @@ public class SWFToolsSWFConverter implements SWFConverter {
 	              process = Runtime.getRuntime().exec(command);
 	        }
 
-			
-			
+
+
 			StreamGobbler errorGobbler = new StreamGobbler(
 					process.getErrorStream(), "Error");
 			StreamGobbler outputGobbler = new StreamGobbler(
@@ -80,7 +83,7 @@ public class SWFToolsSWFConverter implements SWFConverter {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
     public void convert2SWF(String inputFile, String extend) {
 		String swfFile = PinyinUtil.getPinYinHeadChar(FileUtils.getFilePrefix2(inputFile)) + ".swf";

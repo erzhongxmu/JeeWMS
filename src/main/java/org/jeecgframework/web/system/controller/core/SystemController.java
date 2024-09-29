@@ -197,8 +197,6 @@ public class SystemController extends BaseController {
 	/**
 	 *
 	 * @param request
-	 * @param comboTree
-	 * @param code
 	 * @return
 	 */
 	@RequestMapping(params = "formTree")
@@ -1232,36 +1230,56 @@ public class SystemController extends BaseController {
 	@RequestMapping(value="showOrDownByurl",method = RequestMethod.GET)
 	public void getImgByurl(HttpServletResponse response,HttpServletRequest request) throws Exception{
 		String flag=request.getParameter("down");//是否下载否则展示图片
-		String dbpath = request.getParameter("dbPath");
-		if("1".equals(flag)){
-			response.setContentType("application/x-msdownload;charset=utf-8");
-			String fileName=dbpath.substring(dbpath.lastIndexOf(File.separator)+1);
-			response.setHeader("Content-disposition", "attachment; filename="+  java.net.URLEncoder.encode(fileName, "UTF-8"));
-		}else{
-			response.setContentType("image/jpeg;charset=utf-8");
+		String dbPath = request.getParameter("dbPath");
+		// 定义安全的文件存储目录
+		String safeDir = ResourceUtil.getConfigByName("webUploadpath");
+		File safeDirectory = new File(safeDir);
+		// 验证dbPath是否只包含文件名，不包含路径遍历字符
+		if (dbPath.contains("..") || dbPath.startsWith("/") || dbPath.startsWith("\\") || !dbPath.matches("^[a-zA-Z0-9_.-]+$")) {
+			throw new IllegalArgumentException("Invalid file path");
+		}
+		// 构建安全的文件路径
+		File file = new File(safeDirectory, dbPath);
+		String imgUrl = file.getAbsolutePath();
+		// 确保文件确实位于安全目录下
+		if (!file.getCanonicalPath().startsWith(safeDirectory.getCanonicalPath())) {
+			throw new IllegalArgumentException("File is not within the allowed directory");
+		}
+		// 设置响应类型
+		String fileName = file.getName();
+		String mimeType = "image/jpeg"; // 默认MIME类型
+		if ("1".equals(flag)) {
+			response.setContentType("application/octet-stream");
+			response.setHeader("Content-Disposition", "attachment; filename=\"" + java.net.URLEncoder.encode(fileName, "UTF-8") + "\"");
+		} else {
+			// 简单的MIME类型判断，可以根据需要扩展
+			if (fileName.endsWith(".png")) {
+				mimeType = "image/png";
+			} else if (fileName.endsWith(".gif")) {
+				mimeType = "image/gif";
+			}
+			response.setContentType(mimeType + ";charset=utf-8");
 		}
 
 		InputStream inputStream = null;
 		OutputStream outputStream=null;
 		try {
-			String localPath=ResourceUtil.getConfigByName("webUploadpath");
-			String imgurl = localPath+File.separator+dbpath;
-			imgurl = imgurl.replace("..", "").replace("../", "");
-			inputStream = new BufferedInputStream(new FileInputStream(imgurl));
+			inputStream = new BufferedInputStream(new FileInputStream(imgUrl));
 			outputStream = response.getOutputStream();
 			byte[] buf = new byte[1024];
-	        int len;
-	        while ((len = inputStream.read(buf)) > 0) {
-	            outputStream.write(buf, 0, len);
-	        }
-	        response.flushBuffer();
+			int len;
+			while ((len = inputStream.read(buf)) > 0) {
+				outputStream.write(buf, 0, len);
+			}
+			response.flushBuffer();
 		} catch (Exception e) {
-			logger.info("--通过流的方式获取文件异常--"+e.getMessage());
-		}finally{
-			if(inputStream!=null){
+			logger.error("Error while fetching file: " + e.getMessage());
+			throw e;
+		} finally {
+			if (inputStream != null) {
 				inputStream.close();
 			}
-			if(outputStream!=null){
+			if (outputStream != null) {
 				outputStream.close();
 			}
 		}
