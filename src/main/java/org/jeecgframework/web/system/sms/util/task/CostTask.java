@@ -33,6 +33,7 @@ public class CostTask {
     private SystemService systemService;
     @Autowired
     private WmCusCostHServiceI wmCusCostHService;
+
     public void run() {
         long start = System.currentTimeMillis();
         String run = ResourceUtil.getConfigByName("timerun");
@@ -52,7 +53,7 @@ public class CostTask {
         org.jeecgframework.core.util.LogUtil.info("总耗时" + times + "毫秒");
     }
 
-    public void costcountv2(String datestr, String chongsuan, WmDayCostConfEntity t){
+    public void costcountv2(String datestr, String chongsuan, WmDayCostConfEntity t) {
         String tsql = "select COST_SF  from wm_day_cost_conf   where to_days(cost_date) = to_days(?)";
         if (chongsuan.equals("N")) {//非重算
             List<Map<String, Object>> resultconf = systemService.findForJdbc(tsql, datestr);
@@ -71,7 +72,7 @@ public class CostTask {
         try {
             systemService.executeSql(tsql);
         } catch (Exception e) {
-            // TODO: handle exception
+            e.printStackTrace();
         }
         org.jeecgframework.core.util.LogUtil
                 .info("===================1库存更新成功===================");
@@ -83,7 +84,7 @@ public class CostTask {
                 .info("===================V2数据删除成功===================");
         CriteriaQuery cq = new CriteriaQuery(WmCusCostHEntity.class);
         cq.add();
-        List<WmCusCostHEntity> list=this.wmCusCostHService.getListByCriteriaQuery(cq, false);
+        List<WmCusCostHEntity> list = this.wmCusCostHService.getListByCriteriaQuery(cq, false);
         Double cost_jg = 0.0000;
         Double cost_sl = 0.0000;
         Double cost_bhs = 0.0000;
@@ -96,24 +97,24 @@ public class CostTask {
         String ori = null;
         String costSl = null;
         String countunit = null;
-        if(list!=null&&list.size()>0){
-            for(WmCusCostHEntity entity:list){
-                try{
-                     Object id0 = entity.getId();
+        if (list != null && list.size() > 0) {
+            for (WmCusCostHEntity entity : list) {
+                try {
+                    Object id0 = entity.getId();
                     String hql0 = "from WmCusCostIEntity where 1 = 1 AND cUS_COST_ID = ? ";
-                    List<WmCusCostIEntity> wmCusCostIEntityList = systemService.findHql(hql0,id0);
+                    List<WmCusCostIEntity> wmCusCostIEntityList = systemService.findHql(hql0, id0);
                     String cusCode = entity.getCusCode();
                     String cusName = "";
-                    try{
+                    try {
                         MdCusEntity mdcus1 = systemService.findUniqueByProperty(MdCusEntity.class, "keHuBianMa", cusCode);
                         cusName = mdcus1.getZhongWenQch();
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                     for (WmCusCostIEntity wmCusCostIEntity : wmCusCostIEntityList) {
                         //执行计算 SQL 返回order_id goods_id  goods_count count_unit
                         String dataSql = wmCusCostIEntity.getDataSql();
-                        if (StringUtil.isEmpty(dataSql)){
+                        if (StringUtil.isEmpty(dataSql)) {
                             continue;
                         }
                         dataSql = StringUtils.replace(dataSql, "{cusCode}", cusCode);
@@ -122,7 +123,7 @@ public class CostTask {
                                 .findForJdbc(dataSql);
                         //计算费用
                         for (int i = 0; i < resulthq.size(); i++) {
-                            try{
+                            try {
                                 ori = null;
                                 costSl = null;
                                 cost_jg = 0.0000;
@@ -146,10 +147,10 @@ public class CostTask {
                                 WmDayCost.setCreateBy("system");
                                 WmDayCost.setCreateDate(DateUtils.getDate());
                                 WmDayCost.setCostCode(wmCusCostIEntity.getCostCode());
-                                try{
+                                try {
                                     BaCostEntity bacost = systemService.findUniqueByProperty(BaCostEntity.class, "costCode", wmCusCostIEntity.getCostCode());
                                     WmDayCost.setCostName(bacost.getCostName());
-                                }catch (Exception e){
+                                } catch (Exception e) {
                                     e.printStackTrace();
                                 }
                                 WmDayCost.setCostData(t.getCostDate());
@@ -169,12 +170,12 @@ public class CostTask {
                                 WmDayCost.setDayCostSe(df.format(dayCostSe));
                                 WmDayCost.setDayCostHsj(df.format(dayCostHsj));
                                 systemService.save(WmDayCost);
-                            }catch (Exception e){
+                            } catch (Exception e) {
                                 e.printStackTrace();
                             }
                         }
                     }
-                }catch(Exception e){
+                } catch (Exception e) {
                 }
             }
         }
