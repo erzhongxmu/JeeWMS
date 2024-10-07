@@ -171,6 +171,7 @@ public class VYsddController extends BaseController {
 	@ResponseBody
 	public AjaxJson doBatchDel(String ids, HttpServletRequest request){
 		String message = null;
+		// 创建对象
 		AjaxJson j = new AjaxJson();
 		message = "v_ysdd删除成功";
 		try{

@@ -151,7 +151,7 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 		this.updateName = updateName;
 	}
 	/**
-	 * get方法: 取得java.lang.String
+	 * get方法: 取得 java.lang.String
 	 * @return: java.lang.String  更新人登录名称
 	 */
 	@Column(name ="UPDATE_BY",nullable=true,length=50)
@@ -160,7 +160,7 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 	}
 
 	/**
-	 * set方法: 设置java.lang.String
+	 * set方法: 设置 java.lang.String
 	 * @param: java.lang.String  更新人登录名称
 	 */
 	public void setUpdateBy(String updateBy){
@@ -183,7 +183,7 @@ public class TmsMdCheliangEntity implements java.io.Serializable {
 		this.updateDate = updateDate;
 	}
 	/**
-	 * get方法: 取得java.lang.String
+	 * get方法: 取得 java.lang.String
 	 * @return: java.lang.String  所属部门
 	 */
 	@Column(name ="SYS_ORG_CODE",nullable=true,length=50)

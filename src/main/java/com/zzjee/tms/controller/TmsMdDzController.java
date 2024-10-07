@@ -138,6 +138,7 @@ public class TmsMdDzController extends BaseController {
 	@ResponseBody
 	public AjaxJson doDel(TmsMdDzEntity tmsMdDz, HttpServletRequest request) {
 		String message = null;
+		// 创建对象
 		AjaxJson j = new AjaxJson();
 		tmsMdDz = systemService.getEntity(TmsMdDzEntity.class, tmsMdDz.getId());
 		message = "客户地址删除成功";

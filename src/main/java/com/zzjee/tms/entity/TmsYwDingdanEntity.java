@@ -170,11 +170,11 @@ public class TmsYwDingdanEntity implements java.io.Serializable {
 		
 	private String ywddbz;
 	/**派车备注*/
-//    @Excel(name="派车备注",width=15)
+	//    @Excel(name="派车备注",width=15)
 		
 	private String ywpcbz;
 	/**装车备注*/
-//    @Excel(name="装车备注",width=15)
+	//    @Excel(name="装车备注",width=15)
 		
 	private String ywzcbz;
 	/**回单备注*/

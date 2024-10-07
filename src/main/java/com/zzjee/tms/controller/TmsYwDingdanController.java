@@ -92,7 +92,7 @@ public class TmsYwDingdanController extends BaseController {
 	/**
 	 * 运输订单列表 页面跳转
 	 * @param request 请求
-	 * @return ModelAndView
+	 * @return ModelAndView 地址
 	 */
 	@RequestMapping(params = "list")
 	public ModelAndView list(HttpServletRequest request) {
@@ -102,7 +102,7 @@ public class TmsYwDingdanController extends BaseController {
 	/**
 	 * 运输订单列表 页面跳转 派车
 	 * @param request 请求
-	 * @return ModelAndView
+	 * @return ModelAndView 地址
 	 */
 	@RequestMapping(params = "listpc")
 	public ModelAndView listpc(HttpServletRequest request) {
@@ -112,7 +112,7 @@ public class TmsYwDingdanController extends BaseController {
 	/**
 	 * 运输订单列表 页面跳转 装车
 	 * @param request 请求
-	 * @return ModelAndView
+	 * @return ModelAndView 地址
 	 */
 	@RequestMapping(params = "listzc")
 	public ModelAndView listzc(HttpServletRequest request) {
