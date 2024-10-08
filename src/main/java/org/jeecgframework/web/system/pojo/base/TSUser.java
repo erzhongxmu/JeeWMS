@@ -80,6 +80,7 @@ public class TSUser extends TSBaseUser implements java.io.Serializable {
 	}
 
 	@Column(name = "email", length = 50)
+
 	public String getEmail() {
 		return this.email;
 	}

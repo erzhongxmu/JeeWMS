@@ -2,8 +2,10 @@ package org.jeecgframework.web.system.controller.core;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,9 +40,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 通用业务处理
- * 
+ *
  * @author admin
- * 
+ *
  */
 //@Scope("prototype")
 @Controller
@@ -68,7 +70,7 @@ public class CommonController extends BaseController {
 
 	/**
 	 * 附件预览页面打开链接
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "openViewFile")
@@ -101,7 +103,7 @@ public class CommonController extends BaseController {
 
 	/**
 	 * 附件预览读取
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "viewFile")
@@ -132,7 +134,7 @@ public class CommonController extends BaseController {
 
 	/**
 	 * 生成XML文件
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "createxml")
@@ -149,43 +151,60 @@ public class CommonController extends BaseController {
 
 	/**
 	 * 生成XML文件parserXml
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "parserXml")
 	@ResponseBody
 	public AjaxJson parserXml(HttpServletRequest request, HttpServletResponse response) {
 		AjaxJson json = new AjaxJson();
+		String allowedExtension = ".xml"; // 允许的文件扩展名
+		long maxSize = 1024 * 1024 * 100; // 最大文件大小100MB
 		String fileName = null;
-		UploadFile uploadFile = new UploadFile(request);
-		String ctxPath = request.getSession().getServletContext().getRealPath("");
+		String ctxPath = request.getSession().getServletContext().getRealPath("/") + "uploads/"; // 更改存储位置
+
+		// 确保上传目录存在
 		File file = new File(ctxPath);
 		if (!file.exists()) {
-			file.mkdir();// 创建文件根目录
+			file.mkdirs();
 		}
-		MultipartHttpServletRequest multipartRequest = uploadFile.getMultipartRequest();
-		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
-		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
-			MultipartFile mf = entity.getValue();// 获取上传文件对象
-			fileName = mf.getOriginalFilename();// 获取文件名
-			String savePath = file.getPath() + "/" + fileName;
-			File savefile = new File(savePath);
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request; // 直接从request获取
+		Iterator<String> fileNames = multipartRequest.getFileNames();
+		while (fileNames.hasNext()) {
+			String formFieldName = fileNames.next();
+			MultipartFile mf = multipartRequest.getFile(formFieldName);
+
+			// 检查文件类型和大小
+			if (mf.isEmpty() || !mf.getOriginalFilename().toLowerCase().endsWith(allowedExtension) || mf.getSize() > maxSize) {
+				json.setMsg("文件类型错误或文件大小超过100M或文件为空");
+				json.setSuccess(false);
+				return json;
+			}
+
+			// 重命名文件
+			fileName = UUID.randomUUID().toString() + "_" + mf.getOriginalFilename();
+			String savePath = ctxPath + fileName;
+
 			try {
-				FileCopyUtils.copy(mf.getBytes(), savefile);
+				// 保存文件
+				mf.transferTo(new File(savePath));
+				systemService.parserXml(savePath); // 使用完整路径
+				json.setSuccess(true);
 			} catch (IOException e) {
-				e.printStackTrace();
+				e.printStackTrace(); // 最好使用日志记录器记录异常
+				json.setMsg("Failed to save file.");
+				json.setSuccess(false);
 			}
 		}
-		systemService.parserXml(ctxPath + "/" + fileName);
-		json.setSuccess(true);
+
 		return json;
 	}
 
 	/**
 	 * 自动完成请求返回数据
-	 * 
+	 *
 	 * @param request
-	 * @param responss
+	 * @param response
 	 */
 	@RequestMapping(params = "getAutoList")
 	public void getAutoList(HttpServletRequest request, HttpServletResponse response, Autocomplete autocomplete) {
@@ -205,7 +224,7 @@ public class CommonController extends BaseController {
 			}
 			allFieldArr[fieldArr.length] = valueField;
 		}
-		
+
 		try {
 			String str = TagUtil.getAutoList(autocomplete, autoList);
 			str = "(" + str + ")";
@@ -228,8 +247,8 @@ public class CommonController extends BaseController {
 
 	/**
 	 * 删除继承于TSAttachment附件的公共方法
-	 * 	
-	 * @param ids
+	 *
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "delObjFile")
@@ -244,14 +263,14 @@ public class CommonController extends BaseController {
 		message = "" + attachment.getAttachmenttitle() + "删除成功";
 		systemService.delete(objfile);
 		systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
-		
+
 		j.setMsg(message);
 		return j;
 	}
 
 	/**
 	 * 继承于TSAttachment附件公共列表跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "objfileList")
