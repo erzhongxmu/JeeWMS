@@ -60,7 +60,6 @@
 <%--   <t:dgToolBar title="审核" icon="icon-edit" url="mdSupController.do?goUpdate" funname="update"></t:dgToolBar>--%>
 <%--    <t:dgToolBar title="批量删除"  icon="icon-remove" url="mdSupController.do?doBatchDel" funname="deleteALLSelect"></t:dgToolBar> --%>
 <%--   <t:dgToolBar title="查看" icon="icon-search" url="mdSupController.do?goUpdate" funname="detail"></t:dgToolBar>--%>
-<%--    <t:dgToolBar operationCode="uasimpcus" title="第三方系统导入" icon="icon-put" funname="otherimp"></t:dgToolBar>--%>
 
 <%--    <t:dgToolBar title="导入" icon="icon-put" funname="ImportXls"></t:dgToolBar>--%>
 <%--   <t:dgToolBar title="导出" icon="icon-putout" funname="ExportXls"></t:dgToolBar>--%>
@@ -78,32 +77,6 @@
  $(document).ready(function(){
  });
 
-
- function  otherimp() {
-     var batchdate;
-     batchdate = $('input[name="batchdate"]').attr("value");
-     if(batchdate==""){
-         alert("日期不能为空");
-     }else{
-         var url = "mdSupController.do?doGet&formDate="+batchdate;
-         $.ajax({
-             async : false,
-             cache : false,
-             type : 'POST',
-             url : url,// 请求的action路径
-             error : function() {// 请求失败处理函数
-             },
-             success : function(data) {
-                 var d = $.parseJSON(data);
-                 if (d.success) {
-
-                 }
-             }
-         });
-         tip("获取成功");
-         $('#mdSupList').datagrid('reload',{});
-     }
- }
 //导入
 function ImportXls() {
 	openwindow('Excel导入', 'mdSupController.do?upload', "mdSupList");

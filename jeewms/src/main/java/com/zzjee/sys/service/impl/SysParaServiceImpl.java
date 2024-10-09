@@ -17,7 +17,7 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class SysParaServiceImpl extends CommonServiceImpl implements SysParaServiceI {
 
-	
+
  	@Override
     public void delete(SysParaEntity entity) throws Exception{
  		super.delete(entity);
@@ -43,36 +43,33 @@ public class SysParaServiceImpl extends CommonServiceImpl implements SysParaServ
  	/**
 	 * 新增操作增强业务
 	 * @param t
-	 * @return
+	 * @return null
 	 */
 	private void doAddBus(SysParaEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
  	/**
 	 * 更新操作增强业务
 	 * @param t
-	 * @return
+	 * @return null
 	 */
 	private void doUpdateBus(SysParaEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
  	/**
 	 * 删除操作增强业务
 	 * @param t
-	 * @return
+	 * @return null
 	 */
 	private void doDelBus(SysParaEntity t) throws Exception{
 	    //-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -99,7 +96,7 @@ public class SysParaServiceImpl extends CommonServiceImpl implements SysParaServ
 	 * 替换sql中的变量
 	 * @param sql
 	 * @param t
-	 * @return
+	 * @return sql
 	 */
  	public String replaceVal(String sql,SysParaEntity t){
  		sql  = sql.replace("#{id}",String.valueOf(t.getId()));
@@ -118,7 +115,6 @@ public class SysParaServiceImpl extends CommonServiceImpl implements SysParaServ
  		sql  = sql.replace("#{UUID}",UUID.randomUUID().toString());
  		return sql;
  	}
- 	
  	/**
 	 * 执行JAVA增强
 	 */
@@ -137,7 +133,9 @@ public class SysParaServiceImpl extends CommonServiceImpl implements SysParaServ
 					javaInter.execute("sys_para",data);
 				}
 			} catch (Exception e) {
+				// 如果出现异常，打印堆栈跟踪
 				e.printStackTrace();
+				// 抛出异常
 				throw new Exception("执行JAVA增强出现异常！");
 			} 
 		}

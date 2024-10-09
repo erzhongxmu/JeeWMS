@@ -462,13 +462,34 @@ public interface CommonConstant {
     String TASK_TYPE_OM = "om";
     String TABLE_NAME_BUSI_TASK_SHENGJU = "busi_task_shengju";
     String TASK_TYPE_HUIKONG = "huikong";
+    /**
+     * 盛具回空完成
+     */
     String TASK_TYPE_HUIKONG_FULFIL = "huikong_fulfil";
+    /**
+     * 释放
+     */
     String RESOURCE_STATUS_RELEASE = "release";
+    /**
+     * 返修出库
+     */
     String IM_TYPE_FXCK = "fxck";
+    /**
+     * 供应商退货
+     */
     String IM_TYPE_GYSTH = "gysth";
+    /**
+     * 调账记录表名
+     */
     String TABLE_NAME_BUSI_STOCK_TRIM_LOG = "busi_stock_trim_log";
     String ACT_LC_KEY_TZSP = "tzsp";
+    /**
+     * 异常类型
+     */
     String UNNORMAL_NAME = "帐实不符";
     String TABLE_NAME_BUSI_STOCK = "busi_stock";
+    /**
+     * 库存唯一码
+     */
     String STOCK_UNIQUE_NO = "unique_no";
 }

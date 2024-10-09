@@ -110,8 +110,9 @@ public class MdBinController extends BaseController {
     }
 
     /**
-     * easyui AJAX请求数据
+     * easyui 处理AJAX请求以返回MdBinEntity数据列表的datagrid
      *
+     * @param mdBin
      * @param request
      * @param response
      * @param dataGrid
@@ -122,11 +123,6 @@ public class MdBinController extends BaseController {
         CriteriaQuery cq = new CriteriaQuery(MdBinEntity.class, dataGrid);
         //查询条件组装器
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, mdBin, request.getParameterMap());
-        try {
-            //自定义追加查询条件
-        } catch (Exception e) {
-            throw new BusinessException(e.getMessage());
-        }
         cq.add();
         this.mdBinService.getDataGridReturn(cq, true);
         TagUtil.datagrid(response, dataGrid);
@@ -135,6 +131,8 @@ public class MdBinController extends BaseController {
     /**
      * 删除仓位定义
      *
+     * @param mdBin
+     * @param request
      * @return
      */
     @RequestMapping(params = "doDel")
@@ -159,7 +157,6 @@ public class MdBinController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "仓位停用失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -169,6 +166,8 @@ public class MdBinController extends BaseController {
     /**
      * 删除仓位定义
      *
+     * @param mdBin
+     * @param request
      * @return
      */
     @RequestMapping(params = "doHad")
@@ -177,10 +176,7 @@ public class MdBinController extends BaseController {
         String message = null;
         AjaxJson j = new AjaxJson();
         mdBin = systemService.getEntity(MdBinEntity.class, mdBin.getId());
-        message = "仓位同步有货成功";
         try {
-//			mdBin.setTingYong("Y");
-//			mdBinService.saveOrUpdate(mdBin);
             if (wmUtil.checkishavestock("bin", mdBin.getKuWeiBianMa())) {
                 RfidBuseEntity rfidBuseEntity = new RfidBuseEntity();
                 rfidBuseEntity.setRfidType("CW");
@@ -207,7 +203,6 @@ public class MdBinController extends BaseController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            message = "仓位同步失败功";
             throw new BusinessException(e.getMessage());
         }
 
@@ -241,8 +236,6 @@ public class MdBinController extends BaseController {
             System.out.print(tsql);
             List<Map<String, Object>> resultt = systemService
                     .findForJdbc(tsql);
-//				list = this.tSSmsService.getMsgsList(curUser,curDate);
-            //将List转换成JSON存储
             JSONArray result = new JSONArray();
             if (resultt != null && resultt.size() > 0) {
                 for (int i = 0; i < resultt.size(); i++) {
@@ -252,43 +245,26 @@ public class MdBinController extends BaseController {
                     jsonParts.put("des", resultt.get(i).get("des"));
                     jsonParts.put("tincount", resultt.get(i).get("tincount"));
                     try {
-
                         if ("fanxiang".equals(type)) {
                             try {
                                 int hangshuint = Integer.parseInt(hangshu);
                                 int xnode = Integer.parseInt(resultt.get(i).get("xnode").toString());
-
                                 jsonParts.put("xnode", hangshuint + 1 - xnode);
                             } catch (Exception e) {
-
                             }
-
-
                         } else {
                             jsonParts.put("xnode", resultt.get(i).get("xnode"));
-
                         }
-
                         jsonParts.put("ynode", resultt.get(i).get("ynode"));
-
                         jsonParts.put("znode", resultt.get(i).get("znode"));
-
                         jsonParts.put("colour", resultt.get(i).get("colour"));
-
                     } catch (Exception e) {
-
                     }
                     result.add(jsonParts);
                 }
                 j.setObj(resultt.size());
-
-
                 Map<String, Object> attrs = new HashMap<String, Object>();
                 attrs.put("messageList", result);
-//				String tip = MutiLangUtil.getMutiLangInstance().getLang("message.tip");
-//				attrs.put("tip", tip);
-//				String seeAll = MutiLangUtil.getMutiLangInstance().getLang("message.seeAll");
-//				attrs.put("seeAll", seeAll);
                 j.setAttributes(attrs);
             }
         } catch (Exception e) {
@@ -324,7 +300,6 @@ public class MdBinController extends BaseController {
                 executor.execute(new Runnable() {
                     @Override
                     public void run() {
-
                         runagv(binFrom, binTo, startcom, midcom, endcom, type);
                     }
                 });
@@ -340,17 +315,12 @@ public class MdBinController extends BaseController {
             if (!StringUtil.isEmpty(req.getParameter("binstore"))) {
                 tsql = tsql + " and ws.bin_store like  '%" + req.getParameter("binstore") + "%' ";
             }
-
             if (!StringUtil.isEmpty(req.getParameter("cengshu"))) {
                 tsql = tsql + "  and  ws.znode like  '%" + req.getParameter("cengshu") + "%' ";
             }
-
-
             System.out.print(tsql);
             List<Map<String, Object>> resultt = systemService
                     .findForJdbc(tsql);
-//				list = this.tSSmsService.getMsgsList(curUser,curDate);
-            //将List转换成JSON存储
             JSONArray result = new JSONArray();
             if (resultt != null && resultt.size() > 0) {
                 for (int i = 0; i < resultt.size(); i++) {
@@ -367,36 +337,21 @@ public class MdBinController extends BaseController {
 
                                 jsonParts.put("xnode", hangshuint + 1 - xnode);
                             } catch (Exception e) {
-
                             }
-
-
                         } else {
                             jsonParts.put("xnode", resultt.get(i).get("xnode"));
-
-                        }
-
+                       }
                         jsonParts.put("xnode", resultt.get(i).get("xnode"));
                         jsonParts.put("ynode", resultt.get(i).get("ynode"));
-
                         jsonParts.put("znode", resultt.get(i).get("znode"));
-
                         jsonParts.put("colour", resultt.get(i).get("colour"));
-
                     } catch (Exception e) {
-
                     }
                     result.add(jsonParts);
                 }
                 j.setObj(resultt.size());
-
-
                 Map<String, Object> attrs = new HashMap<String, Object>();
                 attrs.put("messageList", result);
-//				String tip = MutiLangUtil.getMutiLangInstance().getLang("message.tip");
-//				attrs.put("tip", tip);
-//				String seeAll = MutiLangUtil.getMutiLangInstance().getLang("message.seeAll");
-//				attrs.put("seeAll", seeAll);
                 j.setAttributes(attrs);
             }
         } catch (Exception e) {
@@ -409,10 +364,13 @@ public class MdBinController extends BaseController {
 
     public void runagv(String binfrom, String binto, String startcom, String midcom, String endcom, String type) {
         if ("diaodu".equals(type)) {
+            //根据起始和结束库位编号查询对应的库位实体
             List<MdBinEntity> mdblistfrom = systemService.findByProperty(MdBinEntity.class, "kuWeiBianMa", binfrom);
             List<MdBinEntity> mdblistto = systemService.findByProperty(MdBinEntity.class, "kuWeiBianMa", binto);
+            //获取起始和结束库位的具体实体
             MdBinEntity mdBinEntityfrom = mdblistfrom.get(0);
             MdBinEntity mdBinEntityto = mdblistto.get(0);
+            //获取起始和结束库位的坐标信息
             String x0 = mdBinEntityfrom.getXnode();
             String x1 = mdBinEntityto.getXnode();
             int xStep = Integer.parseInt(x1) - Integer.parseInt(x0);
@@ -426,44 +384,25 @@ public class MdBinController extends BaseController {
             ystepNum = Integer.toString(yStep);
             if (!"no".equals(startcom) && StringUtil.isNotEmpty(startcom)) {
                 hxstepNum = "1";
-                System.out.println("startcom,startcom:" + startcom);
                 wmsPlcController.run("", startcom, hxstepNum);
             }
-
-
+            // 根据起始位置的y坐标决定是沿x轴还是y轴移动
             if (y0.equals("01")) {
-                System.out.println("1,runx:" + xstepNum);
                 wmsPlcController.run("", "runx", xstepNum);
             } else {
-                System.out.println("2,runy:" + ystepNum);
-
                 wmsPlcController.run("", "runy", ystepNum);
             }
-
-
-//        if(xStep>0 && yStep>0){
-//            hxstepNum = "1";
-//            System.out.println("3,change:"+hxstepNum);
-//
-//            wmsPlcController.run("","change",hxstepNum);
-//        }
             if (!"no".equals(midcom) && StringUtil.isNotEmpty(midcom)) {
                 hxstepNum = "1";
-                System.out.println("midcom,midcom:" + midcom);
                 wmsPlcController.run("", midcom, hxstepNum);
             }
-
             if (y0.equals("01")) {
-                System.out.println("4,runy:" + ystepNum);
                 wmsPlcController.run("", "runy", ystepNum);
             } else {
-                System.out.println("5,runx:" + xstepNum);
-
                 wmsPlcController.run("", "runx", xstepNum);
             }
             if (!"no".equals(endcom) && StringUtil.isNotEmpty(endcom)) {
                 hxstepNum = "1";
-                System.out.println("endcom,endcom:" + endcom);
                 wmsPlcController.run("", endcom, hxstepNum);
             }
         } else {
@@ -475,6 +414,8 @@ public class MdBinController extends BaseController {
     /**
      * 批量删除仓位定义
      *
+     * @param ids
+     * @param request
      * @return
      */
     @RequestMapping(params = "doBatchDel")
@@ -492,9 +433,6 @@ public class MdBinController extends BaseController {
                 if (wmUtil.checkishavestock("bin", mdBin.getKuWeiBianMa())) {
                     message = "仓位停用成功，但是存在库存";
                     mdBinService.updateEntitie(mdBin);
-//					j.setSuccess(false);
-//					j.setMsg(message);
-//					return j;
                 } else {
                     mdBinService.delete(mdBin);
                 }
@@ -502,7 +440,6 @@ public class MdBinController extends BaseController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "仓位停用失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -513,6 +450,8 @@ public class MdBinController extends BaseController {
     /**
      * 添加仓位定义
      *
+     * @param mdBin
+     * @param request
      * @return
      */
     @RequestMapping(params = "doAdd")
@@ -522,7 +461,6 @@ public class MdBinController extends BaseController {
         AjaxJson j = new AjaxJson();
         message = "仓位定义添加成功";
         try {
-
             MdBinEntity mdb = null;
             List<MdBinEntity> mdblist = systemService.findByProperty(MdBinEntity.class, "kuWeiBianMa", mdBin.getKuWeiBianMa());
             for (MdBinEntity t : mdblist) {
@@ -530,8 +468,6 @@ public class MdBinController extends BaseController {
                     mdb = t;
                 }
             }
-
-//		    MdBinEntity mdBin1 = systemService.findUniqueByProperty(MdBinEntity.class, "kuWeiBianMa", mdBin.getKuWeiBianMa());
             if (mdb == null) {
                 mdBinService.save(mdBin);
                 systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
@@ -541,7 +477,6 @@ public class MdBinController extends BaseController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "仓位定义添加失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -551,6 +486,8 @@ public class MdBinController extends BaseController {
     /**
      * 更新仓位定义
      *
+     * @param mdBin 实体对象
+     * @param request
      * @return
      */
     @RequestMapping(params = "doUpdate")
@@ -561,12 +498,14 @@ public class MdBinController extends BaseController {
         message = "仓位定义更新成功";
         MdBinEntity t = mdBinService.get(MdBinEntity.class, mdBin.getId());
         try {
+            // 将请求中的非空字段更新到现有实体上
             MyBeanUtils.copyBeanNotNull2Bean(mdBin, t);
+            // 保存或更新实体到数据库
             mdBinService.saveOrUpdate(t);
+            // 记录日志
             systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "仓位定义更新失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -577,6 +516,8 @@ public class MdBinController extends BaseController {
     /**
      * 仓位定义新增页面跳转
      *
+     * @param mdBin
+     * @param req
      * @return
      */
     @RequestMapping(params = "goAdd")
@@ -591,6 +532,8 @@ public class MdBinController extends BaseController {
     /**
      * 仓位定义编辑页面跳转
      *
+     * @param mdBin
+     * @param req
      * @return
      */
     @RequestMapping(params = "goUpdate")
@@ -605,6 +548,7 @@ public class MdBinController extends BaseController {
     /**
      * 导入功能跳转
      *
+     * @param req
      * @return
      */
     @RequestMapping(params = "upload")
@@ -616,8 +560,11 @@ public class MdBinController extends BaseController {
     /**
      * 导出excel
      *
+     * @param mdBin
      * @param request
      * @param response
+     * @param dataGrid
+     * @param modelMap
      */
     @RequestMapping(params = "exportXls")
     public String exportXls(MdBinEntity mdBin, HttpServletRequest request, HttpServletResponse response
@@ -625,10 +572,15 @@ public class MdBinController extends BaseController {
         CriteriaQuery cq = new CriteriaQuery(MdBinEntity.class, dataGrid);
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, mdBin, request.getParameterMap());
         List<MdBinEntity> mdBins = this.mdBinService.getListByCriteriaQuery(cq, false);
+        //设置Excel文件的基础信息
+        //文件名
         modelMap.put(NormalExcelConstants.FILE_NAME, "仓位定义");
+        //导出数据的类类型
         modelMap.put(NormalExcelConstants.CLASS, MdBinEntity.class);
+        //设置导出参数
         modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("仓位定义列表", "导出人:" + ResourceUtil.getSessionUserName().getRealName(),
                 "导出信息"));
+        //设置需要导出的数据列表
         modelMap.put(NormalExcelConstants.DATA_LIST, mdBins);
         return NormalExcelConstants.JEECG_EXCEL_VIEW;
     }
@@ -636,38 +588,50 @@ public class MdBinController extends BaseController {
     /**
      * 导出excel 使模板
      *
+     * @param mdBin
      * @param request
      * @param response
+     * @param dataGrid
+     * @param modelMap
      */
     @RequestMapping(params = "exportXlsByT")
     public String exportXlsByT(MdBinEntity mdBin, HttpServletRequest request, HttpServletResponse response
             , DataGrid dataGrid, ModelMap modelMap) {
+        //设置Excel文件的名称
         modelMap.put(NormalExcelConstants.FILE_NAME, "仓位定义");
         modelMap.put(NormalExcelConstants.CLASS, MdBinEntity.class);
+        //设置导出参数
         modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("仓位定义列表", "导出人:" + ResourceUtil.getSessionUserName().getRealName(),
                 "导出信息"));
+        //设置一个空的数据列表
         modelMap.put(NormalExcelConstants.DATA_LIST, new ArrayList());
         return NormalExcelConstants.JEECG_EXCEL_VIEW;
     }
-
+    /**
+     * 通过excel导入数据
+     *
+     * @param request
+     * @param response
+     */
     @SuppressWarnings("unchecked")
     @RequestMapping(params = "importExcel", method = RequestMethod.POST)
     @ResponseBody
     public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
         AjaxJson j = new AjaxJson();
-
+        // 将HttpServletRequest转换为MultipartHttpServletRequest，以便处理文件上传
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+        //获取上传的文件映射
         Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
         for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
             MultipartFile file = entity.getValue();// 获取上传文件对象
+            //设置Excel导入参数
             ImportParams params = new ImportParams();
-            params.setTitleRows(2);
-            params.setHeadRows(1);
+            params.setTitleRows(2);//标题行
+            params.setHeadRows(1);//表头行
             params.setNeedSave(true);
             try {
                 List<MdBinEntity> listMdBinEntitys = ExcelImportUtil.importExcel(file.getInputStream(), MdBinEntity.class, params);
                 for (MdBinEntity mdBin : listMdBinEntitys) {
-
                     MdBinEntity mdb = null;
                     List<MdBinEntity> mdblist = systemService.findByProperty(MdBinEntity.class, "kuWeiBianMa", mdBin.getKuWeiBianMa());
                     for (MdBinEntity t : mdblist) {
@@ -684,7 +648,9 @@ public class MdBinController extends BaseController {
                 }
                 j.setMsg("文件导入成功！");
             } catch (Exception e) {
+                // 如果在导入过程中出现异常，则设置AjaxJson对象的消息，表示文件导入失败
                 j.setMsg("文件导入失败！");
+                // 记录异常信息，便于后续问题排查
                 logger.error(ExceptionUtil.getExceptionMessage(e));
             } finally {
                 try {
@@ -722,7 +688,6 @@ public class MdBinController extends BaseController {
         if (!failures.isEmpty()) {
             return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
         }
-
         //保存
         try {
             mdBinService.save(mdBin);
@@ -735,7 +700,6 @@ public class MdBinController extends BaseController {
         URI uri = uriBuilder.path("/rest/mdBinController/" + id).build().toUri();
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(uri);
-
         return new ResponseEntity(headers, HttpStatus.CREATED);
     }
 
@@ -746,7 +710,6 @@ public class MdBinController extends BaseController {
         if (!failures.isEmpty()) {
             return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
         }
-
         //保存
         try {
             mdBinService.saveOrUpdate(mdBin);
@@ -754,7 +717,6 @@ public class MdBinController extends BaseController {
             e.printStackTrace();
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
-
         //按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
@@ -794,6 +756,5 @@ public class MdBinController extends BaseController {
             }
         }
         mdBinService.batchSave(mdBinEntityList);
-
     }
 }

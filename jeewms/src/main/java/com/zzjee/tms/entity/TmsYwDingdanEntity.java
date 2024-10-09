@@ -18,8 +18,8 @@ import java.util.Date;
 @Table(name = "tms_yw_dingdan", schema = "")
 @SuppressWarnings("serial")
 public class TmsYwDingdanEntity implements java.io.Serializable {
-	/**主键*/
 
+	/**主键*/
 	private String id;
 	/**创建人名称*/
 
@@ -114,11 +114,11 @@ public class TmsYwDingdanEntity implements java.io.Serializable {
 		
 	private String jiage;
 	/**下单附件*/
-//    @Excel(name="下单附件",width=15)
+	//    @Excel(name="下单附件",width=15)
 		
 	private String xiadanfj;
 	/**回单附件*/
-//    @Excel(name="回单附件",width=15)
+	//    @Excel(name="回单附件",width=15)
 		
 	private String huidanfj;
 	/**状态*/
@@ -126,7 +126,7 @@ public class TmsYwDingdanEntity implements java.io.Serializable {
 		
 	private String zhuangtai;
 	/**下单人名字*/
-//    @Excel(name="下单人名字",width=15)
+	//    @Excel(name="下单人名字",width=15)
 		
 	private String xdrmz;
 	/**司机*/
@@ -138,7 +138,7 @@ public class TmsYwDingdanEntity implements java.io.Serializable {
 		
 	private String sdsj;
 	/**预计送达时间*/
-//    @Excel(name="预计送达时间",width=15)
+	//    @Excel(name="预计送达时间",width=15)
 		
 	private String yjsdsj;
 	/**收货人电话*/
@@ -170,11 +170,11 @@ public class TmsYwDingdanEntity implements java.io.Serializable {
 		
 	private String ywddbz;
 	/**派车备注*/
-//    @Excel(name="派车备注",width=15)
+	//    @Excel(name="派车备注",width=15)
 		
 	private String ywpcbz;
 	/**装车备注*/
-//    @Excel(name="装车备注",width=15)
+	//    @Excel(name="装车备注",width=15)
 		
 	private String ywzcbz;
 	/**回单备注*/

@@ -243,9 +243,9 @@ public class WvStockController extends BaseController {
                     Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "生成盘点单删除失败";
             throw new BusinessException(e.getMessage());
         }
+        // 将message设置为j对象的msg属性
         j.setMsg(message);
         return j;
     }
@@ -271,7 +271,6 @@ public class WvStockController extends BaseController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "盘点单删除失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -295,7 +294,6 @@ public class WvStockController extends BaseController {
                     Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "盘点单添加失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -348,7 +346,6 @@ public class WvStockController extends BaseController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "生成盘点单失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -392,13 +389,11 @@ public class WvStockController extends BaseController {
                     Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "生成盘点单失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
         return j;
     }
-
 
     @RequestMapping(params = "doBatchSttkczy")
     @ResponseBody
@@ -450,7 +445,6 @@ public class WvStockController extends BaseController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "生成库存转移单失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -497,7 +491,6 @@ public class WvStockController extends BaseController {
                     Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "生成库存转移单失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -562,7 +555,6 @@ public class WvStockController extends BaseController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "生成托盘转移单失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -637,7 +629,6 @@ public class WvStockController extends BaseController {
         }
         D0.setOK(true);
         D0.setErrorMsg(message);
-
         return new ResponseEntity(D0, HttpStatus.OK);
     }
 
@@ -658,16 +649,13 @@ public class WvStockController extends BaseController {
             wmtomove.setCusName(t.getZhongWenQch());
             wmtomove.setToCusCode(t.getCusCode());
             wmtomove.setToCusName(t.getZhongWenQch());
-
             try {
                 MdCusEntity mdcus = systemService.findUniqueByProperty(MdCusEntity.class, "keHuBianMa", t.getCusCode());
                 wmtomove.setCusName(mdcus.getZhongWenQch());
                 wmtomove.setToCusName(mdcus.getZhongWenQch());
 
             } catch (Exception e) {
-
             }
-
             wmtomove.setGoodsId(t.getGoodsId());
             wmtomove.setGoodsName(t.getShpMingCheng());
             wmtomove.setGoodsProData(t.getGoodsProData());
@@ -684,7 +672,6 @@ public class WvStockController extends BaseController {
                     Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "生成托盘转移单失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);

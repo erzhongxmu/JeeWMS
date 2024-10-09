@@ -61,6 +61,7 @@ import java.util.*;
 @Api(value="VYsdd",description="v_ysdd",tags="vYsddController")
 public class VYsddController extends BaseController {
 	/**
+	 * 登录器
 	 * Logger for this class
 	 */
 	private static final Logger logger = Logger.getLogger(VYsddController.class);
@@ -71,12 +72,10 @@ public class VYsddController extends BaseController {
 	private SystemService systemService;
 	@Autowired
 	private Validator validator;
-	
-
 
 	/**
 	 * v_ysdd列表 页面跳转
-	 * 
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "list")
@@ -86,11 +85,10 @@ public class VYsddController extends BaseController {
 
 	/**
 	 * easyui AJAX请求数据
-	 * 
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
+	 * @param vYsdd
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -106,12 +104,14 @@ public class VYsddController extends BaseController {
 			cq.ge("createDate", new SimpleDateFormat("yyyy-MM-dd").parse(query_createDate_begin));
 
 		}else{
-
+			// 创建时间格式
 			SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+			// 创建Calendar 对象
 			Calendar c = Calendar.getInstance();
+			// 输出格式化后的当前时间
 			System.out.println("当前日期:"+sf.format(c.getTime()));
 			c.add(Calendar.DAY_OF_MONTH, -1);
-//			System.out.println("增加一天后日期:"+sf.format(c.getTime()));
+			//	System.out.println("增加一天后日期:"+sf.format(c.getTime()));
 			cq.ge("createDate", DateUtils.str2Date(sf.format(c.getTime()),DateUtils.date_sdf));
 		}
 		if(StringUtil.isNotEmpty(query_createDate_end)){
@@ -126,6 +126,7 @@ public class VYsddController extends BaseController {
 			cq.le("sdsj", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(query_sdsj_end));
 		}
 		}catch (Exception e) {
+			// 抛出异常
 			throw new BusinessException(e.getMessage());
 		}
 		cq.add();
@@ -135,13 +136,14 @@ public class VYsddController extends BaseController {
 	
 	/**
 	 * 删除v_ysdd
-	 * 
-	 * @return
+	 * @param vYsdd 实体对象
+	 * @return j
 	 */
 	@RequestMapping(params = "doDel")
 	@ResponseBody
 	public AjaxJson doDel(VYsddEntity vYsdd, HttpServletRequest request) {
 		String message = null;
+		// 创建对象
 		AjaxJson j = new AjaxJson();
 		vYsdd = systemService.getEntity(VYsddEntity.class, vYsdd.getId());
 		message = "v_ysdd删除成功";
@@ -149,23 +151,27 @@ public class VYsddController extends BaseController {
 			vYsddService.delete(vYsdd);
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
+			// 抛出异常
 			e.printStackTrace();
 			message = "v_ysdd删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
+		// 返回AjaxJson对象
 		return j;
 	}
 	
 	/**
-	 * 批量删除v_ysdd
-	 * 
-	 * @return
+	 * 批量删除 v_ysdd
+	 * @param ids
+	 * @param request 请求
+	 * @return 返回AjaxJson对象
 	 */
 	 @RequestMapping(params = "doBatchDel")
 	@ResponseBody
 	public AjaxJson doBatchDel(String ids, HttpServletRequest request){
 		String message = null;
+		// 创建对象
 		AjaxJson j = new AjaxJson();
 		message = "v_ysdd删除成功";
 		try{
@@ -182,20 +188,22 @@ public class VYsddController extends BaseController {
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
+		// 返回AjaxJson对象
 		return j;
 	}
 
 
 	/**
 	 * 添加v_ysdd
-	 * 
-	 * @param ids
+	 * @param vYsdd
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
 	@ResponseBody
 	public AjaxJson doAdd(VYsddEntity vYsdd, HttpServletRequest request) {
 		String message = null;
+		// 创建对象
 		AjaxJson j = new AjaxJson();
 		message = "v_ysdd添加成功";
 		try{
@@ -207,13 +215,14 @@ public class VYsddController extends BaseController {
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
+		// 返回AjaxJson对象
 		return j;
 	}
 	
 	/**
 	 * 更新v_ysdd
-	 * 
-	 * @param ids
+	 * @param vYsdd 实体
+	 * @param request 请求
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -233,13 +242,14 @@ public class VYsddController extends BaseController {
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
+		// 返回结果
 		return j;
 	}
 	
 
 	/**
 	 * v_ysdd新增页面跳转
-	 * 
+	 * @param vYsdd
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -252,7 +262,7 @@ public class VYsddController extends BaseController {
 	}
 	/**
 	 * v_ysdd编辑页面跳转
-	 * 
+	 * @param req 请求
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -266,7 +276,7 @@ public class VYsddController extends BaseController {
 	
 	/**
 	 * 导入功能跳转
-	 * 
+	 * @param req 请求
 	 * @return
 	 */
 	@RequestMapping(params = "upload")
@@ -277,9 +287,9 @@ public class VYsddController extends BaseController {
 	
 	/**
 	 * 导出excel
-	 * 
-	 * @param request
-	 * @param response
+	 * @param request 请求
+	 * @param vYsdd
+	 * @param response 响应
 	 */
 	@RequestMapping(params = "exportXls")
 	public void exportXls(VYsddEntity vYsdd, HttpServletRequest request, HttpServletResponse response
@@ -293,22 +303,22 @@ public class VYsddController extends BaseController {
             Calendar c = Calendar.getInstance();
             System.out.println("当前日期:" + sf.format(c.getTime()));
             c.add(Calendar.DAY_OF_MONTH, -1);
-//			System.out.println("增加一天后日期:"+sf.format(c.getTime()));
+			//	System.out.println("增加一天后日期:"+sf.format(c.getTime()));
             cq.ge("createDate", DateUtils.str2Date(sf.format(c.getTime()), DateUtils.date_sdf));
         }
         List<VYsddEntity> vYsdds = this.vYsddService.getListByCriteriaQuery(cq,false);
 		OutputStream fileOut = null;
-//		BufferedImage bufferImg = null;
-//		String codedFileName = null;
+		//	BufferedImage bufferImg = null;
+		//	String codedFileName = null;
 
 		// 先把读进来的图片放到一个ByteArrayOutputStream中，以便产生ByteArray
 		try {
-//			codedFileName = java.net.URLEncoder.encode("中文", "UTF-8");
+			//	codedFileName = java.net.URLEncoder.encode("中文", "UTF-8");
 			response.setHeader("content-disposition", "attachment;filename=zhangdan.xls"
 					);
 			HSSFWorkbook wb = new HSSFWorkbook();
 			HSSFSheet sheet = wb.createSheet("zhangdan");
-//			ByteArrayOutputStream byteArrayOut = new ByteArrayOutputStream();
+			//	ByteArrayOutputStream byteArrayOut = new ByteArrayOutputStream();
 
 			sheet.setMargin(HSSFSheet.TopMargin,0.1);// 页边距（上）
 			sheet.setMargin(HSSFSheet.BottomMargin,0.1);// 页边距（下）
@@ -381,7 +391,6 @@ public class VYsddController extends BaseController {
 			cs2.setWrapText(true);
 
 			// cs2.setAlignment(CellStyle.BORDER_NONE);
-
 			cs3.setFont(f2);
 			cs3.setBorderLeft(CellStyle.BORDER_MEDIUM);
 			cs3.setBorderRight(CellStyle.BORDER_MEDIUM);
@@ -394,7 +403,7 @@ public class VYsddController extends BaseController {
 			cs3r.setBorderTop(CellStyle.BORDER_MEDIUM);
 			cs3r.setBorderBottom(CellStyle.BORDER_MEDIUM);
 			cs3r.setAlignment(HSSFCellStyle.ALIGN_RIGHT);
-//			String[] columnNames = { "送达时间","发货人","货物	","件数","重量","体积","收货人地址","收货人","送货方式","收货人电话","代收款","运费","卸货费","总费用","车号","状态","回单备注" };
+			//	String[] columnNames = { "送达时间","发货人","货物	","件数","重量","体积","收货人地址","收货人","送货方式","收货人电话","代收款","运费","卸货费","总费用","车号","状态","回单备注" };
 			String[] columnNames = { "送达时间","发货人","货物	","件数","重量","体积","货号","收货人地址","收货人","送货方式","收货人电话","代收款","运费", "回单备注","车号","上午或下午" };
 
 			Row rowColumnName = sheet.createRow((short) 0); // 列名
@@ -414,12 +423,11 @@ public class VYsddController extends BaseController {
 			  Row rowColumnNameta = sheet.createRow((short) rows); // 列名
 			  rows++;
 			  coli = 0;
-//             try{
-//				 setcellvalue(rowColumnNameta,coli, (short)300,DateUtils.date2Str(vYsdds.get(j).getCreateDate(),DateUtils.date_sdf),cs3);
-//
-//			 }catch (Exception e){
-//				 setcellvalue(rowColumnNameta,coli, (short)300,"",cs3);
-//			 }
+			  //   ry{
+			  //	   setcellvalue(rowColumnNameta,coli, (short)300,DateUtils.date2Str(vYsdds.get(j).getCreateDate(),DateUtils.date_sdf),cs3);
+			  //	}catch (Exception e){
+			  //		setcellvalue(rowColumnNameta,coli, (short)300,"",cs3);
+			  //	}
 			  try{
 				  setcellvalue(rowColumnNameta,coli, (short)300,vYsdds.get(j).getSdsj().toString(),cs3);
 
@@ -480,24 +488,24 @@ public class VYsddController extends BaseController {
 				  setcellvalue(rowColumnNameta,coli, (short)300,vYsdds.get(j).getHwyf(),cs3r);
 			  }
 
-//			  coli++;
-//			  try{
-//				  setcellvalueunm(rowColumnNameta,coli, (short)300,Double.parseDouble(vYsdds.get(j).getHwxhf()),cs3);
-//			  }catch (Exception e){
-//				  setcellvalue(rowColumnNameta,coli, (short)300,vYsdds.get(j).getHwxhf(),cs3r);
-//			  }
-//
-//			  coli++;
-//			  try{
-//			  setcellvalueunm(rowColumnNameta,coli, (short)300,Double.parseDouble(vYsdds.get(j).getHwzfy()),cs3r);
-//			  }catch (Exception e){
-//				  setcellvalue(rowColumnNameta,coli, (short)300,vYsdds.get(j).getHwzfy(),cs3);
-//
-//			  }
+			  // coli++;
+			  //	try{
+			  //		setcellvalueunm(rowColumnNameta,coli, (short)300,Double.parseDouble(vYsdds.get(j).getHwxhf()),cs3);
+			  //	}catch (Exception e){
+			  //		setcellvalue(rowColumnNameta,coli, (short)300,vYsdds.get(j).getHwxhf(),cs3r);
+			  //	}
+			  //
+			  //		oli++;
+			  //	try{
+			  //		setcellvalueunm(rowColumnNameta,coli, (short)300,Double.parseDouble(vYsdds.get(j).getHwzfy()),cs3r);
+			  //	}catch (Exception e){
+			  //		setcellvalue(rowColumnNameta,coli, (short)300,vYsdds.get(j).getHwzfy(),cs3);
+			  //
+			  //	}
 
 
-//			  coli++;
-//			  setcellvalue(rowColumnNameta,coli, (short)300,vYsdds.get(j).getZhuangtai(),cs3);
+			  //	coli++;
+			  //	setcellvalue(rowColumnNameta,coli, (short)300,vYsdds.get(j).getZhuangtai(),cs3);
 
 			  coli++;
 			  try{
@@ -561,9 +569,9 @@ public class VYsddController extends BaseController {
 	}
 	/**
 	 * 导出excel 使模板
-	 * 
-	 * @param request
-	 * @param response
+	 * @param request 请求
+	 * @param vYsdd
+	 * @param response 响应
 	 */
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(VYsddEntity vYsdd, HttpServletRequest request, HttpServletResponse response
@@ -572,11 +580,13 @@ public class VYsddController extends BaseController {
     	modelMap.put(NormalExcelConstants.CLASS,VYsddEntity.class);
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("v_ysdd列表", "导出人:"+ResourceUtil.getSessionUser().getRealName(),
     	"导出信息"));
+		// 设置数据列表
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
+		// 返回视图名称，指明使用JEECG框架的Excel导出视图进行渲染和导出
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
-	
-//	@SuppressWarnings("unchecked")
+
+	//	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
@@ -584,29 +594,38 @@ public class VYsddController extends BaseController {
 		
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+		// 遍历fileMap
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
-			MultipartFile file = entity.getValue();// 获取上传文件对象
+			// 获取单个上传文件对象
+			MultipartFile file = entity.getValue();
+			// 创建导入参数对象，设置标题行、头部行、是否需要保存等参数
 			ImportParams params = new ImportParams();
-			params.setTitleRows(2);
-			params.setHeadRows(1);
-			params.setNeedSave(true);
+			params.setTitleRows(2);		// 假设标题行有两行
+			params.setHeadRows(1);		// 假设头部行有一行
+			params.setNeedSave(true);	// 表示导入的数据需要被保存
 			try {
 				List<VYsddEntity> listVYsddEntitys = ExcelImportUtil.importExcel(file.getInputStream(),VYsddEntity.class,params);
 				for (VYsddEntity vYsdd : listVYsddEntitys) {
 					vYsddService.save(vYsdd);
 				}
+				// 设置AjaxJson对象的消息，表示文件导入成功。
 				j.setMsg("文件导入成功！");
 			} catch (Exception e) {
+				// 如果在导入过程中出现异常，则设置AjaxJson对象的消息，表示文件导入失败
 				j.setMsg("文件导入失败！");
+				// 记录异常信息，便于后续问题排查
 				logger.error(ExceptionUtil.getExceptionMessage(e));
 			}finally{
 				try {
+					// 尝试关闭文件流，防止资源泄露
 					file.getInputStream().close();
 				} catch (IOException e) {
+					// 抛出异常信息
 					e.printStackTrace();
 				}
 			}
 		}
+		// 返回封装了操作结果和消息的AjaxJson对象
 		return j;
 	}
 	
@@ -626,6 +645,7 @@ public class VYsddController extends BaseController {
 		if (task == null) {
 			return Result.error("根据ID获取v_ysdd信息为空");
 		}
+		// 返回结果
 		return Result.success(task);
 	}
 
@@ -643,9 +663,11 @@ public class VYsddController extends BaseController {
 		try{
 			vYsddService.save(vYsdd);
 		} catch (Exception e) {
+			// 抛出异常
 			e.printStackTrace();
 			return Result.error("v_ysdd信息保存失败");
 		}
+		// 返回结果
 		return Result.success(vYsdd);
 	}
 

@@ -404,6 +404,7 @@ public class WaveToDownEntity implements java.io.Serializable {
 	public void setBy2(String by2){
 		this.by2 = by2;
 	}
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  by3

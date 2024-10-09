@@ -50,7 +50,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.zzjee.md.entity.MdSupEntity;
 import com.zzjee.md.service.MdSupServiceI;
-import com.zzjee.wmutil.wmIntUtil;
 
 /**
  * @Title: Controller
@@ -91,12 +90,12 @@ public class MdSupController extends BaseController {
 	}
 
 	/**
-	 * easyui AJAX请求数据
+	 * 处理AJAX请求以返回MdSupEntity数据列表的datagrid
 	 *
+	 * @param mdSup
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -119,6 +118,8 @@ public class MdSupController extends BaseController {
 	/**
 	 * 删除供应商
 	 *
+	 * @param mdSup
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -134,7 +135,6 @@ public class MdSupController extends BaseController {
 					Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "供应商删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -144,6 +144,8 @@ public class MdSupController extends BaseController {
 	/**
 	 * 批量删除供应商
 	 *
+	 * @param ids
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doBatchDel")
@@ -162,7 +164,6 @@ public class MdSupController extends BaseController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "供应商删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -172,7 +173,8 @@ public class MdSupController extends BaseController {
 	/**
 	 * 添加供应商
 	 *
-	 * @param ids
+	 * @param request
+	 * @param mdSup
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -195,38 +197,17 @@ public class MdSupController extends BaseController {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "供应商添加失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	@RequestMapping(params = "doGet")
-	@ResponseBody
-	public AjaxJson dogetfromother(String formDate, HttpServletRequest request) {
-		String message = null;
-		AjaxJson j = new AjaxJson();
-		message = "商品信息读取成功";
 
-		try {
-			if(StringUtil.isEmpty(formDate)){
-				formDate = "2011-01-01";
-			}
-			wmIntUtil.getSup(formDate);
-			systemService.addLog(message, Globals.Log_Type_UPDATE,
-					Globals.Log_Leavel_INFO);
-		} catch (Exception e) {
-			e.printStackTrace();
-			message = "商品信息读取失败";
-			throw new BusinessException(e.getMessage());
-		}
-		j.setMsg(message);
-		return j;
-	}
 	/**
 	 * 更新供应商
 	 *
-	 * @param ids
+	 * @param mdSup
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -239,11 +220,11 @@ public class MdSupController extends BaseController {
 		try {
 			MyBeanUtils.copyBeanNotNull2Bean(mdSup, t);
 			mdSupService.saveOrUpdate(t);
+			// 记录操作日志
 			systemService.addLog(message, Globals.Log_Type_UPDATE,
 					Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "供应商更新失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -253,6 +234,8 @@ public class MdSupController extends BaseController {
 	/**
 	 * 供应商新增页面跳转
 	 *
+	 * @param mdSup
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -267,6 +250,8 @@ public class MdSupController extends BaseController {
 	/**
 	 * 供应商编辑页面跳转
 	 *
+	 * @param mdSup
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -281,6 +266,7 @@ public class MdSupController extends BaseController {
 	/**
 	 * 导入功能跳转
 	 *
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "upload")
@@ -292,8 +278,11 @@ public class MdSupController extends BaseController {
 	/**
 	 * 导出excel
 	 *
+	 * @param mdSup
 	 * @param request
 	 * @param response
+	 * @param dataGrid
+	 * @param modelMap
 	 */
 	@RequestMapping(params = "exportXls")
 	public String exportXls(MdSupEntity mdSup, HttpServletRequest request,
@@ -303,11 +292,16 @@ public class MdSupController extends BaseController {
 				mdSup, request.getParameterMap());
 		List<MdSupEntity> mdSups = this.mdSupService.getListByCriteriaQuery(cq,
 				false);
+		//设置Excel文件的基础信息
+		//文件名
 		modelMap.put(NormalExcelConstants.FILE_NAME, "供应商");
+		//导出数据的类类型
 		modelMap.put(NormalExcelConstants.CLASS, MdSupEntity.class);
+		//设置导出参数
 		modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("供应商列表",
 				"导出人:" + ResourceUtil.getSessionUserName().getRealName(),
 				"导出信息"));
+		//设置需要导出的数据列表
 		modelMap.put(NormalExcelConstants.DATA_LIST, mdSups);
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
@@ -315,35 +309,49 @@ public class MdSupController extends BaseController {
 	/**
 	 * 导出excel 使模板
 	 *
+	 * @param mdSup
 	 * @param request
 	 * @param response
+	 * @param dataGrid
+	 * @param modelMap
 	 */
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(MdSupEntity mdSup, HttpServletRequest request,
 			HttpServletResponse response, DataGrid dataGrid, ModelMap modelMap) {
+		//设置Excel文件的名称
 		modelMap.put(NormalExcelConstants.FILE_NAME, "供应商");
 		modelMap.put(NormalExcelConstants.CLASS, MdSupEntity.class);
+		//设置导出参数
 		modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("供应商列表",
 				"导出人:" + ResourceUtil.getSessionUserName().getRealName(),
 				"导出信息"));
+		//设置一个空的数据列表
 		modelMap.put(NormalExcelConstants.DATA_LIST, new ArrayList());
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 
+	/**
+	 * 通过excel导入数据
+	 *
+	 * @param request
+	 * @param response
+	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request,
 			HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-
+		// 将HttpServletRequest转换为MultipartHttpServletRequest，以便处理文件上传
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		//获取上传的文件映射
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
 			MultipartFile file = entity.getValue();// 获取上传文件对象
+			//设置Excel导入参数
 			ImportParams params = new ImportParams();
-			params.setTitleRows(2);
-			params.setHeadRows(1);
+			params.setTitleRows(2);//标题行
+			params.setHeadRows(1);//表头行
 			params.setNeedSave(true);
 			try {
 				List<MdSupEntity> listMdSupEntitys = ExcelImportUtil
@@ -354,7 +362,9 @@ public class MdSupController extends BaseController {
 				}
 				j.setMsg("文件导入成功！");
 			} catch (Exception e) {
+				// 如果在导入过程中出现异常，则设置AjaxJson对象的消息，表示文件导入失败
 				j.setMsg("文件导入失败！");
+				// 记录异常信息，便于后续问题排查
 				logger.error(ExceptionUtil.getExceptionMessage(e));
 			} finally {
 				try {

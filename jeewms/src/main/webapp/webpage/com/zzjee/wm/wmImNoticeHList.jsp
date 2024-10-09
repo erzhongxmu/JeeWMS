@@ -55,17 +55,12 @@
 <%--    <t:upload name="intruction" dialog="false" queueID="instructionfile" view="true" auto="true"--%>
 <%--              uploader="wmImNoticeHController.do?upload" id="instruction"--%>
 <%--              extend="pic[*.jpg;*,jpeg;*.png;*.gif;*.bmp;*.ico;*.tif],office[*.doc;*.docx;*.txt;*.ppt;*.xls;*.xlsx;*.html;*.htm]" formData=""></t:upload>--%>
-   <t:dgToolBar operationCode="uasimpimn" title="第三方系统导入" icon="icon-put" funname="documentTitle"></t:dgToolBar>
 
    <%--<t:dgToolBar title="导出" icon="icon-putout" funname="ExportXls"></t:dgToolBar>--%>
    <t:dgToolBar title="模板下载" icon="icon-putout" funname="ExportXlsByT"></t:dgToolBar>
   </t:datagrid>
 
-   <div name="searchColums1" style="float: left; padding-left: 0px;padding-top: 5px;">
-    <%--<input type="text" name="batchbin" style="width: 100px; height: 30px;">--%>
-    日期：<input type="text" name="batchdate"    class="form-control" onClick="WdatePicker()" style="width: 100px; height: 30px;">
 
-   </div>
 
   </div>
  </div>
@@ -77,31 +72,7 @@
 
  });
 //导入
- function  otherimp() {
-     var batchdate;
-     batchdate = $('input[name="batchdate"]').attr("value");
-     if(batchdate==""){
-         alert("日期不能为空");
-     }else{
-         var url = "wmImNoticeHController.do?doGet&formDate="+batchdate;
-         $.ajax({
-             async : true,
-             cache : false,
-             type : 'POST',
-             url : url,// 请求的action路径
-             error : function() {// 请求失败处理函数
-             },
-             success : function(data) {
-                 var d = $.parseJSON(data);
-                 if (d.success) {
 
-                 }
-             }
-         });
-         tip("获取成功");
-         $('#wmImNoticeHList').datagrid('reload',{});
-     }
- }
  function doprint(id){
      var url = "wmImNoticeHController.do?doPrintpage&id="+id;
      createdetailwindow(" 进货通知单", url, 1200, 1000);

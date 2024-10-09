@@ -17,7 +17,9 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class WaveToFjServiceImpl extends CommonServiceImpl implements WaveToFjServiceI {
 
-	
+	/**
+	 * 执行删除操作增强业务
+	 */
  	@Override
     public void delete(WaveToFjEntity entity) throws Exception{
  		super.delete(entity);
@@ -64,6 +66,7 @@ public class WaveToFjServiceImpl extends CommonServiceImpl implements WaveToFjSe
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
+
  	/**
 	 * 删除操作增强业务
 	 * @param t
@@ -144,12 +147,15 @@ public class WaveToFjServiceImpl extends CommonServiceImpl implements WaveToFjSe
  		if(StringUtil.isNotEmpty(cgJavaValue)){
 			Object obj = null;
 			try {
+				// 如果cgJavaType为"class"，则通过MyClassLoader获取类并实例化
 				if("class".equals(cgJavaType)){
 					//因新增时已经校验了实例化是否可以成功，所以这块就不需要再做一次判断
 					obj = MyClassLoader.getClassByScn(cgJavaValue).newInstance();
 				}else if("spring".equals(cgJavaType)){
+					// 如果cgJavaType为"spring"，则从Spring上下文中获取bean
 					obj = ApplicationContextUtil.getContext().getBean(cgJavaValue);
 				}
+				// 判断obj是否实现了CgformEnhanceJavaInter接口
 				if(obj instanceof CgformEnhanceJavaInter){
 					CgformEnhanceJavaInter javaInter = (CgformEnhanceJavaInter) obj;
 					javaInter.execute("wave_to_fj",data);

@@ -11,12 +11,12 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.jeecgframework.poi.excel.annotation.Excel;
 
-/**   
+/**
  * @Title: Entity
- * @Description: 配置信息
+ * @Description: 配置信息实体类
  * @author onlineGenerator
  * @date 2019-04-21 23:11:10
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Entity
@@ -91,7 +91,7 @@ public class WxConfigEntity implements java.io.Serializable {
 	/**备用5*/
 	@Excel(name="备用5")
 	private String wxBy5;
-	
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  id

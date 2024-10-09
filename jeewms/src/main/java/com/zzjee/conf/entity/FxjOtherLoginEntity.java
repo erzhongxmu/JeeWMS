@@ -11,12 +11,12 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.jeecgframework.poi.excel.annotation.Excel;
 
-/**   
+/**
  * @Title: Entity
- * @Description: 第三方登录
+ * @Description: 第三方登录实体类
  * @author onlineGenerator
  * @date 2019-04-21 23:11:19
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Entity
@@ -76,7 +76,7 @@ public class FxjOtherLoginEntity implements java.io.Serializable {
 	/**登录类型*/
 	@Excel(name="登录类型")
 	private String otherType;
-	
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  主键

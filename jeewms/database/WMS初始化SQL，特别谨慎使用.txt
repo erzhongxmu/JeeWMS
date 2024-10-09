@@ -35,12 +35,12 @@ delete from  wm_om_qm_i;
 
 delete from  wm_plat_io;
 
-delete from  wm_to_up;
-delete from  wm_to_up_goods;
-delete from  wm_to_down_goods;
-delete from  wm_to_move_goods;
-delete from  wm_stt_in_goods;
-delete from  wm_stt_in_goods;
-delete from  wm_his_stock_ku;
-delete from  wm_his_stock_data;
+                               delete from  wm_to_up;
+                               delete from  wm_to_up_goods;
+                               delete from  wm_to_down_goods;
+                               delete from  wm_to_move_goods;
+                               delete from  wm_stt_in_goods;
+                               delete from  wm_stt_in_goods;
+                               delete from  wm_his_stock_ku;
+                               delete from  wm_his_stock_data;
 delete from  wm_his_stock_ku;

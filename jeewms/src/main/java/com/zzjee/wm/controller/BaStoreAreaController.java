@@ -65,14 +65,6 @@ import java.net.URI;
 import org.springframework.http.MediaType;
 import org.springframework.web.util.UriComponentsBuilder;
 
-/**   
- * @Title: Controller  
- * @Description: ba_store_area
- * @author onlineGenerator
- * @date 2021-07-13 09:34:52
- * @version V1.0   
- *
- */
 @Controller
 @RequestMapping("/baStoreAreaController")
 public class BaStoreAreaController extends BaseController {
@@ -87,12 +79,10 @@ public class BaStoreAreaController extends BaseController {
 	private SystemService systemService;
 	@Autowired
 	private Validator validator;
-	
-
 
 	/**
 	 * ba_store_area列表 页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "list")
@@ -102,7 +92,7 @@ public class BaStoreAreaController extends BaseController {
 
 	/**
 	 * easyui AJAX请求数据
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @param dataGrid
@@ -118,9 +108,11 @@ public class BaStoreAreaController extends BaseController {
 		//自定义追加查询条件
 		String query_createDate_begin = request.getParameter("createDate_begin");
 		String query_createDate_end = request.getParameter("createDate_end");
+		// 如果createDate_begin不为空，则添加大于等于该日期的条件
 		if(StringUtil.isNotEmpty(query_createDate_begin)){
 			cq.ge("createDate", new SimpleDateFormat("yyyy-MM-dd").parse(query_createDate_begin));
 		}
+		// 如果createDate_end不为空，则添加小于等于该日期的条件
 		if(StringUtil.isNotEmpty(query_createDate_end)){
 			cq.le("createDate", new SimpleDateFormat("yyyy-MM-dd").parse(query_createDate_end));
 		}
@@ -128,13 +120,15 @@ public class BaStoreAreaController extends BaseController {
 			throw new BusinessException(e.getMessage());
 		}
 		cq.add();
+		// 调用wmOmQmIService的getDataGridReturn方法执行查询并返回结果
 		this.baStoreAreaService.getDataGridReturn(cq, true);
+		// 将查询结果封装成DataGrid对象并返回给前端
 		TagUtil.datagrid(response, dataGrid);
 	}
-	
+
 	/**
 	 * 删除ba_store_area
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -142,23 +136,25 @@ public class BaStoreAreaController extends BaseController {
 	public AjaxJson doDel(BaStoreAreaEntity baStoreArea, HttpServletRequest request) {
 		String message = null;
 		AjaxJson j = new AjaxJson();
+		// 通过ID获取实体类对象
 		baStoreArea = systemService.getEntity(BaStoreAreaEntity.class, baStoreArea.getId());
 		message = "ba_store_area删除成功";
 		try{
+			// 调用服务层方法删除实体
 			baStoreAreaService.delete(baStoreArea);
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "ba_store_area删除失败";
-			throw new BusinessException(e.getMessage());
+ 			throw new BusinessException(e.getMessage());
 		}
+		// 将message设置为j对象的msg属性
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 批量删除ba_store_area
-	 * 
+	 *
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")
@@ -168,50 +164,60 @@ public class BaStoreAreaController extends BaseController {
 		AjaxJson j = new AjaxJson();
 		message = "ba_store_area删除成功";
 		try{
+			// 添加日志记录，记录类型为删除，级别为信息
 			for(String id:ids.split(",")){
-				BaStoreAreaEntity baStoreArea = systemService.getEntity(BaStoreAreaEntity.class, 
+				BaStoreAreaEntity baStoreArea = systemService.getEntity(BaStoreAreaEntity.class,
 				id
 				);
+				// 调用baStoreAreaService的delete方法删除baStoreArea对象
 				baStoreAreaService.delete(baStoreArea);
+				// 添加日志记录，记录类型为删除，级别为信息
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}
 		}catch(Exception e){
+			// 如果发生异常，打印堆栈跟踪信息
 			e.printStackTrace();
-			message = "ba_store_area删除失败";
-			throw new BusinessException(e.getMessage());
+ 			throw new BusinessException(e.getMessage());
 		}
+		 // 将message设置为j对象的msg属性
 		j.setMsg(message);
 		return j;
 	}
 
-
 	/**
 	 * 添加ba_store_area
-	 * 
+	 *
 	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
 	@ResponseBody
 	public AjaxJson doAdd(BaStoreAreaEntity baStoreArea, HttpServletRequest request) {
+		// 定义一个String类型的变量message用于存储消息内容
 		String message = null;
+		// 创建AjaxJson对象j，用于封装返回给前端的数据
 		AjaxJson j = new AjaxJson();
+		// 设置默认的消息内容为"ba_store_area添加成功"
 		message = "ba_store_area添加成功";
 		try{
+			// 调用baStoreAreaService的save方法保存传入的BaStoreAreaEntity对象到数据库
 			baStoreAreaService.save(baStoreArea);
+			// 记录操作日志，类型为插入操作，级别为INFO
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
+			// 打印异常堆栈信息
 			e.printStackTrace();
-			message = "ba_store_area添加失败";
-			throw new BusinessException(e.getMessage());
+			// 抛出业务异常，并附带异常信息
+ 			throw new BusinessException(e.getMessage());
 		}
+		// 将message设置为j对象的msg属性
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 更新ba_store_area
-	 * 
+	 *
 	 * @param ids
 	 * @return
 	 */
@@ -228,17 +234,15 @@ public class BaStoreAreaController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "ba_store_area更新失败";
-			throw new BusinessException(e.getMessage());
+ 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
 
 	/**
 	 * ba_store_area新增页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -251,7 +255,7 @@ public class BaStoreAreaController extends BaseController {
 	}
 	/**
 	 * ba_store_area编辑页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -262,10 +266,10 @@ public class BaStoreAreaController extends BaseController {
 		}
 		return new ModelAndView("com/zzjee/wm/baStoreArea-update");
 	}
-	
+
 	/**
 	 * 导入功能跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "upload")
@@ -273,10 +277,10 @@ public class BaStoreAreaController extends BaseController {
 		req.setAttribute("controller_name","baStoreAreaController");
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
-	
+
 	/**
 	 * 导出excel
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -295,7 +299,7 @@ public class BaStoreAreaController extends BaseController {
 	}
 	/**
 	 * 导出excel 使模板
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -309,13 +313,13 @@ public class BaStoreAreaController extends BaseController {
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-		
+
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
@@ -343,14 +347,14 @@ public class BaStoreAreaController extends BaseController {
 		}
 		return j;
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<BaStoreAreaEntity> list() {
 		List<BaStoreAreaEntity> listBaStoreAreas=baStoreAreaService.getList(BaStoreAreaEntity.class);
 		return listBaStoreAreas;
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {

@@ -1,4 +1,5 @@
 package com.zzjee.wm.controller;
+
 import com.zzjee.md.entity.MdBinEntity;
 import com.zzjee.md.entity.MdCusEntity;
 import com.zzjee.md.entity.MdGoodsEntity;
@@ -83,382 +84,389 @@ import org.springframework.http.MediaType;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
+ * @author erzhongxmu
+ * @version V1.0
  * @Title: Controller
  * @Description: 计费日期配置
- * @author erzhongxmu
  * @date 2017-10-11 00:26:00
- * @version V1.0
- *
  */
 @Controller
 @RequestMapping("/wmDayCostConfController")
 public class WmDayCostConfController extends BaseController {
-	/**
-	 * Logger for this class
-	 */
-	private static final Logger logger = Logger.getLogger(WmDayCostConfController.class);
+    /**
+     * Logger for this class
+     */
+    private static final Logger logger = Logger.getLogger(WmDayCostConfController.class);
 
-	@Autowired
-	private WmDayCostConfServiceI wmDayCostConfService;
-	@Autowired
-	private SystemService systemService;
-	@Autowired
-	private Validator validator;
-	@Autowired
-  private CostTask task;
+    @Autowired
+    private WmDayCostConfServiceI wmDayCostConfService;
+    @Autowired
+    private SystemService systemService;
+    @Autowired
+    private Validator validator;
+    @Autowired
+    private CostTask task;
 
-	/**
-	 * 计费日期配置列表 页面跳转
-	 *
-	 * @return
-	 */
-	@RequestMapping(params = "list")
-	public ModelAndView list(HttpServletRequest request) {
-		return new ModelAndView("com/zzjee/wm/wmDayCostConfList");
-	}
+    /**
+     * 计费日期配置列表 页面跳转
+     *
+     * @return
+     */
+    @RequestMapping(params = "list")
+    public ModelAndView list(HttpServletRequest request) {
+        return new ModelAndView("com/zzjee/wm/wmDayCostConfList");
+    }
 
-	/**
-	 * easyui AJAX请求数据
-	 *
-	 * @param request
-	 * @param response
-	 * @param dataGrid
-	 */
+    /**
+     * easyui AJAX请求数据
+     *
+     * @param request
+     * @param response
+     * @param dataGrid
+     */
 
-	@RequestMapping(params = "datagrid")
-	public void datagrid(WmDayCostConfEntity wmDayCostConf,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
-		CriteriaQuery cq = new CriteriaQuery(WmDayCostConfEntity.class, dataGrid);
-		//查询条件组装器
-		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wmDayCostConf, request.getParameterMap());
-		try{
-		//自定义追加查询条件
-		}catch (Exception e) {
-			throw new BusinessException(e.getMessage());
-		}
-		Map<String,Object> map1 = new HashMap<String,Object>();
-		map1.put("costDate", "desc");
-		cq.setOrder(map1);
-		cq.add();
-		this.wmDayCostConfService.getDataGridReturn(cq, true);
-		TagUtil.datagrid(response, dataGrid);
-	}
+    @RequestMapping(params = "datagrid")
+    public void datagrid(WmDayCostConfEntity wmDayCostConf, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
+        CriteriaQuery cq = new CriteriaQuery(WmDayCostConfEntity.class, dataGrid);
+        //查询条件组装器
+        org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wmDayCostConf, request.getParameterMap());
+        try {
+            //自定义追加查询条件
+        } catch (Exception e) {
+            throw new BusinessException(e.getMessage());
+        }
+        Map<String, Object> map1 = new HashMap<String, Object>();
+        map1.put("costDate", "desc");
+        cq.setOrder(map1);
+        cq.add();
+        // 调用wmOmQmIService的getDataGridReturn方法执行查询并返回结果
+        this.wmDayCostConfService.getDataGridReturn(cq, true);
+        // 将查询结果封装成DataGrid对象并返回给前端
+        TagUtil.datagrid(response, dataGrid);
+    }
 
-	/**
-	 * 删除计费日期配置
-	 *
-	 * @return
-	 */
-	@RequestMapping(params = "doDel")
-	@ResponseBody
-	public AjaxJson doDel(WmDayCostConfEntity wmDayCostConf, HttpServletRequest request) {
-		String message = null;
-		AjaxJson j = new AjaxJson();
-		wmDayCostConf = systemService.getEntity(WmDayCostConfEntity.class, wmDayCostConf.getId());
-		message = "计费日期配置删除成功";
-		try{
-			wmDayCostConf.setCostSf("N");
-			wmDayCostConfService.saveOrUpdate(wmDayCostConf);
-			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
-		}catch(Exception e){
-			e.printStackTrace();
-			message = "计费日期配置删除失败";
-			throw new BusinessException(e.getMessage());
-		}
-		j.setMsg(message);
-		return j;
-	}
+    /**
+     * 删除计费日期配置
+     *
+     * @return
+     */
+    @RequestMapping(params = "doDel")
+    @ResponseBody
+    public AjaxJson doDel(WmDayCostConfEntity wmDayCostConf, HttpServletRequest request) {
+        String message = null;
+        AjaxJson j = new AjaxJson();
+        // 根据传入的wmDayCostConf对象的id获取对应的实体
+        wmDayCostConf = systemService.getEntity(WmDayCostConfEntity.class, wmDayCostConf.getId());
+        message = "计费日期配置删除成功";
+        try {
+            // 将计费状态设置为"N"（不计费）
+            wmDayCostConf.setCostSf("N");
+            // 保存或更新实体
+            wmDayCostConfService.saveOrUpdate(wmDayCostConf);
+            // 添加日志记录，记录类型为删除，级别为信息
+            systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
+        } catch (Exception e) {
+            // 如果发生异常，打印堆栈跟踪信息
+            e.printStackTrace();
+            throw new BusinessException(e.getMessage());
+        }
+        // 将message设置为j对象的msg属性
+        j.setMsg(message);
+        return j;
+    }
 
-	/**
-	 * 批量删除计费日期配置
-	 *
-	 * @return
-	 */
-	 @RequestMapping(params = "doBatchDel")
-	@ResponseBody
-	public AjaxJson doBatchDel(String ids,HttpServletRequest request){
-		String message = null;
-		AjaxJson j = new AjaxJson();
-		message = "计费日期配置删除成功";
-		try{
-			for(String id:ids.split(",")){
-				WmDayCostConfEntity wmDayCostConf = systemService.getEntity(WmDayCostConfEntity.class,
-				id
-				);
-				wmDayCostConf.setCostSf("N");
-				wmDayCostConfService.saveOrUpdate(wmDayCostConf);
+    /**
+     * 批量删除计费日期配置
+     *
+     * @return
+     */
+    @RequestMapping(params = "doBatchDel")
+    @ResponseBody
+    public AjaxJson doBatchDel(String ids, HttpServletRequest request) {
+        String message = null;
+        AjaxJson j = new AjaxJson();
+        message = "计费日期配置删除成功";
+        try {
+            for (String id : ids.split(",")) {
+                WmDayCostConfEntity wmDayCostConf = systemService.getEntity(WmDayCostConfEntity.class,
+                        id
+                );
+                wmDayCostConf.setCostSf("N");
+                wmDayCostConfService.saveOrUpdate(wmDayCostConf);
 //				wmDayCostConfService.delete(wmDayCostConf);
-				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-			message = "计费日期配置删除失败";
-			throw new BusinessException(e.getMessage());
-		}
-		j.setMsg(message);
-		return j;
-	}
+                systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
+            }
+        } catch (Exception e) {
+            // 打印异常堆栈信息
+            e.printStackTrace();
+            // 抛出业务异常，并附带异常信息
+            throw new BusinessException(e.getMessage());
+        }
+        // 将message设置为j对象的msg属性
+        j.setMsg(message);
+        return j;
+    }
 
+    /**
+     * 添加计费日期配置
+     *
+     * @return
+     */
+    @RequestMapping(params = "doAdd")
+    @ResponseBody
+    public AjaxJson doAdd(WmDayCostConfEntity wmDayCostConf, HttpServletRequest request) {
+        String message = null;
+        AjaxJson j = new AjaxJson();
+        message = "计费日期配置添加成功";
+        try {
+            wmDayCostConfService.save(wmDayCostConf);
+            systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new BusinessException(e.getMessage());
+        }
+        j.setMsg(message);
+        return j;
+    }
 
-	/**
-	 * 添加计费日期配置
-	 *
-	 * @return
-	 */
-	@RequestMapping(params = "doAdd")
-	@ResponseBody
-	public AjaxJson doAdd(WmDayCostConfEntity wmDayCostConf, HttpServletRequest request) {
-		String message = null;
-		AjaxJson j = new AjaxJson();
-		message = "计费日期配置添加成功";
-		try{
-			wmDayCostConfService.save(wmDayCostConf);
-			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
-		}catch(Exception e){
-			e.printStackTrace();
-			message = "计费日期配置添加失败";
-			throw new BusinessException(e.getMessage());
-		}
-		j.setMsg(message);
-		return j;
-	}
-	/**
-	 * 计算每日费用
-	 *
-	 * @return
-	 */
-	@RequestMapping(params = "doCount")
-	@ResponseBody
-	public AjaxJson doCount(WmDayCostConfEntity wmDayCostConf, HttpServletRequest request) {
-		String message = null;
-		AjaxJson j = new AjaxJson();
-		message = "费用更新成功";
-		try {
+    /**
+     * 计算每日费用
+     *
+     * @return
+     */
+    @RequestMapping(params = "doCount")
+    @ResponseBody
+    public AjaxJson doCount(WmDayCostConfEntity wmDayCostConf, HttpServletRequest request) {
+        String message = null;
+        AjaxJson j = new AjaxJson();
+        message = "费用更新成功";
+        try {
 
-			WmDayCostConfEntity t = wmDayCostConfService.get(WmDayCostConfEntity.class, request.getParameter("id"));
+            WmDayCostConfEntity t = wmDayCostConfService.get(WmDayCostConfEntity.class, request.getParameter("id"));
 
-			if(t.getCostSf()!=null&&t.getCostSf().equals("Y")){
-				j.setMsg(message);
-				message = "费用已经更新";
-				return j;
-			}
-			try{
-				task.costcountv2(DateUtils.date2Str(t.getCostDate(),DateUtils.date_sdf),"Y",t);
-			}catch (Exception e){
+            if (t.getCostSf() != null && t.getCostSf().equals("Y")) {
+                j.setMsg(message);
+                message = "费用已经更新";
+                return j;
+            }
+            try {
+                task.costcountv2(DateUtils.date2Str(t.getCostDate(), DateUtils.date_sdf), "Y", t);
+            } catch (Exception e) {
 
-			}
-			t.setCostSf("Y");
-			systemService.updateEntitie(t);
+            }
+            t.setCostSf("Y");
+            systemService.updateEntitie(t);
 
-			//计算仓租
-			// 再计算
-		} catch (Exception e) {
-			e.printStackTrace();
-			message = "费用更新失败";
-			throw new BusinessException(e.getMessage());
-		}
-		j.setMsg(message);
-		return j;
-	}
-	/**
-	 * 更新计费日期配置
-	 *
-	 * @param ids
-	 * @return
-	 */
-	@RequestMapping(params = "doUpdate")
-	@ResponseBody
-	public AjaxJson doUpdate(WmDayCostConfEntity wmDayCostConf, HttpServletRequest request) {
-		String message = null;
-		AjaxJson j = new AjaxJson();
-		message = "计费日期配置更新成功";
-		WmDayCostConfEntity t = wmDayCostConfService.get(WmDayCostConfEntity.class, wmDayCostConf.getId());
-		try {
-			MyBeanUtils.copyBeanNotNull2Bean(wmDayCostConf, t);
-			wmDayCostConfService.saveOrUpdate(t);
-			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
-		} catch (Exception e) {
-			e.printStackTrace();
-			message = "计费日期配置更新失败";
-			throw new BusinessException(e.getMessage());
-		}
-		j.setMsg(message);
-		return j;
-	}
+            //计算仓租
+            // 再计算
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new BusinessException(e.getMessage());
+        }
+        j.setMsg(message);
+        return j;
+    }
 
+    /**
+     * 更新计费日期配置
+     *
+     * @param ids
+     * @return
+     */
+    @RequestMapping(params = "doUpdate")
+    @ResponseBody
+    public AjaxJson doUpdate(WmDayCostConfEntity wmDayCostConf, HttpServletRequest request) {
+        String message = null;
+        AjaxJson j = new AjaxJson();
+        message = "计费日期配置更新成功";
+        WmDayCostConfEntity t = wmDayCostConfService.get(WmDayCostConfEntity.class, wmDayCostConf.getId());
+        try {
+            MyBeanUtils.copyBeanNotNull2Bean(wmDayCostConf, t);
+            wmDayCostConfService.saveOrUpdate(t);
+            systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new BusinessException(e.getMessage());
+        }
+        j.setMsg(message);
+        return j;
+    }
 
-	/**
-	 * 计费日期配置新增页面跳转
-	 *
-	 * @return
-	 */
-	@RequestMapping(params = "goAdd")
-	public ModelAndView goAdd(WmDayCostConfEntity wmDayCostConf, HttpServletRequest req) {
-		if (StringUtil.isNotEmpty(wmDayCostConf.getId())) {
-			wmDayCostConf = wmDayCostConfService.getEntity(WmDayCostConfEntity.class, wmDayCostConf.getId());
-			req.setAttribute("wmDayCostConfPage", wmDayCostConf);
-		}
-		return new ModelAndView("com/zzjee/wm/wmDayCostConf-add");
-	}
-	/**
-	 * 计费日期配置编辑页面跳转
-	 *
-	 * @return
-	 */
-	@RequestMapping(params = "goUpdate")
-	public ModelAndView goUpdate(WmDayCostConfEntity wmDayCostConf, HttpServletRequest req) {
-		if (StringUtil.isNotEmpty(wmDayCostConf.getId())) {
-			wmDayCostConf = wmDayCostConfService.getEntity(WmDayCostConfEntity.class, wmDayCostConf.getId());
-			req.setAttribute("wmDayCostConfPage", wmDayCostConf);
-		}
-		return new ModelAndView("com/zzjee/wm/wmDayCostConf-update");
-	}
+    /**
+     * 计费日期配置新增页面跳转
+     *
+     * @return
+     */
+    @RequestMapping(params = "goAdd")
+    public ModelAndView goAdd(WmDayCostConfEntity wmDayCostConf, HttpServletRequest req) {
+        if (StringUtil.isNotEmpty(wmDayCostConf.getId())) {
+            wmDayCostConf = wmDayCostConfService.getEntity(WmDayCostConfEntity.class, wmDayCostConf.getId());
+            req.setAttribute("wmDayCostConfPage", wmDayCostConf);
+        }
+        return new ModelAndView("com/zzjee/wm/wmDayCostConf-add");
+    }
 
-	/**
-	 * 导入功能跳转
-	 *
-	 * @return
-	 */
-	@RequestMapping(params = "upload")
-	public ModelAndView upload(HttpServletRequest req) {
-		req.setAttribute("controller_name","wmDayCostConfController");
-		return new ModelAndView("common/upload/pub_excel_upload");
-	}
+    /**
+     * 计费日期配置编辑页面跳转
+     *
+     * @return
+     */
+    @RequestMapping(params = "goUpdate")
+    public ModelAndView goUpdate(WmDayCostConfEntity wmDayCostConf, HttpServletRequest req) {
+        if (StringUtil.isNotEmpty(wmDayCostConf.getId())) {
+            wmDayCostConf = wmDayCostConfService.getEntity(WmDayCostConfEntity.class, wmDayCostConf.getId());
+            req.setAttribute("wmDayCostConfPage", wmDayCostConf);
+        }
+        return new ModelAndView("com/zzjee/wm/wmDayCostConf-update");
+    }
 
-	/**
-	 * 导出excel
-	 *
-	 * @param request
-	 * @param response
-	 */
-	@RequestMapping(params = "exportXls")
-	public String exportXls(WmDayCostConfEntity wmDayCostConf,HttpServletRequest request,HttpServletResponse response
-			, DataGrid dataGrid,ModelMap modelMap) {
-		CriteriaQuery cq = new CriteriaQuery(WmDayCostConfEntity.class, dataGrid);
-		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wmDayCostConf, request.getParameterMap());
-		List<WmDayCostConfEntity> wmDayCostConfs = this.wmDayCostConfService.getListByCriteriaQuery(cq,false);
-		modelMap.put(NormalExcelConstants.FILE_NAME,"计费日期配置");
-		modelMap.put(NormalExcelConstants.CLASS,WmDayCostConfEntity.class);
-		modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("计费日期配置列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
-			"导出信息"));
-		modelMap.put(NormalExcelConstants.DATA_LIST,wmDayCostConfs);
-		return NormalExcelConstants.JEECG_EXCEL_VIEW;
-	}
-	/**
-	 * 导出excel 使模板
-	 *
-	 * @param request
-	 * @param response
-	 */
-	@RequestMapping(params = "exportXlsByT")
-	public String exportXlsByT(WmDayCostConfEntity wmDayCostConf,HttpServletRequest request,HttpServletResponse response
-			, DataGrid dataGrid,ModelMap modelMap) {
-    	modelMap.put(NormalExcelConstants.FILE_NAME,"计费日期配置");
-    	modelMap.put(NormalExcelConstants.CLASS,WmDayCostConfEntity.class);
-    	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("计费日期配置列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
-    	"导出信息"));
-    	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
-    	return NormalExcelConstants.JEECG_EXCEL_VIEW;
-	}
+    /**
+     * 导入功能跳转
+     *
+     * @return
+     */
+    @RequestMapping(params = "upload")
+    public ModelAndView upload(HttpServletRequest req) {
+        req.setAttribute("controller_name", "wmDayCostConfController");
+        return new ModelAndView("common/upload/pub_excel_upload");
+    }
 
-	@SuppressWarnings("unchecked")
-	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
-	@ResponseBody
-	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
-		AjaxJson j = new AjaxJson();
+    /**
+     * 导出excel
+     *
+     * @param request
+     * @param response
+     */
+    @RequestMapping(params = "exportXls")
+    public String exportXls(WmDayCostConfEntity wmDayCostConf, HttpServletRequest request, HttpServletResponse response
+            , DataGrid dataGrid, ModelMap modelMap) {
+        CriteriaQuery cq = new CriteriaQuery(WmDayCostConfEntity.class, dataGrid);
+        org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wmDayCostConf, request.getParameterMap());
+        List<WmDayCostConfEntity> wmDayCostConfs = this.wmDayCostConfService.getListByCriteriaQuery(cq, false);
+        modelMap.put(NormalExcelConstants.FILE_NAME, "计费日期配置");
+        modelMap.put(NormalExcelConstants.CLASS, WmDayCostConfEntity.class);
+        modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("计费日期配置列表", "导出人:" + ResourceUtil.getSessionUserName().getRealName(),
+                "导出信息"));
+        modelMap.put(NormalExcelConstants.DATA_LIST, wmDayCostConfs);
+        return NormalExcelConstants.JEECG_EXCEL_VIEW;
+    }
 
-		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
-		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
-			MultipartFile file = entity.getValue();// 获取上传文件对象
-			ImportParams params = new ImportParams();
-			params.setTitleRows(2);
-			params.setHeadRows(1);
-			params.setNeedSave(true);
-			try {
-				List<WmDayCostConfEntity> listWmDayCostConfEntitys = ExcelImportUtil.importExcel(file.getInputStream(),WmDayCostConfEntity.class,params);
-				for (WmDayCostConfEntity wmDayCostConf : listWmDayCostConfEntitys) {
-					wmDayCostConfService.save(wmDayCostConf);
-				}
-				j.setMsg("文件导入成功！");
-			} catch (Exception e) {
-				j.setMsg("文件导入失败！");
-				logger.error(ExceptionUtil.getExceptionMessage(e));
-			}finally{
-				try {
-					file.getInputStream().close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return j;
-	}
+    /**
+     * 导出excel 使模板
+     *
+     * @param request
+     * @param response
+     */
+    @RequestMapping(params = "exportXlsByT")
+    public String exportXlsByT(WmDayCostConfEntity wmDayCostConf, HttpServletRequest request, HttpServletResponse response
+            , DataGrid dataGrid, ModelMap modelMap) {
+        modelMap.put(NormalExcelConstants.FILE_NAME, "计费日期配置");
+        modelMap.put(NormalExcelConstants.CLASS, WmDayCostConfEntity.class);
+        modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("计费日期配置列表", "导出人:" + ResourceUtil.getSessionUserName().getRealName(),
+                "导出信息"));
+        modelMap.put(NormalExcelConstants.DATA_LIST, new ArrayList());
+        return NormalExcelConstants.JEECG_EXCEL_VIEW;
+    }
 
-	@RequestMapping(method = RequestMethod.GET)
-	@ResponseBody
-	public List<WmDayCostConfEntity> list() {
-		List<WmDayCostConfEntity> listWmDayCostConfs=wmDayCostConfService.getList(WmDayCostConfEntity.class);
-		return listWmDayCostConfs;
-	}
+    @SuppressWarnings("unchecked")
+    @RequestMapping(params = "importExcel", method = RequestMethod.POST)
+    @ResponseBody
+    public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
+        AjaxJson j = new AjaxJson();
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	@ResponseBody
-	public ResponseEntity<?> get(@PathVariable("id") String id) {
-		WmDayCostConfEntity task = wmDayCostConfService.get(WmDayCostConfEntity.class, id);
-		if (task == null) {
-			return new ResponseEntity(HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity(task, HttpStatus.OK);
-	}
+        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+        Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+        for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
+            MultipartFile file = entity.getValue();// 获取上传文件对象
+            ImportParams params = new ImportParams();
+            params.setTitleRows(2);
+            params.setHeadRows(1);
+            params.setNeedSave(true);
+            try {
+                List<WmDayCostConfEntity> listWmDayCostConfEntitys = ExcelImportUtil.importExcel(file.getInputStream(), WmDayCostConfEntity.class, params);
+                for (WmDayCostConfEntity wmDayCostConf : listWmDayCostConfEntitys) {
+                    wmDayCostConfService.save(wmDayCostConf);
+                }
+                j.setMsg("文件导入成功！");
+            } catch (Exception e) {
+                j.setMsg("文件导入失败！");
+                logger.error(ExceptionUtil.getExceptionMessage(e));
+            } finally {
+                try {
+                    file.getInputStream().close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return j;
+    }
 
-	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public ResponseEntity<?> create(@RequestBody WmDayCostConfEntity wmDayCostConf, UriComponentsBuilder uriBuilder) {
-		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
-		Set<ConstraintViolation<WmDayCostConfEntity>> failures = validator.validate(wmDayCostConf);
-		if (!failures.isEmpty()) {
-			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
-		}
+    @RequestMapping(method = RequestMethod.GET)
+    @ResponseBody
+    public List<WmDayCostConfEntity> list() {
+        List<WmDayCostConfEntity> listWmDayCostConfs = wmDayCostConfService.getList(WmDayCostConfEntity.class);
+        return listWmDayCostConfs;
+    }
 
-		//保存
-		try{
-			wmDayCostConfService.save(wmDayCostConf);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity(HttpStatus.NO_CONTENT);
-		}
-		//按照Restful风格约定，创建指向新任务的url, 也可以直接返回id或对象.
-		String id = wmDayCostConf.getId();
-		URI uri = uriBuilder.path("/rest/wmDayCostConfController/" + id).build().toUri();
-		HttpHeaders headers = new HttpHeaders();
-		headers.setLocation(uri);
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<?> get(@PathVariable("id") String id) {
+        WmDayCostConfEntity task = wmDayCostConfService.get(WmDayCostConfEntity.class, id);
+        if (task == null) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity(task, HttpStatus.OK);
+    }
 
-		return new ResponseEntity(headers, HttpStatus.CREATED);
-	}
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<?> create(@RequestBody WmDayCostConfEntity wmDayCostConf, UriComponentsBuilder uriBuilder) {
+        //调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
+        Set<ConstraintViolation<WmDayCostConfEntity>> failures = validator.validate(wmDayCostConf);
+        if (!failures.isEmpty()) {
+            return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
+        }
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> update(@RequestBody WmDayCostConfEntity wmDayCostConf) {
-		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
-		Set<ConstraintViolation<WmDayCostConfEntity>> failures = validator.validate(wmDayCostConf);
-		if (!failures.isEmpty()) {
-			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
-		}
+        //保存
+        try {
+            wmDayCostConfService.save(wmDayCostConf);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }
+        //按照Restful风格约定，创建指向新任务的url, 也可以直接返回id或对象.
+        String id = wmDayCostConf.getId();
+        URI uri = uriBuilder.path("/rest/wmDayCostConfController/" + id).build().toUri();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(uri);
 
-		//保存
-		try{
-			wmDayCostConfService.saveOrUpdate(wmDayCostConf);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity(HttpStatus.NO_CONTENT);
-		}
+        return new ResponseEntity(headers, HttpStatus.CREATED);
+    }
 
-		//按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
-		return new ResponseEntity(HttpStatus.NO_CONTENT);
-	}
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> update(@RequestBody WmDayCostConfEntity wmDayCostConf) {
+        //调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
+        Set<ConstraintViolation<WmDayCostConfEntity>> failures = validator.validate(wmDayCostConf);
+        if (!failures.isEmpty()) {
+            return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
+        }
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void delete(@PathVariable("id") String id) {
-		wmDayCostConfService.deleteEntityById(WmDayCostConfEntity.class, id);
-	}
+        //保存
+        try {
+            wmDayCostConfService.saveOrUpdate(wmDayCostConf);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }
+
+        //按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable("id") String id) {
+        wmDayCostConfService.deleteEntityById(WmDayCostConfEntity.class, id);
+    }
 }

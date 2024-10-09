@@ -50,12 +50,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.zzjee.md.entity.MvCusOtherEntity;
 import com.zzjee.md.service.MvCusOtherServiceI;
 
-/**   
- * @Title: Controller  
+/**
+ * @Title: Controller
  * @Description: mv_cus_other
  * @author erzhongxmu
  * @date 2018-09-16 09:22:47
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Controller
@@ -72,12 +72,13 @@ public class MvCusOtherController extends BaseController {
 	private SystemService systemService;
 	@Autowired
 	private Validator validator;
-	
+
 
 
 	/**
 	 * mv_cus_other列表 页面跳转
-	 * 
+	 *
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "list")
@@ -86,12 +87,12 @@ public class MvCusOtherController extends BaseController {
 	}
 
 	/**
-	 * easyui AJAX请求数据
-	 * 
+	 * easyui 处理AJAX请求以返回MvCusOtherEntity数据列表的datagrid
+	 *
+	 * @param mvCusOther
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -108,10 +109,12 @@ public class MvCusOtherController extends BaseController {
 		this.mvCusOtherService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
 	}
-	
+
 	/**
 	 * 删除mv_cus_other
-	 * 
+	 *
+	 * @param mvCusOther
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -132,10 +135,12 @@ public class MvCusOtherController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 批量删除mv_cus_other
-	 * 
+	 *
+	 * @param ids
+	 * @param request
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")
@@ -146,7 +151,7 @@ public class MvCusOtherController extends BaseController {
 		message = "mv_cus_other删除成功";
 		try{
 			for(String id:ids.split(",")){
-				MvCusOtherEntity mvCusOther = systemService.getEntity(MvCusOtherEntity.class, 
+				MvCusOtherEntity mvCusOther = systemService.getEntity(MvCusOtherEntity.class,
 				id
 				);
 				mvCusOtherService.delete(mvCusOther);
@@ -161,11 +166,11 @@ public class MvCusOtherController extends BaseController {
 		return j;
 	}
 
-
 	/**
 	 * 添加mv_cus_other
-	 * 
-	 * @param ids
+	 *
+	 * @param mvCusOther
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -185,11 +190,12 @@ public class MvCusOtherController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 更新mv_cus_other
-	 * 
-	 * @param ids
+	 *
+	 * @param mvCusOther
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -211,11 +217,12 @@ public class MvCusOtherController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
 
 	/**
 	 * mv_cus_other新增页面跳转
-	 * 
+	 *
+	 * @param mvCusOther
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -228,7 +235,9 @@ public class MvCusOtherController extends BaseController {
 	}
 	/**
 	 * mv_cus_other编辑页面跳转
-	 * 
+	 *
+	 * @param mvCusOther
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -239,10 +248,11 @@ public class MvCusOtherController extends BaseController {
 		}
 		return new ModelAndView("com/zzjee/md/mvCusOther-update");
 	}
-	
+
 	/**
 	 * 导入功能跳转
-	 * 
+	 *
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "upload")
@@ -250,12 +260,15 @@ public class MvCusOtherController extends BaseController {
 		req.setAttribute("controller_name","mvCusOtherController");
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
-	
+
 	/**
 	 * 导出excel
-	 * 
+	 *
+	 * @param mvCusOther
 	 * @param request
 	 * @param response
+	 * @param dataGrid
+	 * @param modelMap
 	 */
 	@RequestMapping(params = "exportXls")
 	public String exportXls(MvCusOtherEntity mvCusOther,HttpServletRequest request,HttpServletResponse response
@@ -263,52 +276,75 @@ public class MvCusOtherController extends BaseController {
 		CriteriaQuery cq = new CriteriaQuery(MvCusOtherEntity.class, dataGrid);
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, mvCusOther, request.getParameterMap());
 		List<MvCusOtherEntity> mvCusOthers = this.mvCusOtherService.getListByCriteriaQuery(cq,false);
+		//设置Excel文件的基础信息
+		//文件名
 		modelMap.put(NormalExcelConstants.FILE_NAME,"mv_cus_other");
+		//导出数据的类类型
 		modelMap.put(NormalExcelConstants.CLASS,MvCusOtherEntity.class);
+		//设置导出参数
 		modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("mv_cus_other列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
 			"导出信息"));
+		//设置需要导出的数据列表
 		modelMap.put(NormalExcelConstants.DATA_LIST,mvCusOthers);
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
+
 	/**
 	 * 导出excel 使模板
-	 * 
+	 *
+	 * @param mvCusOther
 	 * @param request
 	 * @param response
+	 * @param dataGrid
+	 * @param modelMap
 	 */
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(MvCusOtherEntity mvCusOther,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
+		//设置Excel文件的名称
     	modelMap.put(NormalExcelConstants.FILE_NAME,"mv_cus_other");
     	modelMap.put(NormalExcelConstants.CLASS,MvCusOtherEntity.class);
+		//设置导出参数
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("mv_cus_other列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
     	"导出信息"));
+		//设置一个空的数据列表
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
-	
+
+	/**
+	 *  通过excel导入数据
+	 *
+	 * @param request
+	 * @param response
+	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-		
+		// 将HttpServletRequest转换为MultipartHttpServletRequest，以便处理文件上传
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		// 获取上传的文件映射
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
 			MultipartFile file = entity.getValue();// 获取上传文件对象
+			// 设置Excel导入参数
 			ImportParams params = new ImportParams();
-			params.setTitleRows(2);
-			params.setHeadRows(1);
+			params.setTitleRows(2);//标题行
+			params.setHeadRows(1);//表头行
 			params.setNeedSave(true);
 			try {
 				List<MvCusOtherEntity> listMvCusOtherEntitys = ExcelImportUtil.importExcel(file.getInputStream(),MvCusOtherEntity.class,params);
+				// 遍历列表，保存到数据库
 				for (MvCusOtherEntity mvCusOther : listMvCusOtherEntitys) {
 					mvCusOtherService.save(mvCusOther);
 				}
 				j.setMsg("文件导入成功！");
 			} catch (Exception e) {
+				// 如果在导入过程中出现异常，则设置AjaxJson对象的消息，表示文件导入失败
 				j.setMsg("文件导入失败！");
+				// 记录异常信息，便于后续问题排查
 				logger.error(ExceptionUtil.getExceptionMessage(e));
 			}finally{
 				try {
@@ -320,14 +356,14 @@ public class MvCusOtherController extends BaseController {
 		}
 		return j;
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<MvCusOtherEntity> list() {
 		List<MvCusOtherEntity> listMvCusOthers=mvCusOtherService.getList(MvCusOtherEntity.class);
 		return listMvCusOthers;
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {

@@ -67,16 +67,10 @@
     <t:dgToolBar title="批量删除"  icon="icon-remove" url="mdGoodsController.do?doBatchDel" funname="deleteALLSelect"></t:dgToolBar>
    <t:dgToolBar title="查看" height="720" width="740"  icon="icon-search" url="mdGoodsController.do?goUpdate" funname="detail"></t:dgToolBar>
    <t:dgToolBar title="导入" icon="icon-put" funname="ImportXls"></t:dgToolBar>
-    <t:dgToolBar operationCode="uasimpgoods" title="第三方系统导入" icon="icon-put" funname="otherimp"></t:dgToolBar>
 
     <t:dgToolBar title="导出" icon="icon-putout" funname="ExportXls"></t:dgToolBar>
    <t:dgToolBar title="模板下载" icon="icon-putout" funname="ExportXlsByT"></t:dgToolBar>
   </t:datagrid>
-      <div name="searchColums1" style="float: left; padding-left: 0px;padding-top: 5px;">
-          <%--<input type="text" name="batchbin" style="width: 100px; height: 30px;">--%>
-          日期：<input type="text" name="batchdate"    class="form-control" onClick="WdatePicker()" style="width: 100px; height: 30px;">
-          商品编码：<input type="text" name="othercode"    class="form-control"  style="width: 100px; height: 30px;">
-      </div>
   </div>
  </div>
  <script src = "webpage/com/zzjee/md/mdGoodsList.js"></script>
@@ -84,32 +78,6 @@
  $(document).ready(function(){
      // $('#mdGoodsList').datagrid('reload',{});
  });
-
-   function  otherimp() {
-       var batchdate;
-       batchdate = $('input[name="batchdate"]').attr("value");
-       othercode = $('input[name="othercode"]').attr("value");
-
-
-                               var url = "mdGoodsController.do?doGet&formDate="+batchdate+"&othercode="+othercode;
-                       $.ajax({
-                           async : true,
-                           cache : false,
-                           type : 'POST',
-                           url : url,// 请求的action路径
-                           error : function() {// 请求失败处理函数
-                           },
-                           success : function(data) {
-                               var d = $.parseJSON(data);
-                               if (d.success) {
-
-                               }
-                           }
-                       });
-                tip("获取成功");
-               $('#mdGoodsList').datagrid('reload',{});
-
-   }
  function doprint(id){
      var url = "mdGoodsController.do?doPrintmdgoods&id="+id;
      createdetailwindow(" 商品标签", url, 400, 300);

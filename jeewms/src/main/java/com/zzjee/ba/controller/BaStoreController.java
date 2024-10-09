@@ -65,19 +65,19 @@ import java.net.URI;
 import org.springframework.http.MediaType;
 import org.springframework.web.util.UriComponentsBuilder;
 
-/**   
- * @Title: Controller  
+/**
+ * @Title: Controller
  * @Description: 仓库
  * @author onlineGenerator
  * @date 2019-12-11 09:08:39
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Controller
 @RequestMapping("/baStoreController")
 public class BaStoreController extends BaseController {
 	/**
-	 * Logger for this class
+	 * Logger  for this class
 	 */
 	private static final Logger logger = Logger.getLogger(BaStoreController.class);
 
@@ -87,12 +87,12 @@ public class BaStoreController extends BaseController {
 	private SystemService systemService;
 	@Autowired
 	private Validator validator;
-	
+
 
 
 	/**
 	 * 仓库列表 页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "list")
@@ -102,11 +102,9 @@ public class BaStoreController extends BaseController {
 
 	/**
 	 * easyui AJAX请求数据
-	 * 
-	 * @param request
+	 * @param request 请求
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -123,10 +121,10 @@ public class BaStoreController extends BaseController {
 		this.baStoreService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
 	}
-	
+
 	/**
 	 * 删除仓库
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -141,16 +139,15 @@ public class BaStoreController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "仓库删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 批量删除仓库
-	 * 
+	 *
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")
@@ -161,7 +158,7 @@ public class BaStoreController extends BaseController {
 		message = "仓库删除成功";
 		try{
 			for(String id:ids.split(",")){
-				BaStoreEntity baStore = systemService.getEntity(BaStoreEntity.class, 
+				BaStoreEntity baStore = systemService.getEntity(BaStoreEntity.class,
 				id
 				);
 				baStoreService.delete(baStore);
@@ -169,7 +166,6 @@ public class BaStoreController extends BaseController {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "仓库删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -179,7 +175,7 @@ public class BaStoreController extends BaseController {
 
 	/**
 	 * 添加仓库
-	 * 
+	 *
 	 * @param ids
 	 * @return
 	 */
@@ -194,16 +190,15 @@ public class BaStoreController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "仓库添加失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 更新仓库
-	 * 
+	 *
 	 * @param ids
 	 * @return
 	 */
@@ -220,17 +215,16 @@ public class BaStoreController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "仓库更新失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
+
 
 	/**
 	 * 仓库新增页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -243,7 +237,7 @@ public class BaStoreController extends BaseController {
 	}
 	/**
 	 * 仓库编辑页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -254,10 +248,10 @@ public class BaStoreController extends BaseController {
 		}
 		return new ModelAndView("com/zzjee/ba/baStore-update");
 	}
-	
+
 	/**
 	 * 导入功能跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "upload")
@@ -265,10 +259,10 @@ public class BaStoreController extends BaseController {
 		req.setAttribute("controller_name","baStoreController");
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
-	
+
 	/**
 	 * 导出excel
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -287,7 +281,7 @@ public class BaStoreController extends BaseController {
 	}
 	/**
 	 * 导出excel 使模板
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -301,13 +295,13 @@ public class BaStoreController extends BaseController {
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-		
+
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
@@ -335,14 +329,14 @@ public class BaStoreController extends BaseController {
 		}
 		return j;
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<BaStoreEntity> list() {
 		List<BaStoreEntity> listBaStores=baStoreService.getList(BaStoreEntity.class);
 		return listBaStores;
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {

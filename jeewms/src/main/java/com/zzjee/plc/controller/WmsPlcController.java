@@ -89,18 +89,29 @@ import org.springframework.web.util.UriComponentsBuilder;
  * @Description: PLC指令
  * @date 2022-09-12 18:33:25
  */
+/**
+ * 控制器类，处理与 WMS PLC 相关的请求
+ */
 @Controller
 @RequestMapping("/wmsPlcController")
 public class WmsPlcController extends BaseController {
     /**
-     * Logger for this class
+     * 日志记录器
      */
     private static final Logger logger = Logger.getLogger(WmsPlcController.class);
-
+    /**
+     * WmsPlcServiceI 服务接口，用于处理  WMS PLC相关的业务逻辑
+     */
     @Autowired
     private WmsPlcServiceI wmsPlcService;
+    /**
+     * SystemService，用于处理系统相关的逻辑
+     */
     @Autowired
     private SystemService systemService;
+    /**
+     * 校验器，用于验证输入的数据
+     */
     @Autowired
     private Validator validator;
 
@@ -125,16 +136,14 @@ public class WmsPlcController extends BaseController {
 
     @RequestMapping(params = "datagrid")
     public void datagrid(WmsPlcEntity wmsPlc, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
+        //创建CriteriaQuery对象，用来查询实体
         CriteriaQuery cq = new CriteriaQuery(WmsPlcEntity.class, dataGrid);
         //查询条件组装器
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wmsPlc, request.getParameterMap());
-        try {
-            //自定义追加查询条件
-        } catch (Exception e) {
-            throw new BusinessException(e.getMessage());
-        }
+        //根据条件查询数据
         cq.add();
         this.wmsPlcService.getDataGridReturn(cq, true);
+        //将查询结果封装成json格式返回给客户端，显示在easyUI的datagrid中
         TagUtil.datagrid(response, dataGrid);
     }
 
@@ -148,14 +157,15 @@ public class WmsPlcController extends BaseController {
     public AjaxJson doDel(WmsPlcEntity wmsPlc, HttpServletRequest request) {
         String message = null;
         AjaxJson j = new AjaxJson();
+        //获取WmsPlcEntity对象
         wmsPlc = systemService.getEntity(WmsPlcEntity.class, wmsPlc.getId());
         message = "PLC指令删除成功";
         try {
             wmsPlcService.delete(wmsPlc);
+            //用systemService的addLog方法记录日志
             systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "PLC指令删除失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -163,13 +173,14 @@ public class WmsPlcController extends BaseController {
     }
 
     /**
-     * 批量删除PLC指令
+     * PLC指令执行
      *
      * @return
      */
     @RequestMapping(params = "dotoup")
     @ResponseBody
     public AjaxJson dotoup(String ids, HttpServletRequest request) {
+        //处理执行PLC指令的请求，并返回一个AjaxJson对象
         String message = null;
         AjaxJson j = new AjaxJson();
         message = "PLC指令执行成功";
@@ -179,17 +190,23 @@ public class WmsPlcController extends BaseController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "PLC指令执行失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
         return j;
     }
+
+    /**
+     * 执行指定的操作，首先通过 comNo 字段查询 WmsPlcEntity 实体，
+     * 然后根据该实体的 comCons 属性分解出操作步骤并执行相应的操作。
+     */
     public void runu() {
         WmsPlcEntity wmsPlc = null;
         String hql = "";
         List<WmsPlcEntity> wmsPlcEntityList = new ArrayList<WmsPlcEntity>();
+        // 构造查询HQL语句，根据 comNo 字段进行查询
         hql = "from WmsPlcEntity t where  t.comNo =  ? ";
+        // 执行HQL查询，传入参数为"runu"
         wmsPlcEntityList = systemService.findHql(hql, "runu");
         if (!CollectionUtils.isEmpty(wmsPlcEntityList)) {
             wmsPlc = wmsPlcEntityList.get(0);
@@ -203,17 +220,19 @@ public class WmsPlcController extends BaseController {
         }
 
     }
+
     public void run(String id, String comNo, String stepNum) {
         System.out.println("id:" + id + ";comNo:" + comNo + ";stepNum:" + stepNum);
         if (stepNum.equals("0")) {
             return;
         }
         WmsPlcEntity wmsPlc = null;
+        //根据 id 获取 WmsPlcEntity 对象
         if (StringUtil.isNotEmpty(id)) {
             wmsPlc = systemService.getEntity(WmsPlcEntity.class, id);
         }
+        //根据 comNo 查询 WmsPlcEntity 对象
         if (StringUtil.isNotEmpty(comNo)) {
-
             String hql = "";
             List<WmsPlcEntity> wmsPlcEntityList = new ArrayList<WmsPlcEntity>();
             hql = "from WmsPlcEntity t where  t.comNo =  ? ";
@@ -222,14 +241,17 @@ public class WmsPlcController extends BaseController {
                 wmsPlc = wmsPlcEntityList.get(0);
             }
         }
+        //如果存在 WmsPlcEntity 对象
         if (wmsPlc != null) {
-            long start = System.currentTimeMillis();
+            //设置 SiemensS7Net 对象的参数
             SiemensPLCS siemensPLCS = SiemensPLCS.S200Smart;
             SiemensS7Net siemensS7Net = null;
             siemensS7Net = new SiemensS7Net(siemensPLCS);
             siemensS7Net.setIpAddress(wmsPlc.getPlcIp());
             siemensS7Net.setPort(Integer.parseInt(wmsPlc.getPlcPort()));
+            //连接到 PLC 服务器
             OperateResult connect = siemensS7Net.ConnectServer();
+            //判断连接是否成功
             if (connect.IsSuccess) {
                 System.out.println("connect success");
             } else {
@@ -243,7 +265,7 @@ public class WmsPlcController extends BaseController {
             String comCons = wmsPlc.getComCons();
             String query01 = wmsPlc.getQuery01();
             String query02 = wmsPlc.getQuery02();
-            Float stepNumrun = Float.valueOf("1");
+            Float stepNumrun;
             if (StringUtil.isNotEmpty(stepNum)) {
                 stepNumrun = Float.parseFloat(stepNum);
             } else {
@@ -254,7 +276,6 @@ public class WmsPlcController extends BaseController {
             comCons = StringUtils.replace(comCons, "{query02}", query02);
             String[] coms = comCons.split(";");
             for (String com : coms) {
-                System.out.println("指令：" + com);
                 try {
                     Thread.sleep(500);
                 } catch (Exception e) {
@@ -270,22 +291,18 @@ public class WmsPlcController extends BaseController {
                     }
                 } else if (split[0].equals("float")) {
                     Float runfloat = Float.parseFloat(split[2]) * stepNumrun;
-                    System.out.println("runfloat：" + Math.abs(runfloat));
                     siemensS7Net.Write(defaultAddress, Math.abs(runfloat));
                 } else if (split[0].equals("-float")) {
                     Float runfloat = Float.parseFloat(split[2]) * stepNumrun;
-                    System.out.println("runfloat：" + runfloat);
                     siemensS7Net.Write(defaultAddress, runfloat);
                 } else if (split[0].equals("int")) {
                     Float runfloat = Float.parseFloat(split[2]) * stepNumrun;
                     Float abs = Math.abs(runfloat);
                     int runint = abs.intValue();
-                    System.out.println("runint：" + runint);
                     siemensS7Net.Write(defaultAddress, runint);
                 } else if (split[0].equals("-int")) {
                     Float runfloat = Float.parseFloat(split[2]) * stepNumrun;
                     int runint = runfloat.intValue();
-                    System.out.println("runint：" + runint);
                     siemensS7Net.Write(defaultAddress, runint);
                 }
             }
@@ -296,14 +313,7 @@ public class WmsPlcController extends BaseController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-            long end = System.currentTimeMillis();
-            long times = end - start;
-            org.jeecgframework.core.util.LogUtil.info(wmsPlc.getComRemark() + "总耗时" + times + "毫秒" + comCons);
-
         }
-
-
     }
 
     /**
@@ -314,20 +324,22 @@ public class WmsPlcController extends BaseController {
     @RequestMapping(params = "doBatchDel")
     @ResponseBody
     public AjaxJson doBatchDel(String ids, HttpServletRequest request) {
+        //处理批量删除PLC指令的请求，并返回一个AjaxJson对象
         String message = null;
         AjaxJson j = new AjaxJson();
         message = "PLC指令删除成功";
         try {
             for (String id : ids.split(",")) {
+                //根据id获取对象
                 WmsPlcEntity wmsPlc = systemService.getEntity(WmsPlcEntity.class,
                         id
                 );
                 wmsPlcService.delete(wmsPlc);
+                //记录日志
                 systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "PLC指令删除失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -343,15 +355,16 @@ public class WmsPlcController extends BaseController {
     @RequestMapping(params = "doAdd")
     @ResponseBody
     public AjaxJson doAdd(WmsPlcEntity wmsPlc, HttpServletRequest request) {
+        //处理添加PLC指令的请求
         String message = null;
         AjaxJson j = new AjaxJson();
         message = "PLC指令添加成功";
         try {
             wmsPlcService.save(wmsPlc);
+            //记录日志
             systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "PLC指令添加失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -366,6 +379,7 @@ public class WmsPlcController extends BaseController {
     @RequestMapping(params = "doUpdate")
     @ResponseBody
     public AjaxJson doUpdate(WmsPlcEntity wmsPlc, HttpServletRequest request) {
+        //处理更新PLC指令的请求
         String message = null;
         AjaxJson j = new AjaxJson();
         message = "PLC指令更新成功";
@@ -373,10 +387,10 @@ public class WmsPlcController extends BaseController {
         try {
             MyBeanUtils.copyBeanNotNull2Bean(wmsPlc, t);
             wmsPlcService.saveOrUpdate(t);
+            //记录日志
             systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
         } catch (Exception e) {
             e.printStackTrace();
-            message = "PLC指令更新失败";
             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
@@ -391,7 +405,9 @@ public class WmsPlcController extends BaseController {
      */
     @RequestMapping(params = "goAdd")
     public ModelAndView goAdd(WmsPlcEntity wmsPlc, HttpServletRequest req) {
+        //处理跳转到添加PLC指令页面的请求，并返回一个ModelAndView对象
         if (StringUtil.isNotEmpty(wmsPlc.getId())) {
+            //如果wmsPlc的id不为空，则根据id获取对应的WmsPlcEntity对象
             wmsPlc = wmsPlcService.getEntity(WmsPlcEntity.class, wmsPlc.getId());
             req.setAttribute("wmsPlcPage", wmsPlc);
         }
@@ -405,6 +421,7 @@ public class WmsPlcController extends BaseController {
      */
     @RequestMapping(params = "goUpdate")
     public ModelAndView goUpdate(WmsPlcEntity wmsPlc, HttpServletRequest req) {
+        //处理跳转到更新PLC指令页面的请求
         if (StringUtil.isNotEmpty(wmsPlc.getId())) {
             wmsPlc = wmsPlcService.getEntity(WmsPlcEntity.class, wmsPlc.getId());
             req.setAttribute("wmsPlcPage", wmsPlc);
@@ -419,6 +436,7 @@ public class WmsPlcController extends BaseController {
      */
     @RequestMapping(params = "upload")
     public ModelAndView upload(HttpServletRequest req) {
+        //处理上传请求
         req.setAttribute("controller_name", "wmsPlcController");
         return new ModelAndView("common/upload/pub_excel_upload");
     }
@@ -432,9 +450,13 @@ public class WmsPlcController extends BaseController {
     @RequestMapping(params = "exportXls")
     public String exportXls(WmsPlcEntity wmsPlc, HttpServletRequest request, HttpServletResponse response
             , DataGrid dataGrid, ModelMap modelMap) {
+        //处理导出Excel请求
         CriteriaQuery cq = new CriteriaQuery(WmsPlcEntity.class, dataGrid);
+        //根据请求参数构造查询条件
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wmsPlc, request.getParameterMap());
+        //根据查询条件执行查询，获取符合条件的WmsPlcEntity对象列表
         List<WmsPlcEntity> wmsPlcs = this.wmsPlcService.getListByCriteriaQuery(cq, false);
+        //设置导出Excel的相关参数
         modelMap.put(NormalExcelConstants.FILE_NAME, "PLC指令");
         modelMap.put(NormalExcelConstants.CLASS, WmsPlcEntity.class);
         modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("PLC指令列表", "导出人:" + ResourceUtil.getSessionUserName().getRealName(),
@@ -452,11 +474,14 @@ public class WmsPlcController extends BaseController {
     @RequestMapping(params = "exportXlsByT")
     public String exportXlsByT(WmsPlcEntity wmsPlc, HttpServletRequest request, HttpServletResponse response
             , DataGrid dataGrid, ModelMap modelMap) {
+        //处理导出Excel请求
         modelMap.put(NormalExcelConstants.FILE_NAME, "PLC指令");
         modelMap.put(NormalExcelConstants.CLASS, WmsPlcEntity.class);
         modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("PLC指令列表", "导出人:" + ResourceUtil.getSessionUserName().getRealName(),
                 "导出信息"));
+        //创建一个空的数据列表
         modelMap.put(NormalExcelConstants.DATA_LIST, new ArrayList());
+        //返回视图名，以导出Excel文件
         return NormalExcelConstants.JEECG_EXCEL_VIEW;
     }
 
@@ -465,23 +490,28 @@ public class WmsPlcController extends BaseController {
     @ResponseBody
     public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
         AjaxJson j = new AjaxJson();
-
+        //获取上传的文件
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+        //遍历上传的文件
         for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
             MultipartFile file = entity.getValue();// 获取上传文件对象
+            //创建导入参数对象
             ImportParams params = new ImportParams();
             params.setTitleRows(2);
             params.setHeadRows(1);
             params.setNeedSave(true);
             try {
+                //使用ExcelImportUtil工具类导入Excel文件内容，并转换成WmsPlcEntity对象的列表
                 List<WmsPlcEntity> listWmsPlcEntitys = ExcelImportUtil.importExcel(file.getInputStream(), WmsPlcEntity.class, params);
+                //遍历导入的实体类对象列表，并保存到数据库中
                 for (WmsPlcEntity wmsPlc : listWmsPlcEntitys) {
                     wmsPlcService.save(wmsPlc);
                 }
                 j.setMsg("文件导入成功！");
             } catch (Exception e) {
                 j.setMsg("文件导入失败！");
+                //记录错误日志
                 logger.error(ExceptionUtil.getExceptionMessage(e));
             } finally {
                 try {
@@ -491,26 +521,42 @@ public class WmsPlcController extends BaseController {
                 }
             }
         }
+        //返回AjaxJson对象作为HTTP响应的内容
         return j;
     }
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<WmsPlcEntity> list() {
+        //获取WmsPlcEntity实体类的列表
         List<WmsPlcEntity> listWmsPlcs = wmsPlcService.getList(WmsPlcEntity.class);
+        //返回WmsPlcEntity实体类的列表作为响应
         return listWmsPlcs;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<?> get(@PathVariable("id") String id) {
+        //根据给定的id获取对应的WmsPlcEntity实体类对象
         WmsPlcEntity task = wmsPlcService.get(WmsPlcEntity.class, id);
         if (task == null) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
+        //返回对应id的WmsPlcEntity对象作为响应
         return new ResponseEntity(task, HttpStatus.OK);
     }
 
+    /**
+     * 处理POST请求，用于创建WmsPlcEntity实体的控制器方法。
+     *
+     * 该方法首先调用JSR303 Bean Validator进行校验，如果校验出错，则返回一个含400错误码和json格式的错误信息的响应。
+     * 如果校验通过，则尝试保存WmsPlcEntity实体到数据库。
+     * 在保存数据之后，根据RESTful风格的约定，创建一个指向新创建实体的URL。
+     *
+     * @param uriBuilder `UriComponentsBuilder`对象，用于构建URL。
+     * @param wmsPlc `WmsPlcEntity`对象，作为请求体数据。
+     * @return `ResponseEntity`对象，包含状态码和响应体信息。
+     */
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<?> create(@RequestBody WmsPlcEntity wmsPlc, UriComponentsBuilder uriBuilder) {
@@ -519,11 +565,11 @@ public class WmsPlcController extends BaseController {
         if (!failures.isEmpty()) {
             return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
         }
-
         //保存
         try {
             wmsPlcService.save(wmsPlc);
         } catch (Exception e) {
+            //打印异常堆栈
             e.printStackTrace();
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
@@ -532,7 +578,6 @@ public class WmsPlcController extends BaseController {
         URI uri = uriBuilder.path("/rest/wmsPlcController/" + id).build().toUri();
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(uri);
-
         return new ResponseEntity(headers, HttpStatus.CREATED);
     }
 

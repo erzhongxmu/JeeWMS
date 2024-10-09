@@ -3,13 +3,9 @@ import com.zzjee.md.entity.MdCusOtherEntity;
 import com.zzjee.md.service.MdCusOtherServiceI;
 import java.util.ArrayList;
 import java.util.List;
-import java.text.SimpleDateFormat;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.zzjee.wmutil.dsc.dscUtil;
-import com.zzjee.wmutil.wmIntUtil;
-import com.zzjee.wmutil.yyUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,42 +17,30 @@ import org.springframework.web.servlet.ModelAndView;
 import org.jeecgframework.core.common.controller.BaseController;
 import org.jeecgframework.core.common.exception.BusinessException;
 import org.jeecgframework.core.common.hibernate.qbc.CriteriaQuery;
-import org.jeecgframework.core.common.model.common.TreeChildCount;
 import org.jeecgframework.core.common.model.json.AjaxJson;
 import org.jeecgframework.core.common.model.json.DataGrid;
 import org.jeecgframework.core.constant.Globals;
 import org.jeecgframework.core.util.StringUtil;
 import org.jeecgframework.tag.core.easyui.TagUtil;
-import org.jeecgframework.web.system.pojo.base.TSDepart;
 import org.jeecgframework.web.system.service.SystemService;
 import org.jeecgframework.core.util.MyBeanUtils;
 
-import java.io.OutputStream;
-import org.jeecgframework.core.util.BrowserUtils;
-import org.jeecgframework.poi.excel.ExcelExportUtil;
 import org.jeecgframework.poi.excel.ExcelImportUtil;
 import org.jeecgframework.poi.excel.entity.ExportParams;
 import org.jeecgframework.poi.excel.entity.ImportParams;
-import org.jeecgframework.poi.excel.entity.TemplateExportParams;
 import org.jeecgframework.poi.excel.entity.vo.NormalExcelConstants;
-import org.jeecgframework.poi.excel.entity.vo.TemplateExcelConstants;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.jeecgframework.core.util.ResourceUtil;
 import java.io.IOException;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import java.util.Map;
-import java.util.HashMap;
+
 import org.jeecgframework.core.util.ExceptionUtil;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -68,12 +52,12 @@ import java.net.URI;
 import org.springframework.http.MediaType;
 import org.springframework.web.util.UriComponentsBuilder;
 
-/**   
- * @Title: Controller  
+/**
+ * @Title: Controller
  * @Description: 第三方客户
  * @author erzhongxmu
  * @date 2018-09-01 21:06:14
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Controller
@@ -90,12 +74,13 @@ public class MdCusOtherController extends BaseController {
 	private SystemService systemService;
 	@Autowired
 	private Validator validator;
-	
+
 
 
 	/**
 	 * 第三方客户列表 页面跳转
-	 * 
+	 *
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "list")
@@ -104,12 +89,12 @@ public class MdCusOtherController extends BaseController {
 	}
 
 	/**
-	 * easyui AJAX请求数据
-	 * 
+	 * easyui 处理AJAX请求以返回MdCusOtherEntity数据列表的datagrid
+	 *
+	 * @param mdCusOther
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -126,10 +111,12 @@ public class MdCusOtherController extends BaseController {
 		this.mdCusOtherService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
 	}
-	
+
 	/**
 	 * 删除第三方客户
-	 * 
+	 *
+	 * @param mdCusOther
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -144,16 +131,17 @@ public class MdCusOtherController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "第三方客户删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 批量删除第三方客户
-	 * 
+	 *
+	 * @param ids
+	 * @param request
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")
@@ -164,7 +152,7 @@ public class MdCusOtherController extends BaseController {
 		message = "第三方客户删除成功";
 		try{
 			for(String id:ids.split(",")){
-				MdCusOtherEntity mdCusOther = systemService.getEntity(MdCusOtherEntity.class, 
+				MdCusOtherEntity mdCusOther = systemService.getEntity(MdCusOtherEntity.class,
 				id
 				);
 				mdCusOtherService.delete(mdCusOther);
@@ -172,7 +160,6 @@ public class MdCusOtherController extends BaseController {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "第三方客户删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -182,8 +169,9 @@ public class MdCusOtherController extends BaseController {
 
 	/**
 	 * 添加第三方客户
-	 * 
-	 * @param ids
+	 *
+	 * @param mdCusOther
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -197,55 +185,16 @@ public class MdCusOtherController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "第三方客户添加失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	@RequestMapping(params = "doGet")
-	@ResponseBody
-	public AjaxJson dogetfromother(String formDate, HttpServletRequest request) {
-		String message = null;
-		AjaxJson j = new AjaxJson();
-		message = "读取成功";
-
-		try {
-
-
-
-
-			if ("UAS".equals(ResourceUtil.getConfigByName("interfacetype"))){
-				if(StringUtil.isEmpty(formDate)){
-					formDate = "2011-01-01";
-				}
-				wmIntUtil.getCus(formDate);
-
-			}
-			if ("DSC".equals(ResourceUtil.getConfigByName("interfacetype"))){
-
-				dscUtil.updateCusFromDsc();
-
-			}
-
-
-
-
-
-			systemService.addLog(message, Globals.Log_Type_UPDATE,
-					Globals.Log_Leavel_INFO);
-		} catch (Exception e) {
-			e.printStackTrace();
-			message = "读取失败";
-			throw new BusinessException(e.getMessage());
-		}
-		j.setMsg(message);
-		return j;
-	}
-	/**
+ 	/**
 	 * 更新第三方客户
-	 * 
-	 * @param ids
+	 *
+	 * @param mdCusOther
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -256,22 +205,25 @@ public class MdCusOtherController extends BaseController {
 		message = "第三方客户更新成功";
 		MdCusOtherEntity t = mdCusOtherService.get(MdCusOtherEntity.class, mdCusOther.getId());
 		try {
+			// 使用MyBeanUtils工具将非空属性从传入的mdCusOther复制到现有的记录t中
 			MyBeanUtils.copyBeanNotNull2Bean(mdCusOther, t);
 			mdCusOtherService.saveOrUpdate(t);
+			// 记录操作日志
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "第三方客户更新失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
+
 
 	/**
 	 * 第三方客户新增页面跳转
-	 * 
+	 *
+	 * @param mdCusOther
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -284,7 +236,9 @@ public class MdCusOtherController extends BaseController {
 	}
 	/**
 	 * 第三方客户编辑页面跳转
-	 * 
+	 *
+	 * @param mdCusOther
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -295,10 +249,11 @@ public class MdCusOtherController extends BaseController {
 		}
 		return new ModelAndView("com/zzjee/md/mdCusOther-update");
 	}
-	
+
 	/**
 	 * 导入功能跳转
-	 * 
+	 *
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "upload")
@@ -306,12 +261,15 @@ public class MdCusOtherController extends BaseController {
 		req.setAttribute("controller_name","mdCusOtherController");
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
-	
+
 	/**
 	 * 导出excel
-	 * 
+	 *
+	 * @param mdCusOther
 	 * @param request
 	 * @param response
+	 * @param dataGrid
+	 * @param modelMap
 	 */
 	@RequestMapping(params = "exportXls")
 	public String exportXls(MdCusOtherEntity mdCusOther,HttpServletRequest request,HttpServletResponse response
@@ -319,43 +277,62 @@ public class MdCusOtherController extends BaseController {
 		CriteriaQuery cq = new CriteriaQuery(MdCusOtherEntity.class, dataGrid);
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, mdCusOther, request.getParameterMap());
 		List<MdCusOtherEntity> mdCusOthers = this.mdCusOtherService.getListByCriteriaQuery(cq,false);
+		//设置Excel文件的基础信息
+		//文件名
 		modelMap.put(NormalExcelConstants.FILE_NAME,"第三方客户");
+		//导出数据的类类型
 		modelMap.put(NormalExcelConstants.CLASS,MdCusOtherEntity.class);
+		//设置导出参数
 		modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("第三方客户列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
 			"导出信息"));
 		modelMap.put(NormalExcelConstants.DATA_LIST,mdCusOthers);
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
+
 	/**
 	 * 导出excel 使模板
-	 * 
+	 *
+	 * @param mdCusOther
 	 * @param request
 	 * @param response
+	 * @param dataGrid
+	 * @param modelMap
 	 */
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(MdCusOtherEntity mdCusOther,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
+		//设置Excel文件的名称
     	modelMap.put(NormalExcelConstants.FILE_NAME,"第三方客户");
     	modelMap.put(NormalExcelConstants.CLASS,MdCusOtherEntity.class);
+		//设置导出参数
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("第三方客户列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
     	"导出信息"));
+		//设置一个空的数据列表
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
-	
+
+	/**
+	 * 通过excel导入数据
+	 *
+	 * @param request
+	 * @param response
+	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-		
+		// 将HttpServletRequest转换为MultipartHttpServletRequest，以便处理文件上传
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		//获取上传的文件映射
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
 			MultipartFile file = entity.getValue();// 获取上传文件对象
+			//设置Excel导入参数
 			ImportParams params = new ImportParams();
-			params.setTitleRows(2);
-			params.setHeadRows(1);
+			params.setTitleRows(2);//标题行
+			params.setHeadRows(1);//表头行
 			params.setNeedSave(true);
 			try {
 				List<MdCusOtherEntity> listMdCusOtherEntitys = ExcelImportUtil.importExcel(file.getInputStream(),MdCusOtherEntity.class,params);
@@ -364,7 +341,9 @@ public class MdCusOtherController extends BaseController {
 				}
 				j.setMsg("文件导入成功！");
 			} catch (Exception e) {
+				// 如果在导入过程中出现异常，则设置AjaxJson对象的消息，表示文件导入失败
 				j.setMsg("文件导入失败！");
+				// 记录异常信息，便于后续问题排查
 				logger.error(ExceptionUtil.getExceptionMessage(e));
 			}finally{
 				try {
@@ -376,14 +355,14 @@ public class MdCusOtherController extends BaseController {
 		}
 		return j;
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<MdCusOtherEntity> list() {
 		List<MdCusOtherEntity> listMdCusOthers=mdCusOtherService.getList(MdCusOtherEntity.class);
 		return listMdCusOthers;
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
@@ -402,7 +381,6 @@ public class MdCusOtherController extends BaseController {
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
-
 		//保存
 		try{
 			mdCusOtherService.save(mdCusOther);
@@ -426,7 +404,6 @@ public class MdCusOtherController extends BaseController {
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
-
 		//保存
 		try{
 			mdCusOtherService.saveOrUpdate(mdCusOther);
@@ -434,7 +411,6 @@ public class MdCusOtherController extends BaseController {
 			e.printStackTrace();
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
-
 		//按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
 		return new ResponseEntity(HttpStatus.NO_CONTENT);
 	}

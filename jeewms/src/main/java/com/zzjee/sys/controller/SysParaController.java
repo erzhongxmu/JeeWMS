@@ -87,8 +87,6 @@ public class SysParaController extends BaseController {
 	private SystemService systemService;
 	@Autowired
 	private Validator validator;
-	
-
 
 	/**
 	 * 全局参数列表 页面跳转
@@ -102,11 +100,9 @@ public class SysParaController extends BaseController {
 
 	/**
 	 * easyui AJAX请求数据
-	 * 
-	 * @param request
-	 * @param response
+	 * @param request 请求
+	 * @param response 响应
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -126,8 +122,7 @@ public class SysParaController extends BaseController {
 	
 	/**
 	 * 删除全局参数
-	 * 
-	 * @return
+	 * @return j
 	 */
 	@RequestMapping(params = "doDel")
 	@ResponseBody
@@ -150,8 +145,7 @@ public class SysParaController extends BaseController {
 	
 	/**
 	 * 批量删除全局参数
-	 * 
-	 * @return
+	 * @return j
 	 */
 	 @RequestMapping(params = "doBatchDel")
 	@ResponseBody
@@ -179,9 +173,9 @@ public class SysParaController extends BaseController {
 
 	/**
 	 * 添加全局参数
-	 * 
-	 * @param ids
-	 * @return
+	 * @param sysPara
+	 * @param request
+	 * @return j
 	 */
 	@RequestMapping(params = "doAdd")
 	@ResponseBody
@@ -203,14 +197,15 @@ public class SysParaController extends BaseController {
 	
 	/**
 	 * 更新全局参数
-	 * 
-	 * @param ids
-	 * @return
+	 * @param sysPara
+	 * @param request
+	 * @return j
 	 */
 	@RequestMapping(params = "doUpdate")
 	@ResponseBody
 	public AjaxJson doUpdate(SysParaEntity sysPara, HttpServletRequest request) {
 		String message = null;
+		// 创建对象
 		AjaxJson j = new AjaxJson();
 		message = "全局参数更新成功";
 		SysParaEntity t = sysParaService.get(SysParaEntity.class, sysPara.getId());
@@ -219,19 +214,20 @@ public class SysParaController extends BaseController {
 			sysParaService.saveOrUpdate(t);
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
+			// 抛出异常
 			e.printStackTrace();
 			message = "全局参数更新失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
+		// 返回AjaxJson对象
 		return j;
 	}
-	
 
 	/**
 	 * 全局参数新增页面跳转
-	 * 
-	 * @return
+	 * @param req 请求
+	 * @return ModelAndView
 	 */
 	@RequestMapping(params = "goAdd")
 	public ModelAndView goAdd(SysParaEntity sysPara, HttpServletRequest req) {
@@ -243,8 +239,9 @@ public class SysParaController extends BaseController {
 	}
 	/**
 	 * 全局参数编辑页面跳转
-	 * 
-	 * @return
+	 * @param req 请求
+	 * @param sysPara 实体
+	 * @return ModelAndView
 	 */
 	@RequestMapping(params = "goUpdate")
 	public ModelAndView goUpdate(SysParaEntity sysPara, HttpServletRequest req) {
@@ -257,8 +254,8 @@ public class SysParaController extends BaseController {
 	
 	/**
 	 * 导入功能跳转
-	 * 
-	 * @return
+	 * @param req 请求
+	 * @return ModelAndView
 	 */
 	@RequestMapping(params = "upload")
 	public ModelAndView upload(HttpServletRequest req) {
@@ -268,9 +265,9 @@ public class SysParaController extends BaseController {
 	
 	/**
 	 * 导出excel
-	 * 
-	 * @param request
-	 * @param response
+	 * @param request 请求
+	 * @param response 响应
+	 * @return JEECG_EXCEL_VIEW
 	 */
 	@RequestMapping(params = "exportXls")
 	public String exportXls(SysParaEntity sysPara,HttpServletRequest request,HttpServletResponse response
@@ -286,10 +283,12 @@ public class SysParaController extends BaseController {
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 	/**
-	 * 导出excel 使模板
-	 * 
-	 * @param request
-	 * @param response
+	 * 导出excel模板，导出SysParaEntity数据到Excel文件
+	 * @param request HttpServletRequest对象，提供对当前HTTP请求的访问
+	 * @param sysPara SysParaEntity对象，用于查询或过滤要导出的数据.
+	 * @param response HttpServletResponse对象，用于发送响应到客户端.
+	 * @param dataGrid DataGrid对象，可能包含分页和排序信息.
+	 * @param modelMap ModelMap对象，用于将模型属性放入model，以供视图使用.
 	 */
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(SysParaEntity sysPara,HttpServletRequest request,HttpServletResponse response
@@ -306,16 +305,20 @@ public class SysParaController extends BaseController {
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
+		//创建对象
 		AjaxJson j = new AjaxJson();
 		
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+		// 遍历fileMap
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
-			MultipartFile file = entity.getValue();// 获取上传文件对象
+			// 获取上传文件对象
+			MultipartFile file = entity.getValue();
+			// 创建导入参数对象，设置标题行、头部行、是否需要保存等参数
 			ImportParams params = new ImportParams();
-			params.setTitleRows(2);
-			params.setHeadRows(1);
-			params.setNeedSave(true);
+			params.setTitleRows(2);	// 设置标题行有两行
+			params.setHeadRows(1);	// 设置头部行有一行
+			params.setNeedSave(true); // 表示导入的数据需要被保存
 			try {
 				List<SysParaEntity> listSysParaEntitys = ExcelImportUtil.importExcel(file.getInputStream(),SysParaEntity.class,params);
 				for (SysParaEntity sysPara : listSysParaEntitys) {
@@ -323,16 +326,21 @@ public class SysParaController extends BaseController {
 				}
 				j.setMsg("文件导入成功！");
 			} catch (Exception e) {
+				// 如果在导入过程中出现异常，则设置AjaxJson对象的消息，表示文件导入失败
 				j.setMsg("文件导入失败！");
+				// 记录异常信息，便于后续问题排查
 				logger.error(ExceptionUtil.getExceptionMessage(e));
 			}finally{
 				try {
+					// 尝试关闭文件流，防止资源泄露
 					file.getInputStream().close();
 				} catch (IOException e) {
+					// 抛出异常
 					e.printStackTrace();
 				}
 			}
 		}
+		// 返回结果
 		return j;
 	}
 	
@@ -340,6 +348,7 @@ public class SysParaController extends BaseController {
 	@ResponseBody
 	public List<SysParaEntity> list() {
 		List<SysParaEntity> listSysParas=sysParaService.getList(SysParaEntity.class);
+		// 返回列表
 		return listSysParas;
 	}
 	
@@ -352,29 +361,36 @@ public class SysParaController extends BaseController {
 		}
 		return new ResponseEntity(task, HttpStatus.OK);
 	}
-
+	/**
+	 * 控制器方法用于创建系统参数实体（SysParaEntity）。
+	 */
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> create(@RequestBody SysParaEntity sysPara, UriComponentsBuilder uriBuilder) {
-		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
+		// 调用JSR303 Bean Validator进行校验，确保SysParaEntity对象符合预定义的约束规则。
+		// 如果校验失败，获取所有校验失败的信息集合。
 		Set<ConstraintViolation<SysParaEntity>> failures = validator.validate(sysPara);
 		if (!failures.isEmpty()) {
+			// 捕获并处理任何可能发生的异常，这里只是简单地打印堆栈跟踪
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
 
-		//保存
 		try{
+			// 调用服务层的save方法来保存SysParaEntity对象到数据库。
 			sysParaService.save(sysPara);
 		} catch (Exception e) {
+			// 捕获并处理任何可能发生的异常，这里只是打印堆栈跟踪
 			e.printStackTrace();
+			// 返回一个没有内容的响应，HTTP状态码为204（NO_CONTENT）
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
 		//按照Restful风格约定，创建指向新任务的url, 也可以直接返回id或对象.
 		String id = sysPara.getId();
 		URI uri = uriBuilder.path("/rest/sysParaController/" + id).build().toUri();
+		// 设置Location头，指向新创建资源的位置
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(uri);
-
+		// 返回一个表示资源已创建的响应，HTTP状态码为201（CREATED），并设置Location头。
 		return new ResponseEntity(headers, HttpStatus.CREATED);
 	}
 
@@ -382,25 +398,32 @@ public class SysParaController extends BaseController {
 	public ResponseEntity<?> update(@RequestBody SysParaEntity sysPara) {
 		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
 		Set<ConstraintViolation<SysParaEntity>> failures = validator.validate(sysPara);
+		// 判断failures是否为空
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
-
-		//保存
+		// 尝试保存或更新实体
 		try{
+			// 调用服务层的save方法来保存或更新SysParaEntity对象到数据库。
 			sysParaService.saveOrUpdate(sysPara);
 		} catch (Exception e) {
+			// 抛出异常
 			e.printStackTrace();
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
-
-		//按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
+		// 根据Restful约定，返回204 No Content状态码，表示请求已成功但没有返回数据。
+		// 也可以选择返回200 OK状态码。
 		return new ResponseEntity(HttpStatus.NO_CONTENT);
 	}
 
+	/**
+	 * 删除指定ID的系统参数实体。
+	 * @param id 要删除的实体的唯一标识符
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable("id") String id) {
+		// 删除具有给定ID的系统参数实体
 		sysParaService.deleteEntityById(SysParaEntity.class, id);
 	}
 }

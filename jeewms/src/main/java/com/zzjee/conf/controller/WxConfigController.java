@@ -50,12 +50,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.zzjee.conf.entity.WxConfigEntity;
 import com.zzjee.conf.service.WxConfigServiceI;
 
-/**   
- * @Title: Controller  
+/**
+ * @Title: Controller
  * @Description: 配置信息
  * @author onlineGenerator
  * @date 2019-04-21 23:11:10
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Controller
@@ -72,12 +72,10 @@ public class WxConfigController extends BaseController {
 	private SystemService systemService;
 	@Autowired
 	private Validator validator;
-	
-
-
 	/**
 	 * 配置信息列表 页面跳转
-	 * 
+	 *
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "list")
@@ -86,12 +84,12 @@ public class WxConfigController extends BaseController {
 	}
 
 	/**
-	 * easyui AJAX请求数据
-	 * 
+	 * easyui 处理AJAX请求以返回WxConfigEntity数据列表的datagrid
+	 *
+	 * @param wxConfig
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -99,19 +97,16 @@ public class WxConfigController extends BaseController {
 		CriteriaQuery cq = new CriteriaQuery(WxConfigEntity.class, dataGrid);
 		//查询条件组装器
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wxConfig, request.getParameterMap());
-		try{
-		//自定义追加查询条件
-		}catch (Exception e) {
-			throw new BusinessException(e.getMessage());
-		}
 		cq.add();
 		this.wxConfigService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
 	}
-	
+
 	/**
 	 * 删除配置信息
-	 * 
+	 *
+	 * @param wxConfig
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -126,16 +121,17 @@ public class WxConfigController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "配置信息删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 批量删除配置信息
-	 * 
+	 *
+	 * @param ids
+	 * @param request
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")
@@ -146,7 +142,7 @@ public class WxConfigController extends BaseController {
 		message = "配置信息删除成功";
 		try{
 			for(String id:ids.split(",")){
-				WxConfigEntity wxConfig = systemService.getEntity(WxConfigEntity.class, 
+				WxConfigEntity wxConfig = systemService.getEntity(WxConfigEntity.class,
 				id
 				);
 				wxConfigService.delete(wxConfig);
@@ -154,7 +150,6 @@ public class WxConfigController extends BaseController {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "配置信息删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -164,8 +159,9 @@ public class WxConfigController extends BaseController {
 
 	/**
 	 * 添加配置信息
-	 * 
-	 * @param ids
+	 *
+	 * @param wxConfig
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -179,17 +175,17 @@ public class WxConfigController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "配置信息添加失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 更新配置信息
-	 * 
-	 * @param ids
+	 *
+	 * @param wxConfig
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -205,17 +201,18 @@ public class WxConfigController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "配置信息更新失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
+
 
 	/**
 	 * 配置信息新增页面跳转
-	 * 
+	 *
+	 * @param wxConfig
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -228,7 +225,9 @@ public class WxConfigController extends BaseController {
 	}
 	/**
 	 * 配置信息编辑页面跳转
-	 * 
+	 *
+	 * @param wxConfig
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -239,10 +238,11 @@ public class WxConfigController extends BaseController {
 		}
 		return new ModelAndView("com/zzjee/conf/wxConfig-update");
 	}
-	
+
 	/**
 	 * 导入功能跳转
-	 * 
+	 *
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "upload")
@@ -250,12 +250,15 @@ public class WxConfigController extends BaseController {
 		req.setAttribute("controller_name","wxConfigController");
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
-	
+
 	/**
 	 * 导出excel
-	 * 
+	 *
+	 * @param wxConfig
 	 * @param request
 	 * @param response
+	 * @param dataGrid
+	 * @param modelMap
 	 */
 	@RequestMapping(params = "exportXls")
 	public String exportXls(WxConfigEntity wxConfig,HttpServletRequest request,HttpServletResponse response
@@ -270,30 +273,44 @@ public class WxConfigController extends BaseController {
 		modelMap.put(NormalExcelConstants.DATA_LIST,wxConfigs);
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
+
 	/**
 	 * 导出excel 使模板
-	 * 
+	 *
+	 * @param wxConfig
 	 * @param request
 	 * @param response
+	 * @param dataGrid
+	 * @param modelMap
 	 */
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(WxConfigEntity wxConfig,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
+		//设置Excel文件的名称
     	modelMap.put(NormalExcelConstants.FILE_NAME,"配置信息");
     	modelMap.put(NormalExcelConstants.CLASS,WxConfigEntity.class);
+		//设置导出参数
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("配置信息列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
     	"导出信息"));
+		//设置一个空的数据列表
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
-	
+
+	/**
+	 * 通过excel导入数据
+	 *
+	 * @param request
+	 * @param response
+	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-		
+		// 将HttpServletRequest转换为MultipartHttpServletRequest，以便处理文件上传
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		//获取上传的文件映射
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
 			MultipartFile file = entity.getValue();// 获取上传文件对象
@@ -320,14 +337,14 @@ public class WxConfigController extends BaseController {
 		}
 		return j;
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<WxConfigEntity> list() {
 		List<WxConfigEntity> listWxConfigs=wxConfigService.getList(WxConfigEntity.class);
 		return listWxConfigs;
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
@@ -346,7 +363,6 @@ public class WxConfigController extends BaseController {
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
-
 		//保存
 		try{
 			wxConfigService.save(wxConfig);
@@ -370,7 +386,6 @@ public class WxConfigController extends BaseController {
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
-
 		//保存
 		try{
 			wxConfigService.saveOrUpdate(wxConfig);
@@ -378,7 +393,6 @@ public class WxConfigController extends BaseController {
 			e.printStackTrace();
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
-
 		//按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
 		return new ResponseEntity(HttpStatus.NO_CONTENT);
 	}

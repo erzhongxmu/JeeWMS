@@ -17,13 +17,17 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class WmsAppFunctionServiceImpl extends CommonServiceImpl implements WmsAppFunctionServiceI {
 
-	
+	/**
+	 * 定义一个名为delete的方法，接收一个WmsAppFunctionEntity类型的参数entity，并抛出异常
+	 * @return
+	 */
  	public void delete(WmsAppFunctionEntity entity) throws Exception{
  		super.delete(entity);
  		//执行删除操作增强业务
 		this.doDelBus(entity);
  	}
- 	
+
+
  	public Serializable save(WmsAppFunctionEntity entity) throws Exception{
  		Serializable t = super.save(entity);
  		//执行新增操作增强业务
@@ -63,7 +67,6 @@ public class WmsAppFunctionServiceImpl extends CommonServiceImpl implements WmsA
  	}
  	/**
 	 * 删除操作增强业务
-	 * @param id
 	 * @return
 	 */
 	private void doDelBus(WmsAppFunctionEntity t) throws Exception{
@@ -145,10 +148,13 @@ public class WmsAppFunctionServiceImpl extends CommonServiceImpl implements WmsA
 					//因新增时已经校验了实例化是否可以成功，所以这块就不需要再做一次判断
 					obj = MyClassLoader.getClassByScn(cgJavaValue).newInstance();
 				}else if("spring".equals(cgJavaType)){
+					// 如果cgJavaType为"spring"，则从Spring上下文中获取bean
 					obj = ApplicationContextUtil.getContext().getBean(cgJavaValue);
 				}
 				if(obj instanceof CgformEnhanceJavaInter){
+					// 将obj转换为CgformEnhanceJavaInter类型
 					CgformEnhanceJavaInter javaInter = (CgformEnhanceJavaInter) obj;
+					// 调用execute方法执行增强逻辑
 					javaInter.execute("wms_app_function",data);
 				}
 			} catch (Exception e) {

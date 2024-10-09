@@ -97,11 +97,7 @@ public class WvDayCostSumController extends BaseController {
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
-
-
-
 	@RequestMapping(params = "datagridy")
 	public void datagridy(WvDayCostSumEntity wvDayCostSum,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
 		CriteriaQuery cq = new CriteriaQuery(WvDayCostSumEntity.class, dataGrid);
@@ -149,7 +145,6 @@ public class WvDayCostSumController extends BaseController {
 					+ sdayCostHsj + "");
 		} catch (Exception e) {
 			e.printStackTrace();
-			// TODO: handle exception
 		}
 
 		TagUtil.datagrid(response, dataGrid);
@@ -198,7 +193,6 @@ public class WvDayCostSumController extends BaseController {
 					+ sdayCostBhs + ",shuie:" + sdayCostSe + ",hansj:"
 					+ sdayCostHsj + "");
 		} catch (Exception e) {
-			// TODO: handle exception
 			throw new BusinessException(e.getMessage());
 		}
 
@@ -208,6 +202,8 @@ public class WvDayCostSumController extends BaseController {
 	/**
 	 * 删除wv_day_cost_sum
 	 *
+	 * @param wvDayCostSum
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -222,7 +218,6 @@ public class WvDayCostSumController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -231,7 +226,9 @@ public class WvDayCostSumController extends BaseController {
 
 	/**
 	 * 批量删除wv_day_cost_sum
+	 * 通过接收一个包含多个ID的字符串，来删除对应的记录
 	 *
+	 * @param request
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")
@@ -250,7 +247,6 @@ public class WvDayCostSumController extends BaseController {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -261,7 +257,8 @@ public class WvDayCostSumController extends BaseController {
 	/**
 	 * 添加
 	 *
-	 * @param ids
+	 * @param wvDayCostSum
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -275,7 +272,6 @@ public class WvDayCostSumController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "添加失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -285,7 +281,8 @@ public class WvDayCostSumController extends BaseController {
 	/**
 	 * 更新wv_day_cost_sum
 	 *
-	 * @param ids
+	 * @param wvDayCostSum
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -301,7 +298,6 @@ public class WvDayCostSumController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "wv_day_cost_sum更新失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -312,6 +308,8 @@ public class WvDayCostSumController extends BaseController {
 	/**
 	 * wv_day_cost_sum新增页面跳转
 	 *
+	 * @param wvDayCostSum
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -325,6 +323,8 @@ public class WvDayCostSumController extends BaseController {
 	/**
 	 * wv_day_cost_sum编辑页面跳转
 	 *
+	 * @param wvDayCostSum
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -339,6 +339,7 @@ public class WvDayCostSumController extends BaseController {
 	/**
 	 * 导入功能跳转
 	 *
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "upload")
@@ -350,8 +351,11 @@ public class WvDayCostSumController extends BaseController {
 	/**
 	 * 导出excel
 	 *
+	 * @param wvDayCostSum
 	 * @param request
 	 * @param response
+	 * @param dataGrid
+	 * @param modelMap
 	 */
 	@RequestMapping(params = "exportXls")
 	public String exportXls(WvDayCostSumEntity wvDayCostSum,HttpServletRequest request,HttpServletResponse response
@@ -366,30 +370,44 @@ public class WvDayCostSumController extends BaseController {
 		modelMap.put(NormalExcelConstants.DATA_LIST,wvDayCostSums);
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
+
 	/**
 	 * 导出excel 使模板
 	 *
+	 * @param wvDayCostSum
 	 * @param request
 	 * @param response
+	 * @param dataGrid
+	 * @param modelMap
 	 */
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(WvDayCostSumEntity wvDayCostSum,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
+		//设置Excel文件的名称
     	modelMap.put(NormalExcelConstants.FILE_NAME,"wv_day_cost_sum");
     	modelMap.put(NormalExcelConstants.CLASS,WvDayCostSumEntity.class);
+		//设置导出参数
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("wv_day_cost_sum列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
     	"导出信息"));
+		//设置一个空的数据列表
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 
+	/**
+	 * 通过excel导入数据
+	 *
+	 * @param request
+	 * @param response
+	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-
+		// 将HttpServletRequest转换为MultipartHttpServletRequest，以便处理文件上传
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		//获取上传的文件映射
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
 			MultipartFile file = entity.getValue();// 获取上传文件对象
@@ -417,6 +435,11 @@ public class WvDayCostSumController extends BaseController {
 		return j;
 	}
 
+	/**
+	 * 获取所有WvDayCostSumEntity实体的列表
+	 *
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<WvDayCostSumEntity> list() {

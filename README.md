@@ -1,23 +1,24 @@
 
-JEEWMSQQ交流群：335607153  有任何问题可以加群交流  基于JEECG-BOOT开发的前后端分离版本于20221111日发布，届时欢迎大家多多提意见
+JEEWMSQQ交流群：335607153 1群已满  请加2群  313930553  有任何问题可以加群交流  
  **智能制造产品JEEMES已经开源**  (https://gitee.com/erzhongxmu/jeemes) 欢迎大家STAR
  
-测试系统地址 http://119.91.141.42:8080/jeewms  用户名：test  密码：123456 本地启动的用户名：admin 密码：llg123
+测试系统地址 http://47.113.229.131:9080/jeewms  用户名：admin 密码：llg123 本地启动的用户名：admin 密码：llg123
 android app也已经开源，近期更新会比较频繁 app开源地址   https://gitee.com/erzhongxmu/JeeWMSapp-uni
 大家看到了，star一下，谢谢，本团队会持续更新，一直开源！
 
-开源不易，如果大家需要购买华为云可以通过我们的专属链接，优惠多多 [华为云服务器优惠购买](https://account.huaweicloud.com/obmgr/invitation/invitation.html?bpName=0000000100000002F529029E50A53299E1C24B9DC20691B285756AA52DA030F9E7013E8FF7E22C3EFF074BF9586E43C07842F8F96D38EC45878383D1D406B2F7341FC7D6635CED56&inviteCode=0000000100000002FC491B524CF3FDCE52F12DFD3BB98C8AB2DD5D05BA2CCD464D69E4293D91369A&bindType=1&isDefault=1)
+开源不易，希望大家多多支持，有仓储硬件需求（PDA，RFID，AGV等）的可以找我们代买，保证最优惠的价格，官网全新上线，欢迎访问  [公司官网](http://www.huayi-tec.com/)。
 
 一、项目简介：
      
-    JeeWMS在经过多家公司上线运行后，为了降低物流仓储企业的信息化成本，决定全面开源
+    JeeWMS是基于java的智能仓储管理系统，在经过多家公司上线运行后，为了降低物流仓储企业的信息化成本，决定全面开源
     此产品。针对有特殊信息化需求的企业，提供高性价比的实施服务。
 
     产品特点：
     1、适用范围：第三方物流仓储企业，冷链仓库，工厂仓储，海外仓等。
-    2、技术特点：基于JAVA的WEB后台，基于UNI-APP开发的PDA系统。
-    3、功能特点：涵盖订单管理系统（OMS），仓储管理系统（WMS），计费管理系统（BMS），现场作业系统（RF），第三方接口模块
-    4、接口支持：已经对接：SAP ECC，SAP HANA 数据库，用友U8。
+    2、技术特点：基于JAVA的WEB后台，基于UNI-APP开发的智能仓储管理系统手持操作端。
+    3、功能特点：涵盖订单管理系统（OMS），仓库管理系统（WMS），计费管理系统（BMS），现场作业系统（RF），RFID模块
+    4，AGV模拟程序：加入了基于PLC的模拟程序，大家可以基于此思路研究AGV的调度。
+   
 
 二、业务介绍：    
 
@@ -27,17 +28,17 @@ android app也已经开源，近期更新会比较频繁 app开源地址   https
     2、主要流程
         客户下单流程，收货流程，上架流程，移货作业、拣货流程：批量拣货，按单拣货、盘点流程、计费流程。
     3、硬件对接
-        对接自主研发基于LORA物联网技术的电子货架标签模块，满足快速退货分拣，波次拣货，生产线电子流程卡。
+        对接自主研发基于LORA物联网技术的电子货架标签模块，满足快速退货分拣，波次拣货；对接自动化立体库系统，对接AGV，RFID。
     4、计费管理：通过在线SQL，动态完成费用的计算，满足3PL仓费用复杂多变的需求。
 
 三、安装说明：
   
     1，开发环境：
        开发工具：
-		IDEA（版本不限）；AS
+		IDEA（版本不限）；
 		JDK1.8
 		Maven
-		Mysql5.6以上（注意设置大小写不敏感，关闭only_full_group_by规则  
+		Mysql5.7以上（注意设置大小写不敏感，关闭only_full_group_by规则  
                # 设置sql_mode，去掉了ONLY_FULL_GROUP_BY
                sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'），mysql8.0不行
 		运行环境：CENTOS6.5以上或windows server 2008、tomcat7以上，JDK1.8， MYSQL5.7
@@ -57,7 +58,7 @@ android app也已经开源，近期更新会比较频繁 app开源地址   https
 	
 四、技术支持：
 
-    演示环境：http://47.113.229.131:9080/wms     用户： test2   密码：123456
+    演示环境：  http://47.113.229.131:9080/jeewms     用户： admin   密码：llg123
     QQ群：335607153    
    
 五、开源及商务合作说明：
@@ -69,7 +70,7 @@ android app也已经开源，近期更新会比较频繁 app开源地址   https
 
 # 问题&BUG&建议：请在此提交https://gitee.com/erzhongxmu/jeewms/issues
 
-![微信群](https://images.gitee.com/uploads/images/2021/0513/111753_11c28c2a_544004.jpeg "LTWLLMX_HYFTX8VAPZC~QF4.jpg")
+![AGV调度模拟]![输入图片说明](1111.png)
 ![主页](https://images.gitee.com/uploads/images/2018/1014/235739_2c29bbbf_544004.png "wmshome.png")
 ![仓位使用率](https://images.gitee.com/uploads/images/2018/1015/000747_4eafc335_544004.png "cwsyl.png")
 ![仓位图]![输入图片说明](%E4%BB%93%E4%BD%8D%E5%9B%BE.png)

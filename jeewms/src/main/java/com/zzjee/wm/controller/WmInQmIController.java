@@ -140,7 +140,6 @@ public class WmInQmIController extends BaseController {
         }
 //		cq.like("imNoticeId", "RK%");
         cq.add();
-
         this.wmInQmIService.getDataGridReturn(cq, true);
         List<WmInQmIEntity> resultold = dataGrid.getResults();
         List<WmInQmIEntity> resultnew = new ArrayList<>();
@@ -152,14 +151,12 @@ public class WmInQmIController extends BaseController {
                         t.setGoodsName(goods.getGoodsName());
                     }
                 } catch (Exception e) {
-
                 }
-
             }
-
             resultnew.add(t);
         }
         dataGrid.setResults(resultnew);
+        // 将查询结果封装成DataGrid对象并返回给前端
         TagUtil.datagrid(response, dataGrid);
     }
 
@@ -198,10 +195,10 @@ public class WmInQmIController extends BaseController {
                 }
 
             }
-
             resultnew.add(t);
         }
         dataGrid.setResults(resultnew);
+        // 将查询结果封装成DataGrid对象并返回给前端
         TagUtil.datagrid(response, dataGrid);
     }
 
@@ -222,10 +219,12 @@ public class WmInQmIController extends BaseController {
             systemService.addLog(message, Globals.Log_Type_DEL,
                     Globals.Log_Leavel_INFO);
         } catch (Exception e) {
+            // 如果发生异常，打印堆栈跟踪信息
             e.printStackTrace();
             message = "批量收货删除失败";
             throw new BusinessException(e.getMessage());
         }
+        // 将message设置为j对象的msg属性
         j.setMsg(message);
         return j;
     }
@@ -243,9 +242,7 @@ public class WmInQmIController extends BaseController {
                 j.setSuccess(false);
                 message = "上架失败";
                 return j;
-
             }
-
             systemService.addLog(message, Globals.Log_Type_DEL,
                     Globals.Log_Leavel_INFO);
         } catch (Exception e) {
@@ -257,7 +254,6 @@ public class WmInQmIController extends BaseController {
         j.setMsg(message);
         return j;
     }
-
 
     public boolean toup(String id,String kuweiBianMa,String username,String realname) {
 //		List<WmToUpGoodsEntity> wmToUpGoodsList = new ArrayList<WmToUpGoodsEntity>();
@@ -344,7 +340,6 @@ public class WmInQmIController extends BaseController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
 
             wmInQmIEntity.setBinSta("Y");
             systemService.saveOrUpdate(wmInQmIEntity);
@@ -479,7 +474,7 @@ public class WmInQmIController extends BaseController {
             }
         } catch (Exception e) {
             j.setSuccess(false);
-            message = "数量 错误";
+            message = "数量格式错误";
             j.setMsg(message);
             return j;
             // TODO: handle exception
@@ -487,7 +482,7 @@ public class WmInQmIController extends BaseController {
         if (StringUtil.isNotEmpty(wmInQmI.getBinId())) {
             if (!wmUtil.checkbin(wmInQmI.getBinId())) {
                 j.setSuccess(false);
-                message = wmInQmI.getBinId() + "储位不存在或已停用";
+                message = wmInQmI.getBinId() + "：储位不存在或已停用";
                 j.setMsg(message);
                 return j;
             }
@@ -496,7 +491,7 @@ public class WmInQmIController extends BaseController {
             //托盘占用判断
             if ("yes".equals(ResourceUtil.getConfigByName("usetuopan"))) {
                 if (StringUtils.isEmpty(wmInQmI.getTinId())) {
-                    throw new BusinessException("请填写托盘");
+                    throw new BusinessException("启用托盘管理，请填写或扫描托盘");
                 }
             } else {
                 if (StringUtil.isEmpty(wmInQmI.getTinId())) {

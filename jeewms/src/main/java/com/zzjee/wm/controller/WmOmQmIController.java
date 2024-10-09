@@ -73,213 +73,218 @@ import org.springframework.http.MediaType;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
+ * @author erzhongxmu
+ * @version V1.0
  * @Title: Controller
  * @Description: 下架任务
- * @author erzhongxmu
  * @date 2017-09-11 14:57:43
- * @version V1.0
- *
  */
 @Controller
 @RequestMapping("/wmOmQmIController")
 public class WmOmQmIController extends BaseController {
-	/**
-	 * Logger for this class
-	 */
-	private static final Logger logger = Logger.getLogger(WmOmQmIController.class);
+    /**
+     * Logger for this class
+     */
+    private static final Logger logger = Logger.getLogger(WmOmQmIController.class);
 
-	@Autowired
-	private WmOmQmIServiceI wmOmQmIService;
-	@Autowired
-	private SystemService systemService;
-	@Autowired
-	private Validator validator;
-
-
-
-	/**
-	 * 下架任务列表 页面跳转
-	 *
-	 * @return
-	 */
-	@RequestMapping(params = "list")
-	public ModelAndView list(HttpServletRequest request) {
-		return new ModelAndView("com/zzjee/wm/wmOmQmIList");
-	}
-	@RequestMapping(params = "listd")
-	public ModelAndView listd(HttpServletRequest request) {
-		return new ModelAndView("com/zzjee/wm/wmOmQmIdList");
-	}
-	@RequestMapping(params = "assignlist")
-	public ModelAndView assignlist(HttpServletRequest request) {
-		return new ModelAndView("com/zzjee/wm/wmOmQmIassignList");
-	}
-	/**
-	 * easyui AJAX请求数据
-	 *
-	 * @param request
-	 * @param response
-	 * @param dataGrid
-	 */
-
-	@RequestMapping(params = "datagrid")
-	public void datagrid(WmOmQmIEntity wmOmQmI,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
-		CriteriaQuery cq = new CriteriaQuery(WmOmQmIEntity.class, dataGrid);
-		//查询条件组装器
-		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wmOmQmI, request.getParameterMap());
-		try{
-		//自定义追加查询条件
-		}catch (Exception e) {
-			throw new BusinessException(e.getMessage());
-		}
-		Map<String,Object> map1 = new HashMap<String,Object>();
-		map1.put("createDate", "desc");
-		cq.setOrder(map1);
-		if(wmOmQmI.getBinSta()==null){
-			cq.eq("binSta", "N");
-		}
-		if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
-			cq.eq("cusCode", wmUtil.getCusCode());
-		}
-		cq.add();
-		this.wmOmQmIService.getDataGridReturn(cq, true);
-		TagUtil.datagrid(response, dataGrid);
-	}
-	@RequestMapping(params = "datagridassign")
-	public void datagridassign(WmOmQmIEntity wmOmQmI,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
-		CriteriaQuery cq = new CriteriaQuery(WmOmQmIEntity.class, dataGrid);
-		//查询条件组装器
-		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wmOmQmI, request.getParameterMap());
-		try{
-		//自定义追加查询条件
-		}catch (Exception e) {
-			throw new BusinessException(e.getMessage());
-		}
-		Map<String,Object> map1 = new HashMap<String,Object>();
-		map1.put("createDate", "desc");
-		cq.setOrder(map1);
-		cq.eq("binSta", "I");
-		if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
-			cq.eq("cusCode", wmUtil.getCusCode());
-		}
-		cq.add();
-		this.wmOmQmIService.getDataGridReturn(cq, true);
-		TagUtil.datagrid(response, dataGrid);
-	}
+    @Autowired
+    private WmOmQmIServiceI wmOmQmIService;
+    @Autowired
+    private SystemService systemService;
+    @Autowired
+    private Validator validator;
 
 
-	@RequestMapping(params = "dogetbin", method = { RequestMethod.GET,
-			RequestMethod.POST })
-	@ResponseBody
-	public AjaxJson dogetbin(HttpServletRequest request) {
-		AjaxJson j = new AjaxJson();
-		WmOmQmIEntity wmOmQmI = new WmOmQmIEntity();
-		String goods = request.getParameter("goodsid");
-		String tinid = request.getParameter("tinid");
-		String tsql = "select  ws.ku_wei_bian_ma,  ws.goods_pro_data"
-				+ "  from wv_stock ws, md_bin mb  where "
-				+ "   ws.ku_wei_bian_ma = mb.ku_wei_bian_ma and mb.ting_yong <> 'Y' and (ws.kuctype = '库存' )"
-				+ "   and ws.bin_id =  ? "
-				+ "   and ws.goods_id =  ? "
-				+ "   group by ws.ku_wei_bian_ma,ws.bin_id,ws.goods_id,mb.qu_huo_ci_xu, ws.goods_pro_data order by ws.goods_pro_data , ws.goods_qua ,mb.qu_huo_ci_xu,ws.create_date desc limit 1";
+    /**
+     * 下架任务列表 页面跳转
+     *
+     * @return
+     */
+    @RequestMapping(params = "list")
+    public ModelAndView list(HttpServletRequest request) {
+        return new ModelAndView("com/zzjee/wm/wmOmQmIList");
+    }
 
-		List<Map<String, Object>> result = systemService.findForJdbc(tsql,tinid, goods);
-		if (result.size() > 0) {
-			wmOmQmI.setBinId(result.get(0).get("ku_wei_bian_ma").toString());
-			wmOmQmI.setProData(result.get(0).get("goods_pro_data").toString());
-		}
-		j.setObj(wmOmQmI);
-		return j;
-	}
+    @RequestMapping(params = "listd")
+    public ModelAndView listd(HttpServletRequest request) {
+        return new ModelAndView("com/zzjee/wm/wmOmQmIdList");
+    }
 
+    @RequestMapping(params = "assignlist")
+    public ModelAndView assignlist(HttpServletRequest request) {
+        return new ModelAndView("com/zzjee/wm/wmOmQmIassignList");
+    }
 
-	@RequestMapping(params = "doassign")
-	@ResponseBody
-	public AjaxJson doassign(WmOmQmIEntity wmOmQmI, HttpServletRequest request) {
-		String message = null;
-		AjaxJson j = new AjaxJson();
-		message = "添加到下架任务清单成功";
-		WmOmQmIEntity t = wmOmQmIService.get(WmOmQmIEntity.class, request
-				.getParameter("id").toString());
-		//查询所有拣货员
-		List<String> usernameList = systemService.findListbySql("SELECT u.username  FROM t_s_role_user ru LEFT JOIN t_s_role r ON ru.roleid=r.id LEFT JOIN t_s_base_user u ON ru.userid=u.id LEFT JOIN (\n" +
-				"SELECT assign_to,count(1) num FROM wm_om_qm_i WHERE bin_sta='N' GROUP BY assign_to) i ON u.username=i.assign_to WHERE r.rolecode='jhy' ORDER BY num");
-		if (usernameList != null && usernameList.size() > 0) {
-			//查询正在进行操作的拣货员
-			System.out.println(JSON.toJSONString(usernameList));
-			wmOmQmI.setAssignTo(usernameList.get(0));
-		}
+    /**
+     * easyui AJAX请求数据
+     *
+     * @param request
+     * @param response
+     * @param dataGrid
+     */
 
-		if(!wmUtil.checkstcoka( t.getBinId(),t.getTinId(),t.getGoodsId(),t.getProData(),t.getBaseGoodscount())){
-			message = "库存不足";
-			j.setMsg(message);
-			return j;
-		}else{
-			try {
-				t.setBinSta("N");
-				systemService.updateEntitie(t);;
-				systemService.addLog(message, Globals.Log_Type_UPDATE,
-						Globals.Log_Leavel_INFO);
-			} catch (Exception e) {
-				e.printStackTrace();
-				message = "添加到下架任务清单失败";
-				throw new BusinessException(e.getMessage());
-			}
-		}
+    @RequestMapping(params = "datagrid")
+    public void datagrid(WmOmQmIEntity wmOmQmI, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
+        CriteriaQuery cq = new CriteriaQuery(WmOmQmIEntity.class, dataGrid);
+        //查询条件组装器
+        org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wmOmQmI, request.getParameterMap());
+        try {
+            //自定义追加查询条件
+        } catch (Exception e) {
+            throw new BusinessException(e.getMessage());
+        }
+        Map<String, Object> map1 = new HashMap<String, Object>();
+        map1.put("createDate", "desc");
+        cq.setOrder(map1);
+        // 如果wmOmQmI对象的binSta属性为空，则添加一个等于"N"的条件
+        if (wmOmQmI.getBinSta() == null) {
+            cq.eq("binSta", "N");
+        }
+        // 如果wmUtil对象的cusCode属性不为空，则添加一个等于cusCode的条件
+        if (StringUtil.isNotEmpty(wmUtil.getCusCode())) {
+            cq.eq("cusCode", wmUtil.getCusCode());
+        }
+        cq.add();
+        // 调用wmOmQmIService的getDataGridReturn方法执行查询并返回结果
+        this.wmOmQmIService.getDataGridReturn(cq, true);
+        // 将查询结果封装成DataGrid对象并返回给客户端
+        TagUtil.datagrid(response, dataGrid);
+    }
 
-		j.setMsg(message);
-		return j;
-	}
+    @RequestMapping(params = "datagridassign")
+    public void datagridassign(WmOmQmIEntity wmOmQmI, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
+        CriteriaQuery cq = new CriteriaQuery(WmOmQmIEntity.class, dataGrid);
+        //查询条件组装器
+        org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wmOmQmI, request.getParameterMap());
+        try {
+            //自定义追加查询条件
+        } catch (Exception e) {
+            throw new BusinessException(e.getMessage());
+        }
+        Map<String, Object> map1 = new HashMap<String, Object>();
+        map1.put("createDate", "desc");
+        cq.setOrder(map1);
+        cq.eq("binSta", "I");
+        // 如果wmUtil中的cusCode不为空，则添加查询条件：cusCode字段等于wmUtil中的cusCode值
+        if (StringUtil.isNotEmpty(wmUtil.getCusCode())) {
+            cq.eq("cusCode", wmUtil.getCusCode());
+        }
+        cq.add();
+        // 调用服务层方法获取查询结果，并将结果封装到dataGrid对象中
+        this.wmOmQmIService.getDataGridReturn(cq, true);
+        // 将dataGrid对象转换为响应数据并返回给客户端
+        TagUtil.datagrid(response, dataGrid);
+    }
 
-	@RequestMapping(params = "doassignwave")
-	@ResponseBody
-	public AjaxJson dowavebatch(String ids, String waveid,HttpServletRequest request) {
-		String message = null;
-		AjaxJson j = new AjaxJson();
-		message = "波次生成成功";
-		String waveId = "";
-		String firstrongqi = request.getParameter("firstrongqi");
-		waveId = DateUtils.date2Str(DateUtils.yyyymmddhhmmss);
-		try {
-			for (String id : ids.split(",")) {
-				WmOmQmIEntity t = wmOmQmIService.get(WmOmQmIEntity.class, id);
-				try {
-					t.setWaveId("BC"+waveId);
-				    t.setBinSta("N");//波次直接设置为未下架
-					t.setFirstRq("");
+    @RequestMapping(params = "dogetbin", method = {RequestMethod.GET,
+            RequestMethod.POST})
+    @ResponseBody
+    public AjaxJson dogetbin(HttpServletRequest request) {
+        AjaxJson j = new AjaxJson();
+        WmOmQmIEntity wmOmQmI = new WmOmQmIEntity();
+        String goods = request.getParameter("goodsid");
+        String tinid = request.getParameter("tinid");
+        // 定义一个SQL查询语句，用于查询库存信息
+        String tsql = "select  ws.ku_wei_bian_ma,  ws.goods_pro_data"
+                + "  from wv_stock ws, md_bin mb  where "
+                + "   ws.ku_wei_bian_ma = mb.ku_wei_bian_ma and mb.ting_yong <> 'Y' and (ws.kuctype = '库存' )"
+                + "   and ws.bin_id =  ? "
+                + "   and ws.goods_id =  ? "
+                + "   group by ws.ku_wei_bian_ma,ws.bin_id,ws.goods_id,mb.qu_huo_ci_xu, ws.goods_pro_data order by ws.goods_pro_data , ws.goods_qua ,mb.qu_huo_ci_xu,ws.create_date desc limit 1";
 
-					if(StringUtil.isNotEmpty(firstrongqi)){
-						t.setFirstRq(firstrongqi);
-					}
+        List<Map<String, Object>> result = systemService.findForJdbc(tsql, tinid, goods);
+        if (result.size() > 0) {
+            // 如果查询结果不为空，则将查询结果中的库位编码和商品属性数据分别设置到wmOmQmI对象中
+            wmOmQmI.setBinId(result.get(0).get("ku_wei_bian_ma").toString());
+            wmOmQmI.setProData(result.get(0).get("goods_pro_data").toString());
+        }
+        // 将wmOmQmI对象设置为AjaxJson对象的obj属性
+        j.setObj(wmOmQmI);
+        return j;
+    }
 
+    @RequestMapping(params = "doassign")
+    @ResponseBody
+    public AjaxJson doassign(WmOmQmIEntity wmOmQmI, HttpServletRequest request) {
+        String message = null;
+        AjaxJson j = new AjaxJson();
+        message = "添加到下架任务清单成功";
+        WmOmQmIEntity t = wmOmQmIService.get(WmOmQmIEntity.class, request
+                .getParameter("id").toString());
+        //查询所有拣货员
+        List<String> usernameList = systemService.findListbySql("SELECT u.username  FROM t_s_role_user ru LEFT JOIN t_s_role r ON ru.roleid=r.id LEFT JOIN t_s_base_user u ON ru.userid=u.id LEFT JOIN (\n" +
+                "SELECT assign_to,count(1) num FROM wm_om_qm_i WHERE bin_sta='N' GROUP BY assign_to) i ON u.username=i.assign_to WHERE r.rolecode='jhy' ORDER BY num");
+        if (usernameList != null && usernameList.size() > 0) {
+            //查询正在进行操作的拣货员
+            System.out.println(JSON.toJSONString(usernameList));
+            wmOmQmI.setAssignTo(usernameList.get(0));
+        }
 
-					String recarno = "";
-					try{
-						WmOmNoticeHEntity wmOmNoticeHEntity = systemService.findUniqueByProperty(WmOmNoticeHEntity.class,"omNoticeId",t.getOmNoticeId());
-						recarno = wmOmNoticeHEntity.getReCarno();
-					}catch (Exception e){
+        if (!wmUtil.checkstcoka(t.getBinId(), t.getTinId(), t.getGoodsId(), t.getProData(), t.getBaseGoodscount())) {
+            message = "库存不足";
+            j.setMsg(message);
+            return j;
+        } else {
+            try {
+                t.setBinSta("N");
+                systemService.updateEntitie(t);
+                ;
+                systemService.addLog(message, Globals.Log_Type_UPDATE,
+                        Globals.Log_Leavel_INFO);
+            } catch (Exception e) {
+                e.printStackTrace();
+                 throw new BusinessException(e.getMessage());
+            }
+        }
+        j.setMsg(message);
+        return j;
+    }
 
-					}
-					t.setSecondRq(recarno);
-					systemService.updateEntitie(t);
-					systemService.addLog(message, Globals.Log_Type_UPDATE,
-							Globals.Log_Leavel_INFO);
-				} catch (Exception e) {
-					e.printStackTrace();
-					message = "波次生成失败";
-					throw new BusinessException(e.getMessage());
-				}
+    @RequestMapping(params = "doassignwave")
+    @ResponseBody
+    public AjaxJson dowavebatch(String ids, String waveid, HttpServletRequest request) {
+        String message = null;
+        AjaxJson j = new AjaxJson();
+        message = "波次生成成功";
+        String waveId = "";
+        String firstrongqi = request.getParameter("firstrongqi");
+        waveId = DateUtils.date2Str(DateUtils.yyyymmddhhmmss);
+        try {
+            for (String id : ids.split(",")) {
+                WmOmQmIEntity t = wmOmQmIService.get(WmOmQmIEntity.class, id);
+                try {
+                    t.setWaveId("BC" + waveId);
+                    t.setBinSta("N");//波次直接设置为未下架
+                    t.setFirstRq("");
 
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			message = "添加到下架任务清单失败";
-			throw new BusinessException(e.getMessage());
-		}
-		j.setMsg(message);
-		return j;
+                    if (StringUtil.isNotEmpty(firstrongqi)) {
+                        t.setFirstRq(firstrongqi);
+                    }
+                    String recarno = "";
+                    try {
+                        WmOmNoticeHEntity wmOmNoticeHEntity = systemService.findUniqueByProperty(WmOmNoticeHEntity.class, "omNoticeId", t.getOmNoticeId());
+                        recarno = wmOmNoticeHEntity.getReCarno();
+                    } catch (Exception e) {
 
-	}
+                    }
+                    t.setSecondRq(recarno);
+                    systemService.updateEntitie(t);
+                    systemService.addLog(message, Globals.Log_Type_UPDATE,
+                            Globals.Log_Leavel_INFO);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                     throw new BusinessException(e.getMessage());
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new BusinessException(e.getMessage());
+        }
+        j.setMsg(message);
+        return j;
+
+    }
 
     @RequestMapping(params = "dodelwave")
     @ResponseBody
@@ -287,13 +292,11 @@ public class WmOmQmIController extends BaseController {
         String message = null;
         AjaxJson j = new AjaxJson();
         message = "波次删除成功";
-        String waveId = "";
-        waveId = DateUtils.date2Str(DateUtils.yyyymmddhhmmss);
         try {
             for (String id : ids.split(",")) {
                 WmOmQmIEntity t = wmOmQmIService.get(WmOmQmIEntity.class, id);
                 try {
-                    if("N".equals(t.getBinSta())){
+                    if ("N".equals(t.getBinSta())) {
                         t.setWaveId(null);
                         systemService.updateEntitie(t);
                         systemService.addLog(message, Globals.Log_Type_UPDATE,
@@ -304,539 +307,524 @@ public class WmOmQmIController extends BaseController {
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    message = "波次删除失败";
                     throw new BusinessException(e.getMessage());
                 }
 
             }
         } catch (Exception e) {
             e.printStackTrace();
-            message = "波次删除失败";
-            throw new BusinessException(e.getMessage());
+             throw new BusinessException(e.getMessage());
         }
         j.setMsg(message);
         return j;
 
     }
 
+    @RequestMapping(params = "doassignbatch")
+    @ResponseBody
+    public AjaxJson doassignbatch(String ids, HttpServletRequest request) {
+        String message = null;
+        AjaxJson j = new AjaxJson();
+        message = "添加到下架任务清单成功";
+        try {
+            for (String id : ids.split(",")) {
+                WmOmQmIEntity t = wmOmQmIService.get(WmOmQmIEntity.class, id);
+                try {
+                    if (!wmUtil.checkstcoka(t.getBinId(), t.getTinId(), t.getGoodsId(), t.getProData(), t.getBaseGoodscount())) {
+                        message = "库存不足";
+                        j.setMsg(message);
+                        return j;
+                    } else {
+                        t.setBinSta("N");
+                        systemService.updateEntitie(t);
+                        systemService.addLog(message, Globals.Log_Type_UPDATE,
+                                Globals.Log_Leavel_INFO);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    message = "添加到下架任务清单失败";
+                    throw new BusinessException(e.getMessage());
+                }
 
-	@RequestMapping(params = "doassignbatch")
-	@ResponseBody
-	public AjaxJson doassignbatch(String ids, HttpServletRequest request) {
-		String message = null;
-		AjaxJson j = new AjaxJson();
-		message = "添加到下架任务清单成功";
-		try {
-			for (String id : ids.split(",")) {
-				WmOmQmIEntity t = wmOmQmIService.get(WmOmQmIEntity.class, id);
-				try {
-					if(!wmUtil.checkstcoka( t.getBinId(),t.getTinId(),t.getGoodsId(),t.getProData(),t.getBaseGoodscount())){
-						message = "库存不足";
-						j.setMsg(message);
-						return j;
-					}else{
-						t.setBinSta("N");
-						systemService.updateEntitie(t);
-						systemService.addLog(message, Globals.Log_Type_UPDATE,
-								Globals.Log_Leavel_INFO);
-					}
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+             throw new BusinessException(e.getMessage());
+        }
+        j.setMsg(message);
+        return j;
+    }
 
-				} catch (Exception e) {
-					e.printStackTrace();
-					message = "添加到下架任务清单失败";
-					throw new BusinessException(e.getMessage());
-				}
+    /**
+     * 删除下架任务
+     *
+     * @return
+     */
+    @RequestMapping(params = "doDel")
+    @ResponseBody
+    public AjaxJson doDel(WmOmQmIEntity wmOmQmI, HttpServletRequest request) {
+        String message = null;
+        AjaxJson j = new AjaxJson();
+        wmOmQmI = systemService.getEntity(WmOmQmIEntity.class, wmOmQmI.getId());
+        message = "下架任务删除成功";
+        try {
+            wmOmQmIService.delete(wmOmQmI);
+            systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
+        } catch (Exception e) {
+            e.printStackTrace();
+             throw new BusinessException(e.getMessage());
+        }
+        j.setMsg(message);
+        return j;
+    }
 
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			message = "添加到下架任务清单失败";
-			throw new BusinessException(e.getMessage());
-		}
-		j.setMsg(message);
-		return j;
-	}
+    @RequestMapping(params = "dotowavedown")
+    @ResponseBody
+    public synchronized AjaxJson dotowavedown(HttpServletRequest request) {
+        String message = null;
+        AjaxJson j = new AjaxJson();
+        message = "下架成功";
+        try {
+            WmOmQmIEntity wmOmQmI = systemService.getEntity(
+                    WmOmQmIEntity.class, request.getParameter("id").toString());
+            if (wmOmQmI != null && wmOmQmI.getBinSta().equals("N")) {
+                WmToDownGoodsEntity wmToDownGoods = new WmToDownGoodsEntity();
+                wmToDownGoods.setBinIdFrom(wmOmQmI.getTinId());//下架托盘
+                wmToDownGoods.setKuWeiBianMa(wmOmQmI.getBinId());//储位
+                wmToDownGoods.setBinIdTo(wmOmQmI.getOmNoticeId());//到托盘
+                wmToDownGoods.setCusCode(wmOmQmI.getCusCode());//货主
+                wmToDownGoods.setGoodsId(wmOmQmI.getGoodsId());//
+                wmToDownGoods.setGoodsProData(wmOmQmI.getProData());//生产日期
+                wmToDownGoods.setOrderId(wmOmQmI.getOmNoticeId());//出货通知单
+                wmToDownGoods.setOrderIdI(wmOmQmI.getId());//出货通知项目
+                wmToDownGoods.setBaseUnit(wmOmQmI.getBaseUnit());//基本单位
+                wmToDownGoods.setBaseGoodscount(wmOmQmI.getBaseGoodscount());//基本单位数量
+                wmToDownGoods.setGoodsUnit(wmOmQmI.getGoodsUnit());//出货单位
+                wmToDownGoods.setGoodsQua(wmOmQmI.getQmOkQuat());//出货数量
+                wmToDownGoods.setGoodsQuaok(wmOmQmI.getQmOkQuat());//出货数量
+                wmToDownGoods.setGoodsName(wmOmQmI.getGoodsName());//商品名称
+                wmToDownGoods.setOmBeizhu(wmOmQmI.getOmBeizhu());//备注
+                wmToDownGoods.setImCusCode(wmOmQmI.getImCusCode());//客户单号
+                wmToDownGoods.setOrderType("01");//默认为01
+                systemService.save(wmToDownGoods);
+                wmOmQmI.setBinSta("H");
+                systemService.saveOrUpdate(wmOmQmI);
+                try {
+                    String orderId = wmOmQmI.getOmNoticeId();
+                    String type = "jh";
+                    String username = ResourceUtil.getSessionUserName().getRealName();
+                    updateUser(orderId, type, username);
+                } catch (Exception e) {
+                }
+                systemService.addLog(message, Globals.Log_Type_DEL,
+                        Globals.Log_Leavel_INFO);
+            } else {
+                j.setSuccess(false);
+                message = "下架任务找不到";
+            }
 
-
-
-	/**
-	 * 删除下架任务
-	 *
-	 * @return
-	 */
-	@RequestMapping(params = "doDel")
-	@ResponseBody
-	public AjaxJson doDel(WmOmQmIEntity wmOmQmI, HttpServletRequest request) {
-		String message = null;
-		AjaxJson j = new AjaxJson();
-		wmOmQmI = systemService.getEntity(WmOmQmIEntity.class, wmOmQmI.getId());
-		message = "下架任务删除成功";
-		try{
-			wmOmQmIService.delete(wmOmQmI);
-			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
-		}catch(Exception e){
-			e.printStackTrace();
-			message = "下架任务删除失败";
-			throw new BusinessException(e.getMessage());
-		}
-		j.setMsg(message);
-		return j;
-	}
-
-	@RequestMapping(params = "dotowavedown")
-	@ResponseBody
-	public synchronized AjaxJson dotowavedown(HttpServletRequest request) {
-		String message = null;
-		AjaxJson j = new AjaxJson();
-		message = "下架成功";
-		try {
-			WmOmQmIEntity wmOmQmI = systemService.getEntity(
-					WmOmQmIEntity.class, request.getParameter("id").toString());
-			if (wmOmQmI != null&&wmOmQmI.getBinSta().equals("N")) {
-				WmToDownGoodsEntity wmToDownGoods = new WmToDownGoodsEntity();
-				wmToDownGoods.setBinIdFrom(wmOmQmI.getTinId());//下架托盘
-				wmToDownGoods.setKuWeiBianMa(wmOmQmI.getBinId());//储位
-				wmToDownGoods.setBinIdTo(wmOmQmI.getOmNoticeId());//到托盘
-				wmToDownGoods.setCusCode(wmOmQmI.getCusCode());//货主
-				wmToDownGoods.setGoodsId(wmOmQmI.getGoodsId());//
-				wmToDownGoods.setGoodsProData(wmOmQmI.getProData());//生产日期
-				wmToDownGoods.setOrderId(wmOmQmI.getOmNoticeId());//出货通知单
-				wmToDownGoods.setOrderIdI(wmOmQmI.getId());//出货通知项目
-				wmToDownGoods.setBaseUnit(wmOmQmI.getBaseUnit());//基本单位
-				wmToDownGoods.setBaseGoodscount(wmOmQmI.getBaseGoodscount());//基本单位数量
-				wmToDownGoods.setGoodsUnit(wmOmQmI.getGoodsUnit());//出货单位
-				wmToDownGoods.setGoodsQua(wmOmQmI.getQmOkQuat());//出货数量
-				wmToDownGoods.setGoodsQuaok(wmOmQmI.getQmOkQuat());//出货数量
-				wmToDownGoods.setGoodsName(wmOmQmI.getGoodsName());//商品名称
-				wmToDownGoods.setOmBeizhu(wmOmQmI.getOmBeizhu());//备注
-				wmToDownGoods.setImCusCode(wmOmQmI.getImCusCode());//客户单号
-				wmToDownGoods.setOrderType("01");//默认为01
-				systemService.save(wmToDownGoods);
-				wmOmQmI.setBinSta("H");
-				systemService.saveOrUpdate(wmOmQmI);
-				try{
-					String orderId = wmOmQmI.getOmNoticeId();
-					String type = "jh";
-					String username = ResourceUtil.getSessionUserName().getRealName();
-					updateUser(orderId,type,username);
-				}catch (Exception e){
-				}
-				systemService.addLog(message, Globals.Log_Type_DEL,
-						Globals.Log_Leavel_INFO);
-			} else {
-				j.setSuccess(false);
-
-				message = "下架任务找不到";
-			}
-
-		} catch (Exception e) {
-			j.setSuccess(false);
-			e.printStackTrace();
-			message = "下架失败";
-			throw new BusinessException(e.getMessage());
-		}
-		j.setMsg(message);
-		return j;
-	}
+        } catch (Exception e) {
+            j.setSuccess(false);
+            e.printStackTrace();
+             throw new BusinessException(e.getMessage());
+        }
+        j.setMsg(message);
+        return j;
+    }
 
 
-
-
-	@RequestMapping(params = "dotodown")
-	@ResponseBody
-	public synchronized AjaxJson dotodown(HttpServletRequest request) {
-		String message = null;
-		AjaxJson j = new AjaxJson();
-		message = "下架成功";
-	  	String id = request.getParameter("id").toString();
+    @RequestMapping(params = "dotodown")
+    @ResponseBody
+    public synchronized AjaxJson dotodown(HttpServletRequest request) {
+        String message = null;
+        AjaxJson j = new AjaxJson();
+        message = "下架成功";
+        String id = request.getParameter("id").toString();
         boolean isok = todown(id);
-        if (!isok){
-        	j.setSuccess(isok);
-        	message = "下架失败";
-		}
-		j.setMsg(message);
-		return j;
-	}
+        if (!isok) {
+            j.setSuccess(isok);
+            message = "下架失败";
+        }
+        j.setMsg(message);
+        return j;
+    }
 
 
-	public boolean todown(String id){
-		try {
-			WmOmQmIEntity wmOmQmI = systemService.getEntity(
-					WmOmQmIEntity.class, id);
-			if (wmOmQmI != null&&wmOmQmI.getBinSta().equals("N")) {
-				WmToDownGoodsEntity wmToDownGoods = new WmToDownGoodsEntity();
-				wmToDownGoods.setBinIdFrom(wmOmQmI.getTinId());//下架托盘
-				wmToDownGoods.setKuWeiBianMa(wmOmQmI.getBinId());//储位
-				wmToDownGoods.setBinIdTo(wmOmQmI.getOmNoticeId());//到托盘
-				wmToDownGoods.setCusCode(wmOmQmI.getCusCode());//货主
-				wmToDownGoods.setGoodsId(wmOmQmI.getGoodsId());//
-				wmToDownGoods.setGoodsProData(wmOmQmI.getProData());//生产日期
-				wmToDownGoods.setOrderId(wmOmQmI.getOmNoticeId());//出货通知单
-				wmToDownGoods.setOrderIdI(wmOmQmI.getId());//出货通知项目
-				wmToDownGoods.setBaseUnit(wmOmQmI.getBaseUnit());//基本单位
-				wmToDownGoods.setBaseGoodscount(wmOmQmI.getBaseGoodscount());//基本单位数量
-				wmToDownGoods.setGoodsUnit(wmOmQmI.getGoodsUnit());//出货单位
-				wmToDownGoods.setGoodsQua(wmOmQmI.getQmOkQuat());//出货数量
-				wmToDownGoods.setGoodsQuaok(wmOmQmI.getQmOkQuat());//出货数量
-				wmToDownGoods.setGoodsName(wmOmQmI.getGoodsName());//商品名称
-				wmToDownGoods.setOmBeizhu(wmOmQmI.getOmBeizhu());//备注
-				wmToDownGoods.setImCusCode(wmOmQmI.getImCusCode());//客户单号
-				wmToDownGoods.setOrderType("01");//默认为01
-				systemService.save(wmToDownGoods);
-				wmOmQmI.setBinSta("Y");
-				systemService.saveOrUpdate(wmOmQmI);
-				try{
-					String orderId = wmOmQmI.getOmNoticeId();
-					String type = "jh";
-					String username = ResourceUtil.getSessionUserName().getRealName();
-					updateUser(orderId,type,username);
-				}catch (Exception e){
-				}
-				 return true;
-			} else {
-				 return false;
-			}
-		} catch (Exception e) {
-		 return false;
-		}
-	}
+    public boolean todown(String id) {
+        try {
+            WmOmQmIEntity wmOmQmI = systemService.getEntity(
+                    WmOmQmIEntity.class, id);
+            if (wmOmQmI != null && wmOmQmI.getBinSta().equals("N")) {
+                WmToDownGoodsEntity wmToDownGoods = new WmToDownGoodsEntity();
+                wmToDownGoods.setBinIdFrom(wmOmQmI.getTinId());//下架托盘
+                wmToDownGoods.setKuWeiBianMa(wmOmQmI.getBinId());//储位
+                wmToDownGoods.setBinIdTo(wmOmQmI.getOmNoticeId());//到托盘
+                wmToDownGoods.setCusCode(wmOmQmI.getCusCode());//货主
+                wmToDownGoods.setGoodsId(wmOmQmI.getGoodsId());//
+                wmToDownGoods.setGoodsProData(wmOmQmI.getProData());//生产日期
+                wmToDownGoods.setOrderId(wmOmQmI.getOmNoticeId());//出货通知单
+                wmToDownGoods.setOrderIdI(wmOmQmI.getId());//出货通知项目
+                wmToDownGoods.setBaseUnit(wmOmQmI.getBaseUnit());//基本单位
+                wmToDownGoods.setBaseGoodscount(wmOmQmI.getBaseGoodscount());//基本单位数量
+                wmToDownGoods.setGoodsUnit(wmOmQmI.getGoodsUnit());//出货单位
+                wmToDownGoods.setGoodsQua(wmOmQmI.getQmOkQuat());//出货数量
+                wmToDownGoods.setGoodsQuaok(wmOmQmI.getQmOkQuat());//出货数量
+                wmToDownGoods.setGoodsName(wmOmQmI.getGoodsName());//商品名称
+                wmToDownGoods.setOmBeizhu(wmOmQmI.getOmBeizhu());//备注
+                wmToDownGoods.setImCusCode(wmOmQmI.getImCusCode());//客户单号
+                wmToDownGoods.setOrderType("01");//默认为01
+                systemService.save(wmToDownGoods);
+                wmOmQmI.setBinSta("Y");
+                systemService.saveOrUpdate(wmOmQmI);
+                try {
+                    String orderId = wmOmQmI.getOmNoticeId();
+                    String type = "jh";
+                    String username = ResourceUtil.getSessionUserName().getRealName();
+                    updateUser(orderId, type, username);
+                } catch (Exception e) {
+                }
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
-	/**
-	 * 批量删除下架任务
-	 *
-	 * @return
-	 */
-	 @RequestMapping(params = "doBatchDel")
-	@ResponseBody
-	public AjaxJson doBatchDel(String ids,HttpServletRequest request){
-		String message = null;
-		AjaxJson j = new AjaxJson();
-		message = "下架任务删除成功";
-		try{
-			for(String id:ids.split(",")){
-				WmOmQmIEntity wmOmQmI = systemService.getEntity(WmOmQmIEntity.class,
-				id
-				);
-				wmOmQmIService.delete(wmOmQmI);
-				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-			message = "下架任务删除失败";
-			throw new BusinessException(e.getMessage());
-		}
-		j.setMsg(message);
-		return j;
-	}
-
-
-	/**
-	 * 添加下架任务
-	 *
-	 * @return
-	 */
-	@RequestMapping(params = "doAdd")
-	@ResponseBody
-	public AjaxJson doAdd(WmOmQmIEntity wmOmQmI, HttpServletRequest request) {
-		String message = null;
-		AjaxJson j = new AjaxJson();
-		message = "下架任务添加成功";
-		try{
-			wmOmQmIService.save(wmOmQmI);
-			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
-		}catch(Exception e){
-			e.printStackTrace();
-			message = "下架任务添加失败";
-			throw new BusinessException(e.getMessage());
-		}
-		j.setMsg(message);
-		return j;
-	}
+    /**
+     * 批量删除下架任务
+     *
+     * @return
+     */
+    @RequestMapping(params = "doBatchDel")
+    @ResponseBody
+    public AjaxJson doBatchDel(String ids, HttpServletRequest request) {
+        String message = null;
+        AjaxJson j = new AjaxJson();
+        message = "下架任务删除成功";
+        try {
+            for (String id : ids.split(",")) {
+                WmOmQmIEntity wmOmQmI = systemService.getEntity(WmOmQmIEntity.class,
+                        id
+                );
+                wmOmQmIService.delete(wmOmQmI);
+                systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+             throw new BusinessException(e.getMessage());
+        }
+        j.setMsg(message);
+        return j;
+    }
 
 
-	/**
-	 *
-	 * @param page
-	 * @return
-	 */
-	@RequestMapping(params = "saveRows")
-	@ResponseBody
-	public AjaxJson saveRows(omqmpage page){
-		String message = null;
-		List<WmOmQmIEntity> demos=page.getOmqmrows();
-		AjaxJson j = new AjaxJson();
-		if(CollectionUtils.isNotEmpty(demos)){
-			for(WmOmQmIEntity jeecgDemo:demos){
-				if (StringUtil.isNotEmpty(jeecgDemo.getId())) {
-					WmOmQmIEntity t =systemService.get(WmOmQmIEntity.class, jeecgDemo.getId());
-					try {
-						if(!wmUtil.checkstcok( jeecgDemo.getBinId(),jeecgDemo.getTinId(),jeecgDemo.getGoodsId(),jeecgDemo.getProData(),jeecgDemo.getBaseGoodscount())) {
-						}else{
-						message = "批量保存成功";
-						MyBeanUtils.copyBeanNotNull2Bean(jeecgDemo, t);
-						systemService.saveOrUpdate(t);
-						systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
-						}
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		}
-		return j;
-	}
+    /**
+     * 添加下架任务
+     *
+     * @return
+     */
+    @RequestMapping(params = "doAdd")
+    @ResponseBody
+    public AjaxJson doAdd(WmOmQmIEntity wmOmQmI, HttpServletRequest request) {
+        String message = null;
+        AjaxJson j = new AjaxJson();
+        message = "下架任务添加成功";
+        try {
+            wmOmQmIService.save(wmOmQmI);
+            systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
+        } catch (Exception e) {
+            e.printStackTrace();
+             throw new BusinessException(e.getMessage());
+        }
+        j.setMsg(message);
+        return j;
+    }
 
 
-
-	/**
-	 * 更新下架任务
-	 *
-	 * @return
-	 */
-	@RequestMapping(params = "doUpdate")
-	@ResponseBody
-	public AjaxJson doUpdate(WmOmQmIEntity wmOmQmI, HttpServletRequest request) {
-		String message = null;
-		AjaxJson j = new AjaxJson();
-		message = "下架任务更新成功";
-		WmOmQmIEntity t = wmOmQmIService.get(WmOmQmIEntity.class, wmOmQmI.getId());
-		try {
-			if(!wmUtil.checkstcok( wmOmQmI.getBinId(),wmOmQmI.getTinId(),wmOmQmI.getGoodsId(),wmOmQmI.getProData(),wmOmQmI.getBaseGoodscount())){
-				message = "库存不足";
-				j.setMsg(message);
-				return j;
-			}else{
-				double goods = Double.parseDouble(wmOmQmI.getBaseGoodscount());
-					wmOmQmI.setQmOkQuat(wmOmQmI.getBaseGoodscount());
-					wmOmQmI.setOmQuat(wmOmQmI.getBaseGoodscount());
-					MyBeanUtils.copyBeanNotNull2Bean(wmOmQmI, t);
-				wmOmQmIService.saveOrUpdate(t);
-				systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			message = "下架任务更新失败";
-			throw new BusinessException(e.getMessage());
-		}
-		j.setMsg(message);
-		return j;
-	}
-	/**
-	 * 更新下架任务
-	 *
-	 * @return
-	 */
-	@RequestMapping(params = "dobatchassgnto")
-	@ResponseBody
-	public AjaxJson dobatchassgnto(String id,String assgnTo, HttpServletRequest request) {
-		String message = null;
-		AjaxJson j = new AjaxJson();
-		message = "下架任务更新成功";
-		WmOmQmIEntity t = wmOmQmIService.get(WmOmQmIEntity.class, id);
-		try {
-				t.setAssignTo(assgnTo);
-				wmOmQmIService.saveOrUpdate(t);
-				systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
-		} catch (Exception e) {
-			e.printStackTrace();
-			message = "下架任务更新失败";
-			throw new BusinessException(e.getMessage());
-		}
-		j.setMsg(message);
-		return j;
-	}
-
-	/**
-	 * 下架任务新增页面跳转
-	 *
-	 * @return
-	 */
-	@RequestMapping(params = "goAdd")
-	public ModelAndView goAdd(WmOmQmIEntity wmOmQmI, HttpServletRequest req) {
-		if (StringUtil.isNotEmpty(wmOmQmI.getId())) {
-			wmOmQmI = wmOmQmIService.getEntity(WmOmQmIEntity.class, wmOmQmI.getId());
-			req.setAttribute("wmOmQmIPage", wmOmQmI);
-		}
-		return new ModelAndView("com/zzjee/wm/wmOmQmI-add");
-	}
-	/**
-	 * 下架任务编辑页面跳转
-	 *
-	 * @return
-	 */
-	@RequestMapping(params = "goUpdate")
-	public ModelAndView goUpdate(WmOmQmIEntity wmOmQmI, HttpServletRequest req) {
-		if (StringUtil.isNotEmpty(wmOmQmI.getId())) {
-			wmOmQmI = wmOmQmIService.getEntity(WmOmQmIEntity.class, wmOmQmI.getId());
-			req.setAttribute("wmOmQmIPage", wmOmQmI);
-		}
-		return new ModelAndView("com/zzjee/wm/wmOmQmI-update");
-	}
-
-	/**
-	 * 导入功能跳转
-	 *
-	 * @return
-	 */
-	@RequestMapping(params = "upload")
-	public ModelAndView upload(HttpServletRequest req) {
-		req.setAttribute("controller_name","wmOmQmIController");
-		return new ModelAndView("common/upload/pub_excel_upload");
-	}
-
-	/**
-	 * 导出excel
-	 *
-	 * @param request
-	 * @param response
-	 */
-	@RequestMapping(params = "exportXls")
-	public String exportXls(WmOmQmIEntity wmOmQmI,HttpServletRequest request,HttpServletResponse response
-			, DataGrid dataGrid,ModelMap modelMap) {
-		CriteriaQuery cq = new CriteriaQuery(WmOmQmIEntity.class, dataGrid);
-		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wmOmQmI, request.getParameterMap());
-		List<WmOmQmIEntity> wmOmQmIs = this.wmOmQmIService.getListByCriteriaQuery(cq,false);
-		modelMap.put(NormalExcelConstants.FILE_NAME,"下架任务");
-		modelMap.put(NormalExcelConstants.CLASS,WmOmQmIEntity.class);
-		modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("下架任务列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
-			"导出信息"));
-		modelMap.put(NormalExcelConstants.DATA_LIST,wmOmQmIs);
-		return NormalExcelConstants.JEECG_EXCEL_VIEW;
-	}
-	/**
-	 * 导出excel 使模板
-	 *
-	 * @param request
-	 * @param response
-	 */
-	@RequestMapping(params = "exportXlsByT")
-	public String exportXlsByT(WmOmQmIEntity wmOmQmI,HttpServletRequest request,HttpServletResponse response
-			, DataGrid dataGrid,ModelMap modelMap) {
-    	modelMap.put(NormalExcelConstants.FILE_NAME,"下架任务");
-    	modelMap.put(NormalExcelConstants.CLASS,WmOmQmIEntity.class);
-    	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("下架任务列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
-    	"导出信息"));
-    	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
-    	return NormalExcelConstants.JEECG_EXCEL_VIEW;
-	}
-
-	@SuppressWarnings("unchecked")
-	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
-	@ResponseBody
-	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
-		AjaxJson j = new AjaxJson();
-
-		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
-		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
-			MultipartFile file = entity.getValue();// 获取上传文件对象
-			ImportParams params = new ImportParams();
-			params.setTitleRows(2);
-			params.setHeadRows(1);
-			params.setNeedSave(true);
-			try {
-				List<WmOmQmIEntity> listWmOmQmIEntitys = ExcelImportUtil.importExcel(file.getInputStream(),WmOmQmIEntity.class,params);
-				for (WmOmQmIEntity wmOmQmI : listWmOmQmIEntitys) {
-					wmOmQmIService.save(wmOmQmI);
-				}
-				j.setMsg("文件导入成功！");
-			} catch (Exception e) {
-				j.setMsg("文件导入失败！");
-				logger.error(ExceptionUtil.getExceptionMessage(e));
-			}finally{
-				try {
-					file.getInputStream().close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return j;
-	}
-
-	@RequestMapping(method = RequestMethod.GET)
-	@ResponseBody
-	public List<WmOmQmIEntity> list() {
-		List<WmOmQmIEntity> listWmOmQmIs=wmOmQmIService.getList(WmOmQmIEntity.class);
-		return listWmOmQmIs;
-	}
-
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	@ResponseBody
-	public ResponseEntity<?> get(@PathVariable("id") String id) {
-		WmOmQmIEntity task = wmOmQmIService.get(WmOmQmIEntity.class, id);
-		if (task == null) {
-			return new ResponseEntity(HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity(task, HttpStatus.OK);
-	}
-
-	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public ResponseEntity<?> create(@RequestBody WmOmQmIEntity wmOmQmI, UriComponentsBuilder uriBuilder) {
-		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
-		Set<ConstraintViolation<WmOmQmIEntity>> failures = validator.validate(wmOmQmI);
-		if (!failures.isEmpty()) {
-			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
-		}
-
-		//保存
-		try{
-			wmOmQmIService.save(wmOmQmI);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity(HttpStatus.NO_CONTENT);
-		}
-		//按照Restful风格约定，创建指向新任务的url, 也可以直接返回id或对象.
-		String id = wmOmQmI.getId();
-		URI uri = uriBuilder.path("/rest/wmOmQmIController/" + id).build().toUri();
-		HttpHeaders headers = new HttpHeaders();
-		headers.setLocation(uri);
-
-		return new ResponseEntity(headers, HttpStatus.CREATED);
-	}
-
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> update(@RequestBody WmOmQmIEntity wmOmQmI) {
-		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
-		Set<ConstraintViolation<WmOmQmIEntity>> failures = validator.validate(wmOmQmI);
-		if (!failures.isEmpty()) {
-			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
-		}
-
-		//保存
-		try{
-			wmOmQmIService.saveOrUpdate(wmOmQmI);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity(HttpStatus.NO_CONTENT);
-		}
-
-		//按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
-		return new ResponseEntity(HttpStatus.NO_CONTENT);
-	}
+    /**
+     * @param page
+     * @return
+     */
+    @RequestMapping(params = "saveRows")
+    @ResponseBody
+    public AjaxJson saveRows(omqmpage page) {
+        String message = null;
+        List<WmOmQmIEntity> demos = page.getOmqmrows();
+        AjaxJson j = new AjaxJson();
+        if (CollectionUtils.isNotEmpty(demos)) {
+            for (WmOmQmIEntity jeecgDemo : demos) {
+                if (StringUtil.isNotEmpty(jeecgDemo.getId())) {
+                    WmOmQmIEntity t = systemService.get(WmOmQmIEntity.class, jeecgDemo.getId());
+                    try {
+                        if (!wmUtil.checkstcok(jeecgDemo.getBinId(), jeecgDemo.getTinId(), jeecgDemo.getGoodsId(), jeecgDemo.getProData(), jeecgDemo.getBaseGoodscount())) {
+                        } else {
+                            message = "批量保存成功";
+                            MyBeanUtils.copyBeanNotNull2Bean(jeecgDemo, t);
+                            systemService.saveOrUpdate(t);
+                            systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        return j;
+    }
 
 
-	void  updateUser(String orderId,String type,String userName){
-		try{
-			WmOmNoticeHEntity wmOmNoticeHEntity = systemService.findUniqueByProperty(WmOmNoticeHEntity.class,"omNoticeId",orderId);
-			if ("jh".equals(type)){
-				wmOmNoticeHEntity.setJhUser(userName);
-			}
-			if ("fh".equals(type)){
-				wmOmNoticeHEntity.setFhUser(userName);
-			}
-			systemService.updateEntitie(wmOmNoticeHEntity);
-		}catch (Exception e){
+    /**
+     * 更新下架任务
+     *
+     * @return
+     */
+    @RequestMapping(params = "doUpdate")
+    @ResponseBody
+    public AjaxJson doUpdate(WmOmQmIEntity wmOmQmI, HttpServletRequest request) {
+        String message = null;
+        AjaxJson j = new AjaxJson();
+        message = "下架任务更新成功";
+        WmOmQmIEntity t = wmOmQmIService.get(WmOmQmIEntity.class, wmOmQmI.getId());
+        try {
+            if (!wmUtil.checkstcok(wmOmQmI.getBinId(), wmOmQmI.getTinId(), wmOmQmI.getGoodsId(), wmOmQmI.getProData(), wmOmQmI.getBaseGoodscount())) {
+                message = "库存不足";
+                j.setMsg(message);
+                return j;
+            } else {
+                double goods = Double.parseDouble(wmOmQmI.getBaseGoodscount());
+                wmOmQmI.setQmOkQuat(wmOmQmI.getBaseGoodscount());
+                wmOmQmI.setOmQuat(wmOmQmI.getBaseGoodscount());
+                MyBeanUtils.copyBeanNotNull2Bean(wmOmQmI, t);
+                wmOmQmIService.saveOrUpdate(t);
+                systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
+            }
 
-		}
+        } catch (Exception e) {
+            e.printStackTrace();
+             throw new BusinessException(e.getMessage());
+        }
+        j.setMsg(message);
+        return j;
+    }
 
-	}
+    /**
+     * 更新下架任务
+     *
+     * @return
+     */
+    @RequestMapping(params = "dobatchassgnto")
+    @ResponseBody
+    public AjaxJson dobatchassgnto(String id, String assgnTo, HttpServletRequest request) {
+        String message = null;
+        AjaxJson j = new AjaxJson();
+        message = "下架任务更新成功";
+        WmOmQmIEntity t = wmOmQmIService.get(WmOmQmIEntity.class, id);
+        try {
+            t.setAssignTo(assgnTo);
+            wmOmQmIService.saveOrUpdate(t);
+            systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
+        } catch (Exception e) {
+            e.printStackTrace();
+             throw new BusinessException(e.getMessage());
+        }
+        j.setMsg(message);
+        return j;
+    }
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void delete(@PathVariable("id") String id) {
-		wmOmQmIService.deleteEntityById(WmOmQmIEntity.class, id);
-	}
+    /**
+     * 下架任务新增页面跳转
+     *
+     * @return
+     */
+    @RequestMapping(params = "goAdd")
+    public ModelAndView goAdd(WmOmQmIEntity wmOmQmI, HttpServletRequest req) {
+        if (StringUtil.isNotEmpty(wmOmQmI.getId())) {
+            wmOmQmI = wmOmQmIService.getEntity(WmOmQmIEntity.class, wmOmQmI.getId());
+            req.setAttribute("wmOmQmIPage", wmOmQmI);
+        }
+        return new ModelAndView("com/zzjee/wm/wmOmQmI-add");
+    }
+
+    /**
+     * 下架任务编辑页面跳转
+     *
+     * @return
+     */
+    @RequestMapping(params = "goUpdate")
+    public ModelAndView goUpdate(WmOmQmIEntity wmOmQmI, HttpServletRequest req) {
+        if (StringUtil.isNotEmpty(wmOmQmI.getId())) {
+            wmOmQmI = wmOmQmIService.getEntity(WmOmQmIEntity.class, wmOmQmI.getId());
+            req.setAttribute("wmOmQmIPage", wmOmQmI);
+        }
+        return new ModelAndView("com/zzjee/wm/wmOmQmI-update");
+    }
+
+    /**
+     * 导入功能跳转
+     *
+     * @return
+     */
+    @RequestMapping(params = "upload")
+    public ModelAndView upload(HttpServletRequest req) {
+        req.setAttribute("controller_name", "wmOmQmIController");
+        return new ModelAndView("common/upload/pub_excel_upload");
+    }
+
+    /**
+     * 导出excel
+     *
+     * @param request
+     * @param response
+     */
+    @RequestMapping(params = "exportXls")
+    public String exportXls(WmOmQmIEntity wmOmQmI, HttpServletRequest request, HttpServletResponse response
+            , DataGrid dataGrid, ModelMap modelMap) {
+        CriteriaQuery cq = new CriteriaQuery(WmOmQmIEntity.class, dataGrid);
+        org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, wmOmQmI, request.getParameterMap());
+        List<WmOmQmIEntity> wmOmQmIs = this.wmOmQmIService.getListByCriteriaQuery(cq, false);
+        modelMap.put(NormalExcelConstants.FILE_NAME, "下架任务");
+        modelMap.put(NormalExcelConstants.CLASS, WmOmQmIEntity.class);
+        modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("下架任务列表", "导出人:" + ResourceUtil.getSessionUserName().getRealName(),
+                "导出信息"));
+        modelMap.put(NormalExcelConstants.DATA_LIST, wmOmQmIs);
+        return NormalExcelConstants.JEECG_EXCEL_VIEW;
+    }
+
+    /**
+     * 导出excel 使模板
+     *
+     * @param request
+     * @param response
+     */
+    @RequestMapping(params = "exportXlsByT")
+    public String exportXlsByT(WmOmQmIEntity wmOmQmI, HttpServletRequest request, HttpServletResponse response
+            , DataGrid dataGrid, ModelMap modelMap) {
+        modelMap.put(NormalExcelConstants.FILE_NAME, "下架任务");
+        modelMap.put(NormalExcelConstants.CLASS, WmOmQmIEntity.class);
+        modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("下架任务列表", "导出人:" + ResourceUtil.getSessionUserName().getRealName(),
+                "导出信息"));
+        modelMap.put(NormalExcelConstants.DATA_LIST, new ArrayList());
+        return NormalExcelConstants.JEECG_EXCEL_VIEW;
+    }
+
+    @SuppressWarnings("unchecked")
+    @RequestMapping(params = "importExcel", method = RequestMethod.POST)
+    @ResponseBody
+    public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
+        AjaxJson j = new AjaxJson();
+
+        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+        Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+        for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
+            MultipartFile file = entity.getValue();// 获取上传文件对象
+            ImportParams params = new ImportParams();
+            params.setTitleRows(2);
+            params.setHeadRows(1);
+            params.setNeedSave(true);
+            try {
+                List<WmOmQmIEntity> listWmOmQmIEntitys = ExcelImportUtil.importExcel(file.getInputStream(), WmOmQmIEntity.class, params);
+                for (WmOmQmIEntity wmOmQmI : listWmOmQmIEntitys) {
+                    wmOmQmIService.save(wmOmQmI);
+                }
+                j.setMsg("文件导入成功！");
+            } catch (Exception e) {
+                j.setMsg("文件导入失败！");
+                logger.error(ExceptionUtil.getExceptionMessage(e));
+            } finally {
+                try {
+                    file.getInputStream().close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return j;
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    @ResponseBody
+    public List<WmOmQmIEntity> list() {
+        List<WmOmQmIEntity> listWmOmQmIs = wmOmQmIService.getList(WmOmQmIEntity.class);
+        return listWmOmQmIs;
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<?> get(@PathVariable("id") String id) {
+        WmOmQmIEntity task = wmOmQmIService.get(WmOmQmIEntity.class, id);
+        if (task == null) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity(task, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<?> create(@RequestBody WmOmQmIEntity wmOmQmI, UriComponentsBuilder uriBuilder) {
+        //调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
+        Set<ConstraintViolation<WmOmQmIEntity>> failures = validator.validate(wmOmQmI);
+        if (!failures.isEmpty()) {
+            return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
+        }
+
+        //保存
+        try {
+            wmOmQmIService.save(wmOmQmI);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }
+        //按照Restful风格约定，创建指向新任务的url, 也可以直接返回id或对象.
+        String id = wmOmQmI.getId();
+        URI uri = uriBuilder.path("/rest/wmOmQmIController/" + id).build().toUri();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(uri);
+
+        return new ResponseEntity(headers, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> update(@RequestBody WmOmQmIEntity wmOmQmI) {
+        //调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
+        Set<ConstraintViolation<WmOmQmIEntity>> failures = validator.validate(wmOmQmI);
+        if (!failures.isEmpty()) {
+            return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
+        }
+
+        //保存
+        try {
+            wmOmQmIService.saveOrUpdate(wmOmQmI);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }
+
+        //按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
+
+    void updateUser(String orderId, String type, String userName) {
+        try {
+            WmOmNoticeHEntity wmOmNoticeHEntity = systemService.findUniqueByProperty(WmOmNoticeHEntity.class, "omNoticeId", orderId);
+            if ("jh".equals(type)) {
+                wmOmNoticeHEntity.setJhUser(userName);
+            }
+            if ("fh".equals(type)) {
+                wmOmNoticeHEntity.setFhUser(userName);
+            }
+            systemService.updateEntitie(wmOmNoticeHEntity);
+        } catch (Exception e) {
+
+        }
+
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable("id") String id) {
+        wmOmQmIService.deleteEntityById(WmOmQmIEntity.class, id);
+    }
 }

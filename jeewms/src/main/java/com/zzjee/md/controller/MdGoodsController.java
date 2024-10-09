@@ -1,9 +1,7 @@
 package com.zzjee.md.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URI;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -13,10 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Validator;
 
 import com.zzjee.md.entity.MdCusEntity;
-import com.zzjee.wm.entity.WmOmQmIEntity;
+
 import com.zzjee.wm.page.WmOmNoticeImpnewPage;
-import com.zzjee.wm.page.WmTmsNoticeHPage;
-import com.zzjee.wmutil.dsc.dscUtil;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.jeecgframework.core.common.controller.BaseController;
@@ -46,16 +43,14 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.zzjee.api.ResultDO;
-import com.zzjee.md.entity.MdCusOtherEntity;
 import com.zzjee.md.entity.MdGoodsEntity;
 import com.zzjee.md.entity.MvGoodsEntity;
 import com.zzjee.md.service.MdGoodsServiceI;
 import com.zzjee.wm.entity.WmOmNoticeHEntity;
 import com.zzjee.wm.entity.WmOmNoticeIEntity;
 import com.zzjee.wm.service.WmOmNoticeHServiceI;
-import com.zzjee.wmutil.wmIntUtil;
 import com.zzjee.wmutil.wmUtil;
-import com.zzjee.wmutil.yyUtil;
+
 
 /**
  * @Title: Controller
@@ -78,11 +73,6 @@ public class MdGoodsController extends BaseController {
 	private MdGoodsServiceI mdGoodsService;
 	@Autowired
 	private SystemService systemService;
-	@Autowired
-	private Validator validator;
-
-	@Autowired
-	private WmOmNoticeHServiceI wmOmNoticeHService;
 	/**
 	 * 商品信息列表 页面跳转
 	 *
@@ -98,8 +88,9 @@ public class MdGoodsController extends BaseController {
 		return new ModelAndView("com/zzjee/md/mdGoodsallList");
 	}
 	/**
-	 * easyui AJAX请求数据
+	 * easyui 处理AJAX请求以返回MdGoodsEntity数据列表的datagrid
 	 *
+	 * @param mdGoods
 	 * @param request
 	 * @param response
 	 * @param dataGrid
@@ -112,15 +103,9 @@ public class MdGoodsController extends BaseController {
 		// 查询条件组装器
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq,
 				mdGoods, request.getParameterMap());
-
 		if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
 			cq.eq("suoShuKeHu", wmUtil.getCusCode());
 		}
-
-
-//		if(mdGoods.getZhuangTai()==null){
-//			cq.notEq("zhuangTai", "Y");
-//		}
 		cq.add();
 		this.mdGoodsService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
@@ -129,6 +114,8 @@ public class MdGoodsController extends BaseController {
 	/**
 	 * 删除商品信息
 	 *
+	 * @param mdGoods
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -139,7 +126,6 @@ public class MdGoodsController extends BaseController {
 		mdGoods = systemService.getEntity(MdGoodsEntity.class, mdGoods.getId());
 		message = "商品删除成功";
 		try {
-//			mdGoods.setZhuangTai("Y");
 			if(wmUtil.checkishavestock("goods",mdGoods.getShpBianMa())){
 				message = "商品存在库存";
 				j.setSuccess(false);
@@ -151,7 +137,6 @@ public class MdGoodsController extends BaseController {
 					Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "商品删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -171,6 +156,8 @@ public class MdGoodsController extends BaseController {
 	/**
 	 * 批量删除商品信息
 	 *
+	 * @param ids
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doBatchDel")
@@ -195,7 +182,6 @@ public class MdGoodsController extends BaseController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "商品信息删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -205,6 +191,8 @@ public class MdGoodsController extends BaseController {
 	/**
 	 * 添加商品信息
 	 *
+	 * @param mdGoods
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -216,6 +204,8 @@ public class MdGoodsController extends BaseController {
 		try {
 			if(StringUtil.isEmpty(mdGoods.getChlKongZhi()) ){
 				mdGoods.setChlKongZhi("N");
+			}
+			if(StringUtil.isEmpty(mdGoods.getChlShl())){
 				mdGoods.setChlShl("1");
 				mdGoods.setJshDanWei(mdGoods.getShlDanWei());
 			}
@@ -256,61 +246,22 @@ public class MdGoodsController extends BaseController {
 					systemService.addLog(message, Globals.Log_Type_INSERT,
 							Globals.Log_Leavel_INFO);
 				}
-
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "商品信息添加失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
 
-	/**
-	 * 更新商品信息
-	 *
-	 * @return
-	 */
-	@RequestMapping(params = "doGet")
-	@ResponseBody
-	public AjaxJson dogetfromother(String formDate,String othercode, HttpServletRequest request) {
-		String message = null;
-		AjaxJson j = new AjaxJson();
-		message = "商品信息读取成功";
 
-		try {
-
-			if ("U8".equals(ResourceUtil.getConfigByName("interfacetype"))){
-				yyUtil.getProduct(othercode);
-
-			}
-			if ("UAS".equals(ResourceUtil.getConfigByName("interfacetype"))){
-				if(StringUtil.isEmpty(formDate)){
-					formDate = "2011-01-01";
-				}
-				wmIntUtil.getproduct(formDate);
-
-			}
-			if ("DSC".equals(ResourceUtil.getConfigByName("interfacetype"))){
-
-				dscUtil.updateGoodsFromDsc();
-
-			}
-			systemService.addLog(message, Globals.Log_Type_UPDATE,
-					Globals.Log_Leavel_INFO);
-		} catch (Exception e) {
-			e.printStackTrace();
-			message = "商品信息读取失败";
-			throw new BusinessException(e.getMessage());
-		}
-		j.setMsg(message);
-		return j;
-	}
 
 	/**
 	 * 更新商品信息
 	 *
+	 * @param mdGoods
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -328,7 +279,6 @@ public class MdGoodsController extends BaseController {
 					Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "商品信息更新失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -338,6 +288,8 @@ public class MdGoodsController extends BaseController {
 	/**
 	 * 商品信息新增页面跳转
 	 *
+	 * @param mdGoods
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -352,6 +304,8 @@ public class MdGoodsController extends BaseController {
 	/**
 	 * 商品信息编辑页面跳转
 	 *
+	 * @param mdGoods
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -367,6 +321,7 @@ public class MdGoodsController extends BaseController {
 	/**
 	 * 导入功能跳转
 	 *
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "upload")
@@ -378,8 +333,11 @@ public class MdGoodsController extends BaseController {
 	/**
 	 * 导出excel
 	 *
+	 * @param mdGoods
 	 * @param request
 	 * @param response
+	 * @param dataGrid
+	 * @param modelMap
 	 */
 	@RequestMapping(params = "exportXls")
 	public String exportXls(MdGoodsEntity mdGoods, HttpServletRequest request,
@@ -392,11 +350,16 @@ public class MdGoodsController extends BaseController {
 				mdGoods, request.getParameterMap());
 		List<MdGoodsEntity> mdGoodss = this.mdGoodsService
 				.getListByCriteriaQuery(cq, false);
+		//设置Excel文件的基础信息
+		//文件名
 		modelMap.put(NormalExcelConstants.FILE_NAME, "商品信息");
+		//导出数据的类类型
 		modelMap.put(NormalExcelConstants.CLASS, MdGoodsEntity.class);
+		//设置导出参数
 		modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("商品信息列表",
 				"导出人:" + ResourceUtil.getSessionUserName().getRealName(),
 				"导出信息"));
+		//设置需要导出的数据列表
 		modelMap.put(NormalExcelConstants.DATA_LIST, mdGoodss);
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
@@ -404,36 +367,49 @@ public class MdGoodsController extends BaseController {
 	/**
 	 * 导出excel 使模板
 	 *
+	 * @param mdGoods
 	 * @param request
 	 * @param response
+	 * @param dataGrid
 	 */
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(MdGoodsEntity mdGoods,
 			HttpServletRequest request, HttpServletResponse response,
 			DataGrid dataGrid, ModelMap modelMap) {
+		//设置Excel文件的名称
 		modelMap.put(NormalExcelConstants.FILE_NAME, "商品信息");
 		modelMap.put(NormalExcelConstants.CLASS, MdGoodsEntity.class);
+		//设置导出参数
 		modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("商品信息列表",
 				"导出人:" + ResourceUtil.getSessionUserName().getRealName(),
 				"导出信息"));
+		//设置一个空的数据列表
 		modelMap.put(NormalExcelConstants.DATA_LIST, new ArrayList());
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 
+	/**
+	 * 通过excel导入数据
+	 *
+	 * @param request
+	 * @param response
+	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request,
 			HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-
+		// 将HttpServletRequest转换为MultipartHttpServletRequest，以便处理文件上传
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		//获取上传的文件映射
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
 			MultipartFile file = entity.getValue();// 获取上传文件对象
+			//设置Excel导入参数
 			ImportParams params = new ImportParams();
-			params.setTitleRows(2);
-			params.setHeadRows(1);
+			params.setTitleRows(2);//标题行
+			params.setHeadRows(1);//表头行
 			params.setNeedSave(true);
 			try {
 				List<MdGoodsEntity> listMdGoodsEntitys = ExcelImportUtil
@@ -450,7 +426,7 @@ public class MdGoodsController extends BaseController {
 							if(StringUtil.isEmpty(mdGoods.getShpBianMa())){//商品编码为空则自动编码
 								if (StringUtils.isEmpty(mdGoods.getCategoryCode())) {
 									j.setSuccess(false);
-									j.setMsg("类目编码为空：");
+									j.setMsg("类目编码为空");
 									return j;
 								}
 								Map<String, Object> countMap = systemService.findOneForJdbc("select right(shp_bian_ma,7) shp_bian_ma  from md_goods where category_code =? and suo_shu_ke_hu  = ? and shp_bian_ma like ? ORDER BY shp_bian_ma desc LIMIT 1",mdGoods.getCategoryCode(),mdGoods.getSuoShuKeHu(),mdGoods.getSuoShuKeHu()+mdGoods.getCategoryCode()+"%");
@@ -466,26 +442,25 @@ public class MdGoodsController extends BaseController {
 								}
 							}
 
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						try{
 
+							if(StringUtil.isEmpty(mdGoods.getChlKongZhi()) ){
+								mdGoods.setChlKongZhi("N");
+							}
+							if(StringUtil.isEmpty(mdGoods.getChlShl())){
+								mdGoods.setChlShl("1");
+								mdGoods.setJshDanWei(mdGoods.getShlDanWei());
+							}
 							if(StringUtil.isEmpty(mdGoods.getZhlKgm())){
 								if(!StringUtil.isEmpty(mdGoods.getBzhiQi())){
 									int bzhiq = Integer.parseInt(mdGoods.getBzhiQi());
 									mdGoods.setZhlKgm(Integer.toString(bzhiq));
 								}
-
 							}
-							if(StringUtil.isEmpty(mdGoods.getChlKongZhi()) ){
-								mdGoods.setChlKongZhi("N");
-
-							}
-							if("N".equals(mdGoods.getChlKongZhi())){
-								mdGoods.setChlShl("1");
-								mdGoods.setJshDanWei(mdGoods.getShlDanWei());
-
-							}
-
-						} catch (Exception e) {
-							// TODO: handle exception
+						}catch (Exception e){
 							e.printStackTrace();
 						}
 						mdGoodsService.save(mdGoods);
@@ -496,11 +471,9 @@ public class MdGoodsController extends BaseController {
 									int bzhiq = Integer.parseInt(mdGoods.getBzhiQi());
 									mdGoods.setZhlKgm(Integer.toString(bzhiq));
 								}
-
 							}
 						} catch (Exception e) {
 							e.printStackTrace();
-							// TODO: handle exception
 						}
 				  		MyBeanUtils.copyBeanNotNull2Bean(mdGoods, mdGoods1);
 				  		mdGoodsService.updateEntitie(mdGoods1);
@@ -531,23 +504,13 @@ public class MdGoodsController extends BaseController {
 									@RequestParam(value="searchstrin1", required=false)String searchstrin1,
 									@RequestParam(value="searchstrin2", required=false)String searchstrin2,
 									@RequestParam(value="searchstrin3", required=false)String searchstrin3) {
-
-
 		ResultDO D0 = new  ResultDO();
-
 		String hql = " from MdGoodsEntity where 1 = 1    ";
 		D0.setOK(true);
 		if(!StringUtil.isEmpty(searchstr)) {
 			hql=hql+"  and  (shpBianMa = '" + searchstr + "'";
             hql=hql+"  or   shpTiaoMa = '" + searchstr + "')";
-
         }
-//		if(!StringUtil.isEmpty(searchstr2)) {
-//			hql=hql+"  and (shpTiaoMa = '" + searchstr2 + "'";
-//            hql=hql+"  or shpBianMa = '" + searchstr2 + "')";
-//
-//        }
-
 		List<MdGoodsEntity> listMdGoodss = mdGoodsService.findHql(hql);
 		D0.setOK(true);
 		List<MdGoodsEntity> result = new ArrayList<MdGoodsEntity>();
@@ -559,12 +522,8 @@ public class MdGoodsController extends BaseController {
 							break;
 						}
 					}
-//					t.setShpYanSe(searchstrin1);
-//					t.setPpTuPian(searchstrin2);
-//					t.setJjZhongBi(searchstrin3);
 			result.add(t);
 		}
-
 		D0.setObj(result);
 		return new ResponseEntity(D0, HttpStatus.OK);
 	}
@@ -583,17 +542,8 @@ public class MdGoodsController extends BaseController {
 	@ResponseBody
 	public ResponseEntity<?> create(@RequestParam String mdGoodsstr,
 			UriComponentsBuilder uriBuilder) {
-		// 调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
-//		Set<ConstraintViolation<MdGoodsEntity>> failures = validator
-//				.validate(mdGoods);
-//		if (!failures.isEmpty()) {
-//			return new ResponseEntity(
-//					BeanValidators.extractPropertyAndMessage(failures),
-//					HttpStatus.BAD_REQUEST);
-//		}
 		ResultDO D0 = new  ResultDO();
 		MdGoodsEntity mdGoods  = (MdGoodsEntity)JSONHelper.json2Object(mdGoodsstr,MdGoodsEntity.class);
-
 		// 保存
 		try {
 			mdGoodsService.save(mdGoods);
@@ -612,7 +562,6 @@ public class MdGoodsController extends BaseController {
 		return new ResponseEntity(D0, HttpStatus.OK);
 	}
 
-
 	@RequestMapping(value = "/apicreategoods")
 	@ResponseBody
 	public ResponseEntity<?> creategoods(@RequestBody MdGoodsEntity mdGoodsEntity ) {
@@ -625,10 +574,7 @@ public class MdGoodsController extends BaseController {
 				mdGoodsService.saveOrUpdate(t);
 			}else{
 				mdGoodsService.save(mdGoodsEntity);
-
 			}
-
-
 			try{
 				MdCusEntity mdcus1 = systemService.findUniqueByProperty(MdCusEntity.class, "keHuBianMa", mdGoodsEntity.getSuoShuKeHu());
 				if(mdcus1==null){
@@ -637,11 +583,8 @@ public class MdGoodsController extends BaseController {
 					mdcus1.setZhongWenQch(mdGoodsEntity.getCusName());
 					systemService.save(mdcus1);
  				}
-
 			}catch(Exception e){
-
 			}
-
 			D0.setOK(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -664,15 +607,12 @@ public class MdGoodsController extends BaseController {
 				mdGoodsService.saveOrUpdate(t);
 			}else{
 				mdGoodsService.save(mdGoods);
-
 			}
-
 			D0.setOK(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 			D0.setOK(false);
 		}
-
 		// 按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
 		return new ResponseEntity(D0, HttpStatus.OK);
 	}
@@ -693,7 +633,6 @@ public class MdGoodsController extends BaseController {
 			e.printStackTrace();
 			D0.setOK(false);
 		}
-
 		// 按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
 		return new ResponseEntity(D0, HttpStatus.OK);
 	}
@@ -704,10 +643,8 @@ public class MdGoodsController extends BaseController {
 									UriComponentsBuilder uriBuilder) {		// 调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
 		ResultDO D0 = new  ResultDO();
 		WmOmNoticeImpnewPage pageheader  = (WmOmNoticeImpnewPage)JSONHelper.json2Object(mdGoodsstr,WmOmNoticeImpnewPage.class);
-
 		WmOmNoticeHEntity wmOmNoticeH = null;
 		MdGoodsEntity t = systemService.get(MdGoodsEntity.class,pageheader.getId());
-
 		List<WmOmNoticeHEntity>  wmomh = systemService.findByProperty(WmOmNoticeHEntity.class, "imCusCode", pageheader.getImCusCode());
 		if(wmomh!=null&&wmomh.size()>0){
 			wmOmNoticeH = wmomh.get(0);
@@ -721,7 +658,6 @@ public class MdGoodsController extends BaseController {
 			wmOmNoticeH.setImCusCode(pageheader.getImCusCode());
 			wmOmNoticeH.setReCarno(pageheader.getReCarno());
 			wmOmNoticeH.setOmBeizhu(pageheader.getImBeizhu());
-
 			systemService.save(wmOmNoticeH);
 		}
 		WmOmNoticeIEntity wmi = new WmOmNoticeIEntity();
@@ -737,7 +673,6 @@ public class MdGoodsController extends BaseController {
 		try{
 			wmi.setGoodsQua(pageheader.getGoodsQua());//
 		}catch (Exception e){
-
 		}
 		systemService.save(wmi);
 			D0.setErrorMsg("订单生成成功");

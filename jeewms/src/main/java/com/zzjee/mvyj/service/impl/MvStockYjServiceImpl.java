@@ -76,9 +76,17 @@ public class MvStockYjServiceImpl extends CommonServiceImpl implements MvStockYj
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
- 	
+
+	/**
+	 * 根据给定的 MvStockYjEntity 对象构建一个包含其属性值的映射关系。
+	 *
+	 * @param t 要处理的 MvStockYjEntity 实体对象
+	 * @return 返回一个包含实体属性名和对应值的 Map 对象
+	 */
  	private Map<String,Object> populationMap(MvStockYjEntity t){
+		//进行存储数据
 		Map<String,Object> map = new HashMap<String,Object>();
+		//将t对象的属性值逐个储存
 		map.put("id", t.getId());
 		map.put("kuctype", t.getKuctype());
 		map.put("base_goodscount", t.getBaseGoodscount());
@@ -122,14 +130,20 @@ public class MvStockYjServiceImpl extends CommonServiceImpl implements MvStockYj
  		sql  = sql.replace("#{UUID}",UUID.randomUUID().toString());
  		return sql;
  	}
- 	
- 	/**
-	 * 执行JAVA增强
+
+	/**
+	 * 执行Java扩展功能，根据类型实例化对象并调用相应方法。
+	 *
+	 * @param cgJavaType  Java扩展类型，可能的值为"class"或"spring"
+	 * @param cgJavaValue 要实例化的类的全名或Spring Bean的名称
+	 * @param data       传递给执行方法的数据映射
+	 * @throws Exception 当执行Java增强出现异常时抛出
 	 */
  	private void executeJavaExtend(String cgJavaType,String cgJavaValue,Map<String,Object> data) throws Exception {
  		if(StringUtil.isNotEmpty(cgJavaValue)){
 			Object obj = null;
 			try {
+				// 通过MyClassLoader根据类的全名cgJavaValue实例化一个对象
 				if("class".equals(cgJavaType)){
 					//因新增时已经校验了实例化是否可以成功，所以这块就不需要再做一次判断
 					obj = MyClassLoader.getClassByScn(cgJavaValue).newInstance();
@@ -138,6 +152,7 @@ public class MvStockYjServiceImpl extends CommonServiceImpl implements MvStockYj
 				}
 				if(obj instanceof CgformEnhanceJavaInter){
 					CgformEnhanceJavaInter javaInter = (CgformEnhanceJavaInter) obj;
+					//调用javaInter的execute方法，传入参数"mv_stock_yj"和data
 					javaInter.execute("mv_stock_yj",data);
 				}
 			} catch (Exception e) {

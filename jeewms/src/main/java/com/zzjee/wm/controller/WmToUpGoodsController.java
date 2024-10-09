@@ -84,7 +84,6 @@ public class WmToUpGoodsController extends BaseController {
 	private Validator validator;
 
 
-
 	/**
 	 * 上架列表列表 页面跳转
 	 *
@@ -102,7 +101,6 @@ public class WmToUpGoodsController extends BaseController {
 	 * @param response
 	 * @param dataGrid
 	 */
-
 	@RequestMapping(params = "datagrid")
 	public void datagrid(WmToUpGoodsEntity wmToUpGoods,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
 		CriteriaQuery cq = new CriteriaQuery(WmToUpGoodsEntity.class, dataGrid);
@@ -118,7 +116,6 @@ public class WmToUpGoodsController extends BaseController {
 		cq.setOrder(map1);
 		cq.add();
 		this.wmToUpGoodsService.getDataGridReturn(cq, true);
-
 		List<WmToUpGoodsEntity> resultold = dataGrid.getResults();
 		List<WmToUpGoodsEntity> resultnew = new ArrayList<>();
 		for(WmToUpGoodsEntity t:resultold){
@@ -158,7 +155,6 @@ public class WmToUpGoodsController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "上架列表删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -186,13 +182,11 @@ public class WmToUpGoodsController extends BaseController {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "上架列表删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-
 
 	@RequestMapping(params = "doGettextzy",method ={RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
@@ -247,7 +241,6 @@ public class WmToUpGoodsController extends BaseController {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "上架列表添加失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -272,7 +265,6 @@ public class WmToUpGoodsController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "上架列表更新失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -516,11 +508,6 @@ public class WmToUpGoodsController extends BaseController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> update(@RequestBody WmToUpGoodsEntity wmToUpGoods) {
-		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
-//		Set<ConstraintViolation<WmToUpGoodsEntity>> failures = validator.validate(wmToUpGoods);
-//		if (!failures.isEmpty()) {
-//			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
-//		}
 		ResultDO D0 = new  ResultDO();
 		//保存
 		try{
@@ -532,12 +519,9 @@ public class WmToUpGoodsController extends BaseController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			D0.setOK(false);
-//			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
 
 		return new ResponseEntity(D0, HttpStatus.OK);
-		//按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
-//		return new ResponseEntity(HttpStatus.NO_CONTENT);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

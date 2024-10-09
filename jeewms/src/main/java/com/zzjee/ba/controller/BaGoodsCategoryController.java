@@ -1,77 +1,52 @@
 package com.zzjee.ba.controller;
-import com.alibaba.fastjson.JSON;
+
 import com.jeecg.demo.dao.JeecgMinidaoDao;
 import com.zzjee.ba.entity.BaGoodsCategoryEntity;
-import com.zzjee.ba.entity.BaGoodsTypeEntity;
 import com.zzjee.ba.service.BaGoodsCategoryServiceI;
-import java.util.ArrayList;
-import java.util.List;
-import java.text.SimpleDateFormat;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.zzjee.ba.vo.BaGoodsCategoryVoo;
 import org.apache.log4j.Logger;
-import org.jeecgframework.core.common.model.json.ComboTree;
-import org.jeecgframework.core.common.model.json.TreeGrid;
-import org.jeecgframework.tag.vo.easyui.ComboTreeModel;
-import org.jeecgframework.tag.vo.easyui.TreeGridModel;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
+import org.jeecgframework.core.beanvalidator.BeanValidators;
 import org.jeecgframework.core.common.controller.BaseController;
 import org.jeecgframework.core.common.exception.BusinessException;
 import org.jeecgframework.core.common.hibernate.qbc.CriteriaQuery;
-import org.jeecgframework.core.common.model.common.TreeChildCount;
 import org.jeecgframework.core.common.model.json.AjaxJson;
+import org.jeecgframework.core.common.model.json.ComboTree;
 import org.jeecgframework.core.common.model.json.DataGrid;
 import org.jeecgframework.core.constant.Globals;
-import org.jeecgframework.core.util.StringUtil;
-import org.jeecgframework.tag.core.easyui.TagUtil;
-import org.jeecgframework.web.system.pojo.base.TSDepart;
-import org.jeecgframework.web.system.service.SystemService;
+import org.jeecgframework.core.util.ExceptionUtil;
 import org.jeecgframework.core.util.MyBeanUtils;
-
-import java.io.OutputStream;
-import org.jeecgframework.core.util.BrowserUtils;
-import org.jeecgframework.poi.excel.ExcelExportUtil;
+import org.jeecgframework.core.util.ResourceUtil;
+import org.jeecgframework.core.util.StringUtil;
 import org.jeecgframework.poi.excel.ExcelImportUtil;
 import org.jeecgframework.poi.excel.entity.ExportParams;
 import org.jeecgframework.poi.excel.entity.ImportParams;
-import org.jeecgframework.poi.excel.entity.TemplateExportParams;
 import org.jeecgframework.poi.excel.entity.vo.NormalExcelConstants;
-import org.jeecgframework.poi.excel.entity.vo.TemplateExcelConstants;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.jeecgframework.core.util.ResourceUtil;
-import java.io.IOException;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import java.util.Map;
-import java.util.HashMap;
-import org.jeecgframework.core.util.ExceptionUtil;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.jeecgframework.tag.core.easyui.TagUtil;
+import org.jeecgframework.web.system.service.SystemService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.jeecgframework.core.beanvalidator.BeanValidators;
-import java.util.Set;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
+import java.io.IOException;
 import java.net.URI;
-import org.springframework.http.MediaType;
-import org.springframework.web.util.UriComponentsBuilder;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @Title: Controller
@@ -85,7 +60,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RequestMapping("/baGoodsCategoryController")
 public class BaGoodsCategoryController extends BaseController {
 	/**
-	 * Logger for this class
+	 * Logger  for this class
 	 */
 	private static final Logger logger = Logger.getLogger(BaGoodsCategoryController.class);
 
@@ -115,15 +90,9 @@ public class BaGoodsCategoryController extends BaseController {
 	@RequestMapping(params = "getComboTreeData")
 	@ResponseBody
 	public List<ComboTree> getComboTreeData(HttpServletRequest request, ComboTree comboTree1) {
-		System.out.println("======================getComboTreeData comboTree:==================="+comboTree1);
 		List<BaGoodsCategoryVoo> balist=new ArrayList<BaGoodsCategoryVoo>();
 		balist = jeecgMinidaoDao.getAllBaGoodsCategorys();
-
 		List<ComboTree> comboTrees = new ArrayList<ComboTree>();
-//		ComboTreeModel comboTreeModel = new ComboTreeModel("id", "categoryName", "baGoodsCategory");
-//		comboTrees = systemService.ComboTree(balist, comboTreeModel, balist,true);
-//		return comboTrees;
-
 		if (balist.size() > 0) {
 			for (BaGoodsCategoryVoo baGoodsCategoryVoo : balist) {
 				ComboTree comboTree = new ComboTree();
@@ -149,45 +118,6 @@ public class BaGoodsCategoryController extends BaseController {
 			}
 		}
 		return comboTrees;
-
-
-
-
-		/*for (int i = 0; i < demoList.size(); i++) {
-			BaGoodsCategoryVoo cat = new BaGoodsCategoryVoo();
-			String id=String.valueOf(demoList.get(i).get("id"));
-			String categoryName=String.valueOf(demoList.get(i).get("categoryName"));
-//			System.out.println(id+"   "+categoryName);
-			cat.setId(id);
-			cat.setCategoryName(categoryName);
-			if (demoList.get(i).get("pid")!=null) {
-				String pid=String.valueOf(demoList.get(i).get("pid"));
-				cat.setPid(pid);
-			}
-			System.out.println(cat.toString());
-			balist.add(cat);
-		}*/
-//		for (int i = 0; i <balist.size(); i++) {
-//			String id = balist.get(i).getId();
-//			List<BaGoodsCategoryVoo> allBaGoodsCategorys = jeecgMinidaoDao.getAllBaGoodsCategorys(id);
-//			for (int j = 0; j <allBaGoodsCategorys.size() ; j++) {
-//				String id1 = allBaGoodsCategorys.get(j).getId();
-//				List<BaGoodsCategoryVoo> allBaGoodsCategorys1 = jeecgMinidaoDao.getAllBaGoodsCategorys(id1);
-//				for (int k = 0; k <allBaGoodsCategorys.size() ; k++) {
-//					String id2 = allBaGoodsCategorys.get(j).getId();
-//					List<BaGoodsCategoryVoo> allBaGoodsCategorys2 = jeecgMinidaoDao.getAllBaGoodsCategorys(id2);
-//					allBaGoodsCategorys.get(k).setBaGoodsCategory(allBaGoodsCategorys2);
-//				}
-//				allBaGoodsCategorys.get(j).setBaGoodsCategory(allBaGoodsCategorys1);
-//			}
-//			balist.get(i).setBaGoodsCategory(allBaGoodsCategorys);
-//		}
-////
-////		List<ComboTree> comboTrees = new ArrayList<ComboTree>();
-//		ComboTreeModel comboTreeModel = new ComboTreeModel("id", "categoryName", "baGoodsCategory");
-//		System.out.println("======================getComboTreeData demoList:==================="+balist.size());
-//		List<ComboTree> comboTrees = systemService.ComboTree(balist, comboTreeModel, null, true);
-//		return comboTrees;
 	}
 
 	private ComboTree findParent(List<ComboTree> comboTrees, String pid) {
@@ -206,77 +136,6 @@ public class BaGoodsCategoryController extends BaseController {
 		return find;
 
 	}
-
-	/**
-	 * 加载ztree
-	 *
-	 * @param response
-	 * @param request
-	 * @return
-	 */
-	/*@RequestMapping(params = "getTreeData", method = {RequestMethod.GET, RequestMethod.POST})
-	@ResponseBody
-	public AjaxJson getTreeData(BaGoodsCategoryEntity baGoodsCategory1, HttpServletResponse response, HttpServletRequest request) {
-		AjaxJson j = new AjaxJson();
-		try {
-//			List<TSDepart> depatrList = new ArrayList<TSDepart>();
-			StringBuffer hql = new StringBuffer(" from BaGoodsCategoryEntity t");
-			//hql.append(" and (parent.id is null or parent.id='')");
-			List<BaGoodsCategoryEntity> catList = this.systemService.findHql(hql.toString());
-			List<Map<String, Object>> dataList = new ArrayList<Map<String, Object>>();
-			Map<String, Object> map = null;
-			for (BaGoodsCategoryEntity baGoodsCategory : catList) {
-				String sqls = null;
-				Object[] paramss = null;
-				map = new HashMap<String, Object>();
-				map.put("id", baGoodsCategory.getId());
-				map.put("name", baGoodsCategory.getCategoryName());
-				if (baGoodsCategory.getPid() != 0) {
-					map.put("pId", baGoodsCategory.getPid());
-					map.put("open", false);
-				} else {
-					map.put("pId", "1");
-					map.put("open", false);
-				}
-				sqls = "select count(1) from ba_goods_category t where t.pid = ?";
-				paramss = new Object[]{baGoodsCategory.getId()};
-				long counts = this.systemService.getCountForJdbcParam(sqls, paramss);
-				if (counts > 0) {
-					dataList.add(map);
-				} else {
-					TSDepart de = this.systemService.get(TSDepart.class, baGoodsCategory.getId());
-					if (de != null) {
-						map.put("id", de.getId());
-						map.put("name", de.getDepartname());
-						if (baGoodsCategory.getPid() != 0) {
-							map.put("pId", baGoodsCategory.getPid());
-							map.put("open", false);
-						} else {
-							map.put("pId", "1");
-							map.put("open", false);
-						}
-						dataList.add(map);
-					} else {
-						map.put("open", false);
-						dataList.add(map);
-					}
-				}
-			}
-			j.setObj(dataList);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return j;
-	}*/
-	/**
-	 * easyui AJAX请求数据
-	 *
-	 * @param request
-	 * @param response
-	 * @param dataGrid
-//	 * @param user
-	 */
-
 	@RequestMapping(params = "datagrid")
 	public void datagrid(BaGoodsCategoryEntity baGoodsCategory,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
 		CriteriaQuery cq = new CriteriaQuery(BaGoodsCategoryEntity.class, dataGrid);
@@ -308,7 +167,6 @@ public class BaGoodsCategoryController extends BaseController {
 
 	/**
 	 * 删除商品类目
-	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -323,7 +181,6 @@ public class BaGoodsCategoryController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "商品类目删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -332,7 +189,6 @@ public class BaGoodsCategoryController extends BaseController {
 
 	/**
 	 * 批量删除商品类目
-	 *
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")
@@ -351,7 +207,6 @@ public class BaGoodsCategoryController extends BaseController {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "商品类目删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -379,7 +234,6 @@ public class BaGoodsCategoryController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "商品类目添加失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -408,7 +262,6 @@ public class BaGoodsCategoryController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "商品类目更新失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);

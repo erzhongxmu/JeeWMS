@@ -77,12 +77,12 @@ import java.net.URI;
 import org.springframework.http.MediaType;
 import org.springframework.web.util.UriComponentsBuilder;
 
-/**   
- * @Title: Controller  
+/**
+ * @Title: Controller
  * @Description: 费用维护
  * @author erzhongxmu
  * @date 2017-10-15 15:30:15
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Controller
@@ -99,12 +99,10 @@ public class WmDayCostController extends BaseController {
 	private SystemService systemService;
 	@Autowired
 	private Validator validator;
-	
-
 
 	/**
 	 * 费用维护列表 页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "list")
@@ -121,16 +119,15 @@ public class WmDayCostController extends BaseController {
 	public ModelAndView listsk(HttpServletRequest request) {
 		return new ModelAndView("com/zzjee/wm/wmDayCostskList");
 	}
+
 	/**
 	 * easyui AJAX请求数据
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @param dataGrid
 	 * @param user
 	 */
-
-
 
 
 	@RequestMapping(params = "datagridqf")
@@ -159,8 +156,6 @@ public class WmDayCostController extends BaseController {
 		cq.add();
 		this.wmDayCostService.getDataGridReturn(cq, true);
 		try {
-
-
 			List<WmDayCostEntity> resultold = dataGrid.getResults();
 			Double dayCostYj = 0.0000;
 			Double dayCostBhs = 0.0000;
@@ -186,6 +181,7 @@ public class WmDayCostController extends BaseController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		// 将查询结果封装成DataGrid对象并返回给前端
 		TagUtil.datagrid(response, dataGrid);
 	}
 	@RequestMapping(params = "datagridsk")
@@ -240,6 +236,7 @@ public class WmDayCostController extends BaseController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		// 将查询结果封装成DataGrid对象并返回给前端
 		TagUtil.datagrid(response, dataGrid);
 	}
 
@@ -268,23 +265,23 @@ public class WmDayCostController extends BaseController {
 		cq.add();
 		this.wmDayCostService.getDataGridReturn(cq, true);
 		try {
-			
+
 
 		List<WmDayCostEntity> resultold = dataGrid.getResults();
-		Double dayCostYj = 0.0000; 
-		Double dayCostBhs = 0.0000; 
-		Double dayCostSe = 0.0000; 
-		Double dayCostHsj = 0.0000; 
-		String sdayCostYj = null; 
-		String sdayCostBhs = null; 
-		String sdayCostSe = null; 
-		String sdayCostHsj = null; 
+		Double dayCostYj = 0.0000;
+		Double dayCostBhs = 0.0000;
+		Double dayCostSe = 0.0000;
+		Double dayCostHsj = 0.0000;
+		String sdayCostYj = null;
+		String sdayCostBhs = null;
+		String sdayCostSe = null;
+		String sdayCostHsj = null;
 		for (WmDayCostEntity wmDayCostold : resultold) {
 			dayCostYj = dayCostYj + Double.parseDouble(wmDayCostold.getDayCostYj());
 			dayCostBhs = dayCostBhs + Double.parseDouble(wmDayCostold.getDayCostBhs());
 			dayCostSe = dayCostSe + Double.parseDouble(wmDayCostold.getDayCostSe());
 			dayCostHsj = dayCostHsj + Double.parseDouble(wmDayCostold.getDayCostHsj());
-		} 
+		}
 		DecimalFormat df=new DecimalFormat(".##");
 
 		sdayCostYj = df.format(dayCostYj);
@@ -297,10 +294,10 @@ public class WmDayCostController extends BaseController {
 		}
 		TagUtil.datagrid(response, dataGrid);
 	}
-	
+
 	/**
 	 * 删除费用维护
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -311,20 +308,23 @@ public class WmDayCostController extends BaseController {
 		wmDayCost = systemService.getEntity(WmDayCostEntity.class, wmDayCost.getId());
 		message = "费用维护删除成功";
 		try{
+			// 调用服务层方法删除实体
 			wmDayCostService.delete(wmDayCost);
+			// 调用baStoreAreaService的delete方法删除baStoreArea对象
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
+			// 如果发生异常，打印堆栈跟踪信息
 			e.printStackTrace();
-			message = "费用维护删除失败";
 			throw new BusinessException(e.getMessage());
 		}
+		// 将message设置为j对象的msg属性
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 批量删除费用维护
-	 * 
+	 *
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")
@@ -335,17 +335,20 @@ public class WmDayCostController extends BaseController {
 		message = "费用维护删除成功";
 		try{
 			for(String id:ids.split(",")){
-				WmDayCostEntity wmDayCost = systemService.getEntity(WmDayCostEntity.class, 
+				WmDayCostEntity wmDayCost = systemService.getEntity(WmDayCostEntity.class,
 				id
 				);
 				wmDayCostService.delete(wmDayCost);
+				// 记录操作日志，类型为插入操作，级别为INFO
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}
 		}catch(Exception e){
+			// 如果发生异常，打印堆栈跟踪信息
 			e.printStackTrace();
-			message = "费用维护删除失败";
+			// 抛出业务异常，并附带异常信息
 			throw new BusinessException(e.getMessage());
 		}
+		 // 将message设置为j对象的msg属性
 		j.setMsg(message);
 		return j;
 	}
@@ -353,7 +356,7 @@ public class WmDayCostController extends BaseController {
 
 	/**
 	 * 添加费用维护
-	 * 
+	 *
 	 * @param ids
 	 * @return
 	 */
@@ -368,16 +371,15 @@ public class WmDayCostController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
-			message = "费用维护添加失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 更新费用维护
-	 * 
+	 *
 	 * @param ids
 	 * @return
 	 */
@@ -394,7 +396,6 @@ public class WmDayCostController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "费用维护更新失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -420,7 +421,6 @@ public class WmDayCostController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "费用结清失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -440,7 +440,6 @@ public class WmDayCostController extends BaseController {
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "费用反结清失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -448,7 +447,7 @@ public class WmDayCostController extends BaseController {
 	}
 	/**
 	 * 费用维护新增页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -461,7 +460,7 @@ public class WmDayCostController extends BaseController {
 	}
 	/**
 	 * 费用维护编辑页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -472,10 +471,10 @@ public class WmDayCostController extends BaseController {
 		}
 		return new ModelAndView("com/zzjee/wm/wmDayCost-update");
 	}
-	
+
 	/**
 	 * 导入功能跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "upload")
@@ -483,10 +482,10 @@ public class WmDayCostController extends BaseController {
 		req.setAttribute("controller_name","wmDayCostController");
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
-	
+
 	/**
 	 * 导出excel
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -505,7 +504,7 @@ public class WmDayCostController extends BaseController {
 	}
 	/**
 	 * 导出excel 使模板
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -519,13 +518,13 @@ public class WmDayCostController extends BaseController {
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-		
+
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
@@ -553,14 +552,14 @@ public class WmDayCostController extends BaseController {
 		}
 		return j;
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<WmDayCostEntity> list() {
 		List<WmDayCostEntity> listWmDayCosts=wmDayCostService.getList(WmDayCostEntity.class);
 		return listWmDayCosts;
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {

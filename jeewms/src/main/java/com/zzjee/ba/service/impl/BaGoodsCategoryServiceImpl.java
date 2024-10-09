@@ -17,20 +17,35 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class BaGoodsCategoryServiceImpl extends CommonServiceImpl implements BaGoodsCategoryServiceI {
 
-	
+	/**
+	 * 删除
+	 * @param entity
+	 * @throws Exception
+	 */
  	public void delete(BaGoodsCategoryEntity entity) throws Exception{
  		super.delete(entity);
  		//执行删除操作增强业务
 		this.doDelBus(entity);
  	}
- 	
+
+	/**
+	 * 保存
+	 * @param entity
+	 * @return
+	 * @throws Exception
+	 */
  	public Serializable save(BaGoodsCategoryEntity entity) throws Exception{
  		Serializable t = super.save(entity);
  		//执行新增操作增强业务
  		this.doAddBus(entity);
  		return t;
  	}
- 	
+
+	/**
+	 * 保存更新
+	 * @param entity
+	 * @throws Exception
+	 */
  	public void saveOrUpdate(BaGoodsCategoryEntity entity) throws Exception{
  		super.saveOrUpdate(entity);
  		//执行更新操作增强业务

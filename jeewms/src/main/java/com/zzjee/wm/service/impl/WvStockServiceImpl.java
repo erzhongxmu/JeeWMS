@@ -22,7 +22,6 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class WvStockServiceImpl extends CommonServiceImpl implements WvStockServiceI {
 
-	
  	@Override
 	public void delete(WvStockEntity entity) throws Exception{
  		super.delete(entity);

@@ -16,9 +16,9 @@ hostName=localhost,
 multicastGroupAddress=230.0.0.1,
 multicastGroupPort=4446, timeToLive=1"/>
 
-    <cacheManagerPeerListenerFactory
+    <!--<cacheManagerPeerListenerFactory
             class="net.sf.ehcache.distribution.RMICacheManagerPeerListenerFactory"
-            properties="hostName=localhost, port=40001,socketTimeoutMillis=2000"/>
+            properties="hostName=localhost, port=40001,socketTimeoutMillis=2000"/>-->
 
 
     <cache name="dictCache" maxElementsInMemory="500" overflowToDisk="true"

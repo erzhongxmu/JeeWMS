@@ -6,12 +6,12 @@ import org.jeecgframework.poi.excel.annotation.Excel;
 import javax.persistence.*;
 import java.util.Date;
 
-/**   
+/**
  * @Title: Entity
- * @Description: BOM项目
+ * @Description: BOM项目实体类
  * @author onlineGenerator
  * @date 2018-05-05 12:56:55
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Entity
@@ -65,7 +65,7 @@ public class TMdBomItemEntity implements java.io.Serializable {
 	private String prccode;
 	/**成本中心名称*/
 	private String prcname;
-	
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  主键
@@ -73,7 +73,7 @@ public class TMdBomItemEntity implements java.io.Serializable {
 	@Id
 	@GeneratedValue(generator = "paymentableGenerator")
 	@GenericGenerator(name = "paymentableGenerator", strategy = "uuid")
-	
+
 	@Column(name ="ID",nullable=false,length=36)
 	public String getId(){
 		return this.id;
@@ -86,12 +86,12 @@ public class TMdBomItemEntity implements java.io.Serializable {
 	public void setId(String id){
 		this.id = id;
 	}
-	
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  创建人名称
 	 */
-	
+
 	@Column(name ="CREATE_NAME",nullable=true,length=50)
 	public String getCreateName(){
 		return this.createName;
@@ -104,12 +104,12 @@ public class TMdBomItemEntity implements java.io.Serializable {
 	public void setCreateName(String createName){
 		this.createName = createName;
 	}
-	
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  创建人登录名称
 	 */
-	
+
 	@Column(name ="CREATE_BY",nullable=true,length=50)
 	public String getCreateBy(){
 		return this.createBy;
@@ -122,12 +122,12 @@ public class TMdBomItemEntity implements java.io.Serializable {
 	public void setCreateBy(String createBy){
 		this.createBy = createBy;
 	}
-	
+
 	/**
 	 *方法: 取得java.util.Date
 	 *@return: java.util.Date  创建日期
 	 */
-	
+
 	@Column(name ="CREATE_DATE",nullable=true,length=20)
 	public Date getCreateDate(){
 		return this.createDate;
@@ -140,12 +140,12 @@ public class TMdBomItemEntity implements java.io.Serializable {
 	public void setCreateDate(Date createDate){
 		this.createDate = createDate;
 	}
-	
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  更新人名称
 	 */
-	
+
 	@Column(name ="UPDATE_NAME",nullable=true,length=50)
 	public String getUpdateName(){
 		return this.updateName;
@@ -158,12 +158,12 @@ public class TMdBomItemEntity implements java.io.Serializable {
 	public void setUpdateName(String updateName){
 		this.updateName = updateName;
 	}
-	
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  更新人登录名称
 	 */
-	
+
 	@Column(name ="UPDATE_BY",nullable=true,length=50)
 	public String getUpdateBy(){
 		return this.updateBy;
@@ -176,12 +176,12 @@ public class TMdBomItemEntity implements java.io.Serializable {
 	public void setUpdateBy(String updateBy){
 		this.updateBy = updateBy;
 	}
-	
+
 	/**
 	 *方法: 取得java.util.Date
 	 *@return: java.util.Date  更新日期
 	 */
-	
+
 	@Column(name ="UPDATE_DATE",nullable=true,length=20)
 	public Date getUpdateDate(){
 		return this.updateDate;
@@ -194,12 +194,12 @@ public class TMdBomItemEntity implements java.io.Serializable {
 	public void setUpdateDate(Date updateDate){
 		this.updateDate = updateDate;
 	}
-	
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  所属部门
 	 */
-	
+
 	@Column(name ="SYS_ORG_CODE",nullable=true,length=50)
 	public String getSysOrgCode(){
 		return this.sysOrgCode;
@@ -212,12 +212,12 @@ public class TMdBomItemEntity implements java.io.Serializable {
 	public void setSysOrgCode(String sysOrgCode){
 		this.sysOrgCode = sysOrgCode;
 	}
-	
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  所属公司
 	 */
-	
+
 	@Column(name ="SYS_COMPANY_CODE",nullable=true,length=50)
 	public String getSysCompanyCode(){
 		return this.sysCompanyCode;
@@ -230,12 +230,12 @@ public class TMdBomItemEntity implements java.io.Serializable {
 	public void setSysCompanyCode(String sysCompanyCode){
 		this.sysCompanyCode = sysCompanyCode;
 	}
-	
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  流程状态
 	 */
-	
+
 	@Column(name ="BPM_STATUS",nullable=true,length=32)
 	public String getBpmStatus(){
 		return this.bpmStatus;
@@ -248,12 +248,12 @@ public class TMdBomItemEntity implements java.io.Serializable {
 	public void setBpmStatus(String bpmStatus){
 		this.bpmStatus = bpmStatus;
 	}
-	
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  组件
 	 */
-	
+
 	@Column(name ="COMPONENT",nullable=true,length=32)
 	public String getComponent(){
 		return this.component;
@@ -266,12 +266,12 @@ public class TMdBomItemEntity implements java.io.Serializable {
 	public void setComponent(String component){
 		this.component = component;
 	}
-	
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  数量
 	 */
-	
+
 	@Column(name ="QUANTITY",nullable=true,length=32)
 	public String getQuantity(){
 		return this.quantity;
@@ -284,12 +284,12 @@ public class TMdBomItemEntity implements java.io.Serializable {
 	public void setQuantity(String quantity){
 		this.quantity = quantity;
 	}
-	
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  单位
 	 */
-	
+
 	@Column(name ="UNIT",nullable=true,length=10)
 	public String getUnit(){
 		return this.unit;
@@ -302,12 +302,12 @@ public class TMdBomItemEntity implements java.io.Serializable {
 	public void setUnit(String unit){
 		this.unit = unit;
 	}
-	
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  损耗率
 	 */
-	
+
 	@Column(name ="SCRAP",nullable=true,length=10)
 	public String getScrap(){
 		return this.scrap;
@@ -320,12 +320,12 @@ public class TMdBomItemEntity implements java.io.Serializable {
 	public void setScrap(String scrap){
 		this.scrap = scrap;
 	}
-	
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  文本
 	 */
-	
+
 	@Column(name ="TEXT",nullable=true,length=50)
 	public String getText(){
 		return this.text;
@@ -338,12 +338,12 @@ public class TMdBomItemEntity implements java.io.Serializable {
 	public void setText(String text){
 		this.text = text;
 	}
-	
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  bom抬头ID
 	 */
-	
+
 	@Column(name ="BOMID",nullable=true,length=32)
 	public String getBomid(){
 		return this.bomid;
@@ -356,12 +356,12 @@ public class TMdBomItemEntity implements java.io.Serializable {
 	public void setBomid(String bomid){
 		this.bomid = bomid;
 	}
-	
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  物料名称
 	 */
-	
+
 	@Column(name ="ITEMNAME",nullable=true,length=132)
 	public String getItemname(){
 		return this.itemname;
@@ -374,12 +374,12 @@ public class TMdBomItemEntity implements java.io.Serializable {
 	public void setItemname(String itemname){
 		this.itemname = itemname;
 	}
-	
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  工位
 	 */
-	
+
 	@Column(name ="WORKPLACE",nullable=true,length=32)
 	public String getWorkplace(){
 		return this.workplace;
@@ -392,12 +392,12 @@ public class TMdBomItemEntity implements java.io.Serializable {
 	public void setWorkplace(String workplace){
 		this.workplace = workplace;
 	}
-	
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  成本中心
 	 */
-	
+
 	@Column(name ="PRCCODE",nullable=true,length=32)
 	public String getPrccode(){
 		return this.prccode;
@@ -410,12 +410,12 @@ public class TMdBomItemEntity implements java.io.Serializable {
 	public void setPrccode(String prccode){
 		this.prccode = prccode;
 	}
-	
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  成本中心名称
 	 */
-	
+
 	@Column(name ="PRCNAME",nullable=true,length=32)
 	public String getPrcname(){
 		return this.prcname;
@@ -428,5 +428,5 @@ public class TMdBomItemEntity implements java.io.Serializable {
 	public void setPrcname(String prcname){
 		this.prcname = prcname;
 	}
-	
+
 }

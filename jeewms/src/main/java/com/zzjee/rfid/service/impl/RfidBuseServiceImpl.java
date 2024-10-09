@@ -17,7 +17,6 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class RfidBuseServiceImpl extends CommonServiceImpl implements RfidBuseServiceI {
 
-	
  	@Override
     public void delete(RfidBuseEntity entity) throws Exception{
  		super.delete(entity);
@@ -76,7 +75,7 @@ public class RfidBuseServiceImpl extends CommonServiceImpl implements RfidBuseSe
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
- 	
+ 	//将RfidBuseEntity对象的各个属性以键值对的形式放入map中
  	private Map<String,Object> populationMap(RfidBuseEntity t){
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("id", t.getId());
@@ -104,6 +103,7 @@ public class RfidBuseServiceImpl extends CommonServiceImpl implements RfidBuseSe
 	 * @param t
 	 * @return
 	 */
+	 //执行SQL查询或更新操作时，将实体对象的属性值动态地替换到SQL语句中
  	public String replaceVal(String sql,RfidBuseEntity t){
  		sql  = sql.replace("#{id}",String.valueOf(t.getId()));
  		sql  = sql.replace("#{create_name}",String.valueOf(t.getCreateName()));
@@ -136,9 +136,11 @@ public class RfidBuseServiceImpl extends CommonServiceImpl implements RfidBuseSe
 					//因新增时已经校验了实例化是否可以成功，所以这块就不需要再做一次判断
 					obj = MyClassLoader.getClassByScn(cgJavaValue).newInstance();
 				}else if("spring".equals(cgJavaType)){
+					//通过Spring容器获取Bean实例
 					obj = ApplicationContextUtil.getContext().getBean(cgJavaValue);
 				}
 				if(obj instanceof CgformEnhanceJavaInter){
+					//如果实例实现了CgformEnhanceJavaInter接口，则执行其execute方法
 					CgformEnhanceJavaInter javaInter = (CgformEnhanceJavaInter) obj;
 					javaInter.execute("rfid_buse",data);
 				}

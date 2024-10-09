@@ -169,7 +169,7 @@
 									<label class="Validform_label" style="display: none">sku</label>
 								</div>
 
-								<div class="row show-grid">
+							<%--	<div class="row show-grid">
 									<div class="col-xs-3 text-center">
 										<b  style="color:red">商品类目</b>
 									</div>
@@ -178,7 +178,7 @@
 										<span class="Validform_checktip" style="float:left;height:0px;"></span>
 										<label class="Validform_label" style="display: none">商品类目</label>
 									</div>
-								</div>
+								</div>--%>
 						</div>
 							<div class="row show-grid">
 			          <div class="col-xs-3 text-center">

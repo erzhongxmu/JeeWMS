@@ -18,12 +18,12 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.SequenceGenerator;
 import org.jeecgframework.poi.excel.annotation.Excel;
 
-/**   
+/**
  * @Title: Entity
- * @Description: wv_day_cost_sum
+ * @Description: wv_day_cost_sum实体类
  * @author erzhongxmu
  * @date 2017-10-21 21:08:13
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Entity

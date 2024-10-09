@@ -40,18 +40,12 @@ public class RpPeriodInOutController extends BaseController {
      * Logger for this class
      */
     private static final Logger logger = Logger.getLogger(RpPeriodInOutController.class);
-
     @Autowired
     private RpPeriodInOutServiceI rpPeriodInOutService;
-//    @Autowired
-//    private SystemService systemService;
-//    @Autowired
-//    private Validator validator;
-
-
     /**
      * 期间出货统计列表 页面跳转
      *
+     * @param request
      * @return
      */
     @RequestMapping(params = "list")
@@ -60,23 +54,25 @@ public class RpPeriodInOutController extends BaseController {
     }
 
     /**
-     * easyui AJAX请求数据
+     * easyui 处理AJAX请求以返回RpPeriodInOutEntity数据列表的datagrid
      *
+     * @param rpPeriodInOut
      * @param request
      * @param response
      * @param dataGrid
      */
-
     @RequestMapping(params = "datagrid")
     public void datagrid(RpPeriodInOutEntity rpPeriodInOut, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
         rpPeriodInOut.setCreateDate(null);
-
+        //创建CriteriaQuery对象，用于构建数据库查询
         CriteriaQuery cq = new CriteriaQuery(RpPeriodInOutEntity.class, dataGrid);
         //查询条件组装器
         try {
             //自定义追加查询条件
+            //从请求中获取日期范围参数
             String query_datePeriod_begin = request.getParameter("createDate1_begin");
             String query_datePeriod_end = request.getParameter("createDate1_end");
+            //打印日期范围参数
             System.out.println("query_datePeriod_begin:"+query_datePeriod_begin+" query_datePeriod_end:"+query_datePeriod_end);
             try {
                 if (!StringUtil.isNotEmpty(query_datePeriod_begin)) {
@@ -91,7 +87,6 @@ public class RpPeriodInOutController extends BaseController {
             }
             rpPeriodInOut.setCreateDate(null);
             org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, rpPeriodInOut, request.getParameterMap());
-
             cq.eq("username", ResourceUtil.getSessionUserName().getUserName());
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
@@ -101,20 +96,24 @@ public class RpPeriodInOutController extends BaseController {
         TagUtil.datagrid(response, dataGrid);
     }
 
-
     /**
      * 导出excel
      *
+     * @param rpPeriodInOut
      * @param request
      * @param response
+     * @param dataGrid
+     * @param modelMap
      */
     @RequestMapping(params = "exportXls")
     public String exportXls(RpPeriodInOutEntity rpPeriodInOut, HttpServletRequest request, HttpServletResponse response
             , DataGrid dataGrid, ModelMap modelMap) {
         //自定义追加查询条件
+        //从请求中获取日期范围参数
         String query_datePeriod_begin = request.getParameter("createDate1_begin");
         String query_datePeriod_end = request.getParameter("createDate1_end");
         try {
+            //验证并设置默认日期范围
             if (!StringUtil.isNotEmpty(query_datePeriod_begin)) {
                 query_datePeriod_begin = "2018-01-01";
             }
@@ -126,9 +125,11 @@ public class RpPeriodInOutController extends BaseController {
         }
         rpPeriodInOut.setCreateDate(null);
         rpPeriodInOut.setUsername(ResourceUtil.getSessionUserName().getUserName());
+        //构建查询并获取数据
         CriteriaQuery cq = new CriteriaQuery(RpPeriodInOutEntity.class, dataGrid);
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, rpPeriodInOut, request.getParameterMap());
 
+        //设置Excel导出参数
         List<RpPeriodInOutEntity> rpPeriodInOuts = this.rpPeriodInOutService.getListByCriteriaQuery(cq, false);
         modelMap.put(NormalExcelConstants.FILE_NAME, "期间出货统计");
         modelMap.put(NormalExcelConstants.CLASS, RpPeriodInOutEntity.class);

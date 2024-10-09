@@ -9,12 +9,12 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.jeecgframework.poi.excel.annotation.Excel;
 
-/**   
+/**
  * @Title: Entity
- * @Description: 供应商
+ * @Description: 供应商实体类
  * @author erzhongxmu
  * @date 2017-08-15 23:16:45
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Entity
@@ -130,7 +130,7 @@ public class MdSupEntity implements java.io.Serializable {
 	/**备注*/
 	@Excel(name="备注")
 	private java.lang.String beiZhu;
-	
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  主键

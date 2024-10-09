@@ -93,12 +93,12 @@ public class MdCusController extends BaseController {
 		return new ModelAndView("com/zzjee/md/mdCusallList");
 	}
 	/**
-	 * easyui AJAX请求数据
+	 * easyui 处理AJAX请求以返回MdCusEntity数据列表的datagrid
 	 *
+	 * @param mdCus
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -122,6 +122,8 @@ public class MdCusController extends BaseController {
 	/**
 	 * 删除客户
 	 *
+	 * @param mdCus
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -152,6 +154,8 @@ public class MdCusController extends BaseController {
 	/**
 	 * 批量删除客户
 	 *
+	 * @param ids
+	 * @param request
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")
@@ -187,7 +191,8 @@ public class MdCusController extends BaseController {
 	/**
 	 * 添加客户
 	 *
-	 * @param ids
+	 * @param mdCus
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -218,7 +223,8 @@ public class MdCusController extends BaseController {
 	/**
 	 * 更新客户
 	 *
-	 * @param ids
+	 * @param mdCus 实体对象
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -227,10 +233,13 @@ public class MdCusController extends BaseController {
 		String message = null;
 		AjaxJson j = new AjaxJson();
 		message = "客户更新成功";
+		//使用客户ID从数据库中检索现有的客户实体
 		MdCusEntity t = mdCusService.get(MdCusEntity.class, mdCus.getId());
 		try {
 			MyBeanUtils.copyBeanNotNull2Bean(mdCus, t);
+			//保存或更新existingCustomer到数据库中
 			mdCusService.saveOrUpdate(t);
+			//记录日志，表示客户信息已成功更新
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -241,10 +250,11 @@ public class MdCusController extends BaseController {
 		return j;
 	}
 
-
 	/**
 	 * 客户新增页面跳转
 	 *
+	 * @param mdCus
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -258,6 +268,8 @@ public class MdCusController extends BaseController {
 	/**
 	 * 客户编辑页面跳转
 	 *
+	 * @param mdCus
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -272,6 +284,7 @@ public class MdCusController extends BaseController {
 	/**
 	 * 导入功能跳转
 	 *
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(params = "upload")
@@ -283,8 +296,11 @@ public class MdCusController extends BaseController {
 	/**
 	 * 导出excel
 	 *
+	 * @param mdCus
 	 * @param request
 	 * @param response
+	 * @param dataGrid
+	 * @param modelMap
 	 */
 	@RequestMapping(params = "exportXls")
 	public String exportXls(MdCusEntity mdCus,HttpServletRequest request,HttpServletResponse response
@@ -292,43 +308,61 @@ public class MdCusController extends BaseController {
 		CriteriaQuery cq = new CriteriaQuery(MdCusEntity.class, dataGrid);
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, mdCus, request.getParameterMap());
 		List<MdCusEntity> mdCuss = this.mdCusService.getListByCriteriaQuery(cq,false);
+		//设置Excel文件的基础信息
+		//文件名
 		modelMap.put(NormalExcelConstants.FILE_NAME,"客户");
+		//导出数据的类类型
 		modelMap.put(NormalExcelConstants.CLASS,MdCusEntity.class);
+		//设置导出参数
 		modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("客户列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
 			"导出信息"));
+		//设置需要导出的数据列表
 		modelMap.put(NormalExcelConstants.DATA_LIST,mdCuss);
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 	/**
 	 * 导出excel 使模板
 	 *
+	 * @param mdCus
 	 * @param request
 	 * @param response
+	 * @param dataGrid
+	 * @param modelMap
 	 */
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(MdCusEntity mdCus,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
+		//设置Excel文件的名称
     	modelMap.put(NormalExcelConstants.FILE_NAME,"客户");
     	modelMap.put(NormalExcelConstants.CLASS,MdCusEntity.class);
+		//设置导出参数
     	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("客户列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
     	"导出信息"));
+		//设置一个空的数据列表
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
-
+	/**
+	 * 通过excel导入数据
+	 *
+	 * @param request
+	 * @param response
+	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-
+		// 将HttpServletRequest转换为MultipartHttpServletRequest，以便处理文件上传
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		//获取上传的文件映射
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
 			MultipartFile file = entity.getValue();// 获取上传文件对象
+			//设置Excel导入参数
 			ImportParams params = new ImportParams();
-			params.setTitleRows(2);
-			params.setHeadRows(1);
+			params.setTitleRows(2);//标题行
+			params.setHeadRows(1);//表头行
 			params.setNeedSave(true);
 			try {
 				List<MdCusEntity> listMdCusEntitys = ExcelImportUtil.importExcel(file.getInputStream(),MdCusEntity.class,params);

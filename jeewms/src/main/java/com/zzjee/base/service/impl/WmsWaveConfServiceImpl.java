@@ -17,14 +17,24 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class WmsWaveConfServiceImpl extends CommonServiceImpl implements WmsWaveConfServiceI {
 
-	
+	/**
+	 * 删除
+	 * @param entity
+	 * @throws Exception
+	 */
  	@Override
     public void delete(WmsWaveConfEntity entity) throws Exception{
  		super.delete(entity);
  		//执行删除操作增强业务
 		this.doDelBus(entity);
  	}
- 	
+
+	/**
+	 * 保存
+	 * @param entity
+	 * @return
+	 * @throws Exception
+	 */
  	@Override
     public Serializable save(WmsWaveConfEntity entity) throws Exception{
  		Serializable t = super.save(entity);
@@ -32,7 +42,12 @@ public class WmsWaveConfServiceImpl extends CommonServiceImpl implements WmsWave
  		this.doAddBus(entity);
  		return t;
  	}
- 	
+
+	/**
+	 * 保存更新
+	 * @param entity
+	 * @throws Exception
+	 */
  	@Override
     public void saveOrUpdate(WmsWaveConfEntity entity) throws Exception{
  		super.saveOrUpdate(entity);
@@ -42,7 +57,7 @@ public class WmsWaveConfServiceImpl extends CommonServiceImpl implements WmsWave
  	
  	/**
 	 * 新增操作增强业务
-	 * @param t
+	 * @param t 待转实体
 	 * @return
 	 */
 	private void doAddBus(WmsWaveConfEntity t) throws Exception{
@@ -76,7 +91,12 @@ public class WmsWaveConfServiceImpl extends CommonServiceImpl implements WmsWave
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
- 	
+
+	/**
+	 * 转map
+	 * @param t
+	 * @return
+	 */
  	private Map<String,Object> populationMap(WmsWaveConfEntity t){
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("id", t.getId());

@@ -20,13 +20,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * 大屏
+ */
 @Controller
 @RequestMapping("/BiController")
 public class BiController extends BaseController {
     @Autowired
     private SystemService systemService;
-//    @Autowired
-//    private Validator validator;
+
+    /**
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping(params = "homebi")
     public ModelAndView bi(HttpServletRequest request) {
         String num1= "0";
@@ -34,7 +41,6 @@ public class BiController extends BaseController {
         String num3= "0";
         String num4= "0";
         String num5= "0";   //库存转移计划中的数量
-//        String yearstr = DateUtils.date2Str(DateUtils.yyyyMMdd);
 
         String ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_im_notice_i where bin_pre = 'N'" ;
         if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
@@ -148,7 +154,6 @@ public class BiController extends BaseController {
                 "group by DATE_FORMAT(create_date, '%Y-%m-%d') " +
                 "order by DATE_FORMAT(create_date, '%Y-%m-%d') desc " +
                 "limit 7)  temptable order by create_date  ";
-//		List userBroswerList = systemService.(sb.toString());
         if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
             String cusCode = wmUtil.getCusCode();
             sql = "select * from ( " +
@@ -164,17 +169,10 @@ public class BiController extends BaseController {
         }
 
         List<Map<String,Object>> maplist=systemService.findForJdbc(sql);
-//        StringBuffer sbconut = new StringBuffer();
-//        sbconut.append("SELECT  floor(sum(or_Amount)) as amount  FROM T_Kp_Order_One  where cus_name is not null    ");
-//
-//        List<Map<String,Object>> mapcount=systemService.findForJdbc(sbconut.toString());
-//		Double count = systemService.getCountForJdbc("SELECT COUNT(1) FROM T_S_Log WHERE 1=1");
         List lt = new ArrayList();
-        //hc = new Highchart();
         hc.setName("近七日下架数量");
         hc.setType(reportType);
         Map<String, Object> map;
-//        Double count = Double.parseDouble(mapcount.get(0).get("amount").toString());
 
         if (maplist.size() > 0) {
             for (Map<String,Object> object : maplist) {
@@ -187,17 +185,6 @@ public class BiController extends BaseController {
                 }catch (Exception e){
 
                 }
-                Double groupCount = 0.00;
-                try{
-                    groupCount =  Double.parseDouble(obj.get("amount").toString());
-                }catch (Exception e){
-
-                }
-//                Double  percentage = 0.0;
-//                if (count != null && count.intValue() != 0) {
-//                    percentage = new Double(groupCount)/count;
-//                }
-//                map.put("percentage", percentage*100);
                 lt.add(map);
             }
         }
@@ -210,7 +197,9 @@ public class BiController extends BaseController {
 
     /**
      * highchart
-     *
+     * @param request
+     * @param reportType
+     * @param response
      * @return
      */
     @RequestMapping(params = "cpNameupCount")
@@ -226,9 +215,6 @@ public class BiController extends BaseController {
                 "    wm_to_up_goods where ORDER_ID <> 'ZY'   " +
                 "group by GOODS_ID   " +
                 ")  temptable  order by amount desc limit 6  ";
-//		List userBroswerList = systemService.(sb.toString());
-
-
         if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
             String cusCode = wmUtil.getCusCode();
             sql = "select * from ( " +
@@ -243,17 +229,11 @@ public class BiController extends BaseController {
         }
 
         List<Map<String,Object>> maplist=systemService.findForJdbc(sql);
-//        StringBuffer sbconut = new StringBuffer();
-//        sbconut.append("SELECT  floor(sum(or_Amount)) as amount  FROM T_Kp_Order_One  where cus_name is not null    ");
-//
-//        List<Map<String,Object>> mapcount=systemService.findForJdbc(sbconut.toString());
-//		Double count = systemService.getCountForJdbc("SELECT COUNT(1) FROM T_S_Log WHERE 1=1");
+
         List lt = new ArrayList();
-        //hc = new Highchart();
         hc.setName("上架数量前6");
         hc.setType(reportType);
         Map<String, Object> map;
-//        Double count = Double.parseDouble(mapcount.get(0).get("amount").toString());
 
         if (maplist.size() > 0) {
             for (Map<String,Object> object : maplist) {
@@ -261,17 +241,6 @@ public class BiController extends BaseController {
                 Map<String,Object> obj =   object;
                 map.put("name", obj.get("goodsid").toString());
                 map.put("y",  (int) Double.parseDouble(obj.get("amount").toString()));
-//                Double groupCount = 0.00;
-//                try{
-//                    groupCount =  Double.parseDouble(obj.get("amount").toString());
-//                }catch (Exception e){
-//
-//                }
-//                Double  percentage = 0.0;
-//                if (count != null && count.intValue() != 0) {
-//                    percentage = new Double(groupCount)/count;
-//                }
-//                map.put("percentage", percentage*100);
                 lt.add(map);
             }
         }
@@ -283,7 +252,6 @@ public class BiController extends BaseController {
 
     /**
      * highchart
-     *
      * @return
      */
     @RequestMapping(params = "cpNamedownCount")
@@ -314,19 +282,11 @@ public class BiController extends BaseController {
 
         }
 
-//		List userBroswerList = systemService.(sb.toString());
         List<Map<String,Object>> maplist=systemService.findForJdbc(sql);
-//        StringBuffer sbconut = new StringBuffer();
-//        sbconut.append("SELECT  floor(sum(or_Amount)) as amount  FROM T_Kp_Order_One  where cus_name is not null    ");
-//
-//        List<Map<String,Object>> mapcount=systemService.findForJdbc(sbconut.toString());
-//		Double count = systemService.getCountForJdbc("SELECT COUNT(1) FROM T_S_Log WHERE 1=1");
         List lt = new ArrayList();
-        //hc = new Highchart();
         hc.setName("下架数量前6");
         hc.setType(reportType);
         Map<String, Object> map;
-//        Double count = Double.parseDouble(mapcount.get(0).get("amount").toString());
 
         if (maplist.size() > 0) {
             for (Map<String,Object> object : maplist) {
@@ -334,17 +294,6 @@ public class BiController extends BaseController {
                 Map<String,Object> obj =   object;
                 map.put("name", obj.get("goodsid").toString());
                 map.put("y",  (int) Double.parseDouble(obj.get("amount").toString()));
-//                Double groupCount = 0.00;
-//                try{
-//                    groupCount =  Double.parseDouble(obj.get("amount").toString());
-//                }catch (Exception e){
-//
-//                }
-//                Double  percentage = 0.0;
-//                if (count != null && count.intValue() != 0) {
-//                    percentage = new Double(groupCount)/count;
-//                }
-//                map.put("percentage", percentage*100);
                 lt.add(map);
             }
         }

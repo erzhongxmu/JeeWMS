@@ -17,14 +17,24 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class BaGoodsTypeServiceImpl extends CommonServiceImpl implements BaGoodsTypeServiceI {
 
-	
+	/**
+	 * 删除
+	 * @param entity
+	 * @throws Exception
+	 */
  	@Override
     public void delete(BaGoodsTypeEntity entity) throws Exception{
  		super.delete(entity);
  		//执行删除操作增强业务
 		this.doDelBus(entity);
  	}
- 	
+
+	/**
+	 * 保存
+	 * @param entity
+	 * @return
+	 * @throws Exception
+	 */
  	@Override
     public Serializable save(BaGoodsTypeEntity entity) throws Exception{
  		Serializable t = super.save(entity);
@@ -32,7 +42,12 @@ public class BaGoodsTypeServiceImpl extends CommonServiceImpl implements BaGoods
  		this.doAddBus(entity);
  		return t;
  	}
- 	
+
+	/**
+	 * 保存更新
+	 * @param entity
+	 * @throws Exception
+	 */
  	@Override
     public void saveOrUpdate(BaGoodsTypeEntity entity) throws Exception{
  		super.saveOrUpdate(entity);

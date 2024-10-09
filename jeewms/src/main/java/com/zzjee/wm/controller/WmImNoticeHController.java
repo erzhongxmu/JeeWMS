@@ -71,9 +71,11 @@ import java.util.*;
  * @version V1.0
  *
  */
+
 @Controller
 @RequestMapping("/wmImNoticeHController")
 public class WmImNoticeHController extends BaseController {
+
     /**
      * Logger for this class
      */
@@ -129,17 +131,18 @@ public class WmImNoticeHController extends BaseController {
         WmImNoticeHEntity wmImNoticeHEntity = wmImNoticeHService.getEntity(WmImNoticeHEntity.class, id);
 
         Object id0 = wmImNoticeHEntity.getNoticeId();
-
-
         List<WmImNoticeIEntity> wmImNoticeIEntitynewList = new ArrayList<>();
+        // 定义一个HQL查询语句，用于从数据库中查询与给定noticeId匹配的所有WmImNoticeIEntity记录
         String hql0 = "from WmImNoticeIEntity where  iM_NOTICE_ID = ? ";
         try {
             List<WmImNoticeIEntity> wmImNoticeIEntityList = systemService
                     .findHql(hql0, id0);
             for (WmImNoticeIEntity wmImNoticeIEntity : wmImNoticeIEntityList) {
                 try{
+                    // 根据商品编码查找对应的MdGoodsEntity实体对象
                     MdGoodsEntity mvgoods = systemService.findUniqueByProperty(
                             MdGoodsEntity.class, "shpBianMa", wmImNoticeIEntity.getGoodsCode());
+                    // 如果找到了对应的MdGoodsEntity实体对象，将该对象的一些属性值设置到当前的WmImNoticeIEntity对象中
                     if (mvgoods != null) {
                         wmImNoticeIEntity.setBzhiQi(mvgoods.getBzhiQi());
                         wmImNoticeIEntity.setShpGuiGe(mvgoods.getShpGuiGe());
@@ -151,6 +154,7 @@ public class WmImNoticeHController extends BaseController {
                 }
                 wmImNoticeIEntitynewList.add(wmImNoticeIEntity);
             }
+            // 将新的WmImNoticeIEntity列表设置为request的属性"wmImNoticeIList"
             request.setAttribute("wmImNoticeIList", wmImNoticeIEntitynewList);
 
         }catch (Exception e){
@@ -223,25 +227,18 @@ public class WmImNoticeHController extends BaseController {
                         wmImNoticeIEntity.setGoodsName(mvgoods.getShpMingCheng());
                     }
                 }catch (Exception e){
-
                 }
 
                 try{
-
                     wmImNoticeIEntity.setGoodsFvol(dfsum.format(Double.parseDouble(wmImNoticeIEntity.getGoodsFvol())));
                 }catch (Exception e){
-
                 }
 
                 try{
                     wmImNoticeIEntity.setGoodsWeight(dfsum.format(Double.parseDouble(wmImNoticeIEntity.getGoodsWeight())));
-
                 }catch (Exception e){
-
                 }
                 totalCount = totalCount.add(new BigDecimal(wmImNoticeIEntity.getGoodsCount()));
-
-
                 wmImNoticeIEntitynewList.add(wmImNoticeIEntity);
             }
             request.setAttribute("wmImNoticeIList", wmImNoticeIEntitynewList);
@@ -278,14 +275,13 @@ public class WmImNoticeHController extends BaseController {
                 wmImNoticeIEntity.setGoodsQmCount("0");
                 resultnew.add(wmImNoticeIEntity);
             }
-
-
         }
         dataGrid.setResults(resultnew);
         dataGrid.setTotal(resultnew.size());
+        // 将查询结果封装成DataGrid对象并返回给前端
         TagUtil.datagrid(response, dataGrid);
-
     }
+
     @RequestMapping(params = "datagridtbatch")
     public void datagridtbatch(WmImNoticeIEntity wmImNoticeI,
                                HttpServletRequest request, HttpServletResponse response,
@@ -310,8 +306,8 @@ public class WmImNoticeHController extends BaseController {
         dataGrid.setResults(resultnew);
         dataGrid.setTotal(resultnew.size());
         TagUtil.datagrid(response, dataGrid);
-
     }
+
     /**
      * easyui AJAX请求数据
      *
@@ -320,7 +316,6 @@ public class WmImNoticeHController extends BaseController {
      * @param dataGrid
      * @param
      */
-
     @RequestMapping(params = "datagrid")
     public void datagrid(WmImNoticeHEntity wmImNoticeH,
                          HttpServletRequest request, HttpServletResponse response,
@@ -352,7 +347,6 @@ public class WmImNoticeHController extends BaseController {
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.add();
-
         this.wmImNoticeHService.getDataGridReturn(cq, true);
         TagUtil.datagrid(response, dataGrid);
     }
@@ -365,7 +359,6 @@ public class WmImNoticeHController extends BaseController {
      * @param dataGrid
      * @param
      */
-
     @RequestMapping(params = "datagridqt")
     public void datagridqt(WmImNoticeHEntity wmImNoticeH,
                            HttpServletRequest request, HttpServletResponse response,
@@ -390,26 +383,14 @@ public class WmImNoticeHController extends BaseController {
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
         }
-//		if (wmImNoticeH.getImSta() == null) {
-//			cq.eq("imSta", Constants.wm_sta1);
-//		}
-
-
-
         if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
             cq.eq("cusCode", wmUtil.getCusCode());
         }
-
-//		Map<String,Object> map = new HashMap<String,Object>();
-//		map.put("imSta", "desc");
-//		cq.setOrder(map);
-
         Map<String,Object> map1 = new HashMap<String,Object>();
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.eq("orderTypeCode", "09");
         cq.add();
-
         this.wmImNoticeHService.getDataGridReturn(cq, true);
         TagUtil.datagrid(response, dataGrid);
     }
@@ -442,23 +423,14 @@ public class WmImNoticeHController extends BaseController {
         if (wmImNoticeH.getImSta() == null) {
             cq.eq("imSta", Constants.wm_sta1);
         }
-
-
-
         if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
             cq.eq("cusCode", wmUtil.getCusCode());
         }
-
-//		Map<String,Object> map = new HashMap<String,Object>();
-//		map.put("imSta", "desc");
-//		cq.setOrder(map);
-
         Map<String,Object> map1 = new HashMap<String,Object>();
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.eq("orderTypeCode", "03");
         cq.add();
-
         this.wmImNoticeHService.getDataGridReturn(cq, true);
         TagUtil.datagrid(response, dataGrid);
     }
@@ -495,13 +467,11 @@ public class WmImNoticeHController extends BaseController {
         if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
             cq.eq("cusCode", wmUtil.getCusCode());
         }
-
         Map<String,Object> map1 = new HashMap<String,Object>();
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.eq("orderTypeCode", "04");
         cq.add();
-
         this.wmImNoticeHService.getDataGridReturn(cq, true);
         TagUtil.datagrid(response, dataGrid);
     }
@@ -540,10 +510,13 @@ public class WmImNoticeHController extends BaseController {
 
             }
         } catch (Exception e) {
+            // 如果发生异常，打印堆栈跟踪信息
             e.printStackTrace();
             message = "审核失败";
+            // 抛出业务异常，并附带异常信息
             throw new BusinessException(e.getMessage());
         }
+        // 将message设置为j对象的msg属性
         j.setMsg(message);
         return j;
     }
@@ -584,10 +557,12 @@ public class WmImNoticeHController extends BaseController {
 
             }
         } catch (Exception e) {
+            // 如果发生异常，打印堆栈跟踪信息
             e.printStackTrace();
             message = "完成失败";
             throw new BusinessException(e.getMessage());
         }
+        // 将message设置为j对象的msg属性
         j.setMsg(message);
         return j;
     }
@@ -2411,174 +2386,7 @@ public class WmImNoticeHController extends BaseController {
         j.setMsg(message);
         return j;
     }
-    @RequestMapping(params = "doGet")
-    @ResponseBody
-    public AjaxJson dogetfromother(String formDate, HttpServletRequest request) {
-        String message = null;
-        AjaxJson j = new AjaxJson();
-        message = "读取成功";
-        if ("U8".equals(ResourceUtil.getConfigByName("interfacetype"))){
-            if(StringUtil.isEmpty(formDate)){
-                formDate = "2011-01-01";
-            }
-            yyUtil.getPord(formDate);
-            yyUtil.getcprd(formDate);
-            yyUtil.getqtrd(formDate);
-        }
-        if ("UAS".equals(ResourceUtil.getConfigByName("interfacetype"))){
-            String masterbill[] = {"XKN_TEST","XKN_TEST"};
-            for(int m =0;m<masterbill.length;m++) {
-                try {
-                    if (StringUtil.isEmpty(formDate)) {
-                        formDate = "2011-01-01";
-                    }
-                    String master = masterbill[m];
-                    String billclass[] = {"采购验收单", "销售退货单", "其它入库单", "其它采购入库单"};
-                    for (int i = 0; i < billclass.length; i++) {
-                        Map<String, Object> paramMap = new HashMap<String, Object>();
-                        paramMap.put("lastUpdateTime", formDate);
-                        paramMap.put("pi_class", billclass[i]);
-                        paramMap.put("master", master);
 
-                        billResult billResult = wmIntUtil.getBillin(paramMap);
-                        for (int s = 0; s < billResult.getData().size(); s++) {
-                            String imcuscode = billResult.getData().get(s).getPiInoutno();
-                            if (StringUtil.isNotEmpty(imcuscode)) {
-                                WmImNoticeHEntity wmimh = systemService.findUniqueByProperty(WmImNoticeHEntity.class, "imCusCode", imcuscode);
-                                if (wmimh == null) {
-                                    WmImNoticeHEntity wmImNoticeH = new WmImNoticeHEntity();
-                                    List<WmImNoticeIEntity> wmImNoticeIListnew = new ArrayList<WmImNoticeIEntity>();
-
-                                    wmImNoticeH.setOrderTypeCode("01");
-                                    String noticeid = wmUtil.getNextNoticeid(wmImNoticeH.getOrderTypeCode());
-
-                                    wmImNoticeH.setCusCode(ResourceUtil.getConfigByName("uas.cuscode"));
-                                    wmImNoticeH.setNoticeId(noticeid);
-                                    wmImNoticeH.setPlatformCode(Integer.toString(billResult.getData().get(s).getPiId()));
-                                    wmImNoticeH.setPiClass(billResult.getData().get(s).getPiClass());
-                                    wmImNoticeH.setPiMaster(master);
-                                    wmImNoticeH.setSupCode(billResult.getData().get(s).getPiCardcode());
-                                    MdSupEntity mdsup = systemService.findUniqueByProperty(MdSupEntity.class, "gysBianMa", wmImNoticeH.getSupCode());
-                                    if (mdsup != null) {
-                                        wmImNoticeH.setSupName(mdsup.getZhongWenQch());
-                                    }
-                                    wmImNoticeH.setImCusCode(imcuscode);
-                                    wmImNoticeH.setSupName(billResult.getData().get(s).getPiReceivename());
-                                    for (int k = 0; k < billResult.getData().get(s).getDetail().size(); k++) {
-                                        WmImNoticeIEntity wmi = new WmImNoticeIEntity();
-                                        wmi.setGoodsCode(billResult.getData().get(s).getDetail().get(k).getPdProdcode());
-                                        MvGoodsEntity mvgoods = systemService.findUniqueByProperty(
-                                                MvGoodsEntity.class, "goodsCode", wmi.getGoodsCode());
-                                        if (mvgoods != null) {
-                                            wmi.setGoodsName(mvgoods.getGoodsName());
-                                            wmi.setGoodsUnit(mvgoods.getShlDanWei());
-                                        }
-                                        wmi.setGoodsCount(Integer.toString(billResult.getData().get(s).getDetail().get(k).getPdInqty()));
-//                               wmi.setGoodsPrdData(billResult.getData().get(s).getDetail().get(k).getPdProdmadedate2User());
-                                        wmi.setOtherId(Integer.toString(billResult.getData().get(s).getDetail().get(k).getPdPdno()));
-                                        wmImNoticeIListnew.add(wmi);
-                                    }
-                                    wmImNoticeHService.addMain(wmImNoticeH, wmImNoticeIListnew);
-                                }
-                            } else {
-                                continue;
-                            }
-                        }
-                    }
-
-
-                    systemService.addLog(message, Globals.Log_Type_UPDATE,
-                            Globals.Log_Leavel_INFO);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    message = "读取失败";
-                    throw new BusinessException(e.getMessage());
-                }
-            }
-        }
-
-
-
-        j.setMsg(message);
-        return j;
-    }
-
-    @RequestMapping(params = "doPost")
-    @ResponseBody
-    public AjaxJson dopost(String id, HttpServletRequest request) {
-        String message = null;
-        AjaxJson j = new AjaxJson();
-        message = "读取成功";
-        WmImNoticeHEntity wmImNoticeH = wmImNoticeHService.getEntity(WmImNoticeHEntity.class, id);
-
-        //获取参数
-        Object id0 = wmImNoticeH.getNoticeId();
-        //===================================================================================
-        //查询-产品
-        String hql0 = "from WmImNoticeIEntity where 1 = 1 AND iM_NOTICE_ID = ? ";
-        try{
-            List<WmImNoticeIEntity> wmImNoticeIEntityList = systemService
-                    .findHql(hql0, id0);
-            List<Map<String,String>> list = new ArrayList<Map<String,String>>();
-            for(WmImNoticeIEntity t:wmImNoticeIEntityList){
-
-//                List<WmInQmIEntity> WmInQmlist = new ArrayList<WmInQmIEntity>();
-                String  hql = null;
-                hql = "from WmInQmIEntity t where t.imNoticeItem = ? ";
-
-                List<WmInQmIEntity>  WmInQmlist = systemService.findHql(hql, new Object[] { t.getId() });
-                for(WmInQmIEntity qm:WmInQmlist){
-
-                    Map<String,String> map = new HashMap<String,String>();
-                    //				[{"pd_pdno":1,"pd_outqty":"100","pi_class":"出货单","pi_id":50765226,"pi_inoutno":"JRS180800008"}]
-                    map.put("pd_pdno",t.getOtherId());
-                    map.put("pd_outqty",qm.getBaseGoodscount());
-                    map.put("pi_class",wmImNoticeH.getPiClass());
-                    map.put("pi_id",wmImNoticeH.getPlatformCode());
-                    map.put("pi_inoutno",wmImNoticeH.getImCusCode());
-                    map.put("pd_prodmadedate",qm.getProData());
-
-                    MdGoodsEntity mvgoods  = systemService.findUniqueByProperty(
-                            MdGoodsEntity.class, "shpBianMa",
-                            qm.getGoodsId());
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // 日期格式
-                    Date date = dateFormat.parse(qm.getProData()); // 指定日期
-                    if(mvgoods!=null){
-
-                        Date newDate = addDate(date, Long.parseLong(mvgoods.getBzhiQi())); // 指定日期加上10天
-                        map.put("pd_replydate",dateFormat.format(newDate));
-                    }else{
-                        Date newDate = addDate(date, 1); // 指定日期加上10天
-                        map.put("pd_replydate ",qm.getProData());
-                    }
-
-                    list.add(map);
-
-                }
-
-            }
-            String jsonStr = JSONArray.fromObject(list).toString();
-            JSONArray ja = JSONArray.fromObject(jsonStr);
-            resResult resResult = wmIntUtil.postBill(ja.toString(),wmImNoticeH.getPiMaster());
-            j.setMsg(resResult.getDetailedMessage());
-        }catch (Exception e){
-            e.printStackTrace();
-            message = "读取失败";
-            throw new BusinessException(e.getMessage());
-        }
-
-        j.setMsg(message);
-        return j;
-    }
-
-
-
-    public static Date addDate(Date date, long day){
-        long time = date.getTime(); // 得到指定日期的毫秒数
-        day = day * 24 * 60 * 60 * 1000; // 要加上的天数转换成毫秒数
-        time += day; // 相加得到新的毫秒数
-        return new Date(time); // 将毫秒数转换成日期
-    }
 
 
     /**

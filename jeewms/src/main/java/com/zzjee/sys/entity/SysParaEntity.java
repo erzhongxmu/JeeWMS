@@ -61,8 +61,8 @@ public class SysParaEntity implements java.io.Serializable {
 	private String parValue;
 	
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  主键
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  主键
 	 */
 	@Id
 	@GeneratedValue(generator = "paymentableGenerator")
@@ -73,15 +73,15 @@ public class SysParaEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  主键
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  主键
 	 */
 	public void setId(String id){
 		this.id = id;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  创建人名称
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  创建人名称
 	 */
 	@Column(name ="CREATE_NAME",nullable=true,length=50)
 	public String getCreateName(){
@@ -89,15 +89,15 @@ public class SysParaEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  创建人名称
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  创建人名称
 	 */
 	public void setCreateName(String createName){
 		this.createName = createName;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  创建人登录名称
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  创建人登录名称
 	 */
 	@Column(name ="CREATE_BY",nullable=true,length=50)
 	public String getCreateBy(){
@@ -105,15 +105,15 @@ public class SysParaEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  创建人登录名称
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  创建人登录名称
 	 */
 	public void setCreateBy(String createBy){
 		this.createBy = createBy;
 	}
 	/**
-	 *方法: 取得java.util.Date
-	 *@return: java.util.Date  创建日期
+	 * get方法: 取得java.util.Date
+	 * @return: java.util.Date  创建日期
 	 */
 	@Column(name ="CREATE_DATE",nullable=true,length=20)
 	public Date getCreateDate(){
@@ -121,15 +121,15 @@ public class SysParaEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.util.Date
-	 *@param: java.util.Date  创建日期
+	 * set方法: 设置java.util.Date
+	 * @param: java.util.Date  创建日期
 	 */
 	public void setCreateDate(Date createDate){
 		this.createDate = createDate;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  更新人名称
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  更新人名称
 	 */
 	@Column(name ="UPDATE_NAME",nullable=true,length=50)
 	public String getUpdateName(){
@@ -137,15 +137,15 @@ public class SysParaEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  更新人名称
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  更新人名称
 	 */
 	public void setUpdateName(String updateName){
 		this.updateName = updateName;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  更新人登录名称
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  更新人登录名称
 	 */
 	@Column(name ="UPDATE_BY",nullable=true,length=50)
 	public String getUpdateBy(){
@@ -153,15 +153,15 @@ public class SysParaEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  更新人登录名称
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  更新人登录名称
 	 */
 	public void setUpdateBy(String updateBy){
 		this.updateBy = updateBy;
 	}
 	/**
-	 *方法: 取得java.util.Date
-	 *@return: java.util.Date  更新日期
+	 * get方法: 取得java.util.Date
+	 * @return: java.util.Date  更新日期
 	 */
 	@Column(name ="UPDATE_DATE",nullable=true,length=20)
 	public Date getUpdateDate(){
@@ -169,15 +169,15 @@ public class SysParaEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.util.Date
-	 *@param: java.util.Date  更新日期
+	 * set方法: 设置java.util.Date
+	 * @param: java.util.Date  更新日期
 	 */
 	public void setUpdateDate(Date updateDate){
 		this.updateDate = updateDate;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  所属部门
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  所属部门
 	 */
 	@Column(name ="SYS_ORG_CODE",nullable=true,length=50)
 	public String getSysOrgCode(){
@@ -185,15 +185,15 @@ public class SysParaEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  所属部门
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  所属部门
 	 */
 	public void setSysOrgCode(String sysOrgCode){
 		this.sysOrgCode = sysOrgCode;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  所属公司
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  所属公司
 	 */
 	@Column(name ="SYS_COMPANY_CODE",nullable=true,length=50)
 	public String getSysCompanyCode(){
@@ -201,15 +201,15 @@ public class SysParaEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  所属公司
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  所属公司
 	 */
 	public void setSysCompanyCode(String sysCompanyCode){
 		this.sysCompanyCode = sysCompanyCode;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  流程状态
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  流程状态
 	 */
 	@Column(name ="BPM_STATUS",nullable=true,length=32)
 	public String getBpmStatus(){
@@ -217,15 +217,15 @@ public class SysParaEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  流程状态
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  流程状态
 	 */
 	public void setBpmStatus(String bpmStatus){
 		this.bpmStatus = bpmStatus;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  参数类型
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  参数类型
 	 */
 	@Column(name ="PAR_TYPE",nullable=true,length=32)
 	public String getParType(){
@@ -233,15 +233,15 @@ public class SysParaEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  参数类型
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  参数类型
 	 */
 	public void setParType(String parType){
 		this.parType = parType;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  参数所属人
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  参数所属人
 	 */
 	@Column(name ="PAR_USERNAME",nullable=true,length=32)
 	public String getParUsername(){
@@ -249,15 +249,15 @@ public class SysParaEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  参数所属人
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  参数所属人
 	 */
 	public void setParUsername(String parUsername){
 		this.parUsername = parUsername;
 	}
 	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  参数值
+	 * get方法: 取得java.lang.String
+	 * @return: java.lang.String  参数值
 	 */
 	@Column(name ="PAR_VALUE",nullable=true,length=32)
 	public String getParValue(){
@@ -265,8 +265,8 @@ public class SysParaEntity implements java.io.Serializable {
 	}
 
 	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  参数值
+	 * set方法: 设置java.lang.String
+	 * @param: java.lang.String  参数值
 	 */
 	public void setParValue(String parValue){
 		this.parValue = parValue;

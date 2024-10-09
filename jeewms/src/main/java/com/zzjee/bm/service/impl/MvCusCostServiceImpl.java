@@ -17,29 +17,33 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class MvCusCostServiceImpl extends CommonServiceImpl implements MvCusCostServiceI {
 
-	
+	/**
+	 * 删除指定的客户其他信息实体，并在删除后执行额外的业务逻辑增强。
+	 *
+	 * @param entity
+	 */
  	@Override
     public void delete(MvCusCostEntity entity) throws Exception{
+		//调用父类的delete方法
  		super.delete(entity);
  		//执行删除操作增强业务
 		this.doDelBus(entity);
  	}
- 	
  	@Override
     public Serializable save(MvCusCostEntity entity) throws Exception{
+		//调用父类的save方法,执行实际的保存操作
  		Serializable t = super.save(entity);
  		//执行新增操作增强业务
  		this.doAddBus(entity);
  		return t;
  	}
- 	
  	@Override
     public void saveOrUpdate(MvCusCostEntity entity) throws Exception{
+		//调用父类的saveOrUpdate方法
  		super.saveOrUpdate(entity);
  		//执行更新操作增强业务
  		this.doUpdateBus(entity);
  	}
- 	
  	/**
 	 * 新增操作增强业务
 	 * @param t
@@ -48,7 +52,7 @@ public class MvCusCostServiceImpl extends CommonServiceImpl implements MvCusCost
 	private void doAddBus(MvCusCostEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -60,7 +64,7 @@ public class MvCusCostServiceImpl extends CommonServiceImpl implements MvCusCost
 	private void doUpdateBus(MvCusCostEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -72,11 +76,15 @@ public class MvCusCostServiceImpl extends CommonServiceImpl implements MvCusCost
 	private void doDelBus(MvCusCostEntity t) throws Exception{
 	    //-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
- 	
+	/**
+	 * 将MvCusCostEntity对象的属性转换为一个Map
+	 * @param t
+	 * @return
+	 */
  	private Map<String,Object> populationMap(MvCusCostEntity t){
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("id", t.getId());
@@ -85,7 +93,7 @@ public class MvCusCostServiceImpl extends CommonServiceImpl implements MvCusCost
 		map.put("cost_data", t.getCostData());
 		return map;
 	}
- 	
+
  	/**
 	 * 替换sql中的变量
 	 * @param sql
@@ -100,7 +108,7 @@ public class MvCusCostServiceImpl extends CommonServiceImpl implements MvCusCost
  		sql  = sql.replace("#{UUID}",UUID.randomUUID().toString());
  		return sql;
  	}
- 	
+
  	/**
 	 * 执行JAVA增强
 	 */
@@ -110,18 +118,20 @@ public class MvCusCostServiceImpl extends CommonServiceImpl implements MvCusCost
 			try {
 				if("class".equals(cgJavaType)){
 					//因新增时已经校验了实例化是否可以成功，所以这块就不需要再做一次判断
+					//使用自定义类加载器加载并实例化类
 					obj = MyClassLoader.getClassByScn(cgJavaValue).newInstance();
 				}else if("spring".equals(cgJavaType)){
 					obj = ApplicationContextUtil.getContext().getBean(cgJavaValue);
 				}
 				if(obj instanceof CgformEnhanceJavaInter){
 					CgformEnhanceJavaInter javaInter = (CgformEnhanceJavaInter) obj;
+					//调用execute方法，执行Java增强逻辑
 					javaInter.execute("mv_cus_cost",data);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new Exception("执行JAVA增强出现异常！");
-			} 
+			}
 		}
  	}
 }

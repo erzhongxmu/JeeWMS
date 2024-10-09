@@ -17,7 +17,10 @@ import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 @Transactional
 public class WmsAppRoleServiceImpl extends CommonServiceImpl implements WmsAppRoleServiceI {
 
-	
+	/**
+	 * 定义一个名为delete的方法，接收一个WmsAppFunctionEntity类型的参数entity，并抛出异常
+	 * @return
+	 */
  	public void delete(WmsAppRoleEntity entity) throws Exception{
  		super.delete(entity);
  		//执行删除操作增强业务
@@ -63,7 +66,6 @@ public class WmsAppRoleServiceImpl extends CommonServiceImpl implements WmsAppRo
  	}
  	/**
 	 * 删除操作增强业务
-	 * @param id
 	 * @return
 	 */
 	private void doDelBus(WmsAppRoleEntity t) throws Exception{
@@ -141,10 +143,13 @@ public class WmsAppRoleServiceImpl extends CommonServiceImpl implements WmsAppRo
 					//因新增时已经校验了实例化是否可以成功，所以这块就不需要再做一次判断
 					obj = MyClassLoader.getClassByScn(cgJavaValue).newInstance();
 				}else if("spring".equals(cgJavaType)){
+					// 如果cgJavaType为"spring"，则从Spring上下文中获取bean
 					obj = ApplicationContextUtil.getContext().getBean(cgJavaValue);
 				}
 				if(obj instanceof CgformEnhanceJavaInter){
+					// 将obj转换为CgformEnhanceJavaInter类型
 					CgformEnhanceJavaInter javaInter = (CgformEnhanceJavaInter) obj;
+					// 调用execute方法执行增强逻辑
 					javaInter.execute("wms_app_role",data);
 				}
 			} catch (Exception e) {

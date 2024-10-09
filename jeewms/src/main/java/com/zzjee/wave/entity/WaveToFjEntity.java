@@ -116,6 +116,7 @@ public class WaveToFjEntity implements java.io.Serializable {
 	public void setId(String id){
 		this.id = id;
 	}
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  创建人登录名称
