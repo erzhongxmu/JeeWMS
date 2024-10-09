@@ -3,7 +3,6 @@ JEEWMSQQ交流群：335607153 1群已满  请加2群  313930553  有任何问题
  **智能制造产品JEEMES已经开源**  (https://gitee.com/erzhongxmu/jeemes) 欢迎大家STAR
  
 测试系统地址 http://47.113.229.131:9080/jeewms  用户名：admin 密码：llg123 本地启动的用户名：admin 密码：llg123
-android app也已经开源，近期更新会比较频繁 app开源地址   https://gitee.com/erzhongxmu/JeeWMSapp-uni
 大家看到了，star一下，谢谢，本团队会持续更新，一直开源！
 
 开源不易，希望大家多多支持，有仓储硬件需求（PDA，RFID，AGV等）的可以找我们代买，保证最优惠的价格，官网全新上线，欢迎访问  [公司官网](http://www.huayi-tec.com/)。
