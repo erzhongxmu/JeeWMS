@@ -1,0 +1,95 @@
+{
+	"pages": [
+		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/login/login",
+			"style": {}
+		},
+		{
+			"path": "pages/index/index",
+			"style": {}
+		},
+		{
+			"path": "pages/user/people",
+			"style": {}
+		},
+		{
+			"path": "pages/msg/message",
+			"style": {}
+		},
+		{
+			"path": "pages/zd/receiving",
+			"style": {}
+		},
+		{
+			"path": "pages/zd/racking",
+			"style": {}
+		},
+		{
+			"path": "pages/zd/removing",
+			"style": {}
+		},
+		{
+			"path": "pages/zd/truckLoading",
+			"style": {}
+		},
+		{
+			"path": "pages/zd/searchStock",
+			"style": {}
+		},
+		{
+			"path": "pages/zd/moveStore",
+			"style": {}
+		},
+		{
+			"path": "pages/zd/checking",
+			"style": {}
+		},
+		{
+			"path": "pages/zd/manageGoods",
+			"style": {}
+		},
+		{
+			"path": "pages/zd/waveRemoving",
+			"style": {}
+		},
+		{
+			"path": "pages/zd/waveSorting",
+			"style": {}
+		},
+		{
+			"path": "pages/zd/libertyMove",
+			"style": {}
+		}
+        ,{
+            "path" : "components/barcode/barcode",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"mp-alipay": {
+			/* 支付宝小程序特有相关 */
+			"transparentTitle": "always",
+			"allowsBounceVertical": "NO"
+		},
+		"navigationBarBackgroundColor": "#0081ff",
+		"navigationBarTitleText": "WMS",
+		"navigationStyle": "custom",
+		"navigationBarTextStyle": "white"
+	},
+	"usingComponts": true,
+	"condition": { //模式配置，仅开发期间生效
+		"current": 0, //当前激活的模式(list 的索引项)
+		"list": [{
+			"name": "表单", //模式名称
+			"path": "pages/index/index", //启动页面
+			"query": "" //启动参数
+		}]
+	}
+
+}
