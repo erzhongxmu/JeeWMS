@@ -1,0 +1,41 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.wizard-pane {
+	position: absolute;
+	top: 0;
+	visibility: hidden;
+	opacity: 0;
+	-webkit-transition: opacity .2s ease;
+	     -o-transition: opacity .2s ease;
+	        transition: opacity .2s ease;
+}
+.wizard-pane.active {
+	position: relative;
+	visibility: visible;
+	opacity: 1;
+}
+.wizard-pane.activing {
+	visibility: visible;
+}
+.wizard-content {
+	position: relative;
+	padding: 0;
+	-webkit-transition: height .2s ease;
+	     -o-transition: height .2s ease;
+	        transition: height .2s ease;
+}
+.panel-body > .wizard-buttons, .tab-content > .wizard-buttons {
+	margin-top: 22px;
+}
+.color-active {
+	color: #62a8ea !important;
+}
+.color-error {
+	color: #f96868 !important;
+}
+.color-done {
+	color: #46be8a !important;
+}

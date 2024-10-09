@@ -1,0 +1,59 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.page-email .page-content .panel {
+	max-width: 660px;
+	margin: 0 auto;
+}
+.page-email .page-content .widget {
+	padding: 20px 0;
+	margin: 0;
+}
+.page-email .page-content .widget-header {
+	margin-bottom: 35px;
+}
+.page-email .page-content .widget-body h3 {
+	margin-bottom: 20px;
+}
+.page-email .page-content .widget-body-footer {
+	margin-top: 25px;
+}
+.page-email .email-title {
+	padding: 15px 0 5px;
+	text-align: center;
+}
+.page-email .email-more {
+	padding: 35px 0 10px;
+	margin-top: 40px;
+	text-align: center;
+	border-top: 1px solid #e4eaec;
+}
+.page-email .email-more-title {
+	font-size: 20px;
+}
+.page-email .email-more-content {
+	padding: 47px 0 54px;
+}
+.page-email .email-more-social {
+	padding: 20px 0;
+}
+.page-email .email-more-social a {
+	padding: 5px;
+	margin: 0 7px;
+	text-decoration: none;
+}
+.page-email .email-more-social .icon {
+	font-size: 16px;
+	color: rgba(55, 71, 79, .4);
+}
+.page-email .email-more-social .icon:hover, .page-email .email-more-social .icon:focus {
+	color: rgba(55, 71, 79, .6);
+}
+.page-email .email-more-social .icon.active, .page-email .email-more-social .icon:active {
+	color: #37474f;
+}
+.page-email .email-unsubscribe {
+	text-decoration: underline;
+}

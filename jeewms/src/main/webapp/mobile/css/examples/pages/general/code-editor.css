@@ -1,0 +1,25 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.page-code-editor .page {
+	height: -webkit-calc(56%);
+	height:         calc(56%);
+}
+.page-code-editor .page-main, .page-code-editor .page-content {
+	height: 100%;
+	padding: 0;
+}
+.page-code-editor .page-aside-inner {
+	height: 100%;
+}
+.page-code-editor .treeview .list-group-item.node-selected {
+	background-color: #f3f7f9;
+}
+.page-code-editor .treeview .list-group-item.node-selected, .page-code-editor .treeview .list-group-item.node-selected .node-icon {
+	color: #62a8ea;
+}
+.page-code-editor .CodeMirror {
+	height: 100%;
+}

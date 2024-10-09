@@ -1,0 +1,32 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.page-index-v2 .page-header {
+	background-image: url("../../../../images/dashboard2-header.jpg");
+	-webkit-background-size: cover;
+	        background-size: cover;
+}
+.page-index-v2 .widget, .page-index-v2 .panel {
+	height: -webkit-calc(100% - 30px);
+	height:         calc(100% - 30px);
+}
+.page-index-v2 .widget-content {
+	height: 100%;
+}
+#widgetLinearea .ct-chart .ct-label.ct-vertical, #widgetLinearea .ct-chart .ct-label.ct-horizontal {
+	font-size: 14px;
+}
+#widgetLinearea .ct-chart .ct-area {
+	fill-opacity: 1;
+}
+#widgetLinearea .ct-chart .ct-series.ct-series-a .ct-area {
+	fill: #d5e4f1;
+}
+#widgetLinearea .ct-chart .ct-series.ct-series-b .ct-area {
+	fill: #cdf4f1;
+}
+#widgetLinearea ul .icon {
+	vertical-align: text-bottom;
+}

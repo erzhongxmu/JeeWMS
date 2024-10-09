@@ -1,0 +1,12 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.page-gallery-grid .widget {
+	margin-bottom: 0;
+}
+.page-gallery-grid .widget, .page-gallery-grid .cover, .page-gallery-grid .cover-image {
+	height: 100%;
+	border-radius: 0;
+}

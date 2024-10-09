@@ -1,0 +1,183 @@
+.cm-s-liquibyte.CodeMirror {
+  font-size: 1em;
+  line-height: 1.2em;
+  color: #fff;
+  background-color: #000;
+}
+.cm-s-liquibyte .CodeMirror-focused .cm-matchhighlight {
+  text-decoration: underline;
+
+  -webkit-text-decoration-color: #0f0;
+     -moz-text-decoration-color: #0f0;
+          text-decoration-color: #0f0;
+  -webkit-text-decoration-style: wavy;
+     -moz-text-decoration-style: wavy;
+          text-decoration-style: wavy;
+}
+.cm-s-liquibyte .cm-trailingspace {
+  text-decoration: line-through;
+
+  -webkit-text-decoration-color: #f00;
+     -moz-text-decoration-color: #f00;
+          text-decoration-color: #f00;
+  -webkit-text-decoration-style: dotted;
+     -moz-text-decoration-style: dotted;
+          text-decoration-style: dotted;
+}
+.cm-s-liquibyte .cm-tab {
+  text-decoration: line-through;
+
+  -webkit-text-decoration-color: #404040;
+     -moz-text-decoration-color: #404040;
+          text-decoration-color: #404040;
+  -webkit-text-decoration-style: dotted;
+     -moz-text-decoration-style: dotted;
+          text-decoration-style: dotted;
+}
+.cm-s-liquibyte .CodeMirror-gutters {
+  padding-right: .8em; 
+  background-color: #262626;
+  border-right: 1px solid #505050;
+}
+.cm-s-liquibyte .CodeMirror-gutter-elt div {
+  font-size: 1.2em;
+}
+
+
+.cm-s-liquibyte .CodeMirror-linenumber {
+  padding-left: 0; 
+  color: #606060;
+}
+.cm-s-liquibyte .CodeMirror-cursor {
+  border-left: 1px solid #eee;
+}
+
+.cm-s-liquibyte span.cm-comment {
+  color: #008000;
+}
+.cm-s-liquibyte span.cm-def {
+  font-weight: bold; 
+  color: #ffaf40;
+}
+.cm-s-liquibyte span.cm-keyword {
+  font-weight: bold; 
+  color: #c080ff;
+}
+.cm-s-liquibyte span.cm-builtin {
+  font-weight: bold; 
+  color: #ffaf40;
+}
+.cm-s-liquibyte span.cm-variable {
+  font-weight: bold; 
+  color: #5967ff;
+}
+.cm-s-liquibyte span.cm-string {
+  color: #ff8000;
+}
+.cm-s-liquibyte span.cm-number {
+  font-weight: bold; 
+  color: #0f0;
+}
+.cm-s-liquibyte span.cm-atom {
+  font-weight: bold; 
+  color: #bf3030;
+}
+
+.cm-s-liquibyte span.cm-variable-2 {
+  font-weight: bold; 
+  color: #007f7f;
+}
+.cm-s-liquibyte span.cm-variable-3 {
+  font-weight: bold; 
+  color: #c080ff;
+}
+.cm-s-liquibyte span.cm-property {
+  font-weight: bold; 
+  color: #999;
+}
+.cm-s-liquibyte span.cm-operator {
+  color: #fff;
+}
+
+.cm-s-liquibyte span.cm-meta {
+  color: #0f0;
+}
+.cm-s-liquibyte span.cm-qualifier {
+  font-weight: bold; 
+  color: #fff700;
+}
+.cm-s-liquibyte span.cm-bracket {
+  color: #cc7;
+}
+.cm-s-liquibyte span.cm-tag {
+  font-weight: bold; 
+  color: #ff0;
+}
+.cm-s-liquibyte span.cm-attribute {
+  font-weight: bold; 
+  color: #c080ff;
+}
+.cm-s-liquibyte span.cm-error {
+  color: #f00;
+}
+
+.cm-s-liquibyte div.CodeMirror-selected {
+  background-color: rgba(255, 0, 0, .25);
+}
+
+.cm-s-liquibyte span.cm-compilation {
+  background-color: rgba(255, 255, 255, .12);
+}
+
+.cm-s-liquibyte .CodeMirror-activeline-background {
+  background-color: rgba(0, 255, 0, .15);
+}
+
+/* Default styles for common addons */
+.cm-s-liquibyte .CodeMirror span.CodeMirror-matchingbracket {
+  font-weight: bold; 
+  color: #0f0;
+}
+.cm-s-liquibyte .CodeMirror span.CodeMirror-nonmatchingbracket {
+  font-weight: bold; 
+  color: #f00;
+}
+.CodeMirror-matchingtag {
+  background-color: rgba(150, 255, 0, .3);
+}
+/* Scrollbars */
+/* Simple */
+.cm-s-liquibyte div.CodeMirror-simplescroll-horizontal div:hover, div.CodeMirror-simplescroll-vertical div:hover {
+  background-color: rgba(80, 80, 80, .7);
+}
+.cm-s-liquibyte div.CodeMirror-simplescroll-horizontal div, div.CodeMirror-simplescroll-vertical div {
+  background-color: rgba(80, 80, 80, .3);
+  border: 1px solid #404040;
+  border-radius: 5px;
+}
+.cm-s-liquibyte div.CodeMirror-simplescroll-vertical div {
+  border-top: 1px solid #404040;
+  border-bottom: 1px solid #404040;
+}
+.cm-s-liquibyte div.CodeMirror-simplescroll-horizontal div {
+  border-right: 1px solid #404040;
+  border-left: 1px solid #404040;
+}
+.cm-s-liquibyte div.CodeMirror-simplescroll-vertical {
+  background-color: #262626;
+}
+.cm-s-liquibyte div.CodeMirror-simplescroll-horizontal {
+  background-color: #262626;
+  border-top: 1px solid #404040;
+}
+/* Overlay */
+.cm-s-liquibyte div.CodeMirror-overlayscroll-horizontal div, div.CodeMirror-overlayscroll-vertical div {
+  background-color: #404040;
+  border-radius: 5px;
+}
+.cm-s-liquibyte div.CodeMirror-overlayscroll-vertical div {
+  border: 1px solid #404040;
+}
+.cm-s-liquibyte div.CodeMirror-overlayscroll-horizontal div {
+  border: 1px solid #404040;
+}

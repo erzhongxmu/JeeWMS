@@ -1,0 +1,33 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.treeview-box {
+	padding: 12px;
+	background-color: #fff;
+	border: 1px solid #e4eaec;
+	border-radius: 3px;
+}
+.treeview .list-group-item {
+	cursor: pointer;
+}
+.treeview .list-group-item:not(.node-selected):hover, .treeview .list-group-item:not(.node-selected):focus {
+	color: #62a8ea;
+	background-color: #f3f7f9;
+}
+.treeview .list-group-item:not(.node-selected):hover > .node-icon, .treeview .list-group-item:not(.node-selected):focus > .node-icon {
+	color: #62a8ea;
+}
+.treeview span.indent {
+	margin-right: 10px;
+	margin-left: 10px;
+}
+.treeview span.icon {
+	width: 12px;
+	margin-right: 8px;
+}
+.treeview .node-disabled {
+	color: silver;
+	cursor: not-allowed;
+}

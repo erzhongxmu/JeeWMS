@@ -1,0 +1,119 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.page-forum .page-content .table {
+	table-layout: fixed;
+}
+.page-forum .page-content .table .content {
+	position: relative;
+}
+.page-forum .page-content .table .content > * {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.page-forum .page-content .table .flags {
+	display: inline-block;
+}
+.page-forum .page-content .table a {
+	text-decoration: none;
+}
+.page-forum .page-content .table .title {
+	line-height: 25px;
+}
+.page-forum .page-content .table .title > * {
+	margin-right: 10px;
+}
+.page-forum .page-content .table .title .locked {
+	color: #a3afb7;
+}
+.page-forum .page-content .table .sticky-top {
+	font-size: 90%;
+}
+.page-forum .page-content .table .sticky-top .icon {
+	margin-right: 4px;
+}
+.page-forum .page-content .table .metas {
+	color: #a3afb7;
+}
+.page-forum .page-content .table .metas > span {
+	position: relative;
+	margin-right: 10px;
+}
+.page-forum .page-content .table .metas > span + span:before {
+	position: absolute;
+	top: 50%;
+	left: -8px;
+	width: 2px;
+	height: 2px;
+	content: "";
+	background-color: #a7b0b8;
+}
+.page-forum .page-content .table .forum-posts {
+	text-align: right;
+}
+@media (max-width: 1199px) {
+	.page-forum .page-content .table .content {
+		padding-right: 100px;
+	}
+	.page-forum .page-content .table .flags {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+}
+@media (max-width: 480px) {
+	.page-forum .nav-tabs-line > li > a {
+		padding: 10px;
+	}
+	.page-forum .responsive-hide {
+		display: none !important;
+	}
+	.page-forum .page-content .table .content {
+		padding-right: 0;
+	}
+}
+.slidePanel-header {
+	background-color: #9ece67;
+}
+.slidePanel-header:before, .slidePanel-header:after {
+	display: table;
+	content: " ";
+}
+.slidePanel-header:after {
+	clear: both;
+}
+.slidePanel .actions-top {
+	position: absolute;
+	top: 30px;
+	right: 20px;
+}
+.slidePanel .actions-bottom {
+	position: absolute;
+	right: 20px;
+	bottom: 30px;
+}
+.slidePanel .avatar, .slidePanel .name {
+	margin-right: 6px;
+}
+.slidePanel .time {
+	color: #a3afb7;
+}
+.slidePanel .forum-header, .slidePanel .forum-content, .slidePanel .forum-metas {
+	margin-bottom: 20px;
+}
+.slidePanel .forum-header:before, .slidePanel .forum-content:before, .slidePanel .forum-metas:before, .slidePanel .forum-header:after, .slidePanel .forum-content:after, .slidePanel .forum-metas:after {
+	display: table;
+	content: " ";
+}
+.slidePanel .forum-header:after, .slidePanel .forum-content:after, .slidePanel .forum-metas:after {
+	clear: both;
+}
+.slidePanel .forum-content:last-child {
+	margin-bottom: 0;
+}
+.slidePanel .tags {
+	margin-bottom: 15px;
+}

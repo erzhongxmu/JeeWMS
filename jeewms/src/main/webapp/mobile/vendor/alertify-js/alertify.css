@@ -1,0 +1,151 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.alertify-logs > * {
+	padding: 10px 20px;
+	color: #fff;
+	border-radius: 3px;
+}
+.alertify-logs > *, .alertify-logs > *.default {
+	background: rgba(0, 0, 0, .8);
+}
+.alertify-logs > *.error {
+	background: #f96868;
+}
+.alertify-logs > *.success {
+	background: #46be8a;
+}
+.alertify {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 2020;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, .3);
+}
+.alertify.hide {
+	pointer-events: none;
+	opacity: 0;
+}
+.alertify, .alertify.show, .alertify.hide {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+	-webkit-transition: all .33s cubic-bezier(.25, .8, .25, 1);
+	     -o-transition: all .33s cubic-bezier(.25, .8, .25, 1);
+	        transition: all .33s cubic-bezier(.25, .8, .25, 1);
+}
+.alertify, .alertify * {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.alertify .dialog, .alertify .alert {
+	position: relative;
+	top: 50%;
+	width: 100%;
+	margin: 0 auto;
+	-webkit-transform: translateY(-50%);
+	    -ms-transform: translateY(-50%);
+	     -o-transform: translateY(-50%);
+	        transform: translateY(-50%);
+}
+.alertify .dialog > *, .alertify .alert > * {
+	width: 400px;
+	max-width: 95%;
+	padding: 20px;
+	margin: 0 auto;
+	text-align: center;
+	background: #fff;
+	border-radius: 3px;
+}
+.alertify .dialog .msg, .alertify .alert .msg {
+	padding: 20px 0;
+	margin: 0;
+	margin-bottom: 20px;
+	text-align: left;
+}
+.alertify .dialog input, .alertify .alert input {
+	width: 100%;
+	height: 32px;
+	padding: 4px 12px;
+	margin-bottom: 15px;
+	font-size: 14px;
+	line-height: 1.6;
+	color: #76838f;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #e4eaec;
+	border-radius: 3px;
+}
+.alertify .dialog input:focus, .alertify .alert input:focus {
+	border-color: #62a8ea;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(98, 168, 234, .6);
+	        box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(98, 168, 234, .6);
+}
+.alertify .dialog input.focus, .alertify .alert input.focus, .alertify .dialog input:focus, .alertify .alert input:focus {
+	border-color: #62a8ea;
+	-webkit-box-shadow: none;
+	        box-shadow: none;
+}
+.alertify .dialog input::-moz-placeholder, .alertify .alert input::-moz-placeholder {
+	color: #a3afb7;
+	opacity: 1;
+}
+.alertify .dialog input:-ms-input-placeholder, .alertify .alert input:-ms-input-placeholder {
+	color: #a3afb7;
+}
+.alertify .dialog input::-webkit-input-placeholder, .alertify .alert input::-webkit-input-placeholder {
+	color: #a3afb7;
+}
+.alertify .dialog nav, .alertify .alert nav {
+	text-align: right;
+}
+.alertify .dialog nav .btn, .alertify .alert nav .btn {
+	margin-left: 10px;
+}
+.alertify-logs {
+	position: fixed;
+	top: 80px;
+	right: 20px;
+	z-index: 2010;
+}
+.site-contabs-open .alertify-logs {
+	top: 120px;
+}
+@media (max-width: 480px) {
+	.site-contabs-open .alertify-logs {
+		top: 80px;
+	}
+}
+.alertify-logs > * {
+	position: relative;
+	float: right;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+	margin-top: 10px;
+	clear: both;
+	-webkit-transition: all .3s cubic-bezier(.25, .8, .25, 1);
+	     -o-transition: all .3s cubic-bezier(.25, .8, .25, 1);
+	        transition: all .3s cubic-bezier(.25, .8, .25, 1);
+	-webkit-transform: translate3d(0, 0, 0);
+	        transform: translate3d(0, 0, 0);
+
+	-webkit-backface-visibility: hidden;
+	        backface-visibility: hidden;
+}
+.alertify-logs > *.show {
+	right: 0;
+	opacity: 1;
+}
+.alertify-logs > *, .alertify-logs > *.hide {
+	right: -100%;
+	opacity: 0;
+}

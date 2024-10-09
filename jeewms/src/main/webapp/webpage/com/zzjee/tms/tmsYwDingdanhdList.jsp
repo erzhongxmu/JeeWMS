@@ -1,0 +1,182 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="/context/mytags.jsp"%>
+<t:base type="jquery,easyui,tools,DatePicker"></t:base>
+<div class="easyui-layout" fit="true">
+  <div region="center" style="padding:0px;border:0px">
+  <t:datagrid name="tmsYwDingdanList" checkbox="true" pagination="true" fitColumns="false" title="回单管理" actionUrl="tmsYwDingdanController.do?datagridhd" idField="id" fit="true" queryMode="group">
+   <t:dgCol title="主键"  field="id"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
+   <t:dgCol title="创建人名称"  field="createName"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
+   <t:dgCol title="创建人登录名称"  field="createBy"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
+   <t:dgCol title="创建日期"  field="createDate"  formatter="yyyy-MM-dd"   query="true"  queryMode="group"  width="100"></t:dgCol>
+   <t:dgCol title="更新人名称"  field="updateName"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
+   <t:dgCol title="更新人登录名称"  field="updateBy"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
+   <t:dgCol title="更新日期"  field="updateDate"  formatter="yyyy-MM-dd"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
+   <t:dgCol title="所属部门"  field="sysOrgCode"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
+   <t:dgCol title="所属公司"  field="sysCompanyCode"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
+
+   <t:dgCol title="运费"  field="hwyf"   extendParams="editor:'text'" queryMode="single"  width="70"></t:dgCol>
+   <t:dgCol title="卸货费"  field="hwxhf"  extendParams="editor:'text'"  queryMode="group"  width="60"></t:dgCol>
+   <t:dgCol title="货物总费用"  field="hwzfy"  extendParams="editor:'text'"  queryMode="group"  width="200"></t:dgCol>
+   <t:dgCol title="回单备注"  field="ywhdbz"  extendParams="editor:'text'"  queryMode="group"  width="100"></t:dgCol>
+
+   <t:dgCol title="车号"  field="chehao"  query="true"  queryMode="single"  width="80"></t:dgCol>
+   <t:dgCol title="货物"  field="huowu"  query="true"  queryMode="single"  width="60"></t:dgCol>
+   <t:dgCol title="件数"  field="hwshjs"  query="true"   queryMode="single"  width="60"></t:dgCol>
+
+   <t:dgCol title="提货方式"  field="hwshfs"  query="true" dictionary="tms_thfs" queryMode="single"  width="60"></t:dgCol>
+
+   <t:dgCol title="发货人"  field="fahuoren"    query="true"  queryMode="single"  width="60"></t:dgCol>
+   <t:dgCol title="发货人电话"  field="fhrdh"    query="true"  queryMode="single"  width="90"></t:dgCol>
+   <t:dgCol title="发货人地址"  field="fhrdz"   queryMode="group"  width="90"></t:dgCol>
+   <t:dgCol title="收货人"  field="shouhuoren"  query="true"  queryMode="single"  width="70"></t:dgCol>
+   <t:dgCol title="收货人地址"  field="shrdh"  query="true"  queryMode="single"  width="70"></t:dgCol>
+
+   <t:dgCol title="长米"  field="chang"  hidden="true"  queryMode="group"  width="60"></t:dgCol>
+   <t:dgCol title="宽米"  field="kuan"  hidden="true"  queryMode="group"  width="60"></t:dgCol>
+   <t:dgCol title="高米"  field="gao"  hidden="true"  queryMode="group"  width="60"></t:dgCol>
+   <t:dgCol title="立方米"  field="tiji"  hidden="true"  queryMode="group"  width="60"></t:dgCol>
+   <t:dgCol title="重量"  field="zhongl"  queryMode="group"  width="120"></t:dgCol>
+   <t:dgCol title="代收款金额"  field="daishouk"  queryMode="group"  width="60"></t:dgCol>
+   <t:dgCol title="是否等通知"  field="dengtongzhi"  queryMode="group"  dictionary="sf_yn"  width="60"></t:dgCol>
+   <%--<t:dgCol title="价格"  field="jiage"  queryMode="group"  width="120"></t:dgCol>--%>
+   <%--<t:dgCol title="下单附件"  field="xiadanfj"  hidden="true"  queryMode="group"  image="true" imageSize="50,50"  width="120"></t:dgCol>--%>
+   <%--<t:dgCol title="回单附件"  field="huidanfj"  hidden="true"  queryMode="group"  image="true" imageSize="50,50"  width="120"></t:dgCol>--%>
+   <t:dgCol title="状态"  field="zhuangtai"  query="true"  queryMode="single"  width="60"></t:dgCol>
+   <%--<t:dgCol title="下单人名字"  field="xdrmz"  hidden="true"  queryMode="group"  width="120"></t:dgCol>--%>
+   <t:dgCol title="司机"  field="siji"  query="true"  queryMode="single"  width="60"></t:dgCol>
+   <t:dgCol title="客户单号"  field="ywkhdh"  query="true"  queryMode="single"  width="100"></t:dgCol>
+
+   <t:dgCol title="单号"  field="fadh"  query="true"  queryMode="single"  width="60"></t:dgCol>
+   <t:dgCol title="下单人"  field="username"  query="true"  queryMode="single"  width="60"></t:dgCol>
+   <%--<t:dgCol title="送达时间"  field="sdsj"  formatter="yyyy-MM-dd hh:mm:ss"  hidden="true"  query="true"  queryMode="group"  width="120"></t:dgCol>--%>
+   <%--<t:dgCol title="预计送达时间"  field="yjsdsj"  formatter="yyyy-MM-dd hh:mm:ss"  hidden="true"  queryMode="group"  width="120"></t:dgCol>--%>
+   <t:dgCol title="操作" field="opt" width="60"></t:dgCol>
+   <t:dgDelOpt title="取消回单" url="tmsYwDingdanController.do?doDelhd&id={id}" urlclass="ace_button"  urlfont="fa-trash-o"/>
+   <%--<t:dgToolBar title="下单" icon="icon-add" url="tmsYwDingdanController.do?goAdd" funname="add"></t:dgToolBar>--%>
+   <t:dgToolBar title="回单" icon="icon-edit"  funname="updatehd" ></t:dgToolBar>
+   <%--<t:dgToolBar title="回单"  icon="icon-remove" url="tmsYwDingdanController.do?doBatchDel" funname="deleteALLSelect"></t:dgToolBar>--%>
+   <t:dgToolBar   title="批量回单" icon="icon-edit"  funname="editRow"></t:dgToolBar>
+   <t:dgToolBar   title="批量保存回单" icon="icon-save" url="tmsYwDingdanController.do?saveRows" funname="saveData"></t:dgToolBar>
+   <t:dgToolBar   title="取消批量回单" icon="icon-undo" funname="reject"></t:dgToolBar>
+
+   <t:dgToolBar title="查看" icon="icon-search" url="tmsYwDingdanController.do?goUpdate" width="1200" height="550" funname="detail"></t:dgToolBar>
+   <%--<t:dgToolBar title="导入" icon="icon-put" funname="ImportXls"></t:dgToolBar>--%>
+   <t:dgToolBar title="导出" icon="icon-putout" funname="ExportXls"></t:dgToolBar>
+   <%--<t:dgToolBar title="模板下载" icon="icon-putout" funname="ExportXlsByT"></t:dgToolBar>--%>
+  </t:datagrid>
+  </div>
+ </div>
+ <script src = "webpage/com/zzjee/tms/tmsYwDingdanList.js"></script>
+ <script type="text/javascript">
+ $(document).ready(function(){
+ });
+ function updatehd() {
+     var url = "tmsYwDingdanController.do?goUpdatehd";
+     var rowsData = $('#tmsYwDingdanList').datagrid('getSelections');
+     if (!rowsData || rowsData.length==0) {
+         tip('请选择编辑项目');
+         return;
+     }
+     if (rowsData.length>1) {
+         tip('请选择一条记录再编辑');
+         return;
+     }
+     url += '&id='+rowsData[0].id;
+
+     createwindow("回单",url,"670px","680px");
+ }
+
+ //添加行
+ function addRow(title,addurl,gname){
+     $('#'+gname).datagrid('appendRow',{});
+     var editIndex = $('#'+gname).datagrid('getRows').length-1;
+     $('#'+gname).datagrid('selectRow', editIndex)
+         .datagrid('beginEdit', editIndex);
+ }
+ //保存数据
+ function saveData(title,addurl,gname){
+     if(!endEdit(gname))
+         return false;
+     var rows=$('#'+gname).datagrid("getChanges","inserted");
+     var uprows=$('#'+gname).datagrid("getChanges","updated");
+     rows=rows.concat(uprows);
+     if(rows.length<=0){
+         tip("没有需要保存的数据！")
+         return false;
+     }
+     var result={};
+     for(var i=0;i<rows.length;i++){
+         for(var d in rows[i]){
+             result["demos["+i+"]."+d]=rows[i][d];
+         }
+     }
+     $.ajax({
+         url:"<%=basePath%>/"+addurl,
+         type:"post",
+         data:result,
+         dataType:"json",
+         success:function(data){
+             tip(data.msg);
+             if(data.success){
+                 reloadtable();
+             }
+         }
+     })
+ }
+ //结束编辑
+ function endEdit(gname){
+     var  editIndex = $('#'+gname).datagrid('getRows').length-1;
+     for(var i=0;i<=editIndex;i++){
+         if($('#'+gname).datagrid('validateRow', i)){
+             $('#'+gname).datagrid('endEdit', i);
+         }else{
+
+             tip("请选择必填项(带有红色三角形状的字段)!");
+
+             return false;
+         }
+     }
+     return true;
+ }
+ //编辑行
+ function editRow(title,addurl,gname){
+     var rows=$('#'+gname).datagrid("getChecked");
+     if(rows.length==0){
+         tip("请选择条目");
+         return false;
+     }
+     for(var i=0;i<rows.length;i++){
+         var index= $('#'+gname).datagrid('getRowIndex', rows[i]);
+         $('#'+gname).datagrid('beginEdit', index);
+     }
+ }
+
+ //取消编辑
+ function reject(title,addurl,gname){
+     $('#'+gname).datagrid('clearChecked');
+     $('#'+gname).datagrid('rejectChanges');
+
+
+ }
+function  reloadtable() {
+    $('#tmsYwDingdanList').datagrid('reload', {});
+
+}
+
+
+//导入
+function ImportXls() {
+	openwindow('Excel导入', 'tmsYwDingdanController.do?upload', "tmsYwDingdanList");
+}
+
+//导出
+function ExportXls() {
+	JeecgExcelExport("tmsYwDingdanController.do?exportXls","tmsYwDingdanList");
+}
+
+//模板下载
+function ExportXlsByT() {
+	JeecgExcelExport("tmsYwDingdanController.do?exportXlsByT","tmsYwDingdanList");
+}
+
+ </script>

@@ -1,0 +1,30 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.list-task .task-item-checkbox {
+	float: left;
+	width: 30px;
+}
+.list-task .task-done {
+	background-color: #f3f7f9;
+}
+.list-task .task-done.list-group-item span {
+	text-decoration: line-through;
+}
+.list-task .task-done.list-group-item .label {
+	text-decoration: none;
+}
+.list-task .list-group-item-success {
+	background-color: rgba(70, 190, 138, .1);
+}
+.list-task .list-group-item-info {
+	background-color: rgba(87, 199, 212, .1);
+}
+.list-task .list-group-item-warning {
+	background-color: rgba(242, 166, 84, .1);
+}
+.list-task .list-group-item-danger {
+	background-color: rgba(249, 104, 104, .1);
+}

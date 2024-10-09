@@ -1,0 +1,78 @@
+[
+    {
+        "value": 1,
+        "text": "北京",
+        "continent": "北京"
+    },
+    {
+        "value": 2,
+        "text": "广州",
+        "continent": "广东"
+    },
+    {
+        "value": 3,
+        "text": "韶关",
+        "continent": "广东"
+    },
+    {
+        "value": 4,
+        "text": "深圳",
+        "continent": "广东"
+    },
+    {
+        "value": 5,
+        "text": "珠海",
+        "continent": "广东"
+    },
+    {
+        "value": 6,
+        "text": "杭州",
+        "continent": "浙江"
+    },
+    {
+        "value": 7,
+        "text": "宁波",
+        "continent": "浙江"
+    },
+    {
+        "value": 8,
+        "text": "温州",
+        "continent": "浙江"
+    },
+    {
+        "value": 9,
+        "text": "嘉兴",
+        "continent": "浙江"
+    },
+    {
+        "value": 10,
+        "text": "乌鲁木齐",
+        "continent": "新疆"
+    },
+    {
+        "value": 11,
+        "text": "克拉玛依",
+        "continent": "新疆"
+    },
+    {
+        "value": 12,
+        "text": "吐鲁番",
+        "continent": "新疆"
+    },
+    {
+        "value": 13,
+        "text": "哈密",
+        "continent": "新疆"
+    },
+    {
+        "value": 14,
+        "text": "南京",
+        "continent": "江苏"
+    },
+    {
+        "value": 15,
+        "text": "无锡",
+        "continent": "江苏"
+    }
+]
+

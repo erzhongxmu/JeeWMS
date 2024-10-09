@@ -1,0 +1,18 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.sortable > *, .sortable-with-handle .sortable-handle {
+	cursor: move;
+}
+.sortable-placeholder {
+	display: block;
+	height: 40px;
+	margin-top: 1px;
+	background-color: #f3f7f9;
+	border: 1px dashed #e4eaec;
+}
+.sortable.list-group-gap .sortable-placeholder, .sortable-with-handle.list-group-gap .sortable-placeholder {
+	margin-bottom: 2px;
+}

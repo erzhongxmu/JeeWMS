@@ -1,0 +1,113 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+/* 防止文本和块被选择 */
+input.labelauty + label ::-moz-selection {
+	background-color: rgba(255, 255, 255, 0);
+}
+input.labelauty + label ::selection {
+	background-color: rgba(255, 255, 255, 0);
+}
+input.labelauty + label ::-moz-selection {
+	background-color: rgba(255, 255, 255, 0);
+}
+/* 隐藏原始的input */
+input.labelauty {
+	display: none !important;
+}
+/* input */
+input.labelauty + label {
+	display: table;
+	padding: 10px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	line-height: 1;
+	color: #76838f;
+	cursor: pointer;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+	background-color: #f3f7f9;
+	border-radius: 3px;
+	-webkit-transition: background-color .25s;
+	   -moz-transition: background-color .25s;
+	     -o-transition: background-color .25s;
+	        transition: background-color .25s;
+}
+/* 标签文本 */
+input.labelauty + label > span.labelauty-unchecked, input.labelauty + label > span.labelauty-checked {
+	display: inline-block;
+	line-height: 16px;
+	vertical-align: bottom;
+}
+/* 标签图标 */
+input.labelauty + label > span.labelauty-unchecked-image, input.labelauty + label > span.labelauty-checked-image {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	vertical-align: bottom;
+	background-repeat: no-repeat;
+	background-position: left center;
+	-webkit-transition: background-image .5s linear;
+	   -moz-transition: background-image .5s linear;
+	     -o-transition: background-image .5s linear;
+	        transition: background-image .5s linear;
+}
+input.labelauty + label > span.labelauty-unchecked-image + span.labelauty-unchecked, input.labelauty + label > span.labelauty-checked-image + span.labelauty-checked {
+	margin-left: 7px;
+}
+/* 非选中 */
+input.labelauty:not(:checked):not([disabled]) + label:hover {
+	color: #76838f;
+	background-color: #e4eaec;
+}
+input.labelauty:not(:checked) + label > span.labelauty-checked-image {
+	display: none;
+}
+input.labelauty:not(:checked) + label > span.labelauty-checked {
+	display: none;
+}
+/* 选中 */
+input.labelauty:checked + label {
+	color: #fff;
+	background-color: #62a8ea;
+}
+input.labelauty:checked:not([disabled]) + label:hover {
+	background-color: #89bceb;
+}
+input.labelauty:checked + label > span.labelauty-unchecked-image {
+	display: none;
+}
+input.labelauty:checked + label > span.labelauty-unchecked {
+	display: none;
+}
+input.labelauty:checked + label > span.labelauty-checked {
+	display: inline-block;
+}
+input.labelauty.no-label:checked + label > span.labelauty-checked {
+	display: block;
+}
+/* 禁用 */
+input.labelauty[disabled] + label {
+	opacity: .7;
+}
+/* 选中/非选中背景 */
+input.labelauty + label > span.labelauty-unchecked-image {
+	background-image: url("images/input-unchecked.png");
+}
+input.labelauty + label > span.labelauty-checked-image {
+	background-image: url("images/input-checked.png");
+}
+input.to-labelauty + label {
+	min-width: 160px;
+}
+input.to-labelauty-icon + label {
+	display: inline-block;
+	padding: 8px 8px;
+}
+input.to-labelauty-icon + label + span {
+	margin-left: 7px;
+}

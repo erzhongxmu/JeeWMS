@@ -1,0 +1,68 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.bootstrap-touchspin .input-group-btn-vertical {
+	position: relative;
+	display: table-cell;
+	width: 1%;
+	white-space: nowrap;
+	vertical-align: middle;
+}
+.bootstrap-touchspin .input-group-btn-vertical > .btn {
+	position: relative;
+	display: block;
+	float: none;
+	width: 100%;
+	max-width: 100%;
+	padding: 8px 12px 7px;
+	margin-left: -1px;
+}
+.bootstrap-touchspin .input-group-btn-vertical .bootstrap-touchspin-up {
+	border-bottom: none;
+	border-radius: 0;
+	border-top-right-radius: 3px;
+}
+.bootstrap-touchspin .input-group-btn-vertical .bootstrap-touchspin-down {
+	padding: 7px 12px;
+	border-radius: 0;
+	border-bottom-right-radius: 3px;
+}
+.bootstrap-touchspin .input-group-btn-vertical i {
+	position: absolute;
+	top: -2px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	font-size: 10px;
+	font-weight: 400;
+}
+.bootstrap-touchspin .input-group-btn .btn {
+	padding: 4px 12px;
+	font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+}
+.bootstrap-touchspin-postfix.input-group-addon {
+	border-left: none;
+
+	broder-left: 0;
+}
+.bootstrap-touchspin-prefix.input-group-addon {
+	border-right: none;
+
+	broder-right: 0;
+}
+.bootstrap-touchspin input[name="touchSpinVertical"] {
+	border-radius: 3px 0 0 3px !important;
+}
+.bootstrap-touchspin .input-group-btn:first-child > .btn, .bootstrap-touchspin .input-group-btn:first-child > .btn-group {
+	margin-right: -1px;
+}
+.bootstrap-touchspin .input-group-addon:not(:first-child):not(:last-child), .bootstrap-touchspin .input-group-btn:not(:first-child):not(:last-child) {
+	border-right: none;
+	border-left: none;
+}
+.bootstrap-touchspin .input-group-addon:not(:first-child):not(:last-child) > .btn, .bootstrap-touchspin .input-group-btn:not(:first-child):not(:last-child) > .btn {
+	border-right: none;
+	border-left: none;
+}

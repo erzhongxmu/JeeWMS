@@ -1,0 +1,37 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.page-menu .page-main .no-submenu {
+	width: 100%;
+}
+.page-menu .page-content {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+	padding-bottom: 64px;
+}
+@media (max-width: 992px) {
+	.page-menu .page-content {
+		padding-bottom: 0;
+	}
+}
+.page-menu .page-content > .row {
+	padding-bottom: 25px;
+}
+.page-menu .page-content .scrollable-bar {
+	z-index: 1201;
+}
+.page-menu .page-content > .btn-actions {
+	padding-top: 15px;
+	border-top: solid 1px #e4eaec;
+}
+@media (max-width: 992px) {
+	.page-menu .page-content > .btn-actions {
+		display: none;
+	}
+}
+.page-menu .page-content .menu-box .delete-submenu {
+	margin-top: -7px;
+}

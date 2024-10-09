@@ -1,0 +1,27 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+table.dataTable.fixedHeader-floating {
+	position: fixed !important;
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+	background-color: white;
+}
+@media print {
+	table.dataTable.fixedHeader-floating {
+		display: none;
+	}
+}
+table.dataTable.fixedHeader-locked {
+	position: absolute !important;
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+	background-color: white;
+}
+.fixedHeader {
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+	background-color: white;
+}

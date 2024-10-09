@@ -1,0 +1,19 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+#exampleFlotCurve, #exampleFlotRealtime, #exampleFlotMix, #exampleFlotFullBg, #exampleFlotStackBar, #exampleFlotHorizontalBar, #exampleFlotPie, #exampleFlotVisitors {
+	height: 300px;
+}
+#exampleFlotVisitorsOverview {
+	height: 120px;
+}
+.legend td {
+	padding: 3px;
+}
+@media (max-width: 586px) {
+	.example-responsive {
+		padding-bottom: 10px;
+	}
+}

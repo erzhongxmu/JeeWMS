@@ -1,0 +1,9 @@
+.CodeMirror-search-match {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  background: gold;
+  border-top: 1px solid orange;
+  border-bottom: 1px solid orange;
+  opacity: .5;
+}

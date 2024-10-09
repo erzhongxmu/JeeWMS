@@ -1,0 +1,135 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+html {
+	height: 100%;
+}
+.page-login {
+	height: 100%;
+	min-height: 600px;
+	padding-top: 0;
+	overflow: hidden;
+}
+.page-login:before {
+	background-image: url("../images/login.jpg");
+}
+.page-login .page-content {
+	padding-right: 500px;
+}
+.page-login.page-dark.layout-full:after {
+	background-color: rgba(38, 50, 56, .6);
+}
+.page-login .page-brand-info {
+	height: 100%;
+}
+.page-login .page-brand-info .page-brand {
+	padding: 0 60px 60px;
+}
+.page-login .page-brand-info .page-brand .brand-img {
+	vertical-align: middle;
+}
+.page-login .page-brand-info .page-brand h2 {
+	max-width: 650px;
+	color: #fff;
+}
+.page-login .page-brand-info .page-brand .list-icons {
+	padding-left: 0;
+	margin: 30px 0;
+}
+.page-login-main {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	min-height: 600px;
+	padding: 150px 60px 180px;
+	padding: 0 60px;
+	color: #76838f;
+	background: #fff;
+}
+.page-login-main > .alert {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	text-align: center;
+	border-radius: 0;
+}
+.page-login-main .vertical-align {
+	height: 100%;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+	padding-bottom: 65px;
+}
+.page-login-main > .alert {
+	padding-right: 10px;
+}
+.page-login-main > .alert + .vertical-align {
+	padding-top: 65px;
+}
+.page-login .login-form {
+	width: 350px;
+	margin: 45px 0 20px;
+}
+.page-login .login-form .form-control {
+	height: 42px;
+}
+input.page-login .login-form .form-control {
+	padding: 0 12px;
+}
+.page-login .login-form.fv-form-bootstrap .form-control-feedback {
+	margin: 6px;
+	background-color: transparent;
+}
+.page-login .login-form .input-group + .form-control-feedback {
+	display: none !important;
+}
+.page-login .login-form > button {
+	padding: 8px 0;
+}
+.page-login .page-copyright {
+	position: absolute;
+	right: 0;
+	bottom: 15px;
+	left: 0;
+	text-align: center;
+}
+@media (max-height: 600px) {
+	.page-login .page-copyright {
+		display: none;
+	}
+}
+@media (max-width: 992px) {
+	.page-brand {
+		width: 100%;
+		padding: 0!important;
+		text-align: center;
+	}
+	.page-brand .brand {
+		width: 100%;
+	}
+}
+@media (max-width: 768px) {
+	.page-login {
+		overflow: auto;
+		background: #fff;
+		background-image: none;
+	}
+	.page-login .login-form {
+		width: auto;
+	}
+}
+@media (max-width: 480px) {
+	.page-login .page-content {
+		padding-right: 0;
+	}
+	.page-login-main {
+		width: 100%;
+	}
+	.page-login .login-form {
+		width: auto;
+	}
+}

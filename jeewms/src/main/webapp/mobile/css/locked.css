@@ -1,0 +1,23 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.page-locked:before {
+	background-image: url("../images/lockscreen.jpg");
+}
+.page-locked .avatar {
+	margin-bottom: 15px;
+}
+.page-locked .avatar.avatar-lg {
+	width: 160px;
+	height: 160px;
+}
+.page-locked .locked-user {
+	margin-bottom: 35px;
+	color: #fff;
+}
+.page-locked form {
+	width: 300px;
+	margin: 22px auto;
+}

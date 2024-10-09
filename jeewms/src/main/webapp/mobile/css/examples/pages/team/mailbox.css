@@ -1,0 +1,166 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.page-mailbox .identity {
+	white-space: nowrap;
+}
+.page-mailbox .page-content-actions .btn-group {
+	margin-left: 8px;
+}
+.page-mailbox .page-content-actions .btn-pure.btn-default {
+	color: #a3afb7;
+}
+.page-mailbox .page-content-actions .btn-pure.btn-default.active, .page-mailbox .page-content-actions .btn-pure.btn-default:focus, .page-mailbox .page-content-actions .btn-pure.btn-default:hover {
+	color: #76838f;
+}
+.page-mailbox .checkbox-important {
+	position: relative;
+	padding: 9px 0 0 14px;
+	margin-bottom: 4px;
+}
+.page-mailbox .checkbox-important input[type="checkbox"] {
+	position: absolute;
+	top: 50%;
+	left: 3px;
+	z-index: 2;
+	margin: -2px 0 0;
+	cursor: pointer;
+	opacity: 0;
+}
+.page-mailbox .checkbox-important input[type="checkbox"]:checked + label:before {
+	color: #f2a654;
+	background-color: transparent;
+}
+.page-mailbox .checkbox-important label {
+	margin-bottom: 0;
+	font-weight: normal;
+	line-height: 1.2;
+	text-align: left;
+	cursor: pointer;
+}
+.page-mailbox .checkbox-important label:before {
+	position: absolute;
+	top: 50%;
+	left: 4px;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	margin-top: -4px;
+	font-family: "Web Icons";
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 1;
+	color: #e4eaec;
+	content: "\f1a3";
+}
+.page-mailbox .table {
+	table-layout: fixed;
+	border-collapse: unset;
+}
+.page-mailbox .table td {
+	vertical-align: middle;
+}
+.page-mailbox .table .avatar {
+	margin-left: 10px;
+}
+.page-mailbox .table .content > * {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.page-mailbox .table .title {
+	color: #526069;
+}
+.page-mailbox .table .time {
+	color: #a3afb7;
+}
+.page-mailbox .table .identity .icon {
+	margin-right: 8px;
+}
+.page-mailbox .table .unread > td:first-child {
+	border-left: 1px solid #62a8ea;
+}
+@media (max-width: 767px) {
+	.page-mailbox .responsive-hide {
+		display: none;
+	}
+}
+@media (max-width: 480px) {
+	.page-mailbox .page-header .page-header-actions {
+		position: relative;
+		top: 0;
+		right: 0;
+		margin-top: 20px;
+		-webkit-transform: none;
+		    -ms-transform: none;
+		     -o-transform: none;
+		        transform: none;
+	}
+	.page-mailbox .page-content-actions .actions-right {
+		display: block;
+		float: none;
+	}
+}
+.slidePanel-header {
+	background-color: #57c7d4;
+}
+.slidePanel-header:before, .slidePanel-header:after {
+	display: table;
+	content: " ";
+}
+.slidePanel-header:after {
+	clear: both;
+}
+.slidePanel .mail-header {
+	position: relative;
+	padding-left: 50px;
+	margin-bottom: 20px;
+}
+.slidePanel .mail-header:before, .slidePanel .mail-header:after {
+	display: table;
+	content: " ";
+}
+.slidePanel .mail-header:after {
+	clear: both;
+}
+.slidePanel .mail-header-main {
+	display: inline-block;
+}
+.slidePanel .mail-header-right {
+	float: right;
+}
+.slidePanel .mail-header .time {
+	color: #a3afb7;
+}
+.slidePanel .mail-header .avatar {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.slidePanel .mail-header .identity .icon {
+	margin-right: 6px;
+	margin-left: 10px;
+}
+.slidePanel .mail-content p {
+	margin-bottom: 20px;
+}
+.slidePanel .mail-content p:last-child {
+	margin-bottom: 0;
+}
+.slidePanel .mail-content + .mail-attachments {
+	margin-top: 40px;
+}
+.slidePanel .mail-attachments {
+	margin-bottom: 20px;
+}
+.slidePanel .mail-attachments .wb-paperclip {
+	margin-right: 10px;
+}
+.slidePanel .mail-attachments .list-group-item {
+	padding: 0;
+}
+.select2-container {
+	z-index: 1700;
+}

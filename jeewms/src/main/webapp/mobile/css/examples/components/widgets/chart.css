@@ -1,0 +1,244 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.dot {
+	display: inline-block;
+	width: 6px;
+	height: 6px;
+	vertical-align: middle;
+	border-radius: 50%;
+}
+.widget {
+	height: -webkit-calc(100% - 30px);
+	height:         calc(100% - 30px);
+	margin-bottom: 30px;
+}
+.ct-chart .ct-label.ct-vertical, .ct-chart .ct-label.ct-horizontal {
+	font-size: 14px;
+	color: #a3afb7;
+}
+.ct-chart .ct-label.ct-horizontal {
+	text-align: center;
+}
+#chartThreeLinearea .ct-chart .ct-area {
+	fill-opacity: 1;
+}
+#chartThreeLinearea .ct-chart .ct-series.ct-series-a .ct-area {
+	fill: #f96868;
+}
+#chartThreeLinearea .ct-chart .ct-series.ct-series-b .ct-area {
+	fill: #f2a654;
+}
+#chartThreeLinearea .ct-chart .ct-series.ct-series-c .ct-area {
+	fill: #46be8a;
+}
+#chartLinePie .chart-line .ct-line, #chartLinePie .chart-line .ct-point {
+	stroke: white;
+}
+#chartLinePie .chart-line .ct-line {
+	stroke-width: 2px;
+}
+#chartLinePie .chart-line .ct-point {
+	stroke-width: 6px;
+}
+#chartLinePie .chart-pie .ct-series.ct-series-a .ct-slice-donut {
+	stroke: #57c7d4;
+}
+#chartLinePie .chart-pie .ct-series.ct-series-b .ct-slice-donut {
+	stroke: #f96868;
+}
+#chartBarPie .chart-bar .ct-bar {
+	stroke: #a2caee;
+	stroke-width: 3%;
+}
+#chartBarPie .chart-pie .ct-series.ct-series-a .ct-slice-donut {
+	stroke: #926dde;
+}
+#chartBarPie .chart-pie .ct-series.ct-series-b .ct-slice-donut {
+	stroke: #62a8ea;
+}
+#chartBarStacked .ct-chart .ct-bar {
+	stroke-width: 4%;
+}
+#chartBarStacked .ct-chart .ct-series.ct-series-a .ct-bar {
+	stroke: #62a8ea;
+}
+#chartBarStacked .ct-chart .ct-series.ct-series-b .ct-bar {
+	stroke: #926dde;
+}
+#chartBarStacked .ct-chart .ct-series.ct-series-c .ct-bar {
+	stroke: #ccd5db;
+}
+#chartPie .ct-chart .ct-series.ct-series-a .ct-slice-donut {
+	stroke: #926dde;
+}
+#chartPie .ct-chart .ct-series.ct-series-b .ct-slice-donut {
+	stroke: #f96868;
+}
+#chartPie .ct-chart .ct-series.ct-series-c .ct-slice-donut {
+	stroke: #62a8ea;
+}
+#chartBarSimple .ct-chart .ct-bar {
+	stroke: #62a8ea;
+	stroke-width: 2%;
+}
+#chartLineareaSimple .ct-chart .ct-line {
+	stroke-width: 1px;
+	stroke: #fab4b4;
+}
+#chartLineareaSimple .ct-chart .ct-area {
+	fill: #fad3d3;
+}
+#chartLineareaWithfooter .ct-chart .ct-area {
+	fill: #4e97d9;
+}
+#chartLineareaWithfooter .ct-chart .ct-line {
+	stroke-width: 1px;
+	stroke: #a2caee;
+}
+#chartBarWithfooter .ct-chart .ct-series.ct-series-a .ct-bar {
+	stroke: #f96868;
+	stroke-width: 2%;
+}
+#chartBarWithfooter .ct-chart .ct-series.ct-series-b .ct-bar {
+	stroke: #e4eaec;
+	stroke-width: 2%;
+}
+#chartLinebarLarge .chart-line .ct-line {
+	stroke: #62a8ea;
+	stroke-width: 2px;
+}
+#chartLinebarLarge .chart-line .ct-label.ct-horizontal {
+	margin-left: -20px;
+}
+#chartLinebarLarge .chart-bar .ct-bar {
+	stroke: #57c7d4;
+	stroke-width: 5%;
+}
+#chartLineTime .chart-line .ct-line {
+	stroke: #f3f7f9;
+	stroke-width: 2px;
+}
+#chartLineTime .ct-chart {
+	position: relative;
+}
+#chartLineTime .chart-pie-left .ct-series.ct-series-a .ct-slice-donut {
+	stroke: #62a8ea;
+}
+#chartLineTime .chart-pie-left .ct-series.ct-series-b .ct-slice-donut {
+	stroke: #e4eaec;
+}
+#chartLineTime .chart-pie-right .ct-series.ct-series-a .ct-slice-donut {
+	stroke: #f96868;
+}
+#chartLineTime .chart-pie-right .ct-series.ct-series-b .ct-slice-donut {
+	stroke: #e4eaec;
+}
+#chartBarlineMix .chart-bar {
+	position: relative;
+}
+#chartBarlineMix .chart-bar .ct-bar {
+	stroke: #fbce9d;
+	stroke-width: 2%;
+}
+#chartBarlineMix .chart-line {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+#chartBarlineMix .chart-line .ct-line {
+	stroke: white;
+	stroke-width: 2px;
+}
+#chartBarlineMixTwo .small-bar-one, #chartBarlineMixTwo .small-bar-two {
+	display: inline-block;
+	width: 80px;
+	height: 45px;
+	vertical-align: top;
+}
+#chartBarlineMixTwo .small-bar-one .ct-bar, #chartBarlineMixTwo .small-bar-two .ct-bar {
+	stroke-width: 4px;
+}
+#chartBarlineMixTwo .small-bar-one .ct-bar {
+	stroke: #46be8a;
+}
+#chartBarlineMixTwo .small-bar-two .ct-bar {
+	stroke: #62a8ea;
+}
+#chartBarlineMixTwo .line-chart .ct-series.ct-series-a .ct-line {
+	stroke: #62a8ea;
+	stroke-width: 2px;
+}
+#chartBarlineMixTwo .line-chart .ct-series.ct-series-b .ct-line {
+	stroke: #46be8a;
+	stroke-width: 2px;
+}
+#chartBarlineMixTwo .line-chart .ct-labels > foreignobject:first-child .ct-label.ct-horizontal {
+	margin-left: 0;
+}
+#chartBarlineMixTwo .line-chart .ct-label.ct-vertical {
+	text-align: left;
+}
+#chartBarlineMixTwo .line-chart .ct-label.ct-horizontal {
+	margin-left: -20px;
+}
+#charLineareaTwo .ct-chart .ct-label.ct-vertical, #charLineareaTwo .ct-chart .ct-label.ct-horizontal {
+	font-size: 14px;
+}
+#charLineareaTwo .ct-chart .ct-area {
+	fill-opacity: 1;
+}
+#charLineareaTwo .ct-chart .ct-series.ct-series-a .ct-area {
+	fill: #d5e4f1;
+}
+#charLineareaTwo .ct-chart .ct-series.ct-series-b .ct-area {
+	fill: #cdf4f1;
+}
+#charLineareaTwo ul .icon {
+	vertical-align: text-bottom;
+}
+#chartLinepoint .header {
+	border-bottom: 1px solid #e4eaec;
+}
+#chartLinepoint .badge {
+	padding: 8px 12px;
+}
+#chartLinepoint .ct-chart .ct-line, #chartLinepoint .ct-chart .ct-point {
+	stroke: #62a8ea;
+}
+#chartLinepoint .ct-chart .ct-line {
+	stroke-width: 2px;
+}
+#chartLinepoint .ct-chart .ct-point {
+	stroke-width: 6px;
+}
+#chartTimelineTwo ul li {
+	border-bottom: 1px solid #e4eaec;
+}
+#chartTimelineTwo .ct-chart .ct-area {
+	fill-opacity: 1;
+}
+#chartTimelineTwo .ct-chart .ct-series.ct-series-a .ct-area {
+	fill: #e4eaec;
+}
+#chartTimelineTwo .ct-chart .ct-series.ct-series-b .ct-area {
+	fill: #62a8ea;
+}
+#chartStackedBar .ct-chart .ct-label.ct-vertical, #chartStackedBar .ct-chart .ct-label.ct-horizontal {
+	font-size: 14px;
+}
+#chartStackedBar .ct-chart .ct-label.ct-horizontal {
+	text-align: center;
+}
+#chartStackedBar .ct-chart .ct-bar {
+	stroke-width: 3%;
+}
+#chartStackedBar .ct-chart .ct-series.ct-series-a .ct-bar {
+	stroke: #62a8ea;
+}
+#chartStackedBar .ct-chart .ct-series.ct-series-b .ct-bar {
+	stroke: #f3f7f9;
+}

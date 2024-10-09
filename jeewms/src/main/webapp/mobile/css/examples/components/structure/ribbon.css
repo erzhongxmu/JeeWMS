@@ -1,0 +1,20 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.example {
+	position: relative;
+	padding: 50px 15px 15px 50px;
+	background-color: #f3f7fa;
+	border: 1px solid #eee;
+}
+.example-reverse {
+	padding: 50px 50px 15px 15px;
+}
+.example-bottom {
+	padding: 15px 15px 50px 50px;
+}
+.example-bottom-reverse {
+	padding: 15px 50px 50px 15px;
+}

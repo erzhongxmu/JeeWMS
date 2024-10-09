@@ -1,0 +1,14 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+.example > span {
+	margin-right: 16px;
+}
+.example .label {
+	line-height: 30px;
+}
+.example-2 > span {
+	margin-right: 35px;
+}

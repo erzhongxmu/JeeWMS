@@ -1,0 +1,104 @@
+/**
+ * Admui v1.2.0 (http://www.admui.com/)
+ * Copyright 2015-2017 Admui Team
+ * Licensed under the Admui License 1.0 (http://www.admui.com/about/#license)
+ */
+table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child, table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child {
+	position: relative;
+	padding-left: 30px;
+	cursor: pointer;
+}
+table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before, table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
+	position: absolute;
+	top: 6px;
+	left: 4px;
+	display: block;
+	width: 16px;
+	height: 16px;
+	-webkit-box-sizing: content-box;
+	   -moz-box-sizing: content-box;
+	        box-sizing: content-box;
+	line-height: 14px;
+	color: #fff;
+	text-align: center;
+	content: "+";
+	background-color: #62a8ea;
+	border: 2px solid #fff;
+	border-radius: 16px;
+}
+table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child.dataTables_empty:before, table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child.dataTables_empty:before {
+	display: none;
+}
+table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child:before, table.dataTable.dtr-inline.collapsed > tbody > tr.parent > th:first-child:before {
+	content: "-";
+	background-color: #f96868;
+}
+table.dataTable.dtr-inline.collapsed > tbody > tr.child td:before {
+	display: none;
+}
+table.dataTable.dtr-inline.collapsed.compact > tbody > tr > td:first-child, table.dataTable.dtr-inline.collapsed.compact > tbody > tr > th:first-child {
+	padding-left: 27px;
+}
+table.dataTable.dtr-inline.collapsed.compact > tbody > tr > td:first-child:before, table.dataTable.dtr-inline.collapsed.compact > tbody > tr > th:first-child:before {
+	top: 5px;
+	left: 4px;
+	width: 14px;
+	height: 14px;
+	line-height: 12px;
+	border-radius: 14px;
+}
+table.dataTable.dtr-column > tbody > tr > td.control, table.dataTable.dtr-column > tbody > tr > th.control {
+	position: relative;
+	cursor: pointer;
+}
+table.dataTable.dtr-column > tbody > tr > td.control:before, table.dataTable.dtr-column > tbody > tr > th.control:before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	display: block;
+	width: 16px;
+	height: 16px;
+	-webkit-box-sizing: content-box;
+	   -moz-box-sizing: content-box;
+	        box-sizing: content-box;
+	margin-top: -10px;
+	margin-left: -10px;
+	line-height: 14px;
+	color: #fff;
+	text-align: center;
+	content: "+";
+	background-color: #62a8ea;
+	border: 2px solid #fff;
+	border-radius: 16px;
+}
+table.dataTable.dtr-column > tbody > tr.parent td.control:before, table.dataTable.dtr-column > tbody > tr.parent th.control:before {
+	content: "-";
+	background-color: #f96868;
+}
+table.dataTable > tbody > tr.child {
+	padding: .5em 1em;
+}
+table.dataTable > tbody > tr.child:hover {
+	background: transparent !important;
+}
+table.dataTable > tbody > tr.child ul {
+	padding: 0;
+	margin: 0;
+	text-align: left;
+	list-style-type: none;
+}
+table.dataTable > tbody > tr.child ul li {
+	padding: .5em 0;
+	border-bottom: 1px solid #e4eaec;
+}
+table.dataTable > tbody > tr.child ul li:first-child {
+	padding-top: 0;
+}
+table.dataTable > tbody > tr.child ul li:last-child {
+	border-bottom: none;
+}
+table.dataTable > tbody > tr.child span.dtr-title {
+	display: inline-block;
+	min-width: 75px;
+	font-weight: 500;
+}

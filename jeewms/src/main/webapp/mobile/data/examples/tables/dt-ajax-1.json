@@ -1,0 +1,688 @@
+{
+    "data": [
+        {
+            "name": "李霞",
+            "hr": {
+                "position": "系统架构师",
+                "salary": "&yen;320,800",
+                "start_date": "2011/04/25"
+            },
+            "contact": [
+                "北京",
+                "5421"
+            ]
+        },
+        {
+            "name": "杜重治",
+            "hr": {
+                "position": "会计",
+                "salary": "&yen;170,750",
+                "start_date": "2011/07/25"
+            },
+            "contact": [
+                "上海",
+                "8422"
+            ]
+        },
+        {
+            "name": "陈锋",
+            "hr": {
+                "position": "初级开发者",
+                "salary": "&yen;86,000",
+                "start_date": "2009/01/12"
+            },
+            "contact": [
+                "深圳",
+                "1562"
+            ]
+        },
+        {
+            "name": "郑伯宁",
+            "hr": {
+                "position": "高级JavaScript开发者",
+                "salary": "&yen;433,060",
+                "start_date": "2012/03/29"
+            },
+            "contact": [
+                "北京",
+                "6224"
+            ]
+        },
+        {
+            "name": "施华军",
+            "hr": {
+                "position": "会计",
+                "salary": "&yen;162,700",
+                "start_date": "2008/11/28"
+            },
+            "contact": [
+                "上海",
+                "5407"
+            ]
+        },
+        {
+            "name": "吴书振",
+            "hr": {
+                "position": "集成专家",
+                "salary": "&yen;372,000",
+                "start_date": "2012/12/02"
+            },
+            "contact": [
+                "南京",
+                "4804"
+            ]
+        },
+        {
+            "name": "张宁",
+            "hr": {
+                "position": "销售代表",
+                "salary": "&yen;137,500",
+                "start_date": "2012/08/06"
+            },
+            "contact": [
+                "深圳",
+                "9608"
+            ]
+        },
+        {
+            "name": "马世波",
+            "hr": {
+                "position": "集成专家",
+                "salary": "&yen;327,900",
+                "start_date": "2010/10/14"
+            },
+            "contact": [
+                "上海",
+                "6200"
+            ]
+        },
+        {
+            "name": "张章",
+            "hr": {
+                "position": "Javascript开发者",
+                "salary": "&yen;205,500",
+                "start_date": "2009/09/15"
+            },
+            "contact": [
+                "深圳",
+                "2360"
+            ]
+        },
+        {
+            "name": "张竹影",
+            "hr": {
+                "position": "软件工程师",
+                "salary": "&yen;103,600",
+                "start_date": "2008/12/13"
+            },
+            "contact": [
+                "北京",
+                "1667"
+            ]
+        },
+        {
+            "name": "韩庆福",
+            "hr": {
+                "position": "办公室主管",
+                "salary": "&yen;90,560",
+                "start_date": "2008/12/19"
+            },
+            "contact": [
+                "广州",
+                "3814"
+            ]
+        },
+        {
+            "name": "刘勇",
+            "hr": {
+                "position": "客户服务",
+                "salary": "&yen;342,000",
+                "start_date": "2013/03/03"
+            },
+            "contact": [
+                "北京",
+                "9497"
+            ]
+        },
+        {
+            "name": "张忆湫",
+            "hr": {
+                "position": "大区经理",
+                "salary": "&yen;470,600",
+                "start_date": "2008/10/16"
+            },
+            "contact": [
+                "深圳",
+                "6741"
+            ]
+        },
+        {
+            "name": "尚志兴",
+            "hr": {
+                "position": "高级营销设计师",
+                "salary": "&yen;313,500",
+                "start_date": "2012/12/18"
+            },
+            "contact": [
+                "广州",
+                "3597"
+            ]
+        },
+        {
+            "name": "杜若芳",
+            "hr": {
+                "position": "大区经理",
+                "salary": "&yen;385,750",
+                "start_date": "2010/03/17"
+            },
+            "contact": [
+                "广州",
+                "1965"
+            ]
+        },
+        {
+            "name": "杨乔松",
+            "hr": {
+                "position": "营销设计师",
+                "salary": "&yen;198,500",
+                "start_date": "2012/11/27"
+            },
+            "contact": [
+                "广州",
+                "1581"
+            ]
+        },
+        {
+            "name": "闫跃进",
+            "hr": {
+                "position": "CEO",
+                "salary": "&yen;725,000",
+                "start_date": "2010/06/09"
+            },
+            "contact": [
+                "南京",
+                "3059"
+            ]
+        },
+        {
+            "name": "孙凯",
+            "hr": {
+                "position": "系统管理员",
+                "salary": "&yen;237,500",
+                "start_date": "2009/04/10"
+            },
+            "contact": [
+                "南京",
+                "1721"
+            ]
+        },
+        {
+            "name": "赖祥校",
+            "hr": {
+                "position": "软件工程师",
+                "salary": "&yen;132,000",
+                "start_date": "2012/10/13"
+            },
+            "contact": [
+                "广州",
+                "2558"
+            ]
+        },
+        {
+            "name": "郭晖",
+            "hr": {
+                "position": "人事主管",
+                "salary": "&yen;217,500",
+                "start_date": "2012/09/26"
+            },
+            "contact": [
+                "北京",
+                "2290"
+            ]
+        },
+        {
+            "name": "贺光明",
+            "hr": {
+                "position": "技术主管",
+                "salary": "&yen;345,000",
+                "start_date": "2011/09/03"
+            },
+            "contact": [
+                "南京",
+                "1937"
+            ]
+        },
+        {
+            "name": "邓小燕",
+            "hr": {
+                "position": "CMO",
+                "salary": "&yen;675,000",
+                "start_date": "2009/06/25"
+            },
+            "contact": [
+                "南京",
+                "6154"
+            ]
+        },
+        {
+            "name": "白莉惠",
+            "hr": {
+                "position": "售前支持",
+                "salary": "&yen;106,450",
+                "start_date": "2011/12/12"
+            },
+            "contact": [
+                "南京",
+                "8330"
+            ]
+        },
+        {
+            "name": "杨海霞",
+            "hr": {
+                "position": "销售代表",
+                "salary": "&yen;85,600",
+                "start_date": "2010/09/20"
+            },
+            "contact": [
+                "成都",
+                "3023"
+            ]
+        },
+        {
+            "name": "利旭日",
+            "hr": {
+                "position": "CEO",
+                "salary": "&yen;1,200,000",
+                "start_date": "2009/10/09"
+            },
+            "contact": [
+                "广州",
+                "5797"
+            ]
+        },
+        {
+            "name": "范永胜",
+            "hr": {
+                "position": "开发者",
+                "salary": "&yen;92,575",
+                "start_date": "2010/12/22"
+            },
+            "contact": [
+                "北京",
+                "8822"
+            ]
+        },
+        {
+            "name": "于怀斌",
+            "hr": {
+                "position": "大区经理",
+                "salary": "&yen;357,650",
+                "start_date": "2010/11/14"
+            },
+            "contact": [
+                "苏州",
+                "9239"
+            ]
+        },
+        {
+            "name": "赵淑娜",
+            "hr": {
+                "position": "软件工程师",
+                "salary": "&yen;206,850",
+                "start_date": "2011/06/07"
+            },
+            "contact": [
+                "深圳",
+                "1314"
+            ]
+        },
+        {
+            "name": "张淑杰",
+            "hr": {
+                "position": "COO",
+                "salary": "&yen;850,000",
+                "start_date": "2010/03/11"
+            },
+            "contact": [
+                "深圳",
+                "2947"
+            ]
+        },
+        {
+            "name": "陈俊军",
+            "hr": {
+                "position": "区域销售",
+                "salary": "&yen;163,000",
+                "start_date": "2011/08/14"
+            },
+            "contact": [
+                "上海",
+                "8899"
+            ]
+        },
+        {
+            "name": "郭增杰",
+            "hr": {
+                "position": "集成专家",
+                "salary": "&yen;95,400",
+                "start_date": "2011/06/02"
+            },
+            "contact": [
+                "成都",
+                "2769"
+            ]
+        },
+        {
+            "name": "林云",
+            "hr": {
+                "position": "开发者",
+                "salary": "&yen;114,500",
+                "start_date": "2009/10/22"
+            },
+            "contact": [
+                "广州",
+                "6832"
+            ]
+        },
+        {
+            "name": "郭述龙",
+            "hr": {
+                "position": "技术作者",
+                "salary": "&yen;145,000",
+                "start_date": "2011/05/07"
+            },
+            "contact": [
+                "广州",
+                "3606"
+            ]
+        },
+        {
+            "name": "杨军",
+            "hr": {
+                "position": "团队主管",
+                "salary": "&yen;235,500",
+                "start_date": "2008/10/26"
+            },
+            "contact": [
+                "深圳",
+                "2860"
+            ]
+        },
+        {
+            "name": "张海龙",
+            "hr": {
+                "position": "售后支持",
+                "salary": "&yen;324,050",
+                "start_date": "2011/03/09"
+            },
+            "contact": [
+                "北京",
+                "8240"
+            ]
+        },
+        {
+            "name": "耿静",
+            "hr": {
+                "position": "营销设计师",
+                "salary": "&yen;85,675",
+                "start_date": "2009/12/09"
+            },
+            "contact": [
+                "深圳",
+                "5384"
+            ]
+        },
+        {
+            "name": "刘晋荣",
+            "hr": {
+                "position": "办公室主管",
+                "salary": "&yen;164,500",
+                "start_date": "2008/12/16"
+            },
+            "contact": [
+                "深圳",
+                "7031"
+            ]
+        },
+        {
+            "name": "孙宁",
+            "hr": {
+                "position": "秘书",
+                "salary": "&yen;109,850",
+                "start_date": "2010/02/12"
+            },
+            "contact": [
+                "深圳",
+                "6318"
+            ]
+        },
+        {
+            "name": "邢洪锐",
+            "hr": {
+                "position": "财务总监",
+                "salary": "&yen;452,500",
+                "start_date": "2009/02/14"
+            },
+            "contact": [
+                "深圳",
+                "9422"
+            ]
+        },
+        {
+            "name": "陈云云",
+            "hr": {
+                "position": "办公室主管",
+                "salary": "&yen;136,200",
+                "start_date": "2008/12/11"
+            },
+            "contact": [
+                "广州",
+                "7580"
+            ]
+        },
+        {
+            "name": "张禄",
+            "hr": {
+                "position": "主任",
+                "salary": "&yen;645,750",
+                "start_date": "2008/09/26"
+            },
+            "contact": [
+                "南京",
+                "1042"
+            ]
+        },
+        {
+            "name": "王增凤",
+            "hr": {
+                "position": "技术支持工程师",
+                "salary": "&yen;234,500",
+                "start_date": "2011/02/03"
+            },
+            "contact": [
+                "苏州",
+                "2120"
+            ]
+        },
+        {
+            "name": "沈捷",
+            "hr": {
+                "position": "软件工程师",
+                "salary": "&yen;163,500",
+                "start_date": "2011/05/03"
+            },
+            "contact": [
+                "广州",
+                "6222"
+            ]
+        },
+        {
+            "name": "汪化言",
+            "hr": {
+                "position": "技术支持工程师",
+                "salary": "&yen;139,575",
+                "start_date": "2009/08/19"
+            },
+            "contact": [
+                "上海",
+                "9383"
+            ]
+        },
+        {
+            "name": "杨正机",
+            "hr": {
+                "position": "开发者",
+                "salary": "&yen;98,540",
+                "start_date": "2013/08/11"
+            },
+            "contact": [
+                "南京",
+                "8327"
+            ]
+        },
+        {
+            "name": "戴向军",
+            "hr": {
+                "position": "技术支持工程师",
+                "salary": "&yen;87,500",
+                "start_date": "2009/07/07"
+            },
+            "contact": [
+                "深圳",
+                "2927"
+            ]
+        },
+        {
+            "name": "王延芳",
+            "hr": {
+                "position": "数据分析工程师",
+                "salary": "&yen;138,575",
+                "start_date": "2012/04/09"
+            },
+            "contact": [
+                "苏州",
+                "8352"
+            ]
+        },
+        {
+            "name": "沈健",
+            "hr": {
+                "position": "软件工程师",
+                "salary": "&yen;125,250",
+                "start_date": "2010/01/04"
+            },
+            "contact": [
+                "南京",
+                "7439"
+            ]
+        },
+        {
+            "name": "刘伟峰",
+            "hr": {
+                "position": "软件工程师",
+                "salary": "&yen;115,000",
+                "start_date": "2012/06/01"
+            },
+            "contact": [
+                "深圳",
+                "4389"
+            ]
+        },
+        {
+            "name": "陆先生",
+            "hr": {
+                "position": "初级Javascript开发者",
+                "salary": "&yen;75,650",
+                "start_date": "2013/02/01"
+            },
+            "contact": [
+                "北京",
+                "3431"
+            ]
+        },
+        {
+            "name": "纪虹羽",
+            "hr": {
+                "position": "销售代表",
+                "salary": "&yen;145,600",
+                "start_date": "2011/12/06"
+            },
+            "contact": [
+                "南京",
+                "3990"
+            ]
+        },
+        {
+            "name": "肖艳",
+            "hr": {
+                "position": "大区经理",
+                "salary": "&yen;356,250",
+                "start_date": "2011/03/21"
+            },
+            "contact": [
+                "广州",
+                "1016"
+            ]
+        },
+        {
+            "name": "沈国金",
+            "hr": {
+                "position": "系统管理员",
+                "salary": "&yen;103,500",
+                "start_date": "2009/02/27"
+            },
+            "contact": [
+                "广州",
+                "6733"
+            ]
+        },
+        {
+            "name": "王燕峰",
+            "hr": {
+                "position": "开发者",
+                "salary": "&yen;86,500",
+                "start_date": "2010/07/14"
+            },
+            "contact": [
+                "深圳",
+                "8196"
+            ]
+        },
+        {
+            "name": "徐若琳",
+            "hr": {
+                "position": "大区经理",
+                "salary": "&yen;183,000",
+                "start_date": "2008/11/13"
+            },
+            "contact": [
+                "北京",
+                "6373"
+            ]
+        },
+        {
+            "name": "徐成业",
+            "hr": {
+                "position": "Javascript开发者",
+                "salary": "&yen;183,000",
+                "start_date": "2011/06/27"
+            },
+            "contact": [
+                "苏州",
+                "5384"
+            ]
+        },
+        {
+            "name": "李岸白",
+            "hr": {
+                "position": "客户服务",
+                "salary": "&yen;112,000",
+                "start_date": "2011/01/25"
+            },
+            "contact": [
+                "南京",
+                "4226"
+            ]
+        }
+    ]
+}

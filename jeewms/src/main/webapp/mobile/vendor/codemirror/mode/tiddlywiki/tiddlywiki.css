@@ -1,0 +1,14 @@
+span.cm-underlined {
+  text-decoration: underline;
+}
+span.cm-strikethrough {
+  text-decoration: line-through;
+}
+span.cm-brace {
+  font-weight: bold;
+  color: #170;
+}
+span.cm-table {
+  font-weight: bold;
+  color: blue;
+}
