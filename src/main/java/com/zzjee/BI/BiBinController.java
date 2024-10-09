@@ -9,7 +9,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.xiaoleilu.hutool.http.HtmlUtil;
 import org.jeecgframework.core.common.controller.BaseController;
 import org.jeecgframework.core.common.model.json.Highchart;
 import org.jeecgframework.web.system.service.SystemService;
@@ -102,8 +101,7 @@ public class BiBinController extends BaseController {
     @RequestMapping(params = "dayCount")
     @ResponseBody
     public List<Highchart> dayCountmonth(HttpServletRequest request, String reportType, HttpServletResponse response) {
-        // 清除所有HTML标签，但是不删除标签内的内容
-        reportType = HtmlUtil.cleanHtmlTag(reportType);
+
 
         List<Highchart> list = new ArrayList<Highchart>();
         Highchart hc = new Highchart();
