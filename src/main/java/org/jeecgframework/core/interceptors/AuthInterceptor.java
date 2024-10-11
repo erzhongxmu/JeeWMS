@@ -97,6 +97,12 @@ public class AuthInterceptor implements HandlerInterceptor {
 		if (excludeUrls.contains(requestPath)) {
 			return true;
 		}else if(moHuContain(excludeContainUrls, requestPath)) {
+			Client client = ClientManager.getInstance().getClient(ContextHolderUtils.getSession().getId());
+			TSUser currLoginUser = client!= null? client.getUser() : null;
+			if (currLoginUser == null ||!hasValidPermissions(currLoginUser, requestPath)) {
+				response.sendRedirect(request.getSession().getServletContext().getContextPath() + "/loginController.do?noAuth");
+				return false;
+			}
 			return true;
 		}else {
 			//步骤二： 权限控制，优先重组请求URL(考虑online请求前缀一致问题)
@@ -227,6 +233,9 @@ public class AuthInterceptor implements HandlerInterceptor {
 				return true;
 			}
 		}
+		return false;
+	}
+	private boolean hasValidPermissions(TSUser user, String requestPath) {
 		return false;
 	}
 

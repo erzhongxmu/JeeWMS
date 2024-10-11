@@ -191,7 +191,7 @@ public class CommonController extends BaseController {
 				systemService.parserXml(savePath); // 使用完整路径
 				json.setSuccess(true);
 			} catch (IOException e) {
-				e.printStackTrace(); 
+				e.printStackTrace();
 				json.setMsg("Failed to save file.");
 				json.setSuccess(false);
 			}
