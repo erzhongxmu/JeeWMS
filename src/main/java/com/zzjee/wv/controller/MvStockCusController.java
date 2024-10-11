@@ -77,12 +77,12 @@ import java.net.URI;
 import org.springframework.http.MediaType;
 import org.springframework.web.util.UriComponentsBuilder;
 
-/**   
- * @Title: Controller  
+/**
+ * @Title: Controller
  * @Description: 客户库存
  * @author erzhongxmu
  * @date 2017-09-17 21:45:28
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Controller
@@ -99,12 +99,12 @@ public class MvStockCusController extends BaseController {
 	private SystemService systemService;
 	@Autowired
 	private Validator validator;
-	
+
 
 
 	/**
 	 * 客户库存列表 页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "list")
@@ -114,7 +114,7 @@ public class MvStockCusController extends BaseController {
 
 	/**
 	 * easyui AJAX请求数据
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @param dataGrid
@@ -145,159 +145,19 @@ public class MvStockCusController extends BaseController {
 			}
 			if(roles.equals("CUS")){
 				cq.eq("cusCode", user.getUserName());
-				
+
 			}
 		}
     	cq.add();
 		this.mvStockCusService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
 	}
-	
-	/**
-	 * 删除客户库存
-	 * 
-	 * @return
-	 */
-	@RequestMapping(params = "doDel")
-	@ResponseBody
-	public AjaxJson doDel(MvStockCusEntity mvStockCus, HttpServletRequest request) {
-		String message = null;
-		AjaxJson j = new AjaxJson();
-		mvStockCus = systemService.getEntity(MvStockCusEntity.class, mvStockCus.getId());
-		message = "客户库存删除成功";
-		try{
-			mvStockCusService.delete(mvStockCus);
-			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
-		}catch(Exception e){
-			e.printStackTrace();
-			message = "客户库存删除失败";
-			throw new BusinessException(e.getMessage());
-		}
-		j.setMsg(message);
-		return j;
-	}
-	
-	/**
-	 * 批量删除客户库存
-	 * 
-	 * @return
-	 */
-	 @RequestMapping(params = "doBatchDel")
-	@ResponseBody
-	public AjaxJson doBatchDel(String ids,HttpServletRequest request){
-		String message = null;
-		AjaxJson j = new AjaxJson();
-		message = "客户库存删除成功";
-		try{
-			for(String id:ids.split(",")){
-				MvStockCusEntity mvStockCus = systemService.getEntity(MvStockCusEntity.class, 
-				id
-				);
-				mvStockCusService.delete(mvStockCus);
-				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-			message = "客户库存删除失败";
-			throw new BusinessException(e.getMessage());
-		}
-		j.setMsg(message);
-		return j;
-	}
 
 
-	/**
-	 * 添加客户库存
-	 * 
-	 * @param ids
-	 * @return
-	 */
-	@RequestMapping(params = "doAdd")
-	@ResponseBody
-	public AjaxJson doAdd(MvStockCusEntity mvStockCus, HttpServletRequest request) {
-		String message = null;
-		AjaxJson j = new AjaxJson();
-		message = "客户库存添加成功";
-		try{
-			mvStockCusService.save(mvStockCus);
-			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
-		}catch(Exception e){
-			e.printStackTrace();
-			message = "客户库存添加失败";
-			throw new BusinessException(e.getMessage());
-		}
-		j.setMsg(message);
-		return j;
-	}
-	
-	/**
-	 * 更新客户库存
-	 * 
-	 * @param ids
-	 * @return
-	 */
-	@RequestMapping(params = "doUpdate")
-	@ResponseBody
-	public AjaxJson doUpdate(MvStockCusEntity mvStockCus, HttpServletRequest request) {
-		String message = null;
-		AjaxJson j = new AjaxJson();
-		message = "客户库存更新成功";
-		MvStockCusEntity t = mvStockCusService.get(MvStockCusEntity.class, mvStockCus.getId());
-		try {
-			MyBeanUtils.copyBeanNotNull2Bean(mvStockCus, t);
-			mvStockCusService.saveOrUpdate(t);
-			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
-		} catch (Exception e) {
-			e.printStackTrace();
-			message = "客户库存更新失败";
-			throw new BusinessException(e.getMessage());
-		}
-		j.setMsg(message);
-		return j;
-	}
-	
 
-	/**
-	 * 客户库存新增页面跳转
-	 * 
-	 * @return
-	 */
-	@RequestMapping(params = "goAdd")
-	public ModelAndView goAdd(MvStockCusEntity mvStockCus, HttpServletRequest req) {
-		if (StringUtil.isNotEmpty(mvStockCus.getId())) {
-			mvStockCus = mvStockCusService.getEntity(MvStockCusEntity.class, mvStockCus.getId());
-			req.setAttribute("mvStockCusPage", mvStockCus);
-		}
-		return new ModelAndView("com/zzjee/wv/mvStockCus-add");
-	}
-	/**
-	 * 客户库存编辑页面跳转
-	 * 
-	 * @return
-	 */
-	@RequestMapping(params = "goUpdate")
-	public ModelAndView goUpdate(MvStockCusEntity mvStockCus, HttpServletRequest req) {
-		if (StringUtil.isNotEmpty(mvStockCus.getId())) {
-			mvStockCus = mvStockCusService.getEntity(MvStockCusEntity.class, mvStockCus.getId());
-			req.setAttribute("mvStockCusPage", mvStockCus);
-		}
-		return new ModelAndView("com/zzjee/wv/mvStockCus-update");
-	}
-	
-	/**
-	 * 导入功能跳转
-	 * 
-	 * @return
-	 */
-	@RequestMapping(params = "upload")
-	public ModelAndView upload(HttpServletRequest req) {
-		req.setAttribute("controller_name","mvStockCusController");
-		return new ModelAndView("common/upload/pub_excel_upload");
-	}
-	
 	/**
 	 * 导出excel
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -318,7 +178,7 @@ public class MvStockCusController extends BaseController {
 			}
 			if(roles.equals("CUS")){
 				cq.eq("cusCode", user.getUserName());
-				
+
 			}
 		}
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, mvStockCus, request.getParameterMap());
@@ -330,64 +190,16 @@ public class MvStockCusController extends BaseController {
 		modelMap.put(NormalExcelConstants.DATA_LIST,mvStockCuss);
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
-	/**
-	 * 导出excel 使模板
-	 * 
-	 * @param request
-	 * @param response
-	 */
-	@RequestMapping(params = "exportXlsByT")
-	public String exportXlsByT(MvStockCusEntity mvStockCus,HttpServletRequest request,HttpServletResponse response
-			, DataGrid dataGrid,ModelMap modelMap) {
-    	modelMap.put(NormalExcelConstants.FILE_NAME,"客户库存");
-    	modelMap.put(NormalExcelConstants.CLASS,MvStockCusEntity.class);
-    	modelMap.put(NormalExcelConstants.PARAMS,new ExportParams("客户库存列表", "导出人:"+ResourceUtil.getSessionUserName().getRealName(),
-    	"导出信息"));
-    	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
-    	return NormalExcelConstants.JEECG_EXCEL_VIEW;
-	}
-	
-	@SuppressWarnings("unchecked")
-	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
-	@ResponseBody
-	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
-		AjaxJson j = new AjaxJson();
-		
-		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
-		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
-			MultipartFile file = entity.getValue();// 获取上传文件对象
-			ImportParams params = new ImportParams();
-			params.setTitleRows(2);
-			params.setHeadRows(1);
-			params.setNeedSave(true);
-			try {
-				List<MvStockCusEntity> listMvStockCusEntitys = ExcelImportUtil.importExcel(file.getInputStream(),MvStockCusEntity.class,params);
-				for (MvStockCusEntity mvStockCus : listMvStockCusEntitys) {
-					mvStockCusService.save(mvStockCus);
-				}
-				j.setMsg("文件导入成功！");
-			} catch (Exception e) {
-				j.setMsg("文件导入失败！");
-				logger.error(ExceptionUtil.getExceptionMessage(e));
-			}finally{
-				try {
-					file.getInputStream().close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return j;
-	}
-	
+
+
+
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<MvStockCusEntity> list() {
 		List<MvStockCusEntity> listMvStockCuss=mvStockCusService.getList(MvStockCusEntity.class);
 		return listMvStockCuss;
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
