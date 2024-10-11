@@ -42,12 +42,12 @@ public class CostTask {
         }
         String datestr = DateUtils.date2Str(DateUtils.date_sdf);
         org.jeecgframework.core.util.LogUtil
-                .info("===================計費定时任务开始===================");
+                .info("===================计费和库存结转定时任务开始===================");
         WmDayCostConfEntity t = new WmDayCostConfEntity();
 
         this.costcountv2(datestr, "N", t);//每天自动计算
         org.jeecgframework.core.util.LogUtil
-                .info("===================計費定时任务结束===================");
+                .info("===================计费和库存结转定时任务结束===================");
         long end = System.currentTimeMillis();
         long times = end - start;
         org.jeecgframework.core.util.LogUtil.info("总耗时" + times + "毫秒");
