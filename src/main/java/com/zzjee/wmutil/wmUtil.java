@@ -42,7 +42,7 @@ public class wmUtil {
      * @param scrq
      * @return
      */
-    public static boolean checkys(String goodsid, String scrq) {
+    public synchronized static boolean checkys(String goodsid, String scrq) {
         boolean isaccept = true;
         String pz = "A";
         try {
