@@ -437,7 +437,6 @@ public class WvStockSttBinController extends BaseController {
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
-
 		//保存
 		try{
 			wvStockSttBinService.saveOrUpdate(wvStockSttBin);
