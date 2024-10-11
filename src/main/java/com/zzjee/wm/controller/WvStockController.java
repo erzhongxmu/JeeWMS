@@ -225,80 +225,6 @@ public class WvStockController extends BaseController {
         TagUtil.datagrid(response, dataGrid);
     }
 
-    /**
-     * 删除生成盘点单
-     *
-     * @return
-     */
-    @RequestMapping(params = "doDel")
-    @ResponseBody
-    public AjaxJson doDel(WvStockEntity wvStock, HttpServletRequest request) {
-        String message = null;
-        AjaxJson j = new AjaxJson();
-        wvStock = systemService.getEntity(WvStockEntity.class, wvStock.getId());
-        message = "生成盘点单删除成功";
-        try {
-            wvStockService.delete(wvStock);
-            systemService.addLog(message, Globals.Log_Type_DEL,
-                    Globals.Log_Leavel_INFO);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new BusinessException(e.getMessage());
-        }
-        // 将message设置为j对象的msg属性
-        j.setMsg(message);
-        return j;
-    }
-
-    /**
-     * 批量删除生成盘点单
-     *
-     * @return
-     */
-    @RequestMapping(params = "doBatchDel")
-    @ResponseBody
-    public AjaxJson doBatchDel(String ids, HttpServletRequest request) {
-        String message = null;
-        AjaxJson j = new AjaxJson();
-        message = "盘点单删除成功";
-        try {
-            for (String id : ids.split(",")) {
-                WvStockEntity wvStock = systemService.getEntity(
-                        WvStockEntity.class, id);
-                wvStockService.delete(wvStock);
-                systemService.addLog(message, Globals.Log_Type_DEL,
-                        Globals.Log_Leavel_INFO);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new BusinessException(e.getMessage());
-        }
-        j.setMsg(message);
-        return j;
-    }
-
-    /**
-     * 添加生成盘点单
-     *
-     * @return
-     */
-    @RequestMapping(params = "doAdd")
-    @ResponseBody
-    public AjaxJson doAdd(WvStockEntity wvStock, HttpServletRequest request) {
-        String message = null;
-        AjaxJson j = new AjaxJson();
-        message = "盘点单添加成功";
-        try {
-            wvStockService.save(wvStock);
-            systemService.addLog(message, Globals.Log_Type_INSERT,
-                    Globals.Log_Leavel_INFO);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new BusinessException(e.getMessage());
-        }
-        j.setMsg(message);
-        return j;
-    }
 
     @RequestMapping(params = "doBatchStt")
     @ResponseBody
@@ -679,32 +605,7 @@ public class WvStockController extends BaseController {
     }
 
 
-    /**
-     * 更新生成盘点单
-     *
-     * @return
-     */
-    @RequestMapping(params = "doUpdate")
-    @ResponseBody
-    public AjaxJson doUpdate(WvStockEntity wvStock, HttpServletRequest request) {
-        String message = null;
-        AjaxJson j = new AjaxJson();
-        message = "生成盘点单更新成功";
-        WvStockEntity t = wvStockService.get(WvStockEntity.class,
-                wvStock.getId());
-        try {
-            MyBeanUtils.copyBeanNotNull2Bean(wvStock, t);
-            wvStockService.saveOrUpdate(t);
-            systemService.addLog(message, Globals.Log_Type_UPDATE,
-                    Globals.Log_Leavel_INFO);
-        } catch (Exception e) {
-            e.printStackTrace();
-            message = "生成盘点单更新失败";
-            throw new BusinessException(e.getMessage());
-        }
-        j.setMsg(message);
-        return j;
-    }
+
 
     /**
      * 生成盘点单新增页面跳转
@@ -888,9 +789,6 @@ public class WvStockController extends BaseController {
                                   @RequestParam(value = "searchstr", required = false) String searchstr,
                                   @RequestParam(value = "searchstr2", required = false) String searchstr2,
                                   @RequestParam(value = "searchstr3", required = false) String searchstr3) {
-//		return listWvGis;
-
-
         ResultDO D0 = new ResultDO();
         String hql = " from WvStockEntity where 1 = 1   ";
         D0.setOK(true);
@@ -927,7 +825,6 @@ public class WvStockController extends BaseController {
 
 
             }
-//			hql=hql+"  and goodsId  in (:alist)";
         }
 
         List<WvStockEntity> listWvStocks = wvStockService.findHql(hql);
