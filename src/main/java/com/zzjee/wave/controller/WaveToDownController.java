@@ -125,6 +125,12 @@ public class WaveToDownController extends BaseController {
         return new ModelAndView("com/zzjee/wm/print/wavejianhuo-print");
     }
 
+    /**
+     * easyui AJAX请求数据
+     *
+     * @param response
+     * @param request
+     */
     @RequestMapping(params = "datagrid")
     public void datagrid(WaveToDownEntity waveToDown, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
         CriteriaQuery cq = new CriteriaQuery(WaveToDownEntity.class, dataGrid);

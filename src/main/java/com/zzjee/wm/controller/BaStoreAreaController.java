@@ -96,7 +96,6 @@ public class BaStoreAreaController extends BaseController {
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -129,6 +128,7 @@ public class BaStoreAreaController extends BaseController {
 	/**
 	 * 删除ba_store_area
 	 *
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -187,7 +187,7 @@ public class BaStoreAreaController extends BaseController {
 	/**
 	 * 添加ba_store_area
 	 *
-	 * @param ids
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -218,7 +218,7 @@ public class BaStoreAreaController extends BaseController {
 	/**
 	 * 更新ba_store_area
 	 *
-	 * @param ids
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
