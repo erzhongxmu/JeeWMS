@@ -99,7 +99,6 @@ public class WmPlatIoController extends BaseController {
      * @param request
      * @param response
      * @param dataGrid
-     * @param user
      */
     @RequestMapping(params = "datagrid")
     public void datagrid(WmPlatIoEntity wmPlatIo, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
@@ -212,7 +211,6 @@ public class WmPlatIoController extends BaseController {
     /**
      * 添加月台进出
      *
-     * @param ids
      * @return
      */
     @RequestMapping(params = "doAdd")
@@ -236,7 +234,6 @@ public class WmPlatIoController extends BaseController {
     /**
      * 更新月台进出
      *
-     * @param ids
      * @return
      */
     @RequestMapping(params = "doUpdate")
@@ -261,7 +258,6 @@ public class WmPlatIoController extends BaseController {
     /**
      * 更新月台释放
      *
-     * @param ids
      * @return
      */
     @RequestMapping(params = "doOutplat")
@@ -288,7 +284,6 @@ public class WmPlatIoController extends BaseController {
     /**
      * 更新月台占用
      *
-     * @param ids
      * @return
      */
     @RequestMapping(params = "doOnplat")

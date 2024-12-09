@@ -176,7 +176,6 @@ public class BaStoreController extends BaseController {
 	/**
 	 * 添加仓库
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -199,7 +198,6 @@ public class BaStoreController extends BaseController {
 	/**
 	 * 更新仓库
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")

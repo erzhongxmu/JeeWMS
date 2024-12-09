@@ -112,7 +112,6 @@ public class WmCusCostHController extends BaseController {
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -190,7 +189,6 @@ public class WmCusCostHController extends BaseController {
 	/**
 	 * 添加客户费用
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -214,7 +212,6 @@ public class WmCusCostHController extends BaseController {
 	/**
 	 * 更新客户费用
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")

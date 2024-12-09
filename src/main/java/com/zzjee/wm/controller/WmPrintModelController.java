@@ -112,7 +112,6 @@ public class WmPrintModelController extends BaseController {
      * @param request
      * @param response
      * @param dataGrid
-     * @param user
      */
     @RequestMapping(params = "datagrid")
     public void datagrid(WmPrintModelEntity wmPrintModel, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
@@ -191,7 +190,6 @@ public class WmPrintModelController extends BaseController {
     /**
      * 添加打印模板
      *
-     * @param ids
      * @return
      */
     @RequestMapping(params = "doAdd")
@@ -215,7 +213,6 @@ public class WmPrintModelController extends BaseController {
     /**
      * 更新打印模板
      *
-     * @param ids
      * @return
      */
     @RequestMapping(params = "doUpdate")

@@ -44,7 +44,7 @@ public class WmsPlcServiceImpl extends CommonServiceImpl implements WmsPlcServic
  		//执行更新操作增强业务
  		this.doUpdateBus(entity);
  	}
- 	
+
  	/**
 	 * 新增操作增强业务
 	 * @param t
@@ -53,7 +53,7 @@ public class WmsPlcServiceImpl extends CommonServiceImpl implements WmsPlcServic
 	private void doAddBus(WmsPlcEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -65,19 +65,19 @@ public class WmsPlcServiceImpl extends CommonServiceImpl implements WmsPlcServic
 	private void doUpdateBus(WmsPlcEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
  	/**
 	 * 删除操作增强业务
-	 * @param id
+	 *
 	 * @return
 	 */
 	private void doDelBus(WmsPlcEntity t) throws Exception{
 	    //-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -110,7 +110,7 @@ public class WmsPlcServiceImpl extends CommonServiceImpl implements WmsPlcServic
 		map.put("remark1", t.getRemark1());
 		return map;
 	}
- 	
+
  	/**
 	 * 替换sql中的变量
 	 * @param sql
@@ -165,7 +165,7 @@ public class WmsPlcServiceImpl extends CommonServiceImpl implements WmsPlcServic
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new Exception("执行JAVA增强出现异常！");
-			} 
+			}
 		}
  	}
 }

@@ -50,12 +50,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.zzjee.report.entity.RpWmToUpGoodsEntity;
 import com.zzjee.report.service.RpWmToUpGoodsServiceI;
 
-/**   
- * @Title: Controller  
+/**
+ * @Title: Controller
  * @Description: rp_wm_to_up_goods
  * @author erzhongxmu
  * @date 2018-09-11 07:47:17
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Controller
@@ -77,7 +77,7 @@ public class RpWmToUpGoodsController extends BaseController {
 
 	/**
 	 * rp_wm_to_up_goods列表 页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "list")
@@ -87,11 +87,10 @@ public class RpWmToUpGoodsController extends BaseController {
 
 	/**
 	 * easyui AJAX请求数据
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 	@RequestMapping(params = "datagrid")
 	public void datagrid(RpWmToUpGoodsEntity rpWmToUpGoods,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
@@ -107,10 +106,10 @@ public class RpWmToUpGoodsController extends BaseController {
 		this.rpWmToUpGoodsService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
 	}
-	
+
 	/**
 	 * 删除rp_wm_to_up_goods
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -133,7 +132,7 @@ public class RpWmToUpGoodsController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 处理带有参数 "doBatchDel" 的请求，
 	 * 批量删除指定的实体对象，并记录日志。
@@ -167,8 +166,7 @@ public class RpWmToUpGoodsController extends BaseController {
 
 	/**
 	 * 添加rp_wm_to_up_goods
-	 * 
-	 * @param ids
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -190,11 +188,10 @@ public class RpWmToUpGoodsController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 更新rp_wm_to_up_goods
-	 * 
-	 * @param ids
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -227,11 +224,11 @@ public class RpWmToUpGoodsController extends BaseController {
 		//返回 AjaxJson 对象
 		return j;
 	}
-	
+
 
 	/**
 	 * rp_wm_to_up_goods新增页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	//用于跳转到新增页面
@@ -247,7 +244,7 @@ public class RpWmToUpGoodsController extends BaseController {
 	}
 	/**
 	 * rp_wm_to_up_goods编辑页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	//用于跳转到编辑页面
@@ -260,10 +257,10 @@ public class RpWmToUpGoodsController extends BaseController {
 		}
 		return new ModelAndView("com/zzjee/report/rpWmToUpGoods-update");
 	}
-	
+
 	/**
 	 * 导入功能跳转
-	 * 
+	 *
 	 * @return
 	 */
 	//用于跳转到导入功能页面
@@ -273,10 +270,10 @@ public class RpWmToUpGoodsController extends BaseController {
 		req.setAttribute("controller_name","rpWmToUpGoodsController");
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
-	
+
 	/**
 	 * 导出excel
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -301,7 +298,7 @@ public class RpWmToUpGoodsController extends BaseController {
 	}
 	/**
 	 * 导出excel 使模板
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -370,7 +367,7 @@ public class RpWmToUpGoodsController extends BaseController {
 		}
 		return j;
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<RpWmToUpGoodsEntity> list() {

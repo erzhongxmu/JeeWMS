@@ -118,7 +118,6 @@ public class WvStockSttBinController extends BaseController {
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -185,7 +184,6 @@ public class WvStockSttBinController extends BaseController {
 	/**
 	 * 添加储位盘点
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -214,7 +212,6 @@ public class WvStockSttBinController extends BaseController {
 	/**
 	 * 更新储位盘点
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")

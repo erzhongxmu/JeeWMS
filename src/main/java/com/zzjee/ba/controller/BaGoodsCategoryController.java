@@ -217,7 +217,6 @@ public class BaGoodsCategoryController extends BaseController {
 	/**
 	 * 添加商品类目
 	 *
-//	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -243,7 +242,6 @@ public class BaGoodsCategoryController extends BaseController {
 	/**
 	 * 更新商品类目
 	 *
-//	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")

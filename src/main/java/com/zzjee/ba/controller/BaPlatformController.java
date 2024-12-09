@@ -176,7 +176,6 @@ public class BaPlatformController extends BaseController {
 	/**
 	 * 添加月台主数据
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -199,7 +198,6 @@ public class BaPlatformController extends BaseController {
 	/**
 	 * 更新月台主数据
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")

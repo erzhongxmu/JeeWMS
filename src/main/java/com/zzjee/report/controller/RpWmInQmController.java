@@ -50,12 +50,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.zzjee.report.entity.RpWmInQmEntity;
 import com.zzjee.report.service.RpWmInQmServiceI;
 
-/**   
- * @Title: Controller  
+/**
+ * @Title: Controller
  * @Description: rp_wm_in_qm
  * @author erzhongxmu
  * @date 2018-09-11 07:46:59
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Controller
@@ -77,7 +77,7 @@ public class RpWmInQmController extends BaseController {
 
 	/**
 	 * rp_wm_in_qm列表 页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	//处理HTTP请求的/list路径
@@ -89,11 +89,10 @@ public class RpWmInQmController extends BaseController {
 
 	/**
 	 * easyui AJAX请求数据
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -110,10 +109,10 @@ public class RpWmInQmController extends BaseController {
 		this.rpWmInQmService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
 	}
-	
+
 	/**
 	 * 删除rp_wm_in_qm
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -137,10 +136,10 @@ public class RpWmInQmController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 批量删除rp_wm_in_qm
-	 * 
+	 *
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")   //请求参数为"doBatchDel"的请求映射到该方法
@@ -154,7 +153,7 @@ public class RpWmInQmController extends BaseController {
 		try{
 			for(String id:ids.split(",")){
 				//根据id获取要删除的实体对象。
-				RpWmInQmEntity rpWmInQm = systemService.getEntity(RpWmInQmEntity.class, 
+				RpWmInQmEntity rpWmInQm = systemService.getEntity(RpWmInQmEntity.class,
 				id
 				);
 				//删除获取到的实体对象。
@@ -175,8 +174,7 @@ public class RpWmInQmController extends BaseController {
 
 	/**
 	 * 添加rp_wm_in_qm
-	 * 
-	 * @param ids
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -204,11 +202,10 @@ public class RpWmInQmController extends BaseController {
 		//返回AjaxJson对象
 		return j;
 	}
-	
+
 	/**
 	 * 更新rp_wm_in_qm
-	 * 
-	 * @param ids
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -341,7 +338,7 @@ public class RpWmInQmController extends BaseController {
 		//返回页面视图用于展示导出结果，通常返回一个表示Excel页面路径的字符串
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
-	
+
 //	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
@@ -378,14 +375,14 @@ public class RpWmInQmController extends BaseController {
 		}
 		return j;
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<RpWmInQmEntity> list() {
 		List<RpWmInQmEntity> listRpWmInQms=rpWmInQmService.getList(RpWmInQmEntity.class);
 		return listRpWmInQms;
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {

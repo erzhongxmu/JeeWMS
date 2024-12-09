@@ -50,12 +50,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.zzjee.report.entity.RpWmUpAndDownEntity;
 import com.zzjee.report.service.RpWmUpAndDownServiceI;
 
-/**   
- * @Title: Controller  
+/**
+ * @Title: Controller
  * @Description: rp_wm_up_and_down
  * @author erzhongxmu
  * @date 2018-09-11 07:47:13
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Controller
@@ -74,7 +74,7 @@ public class RpWmUpAndDownController extends BaseController {
 
 	/**
 	 * rp_wm_up_and_down列表 页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "list")
@@ -84,11 +84,10 @@ public class RpWmUpAndDownController extends BaseController {
 
 	/**
 	 * easyui AJAX请求数据
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -105,10 +104,10 @@ public class RpWmUpAndDownController extends BaseController {
 		this.rpWmUpAndDownService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
 	}
-	
+
 	/**
 	 * 删除rp_wm_up_and_down
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -133,10 +132,10 @@ public class RpWmUpAndDownController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 批量删除rp_wm_up_and_down
-	 * 
+	 *
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")
@@ -148,7 +147,7 @@ public class RpWmUpAndDownController extends BaseController {
 		try{
 			//根据每个 id 获取对应的 RpWmUpAndDownEntity 实体对象
 			for(String id:ids.split(",")){
-				RpWmUpAndDownEntity rpWmUpAndDown = systemService.getEntity(RpWmUpAndDownEntity.class, 
+				RpWmUpAndDownEntity rpWmUpAndDown = systemService.getEntity(RpWmUpAndDownEntity.class,
 				id
 				);
 				//调用服务层方法删除 RpWmUpAndDownEntity 实体对象
@@ -167,8 +166,7 @@ public class RpWmUpAndDownController extends BaseController {
 
 	/**
 	 * 添加rp_wm_up_and_down
-	 * 
-	 * @param ids
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -190,11 +188,10 @@ public class RpWmUpAndDownController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 更新rp_wm_up_and_down
-	 * 
-	 * @param ids
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -223,7 +220,7 @@ public class RpWmUpAndDownController extends BaseController {
 
 	/**
 	 * rp_wm_up_and_down新增页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -238,7 +235,7 @@ public class RpWmUpAndDownController extends BaseController {
 	}
 	/**
 	 * rp_wm_up_and_down编辑页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -252,10 +249,10 @@ public class RpWmUpAndDownController extends BaseController {
 		}
 		return new ModelAndView("com/zzjee/report/rpWmUpAndDown-update");
 	}
-	
+
 	/**
 	 * 导入功能跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "upload")

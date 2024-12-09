@@ -166,7 +166,6 @@ public class BaCostConfController extends BaseController {
 	/**
 	 * 添加计费配置
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -189,7 +188,6 @@ public class BaCostConfController extends BaseController {
 	/**
 	 * 更新计费配置
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")

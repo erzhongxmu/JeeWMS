@@ -65,12 +65,12 @@ import java.net.URI;
 import org.springframework.http.MediaType;
 import org.springframework.web.util.UriComponentsBuilder;
 
-/**   
- * @Title: Controller  
+/**
+ * @Title: Controller
  * @Description: 计量单位
  * @author onlineGenerator
  * @date 2018-10-31 12:01:21
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Controller
@@ -87,12 +87,12 @@ public class BaUnitController extends BaseController {
 	private SystemService systemService;
 	@Autowired
 	private Validator validator;
-	
+
 
 
 	/**
 	 * 计量单位列表 页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "list")
@@ -102,7 +102,7 @@ public class BaUnitController extends BaseController {
 
 	/**
 	 * easyui AJAX请求数据
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @param dataGrid
@@ -122,10 +122,10 @@ public class BaUnitController extends BaseController {
 		this.baUnitService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
 	}
-	
+
 	/**
 	 * 删除计量单位
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -146,10 +146,10 @@ public class BaUnitController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 批量删除计量单位
-	 * 
+	 *
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")
@@ -160,7 +160,7 @@ public class BaUnitController extends BaseController {
 		message = "计量单位删除成功";
 		try{
 			for(String id:ids.split(",")){
-				BaUnitEntity baUnit = systemService.getEntity(BaUnitEntity.class, 
+				BaUnitEntity baUnit = systemService.getEntity(BaUnitEntity.class,
 				id
 				);
 				baUnitService.delete(baUnit);
@@ -178,8 +178,7 @@ public class BaUnitController extends BaseController {
 
 	/**
 	 * 添加计量单位
-	 * 
-	 * @param ids
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -199,11 +198,10 @@ public class BaUnitController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 更新计量单位
-	 * 
-	 * @param ids
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -225,11 +223,11 @@ public class BaUnitController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
+
 
 	/**
 	 * 计量单位新增页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -242,7 +240,7 @@ public class BaUnitController extends BaseController {
 	}
 	/**
 	 * 计量单位编辑页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -253,10 +251,10 @@ public class BaUnitController extends BaseController {
 		}
 		return new ModelAndView("com/zzjee/ba/baUnit-update");
 	}
-	
+
 	/**
 	 * 导入功能跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "upload")
@@ -264,10 +262,10 @@ public class BaUnitController extends BaseController {
 		req.setAttribute("controller_name","baUnitController");
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
-	
+
 	/**
 	 * 导出excel
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -286,7 +284,7 @@ public class BaUnitController extends BaseController {
 	}
 	/**
 	 * 导出excel 使模板
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -300,13 +298,13 @@ public class BaUnitController extends BaseController {
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-		
+
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
@@ -334,14 +332,14 @@ public class BaUnitController extends BaseController {
 		}
 		return j;
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<BaUnitEntity> list() {
 		List<BaUnitEntity> listBaUnits=baUnitService.getList(BaUnitEntity.class);
 		return listBaUnits;
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {

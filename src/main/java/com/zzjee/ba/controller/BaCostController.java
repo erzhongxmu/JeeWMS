@@ -200,7 +200,6 @@ public class BaCostController extends BaseController {
 	/**
 	 * 更新费用名称
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")

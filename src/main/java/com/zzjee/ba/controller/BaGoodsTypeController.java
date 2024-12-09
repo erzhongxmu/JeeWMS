@@ -176,7 +176,6 @@ public class BaGoodsTypeController extends BaseController {
 	/**
 	 * 添加产品属性
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -199,7 +198,6 @@ public class BaGoodsTypeController extends BaseController {
 	/**
 	 * 更新产品属性
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")

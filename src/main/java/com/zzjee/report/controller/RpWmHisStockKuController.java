@@ -50,12 +50,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.zzjee.report.entity.RpWmHisStockKuEntity;
 import com.zzjee.report.service.RpWmHisStockKuServiceI;
 
-/**   
- * @Title: Controller  
+/**
+ * @Title: Controller
  * @Description: rp_wm_his_stock_ku
  * @author erzhongxmu
  * @date 2018-09-11 07:47:09
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Controller    //用于处理HTTP请求
@@ -75,7 +75,7 @@ public class RpWmHisStockKuController extends BaseController {
 
 	/**
 	 * rp_wm_his_stock_ku列表 页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	//list方法的作用是跳转到名为"com/zzjee/report/rpWmHisStockKuList"的页面
@@ -151,10 +151,10 @@ public class RpWmHisStockKuController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 批量删除rp_wm_his_stock_ku
-	 * 
+	 *
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")
@@ -187,8 +187,7 @@ public class RpWmHisStockKuController extends BaseController {
 
 	/**
 	 * 添加rp_wm_his_stock_ku
-	 * 
-	 * @param ids
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -209,11 +208,10 @@ public class RpWmHisStockKuController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 更新rp_wm_his_stock_ku
-	 * 
-	 * @param ids
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -242,7 +240,7 @@ public class RpWmHisStockKuController extends BaseController {
 
 	/**
 	 * rp_wm_his_stock_ku新增页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -260,7 +258,7 @@ public class RpWmHisStockKuController extends BaseController {
 
 	/**
 	 * rp_wm_his_stock_ku编辑页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -321,7 +319,7 @@ public class RpWmHisStockKuController extends BaseController {
 
 	/**
 	 * 导出excel 使模板
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -335,7 +333,7 @@ public class RpWmHisStockKuController extends BaseController {
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
-	
+
 	//@SuppressWarnings("unchecked")
 
 	/**
@@ -379,14 +377,14 @@ public class RpWmHisStockKuController extends BaseController {
 		}
 		return j;
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<RpWmHisStockKuEntity> list() {
 		List<RpWmHisStockKuEntity> listRpWmHisStockKus=rpWmHisStockKuService.getList(RpWmHisStockKuEntity.class);
 		return listRpWmHisStockKus;
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {

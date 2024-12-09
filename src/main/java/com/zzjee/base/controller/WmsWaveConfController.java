@@ -65,12 +65,12 @@ import java.net.URI;
 import org.springframework.http.MediaType;
 import org.springframework.web.util.UriComponentsBuilder;
 
-/**   
- * @Title: Controller  
+/**
+ * @Title: Controller
  * @Description: 波次配置
  * @author onlineGenerator
  * @date 2020-01-19 13:54:14
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Controller
@@ -87,12 +87,12 @@ public class WmsWaveConfController extends BaseController {
 	private SystemService systemService;
 	@Autowired
 	private Validator validator;
-	
+
 
 
 	/**
 	 * 波次配置列表 页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "list")
@@ -102,7 +102,7 @@ public class WmsWaveConfController extends BaseController {
 
 	/**
 	 * easyui AJAX请求数据
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @param dataGrid
@@ -122,10 +122,10 @@ public class WmsWaveConfController extends BaseController {
 		this.wmsWaveConfService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
 	}
-	
+
 	/**
 	 * 删除波次配置
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -146,7 +146,7 @@ public class WmsWaveConfController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 批量删除波次配置
 	 */
@@ -158,7 +158,7 @@ public class WmsWaveConfController extends BaseController {
 		message = "波次配置删除成功";
 		try{
 			for(String id:ids.split(",")){
-				WmsWaveConfEntity wmsWaveConf = systemService.getEntity(WmsWaveConfEntity.class, 
+				WmsWaveConfEntity wmsWaveConf = systemService.getEntity(WmsWaveConfEntity.class,
 				id
 				);
 				wmsWaveConfService.delete(wmsWaveConf);
@@ -176,7 +176,7 @@ public class WmsWaveConfController extends BaseController {
 
 	/**
 	 * 添加波次配置
-	 * 
+	 *
 	 * @param wmsWaveConf 波次配置
 	 * @return
 	 */
@@ -197,11 +197,10 @@ public class WmsWaveConfController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 更新波次配置
-	 * 
-	 * @param ids
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -223,11 +222,11 @@ public class WmsWaveConfController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
+
 
 	/**
 	 * 波次配置新增页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -240,7 +239,7 @@ public class WmsWaveConfController extends BaseController {
 	}
 	/**
 	 * 波次配置编辑页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -251,10 +250,10 @@ public class WmsWaveConfController extends BaseController {
 		}
 		return new ModelAndView("com/zzjee/base/wmsWaveConf-update");
 	}
-	
+
 	/**
 	 * 导入功能跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "upload")
@@ -262,10 +261,10 @@ public class WmsWaveConfController extends BaseController {
 		req.setAttribute("controller_name","wmsWaveConfController");
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
-	
+
 	/**
 	 * 导出excel
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -284,7 +283,7 @@ public class WmsWaveConfController extends BaseController {
 	}
 	/**
 	 * 导出excel 使模板
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -298,13 +297,13 @@ public class WmsWaveConfController extends BaseController {
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-		
+
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
@@ -332,14 +331,14 @@ public class WmsWaveConfController extends BaseController {
 		}
 		return j;
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<WmsWaveConfEntity> list() {
 		List<WmsWaveConfEntity> listWmsWaveConfs=wmsWaveConfService.getList(WmsWaveConfEntity.class);
 		return listWmsWaveConfs;
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {

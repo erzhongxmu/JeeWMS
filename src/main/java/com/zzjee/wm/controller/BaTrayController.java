@@ -105,7 +105,6 @@ public class BaTrayController extends BaseController {
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 	@RequestMapping(params = "datagrid")
 	public void datagrid(BaTrayEntity baTray,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
@@ -191,7 +190,6 @@ public class BaTrayController extends BaseController {
 	/**
 	 * 添加ba_tray
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -222,7 +220,6 @@ public class BaTrayController extends BaseController {
 	/**
 	 * 更新ba_tray
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")

@@ -126,7 +126,6 @@ public class WmDayCostController extends BaseController {
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 
@@ -357,7 +356,6 @@ public class WmDayCostController extends BaseController {
 	/**
 	 * 添加费用维护
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -380,7 +378,6 @@ public class WmDayCostController extends BaseController {
 	/**
 	 * 更新费用维护
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -404,7 +401,6 @@ public class WmDayCostController extends BaseController {
 	/**
 	 * 更新费用维护
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "dopljq")

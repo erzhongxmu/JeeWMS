@@ -50,12 +50,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.zzjee.report.entity.RpWmToDownGoodsEntity;
 import com.zzjee.report.service.RpWmToDownGoodsServiceI;
 
-/**   
- * @Title: Controller  
+/**
+ * @Title: Controller
  * @Description: rp_wm_to_down_goods
  * @author erzhongxmu
  * @date 2018-09-11 07:47:22
- * @version V1.0   
+ * @version V1.0
  *
  */
 @Controller
@@ -78,7 +78,7 @@ public class RpWmToDownGoodsController extends BaseController {
 
 	/**
 	 * rp_wm_to_down_goods列表 页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "list")
@@ -89,11 +89,10 @@ public class RpWmToDownGoodsController extends BaseController {
 
 	/**
 	 * easyui AJAX请求数据
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 	@RequestMapping(params = "datagrid")
 	public void datagrid(RpWmToDownGoodsEntity rpWmToDownGoods,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
@@ -112,10 +111,10 @@ public class RpWmToDownGoodsController extends BaseController {
 		//使用TagUtil工具类将dataGrid对象转换为JSON格式，并写入HttpServletResponse对象中
 		TagUtil.datagrid(response, dataGrid);
 	}
-	
+
 	/**
 	 * 删除rp_wm_to_down_goods
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -140,10 +139,10 @@ public class RpWmToDownGoodsController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 批量删除rp_wm_to_down_goods
-	 * 
+	 *
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")
@@ -173,8 +172,7 @@ public class RpWmToDownGoodsController extends BaseController {
 
 	/**
 	 * 添加rp_wm_to_down_goods
-	 * 
-	 * @param ids
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -196,11 +194,10 @@ public class RpWmToDownGoodsController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 更新rp_wm_to_down_goods
-	 * 
-	 * @param ids
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -229,7 +226,7 @@ public class RpWmToDownGoodsController extends BaseController {
 
 	/**
 	 * rp_wm_to_down_goods新增页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -245,7 +242,7 @@ public class RpWmToDownGoodsController extends BaseController {
 
 	/**
 	 * rp_wm_to_down_goods编辑页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -258,10 +255,10 @@ public class RpWmToDownGoodsController extends BaseController {
 		//返回一个新的ModelAndView对象，视图名称为"com/zzjee/report/rpWmToDownGoods-add"
 		return new ModelAndView("com/zzjee/report/rpWmToDownGoods-update");
 	}
-	
+
 	/**
 	 * 导入功能跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "upload")
@@ -271,10 +268,10 @@ public class RpWmToDownGoodsController extends BaseController {
 		//返回一个新的ModelAndView对象，视图名称为"common/upload/pub_excel_upload"
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
-	
+
 	/**
 	 * 导出excel
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -301,7 +298,7 @@ public class RpWmToDownGoodsController extends BaseController {
 
 	/**
 	 * 导出excel 使模板
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -319,7 +316,7 @@ public class RpWmToDownGoodsController extends BaseController {
 		modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
-	
+
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
@@ -357,7 +354,7 @@ public class RpWmToDownGoodsController extends BaseController {
 		}
 		return j;
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<RpWmToDownGoodsEntity> list() {
@@ -365,7 +362,7 @@ public class RpWmToDownGoodsController extends BaseController {
 		List<RpWmToDownGoodsEntity> listRpWmToDownGoodss=rpWmToDownGoodsService.getList(RpWmToDownGoodsEntity.class);
 		return listRpWmToDownGoodss;
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {

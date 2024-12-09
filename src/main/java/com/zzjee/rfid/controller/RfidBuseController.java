@@ -112,7 +112,6 @@ public class RfidBuseController extends BaseController {
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -199,7 +198,6 @@ public class RfidBuseController extends BaseController {
 	/**
 	 * 添加RFID表
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -225,7 +223,6 @@ public class RfidBuseController extends BaseController {
 	/**
 	 * 更新RFID表
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -454,8 +451,6 @@ public class RfidBuseController extends BaseController {
 	/**
 	 * 导入 Excel 文件并将其内容保存到数据库中。
 	 *
-	 * @param request HttpServletRequest 对象，包含客户端请求信息
-	 * @param response HttpServletResponse 对象，包含服务器响应信息
 	 * @return 返回 AjaxJson 对象，包含操作结果信息
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)

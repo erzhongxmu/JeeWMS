@@ -77,8 +77,8 @@ import java.net.URI;
 import org.springframework.http.MediaType;
 import org.springframework.web.util.UriComponentsBuilder;
 
-/**   
- * @Title: Controller  
+/**
+ * @Title: Controller
  * @Description: 效期预警
  * @author erzhongxmu
  * @date 2017-09-17 22:13:08
@@ -109,7 +109,7 @@ public class MvStockYjController extends BaseController {
 	 */
 	@Autowired
 	private Validator validator;
-	
+
 
 
 	/**
@@ -123,11 +123,10 @@ public class MvStockYjController extends BaseController {
 
 	/**
 	 * easyui AJAX请求数据
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -158,20 +157,20 @@ public class MvStockYjController extends BaseController {
 			//判断角色是否为"CUS"，如果是，则添加特定的查询条件
 			if(roles.equals("CUS")){
 				cq.eq("cusCode", user.getUserName());
-				
+
 			}
 		}
 		cq.add();
-//		Map<String,Object> map1 = new HashMap<String,Object>(); 
-//		map1.put("dqr", "desc");  
-//		cq.setOrder(map1); 
+//		Map<String,Object> map1 = new HashMap<String,Object>();
+//		map1.put("dqr", "desc");
+//		cq.setOrder(map1);
 		this.mvStockYjService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
 	}
-	
+
 	/**
 	 * 删除效期预警
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -196,10 +195,10 @@ public class MvStockYjController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 批量删除效期预警
-	 * 
+	 *
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")
@@ -212,7 +211,7 @@ public class MvStockYjController extends BaseController {
 		try{
 			//遍历提供的ids，并删除对应的MvStockYjEntity对象
 			for(String id:ids.split(",")){
-				MvStockYjEntity mvStockYj = systemService.getEntity(MvStockYjEntity.class, 
+				MvStockYjEntity mvStockYj = systemService.getEntity(MvStockYjEntity.class,
 				id
 				);
 				mvStockYjService.delete(mvStockYj);
@@ -233,8 +232,7 @@ public class MvStockYjController extends BaseController {
 
 	/**
 	 * 添加效期预警
-	 * 
-	 * @param ids
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -256,11 +254,10 @@ public class MvStockYjController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
+
 	/**
 	 * 更新效期预警
-	 * 
-	 * @param ids
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -376,7 +373,7 @@ public class MvStockYjController extends BaseController {
 			//根据角色code判断是否为CUST类型，如果是，则在查询条件中添加用户用户名的等于条件
 			if(roles.equals("CUS")){
 				cq.eq("cusCode", user.getUserName());
-				
+
 			}
 		}
 		//生成HQL查询语句
@@ -395,7 +392,7 @@ public class MvStockYjController extends BaseController {
 
 	/**
 	 * 导出excel 使模板
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -414,7 +411,7 @@ public class MvStockYjController extends BaseController {
 		//返回视图名称，用于导出Excel文件
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	/**
 	 * 导入Excel文件并将其内容保存到数据库中。

@@ -51,7 +51,7 @@ public class BaGoodsCategoryServiceImpl extends CommonServiceImpl implements BaG
  		//执行更新操作增强业务
  		this.doUpdateBus(entity);
  	}
- 	
+
  	/**
 	 * 新增操作增强业务
 	 * @param t
@@ -60,7 +60,7 @@ public class BaGoodsCategoryServiceImpl extends CommonServiceImpl implements BaG
 	private void doAddBus(BaGoodsCategoryEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -72,23 +72,23 @@ public class BaGoodsCategoryServiceImpl extends CommonServiceImpl implements BaG
 	private void doUpdateBus(BaGoodsCategoryEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
  	/**
 	 * 删除操作增强业务
-	 * @param id
+	 *
 	 * @return
 	 */
 	private void doDelBus(BaGoodsCategoryEntity t) throws Exception{
 	    //-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
- 	
+
  	private Map<String,Object> populationMap(BaGoodsCategoryEntity t){
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("id", t.getId());
@@ -106,7 +106,7 @@ public class BaGoodsCategoryServiceImpl extends CommonServiceImpl implements BaG
 		map.put("top_node", t.getTopNode());
 		return map;
 	}
- 	
+
  	/**
 	 * 替换sql中的变量
 	 * @param sql
@@ -130,7 +130,7 @@ public class BaGoodsCategoryServiceImpl extends CommonServiceImpl implements BaG
  		sql  = sql.replace("#{UUID}",UUID.randomUUID().toString());
  		return sql;
  	}
- 	
+
  	/**
 	 * 执行JAVA增强
 	 */
@@ -151,7 +151,7 @@ public class BaGoodsCategoryServiceImpl extends CommonServiceImpl implements BaG
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new Exception("执行JAVA增强出现异常！");
-			} 
+			}
 		}
  	}
 }

@@ -120,7 +120,6 @@ public class WmNoticeConfController extends BaseController {
      * @param request
      * @param response
      * @param dataGrid
-     * @param user
      */
     @RequestMapping(params = "datagrid")
     public void datagrid(WmNoticeConfEntity wmNoticeConf, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
@@ -210,7 +209,6 @@ public class WmNoticeConfController extends BaseController {
     /**
      * 添加回单管理
      *
-     * @param ids
      * @return
      */
     @RequestMapping(params = "doAdd")
@@ -248,7 +246,6 @@ public class WmNoticeConfController extends BaseController {
     /**
      * 更新回单管理
      *
-     * @param ids
      * @return
      */
     @RequestMapping(params = "doUpdate")

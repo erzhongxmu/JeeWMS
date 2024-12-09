@@ -270,7 +270,6 @@ public class WmDayCostConfController extends BaseController {
     /**
      * 更新计费日期配置
      *
-     * @param ids
      * @return
      */
     @RequestMapping(params = "doUpdate")
