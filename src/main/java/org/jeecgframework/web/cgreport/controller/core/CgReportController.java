@@ -3,6 +3,10 @@ package org.jeecgframework.web.cgreport.controller.core;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -15,6 +19,7 @@ import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
 
 import org.apache.commons.lang.StringUtils;
 import org.jeecgframework.core.common.controller.BaseController;
@@ -45,6 +50,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class CgReportController extends BaseController {
 	@Autowired
 	private CgReportServiceI cgReportService;
+	@Autowired
+	private DataSource dataSource;
 	/**
 	 * 动态报表展现入口
 	 * @param id 动态配置ID-code
@@ -284,19 +291,28 @@ public class CgReportController extends BaseController {
 		List<Map<String,Object>> items = (List<Map<String, Object>>) cgReportMap.get(CgReportConstant.ITEMS);
 		List<CgreportConfigParamEntity> paramList = (List<CgreportConfigParamEntity>) cgReportMap.get(CgReportConstant.PARAMS);
 		Map queryparams =  new LinkedHashMap<String,Object>();
-		if(paramList!=null&&paramList.size()>0){
-			for(CgreportConfigParamEntity param :paramList){
+		if (paramList!= null && paramList.size() > 0) {
+			StringBuilder finalSql = new StringBuilder(querySql);
+			List<Object> paramValues = new ArrayList<>();
+			for (CgreportConfigParamEntity param : paramList) {
 				String value = request.getParameter(param.getParamName());
-				value = StringUtil.isEmpty(value)?param.getParamValue():value;
-				querySql = querySql.replace("${"+param.getParamName()+"}", value);
-			}
-		}else{
-			for(Map<String,Object> item:items){
-				String isQuery = (String) item.get(CgReportConstant.ITEM_ISQUERY);
-				if(CgReportConstant.BOOL_TRUE.equalsIgnoreCase(isQuery)){
-					//step.3 装载查询条件
-					CgReportQueryParamUtil.loadQueryParams(request, item, queryparams);
+				value = StringUtil.isEmpty(value)? param.getParamValue() : value;
+				paramValues.add(value);
+				String placeholder = "${" + param.getParamName() + "}";
+				int index = finalSql.indexOf(placeholder);
+				while (index!= -1) {
+					finalSql = finalSql.replace(index, index + placeholder.length(), "?");
+					index = finalSql.indexOf(placeholder);
 				}
+			}
+			try (Connection connection = dataSource.getConnection();
+				 PreparedStatement preparedStatement = connection.prepareStatement(finalSql.toString())) {
+				for (int i = 0; i < paramValues.size(); i++) {
+					preparedStatement.setObject(i + 1, paramValues.get(i));
+				}
+				ResultSet resultSet = preparedStatement.executeQuery();
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
 		}
 		//step.4 进行查询返回结果

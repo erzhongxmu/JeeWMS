@@ -25,7 +25,7 @@ import org.jeecgframework.web.system.pojo.base.TSUser;
 
 /**
  * 项目参数工具类
- * 
+ *
  */
 public class ResourceUtil {
 	public static final String LOCAL_CLINET_USER = "LOCAL_CLINET_USER";
@@ -37,11 +37,11 @@ public class ResourceUtil {
 	 * 缓存字典【缓存】
 	 */
 	public static Map<String, List<TSType>> allTypes = new HashMap<String,List<TSType>>();
-	
+
 	/**
 	 * 国际化【缓存】
 	 */
-	public static Map<String, String> mutiLangMap = new HashMap<String, String>(); 
+	public static Map<String, String> mutiLangMap = new HashMap<String, String>();
 	/**
 	 * 缓存系统图标【缓存】
 	 */
@@ -49,10 +49,10 @@ public class ResourceUtil {
 	/**
 	 * 动态数据源【缓存】
 	 */
-	public static Map<String, DynamicDataSourceEntity> dynamicDataSourceMap = new HashMap<String, DynamicDataSourceEntity>(); 
-	
+	public static Map<String, DynamicDataSourceEntity> dynamicDataSourceMap = new HashMap<String, DynamicDataSourceEntity>();
+
 	private static final ResourceBundle bundle = java.util.ResourceBundle.getBundle("sysConfig");
-	
+
 	/**
 	 * 属性文件[resources/sysConfig.properties]
 	 * #默认开启模糊查询方式 1为开启 条件无需带*就能模糊查询[暂时取消]
@@ -64,7 +64,7 @@ public class ResourceUtil {
 
 	/**
 	 * 获取session定义名称
-	 * 
+	 *
 	 * @return
 	 */
 	public static final String getSessionattachmenttitle(String sessionName) {
@@ -117,10 +117,10 @@ public class ResourceUtil {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * 获得请求路径
-	 * 
+	 *
 	 * @param request
 	 * @return
 	 */
@@ -133,16 +133,22 @@ public class ResourceUtil {
 			requestPath += "?" + queryString;
 		}
 
-		if (requestPath.indexOf("&") > -1) {// 去掉其他参数
-			requestPath = requestPath.substring(0, requestPath.indexOf("&"));
+		// 从完整路径中去除上下文路径（项目路径）
+		String contextPath = request.getContextPath();
+		if (StringUtils.isNotEmpty(contextPath)) {
+			requestPath = requestPath.substring(contextPath.length());
+		} else {
+			// 如果上下文路径为空（根路径），则不需要去除任何内容
+			if (requestPath.startsWith("/")) {
+				requestPath = requestPath.substring(1);
+			}
 		}
-		requestPath = requestPath.substring(request.getContextPath().length() + 1);// 去掉项目路径
 		return requestPath;
 	}
 
 	/**
 	 * 获取配置文件参数
-	 * 
+	 *
 	 * @param name
 	 * @return
 	 */
@@ -157,7 +163,7 @@ public class ResourceUtil {
 
 	/**
 	 * 获取配置文件参数
-	 * 
+	 *
 	 * @param path
 	 * @return
 	 */
@@ -167,8 +173,8 @@ public class ResourceUtil {
 		return oConvertUtils.SetToMap(set);
 	}
 
-	
-	
+
+
 	public static String getSysPath() {
 		String path = Thread.currentThread().getContextClassLoader().getResource("").toString();
 		String temp = path.replaceFirst("file:/", "").replaceFirst("WEB-INF/classes/", "");
@@ -179,7 +185,7 @@ public class ResourceUtil {
 
 	/**
 	 * 获取项目根目录
-	 * 
+	 *
 	 * @return
 	 */
 	public static String getPorjectPath() {
@@ -215,9 +221,9 @@ public class ResourceUtil {
 
 	/**
 	 * 获取数据库类型
-	 * 
+	 *
 	 * @return
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public static final String getJdbcUrl() {
 		return DBTypeUtil.getDBType().toLowerCase();
@@ -270,13 +276,13 @@ public class ResourceUtil {
 			key = key;
 		}
 
-	
+
 		//替换为系统的登录用户账号
 //		if (key.equals(DataBaseConstant.CREATE_BY)
 //				|| key.equals(DataBaseConstant.CREATE_BY_TABLE)
 //				|| key.equals(DataBaseConstant.UPDATE_BY)
 //				|| key.equals(DataBaseConstant.UPDATE_BY_TABLE)
-//				|| 
+//				||
 		if (key.equals(DataBaseConstant.SYS_USER_CODE)
 				|| key.equals(DataBaseConstant.SYS_USER_CODE_TABLE)) {
 			returnValue = getSessionUserName().getUserName();
@@ -343,7 +349,7 @@ public class ResourceUtil {
 		if(returnValue!=null){returnValue = returnValue + moshi;}
 		return returnValue;
 	}
-	
+
     /**
      * 处理数据权限规则变量
      * 以用户变量为准  先得到用户变量，如果用户没有设置，则获到 系统变量
