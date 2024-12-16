@@ -133,16 +133,10 @@ public class ResourceUtil {
 			requestPath += "?" + queryString;
 		}
 
-		// 从完整路径中去除上下文路径（项目路径）
-		String contextPath = request.getContextPath();
-		if (StringUtils.isNotEmpty(contextPath)) {
-			requestPath = requestPath.substring(contextPath.length());
-		} else {
-			// 如果上下文路径为空（根路径），则不需要去除任何内容
-			if (requestPath.startsWith("/")) {
-				requestPath = requestPath.substring(1);
-			}
+		if (requestPath.indexOf("&") > -1) {// 去掉其他参数
+			requestPath = requestPath.substring(0, requestPath.indexOf("&"));
 		}
+		requestPath = requestPath.substring(request.getContextPath().length() + 1);// 去掉项目路径
 		return requestPath;
 	}
 
