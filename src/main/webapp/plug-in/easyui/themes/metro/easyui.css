@@ -806,7 +806,7 @@ a.l-btn-plain span.l-btn-left {
   padding: 0;
 } */
 a.l-btn span span.l-btn-icon-left {
-  padding: 0 0 0 20px;
+  padding: 0 5px 0 20px;
   background-position: left center;
 }
 a.l-btn span span.l-btn-icon-right {
@@ -992,7 +992,7 @@ a:hover.l-btn-disabled {
 .datagrid-header-rownumber,
 .datagrid-cell-rownumber {
   margin: 0;
-  padding: 0 4px;	
+  padding: 0 4px;
   white-space: nowrap;
   word-wrap: normal;
   overflow: hidden;
