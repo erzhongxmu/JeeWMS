@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.modules.jeewms.mapper.WmDayCostConfMapper">
+
+    <delete id="deleteBydate" parameterType="java.lang.String">
+        delete  from wm_day_cost   where cost_sta ='已生成' and  to_days(cost_data) = to_days(#{costdate})
+
+    </delete>
+    <select id="getcostconf" parameterType="java.lang.String" resultType="java.util.HashMap">
+         select  cost_code,  cost_jg,  cost_sl,  cost_zk,  cost_bhs ,  cost_hs
+         from wm_cus_cost_h wch , wm_cus_cost_i wci
+        <where>
+             wch.id = wci.cus_cost_id
+            <if test="costcode != null and costcode != ''">
+                and wci.cost_code = #{costcode}
+            </if>
+            <if test="cuscode != null and cuscode != ''">
+                and wch.cus_code = #{cuscode}
+            </if>
+            <if test="costdate != null and costdate != ''">
+                and  (to_days(wch.begin_date) <![CDATA[ <= ]]> to_days(#{costdate}) and    to_days(wch.end_date) <![CDATA[ >= ]]> to_days(#{costdate}))
+            </if>
+
+        </where>
+        limit 1
+    </select>
+
+
+    <select id="getcost10" parameterType="java.lang.String" resultType="java.util.HashMap">
+        select  mg.cf_wen_ceng,wi.tin_id,mg.jf_shp_lei,   wi.cus_code,    wi.im_notice_id,    wi.goods_id,    wi.rec_deg,(sum(wi.qm_ok_quat)/ mg.chl_shl) as qmcount,(mg.zhl_kg  ) as zhl_kg,    (sum(wi.qm_ok_quat) * mg.zhl_kg   ) as grcount
+        from    wm_in_qm_i wi,    mv_goods mg
+        <where>
+              wi.goods_id = mg.goods_code and wi.qm_ok_quat > 0
+            <if test="costdate != null and costdate != ''">
+                and to_days(wi.create_time) = to_days(#{costdate})
+            </if>
+        </where>
+        group by wi.im_notice_id ,wi.cus_code,wi.tin_id,  wi.goods_id , wi.rec_deg
+    </select>
+    <select id="getcost20" parameterType="java.lang.String" resultType="java.util.HashMap">
+         select  mg.cf_wen_ceng,wi.tin_id,mg.jf_shp_lei,   wi.cus_code,
+                wi.im_notice_id,    wi.goods_id,
+                wi.rec_deg,(sum(wi.qm_ok_quat)/ mg.chl_shl)  as qmcount,(mg.zhl_kg  ) as zhl_kg,    (sum(wi.qm_ok_quat) * mg.zhl_kg   ) as grcount
+          from    wm_in_qm_i wi,    mv_goods mg
+
+
+        <where>
+              wi.goods_id = mg.goods_code and wi.qm_ok_quat > 0
+            <if test="costdate != null and costdate != ''">
+                and to_days(wi.create_time) = to_days(#{costdate})
+            </if>
+        </where>
+        group by wi.im_notice_id ,wi.cus_code,wi.tin_id
+    </select>
+    <select id="getcost30" parameterType="java.lang.String" resultType="java.util.HashMap">
+         select   wi.cus_code, wi.tin_id,   wi.im_notice_id,    wi.goods_id,
+          ((select count(*)  from wm_im_notice_i where im_notice_id = wi.im_notice_id) )  as  goodscount,
+          (sum(wi.qm_ok_quat) / mg.chl_shl) as qmcount
+          from    wm_in_qm_i wi,    mv_goods mg
+        <where>
+                wi.goods_id = mg.goods_code  and wi.qm_ok_quat > 0
+            <if test="costdate != null and costdate != ''">
+                and to_days(wi.create_time)  = to_days(#{costdate})
+            </if>
+        </where>
+        group by wi.im_notice_id , wi.tin_id,wi.goods_id,wi.cus_code  having goodscount > 2
+</select>
+    <select id="getcost40" parameterType="java.lang.String" resultType="java.util.HashMap">
+      select     wi.cus_code,    wi.order_id,    wi.goods_id,(select count(*)  from wm_om_notice_i where om_notice_id = wi.order_id) as  goodscount,
+         (sum(wi.base_goodscount) / mg.chl_shl) as qmcount
+         from    wm_to_down_goods wi , mv_goods mg
+
+        <where>
+              wi.goods_id = mg.goods_code  and   wi.bin_id_to <![CDATA[ <> ]]> 'ZY'
+            <if test="costdate != null and costdate != ''">
+                and to_days(wi.create_time) = to_days(#{costdate})
+            </if>
+        </where>
+        group by wi.order_id , wi.cus_code ,   wi.goods_id  having goodscount > 2
+    </select>
+    <select id="getcost50" parameterType="java.lang.String" resultType="java.util.HashMap">
+         select  wi.bin_id_from, mg.jf_shp_lei, wi.cus_code, wi.order_id, wi.goods_id, (sum(wi.base_goodscount)/ mg.chl_shl) as qmcount,
+           (sum(wi.base_goodscount) * mg.zhl_kg_zx / mg.chl_shl) as grcount ,cast((mg.mp_dan_ceng * mg.mp_ceng_gao * mg.chl_shl) as signed) as hiti
+         from wm_to_down_goods wi,  mv_goods mg
+         <where>
+              wi.goods_id = mg.goods_code
+                        and wi.bin_id_to <![CDATA[ <> ]]>  'ZY'
+            <if test="costdate != null and costdate != ''">
+                and to_days(wi.create_time) = to_days(#{costdate})
+            </if>
+        </where>
+        group by wi.order_id , wi.cus_code , wi.bin_id_from , wi.goods_id
+        </select>
+    <select id="getcost60" parameterType="java.lang.String" resultType="java.util.HashMap">
+         select  mg.cf_wen_ceng,     wi.cus_code,    wi.im_notice_id,    wi.goods_id,ceil(mg.jizhun_wendu) as jizhun_wendu,
+                ceil(wi.rec_deg) as rec_deg,sum(wi.qm_ok_quat) as qmcount,(mg.zhl_kg) as zhl_kg,    (sum(wi.qm_ok_quat) * mg.zhl_kg   ) as grcount
+          from    wm_in_qm_i wi,    mv_goods mg
+        <where>
+            wi.goods_id = mg.goods_code and wi.qm_ok_quat > 0
+            <if test="costdate != null and costdate != ''">
+              and   to_days(wi.create_time) = to_days(#{costdate})
+            </if>
+        </where>
+        group by wi.im_notice_id ,wi.cus_code,   wi.goods_id , wi.rec_deg
+    </select>
+    <select id="getcost70" parameterType="java.lang.String" resultType="java.util.HashMap">
+        select  mg.cf_wen_ceng,   wi.cus_code,    wi.im_notice_id,    wi.tin_id,    wi.rec_deg,sum(wi.qm_ok_quat) as qmcount,(mg.zhl_kg  ) as zhl_kg,
+               (sum(wi.qm_ok_quat) * mg.zhl_kg   ) as grcount
+       from    wm_in_qm_i wi,    mv_goods mg
+
+        <where>
+               wi.goods_id = mg.goods_code and wi.qm_ok_quat > 0
+            <if test="costdate != null and costdate != ''">
+                and to_days(wi.create_time)  = to_days(#{costdate})
+            </if>
+        </where>
+        group by wi.cus_code , wi.im_notice_id, wi.tin_id
+    </select>
+    <select id="getcost80" parameterType="java.lang.String" resultType="java.util.HashMap">
+        SELECT  mdp.cus_code, mdp.ku_wei_bian_ma, mdp.bin_id, mdp.goods_id,mdp.jf_shp_lei, ((select zhl_kg from mv_goods where goods_code = mdp.goods_id) / (select chl_shl from mv_goods where goods_code = mdp.goods_id) / 1000) as zhl_kgm,
+        (sum(base_goodscount) * (select zhl_kg from mv_goods where goods_code = mdp.goods_id) / (select chl_shl from mv_goods where goods_code = mdp.goods_id) /1000) as count,
+         (sum(base_goodscount) / (select chl_shl from mv_goods where goods_code = mdp.goods_id) ) as xcount
+         FROM  mv_down_and_up mdp
+        <where>
+               1=1
+             <if test="costdate != null and costdate != ''">
+               and   (mdp.leixing = 'S' and to_days(mdp.create_time) <![CDATA[ <= ]]>  to_days(#{costdate}))
+                 or (mdp.order_id <![CDATA[ <> ]]>  'ZY' and mdp.leixing = 'H' and to_days(mdp.create_time) <![CDATA[ < ]]>  to_days(#{costdate}))
+                 or (mdp.order_id = 'ZY' and mdp.leixing = 'H' and to_days(mdp.create_time) <![CDATA[ <= ]]>  to_days(#{costdate}))
+            </if>
+        </where>
+        group by mdp.cus_code,   mdp.goods_id, mdp.jf_shp_lei
+        having sum(base_goodscount)  > 0 order by mdp.cus_code, mdp.goods_id, mdp.create_time
+    </select>
+
+
+    <select id="resultbill" parameterType="java.lang.String" resultType="java.util.HashMap">
+        select 	wc.cus_code,    wc.cus_name,    wc.cost_code,    wc.cost_name,
+         sum(wc.day_cost_yj) as yuanj,   (sum(wc.day_cost_bhs)- sum(wc.day_cost_yj)) as tiaozheng,    sum(wc.day_cost_bhs) as bhsj,
+          sum(wc.day_cost_se) as shuie,     sum(wc.day_cost_hsj) as hansj, sum(wc.cost_sl) as costsl,wc.cost_unit
+        from wm_day_cost wc
+        <where>
+            wc.day_cost_yj <![CDATA[ <> ]]> 0
+            <if test="costjs != null and costjs != ''">
+                and wc.cost_js =   #{costjs}
+            </if>
+            <if test="cuscode != null and cuscode != ''">
+                and  wc.cus_code  = #{cuscode}
+            </if>
+            <if test="begindate != null and begindate != ''">
+                and to_days(wc.cost_data) <![CDATA[ >= ]]> to_days(#{begindate})
+            </if>
+            <if test="enddate != null and enddate != ''">
+                and to_days(wc.cost_data)  <![CDATA[ <= ]]> to_days(#{enddate})
+            </if>
+        </where>
+        group by wc.cus_code , wc.cus_name , wc.cost_code , wc.cost_name
+    </select>
+
+
+    <select id="resultmx" parameterType="java.lang.String" resultType="java.util.HashMap">
+        select DATE_FORMAT(wc.cost_data,'%Y-%m-%d') as cost_data, 	wc.cus_code,    wc.cus_name,    wc.cost_code,    wc.cost_name,
+        sum(wc.day_cost_yj) as yuanj,   (sum(wc.day_cost_bhs)- sum(wc.day_cost_yj)) as tiaozheng,    sum(wc.day_cost_bhs) as bhsj,
+          sum(wc.day_cost_se) as shuie,     sum(wc.day_cost_hsj) as hansj, sum(wc.cost_sl) as costsl,wc.cost_unit
+        from wm_day_cost wc
+        <where>
+            wc.day_cost_yj <![CDATA[ <> ]]> 0
+            <if test="costjs != null and costjs != ''">
+                and wc.cost_js =   #{costjs}
+            </if>
+            <if test="cuscode != null and cuscode != ''">
+                and  wc.cus_code  = #{cuscode}
+            </if>
+            <if test="begindate != null and begindate != ''">
+                and to_days(wc.cost_data) <![CDATA[ >= ]]> to_days(#{begindate})
+            </if>
+            <if test="enddate != null and enddate != ''">
+                and to_days(wc.cost_data)  <![CDATA[ <= ]]> to_days(#{enddate})
+            </if>
+        </where>
+        group by wc.cost_data, wc.cus_code , wc.cus_name , wc.cost_code , wc.cost_name order by wc.cost_data
+    </select>
+
+
+    <select id="resultsum" parameterType="java.lang.String" resultType="java.util.HashMap">
+        select  wc.cus_code,    wc.cus_name, DATE_FORMAT(wc.cost_data,'%Y-%m-%d') AS  cost_data,  wc.cost_code,
+               wc.cost_name, sum(wc.day_cost_hsj) as hansj,  sum(wc.cost_sl) as costsl,wc.cost_unit
+
+        from wm_day_cost wc
+        <where>
+            wc.day_cost_yj <![CDATA[ <> ]]> 0
+            <if test="costjs != null and costjs != ''">
+                and wc.cost_js =   #{costjs}
+            </if>
+            <if test="cuscode != null and cuscode != ''">
+                and  wc.cus_code  = #{cuscode}
+            </if>
+            <if test="begindate != null and begindate != ''">
+                and to_days(wc.cost_data) <![CDATA[ >= ]]> to_days(#{begindate})
+            </if>
+            <if test="enddate != null and enddate != ''">
+                and to_days(wc.cost_data)  <![CDATA[ <= ]]> to_days(#{enddate})
+            </if>
+        </where>
+        group by wc.cus_code , wc.cus_name ,DATE_FORMAT(wc.cost_data,'%Y-%m-%d'), wc.cost_code , wc.cost_name ORDER BY wc.cost_data
+    </select>
+
+
+    <select id="resultcountsum" parameterType="java.lang.String" resultType="java.util.HashMap">
+        select  wc.cus_code,    wc.cus_name, DATE_FORMAT(wc.cost_data,'%Y-%m-%d') AS  cost_data
+        from wm_day_cost wc
+        <where>
+            <if test="costjs != null and costjs != ''">
+                and wc.cost_js =   #{costjs}
+            </if>
+            <if test="cuscode != null and cuscode != ''">
+                and  wc.cus_code  = #{cuscode}
+            </if>
+            <if test="begindate != null and begindate != ''">
+                and to_days(wc.cost_data) <![CDATA[ >= ]]> to_days(#{begindate})
+            </if>
+            <if test="enddate != null and enddate != ''">
+                and to_days(wc.cost_data)  <![CDATA[ <= ]]> to_days(#{enddate})
+            </if>
+        </where>
+        group by wc.cus_code , wc.cus_name ,DATE_FORMAT(wc.cost_data,'%Y-%m-%d')  ORDER BY wc.cost_data
+    </select>
+
+</mapper>

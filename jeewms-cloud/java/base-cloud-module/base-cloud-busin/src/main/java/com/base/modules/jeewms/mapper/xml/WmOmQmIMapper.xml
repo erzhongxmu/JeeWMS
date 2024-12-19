@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.modules.jeewms.mapper.WmOmQmIMapper">
+
+    <select id="checkOmQyt" resultType="java.lang.Integer">
+        select count(1) from wm_om_notice_i i LEFT JOIN wm_om_qm_i m on i.id = m.iom_notice_item
+            and  CAST(i.goods_qua AS UNSIGNED INTEGER)  = CAST(m.qm_ok_quat AS UNSIGNED INTEGER)
+        where i.IM_CUS_CODE = #{orderNo} and m.id is null;
+    </select>
+
+    <select id="getBatchByOrderId" resultType="com.base.common.base.dto.WmsOrderItemCallbackDTO">
+        SELECT i.goods_id as skuId,m.unit_price as costPrice,i.goods_batch as  batchNo FROM `wm_om_qm_i` i LEFT JOIN wm_in_qm_i m on i.goods_id = m.goods_id
+            and m.goods_batch = i.goods_batch
+        where i.im_cus_code = #{orderId}
+    </select>
+
+    <select id="getOrderNoByWave" resultType="java.lang.String">
+        select DISTINCT im_cus_code from wm_om_qm_i where wave_id = #{waveId}
+    </select>
+    <select id="getGoodsDetailByDelivery" resultType="java.lang.String">
+        select CONCAT(s.shp_tiao_ma,'*',CAST(i.qm_ok_quat as signed)) as name FROM
+            wm_om_qm_i i
+                JOIN md_goods s ON s.shp_bian_ma = i.goods_id
+        WHERE
+            i.IM_CUS_CODE = #{orderSn}
+    </select>
+
+    <select id="queryOmNoticeIdList" resultType="java.lang.String">
+        SELECT DISTINCT
+            om_notice_id
+        FROM
+            wm_om_qm_i
+        WHERE
+            om_notice_id IN ( SELECT om_notice_id FROM wm_om_qm_i a GROUP BY om_notice_id HAVING COUNT( om_notice_id ) > 1 )
+            AND bin_sta = 'I'
+    </select>
+</mapper>

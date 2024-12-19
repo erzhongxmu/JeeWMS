@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.modules.jeebms.mapper.BmsBillIMapper">
+    <delete id="deleteByMainId" parameterType="java.lang.String">
+        DELETE bgs from  bms_bill_i bgs
+        inner join bms_bill_h bg on bgs.bill_no = bg.bill_no
+        where bg.id = #{mainId}
+    </delete>
+
+    <select id="selectByMainId" parameterType="java.lang.String" resultType="com.base.modules.jeebms.entity.BmsBillI">
+        SELECT *
+        FROM  bms_bill_i
+        WHERE
+        bill_no = #{mainId} 	</select>
+</mapper>

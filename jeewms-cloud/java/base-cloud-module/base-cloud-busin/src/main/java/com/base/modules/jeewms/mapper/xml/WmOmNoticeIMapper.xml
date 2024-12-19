@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.modules.jeewms.mapper.WmOmNoticeIMapper">
+
+    <delete id="deleteByMainId" parameterType="java.lang.String">
+        DELETE
+        FROM wm_om_notice_i
+        WHERE om_notice_id = #{mainId}
+    </delete>
+
+    <select id="selectByMainId" parameterType="java.lang.String" resultType="com.base.modules.jeewms.entity.WmOmNoticeI">
+        SELECT *
+        FROM wm_om_notice_i
+        WHERE om_notice_id = #{mainId}
+    </select>
+
+    <select id="findStockSum" parameterType="java.lang.String" resultType="com.base.modules.jeewms.entity.WvStock">
+            select sum(goods_qua) as goods_qua from wv_stock
+            where goods_id = #{goods_id} and kuctype in ('库存','待下架')
+                <if test="cuscode != null and cuscode != ''">
+                    and cus_code = #{cuscode}
+                </if>
+    </select>
+
+    <select id="findStockSum1" parameterType="java.lang.String" resultType="com.base.modules.jeewms.entity.WvStock">
+        select sum(goods_qua) as goods_qua from wv_stock
+        where goods_id = #{goods_id} and kuctype in ('库存','待下架')
+        and tenant_id = #{tenant_id}
+        <if test="cuscode != null and cuscode != ''">
+            and cus_code = #{cuscode}
+        </if>
+    </select>
+
+    <select id="findStockSum2" parameterType="java.lang.String" resultType="com.base.modules.jeewms.entity.WvStock">
+        select sum(goods_qua) as goods_qua from wv_stock
+        where goods_id = #{goods_id} and kuctype in ('库存')
+        <if test="cuscode != null and cuscode != ''">
+            and cus_code = #{cuscode}
+        </if>
+    </select>
+
+
+    <select id="findStock" parameterType="java.lang.String" resultType="java.util.HashMap">
+        select ws.base_unit,ws.zhong_wen_qch, ws.ku_wei_bian_ma,ws.bin_id,ws.shp_ming_cheng,cast(sum(ws.base_goodscount)
+        as signed) + cast(sum(ifnull(ws.goods_qua1,0)) as signed) as goods_qua, mb.qu_huo_ci_xu, ws.goods_pro_data,ws.goods_batch
+        from wv_stock ws, md_bin mb
+        <where>
+            ws.ku_wei_bian_ma = mb.ku_wei_bian_ma and mb.ting_yong != 'Y' and (ws.kuctype = '库存' )
+            <if test="binId != null and binId != ''">
+                and ws.ku_wei_bian_ma = #{binId}
+            </if>
+
+            <if test="tinId != null and tinId != ''">
+                and ws.bin_id = #{tinId}
+            </if>
+            <if test="goods != null and goods != ''">
+                and ws.goods_id = #{goods}
+            </if>
+            <if test="prodate != null and prodate != ''">
+                and ws.goods_pro_data = #{prodate}
+            </if>
+            <if test="goodsbatch != null and goodsbatch != ''">
+                and ws.goods_batch = #{goodsbatch}
+            </if>
+            <if test="cusCode != null and cusCode != ''">
+                and ws.cus_code = #{cusCode}
+            </if>
+            <if test="hiti != null and hiti != ''">
+                and (ws.base_goodscount + 0) = #{hiti}
+            </if>
+        </where>
+        group by ws.ku_wei_bian_ma,ws.bin_id,ws.goods_id,mb.qu_huo_ci_xu, ws.goods_pro_data,ws.goods_batch order by ws.goods_pro_data asc,
+        ws.goods_qua desc,mb.qu_huo_ci_xu desc,ws.create_time desc
+    </select>
+
+    <select id="findStock1" parameterType="java.lang.String" resultType="java.util.HashMap">
+        select ws.base_unit,ws.zhong_wen_qch, ws.ku_wei_bian_ma,ws.bin_id,ws.shp_ming_cheng,cast(sum(ws.base_goodscount)
+        as signed) + cast(sum(ifnull(ws.goods_qua1,0)) as signed) as goods_qua, mb.qu_huo_ci_xu, ws.goods_pro_data,ws.goods_batch
+        from wv_stock ws, md_bin mb
+        <where>
+            ws.ku_wei_bian_ma = mb.ku_wei_bian_ma and mb.ting_yong != 'Y' and (ws.kuctype = '库存' or ws.kuctype = '待下架')
+            <if test="binId != null and binId != ''">
+                and ws.ku_wei_bian_ma = #{binId}
+            </if>
+            <choose>
+                <when test="kwType != null and kwType != ''">
+                    and mb.ku_wei_lei_xing LIKE concat(concat('%',#{kwType}),'%')
+                </when>
+                <otherwise>
+                    and mb.ku_wei_lei_xing not LIKE concat(concat('%','不良品'),'%')
+                </otherwise>
+            </choose>
+            <if test="tinId != null and tinId != ''">
+                and ws.bin_id = #{tinId}
+            </if>
+            <if test="goods != null and goods != ''">
+                and ws.goods_id = #{goods}
+            </if>
+            <if test="prodate != null and prodate != ''">
+                and ws.goods_pro_data = #{prodate}
+            </if>
+            <if test="goodsbatch != null and goodsbatch != ''">
+                and ws.goods_batch = #{goodsbatch}
+            </if>
+            <if test="cusCode != null and cusCode != ''">
+                and ws.cus_code = #{cusCode}
+            </if>
+            <if test="hiti != null and hiti != ''">
+                and (ws.base_goodscount + 0) = #{hiti}
+            </if>
+            <if test="tenantId != null and tenantId != ''">
+                and (ws.tenant_id) = #{tenantId}
+            </if>
+        </where>
+        group by ws.ku_wei_bian_ma,ws.bin_id,ws.goods_id,ws.goods_pro_data,ws.goods_batch order by ws.goods_pro_data Asc,
+        ws.goods_qua desc,mb.qu_huo_ci_xu,ws.create_time desc
+    </select>
+
+    <select id="selectByMainNo" resultType="com.base.modules.jeewms.entity.WmOmNoticeI">
+        SELECT
+            a.*
+        FROM
+            wm_om_notice_i a
+            LEFT JOIN wm_to_down_goods b ON a.om_notice_id = b.order_id AND a.goods_id = b.goods_id
+        WHERE
+            a.om_notice_id = #{mainNo}
+    </select>
+</mapper>

@@ -1,0 +1,1304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.modules.jeewms.mapper.WmsPdaMapper">
+
+
+    <select id="queryYanshouList" resultType="com.base.modules.jeewms.entity.WmImNoticeI">
+        select i.id,
+        i.im_notice_id,
+        i.im_notice_item,
+        i.goods_code,
+        i.goods_count,
+        i.goods_prd_data,
+        i.goods_batch,
+        i.bin_pre,
+        i.goods_fvol,
+        i.goods_weight,
+        i.bin_plan,
+        i.goods_unit,
+        (cast(i.goods_count as decimal)- cast( IFNULL(i.goods_qm_count,0)  as decimal )) as goods_wqm_count,
+        i.goods_qm_count,
+        i.noticei_sta,
+        i.base_unit,
+        i.base_goodscount,
+        i.base_qmcount,
+        i.goods_name,
+        i.other_id,
+        i.im_cus_code,
+        i.im_beizhu,
+        i.barcode,
+        i.shp_gui_ge,
+        i.BZHI_QI,
+        i.chp_shu_xing,
+        i.tin_id,
+        i.cus_code,
+        g.factory_snp_case_num,
+        g.factory_snp_package_num,
+        g.factory_snp_piece_num,
+        g.mp_dan_ceng * g.mp_ceng_gao as tuo_num,
+        t.type_name as goods_type_name,
+        t.id as goods_type_id
+        from  wm_im_notice_i i
+        left join md_goods g on i.goods_code = g.shp_bian_ma
+        left join ba_part_type t on g.classification = t.id
+        where
+        bin_pre = 'N'
+        AND cast(goods_count as decimal) > cast(IFNULL(i.goods_qm_count,0)  as decimal )
+        <if test="searchVal != null and searchVal != ''">
+            and (i.im_notice_id like concat('%',#{searchVal},'%')
+            or i.goods_code like concat('%',#{searchVal},'%')
+            or i.cus_code like concat('%',#{searchVal},'%')
+            or i.goods_name like concat('%',#{searchVal},'%')
+            or i.im_cus_code like concrat('%',#{searchVal},'%'))
+        </if>
+        order by i.create_time desc
+    </select>
+
+    <select id="queryListType01" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT
+            a.id,
+            a.im_notice_id AS query01,
+            a.goods_code AS query02,
+            a.goods_name AS query03,
+            b.shp_gui_ge AS query04,
+            a.goods_unit AS query05,
+            a.contractlno AS query06,
+            a.bin_plan AS query07,
+            a.goods_count - IFNULL(a.goods_qm_count,0) AS query08,
+            b.box_qty as query15
+        FROM
+            wm_im_notice_i a
+        LEFT JOIN md_goods b ON a.goods_code = b.shp_bian_ma
+        LEFT JOIN wm_im_notice_h c ON a.im_notice_id = c.notice_id
+        WHERE
+            bin_pre = 'N'
+        AND a.tenant_id = b.tenant_id
+        AND a.tenant_id = c.tenant_id
+        AND cast( goods_count AS DECIMAL ) > cast( goods_qm_count AS DECIMAL )
+        AND c.order_type = '07'
+        <!--AND NOT EXISTS (SELECT 1 FROM wms_black_white_piece d WHERE a.goods_code = d.black_no)
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND c.u8_dhcode like concat('%',#{querMap.query01},'%')
+        </if>-->
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND a.im_notice_id like concat('%',#{querMap.query01},'%')
+        </if>
+        <if test="querMap.query02 != null and querMap.query02 != ''">
+            AND a.goods_code like concat('%',#{querMap.query02},'%')
+        </if>
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND a.tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+    </select>
+
+    <select id="queryListType02" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT
+            a.id,
+            a.im_notice_id AS query01,
+            '未审核' AS query02,
+            a.goods_batch AS query03,
+            a.goods_code AS query04,
+            a.goods_name AS query05,
+            g.shp_gui_ge AS query06,
+            b.im_data AS query07,
+            a.goods_count AS query08,
+            a.goods_unit AS query09,
+            a.contractlno as query10
+        FROM
+            wm_im_notice_i a
+        LEFT JOIN md_goods g ON a.goods_code = g.shp_bian_ma
+        LEFT JOIN wm_im_notice_h b ON a.im_notice_id = b.notice_id
+        WHERE
+<!--            bin_pre = 'I'-->
+            bin_pre = 'N'
+        AND a.tenant_id = b.tenant_id
+        AND b.order_type = '06' AND a.u8_sta is null
+        AND cast( goods_count AS DECIMAL ) > cast(goods_qm_count AS DECIMAL)
+        <!--<if test="querMap.query01 != null and querMap.query01 != ''">
+            AND b.u8_dhcode like concat('%',#{querMap.query01},'%')
+        </if>-->
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND ( b.u8_dhcode like concat('%',#{querMap.query01},'%') or  a.im_notice_id like concat('%',#{querMap.query01},'%')  )
+        </if>
+<!--        <if test="querMap.query01 != null and querMap.query01 != ''">-->
+<!--            AND a.im_notice_id like concat('%',#{querMap.query01},'%')-->
+<!--        </if>-->
+        <if test="querMap.query02 != null and querMap.query02 != ''">
+            AND a.goods_code like concat('%',#{querMap.query02},'%')
+        </if>
+
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND a.tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+        order by  a.contractlno
+    </select>
+
+    <select id="queryListType03" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT
+            a.id,
+            a.im_notice_id AS query01,
+            '已审核' AS query02,
+        a.contractlno    AS query03,
+            a.goods_code AS query04,
+            a.goods_name AS query05,
+            g.shp_gui_ge AS query06,
+           (select pro_data from wm_in_qm_i where im_notice_item = a.id limit 1) AS query07,
+            a.goods_unit AS query08,
+            '' AS query09,
+            '' AS query10,
+            a.goods_count as query11,
+        a.goods_count - IFNULL(a.goods_qm_count,0) AS query12,
+        a.tenant_id as tenantId,
+        a.contractlno as query14,
+        g.box_qty as query15
+<!--        ,if((g.mp_dan_ceng * g.mp_ceng_gao > (a.goods_count - IFNULL(a.goods_qm_count,0))),a.goods_count - IFNULL(a.goods_qm_count,0),mp_dan_ceng * mp_ceng_gao)   AS query13-->
+        FROM
+            wm_im_notice_i a
+        LEFT JOIN md_goods g ON a.goods_code = g.shp_bian_ma
+        LEFT JOIN wm_im_notice_h b ON a.im_notice_id = b.notice_id
+        WHERE
+            bin_pre = 'N'
+        AND b.order_type = '06'
+        AND a.tenant_id = b.tenant_id
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND b.notice_id like concat('%',#{querMap.query01},'%')
+        </if>
+<!--        <if test="querMap.query01 != null and querMap.query01 != ''">-->
+<!--            AND a.im_notice_id like concat('%',#{querMap.query01},'%')-->
+<!--        </if>-->
+        <if test="querMap.query02 != null and querMap.query02 != ''">
+            AND a.goods_code like concat('%',#{querMap.query02},'%')
+        </if>
+
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND a.tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+    </select>
+
+    <select id="queryListType03pltn" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT
+        a.id,
+        a.im_notice_id AS query01,
+        '已审核' AS query02,
+<!--        (select goods_batch from wm_in_qm_i where im_notice_item = a.id limit 1)    AS query03,-->
+        a.contractlno as query03,
+        a.goods_code AS query04,
+        a.goods_name AS query05,
+        g.shp_gui_ge AS query06,
+<!--        (select pro_data from wm_in_qm_i where im_notice_item = a.id limit 1) AS query07,-->
+        a.goods_prd_data as query07,
+        a.goods_unit AS query08,
+        '' AS query09,
+        '' AS query10,
+        a.goods_count as query11,
+        a.goods_count - IFNULL(a.goods_qm_count,0) AS query12,
+        a.tenant_id as tenantId,
+        a.contractlno as query14,
+        g.box_qty as query15
+        <!--        ,if((g.mp_dan_ceng * g.mp_ceng_gao > (a.goods_count - IFNULL(a.goods_qm_count,0))),a.goods_count - IFNULL(a.goods_qm_count,0),mp_dan_ceng * mp_ceng_gao)   AS query13-->
+        FROM
+        wm_im_notice_i a
+        LEFT JOIN md_goods g ON a.goods_code = g.shp_bian_ma
+        LEFT JOIN wm_im_notice_h b ON a.im_notice_id = b.notice_id
+        WHERE
+        bin_pre = 'N'
+        AND a.tenant_id = b.tenant_id
+
+        AND b.order_type = '06'  and a.u8_sta = '1'
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND b.notice_id like concat('%',#{querMap.query01},'%')
+        </if>
+        <!--        <if test="querMap.query01 != null and querMap.query01 != ''">-->
+        <!--            AND a.im_notice_id like concat('%',#{querMap.query01},'%')-->
+        <!--        </if>-->
+        <if test="querMap.query02 != null and querMap.query02 != ''">
+            AND a.goods_code like concat('%',#{querMap.query02},'%')
+        </if>
+
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND a.tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+        order by  a.contractlno
+    </select>
+
+
+    <select id="queryListType26" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT
+        a.id,
+        a.im_notice_id AS query01,
+        '已审核' AS query02,
+        a.contractlno   AS query03,
+        a.goods_code AS query04,
+        a.goods_name AS query05,
+        g.shp_gui_ge AS query06,
+        (select pro_data from wm_in_qm_i where im_notice_item = a.id limit 1) AS query07,
+        a.goods_unit AS query08,
+        '' AS query09,
+        '' AS query10,
+        a.goods_count as query11,
+        a.goods_count - IFNULL(a.goods_qm_count,0) AS query12,
+        a.tenant_id as tenantId,
+        a.contractlno as query14,
+        g.box_qty as query15
+        <!--        ,if((g.mp_dan_ceng * g.mp_ceng_gao > (a.goods_count - IFNULL(a.goods_qm_count,0))),a.goods_count - IFNULL(a.goods_qm_count,0),mp_dan_ceng * mp_ceng_gao)   AS query13-->
+        FROM
+        wm_im_notice_i a
+        LEFT JOIN md_goods g ON a.goods_code = g.shp_bian_ma
+        LEFT JOIN wm_im_notice_h b ON a.im_notice_id = b.notice_id
+        WHERE
+        bin_pre = 'N'
+        AND a.tenant_id = b.tenant_id
+        AND  b.order_type = '09'
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND b.notice_id like concat('%',#{querMap.query01},'%')
+        </if>
+        <!--        <if test="querMap.query01 != null and querMap.query01 != ''">-->
+        <!--            AND a.im_notice_id like concat('%',#{querMap.query01},'%')-->
+        <!--        </if>-->
+        <if test="querMap.query02 != null and querMap.query02 != ''">
+            AND a.goods_code like concat('%',#{querMap.query02},'%')
+        </if>
+
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND a.tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+    </select>
+
+    <select id="queryListType04" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT
+            a.id,
+            a.om_notice_id AS query01,
+            a.goods_batch AS query02,
+            a.goods_id AS query03,
+            a.goods_name AS query04,
+            a.shp_gui_ge AS query05,
+            b.delv_data AS query06,
+            a.goods_unit AS query07,
+            a.qm_ok_quat AS query08,
+            a.bin_id AS query09,
+            a.qm_ok_quat AS query10,
+            a.tin_id   as query11
+        FROM
+            wm_om_qm_i a
+        LEFT JOIN wm_om_notice_h b ON a.om_notice_id = b.om_notice_id
+        WHERE
+            a.bin_sta = 'I'
+        AND a.tenant_id = b.tenant_id
+        AND b.order_type_code = '13'
+<!--        <if test="querMap.query01 != null and querMap.query01 != ''">-->
+<!--            AND b.u8_djcode1 like concat('%',#{querMap.query01},'%')-->
+<!--        </if>-->
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND a.om_notice_id like concat('%',#{querMap.query01},'%')
+        </if>
+        <if test="querMap.query02 != null and querMap.query02 != ''">
+            AND (a.goods_id like concat('%',#{querMap.query02},'%') or a.tin_id like concat('%',#{querMap.query02},'%'))
+        </if>
+
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND a.tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+    </select>
+
+    <select id="queryListType05" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT
+            a.id,
+            a.om_notice_id AS query01,
+            a.goods_id AS query02,
+            a.goods_name AS query03,
+            a.shp_gui_ge AS query04,
+            a.qm_ok_quat AS query05,
+            a.om_quat AS query06
+        FROM
+            wm_om_qm_i a
+            LEFT JOIN wm_om_notice_h b ON a.om_notice_id = b.om_notice_id
+        WHERE
+            a.bin_sta = 'I'
+            AND a.tenant_id = b.tenant_id
+            AND b.order_type_code = '12'
+     <!--   <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND b.u8_djcode1 like concat('%',#{querMap.query01},'%')
+        </if>-->
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND a.om_notice_id like concat('%',#{querMap.query01},'%')
+        </if>
+        <if test="querMap.query02 != null and querMap.query02 != ''">
+            AND a.goods_id like concat('%',#{querMap.query02},'%')
+        </if>
+
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND a.tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+    </select>
+
+    <select id="queryListType06" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT
+            a.id,
+            a.om_notice_id AS query01,
+            a.goods_batch AS query02,
+            a.goods_id AS query03,
+            a.goods_name AS query04,
+            a.shp_gui_ge AS query05,
+            b.delv_data AS query06,
+            a.goods_unit AS query07,
+            a.tin_id AS query08,
+            a.om_quat AS query09
+        FROM
+            wm_om_qm_i a
+        LEFT JOIN wm_om_notice_h b ON a.om_notice_id = b.om_notice_id
+        WHERE
+<!--            a.bin_sta = 'N'-->
+            a.bin_sta = 'Y'
+        AND a.tenant_id = b.tenant_id
+        AND b.order_type_code = '12'
+        <!--<if test="querMap.query01 != null and querMap.query01 != ''">
+            AND b.u8_djcode1 like concat('%',#{querMap.query01},'%')
+        </if>-->
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND a.om_notice_id like concat('%',#{querMap.query01},'%')
+        </if>
+        <if test="querMap.query02 != null and querMap.query02 != ''">
+            AND a.goods_id like concat('%',#{querMap.query02},'%')
+        </if>
+
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND a.tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+    </select>
+
+    <select id="queryListType07" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT
+        a.id,
+        a.goods_id AS query01,
+        a.goods_name AS query02,
+        a.shp_gui_ge AS query03,
+        a.tin_id AS query04,
+        a.goods_unit AS query05,
+        a.om_quat AS query06
+        FROM
+        wm_om_qm_i a
+        LEFT JOIN wm_om_notice_h b ON a.om_notice_id = b.om_notice_id
+        WHERE
+        a.bin_sta = 'I'
+        AND a.tenant_id = b.tenant_id
+        AND b.order_type_code = '12'
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND  a.om_notice_id like concat('%',#{querMap.query01},'%')
+        </if>
+        <if test="querMap.query02 != null and querMap.query02 != ''">
+            AND a.tin_id like concat('%',#{querMap.query02},'%')
+        </if>
+
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND a.tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+        <!--SELECT
+            a.id,
+            a.goods_id AS query01,
+            a.goods_name AS query02,
+            a.shp_gui_ge AS query03,
+            a.tin_id AS query04,
+            a.goods_unit AS query05,
+            a.om_quat AS query06
+        FROM jeewms/wmOmQmI
+            wm_om_qm_i a
+        LEFT JOIN wm_om_notice_h b ON a.om_notice_id = b.om_notice_id
+        WHERE
+            a.bin_sta = 'N'
+        AND b.order_type_code = '12'
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND a.tin_id like concat('%',#{querMap.query01},'%')
+        </if>
+        <if test="querMap.query02 != null and querMap.query02 != ''">
+            AND a.goods_id like concat('%',#{querMap.query02},'%')
+        </if>-->
+    </select>
+
+    <select id="queryListType08" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+<!--        SELECT-->
+<!--            a.id,-->
+<!--            a.om_notice_id AS query01,-->
+<!--            a.goods_id AS query02,-->
+<!--            a.goods_name AS query03,-->
+<!--            a.shp_gui_ge AS query04,-->
+<!--            b.delv_data AS query05,-->
+<!--            a.goods_unit AS query06,-->
+<!--            a.qm_ok_quat AS query07,-->
+<!--            a.bin_id AS query08,-->
+<!--            a.om_quat AS query09,-->
+<!--            b.sys_org_code AS query10,-->
+<!--            a.goods_batch AS query11-->
+<!--        FROM-->
+<!--            wm_om_qm_i a-->
+<!--        LEFT JOIN wm_om_notice_h b ON a.om_notice_id = b.om_notice_id-->
+<!--        WHERE-->
+<!--            a.bin_sta = 'I'-->
+<!--        AND b.order_type_code = '14'-->
+<!--        <if test="querMap.query01 != null and querMap.query01 != ''">-->
+<!--            AND b.u8_djcode1 like concat('%',#{querMap.query01},'%')-->
+<!--        </if>-->
+<!--        <if test="querMap.query02 != null and querMap.query02 != ''">-->
+<!--            AND a.goods_id like concat('%',#{querMap.query02},'%')-->
+<!--        </if>-->
+        SELECT
+            a.goods_name AS query01,
+            a.goods_code AS query02,
+            a.goods_pro_data AS query03,
+            a.goods_unit AS query04,
+            a.shp_gui_ge AS query05,
+            b.bin_store AS query06,
+            a.ku_wei_bian_ma AS query07,
+            a.bin_id AS query08,
+            sum( IFNULL(a.base_goodscount,0) ) AS query09,
+            a.goods_batch AS query11
+        FROM
+            (SELECT
+                `wg`.`create_time` AS `create_time`,
+                `wg`.`create_name` AS `create_name`,
+                `wg`.`create_by` AS `create_by`,
+                `wg`.`id` AS `id`,
+                `wg`.`kuctype` AS `kuctype`,
+                `wg`.`ku_wei_bian_ma` AS `ku_wei_bian_ma`,
+                trim( `wg`.`bin_id` ) AS `bin_id`,
+                `wg`.`cus_code` AS `cus_code`,
+                `wg`.`cus_code` AS `zhong_wen_qch`,
+                `mg`.`shp_bian_ma` AS `goods_code`,
+                `wg`.`goods_id` AS `goods_id`,
+                `wg`.`goods_qua` AS `goods_qua`,
+                `mg`.`shp_ming_cheng` AS `goods_name`,
+                `mg`.`shp_ming_cheng` AS `shp_ming_cheng`,
+                `wg`.`goods_pro_data` AS `goods_pro_data`,
+                `wg`.`goods_batch` AS `goods_batch`,
+                `mg`.`bzhi_qi` AS `bzhi_qi`,
+                `mg`.`zhl_kgm` AS `yushoutianshu`,
+                `wg`.`goods_unit` AS `goods_unit`,
+                `wg`.`base_unit` AS `base_unit`,
+                `wg`.`base_goodscount` AS `base_goodscount`,
+                `mg`.`shl_dan_wei` AS `shl_dan_wei`,
+                concat( `mg`.`mp_ceng_gao`, '*', `mg`.`mp_dan_ceng` ) AS `hiti`,
+                `mg`.`shp_bian_makh` AS `shp_bian_makh`,
+                `mg`.`chl_shl` AS `chl_shl`,
+                `wg`.`order_id` AS `order_id`,
+                `mg`.`zhl_kg` AS `zhl_kg`,
+                `mg`.`shp_gui_ge` AS `shp_gui_ge`,
+                `mg`.`ti_ji_cm` AS `ti_ji_cm`,
+                wg.tenant_id as tenant_id
+            FROM `wv_stock_base_stock` `wg`
+            LEFT JOIN `md_goods` `mg` ON `wg`.`goods_id` = `mg`.`shp_bian_ma`
+            WHERE `mg`.`frozen` = 'N' AND `wg`.kuctype = '库存') a
+        LEFT JOIN md_bin b on a.ku_wei_bian_ma = b.ku_wei_bian_ma
+        WHERE 1=1
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+        </if>
+        <if test="querMap.query02 != null and querMap.query02 != ''">
+            AND a.ku_wei_bian_ma like concat('%',#{querMap.query02},'%')
+        </if>
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND a.tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+        GROUP BY
+        a.kuctype,
+        a.goods_id,
+        a.ku_wei_bian_ma
+    </select>
+
+    <select id="queryListType09" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT
+            a.goods_name AS query01,
+            a.goods_code AS query02,
+            a.goods_pro_data AS query03,
+            a.goods_unit AS query04,
+            a.shp_gui_ge AS query05,
+            b.bin_store AS query06,
+            a.ku_wei_bian_ma AS query07,
+            a.bin_id AS query08,
+            sum( IFNULL(a.base_goodscount,0) ) AS query09
+        FROM
+            (SELECT
+                `wg`.`create_time` AS `create_time`,
+                `wg`.`create_name` AS `create_name`,
+                `wg`.`create_by` AS `create_by`,
+                `wg`.`id` AS `id`,
+                `wg`.`kuctype` AS `kuctype`,
+                `wg`.`ku_wei_bian_ma` AS `ku_wei_bian_ma`,
+                trim( `wg`.`bin_id` ) AS `bin_id`,
+                `wg`.`cus_code` AS `cus_code`,
+                `wg`.`cus_code` AS `zhong_wen_qch`,
+                `mg`.`shp_bian_ma` AS `goods_code`,
+                `wg`.`goods_id` AS `goods_id`,
+                `wg`.`goods_qua` AS `goods_qua`,
+                `mg`.`shp_ming_cheng` AS `goods_name`,
+                `mg`.`shp_ming_cheng` AS `shp_ming_cheng`,
+                `wg`.`goods_pro_data` AS `goods_pro_data`,
+                `wg`.`goods_batch` AS `goods_batch`,
+                `mg`.`bzhi_qi` AS `bzhi_qi`,
+                `mg`.`zhl_kgm` AS `yushoutianshu`,
+                `wg`.`goods_unit` AS `goods_unit`,
+                `wg`.`base_unit` AS `base_unit`,
+                `wg`.`base_goodscount` AS `base_goodscount`,
+                `mg`.`shl_dan_wei` AS `shl_dan_wei`,
+                concat( `mg`.`mp_ceng_gao`, '*', `mg`.`mp_dan_ceng` ) AS `hiti`,
+                `mg`.`shp_bian_makh` AS `shp_bian_makh`,
+                `mg`.`chl_shl` AS `chl_shl`,
+                `wg`.`order_id` AS `order_id`,
+                `mg`.`zhl_kg` AS `zhl_kg`,
+                `mg`.`shp_gui_ge` AS `shp_gui_ge`,
+                `mg`.`ti_ji_cm` AS `ti_ji_cm`,
+        wg.tenant_id as tenant_id
+            FROM `wv_stock_base_stock` `wg`
+            LEFT JOIN `md_goods` `mg` ON `wg`.`goods_id` = `mg`.`shp_bian_ma`
+            WHERE `mg`.`frozen` = 'N' AND `wg`.kuctype = '库存') a
+        LEFT JOIN md_bin b on a.ku_wei_bian_ma = b.ku_wei_bian_ma
+        WHERE 1=1
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+        </if>
+        <if test="querMap.query02 != null and querMap.query02 != ''">
+            AND a.ku_wei_bian_ma like concat('%',#{querMap.query02},'%')
+        </if>
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND a.tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+        GROUP BY
+            a.kuctype,
+            a.goods_id,
+            a.ku_wei_bian_ma
+    </select>
+
+    <select id="queryListType10" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT
+            a.goods_name AS query01,
+            a.goods_code AS query02,
+            a.goods_pro_data AS query03,
+            a.goods_unit AS query04,
+            a.shp_gui_ge AS query05,
+            b.bin_store AS query06,
+            a.ku_wei_bian_ma AS query07,
+            a.bin_id AS query08,
+            sum( IFNULL(a.base_goodscount,0) ) AS query09,
+               a.cus_code as query12
+        FROM
+            (SELECT
+            `wg`.`create_time` AS `create_time`,
+            `wg`.`create_name` AS `create_name`,
+            `wg`.`create_by` AS `create_by`,
+            `wg`.`id` AS `id`,
+            `wg`.`kuctype` AS `kuctype`,
+            `wg`.`ku_wei_bian_ma` AS `ku_wei_bian_ma`,
+            trim( `wg`.`bin_id` ) AS `bin_id`,
+            `wg`.`cus_code` AS `cus_code`,
+            `wg`.`cus_code` AS `zhong_wen_qch`,
+            `mg`.`shp_bian_ma` AS `goods_code`,
+            `wg`.`goods_id` AS `goods_id`,
+            `wg`.`goods_qua` AS `goods_qua`,
+            `mg`.`shp_ming_cheng` AS `goods_name`,
+            `mg`.`shp_ming_cheng` AS `shp_ming_cheng`,
+            `wg`.`goods_pro_data` AS `goods_pro_data`,
+            `wg`.`goods_batch` AS `goods_batch`,
+            `mg`.`bzhi_qi` AS `bzhi_qi`,
+            `mg`.`zhl_kgm` AS `yushoutianshu`,
+            `wg`.`goods_unit` AS `goods_unit`,
+            `wg`.`base_unit` AS `base_unit`,
+            `wg`.`base_goodscount` AS `base_goodscount`,
+            `mg`.`shl_dan_wei` AS `shl_dan_wei`,
+            concat( `mg`.`mp_ceng_gao`, '*', `mg`.`mp_dan_ceng` ) AS `hiti`,
+            `mg`.`shp_bian_makh` AS `shp_bian_makh`,
+            `mg`.`chl_shl` AS `chl_shl`,
+            `wg`.`order_id` AS `order_id`,
+            `mg`.`zhl_kg` AS `zhl_kg`,
+            `mg`.`shp_gui_ge` AS `shp_gui_ge`,
+            `mg`.`ti_ji_cm` AS `ti_ji_cm`,
+            wg.tenant_id as tenant_id
+            FROM `wv_stock_base_stock` `wg`
+            LEFT JOIN `md_goods` `mg` ON `wg`.`goods_id` = `mg`.`shp_bian_ma`
+            WHERE `mg`.`frozen` = 'N' AND `wg`.kuctype = '库存') a
+        LEFT JOIN md_bin b on a.ku_wei_bian_ma = b.ku_wei_bian_ma
+        WHERE 1=1
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND a.goods_code like concat('%',#{querMap.query01},'%')
+        </if>
+        <if test="querMap.query02 != null and querMap.query02 != ''">
+            AND a.ku_wei_bian_ma like concat('%',#{querMap.query02},'%')
+        </if>
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND a.tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+        GROUP BY
+            a.kuctype,
+            a.goods_id,
+            a.ku_wei_bian_ma
+    </select>
+
+    <select id="queryListType11" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT
+            a.id,
+            a.notice_id AS query01,
+            a.goods_name AS query02,
+            a.goods_id AS query03,
+            b.shp_gui_ge AS query04,
+            a.goods_unit AS query05,
+            '' AS query06,
+            a.bin_id AS query07,
+            '' AS query08,
+            a.goods_qua AS query09
+        FROM
+            wm_stt_in_goods a
+        LEFT JOIN md_goods b on a.goods_id = b.shp_bian_ma
+        WHERE a.stt_type = '2' AND a.stt_sta != '已完成'
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND a.notice_id  like concat('%',#{querMap.query01},'%')
+        </if>
+        <if test="querMap.query02 != null and querMap.query02 != ''">
+            AND (a.goods_id like concat('%',#{querMap.query02},'%') or a.tin_id like concat('%',#{querMap.query02},'%'))
+        </if>
+
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND a.tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+    </select>
+
+    <select id="queryListType12" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT
+        a.id,
+        a.notice_id AS query01,
+        a.goods_name AS query02,
+        a.goods_id AS query03,
+        b.shp_gui_ge AS query04,
+        a.goods_unit AS query05,
+        '' AS query06,
+        a.bin_id AS query07,
+        a.goods_qua AS query08,
+        a.stt_qua AS query09,
+        a.stt_id AS query10
+        FROM
+        wm_stt_in_goods a
+        LEFT JOIN md_goods b on a.goods_id = b.shp_bian_ma
+        WHERE a.stt_type = '1' AND a.stt_sta != '已完成' and a.goods_qua != 0
+        <!--SELECT
+            a.id,
+            a.notice_id AS query01,
+            a.goods_name AS query02,
+            a.goods_id AS query03,
+            b.shp_gui_ge AS query04,
+            a.goods_unit AS query05,
+            '' AS query06,
+            a.bin_id AS query07,
+            a.goods_qua AS query08,
+            a.stt_qua AS query09
+        FROM
+            wm_stt_in_goods a
+        LEFT JOIN md_goods b on a.goods_id = b.shp_bian_ma
+        WHERE a.stt_type = '1' AND a.stt_sta != '已完成'-->
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND a.notice_id  like concat('%',#{querMap.query01},'%')
+        </if>
+        <if test="querMap.query02 != null and querMap.query02 != ''">
+            AND (a.goods_id like concat('%',#{querMap.query02},'%') or a.tin_id like concat('%',#{querMap.query02},'%'))
+        </if>
+
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND a.tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+    </select>
+
+    <select id="queryListType13" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+
+    </select>
+
+    <select id="queryListType14" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT
+            b.bin_store AS query01,
+            a.ku_wei_bian_ma AS query02,
+            sum( a.base_goodscount ) AS query03,
+            a.bin_id AS query04
+        FROM
+            (SELECT
+            `wg`.`create_time` AS `create_time`,
+            `wg`.`create_name` AS `create_name`,
+            `wg`.`create_by` AS `create_by`,
+            `wg`.`id` AS `id`,
+            `wg`.`kuctype` AS `kuctype`,
+            `wg`.`ku_wei_bian_ma` AS `ku_wei_bian_ma`,
+            trim( `wg`.`bin_id` ) AS `bin_id`,
+            `wg`.`cus_code` AS `cus_code`,
+            `wg`.`cus_code` AS `zhong_wen_qch`,
+            `mg`.`shp_bian_ma` AS `goods_code`,
+            `wg`.`goods_id` AS `goods_id`,
+            `wg`.`goods_qua` AS `goods_qua`,
+            `mg`.`shp_ming_cheng` AS `goods_name`,
+            `mg`.`shp_ming_cheng` AS `shp_ming_cheng`,
+            `wg`.`goods_pro_data` AS `goods_pro_data`,
+            `wg`.`goods_batch` AS `goods_batch`,
+            `mg`.`bzhi_qi` AS `bzhi_qi`,
+            `mg`.`zhl_kgm` AS `yushoutianshu`,
+            `wg`.`goods_unit` AS `goods_unit`,
+            `wg`.`base_unit` AS `base_unit`,
+            `wg`.`base_goodscount` AS `base_goodscount`,
+            `mg`.`shl_dan_wei` AS `shl_dan_wei`,
+            concat( `mg`.`mp_ceng_gao`, '*', `mg`.`mp_dan_ceng` ) AS `hiti`,
+            `mg`.`shp_bian_makh` AS `shp_bian_makh`,
+            `mg`.`chl_shl` AS `chl_shl`,
+            `wg`.`order_id` AS `order_id`,
+            `mg`.`zhl_kg` AS `zhl_kg`,
+            `mg`.`shp_gui_ge` AS `shp_gui_ge`,
+            `mg`.`ti_ji_cm` AS `ti_ji_cm`,
+            `wg`.`tenant_id` AS `tenant_id`
+        FROM `wv_stock_base_stock` `wg`
+        LEFT JOIN `md_goods` `mg` ON `wg`.`goods_id` = `mg`.`shp_bian_ma`
+        WHERE `mg`.`frozen` = 'N' AND `wg`.kuctype = '库存') a
+        LEFT JOIN md_bin b on a.ku_wei_bian_ma = b.ku_wei_bian_ma
+        WHERE 1=1
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND a.goods_code like concat('%',#{querMap.query01},'%')
+        </if>
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND a.tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND a.tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+        GROUP BY
+            a.kuctype,
+            a.goods_id,
+            a.ku_wei_bian_ma
+    </select>
+
+    <select id="queryListType15" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT
+            a.id,
+            a.im_notice_id AS query01,
+            a.goods_code AS query02,
+            a.goods_name AS query03,
+            b.shp_gui_ge AS query04,
+            a.goods_unit AS query05,
+            a.goods_batch AS query06,
+            a.bin_plan AS query07,
+            a.goods_count - IFNULL(a.goods_qm_count,0) AS query08
+        FROM
+            wm_im_notice_i a
+        LEFT JOIN md_goods b ON a.goods_code = b.shp_bian_ma
+        LEFT JOIN wm_im_notice_h c ON a.im_notice_id = c.notice_id
+        WHERE
+            bin_pre = 'N'
+        AND a.tenant_id = c.tenant_id
+        AND cast( goods_count AS DECIMAL ) > cast( goods_qm_count AS DECIMAL )
+        AND c.order_type = '07'
+        AND EXISTS (SELECT 1 FROM wms_black_white_piece d WHERE a.goods_code = d.black_no)
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND c.u8_dhcode like concat('%',#{querMap.query01},'%')
+        </if>
+<!--        <if test="querMap.query01 != null and querMap.query01 != ''">-->
+<!--            AND a.im_notice_id like concat('%',#{querMap.query01},'%')-->
+<!--        </if>-->
+        <if test="querMap.query02 != null and querMap.query02 != ''">
+            AND a.goods_code like concat('%',#{querMap.query02},'%')
+        </if>
+
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND a.tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+    </select>
+
+    <select id="queryListType16" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT
+            a.id,
+            a.goods_id AS query01,
+            a.goods_name AS query02,
+            a.shp_gui_ge AS query03,
+            a.om_quat AS query04,
+            a.tin_id AS query05,
+            b.u8_djcode1
+        FROM
+            wm_om_qm_i a
+            LEFT JOIN wm_om_notice_h b ON a.om_notice_id = b.om_notice_id
+        WHERE
+        <!--        b.u8_djcode1 = #{querMap.query01}-->
+            b.om_notice_id = #{querMap.query01}
+            AND a.tin_id = #{querMap.query02}
+            AND a.tenant_id = b.tenant_id
+
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND a.tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+    </select>
+
+    <select id="queryListType18" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT
+            a.id,
+            c.u8_dhcode AS query01,
+            a.goods_code AS query02,
+            a.goods_name AS query03,
+            b.shp_gui_ge AS query04,
+            a.goods_unit AS query05,
+            a.goods_batch AS query06,
+            a.goods_count AS query07
+        FROM
+            wm_im_notice_i a
+        LEFT JOIN md_goods b ON a.goods_code = b.shp_bian_ma
+        LEFT JOIN wm_im_notice_h c ON a.im_notice_id = c.notice_id
+        WHERE
+            bin_pre = 'N'
+        AND a.tenant_id = c.tenant_id
+        AND cast( goods_count AS DECIMAL ) > cast( goods_qm_count AS DECIMAL )
+        AND c.order_type = '07'
+        AND a.goods_code = #{querMap.query01}
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND a.tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+    </select>
+
+    <select id="queryCkxx" resultType="com.base.modules.jeewms.pdaapi.ApiEntity">
+        SELECT
+            a.id,
+            a.store_code AS query01,
+            a.store_name AS query02
+        FROM
+            ba_store a
+    </select>
+
+    <select id="querySpkcxx" resultType="com.base.modules.jeewms.pdaapi.ApiEntity">
+        SELECT
+            a.ku_wei_bian_ma AS query01,
+            sum( a.base_goodscount ) AS query02
+        FROM
+            (SELECT
+            `wg`.`create_time` AS `create_time`,
+            `wg`.`create_name` AS `create_name`,
+            `wg`.`create_by` AS `create_by`,
+            `wg`.`id` AS `id`,
+            `wg`.`kuctype` AS `kuctype`,
+            `wg`.`ku_wei_bian_ma` AS `ku_wei_bian_ma`,
+            trim( `wg`.`bin_id` ) AS `bin_id`,
+            `wg`.`cus_code` AS `cus_code`,
+            `wg`.`cus_code` AS `zhong_wen_qch`,
+            `mg`.`shp_bian_ma` AS `goods_code`,
+            `wg`.`goods_id` AS `goods_id`,
+            `wg`.`goods_qua` AS `goods_qua`,
+            `mg`.`shp_ming_cheng` AS `goods_name`,
+            `mg`.`shp_ming_cheng` AS `shp_ming_cheng`,
+            `wg`.`goods_pro_data` AS `goods_pro_data`,
+            `wg`.`goods_batch` AS `goods_batch`,
+            `mg`.`bzhi_qi` AS `bzhi_qi`,
+            `mg`.`zhl_kgm` AS `yushoutianshu`,
+            `wg`.`goods_unit` AS `goods_unit`,
+            `wg`.`base_unit` AS `base_unit`,
+            `wg`.`base_goodscount` AS `base_goodscount`,
+            `mg`.`shl_dan_wei` AS `shl_dan_wei`,
+            concat( `mg`.`mp_ceng_gao`, '*', `mg`.`mp_dan_ceng` ) AS `hiti`,
+            `mg`.`shp_bian_makh` AS `shp_bian_makh`,
+            `mg`.`chl_shl` AS `chl_shl`,
+            `wg`.`order_id` AS `order_id`,
+            `mg`.`zhl_kg` AS `zhl_kg`,
+            `mg`.`shp_gui_ge` AS `shp_gui_ge`,
+            `mg`.`ti_ji_cm` AS `ti_ji_cm`
+        FROM `wv_stock_base_stock` `wg`
+        LEFT JOIN `md_goods` `mg` ON `wg`.`goods_id` = `mg`.`shp_bian_ma`
+        WHERE `mg`.`frozen` = 'N' AND `wg`.kuctype = '库存') a
+        WHERE a.goods_id = #{querMap.goods_id}
+        GROUP BY
+            a.kuctype,
+            a.goods_id,
+            a.ku_wei_bian_ma
+    </select>
+
+    <select id="queryListType19" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT
+            a.id,
+            a.om_notice_id AS query01,
+            a.goods_batch AS query02,
+            a.goods_id AS query03,
+            a.goods_name AS query04,
+            a.shp_gui_ge AS query05,
+            a.pro_data AS query06,
+            a.goods_unit AS query07,
+            a.tin_id AS query08,
+            a.base_goodscount AS query09,
+            a.bin_id AS query10
+        FROM
+            wm_om_qm_i a
+        LEFT JOIN wm_om_notice_h b ON a.om_notice_id = b.om_notice_id
+        WHERE
+            <!--a.bin_sta = 'N'  and wave_id is  null-->
+            (a.bin_sta = 'I' or a.bin_sta = 'N') and
+            b.order_type_code = '12'
+           AND a.tenant_id = b.tenant_id
+        <!--1=1-->
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND b.om_notice_id like concat('%',#{querMap.query01},'%')
+        </if>
+        <!--<if test="querMap.query03 != null and querMap.query03 != ''">
+            AND a.bin_sta like concat('%',#{querMap.query03},'%')
+        </if>-->
+        <if test="querMap.query02 != null and querMap.query02 != ''">
+<!--            AND a.bin_id like concat('%',#{querMap.query02},'%')-->
+            AND a.goods_id like concat('%',#{querMap.query02},'%')
+        </if>
+
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND a.tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+
+    </select>
+
+    <select id="queryListType19swgs" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT
+        a.id,
+        a.om_notice_id AS query01,
+        a.goods_batch AS query02,
+        a.goods_id AS query03,
+        a.goods_name AS query04,
+        a.shp_gui_ge AS query05,
+        a.pro_data AS query06,
+        a.base_unit AS query07,
+        a.tin_id AS query08,
+        a.base_goodscount AS query09,
+        a.bin_id AS query10,
+        a.goods_unit as query11
+        FROM
+        wm_om_qm_i a
+        LEFT JOIN wm_om_notice_h b ON a.om_notice_id = b.om_notice_id
+        WHERE
+        <!--a.bin_sta = 'N'  and wave_id is  null-->
+        (a.bin_sta = 'I' or a.bin_sta = 'N') and
+        b.order_type_code = '12'
+        AND a.tenant_id = b.tenant_id
+        <!--1=1-->
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND b.om_notice_id like concat('%',#{querMap.query01},'%')
+        </if>
+        <!--<if test="querMap.query03 != null and querMap.query03 != ''">
+            AND a.bin_sta like concat('%',#{querMap.query03},'%')
+        </if>-->
+        <if test="querMap.query02 != null and querMap.query02 != ''">
+            <!--            AND a.bin_id like concat('%',#{querMap.query02},'%')-->
+            AND a.goods_id like concat('%',#{querMap.query02},'%')
+        </if>
+
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND a.tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+
+        order by a.bin_id desc
+    </select>
+
+    <select id="queryListType19pltn" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT
+        a.id,
+        a.om_notice_id AS query01,
+        a.goods_batch AS query02,
+        a.goods_id AS query03,
+        a.goods_name AS query04,
+        a.shp_gui_ge AS query05,
+        a.pro_data AS query06,
+        a.goods_unit AS query07,
+<!--        a.tin_id AS query08,-->
+        a.base_goodscount AS query09,
+        a.bin_id AS query10
+        FROM
+        wm_om_qm_i a
+        LEFT JOIN wm_om_notice_h b ON a.om_notice_id = b.om_notice_id
+        WHERE
+        <!--a.bin_sta = 'N'  and wave_id is  null-->
+        <!--(a.bin_sta = 'I' or a.bin_sta = 'N') and
+        b.order_type_code = '12'-->
+        1=1
+        AND a.tenant_id = b.tenant_id
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND b.om_notice_id like concat('%',#{querMap.query01},'%')
+        </if>
+        <if test="querMap.query03 != null and querMap.query03 != ''">
+            AND a.bin_sta like concat('%',#{querMap.query03},'%')
+        </if>
+        <if test="querMap.query02 != null and querMap.query02 != ''">
+            <!--            AND a.bin_id like concat('%',#{querMap.query02},'%')-->
+            AND a.tin_id like concat('%',#{querMap.query02},'%')
+        </if>
+
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND a.tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+    </select>
+
+    <select id="queryListType20" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT
+            a.id,
+            a.im_notice_id AS query01,
+            '已确认' AS query02,
+            a.goods_batch AS query03,
+            a.goods_id AS query04,
+            a.goods_name AS query05,
+            g.shp_gui_ge AS query06,
+            a.pro_data AS query07,
+            a.goods_unit AS query08,
+            a.tin_id AS query09,
+            a.bin_id AS query10,
+<!--            c.ku_wei_bian_ma AS query10,-->
+            a.qm_ok_quat AS query11
+        FROM
+            wm_in_qm_i a
+		LEFT JOIN md_goods g ON a.goods_id = g.shp_bian_ma
+        LEFT JOIN wm_im_notice_h b ON a.im_notice_id = b.notice_id
+<!--        LEFT JOIN wm_to_up_goods c ON a.goods_id = c.goods_id-->
+        WHERE
+            bin_sta = 'N'
+        AND a.tenant_id = b.tenant_id
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND b.notice_id like concat('%',#{querMap.query01},'%')
+        </if>
+        <if test="querMap.query02 != null and querMap.query02 != ''">
+<!-- AND a.tin_id like concat('%',#{querMap.query02},'%')-->
+            AND a.goods_id like concat('%',#{querMap.query02},'%')
+        </if>
+
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND a.tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+    </select>
+
+    <select id="queryListType20pltn" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT
+        a.id,
+        a.im_notice_id AS query01,
+        '已确认' AS query02,
+        a.goods_batch AS query03,
+        a.goods_id AS query04,
+        a.goods_name AS query05,
+        g.shp_gui_ge AS query06,
+        a.pro_data AS query07,
+        a.goods_unit AS query08,
+        a.tin_id AS query09,
+        a.bin_id AS query10,
+        <!-- c.ku_wei_bian_ma AS query10,-->
+        a.qm_ok_quat AS query11
+        FROM
+        wm_in_qm_i a
+        LEFT JOIN md_goods g ON a.goods_id = g.shp_bian_ma
+        LEFT JOIN wm_im_notice_h b ON a.im_notice_id = b.notice_id
+        <!--        LEFT JOIN wm_to_up_goods c ON a.goods_id = c.goods_id-->
+        WHERE
+        a.bin_sta = 'N'
+        AND a.tenant_id = b.tenant_id
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND b.notice_id like concat('%',#{querMap.query01},'%')
+        </if>
+        <if test="querMap.query02 != null and querMap.query02 != ''">
+            <!-- AND a.tin_id like concat('%',#{querMap.query02},'%')-->
+            AND a.tin_id like concat('%',#{querMap.query02},'%')
+        </if>
+
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND a.tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+        ORDER BY a.goods_id
+    </select>
+
+    <select id="queryListType21" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT
+            a.id,
+            a.om_notice_id AS query01,
+            a.goods_batch AS query02,
+            a.goods_id AS query03,
+            a.goods_name AS query04,
+            a.shp_gui_ge AS query05,
+            a.pro_data AS query06,
+            a.goods_unit AS query07,
+            a.tin_id AS query08,
+            a.base_goodscount AS query09,
+            a.bin_id as query10,
+            a.wave_id as query11
+        FROM
+            wm_om_qm_i a
+        LEFT JOIN wm_om_notice_h b ON a.om_notice_id = b.om_notice_id
+        WHERE
+            a.bin_sta = 'N' and wave_id is not null
+        AND a.tenant_id = b.tenant_id
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND a.wave_id like concat('%',#{querMap.query01},'%')
+        </if>
+        <if test="querMap.query02 != null and querMap.query02 != ''">
+            AND a.goods_id like concat('%',#{querMap.query02},'%')
+        </if>
+
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND a.tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+    </select>
+
+    <select id="queryListType22" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+
+    </select>
+
+
+    <select id="queryListType23" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT
+        id,
+        order_id as query01,
+        goods_id as query02,
+        goods_name as query03,
+        goods_pro_data as query04,
+        goods_batch as query05,
+        base_goodscount as query06,
+        base_unit as query07,
+        down_sta as  query08
+        FROM  wm_to_down_goods where down_sta = '未拣货'
+
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND  order_id like concat('%',#{querMap.query01},'%')
+        </if>
+        <if test="querMap.query02 != null and querMap.query02 != ''">
+            AND goods_id like concat('%',#{querMap.query02},'%')
+        </if>
+
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+    </select>
+
+    <select id="queryListType24" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT id,
+        shp_bian_ma as query01,
+        shp_ming_cheng as query02,
+        shp_tiao_ma as query03,
+        zhl_kg as query04,
+        ti_ji_cm as query05,
+        ch_zh_xiang as query06,
+        ku_zh_xiang as query07,
+        gao_zh_xiang as query08,
+        mp_dan_ceng as query09,
+        mp_ceng_gao as query10
+        FROM  md_goods
+        where  1 = 1
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND  shp_bian_ma like concat('%',#{querMap.query01},'%')
+        </if>
+        <if test="querMap.query02 != null and querMap.query02 != ''">
+            AND shp_tiao_ma like concat('%',#{querMap.query02},'%')
+        </if>
+    </select>
+
+
+    <select id="queryListType25" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT
+        a.goods_name AS query01,
+        a.goods_code AS query02,
+        a.goods_pro_data AS query03,
+        a.goods_unit AS query04,
+        a.shp_gui_ge AS query05,
+        b.bin_store AS query06,
+        a.ku_wei_bian_ma AS query07,
+        a.bin_id AS query08,
+        sum( IFNULL(a.base_goodscount,0) ) AS query09
+        FROM
+        (SELECT
+        `wg`.`create_time` AS `create_time`,
+        `wg`.`create_name` AS `create_name`,
+        `wg`.`create_by` AS `create_by`,
+        `wg`.`id` AS `id`,
+        `wg`.`kuctype` AS `kuctype`,
+        `wg`.`ku_wei_bian_ma` AS `ku_wei_bian_ma`,
+        trim( `wg`.`bin_id` ) AS `bin_id`,
+        `wg`.`cus_code` AS `cus_code`,
+        `wg`.`cus_code` AS `zhong_wen_qch`,
+        `mg`.`shp_bian_ma` AS `goods_code`,
+        `wg`.`goods_id` AS `goods_id`,
+        `wg`.`goods_qua` AS `goods_qua`,
+        `mg`.`shp_ming_cheng` AS `goods_name`,
+        `mg`.`shp_ming_cheng` AS `shp_ming_cheng`,
+        `wg`.`goods_pro_data` AS `goods_pro_data`,
+        `wg`.`goods_batch` AS `goods_batch`,
+        `mg`.`bzhi_qi` AS `bzhi_qi`,
+        `mg`.`zhl_kgm` AS `yushoutianshu`,
+        `wg`.`goods_unit` AS `goods_unit`,
+        `wg`.`base_unit` AS `base_unit`,
+        `wg`.`base_goodscount` AS `base_goodscount`,
+        `mg`.`shl_dan_wei` AS `shl_dan_wei`,
+        concat( `mg`.`mp_ceng_gao`, '*', `mg`.`mp_dan_ceng` ) AS `hiti`,
+        `mg`.`shp_bian_makh` AS `shp_bian_makh`,
+        `mg`.`chl_shl` AS `chl_shl`,
+        `wg`.`order_id` AS `order_id`,
+        `mg`.`zhl_kg` AS `zhl_kg`,
+        `mg`.`shp_gui_ge` AS `shp_gui_ge`,
+        `mg`.`ti_ji_cm` AS `ti_ji_cm`,
+        wg.tenant_id as tenant_id
+        FROM `wv_stock_base_stock` `wg`
+        LEFT JOIN `md_goods` `mg` ON `wg`.`goods_id` = `mg`.`shp_bian_ma`
+        WHERE `mg`.`frozen` = 'N' AND `wg`.kuctype = '库存') a
+        LEFT JOIN md_bin b on a.ku_wei_bian_ma = b.ku_wei_bian_ma
+        WHERE 1=1
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND a.ku_wei_bian_ma like concat('%',#{querMap.query01},'%')
+        </if>
+        <if test="querMap.query02 != null and querMap.query02 != ''">
+            AND a.goods_id like concat('%',#{querMap.query02},'%')
+        </if>
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND a.tenant_id = #{querMap.tenantId}
+        </if>
+        GROUP BY
+        a.kuctype,
+        a.goods_id,
+        a.ku_wei_bian_ma
+    </select>
+
+
+    <select id="queryListType32" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT
+        up.bin_id as query20,
+        h.sup_code as query01,
+        h.purchasename as query02,
+        down.goods_batch as query03,
+        SUBSTRING(down.order_id,3,10) as query04,
+        if(down.goods_batch is null,'未出库','已出库') as query05
+        FROM
+        wm_to_up_goods up
+        LEFT JOIN wm_im_notice_h h on up.order_id = h.notice_id
+        LEFT JOIN (SELECT * FROM wm_to_down_goods GROUP BY bin_id_to) down on down.bin_id_to = up.bin_id
+        WHERE 1=1
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND  bin_id like concat('%',#{querMap.query01},'%')
+        </if>
+    </select>
+
+
+    <select id="queryListType33" resultType="com.base.modules.jeewms.pdaapi.ApiresEntity">
+        SELECT
+        po.query14 as query01,
+        kh.zhong_wen_qch as query02,
+        kh.xing_ye_fen_lei as query03,
+        po.query09 as query04,
+        po.query16 as query05,
+        po.query10 as query06,
+        po.query11 as query07,
+        po.num01 as query08,
+        po.query15 as query10,
+        po.query28 as query09
+        FROM busi_po po
+        LEFT JOIN md_cus kh on kh.ke_hu_bian_ma =  po.query24
+        WHERE  1=1 and (po.query01 = 'CGD' or po.query01 = 'YP')
+        <if test="querMap.query01 != null and querMap.query01 != ''">
+            AND  po.query14 like concat('%',#{querMap.query01},'%')
+        </if>
+        ORDER BY po.create_time desc
+<!--                SELECT-->
+<!--        item.query14 as query01,-->
+<!--        kh.zhong_wen_qch as query02,-->
+<!--        kh.xing_ye_fen_lei as query03,-->
+<!--        ord.query09 as query04,-->
+<!--        ord.query16 as query05,-->
+<!--        item.query10 as query06,-->
+<!--        item.query11 as query07,-->
+<!--        item.num01 as query08,-->
+<!--        po.query16 as query09,-->
+<!--        ord.query15 as query10-->
+<!--        FROM-->
+<!--        busi_prd_ord_item item-->
+<!--        LEFT JOIN busi_prd_ord ord on item.link02 = ord.query04-->
+<!--        LEFT JOIN busi_po po on po.query14 = item.query14-->
+<!--        LEFT JOIN md_cus kh on kh.ke_hu_bian_ma =  ord.query24-->
+<!--        WHERE 1=1-->
+<!--        <if test="querMap.query01 != null and querMap.query01 != ''">-->
+<!--            AND  item.query14 like concat('%',#{querMap.query01},'%')-->
+<!--        </if>-->
+<!--        and ord.query01 = 'ZJDD'-->
+<!--        ORDER BY item.create_time desc-->
+    </select>
+</mapper>

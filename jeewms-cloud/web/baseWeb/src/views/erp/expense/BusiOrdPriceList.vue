@@ -1,0 +1,467 @@
+<template>
+  <a-card :bordered="false">
+    <!-- 查询区域 -->
+    <div class="table-page-search-wrapper">
+      <a-form layout="inline" @keyup.enter.native="searchQuery">
+        <a-row :gutter="24">
+        </a-row>
+      </a-form>
+    </div>
+    <!-- 查询区域-END -->
+
+    <!-- 操作按钮区域 -->
+    <div class="table-operator">
+      <a-button @click="handleAdd" type="primary" icon="plus">新增</a-button>
+      <a-button type="primary" icon="download" @click="handleExportXls('busi_ord_price')">导出</a-button>
+      <a-upload name="file" :showUploadList="false" :multiple="false" :headers="tokenHeader" :action="importExcelUrl" @change="handleImportExcel">
+        <a-button type="primary" icon="import">导入</a-button>
+      </a-upload>
+      <!-- 高级查询区域 -->
+      <!-- <j-super-query :fieldList="superFieldList" ref="superQueryModal" @handleSuperQuery="handleSuperQuery"></j-super-query> -->
+      <a-dropdown v-if="selectedRowKeys.length > 0">
+        <a-menu slot="overlay">
+          <a-menu-item key="1" @click="batchDel"><a-icon type="delete"/>删除</a-menu-item>
+        </a-menu>
+        <a-button style="margin-left: 8px"> 批量操作 <a-icon type="down" /></a-button>
+      </a-dropdown>
+    </div>
+
+    <!-- table区域-begin -->
+    <div>
+      <div class="ant-alert ant-alert-info" style="margin-bottom: 16px;">
+        <i class="anticon anticon-info-circle ant-alert-icon"></i> 已选择 <a style="font-weight: 600">{{ selectedRowKeys.length }}</a>项
+        <a style="margin-left: 24px" @click="onClearSelected">清空</a>
+      </div>
+
+      <a-table
+        ref="table"
+        size="middle"
+        :scroll="{x:true}"
+        bordered
+        rowKey="id"
+        :columns="columns"
+        :dataSource="dataSource"
+        :pagination="ipagination"
+        :loading="loading"
+        :rowSelection="{selectedRowKeys: selectedRowKeys, onChange: onSelectChange}"
+        class="j-table-force-nowrap"
+        @change="handleTableChange">
+
+        <template slot="htmlSlot" slot-scope="text">
+          <div v-html="text"></div>
+        </template>
+        <template slot="imgSlot" slot-scope="text">
+          <span v-if="!text" style="font-size: 12px;font-style: italic;">无图片</span>
+          <img v-else :src="getImgView(text)" height="25px" alt="" style="max-width:80px;font-size: 12px;font-style: italic;"/>
+        </template>
+        <template slot="fileSlot" slot-scope="text">
+          <span v-if="!text" style="font-size: 12px;font-style: italic;">无文件</span>
+          <a-button
+            v-else
+            :ghost="true"
+            type="primary"
+            icon="download"
+            size="small"
+            @click="downloadFile(text)">
+            下载
+          </a-button>
+        </template>
+
+        <span slot="action" slot-scope="text, record">
+          <a @click="handleEdit(record)">编辑</a>
+
+          <a-divider type="vertical" />
+          <a-dropdown>
+            <a class="ant-dropdown-link">更多 <a-icon type="down" /></a>
+            <a-menu slot="overlay">
+              <a-menu-item>
+                <a @click="handleDetail(record)">详情</a>
+              </a-menu-item>
+              <a-menu-item>
+                <a-popconfirm title="确定删除吗?" @confirm="() => handleDelete(record.id)">
+                  <a>删除</a>
+                </a-popconfirm>
+              </a-menu-item>
+            </a-menu>
+          </a-dropdown>
+        </span>
+
+      </a-table>
+    </div>
+
+    <busi-ord-price-modal ref="modalForm" @ok="modalFormOk"></busi-ord-price-modal>
+  </a-card>
+</template>
+
+<script>
+
+  import '@/assets/less/TableExpand.less'
+  import { mixinDevice } from '@/utils/mixin'
+  import { JeecgListMixin } from '@/mixins/JeecgListMixin'
+  import BusiOrdPriceModal from './modules/BusiOrdPriceModal'
+
+  export default {
+    name: 'BusiOrdPriceList',
+    mixins:[JeecgListMixin, mixinDevice],
+    components: {
+      BusiOrdPriceModal
+    },
+    data () {
+      return {
+        description: 'busi_ord_price管理页面',
+        // 表头
+        columns: [
+          {
+            title:'创建人名称',
+            align:"center",
+            dataIndex: 'createName'
+          },
+          {
+            title:'更新人名称',
+            align:"center",
+            dataIndex: 'updateName'
+          },
+          {
+            title:'单据类型',
+            align:"center",
+            dataIndex: 'query01'
+          },
+          {
+            title:'单据状态',
+            align:"center",
+            dataIndex: 'query02'
+          },
+          {
+            title:'建单日期',
+            align:"center",
+            dataIndex: 'query03'
+          },
+          {
+            title:'单号',
+            align:"center",
+            dataIndex: 'query04'
+          },
+          // {
+          //   title:'公司',
+          //   align:"center",
+          //   dataIndex: 'query05'
+          // },
+          // {
+          //   title:'工厂',
+          //   align:"center",
+          //   dataIndex: 'query06'
+          // },
+          // {
+          //   title:'库存地点',
+          //   align:"center",
+          //   dataIndex: 'query07'
+          // },
+          {
+            title:'对象编码',
+            align:"center",
+            dataIndex: 'query08'
+          },
+          {
+            title:'对象名称',
+            align:"center",
+            dataIndex: 'query09'
+          },
+          {
+            title:'商品编码',
+            align:"center",
+            dataIndex: 'query10'
+          },
+          {
+            title:'商品名称',
+            align:"center",
+            dataIndex: 'query11'
+          },
+          {
+            title:'单位',
+            align:"center",
+            dataIndex: 'query12'
+          },
+          {
+            title:'query13',
+            align:"center",
+            dataIndex: 'query13'
+          },
+          {
+            title:'query14',
+            align:"center",
+            dataIndex: 'query14'
+          },
+          {
+            title:'类型（采购/销售/税率/成本价）',
+            align:"center",
+            dataIndex: 'query15'
+          },
+          {
+            title:'币种',
+            align:"center",
+            dataIndex: 'query16'
+          },
+          {
+            title:'query17',
+            align:"center",
+            dataIndex: 'query17'
+          },
+          {
+            title:'query18',
+            align:"center",
+            dataIndex: 'query18'
+          },
+          {
+            title:'query19',
+            align:"center",
+            dataIndex: 'query19'
+          },
+          {
+            title:'query20',
+            align:"center",
+            dataIndex: 'query20'
+          },
+          {
+            title:'query21',
+            align:"center",
+            dataIndex: 'query21'
+          },
+          {
+            title:'query22',
+            align:"center",
+            dataIndex: 'query22'
+          },
+          {
+            title:'query23',
+            align:"center",
+            dataIndex: 'query23'
+          },
+          {
+            title:'query24',
+            align:"center",
+            dataIndex: 'query24'
+          },
+          {
+            title:'query25',
+            align:"center",
+            dataIndex: 'query25'
+          },
+          {
+            title:'query26',
+            align:"center",
+            dataIndex: 'query26'
+          },
+          {
+            title:'query27',
+            align:"center",
+            dataIndex: 'query27'
+          },
+          {
+            title:'query28',
+            align:"center",
+            dataIndex: 'query28'
+          },
+          {
+            title:'query29',
+            align:"center",
+            dataIndex: 'query29'
+          },
+          {
+            title:'query30',
+            align:"center",
+            dataIndex: 'query30'
+          },
+          {
+            title:'单位数量',
+            align:"center",
+            dataIndex: 'num01'
+          },
+          {
+            title:'未完成数量',
+            align:"center",
+            dataIndex: 'num02'
+          },
+          {
+            title:'已完成数量',
+            align:"center",
+            dataIndex: 'num03'
+          },
+          {
+            title:'总价格',
+            align:"center",
+            dataIndex: 'num04'
+          },
+          {
+            title:'num05',
+            align:"center",
+            dataIndex: 'num05'
+          },
+          {
+            title:'关联单据类型',
+            align:"center",
+            dataIndex: 'link01'
+          },
+          {
+            title:'关联单号',
+            align:"center",
+            dataIndex: 'link02'
+          },
+          {
+            title:'link03',
+            align:"center",
+            dataIndex: 'link03'
+          },
+          {
+            title:'link04',
+            align:"center",
+            dataIndex: 'link04'
+          },
+          {
+            title:'link05',
+            align:"center",
+            dataIndex: 'link05'
+          },
+          {
+            title:'备注',
+            align:"center",
+            dataIndex: 'text01'
+          },
+          {
+            title:'备注',
+            align:"center",
+            dataIndex: 'text02'
+          },
+          {
+            title:'text03',
+            align:"center",
+            dataIndex: 'text03'
+          },
+          {
+            title:'text04',
+            align:"center",
+            dataIndex: 'text04'
+          },
+          {
+            title:'text05',
+            align:"center",
+            dataIndex: 'text05'
+          },
+          {
+            title:'单据附件',
+            align:"center",
+            dataIndex: 'attr1'
+          },
+          {
+            title:'attr2',
+            align:"center",
+            dataIndex: 'attr2'
+          },
+          {
+            title:'attr3',
+            align:"center",
+            dataIndex: 'attr3'
+          },
+          {
+            title:'attr4',
+            align:"center",
+            dataIndex: 'attr4'
+          },
+          {
+            title:'attr5',
+            align:"center",
+            dataIndex: 'attr5'
+          },
+          {
+            title: '操作',
+            dataIndex: 'action',
+            align:"center",
+            fixed:"right",
+            width:147,
+            scopedSlots: { customRender: 'action' }
+          }
+        ],
+        url: {
+          list: "/jeeerp/busiOrdPrice/list",
+          delete: "/jeeerp/busiOrdPrice/delete",
+          deleteBatch: "/jeeerp/busiOrdPrice/deleteBatch",
+          exportXlsUrl: "/jeeerp/busiOrdPrice/exportXls",
+          importExcelUrl: "jeeerp/busiOrdPrice/importExcel",
+          
+        },
+        dictOptions:{},
+        superFieldList:[],
+      }
+    },
+    created() {
+    this.getSuperFieldList();
+    },
+    computed: {
+      importExcelUrl: function(){
+        return `${window._CONFIG['domianURL']}/${this.url.importExcelUrl}`;
+      },
+    },
+    methods: {
+      initDictConfig(){
+      },
+      getSuperFieldList(){
+        let fieldList=[];
+        fieldList.push({type:'string',value:'createName',text:'创建人名称'})
+        fieldList.push({type:'string',value:'updateName',text:'更新人名称'})
+        fieldList.push({type:'string',value:'query01',text:'单据类型'})
+        fieldList.push({type:'string',value:'query02',text:'单据状态'})
+        fieldList.push({type:'string',value:'query03',text:'建单日期'})
+        fieldList.push({type:'string',value:'query04',text:'单号'})
+        fieldList.push({type:'string',value:'query05',text:'公司'})
+        fieldList.push({type:'string',value:'query06',text:'工厂'})
+        fieldList.push({type:'string',value:'query07',text:'库存地点'})
+        fieldList.push({type:'string',value:'query08',text:'对象编码'})
+        fieldList.push({type:'string',value:'query09',text:'对象名称'})
+        fieldList.push({type:'string',value:'query10',text:'商品编码'})
+        fieldList.push({type:'string',value:'query11',text:'商品名称'})
+        fieldList.push({type:'string',value:'query12',text:'单位'})
+        fieldList.push({type:'string',value:'query13',text:'query13'})
+        fieldList.push({type:'string',value:'query14',text:'query14'})
+        fieldList.push({type:'string',value:'query15',text:'类型（采购/销售/税率/成本价）'})
+        fieldList.push({type:'string',value:'query16',text:'币种'})
+        fieldList.push({type:'string',value:'query17',text:'query17'})
+        fieldList.push({type:'string',value:'query18',text:'query18'})
+        fieldList.push({type:'string',value:'query19',text:'query19'})
+        fieldList.push({type:'string',value:'query20',text:'query20'})
+        fieldList.push({type:'string',value:'query21',text:'query21'})
+        fieldList.push({type:'string',value:'query22',text:'query22'})
+        fieldList.push({type:'string',value:'query23',text:'query23'})
+        fieldList.push({type:'string',value:'query24',text:'query24'})
+        fieldList.push({type:'string',value:'query25',text:'query25'})
+        fieldList.push({type:'string',value:'query26',text:'query26'})
+        fieldList.push({type:'string',value:'query27',text:'query27'})
+        fieldList.push({type:'string',value:'query28',text:'query28'})
+        fieldList.push({type:'string',value:'query29',text:'query29'})
+        fieldList.push({type:'string',value:'query30',text:'query30'})
+        fieldList.push({type:'number',value:'num01',text:'单位数量'})
+        fieldList.push({type:'number',value:'num02',text:'未完成数量'})
+        fieldList.push({type:'number',value:'num03',text:'已完成数量'})
+        fieldList.push({type:'number',value:'num04',text:'总价格'})
+        fieldList.push({type:'number',value:'num05',text:'num05'})
+        fieldList.push({type:'string',value:'link01',text:'关联单据类型'})
+        fieldList.push({type:'string',value:'link02',text:'关联单号'})
+        fieldList.push({type:'string',value:'link03',text:'link03'})
+        fieldList.push({type:'string',value:'link04',text:'link04'})
+        fieldList.push({type:'string',value:'link05',text:'link05'})
+        fieldList.push({type:'string',value:'text01',text:'备注'})
+        fieldList.push({type:'string',value:'text02',text:'备注'})
+        fieldList.push({type:'string',value:'text03',text:'text03'})
+        fieldList.push({type:'string',value:'text04',text:'text04'})
+        fieldList.push({type:'string',value:'text05',text:'text05'})
+        fieldList.push({type:'string',value:'attr1',text:'单据附件'})
+        fieldList.push({type:'string',value:'attr2',text:'attr2'})
+        fieldList.push({type:'string',value:'attr3',text:'attr3'})
+        fieldList.push({type:'string',value:'attr4',text:'attr4'})
+        fieldList.push({type:'string',value:'attr5',text:'attr5'})
+        this.superFieldList = fieldList
+      }
+    }
+  }
+</script>
+<style scoped>
+  @import '~@assets/less/common.less';
+</style>

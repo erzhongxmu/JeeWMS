@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.modules.jeewms.mapper.WmOmNoticeHMapper">
+
+    <select id="findById" parameterType="java.lang.String" resultType="java.util.HashMap">
+        SELECT wq.goods_pro_data as pro_data,
+               wq.order_id_i,
+               wq.base_unit,
+               mg.goods_code,
+               mg.goods_id,
+               mg.shp_tiao_ma,
+               mg.shp_ming_cheng,
+               cast(sum(wq.base_goodscount) as signed) as goods_count,
+               mg.chl_shl,
+               cast(mg.ti_ji_cm / mg.chl_shl as signed)   tin_tj,
+               (mg.zhl_kg / mg.chl_shl)                as tin_zhl
+        FROM wm_to_down_goods wq,
+             mv_goods mg
+        where wq.order_id = #{id}
+          and wq.goods_id = mg.goods_code
+        group by wq.order_id, mg.goods_code, wq.goods_pro_data
+    </select>
+
+    <select id="findByOmNoticeId" parameterType="java.lang.String" resultType="java.util.HashMap">
+        SELECT wq.id as order_id_i,
+               wq.pro_data,
+               wq.item_text,
+               wq.base_unit,
+               mg.goods_code,
+               mg.goods_id,
+               mg.shp_tiao_ma,
+               mg.shp_ming_cheng,
+               cast(sum(wq.base_goodscount) as signed) as goods_count,
+               mg.chl_shl,
+               cast(mg.ti_ji_cm / mg.chl_shl as signed)   tin_tj,
+               (mg.zhl_kg / mg.chl_shl)                as tin_zhl
+        FROM wm_om_qm_i wq,
+             mv_goods mg
+        where wq.om_notice_id = #{id}
+          and wq.goods_id = mg.goods_code
+        group by wq.om_notice_id, mg.goods_code, wq.pro_data
+    </select>
+
+
+    <select id="selectByMainId" parameterType="java.lang.String" resultType="com.base.modules.jeewms.entity.WmOmNoticeH">
+        SELECT *
+        FROM  wm_om_notice_H
+        WHERE
+            om_notice_id = #{mainId}
+    </select>
+
+    <select id="selectNoticeIdCount" resultType="int">
+        SELECT cast(right(ifnull((om_notice_id),0),4)+1 as SIGNED) as count FROM wm_om_notice_h  t where  TO_DAYS(t.create_date) = TO_DAYS(NOW()) order by create_date desc limit 1
+    </select>
+
+    <select id="getByDeliveryId" resultType="com.base.modules.jeewms.entity.WmOmNoticeH">
+        select h.* from wms_jd_express_record d join wm_om_notice_h h on d.order_id = h.IM_CUS_CODE
+        where delivery_id = #{deliveryId};
+    </select>
+
+    <select id="queryWmOmNoticeIByMainNo" resultType="com.base.modules.jeewms.entity.WmOmNoticeH">
+        SELECT
+            a.*
+        FROM
+            wm_om_notice_h a
+            LEFT JOIN wms_jd_express_record b ON a.IM_CUS_CODE = b.order_id
+        WHERE
+            b.delivery_id = #{id}
+            AND a.qh_sta IS NULL
+	        LIMIT 1
+    </select>
+</mapper>

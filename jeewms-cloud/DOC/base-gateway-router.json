@@ -1,0 +1,84 @@
+[{
+  "id": "base-system",
+  "order": 0,
+  "predicates": [{
+    "name": "Path",
+    "args": {
+      "_genkey_0": "/sys/**",
+      "_genkey_1": "/eoa/**",
+      "_genkey_2": "/joa/**",
+      "_genkey_3": "/jmreport/**",
+      "_genkey_4": "/bigscreen/**",
+      "_genkey_5": "/desform/**",
+      "_genkey_6": "/online/**",
+      "_genkey_8": "/act/**",
+      "_genkey_9": "/plug-in/**",
+      "_genkey_10": "/generic/**",
+      "_genkey_11": "/v1/**",
+      "_genkey_12": "/mwo/**",
+       "_genkey_13": "/mwoapp/**",
+      "_genkey_14": "/onl_cgreport_head/**",
+      "_genkey_15": "/bi-visual/**",
+      "_genkey_16": "/approle/**"
+
+    }
+  }],
+  "filters": [],
+  "uri": "lb://base-system"
+}, {
+  "id": "base-demo",
+  "order": 1,
+  "predicates": [{
+    "name": "Path",
+    "args": {
+      "_genkey_0": "/mock/**",
+      "_genkey_1": "/test/**",
+      "_genkey_2": "/bigscreen/template1/**",
+      "_genkey_3": "/bigscreen/template2/**"
+    }
+  }],
+  "filters": [],
+  "uri": "lb://base-demo"
+}, {
+  "id": "base-system-websocket",
+  "order": 2,
+  "predicates": [{
+    "name": "Path",
+    "args": {
+      "_genkey_0": "/websocket/**",
+      "_genkey_1": "/eoaSocket/**",
+      "_genkey_2": "/newsWebsocket/**"
+    }
+  }],
+  "filters": [],
+  "uri": "lb:ws://base-system"
+}, {
+  "id": "base-demo-websocket",
+  "order": 3,
+  "predicates": [{
+    "name": "Path",
+    "args": {
+      "_genkey_0": "/vxeSocket/**"
+    }
+  }],
+  "filters": [],
+  "uri": "lb:ws://base-demo"
+},{
+  "id": "base-busin",
+  "order": 4,
+  "predicates": [{
+    "name": "Path",
+    "args": {
+      "_genkey_0": "/basic/**",
+      "_genkey_1": "/jeewms/**",
+      "_genkey_2": "/chief/**",
+      "_genkey_3": "/bill/**",
+      "_genkey_4": "/location/**",
+      "_genkey_5": "/gswms/**",
+      "_genkey_6": "/pda/**",
+      "_genkey_7": "/jeeerp/**"
+    }
+  }],
+  "filters": [],
+  "uri": "lb://base-busin"
+}]

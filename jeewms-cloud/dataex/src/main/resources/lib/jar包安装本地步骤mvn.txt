@@ -1,0 +1,28 @@
+ebay包
+mvn install:install-file -DgroupId=com.axis -DartifactId=axis -Dversion=1.0 -Dpackaging=jar -Dfile=D:/JavaProject/sapdataex/src/main/resources/lib/axis.jar
+
+mvn install:install-file -DgroupId=com.ebaysdkcore -DartifactId=ebaysdkcore -Dversion=1.0 -Dpackaging=jar -Dfile=D:/omslib/ebaysdkcore.jar
+
+
+mvn install:install-file -DgroupId=com.helper -DartifactId=helper -Dversion=1.0 -Dpackaging=jar -Dfile=D:/omslib/helper.jar
+
+
+mvn install:install-file -DgroupId=com.jaxrpc -DartifactId=jaxrpc -Dversion=1.0 -Dpackaging=jar -Dfile=D:/omslib/jaxrpc.jar
+
+
+
+mvn install:install-file -DgroupId=com.axis -DartifactId=axis -Dversion=1.0 -Dpackaging=jar -Dfile=D:/omslib/axis.jar
+
+mvn install:install-file -DgroupId=com.axis-ant -DartifactId=axis-ant -Dversion=1.0 -Dpackaging=jar -Dfile=D:/omslib/axis-ant.jar
+
+
+
+mvn install:install-file -DgroupId=com.discovery -DartifactId=discovery -Dversion=1.0 -Dpackaging=jar -Dfile=D:/omslib/commons-discovery-0.2.jar
+
+mvn install:install-file -DgroupId=com.logging -DartifactId=logging -Dversion=1.0 -Dpackaging=jar -Dfile=D:/omslib/commons-logging-1.0.4.jar
+
+
+amazon包
+mvn install:install-file -DgroupId=com.sellingpartnerapi -DartifactId=sellingpartnerapi -Dversion=1.0 -Dpackaging=jar -Dfile=D:/omslib/sellingpartnerapi-aa-java-1.0.jar
+mvn install:install-file -DgroupId=com.swaggerclient -DartifactId=swaggerclient -Dversion=1.0 -Dpackaging=jar -Dfile=D:/omslib/swagger-java-client-1.0.0.jar
+mvn install:install-file -DgroupId=com.ordersVo -DartifactId=ordersVo -Dversion=1.0 -Dpackaging=jar -Dfile=D:/omslib/ordersVo.jar

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.modules.jeewms.mapper.WmImNoticeIMapper">
+
+
+    <select id="selectYsList" resultType="com.base.modules.jeewms.entity.WmImNoticeI">
+        select id,
+        im_notice_id,
+        im_notice_item,
+        goods_code,
+        goods_count,
+        goods_prd_data,
+        goods_batch,
+        bin_pre,
+        goods_fvol,
+        goods_weight,
+        bin_plan,
+        goods_unit,
+        (cast(goods_count as decimal)- cast(goods_qm_count as decimal )) as goods_wqm_count,
+        goods_qm_count,
+        noticei_sta,
+        base_unit,
+        base_goodscount,
+        base_qmcount,
+        goods_name,
+        other_id,
+        im_cus_code,
+        im_beizhu,
+        barcode,
+        shp_gui_ge,
+        BZHI_QI,
+        chp_shu_xing,
+        tin_id
+        from  wm_im_notice_i
+        where
+         bin_pre = 'N'
+         and im_notice_id like 'TH%'
+         AND cast(goods_count as decimal) > cast(goods_qm_count as decimal )
+        <if test="wmImNoticeI.imNoticeId != null and wmImNoticeI.imNoticeId != ''">
+           and im_notice_id like concat('%',#{wmImNoticeI.imNoticeId},'%')
+        </if>
+        <if test="wmImNoticeI.goodsCode != null and wmImNoticeI.goodsCode != ''">
+            and goods_id like concat('%',#{wmImNoticeI.imNoticeId},'%')
+        </if>
+        <if test="wmImNoticeI.goodsName != null and wmImNoticeI.goodsName != ''">
+            and goods_name like concat('%',#{wmImNoticeI.goodsName},'%')
+        </if>
+
+    </select>
+
+    <select id="queryBatchPageList" resultType="com.base.modules.jeewms.entity.WmImNoticeI">
+        select i.id,
+        i.im_notice_id,
+        i.im_notice_item,
+        i.goods_code,
+        i.goods_count,
+        i.goods_prd_data,
+        i.goods_batch,
+        i.bin_pre,
+        i.goods_fvol,
+        i.goods_weight,
+        i.bin_plan,
+        i.goods_unit,
+        (cast(i.goods_count as decimal)- cast(i.goods_qm_count as decimal )) as goods_wqm_count,
+        i.goods_qm_count,
+        i.noticei_sta,
+        i.base_unit,
+        i.base_goodscount,
+        i.base_qmcount,
+        i.goods_name,
+        i.other_id,
+        i.im_cus_code,
+        i.yw_ming_cheng,
+        i.im_beizhu,
+        i.barcode,
+        i.shp_gui_ge,
+        i.BZHI_QI,
+        i.chp_shu_xing,
+        i.tin_id,
+        i.cus_code,
+        <!--g.factory_snp_case_num,
+        g.factory_snp_package_num,
+        g.factory_snp_piece_num,
+        t.type_name as goods_type_name,-->
+        i.procode,
+        i.unit_price,
+<!--        t.id as goods_type_id,-->
+        i.contractlno
+        from  wm_im_notice_i i
+        <!--left join md_goods g on i.goods_code = g.shp_bian_ma
+        left join ba_part_type t on g.classification = t.id-->
+        where
+        bin_pre = 'N'
+        AND cast(goods_count as decimal) > cast(goods_qm_count as decimal )
+        <if test="wmImNoticeI.imNoticeId != null and wmImNoticeI.imNoticeId != ''">
+            and i.im_notice_id like concat('%',#{wmImNoticeI.imNoticeId},'%')
+        </if>
+        <if test="wmImNoticeI.goodsCode != null and wmImNoticeI.goodsCode != ''">
+            and i.goods_code like concat('%',#{wmImNoticeI.goodsCode},'%')
+        </if>
+        <if test="wmImNoticeI.cusCode != null and wmImNoticeI.cusCode != ''">
+            and i.cus_code like concat('%',#{wmImNoticeI.cusCode},'%')
+        </if>
+        <if test="wmImNoticeI.goodsName != null and wmImNoticeI.goodsName != ''">
+            and i.goods_name like concat('%',#{wmImNoticeI.goodsName},'%')
+        </if>
+        <if test="wmImNoticeI.imCusCode != null and wmImNoticeI.imCusCode != ''">
+            and i.im_cus_code like concat('%',#{wmImNoticeI.imCusCode},'%')
+        </if>
+        <if test="wmImNoticeI.tenantId != null and wmImNoticeI.tenantId != ''">
+            and i.tenant_id = #{wmImNoticeI.tenantId}
+        </if>
+        <if test="wmImNoticeI.goodsBatch != null and wmImNoticeI.goodsBatch != ''">
+            and i.goods_batch like concat('%',#{wmImNoticeI.goodsBatch},'%')
+        </if>
+        order by i.create_time desc
+    </select>
+
+    <delete id="deleteByMainId" parameterType="java.lang.String">
+		DELETE
+		FROM  wm_im_notice_i
+		WHERE
+			 im_notice_id = #{mainId}
+    </delete>
+
+    <select id="selectByMainId" parameterType="java.lang.String" resultType="com.base.modules.jeewms.entity.WmImNoticeI">
+		SELECT *
+		FROM  wm_im_notice_i
+		WHERE
+			 im_notice_id = #{mainId}
+	</select>
+</mapper>

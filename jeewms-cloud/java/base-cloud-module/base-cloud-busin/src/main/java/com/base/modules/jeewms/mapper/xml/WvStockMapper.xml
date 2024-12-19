@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.modules.jeewms.mapper.WvStockMapper">
+    <select id="queryListType" resultType="com.base.modules.jeewms.entity.WvStockStt">
+            select
+            wv.create_time,
+            wv.create_name,
+            wv.create_by,
+            wv.id,
+            wv.kuctype,
+            wv.ku_wei_bian_ma,
+            wv.bin_id,
+            wv.cus_code,
+            wv.goods_code ,
+            wv.goods_id AS goods_id,
+            sum(wv.goods_qua) as goods_qua,
+            wv.shp_ming_cheng,
+            wv.goods_pro_data,
+            wv.goods_batch AS goods_batch,
+            wv.bzhi_qi AS bzhi_qi,
+            wv.yushoutianshu AS yushoutianshu,
+            wv.goods_unit AS goods_unit,
+            wv.stt_sta,
+            wv.move_sta,
+            wv.last_move,
+            mc.zhong_wen_qch
+            from
+            wv_stock_stt  wv
+            left join md_cus mc on wv.cus_code = mc.ke_hu_bian_ma
+            where wv.kuctype = '库存'
+        <if test="querMap.shpMingCheng != null and querMap.shpMingCheng != ''">
+            AND wv.shp_ming_cheng like concat('%',#{querMap.shpMingCheng},'%')
+        </if>
+        <if test="querMap.goodsCode != null and querMap.goodsCode != ''">
+            AND wv.goods_id like concat('%',#{querMap.goodsCode},'%')
+        </if>
+        <if test="querMap.KuWeiBianMa != null and querMap.KuWeiBianMa != ''">
+            AND wv.ku_wei_bian_ma like concat('%',#{querMap.KuWeiBianMa},'%')
+        </if>
+        <if test="querMap.binId != null and querMap.binId != ''">
+            AND wv.bin_id like concat('%',#{querMap.binId},'%')
+        </if>
+        <if test="querMap.kuctype != null and querMap.kuctype != ''">
+            AND wv.kuctype like concat('%',#{querMap.kuctype},'%')
+        </if>
+
+        <if test="querMap.id != null and querMap.id != ''">
+            AND wv.id like concat('%',#{querMap.id},'%')
+        </if>
+
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND wv.tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+         GROUP BY wv.ku_wei_bian_ma ,wv.bin_id ,wv.cus_code,wv.goods_code
+     </select>
+
+
+
+    <select id="queryListTypeFxkw" resultType="com.base.modules.jeewms.entity.WvStockStt">
+        SELECT a.* FROM
+        (select
+        wv.create_time,
+        wv.create_name,
+        wv.create_by,
+        wv.id,
+        wv.kuctype,
+        wv.ku_wei_bian_ma,
+        wv.bin_id,
+        wv.cus_code,
+        wv.goods_code ,
+        wv.goods_id AS goods_id,
+        sum(wv.goods_qua) as goods_qua,
+        wv.shp_ming_cheng,
+        wv.goods_pro_data,
+        wv.goods_batch AS goods_batch,
+        wv.bzhi_qi AS bzhi_qi,
+        wv.yushoutianshu AS yushoutianshu,
+        wv.goods_unit AS goods_unit,
+        wv.stt_sta,
+        wv.move_sta,
+        wv.last_move,
+        mc.zhong_wen_qch
+        from
+        wv_stock_stt  wv
+        left join md_cus mc on wv.cus_code = mc.ke_hu_bian_ma
+        where  1=1  <!--wv.kuctype = '库存'-->
+        <if test="querMap.shpMingCheng != null and querMap.shpMingCheng != ''">
+            AND wv.shp_ming_cheng like concat('%',#{querMap.shpMingCheng},'%')
+        </if>
+        <if test="querMap.goodsCode != null and querMap.goodsCode != ''">
+            AND wv.goods_id like concat('%',#{querMap.goodsCode},'%')
+        </if>
+        <if test="querMap.KuWeiBianMa != null and querMap.KuWeiBianMa != ''">
+            AND wv.ku_wei_bian_ma like concat('%',#{querMap.KuWeiBianMa},'%')
+        </if>
+        <if test="querMap.binId != null and querMap.binId != ''">
+            AND wv.bin_id like concat('%',#{querMap.binId},'%')
+        </if>
+        <if test="querMap.kuctype != null and querMap.kuctype != ''">
+            AND wv.kuctype like concat('%',#{querMap.kuctype},'%')
+        </if>
+
+        <if test="querMap.id != null and querMap.id != ''">
+            AND wv.id like concat('%',#{querMap.id},'%')
+        </if>
+
+        <if test="querMap.tenantId != null and querMap.tenantId != ''">
+            AND wv.tenant_id like concat('%',#{querMap.tenantId},'%')
+        </if>
+       <!-- <if test="querMap.KuWeiBianMa != null and querMap.KuWeiBianMa != ''">
+            AND wv.ku_wei_bian_ma in #{querMap.KuWeiBianMa}
+        </if>-->
+        <if test="querMap.KuWeiBianMa2 != null and querMap.KuWeiBianMa2.size()!=0 ">
+            and wv.ku_wei_bian_ma in
+            <foreach collection="querMap.KuWeiBianMa2" item="item" index="index" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        GROUP BY wv.ku_wei_bian_ma ,wv.bin_id ,wv.cus_code,wv.goods_code,wv.goods_pro_data) a
+        where  1=1 and a.goods_qua > 0
+    </select>
+
+
+
+
+     <select id="queryListTypes" resultType="com.base.modules.jeewms.entity.WvStockStt">
+         SELECT a.* FROM
+         (select
+         wv.create_time,
+         wv.create_name,
+         wv.create_by,
+         wv.id,
+         wv.kuctype,
+         wv.ku_wei_bian_ma,
+         wv.bin_id,
+         wv.cus_code,
+         wv.goods_code ,
+         wv.goods_id AS goods_id,
+         sum(wv.goods_qua) as goods_qua,
+         wv.shp_ming_cheng,
+         wv.goods_pro_data,
+         wv.goods_batch AS goods_batch,
+         wv.bzhi_qi AS bzhi_qi,
+         wv.yushoutianshu AS yushoutianshu,
+         wv.goods_unit AS goods_unit,
+         wv.stt_sta,
+         wv.move_sta,
+         wv.last_move,
+         mc.zhong_wen_qch
+         from
+         wv_stock_stt  wv
+         left join md_cus mc on wv.cus_code = mc.ke_hu_bian_ma
+         where 1=1  <!--wv.kuctype = '库存'-->
+         GROUP BY wv.ku_wei_bian_ma ,wv.bin_id ,wv.cus_code,wv.goods_code,wv.goods_pro_data) a
+         where  1=1 and a.goods_qua > 0
+     </select>
+
+     <select id="queryListType1" resultType="com.base.modules.jeewms.entity.WvStockStt">
+         select
+         wv.create_time,
+         wv.create_name,
+         wv.create_by,
+         wv.id,
+         wv.kuctype,
+         wv.ku_wei_bian_ma,
+         wv.bin_id,
+         wv.cus_code,
+         wv.goods_code ,
+         wv.goods_id AS goods_id,
+         sum(wv.goods_qua) as goods_qua,
+         wv.shp_ming_cheng,
+         wv.goods_pro_data,
+         wv.goods_batch AS goods_batch,
+         wv.bzhi_qi AS bzhi_qi,
+         wv.yushoutianshu AS yushoutianshu,
+         wv.goods_unit AS goods_unit,
+         wv.stt_sta,
+         wv.move_sta,
+         wv.last_move,
+         wv.zhong_wen_qch
+         from fx_wm wv
+         where 1=1
+         <if test="querMap.shpMingCheng != null and querMap.shpMingCheng != ''">
+             AND wv.shp_ming_cheng like concat('%',#{querMap.shpMingCheng},'%')
+         </if>
+         <if test="querMap.goodsCode != null and querMap.goodsCode != ''">
+             AND wv.goods_id like concat('%',#{querMap.goodsCode},'%')
+         </if>
+         <if test="querMap.KuWeiBianMa != null and querMap.KuWeiBianMa != ''">
+             AND wv.ku_wei_bian_ma like concat('%',#{querMap.KuWeiBianMa},'%')
+         </if>
+         <if test="querMap.binId != null and querMap.binId != ''">
+             AND wv.bin_id like concat('%',#{querMap.binId},'%')
+         </if>
+         <if test="querMap.kuctype != null and querMap.kuctype != ''">
+             AND wv.kuctype like concat('%',#{querMap.kuctype},'%')
+         </if>
+
+         <if test="querMap.tenantId != null and querMap.tenantId != ''">
+             AND wv.tenant_id like concat('%',#{querMap.tenantId},'%')
+         </if>
+
+         GROUP BY wv.ku_wei_bian_ma ,wv.bin_id ,wv.goods_code
+
+     </select>
+     <select id="getStack" resultType="double">
+         SELECT
+         cast( sum( ws.base_goodscount ) AS signed ) AS goods_qua
+         FROM
+         wv_stock ws,
+         md_bin mb
+         WHERE
+         ws.ku_wei_bian_ma = mb.ku_wei_bian_ma
+         AND mb.ting_yong &lt;&gt; 'Y'
+         AND (
+         ws.kuctype = '库存'
+         OR ws.kuctype = '待下架'
+         )
+         AND ws.ku_wei_bian_ma = #{binId}
+         AND ws.bin_id = #{tinId}
+         AND ws.goods_id = #{gooodsId}
+         GROUP BY
+         ws.ku_wei_bian_ma,
+         ws.bin_id,
+         ws.goods_id,
+         mb.qu_huo_ci_xu,
+         ws.goods_pro_data
+         ORDER BY
+         ws.goods_pro_data,
+         ws.goods_qua,
+         mb.qu_huo_ci_xu,
+         ws.create_time DESC
+     </select>
+
+     <select id="pdaStockList" resultType="com.base.modules.jeewms.entity.WvStock">
+         select * from wv_stock
+        where  kuctype = '库存'
+         <if test="wvStock.kuWeiBianMa != null and  wvStock.kuWeiBianMa != ''">
+             and ku_wei_bian_ma like concat('%',#{wvStock.kuWeiBianMa},'%')
+         </if>
+         <if test="wvStock.goodsId != null and  wvStock.goodsId != ''">
+             and goods_id like concat('%',#{wvStock.goodsId},'%')
+         </if>
+         <if test="wvStock.shpMingCheng != null and  wvStock.shpMingCheng != ''">
+             and shp_ming_cheng like concat('%',#{wvStock.shpMingCheng},'%')
+         </if>
+         order by create_time desc
+         </select>
+
+     <select id="getKwByTinId" resultType="com.base.modules.jeewms.entity.WvStock">
+          select * from wv_stock where kuctype = '库存' and bin_id = #{tinId}
+     </select>
+
+     <select id="getTinIdListByBinId" resultType="com.base.modules.jeewms.entity.WvStock">
+         select * from wv_stock where kuctype = '库存' and ku_wei_bian_ma = #{binId}
+     </select>
+
+     <select id="selectKCByBinIdAndTindId" resultType="com.base.modules.jeewms.entity.WvStock">
+            select * from wv_stock where  kuctype = '库存' and ku_wei_bian_ma = #{binId} and bin_id = #{tinId} and goods_id = #{goodsId}
+     </select>
+
+     <select id="getStockByKwAndGoodsId" resultType="com.base.modules.jeewms.entity.WvStock">
+           select goods_id ,cus_code,base_goodscount ,bin_id from wv_stock where ku_wei_bian_ma = #{kwCode}
+     </select>
+
+     <select id="selectStockById" resultType="com.base.modules.jeewms.entity.WvStock">
+         select * from wv_stock where id = #{id}
+     </select>
+ </mapper>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.modules.jeewms.mapper.WmToUpGoodsMapper">
+
+
+    <select id="selectLowStockGoods" resultType="com.base.modules.jeewms.entity.MdGoods">
+        select g.shp_bian_ma,g.shp_ming_cheng,g.shp_xing_hao,g.shp_gui_ge from md_goods g left join wv_stock s on g.shp_bian_ma = s.goods_id where
+        cast(s.goods_qua as decimal ) &lt;= cast(g.down_limit as decimal ) and g.down_limit is not null
+    </select>
+</mapper>

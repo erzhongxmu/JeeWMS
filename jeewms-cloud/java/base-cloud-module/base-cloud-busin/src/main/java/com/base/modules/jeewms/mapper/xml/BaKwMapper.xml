@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.modules.jeewms.mapper.BaKwMapper">
+
+    <select id="getKwPicData" parameterType="com.base.modules.jeewms.controller.dto.KwPicDataDTO" resultType="java.util.Map">
+        select bin_store ,binid ,des ,tincount,xnode,ynode,colour,znode
+        from wv_bin_all
+        <where>
+            <if test="storeCode != null and storeCode !=''">
+                and bin_store like concat('%',#{storeCode},'%')
+            </if>
+            <if test="kwCode != null and kwCode !=''">
+                and binid like concat('%',#{kwCode},'%')
+            </if>
+            <if test="znode != null and znode !=''">
+                and znode like concat('%',#{znode},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="findBinId" parameterType="java.lang.String" resultType="java.util.Map">
+        select binid from wv_avabin
+        <where>
+            ting_yong !='Y'
+            <if test="binplantuopan != null and binplantuopan !=''">
+                and ti_ji_dan_wei <![CDATA[<=]]> #{binplantuopan}
+                and zhong_liang_dan_wei <![CDATA[>=]]> #{binplantuopan}
+            </if>
+            <if test="lastbinfenzu != null and lastbinfenzu !=''">
+                and zui_da_mian_ji = #{lastbinfenzu}
+            </if>
+            <if test="zuidatiji != null and zuidatiji !=''">
+                and zui_da_ti_ji <![CDATA[>]]> #{zuidatiji}
+            </if>
+            <if test="goodsId != null and goodsId !=''">
+                and ku_wei_shu_xing = (select cf_wen_ceng from mv_goods where goods_code = #{goodsId})
+                and LOCATE( (select chp_shu_xing from mv_goods where goods_code = #{goodsId}) ,chp_shu_xing ) != 0
+            </if>
+            <if test="cusCode != null and cusCode !=''">
+                and(suo_shu_ke_hu = '' or suo_shu_ke_hu = #{cusCode})
+            </if>
+        </where>
+        order by suo_shu_ke_hu desc, shang_jia_ci_xu,binid
+        limit 1
+    </select>
+
+    <select id="getAvlBin" resultType="com.base.modules.jeewms.vo.AvlKwVo">
+        SELECT
+	ku_wei_bian_ma kwCode,(
+	SELECT
+		i.item_text
+	FROM
+		sys_dict_item i
+		LEFT JOIN sys_dict d ON i.dict_id = d.id
+	WHERE
+		d.dict_code = 'bin_use' and i.item_value = b.bin_use
+		) kwUse,(
+	SELECT
+		IFNULL( count( DISTINCT ( bin_id )), 0 )
+	FROM
+		wv_stock
+	WHERE
+		ku_wei_bian_ma = b.ku_wei_bian_ma
+	) tinCount
+    FROM
+	md_bin b
+		where FIND_IN_SET(#{goodsType},part_type)
+    </select>
+
+    <select id="selectRecommandBin" resultType="string" >
+        SELECT
+        kwCode
+        FROM
+        (
+        SELECT
+        ku_wei_bian_ma kwCode,
+        zui_da_tuo_pan,
+        (
+        SELECT
+        IFNULL( count( DISTINCT ( bin_id )), 0 )
+        FROM
+        wv_stock
+        WHERE
+        ku_wei_bian_ma = b.ku_wei_bian_ma
+        ) tinCount
+        FROM
+        md_bin b
+        WHERE
+        FIND_IN_SET( #{goodsTypeId}, part_type )) t
+        WHERE
+        t.tinCount &lt; zui_da_tuo_pan
+                     ORDER BY
+                     t.tinCount DESC
+                     LIMIT 1
+
+    </select>
+    <select id="getStatusBaAreaByBinId" resultType="java.lang.String">
+        select a.area_status from md_bin n join ba_store_area a on n.store_area_code = a.area_code
+        where n.ku_wei_tiao_ma = #{binId}
+    </select>
+</mapper>

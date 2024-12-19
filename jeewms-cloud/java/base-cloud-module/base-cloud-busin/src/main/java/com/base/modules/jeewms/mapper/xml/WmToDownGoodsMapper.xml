@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.modules.jeewms.mapper.WmToDownGoodsMapper">
+
+	<delete id="deleteByMainId" parameterType="java.lang.String">
+		DELETE
+		FROM  wm_to_down_goods
+		WHERE
+			 order_id_i = #{mainId}
+	</delete>
+
+	<select id="selectByMainId" parameterType="java.lang.String" resultType="com.base.modules.jeewms.entity.WmToDownGoods">
+		SELECT *
+		FROM  wm_to_down_goods
+		WHERE
+			 order_id_i = #{mainId}
+	</select>
+
+	<select id="orderPicking" resultType="com.base.modules.jeewms.entity.WmToDownGoods">
+		SELECT
+			a.id,
+			a.create_name,
+			a.create_by,
+			a.create_time,
+			a.update_name,
+			a.update_by,
+			a.update_time,
+			a.sys_org_code,
+			a.sys_company_code,
+			a.goods_id,
+			a.goods_qua,
+			a.goods_quaok,
+			a.order_id,
+			a.order_id_i,
+			a.order_type,
+			a.goods_unit,
+			a.goods_pro_data,
+			a.goods_batch,
+			a.act_type_code,
+			a.ku_wei_bian_ma,
+			a.bin_id_to,
+			a.bin_id_from,
+			a.cus_code,
+			a.down_sta,
+			a.base_unit,
+			a.base_goodscount,
+			a.goods_name,
+			a.im_cus_code,
+			a.om_bei_zhu,
+			a.confirmation_date,
+			a.tenant_id,
+			a.remark,
+			a.remarks,
+			a.cus_name,
+			a.paren_id,
+			CONCAT(b.tin_length,'*',b.tin_width,'*',b.tin_high,'CM') as tin_volume,
+			b.tin_weight as tin_weight,
+			c.u8_djcode1 as u8_djcode1
+		FROM
+			Wm_To_Down_Goods a
+			INNER join wm_tuopan b on b.tin_id = a.bin_id_to
+			INNER join wm_om_notice_h c on c.om_notice_id = a.order_id
+		<if test="querymap.goods_id != null and querymap.goods_id != ''">
+			and a.goods_id like concat('%',#{querymap.goods_id},'%')
+		</if>
+
+		<if test="querymap.order_id != null and querymap.order_id != ''">
+			and a.order_id like concat('%',#{querymap.order_id},'%')
+		</if>
+
+		<if test="querymap.bin_id_to != null and querymap.bin_id_to != ''">
+			and a.bin_id_to like concat('%',#{querymap.bin_id_to},'%')
+		</if>
+
+		<if test="querymap.bin_id_from != null and querymap.bin_id_from != ''">
+			and a.bin_id_from like concat('%',#{querymap.bin_id_from},'%')
+		</if>
+
+		<if test="querymap.goods_batch != null and querymap.goods_batch != ''">
+			and a.goods_batch like concat('%',#{querymap.goods_batch},'%')
+		</if>
+
+		<if test="querymap.u8_djcode1 != null and querymap.u8_djcode1 != ''">
+			and c.u8_djcode1 like concat('%',#{querymap.u8_djcode1},'%')
+		</if>
+
+		<if test="querymap.goods_name != null and querymap.goods_name != ''">
+			and a.goods_name like concat('%',#{querymap.goods_name},'%')
+		</if>
+
+		<if test="querymap.column != null and querymap.column != ''">
+			ORDER BY
+			${querymap.column} ${querymap.order}
+		</if>
+
+	</select>
+</mapper>

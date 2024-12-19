@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>base-cloud-module</artifactId>
+        <groupId>com.base.boot</groupId>
+        <version>2.4.6</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>base-cloud-system-start</artifactId>
+    <description>System项目微服务启动</description>
+
+    <dependencies>
+        <!-- 引入base-boot-starter-cloud依赖 -->
+        <dependency>
+            <groupId>com.base.boot</groupId>
+            <artifactId>base-boot-starter-cloud</artifactId>
+            <!--system模块需要排除base-system-cloud-api-->
+            <exclusions>
+                <exclusion>
+                    <groupId>com.base.boot</groupId>
+                    <artifactId>base-system-cloud-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- 引入base-boot-module-system依赖 -->
+        <dependency>
+            <groupId>com.base.boot</groupId>
+            <artifactId>base-boot-module-system</artifactId>
+        </dependency>
+
+        <!--rabbitmq消息队列-->
+        <!--<dependency>
+            <groupId>com.base.boot</groupId>
+            <artifactId>base-boot-starter-rabbitmq</artifactId>
+        </dependency>-->
+        <!--xxl-job定时任务-->
+        <dependency>
+            <groupId>com.base.boot</groupId>
+            <artifactId>base-boot-starter-job</artifactId>
+        </dependency>
+        <!-- 分布式锁依赖 -->
+        <dependency>
+            <groupId>com.base.boot</groupId>
+            <artifactId>base-boot-starter-lock</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

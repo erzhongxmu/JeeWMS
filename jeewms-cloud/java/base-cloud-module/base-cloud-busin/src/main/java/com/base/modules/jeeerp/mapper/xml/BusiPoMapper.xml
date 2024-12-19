@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.modules.jeeerp.mapper.BusiPoMapper">
+    <select id="MakeOutAnInvoiceData" resultType="com.base.modules.jeeerp.vo.BusiPoPage">
+        SELECT * from v_oms_po_wq
+    </select>
+
+
+
+    <select id="selectTotalMoneyList" resultType="com.base.modules.jeeerp.vo.BusiPoPage">
+        SELECT
+        query09 as query01,
+        query22 as query02,
+        query01 as query03
+        FROM
+        busi_po
+        WHERE (query01 = 'CGD' or query01 = 'YP')
+        <if test="querymap.query01 != null and querymap.query01 != ''">
+            and query09 = #{querymap.query01}
+        </if>
+
+        <if test="querymap.query02 != null and querymap.query02 != ''">
+            and query22 = #{querymap.query02}
+        </if>
+
+        <if test="querymap.query03 != null and querymap.query03 != ''">
+            and query01 = #{querymap.query03}
+        </if>
+        GROUP BY query08,query22,query01
+    </select>
+
+
+
+    <select id="selectTotalMoneyList2" resultType="com.base.modules.jeeerp.vo.BusiPoPage">
+        SELECT
+        query09 as query01,
+        query22 as query02,
+        IF(query01 = 'CGD','大货','样品') as query03,
+        SUM(num09) as query04
+        FROM
+        busi_po
+        WHERE 1=1
+        <if test="querymap.query01 != null and querymap.query01 != ''">
+            and query09 = #{querymap.query01}
+        </if>
+
+        <if test="querymap.query02 != null and querymap.query02 != ''">
+            and query22 = #{querymap.query02}
+        </if>
+
+        <if test="querymap.query03 != null and querymap.query03 != ''">
+            and query01 = #{querymap.query03}
+        </if>
+
+        <if test="querymap.query04 != null and querymap.query04 != ''">
+            and DATE_FORMAT( create_time, '%Y' ) = #{querymap.query04}
+        </if>
+        GROUP BY query08,query22,query01
+</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--查询客户年金额-->
+    <select id="selectTotalMoneyListKH" resultType="com.base.modules.jeeerp.vo.BusiPoPage">
+        SELECT
+        b.zhong_wen_qch as query01,
+        a.query22 as query02,
+        a.query01 as query03
+        FROM
+        busi_po a
+        LEFT JOIN md_cus b ON b.ke_hu_bian_ma = a.query24
+        WHERE (a.query01 = 'CGD' or a.query01 = 'YP')
+        <if test="querymap.query01 != null and querymap.query01 != ''">
+            and b.zhong_wen_qch = #{querymap.query01}
+        </if>
+
+        <if test="querymap.query02 != null and querymap.query02 != ''">
+            and a.query22 = #{querymap.query02}
+        </if>
+
+        <if test="querymap.query03 != null and querymap.query03 != ''">
+            and a.query01 = #{querymap.query03}
+        </if>
+        GROUP BY a.query24,a.query22,a.query01
+    </select>
+
+    <select id="selectTotalMoneyList2KH" resultType="com.base.modules.jeeerp.vo.BusiPoPage">
+        SELECT
+        b.zhong_wen_qch as query01,
+        a.query22 as query02,
+        IF(query01 = 'CGD','大货','样品') as query03,
+        SUM(num09) as query04
+        FROM
+        busi_po a
+        LEFT JOIN md_cus b ON b.ke_hu_bian_ma = a.query24
+        WHERE 1=1
+        <if test="querymap.query01 != null and querymap.query01 != ''">
+            and b.zhong_wen_qch = #{querymap.query01}
+        </if>
+
+        <if test="querymap.query02 != null and querymap.query02 != ''">
+            and a.query22 = #{querymap.query02}
+        </if>
+
+        <if test="querymap.query03 != null and querymap.query03 != ''">
+            and a.query01 = #{querymap.query03}
+        </if>
+
+        <if test="querymap.query04 != null and querymap.query04 != ''">
+            and DATE_FORMAT( a.create_time, '%Y' ) = #{querymap.query04}
+        </if>
+        GROUP BY a.query24,a.query22,a.query01
+    </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--采购每日产品跟进统计表-->
+    <select id="canPinGenJinTongJi" resultType="com.base.modules.jeeerp.vo.BusiQueryPage">
+        SELECT
+        a.query16 as query01,
+        a.query31 as query02,
+        IFNULL(CASE WHEN a.query01 = 'YP' THEN IFNULL( COUNT(*), 0 ) END,'0') AS query03,
+        IFNULL(CASE WHEN a.query01 = 'CGD' THEN IFNULL( COUNT(*), 0 ) END,'0') AS query04,
+        DATE(a.create_time) as query05
+        FROM
+        (SELECT * from	busi_po GROUP BY query10) a
+        WHERE 1=1
+        <if test="querymap.query01 != null and querymap.query01 != ''">
+            and a.query16 = #{querymap.query01}
+        </if>
+        <if test="querymap.query02 != null and querymap.query02 != ''">
+            and a.query31 = #{querymap.query02}
+        </if>
+        <if test="querymap.query03 != null and querymap.query03 != ''">
+            and DATE(a.create_time) BETWEEN #{querymap.query03} and  #{querymap.query04}
+        </if>
+        GROUP BY a.query16,a.query31,DATE(  a.create_time )
+    </select>
+    <!--采购每日订单量统计表-->
+    <select id="chaXunMeiTianDingDan" resultType="com.base.modules.jeeerp.vo.BusiQueryPage">
+        SELECT
+        a.query16 as query01,
+        a.query31 as query02,
+        IFNULL(CASE WHEN a.query01 = 'YP' THEN IFNULL( COUNT(*), 0 ) END,'0') AS query03,
+        IFNULL(CASE WHEN a.query01 = 'CGD' THEN IFNULL( COUNT(*), 0 ) END,'0') AS query04,
+        DATE(a.create_time) as query05
+        FROM
+        (SELECT * from	busi_po GROUP BY query13) a
+        WHERE 1=1
+        <if test="querymap.query01 != null and querymap.query01 != ''">
+            and a.query16 = #{querymap.query01}
+        </if>
+        <if test="querymap.query02 != null and querymap.query02 != ''">
+            and a.query31 = #{querymap.query02}
+        </if>
+        <if test="querymap.query03 != null and querymap.query04 != ''">
+            and DATE(a.create_time) BETWEEN #{querymap.query03} and  #{querymap.query04}
+        </if>
+        GROUP BY a.query16,a.query31,DATE(  a.create_time )
+    </select>
+    <!--箱出库详情-->
+    <select id="XiangChuKuXiangQing" resultType="com.base.modules.jeeerp.vo.BusiQueryPage">
+        SELECT
+        h.u8_djcode1 as query01,
+        s.goods_batch as query02,
+        h.cus_name as query03,
+        s.goods_id as query04,
+        s.goods_name as query05,
+        w.tin_id as query06,
+        s.base_goodscount as query07,
+        s.goods_unit as query08,
+        CONCAT(w.tin_length,'*',w.tin_width,'*',w.tin_high,'CM') as query09,
+        w.tin_weight as query10,
+        s.create_TIME as query11,
+        s.order_id as query12
+        FROM
+        wm_to_down_goods s
+        LEFT JOIN wm_tuopan as w ON w.tin_id = s.bin_id_to
+        LEFT JOIN wm_om_notice_h as h ON h.om_notice_id = s.order_id
+        WHERE
+        s.bin_id_to is not null
+        and s.bin_id_to != 'PK'
+        and (s.remarks != 'FXKW' or s.remarks  is null)
+
+        <if test="querymap.query01 != null and querymap.query01 != ''">
+            and s.goods_id like concat('%',#{querymap.query01},'%')
+        </if>
+
+        <if test="querymap.query02 != null and querymap.query02 != ''">
+            and s.goods_name like concat('%',#{querymap.query02},'%')
+        </if>
+        <if test="querymap.query03 != null and querymap.query03 != ''">
+            and h.u8_djcode1 like concat('%',#{querymap.query03},'%')
+        </if>
+        <if test="querymap.query04 != null and querymap.query04 != ''">
+            and s.goods_batch like concat('%',#{querymap.query04},'%')
+        </if>
+        <if test="querymap.query05 != null and querymap.query05 != ''">
+            and s.order_id like concat('%',#{querymap.query05},'%')
+        </if>
+        <if test="querymap.query06 != null and querymap.query06 != ''">
+            and h.cus_name like concat('%',#{querymap.query06},'%')
+        </if>
+        <if test="querymap.query07 != null and querymap.query07 != ''">
+            and DATE(s.create_TIME) BETWEEN #{querymap.query07} and  #{querymap.query08}
+        </if>
+
+        ORDER BY
+        ${querymap.query18} ${querymap.query19}
+    </select>
+
+    <select id="huokuanzhichu" resultType="com.base.modules.jeeerp.vo.BusiQueryPage">
+        SELECT
+	a.query13 AS query01,
+	b.zhong_wen_qch AS query02,
+	b.xing_ye_fen_lei AS query03,
+	a.query08 AS query04,
+	IFNULL(a.num10, 0 ) AS query05,
+	a.num09 AS query06,
+	IFNULL(SUM( c.num09 ), 0 ) AS query07,
+	a.num09 - IFNULL(SUM( c.num09 ), 0 ) AS query08,
+	a.create_time AS query09,
+	SUM(a.num03) AS query10
+FROM
+	(SELECT * FROM busi_po  GROUP BY query13 ) a
+	LEFT JOIN md_cus b ON a.query24 = b.ke_hu_bian_ma
+	LEFT JOIN (SELECT  * FROM busi_payment_received WHERE query01 = 'FKD') c ON a.query13 = c.query13
+        WHERE 1+1
+        <if test="querymap.query01 != null and querymap.query01 != ''">
+            and a.query13 like #{querymap.query01}
+        </if>
+        <if test="querymap.query02 != null and querymap.query02 != ''">
+            and b.zhong_wen_qch like #{querymap.query02}
+        </if>
+        <if test="querymap.query03 != null and querymap.query03 != ''">
+            and b.xing_ye_fen_lei like #{querymap.query03}
+        </if>
+        <if test="querymap.query04 != null and querymap.query04 != ''">
+            and a.query08 like #{querymap.query04}
+        </if>
+        <if test="querymap.query05 != null and querymap.query06 != ''">
+            and DATE(a.create_time) BETWEEN #{querymap.query05} and  #{querymap.query06}
+        </if>
+GROUP BY
+	a.query13
+
+	HAVING
+	(
+	`query08` > 0)
+    </select>
+
+
+    <select id="rukumingxi" resultType="com.base.modules.jeeerp.vo.BusiQueryPage">
+        select
+    i.contractlno as query01,
+    mc.zhong_wen_qch as query02,
+    h.im_sta as query03,
+    i.goods_code as query04,
+    i.goods_name as query05,
+    i.goods_count as query06,
+    i.goods_qm_count as query07,
+    i.goods_unit as query08,
+    h.notice_id as query09,
+    DATE(i.create_time) as query10
+    from
+    wm_im_notice_i i
+    LEFT JOIN wm_im_notice_h h on  i.im_notice_id = h.notice_id
+    LEFT JOIN md_cus mc on h.cus_code =  mc.ke_hu_bian_ma
+        WHERE 1=1
+        <if test="querymap.query01 != null and querymap.query01 != ''">
+            and i.contractlno like concat('%',#{querymap.query01},'%')
+        </if>
+        <if test="querymap.query02 != null and querymap.query02 != ''">
+            and mc.zhong_wen_qch like concat('%',#{querymap.query02},'%')
+        </if>
+        <if test="querymap.query03 != null and querymap.query03 != ''">
+            and h.im_sta like concat('%',#{querymap.query03},'%')
+        </if>
+        <if test="querymap.query04 != null and querymap.query04 != ''">
+            and i.goods_code like concat('%',#{querymap.query04},'%')
+        </if>
+        <if test="querymap.query05 != null and querymap.query05 != ''">
+            and i.goods_name like concat('%',#{querymap.query05},'%')
+        </if>
+        <if test="querymap.query06 != null and querymap.query06 != ''">
+            and h.notice_id like concat('%',#{querymap.query06},'%')
+        </if>
+        <if test="querymap.query07 != null and querymap.query07 != ''">
+            and DATE(i.create_time) BETWEEN #{querymap.query07} and  #{querymap.query08}
+        </if>
+    order by h.create_time desc
+    </select>
+
+
+
+
+
+
+
+    <select id="selectPOquery02" resultType="com.base.modules.jeeerp.entity.BusiPo">
+        SELECT
+            a.id as id,
+            a.query13 as query13,
+            a.query02 as query02,
+            a.num01 as num01,
+             SUM(a.num02) AS num02,
+             a.num03 as num03
+        FROM
+            busi_po a
+            WHERE a.query02 != '已取消' and a.query02 != '已完成' and query01 = 'CGD'
+            GROUP BY  a.query13
+            HAVING num02 = 0
+    </select>
+
+    <select id="selectPOquery03" resultType="com.base.modules.jeeerp.entity.BusiPo">
+        SELECT
+            a.id as id,
+            a.query13 as query13,
+            a.query02 as query02,
+            a.num01 as num01,
+             SUM(a.num02) AS num02,
+             a.num03 as num03
+        FROM
+            busi_po a
+            WHERE a.query02 != '已取消' and a.query02 = '已完成' and query01 = 'CGD'
+            GROUP BY  a.query13
+            HAVING num02 != 0
+    </select>
+</mapper>

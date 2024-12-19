@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.modules.jeewms.mapper.WmSttInGoodsMapper">
+
+    <select id="differentPageList" resultType="com.base.modules.jeewms.entity.WmSttInGoods">
+        select bin_id,
+        tin_id,
+        goods_id,
+        goods_name,
+        goods_qua,
+        goods_unit,
+        goods_pro_data,
+        goods_batch,
+        stt_qua,
+        cus_name,
+        cus_code,
+        stt_sta,
+        base_unit,
+        base_goodscount,
+        stt_id,
+        goods_code,
+        stt_type,
+        dong_xian
+        from wm_stt_in_goods
+        where stt_qua &lt;&gt; goods_qua and stt_sta = '已完成'
+        <if test="wmSttInGoods.binId != null and wmSttInGoods.binId != ''">
+            and bin_id like concat('%',#{wmSttInGoods.binId},'%')
+        </if>
+        <if test="wmSttInGoods.tinId != null and wmSttInGoods.tinId != ''">
+            and tin_id like concat('%',#{wmSttInGoods.tinId},'%')
+        </if>
+        <if test="wmSttInGoods.goodsId != null and wmSttInGoods.goodsId != ''">
+            and goods_id like concat('%',#{wmSttInGoods.goodsId},'%')
+        </if>
+        <if test="wmSttInGoods.goodsName != null and wmSttInGoods.goodsName != ''">
+            and goods_name like concat('%',#{wmSttInGoods.goodsName},'%')
+        </if>
+        <if test="wmSttInGoods.goodsProData != null and wmSttInGoods.goodsProData != ''">
+            and goods_pro_data =#{wmSttInGoods.goodsProData}
+        </if>
+        <if test="wmSttInGoods.goodsBatch != null and wmSttInGoods.goodsBatch != ''">
+            and goods_batch like concat('%',#{wmSttInGoods.goodsBatch},'%')
+        </if>
+        <if test="wmSttInGoods.cusName != null and wmSttInGoods.cusName != ''">
+            and cus_name like concat('%',#{wmSttInGoods.cusName},'%')
+        </if>
+        <if test="wmSttInGoods.cusCode != null and wmSttInGoods.cusCode != ''">
+            and cus_code like concat('%',#{wmSttInGoods.cusCode},'%')
+        </if>
+        <if test="wmSttInGoods.sttSta != null and wmSttInGoods.sttSta != ''">
+            and stt_sta like concat('%',#{wmSttInGoods.sttSta},'%')
+        </if>
+    </select>
+</mapper>

@@ -1,0 +1,16 @@
+/** [表格主题样式一] 表格强制列不换行 */
+.j-table-force-nowrap {
+  td, th {
+    white-space: nowrap;
+    padding: 5px 5px !important;
+  }
+
+  .ant-table-selection-column {
+    padding: 1px 22px !important;
+  }
+
+  /** 列自适应，弊端会导致列宽失效 */
+  &.ant-table-wrapper .ant-table-content {
+    overflow-x: auto;
+  }
+}

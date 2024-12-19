@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.modules.jeeerp.mapper.BusiPoItemMapper">
+
+	<delete id="deleteByMainId" parameterType="java.lang.String">
+		DELETE
+		FROM  busi_po_item
+		WHERE
+			 link02 = #{mainId} 	</delete>
+
+	<delete id="deleteByMainIdItem" parameterType="java.lang.String">
+		DELETE
+		FROM  busi_po_item
+		WHERE
+			 query04 = #{mainId} 	</delete>
+
+	<select id="selectByMainId" parameterType="java.lang.String" resultType="com.base.modules.jeeerp.entity.BusiPoItem">
+		SELECT *
+		FROM  busi_po_item
+		WHERE
+			 link02 = #{mainId} 	</select>
+
+</mapper>

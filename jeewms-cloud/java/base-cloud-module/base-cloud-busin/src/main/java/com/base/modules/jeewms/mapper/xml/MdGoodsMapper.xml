@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.modules.jeewms.mapper.MdGoodsMapper">
+
+
+    <select id="queryDictItemsByCode" parameterType="String"  resultType="org.jeecg.common.system.vo.DictModel">
+		   select s.item_value as "value",s.item_text as "text" from sys_dict_item s
+		   where dict_id = (select id from sys_dict where dict_code = #{code})
+		   order by s.sort_order asc
+	</select>
+
+    <select id="queryTableDictItemsByCode" parameterType="String"  resultType="org.jeecg.common.system.vo.DictModel">
+		   select ${text} as "text",${code} as "value" from ${table}
+	</select>
+    <select id="stockQuery" resultType="com.base.modules.jeewms.entity.WmsToShopStock">
+		SELECT
+		/*t.kuctype as stockType,*/
+		sum(t.num) as stock,
+		t.cus_code as cusCode,
+		t.goods_id as skuId,
+		t.shp_ming_cheng as goodsName,
+		t.ku_wei_bian_ma as stockCode,
+		(CASE WHEN bsa.area_status = 'Y' then '良品' else '次品' end ) as goodsType,
+		CASE
+		WHEN t.num &lt; g.min_stock THEN '警告' ELSE '正常' END AS min_warn, CASE WHEN t.num &gt; g.max_stock THEN
+		'警告' ELSE '正常'
+		END AS max_warn
+		FROM
+		( SELECT sum( base_goodscount ) num, cus_code, goods_id, shp_ming_cheng,ku_wei_bian_ma FROM wv_stock_base GROUP BY goods_id, cus_code,ku_wei_bian_ma ) t
+		LEFT JOIN md_goods g ON t.goods_id = g.shp_bian_ma
+		join md_bin mb on mb.ku_wei_bian_ma = t.ku_wei_bian_ma
+		join ba_store_area bsa on bsa.area_code = mb.store_area_code
+		<where>
+			<if test="skuIds !=null">
+				t.goods_id in (
+				<foreach collection="skuIds" item="skuId" index="index" separator=",">
+					#{skuId}
+				</foreach>)
+			</if>
+		</where>
+		group by t.goods_id,bsa.area_status
+	</select>
+</mapper>
