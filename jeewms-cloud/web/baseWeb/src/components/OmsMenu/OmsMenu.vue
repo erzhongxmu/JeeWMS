@@ -11,7 +11,7 @@
       <router-link :to="{name:'dashboard'}"/>
         <!-- <h1><img src="../../assets/ShipporoLogo.png" alt=""></h1> -->
         <!-- <span>{{$t('operate') }}</span> -->
-        <span>OMS操作系统</span>
+        <span>JeeWMS-CLOUD</span>
         <!-- <span>Shipporo</span> -->    
     </div>
     <s-menu
