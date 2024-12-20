@@ -56,10 +56,7 @@ Vue.prototype.$config=configService;
 // toast
 Vue.prototype.modal = modal;
 
-/* 
-* 传给后端判断是什么项目
-* SW: 广西双维，GS：国声声学，PLTN：普拉提诺
-*/
+
 
 Vue.prototype.PROJECT = 'PLTN'
 Vue.prototype.$systemType = 2; // 1-旧版  2-增鑫
@@ -72,7 +69,7 @@ Vue.prototype.$systemType = 2; // 1-旧版  2-增鑫
 
 
 // request请求
-import { http } from '@/common/service/service.js' 
+import { http } from '@/common/service/service.js'
 Vue.prototype.$http = http
 
 import home from './pages/home/home.vue'
@@ -125,7 +122,7 @@ const app = new Vue({
 
 
 
- 
+
 
 
 
