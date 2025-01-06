@@ -151,7 +151,7 @@ public class DataBaseServiceImpl extends CommonServiceImpl implements DataBaseSe
 							newV = new SimpleDateFormat("yyyy-MM-dd").parse(dateStr);
 						} else if (dateStr.indexOf(":") > 0 && dateStr.length() == 19) {
 							newV =  new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dateStr);
-						} 
+						}
 						/*String dateType = fieldConfig.getShowType();
 						if("datetime".equalsIgnoreCase(dateType)){
 							newV =  new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(String.valueOf(beforeV));
@@ -222,13 +222,13 @@ public class DataBaseServiceImpl extends CommonServiceImpl implements DataBaseSe
 			}
 		}
 
-		if(id instanceof java.lang.String){
-			sqlBuffer.append(" where id='").append(id).append("'");
-		}else{
-			sqlBuffer.append(" where id=").append(id);
-		}
+		// 使用参数化查询处理 id
+		sqlBuffer.append(" where id = :id");
 		CgFormHeadEntity cgFormHeadEntity = cgFormFieldService.getCgFormHeadByTableName(tableName);
-		int num = this.executeSql(sqlBuffer.toString(), data);
+		// 将 id 放入参数 Map 中
+		Map<String, Object> param = new HashMap<>(data);
+		param.put("id", id);
+		int num = this.executeSql(sqlBuffer.toString(), param);
 
 		if(cgFormHeadEntity!=null){
 
@@ -668,12 +668,12 @@ public class DataBaseServiceImpl extends CommonServiceImpl implements DataBaseSe
 					logger.error(e.getMessage());
 					e.printStackTrace();
 					throw new BusinessException("执行JAVA增强出现异常！");
-				} 
+				}
 			}
 
 		}
 	}
-	
+
 	public CgformEnhanceJavaEntity getCgformEnhanceJavaEntityByCodeFormId(String buttonCode, String formId) {
 		StringBuilder hql = new StringBuilder("");
 		hql.append(" from CgformEnhanceJavaEntity t");

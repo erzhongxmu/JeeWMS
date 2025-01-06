@@ -947,7 +947,8 @@ public abstract class GenericBaseCommonDao<T, PK extends Serializable>
 
 	@Override
     public Integer executeSql(String sql, Map<String, Object> param) {
-		return this.namedParameterJdbcTemplate.update(sql, param);
+		MapSqlParameterSource parameterSource = new MapSqlParameterSource(param);
+		return namedParameterJdbcTemplate.update(sql, parameterSource);
 	}
 	@Override
     public Object executeSqlReturnKey(final String sql, Map<String, Object> param) {
@@ -1041,11 +1042,11 @@ public abstract class GenericBaseCommonDao<T, PK extends Serializable>
     @SuppressWarnings({ "unchecked",})
 	public <T> List<T> executeProcedure(String executeSql,Object... params) {
 		SQLQuery sqlQuery = getSession().createSQLQuery(executeSql);
-		
+
 		for(int i=0;i<params.length;i++){
 			sqlQuery.setParameter(i, params[i]);
 		}
-		
+
 		return sqlQuery.list();
 	}
 
