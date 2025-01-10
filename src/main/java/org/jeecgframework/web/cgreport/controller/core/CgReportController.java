@@ -39,7 +39,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 /**
  *
- * @Title:CgReportController
+ * @Title: CgReportController
  * @description:动态报表展示控制器
  * @author 赵俊夫
  * @date Jul 29, 2013 9:39:40 PM

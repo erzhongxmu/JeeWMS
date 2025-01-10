@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.jeecgframework.web.cgreport.dao.core.CgReportDao;
 import org.jeecgframework.web.cgreport.entity.core.CgreportConfigHeadEntity;
@@ -102,22 +104,38 @@ public class CgReportServiceImpl extends CommonServiceImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	private String getFullSql(String sql,Map params){
+		// 提取sql中的order by部分，在下面追加到SQL结尾
+		String orderBy = "";
+		Pattern p = Pattern.compile("order +by.*", Pattern.CASE_INSENSITIVE);
+		Matcher m = p.matcher(sql);
+		if(m.find()) {
+			orderBy = " " + m.group();
+			sql = sql.replace(orderBy, "");
+		}
+
 		StringBuilder sqlB =  new StringBuilder();
 		sqlB.append("SELECT t.* FROM ( ");
-		sqlB.append(sql+" ");
+		sqlB.append(sql + " ");
 		sqlB.append(") t ");
 		if (params.size() >= 1) {
 			sqlB.append("WHERE 1=1  ");
-			Iterator it = params.keySet().iterator();
+			List<Object> paramValues = new ArrayList<>();
+			Iterator<String> it = params.keySet().iterator();
 			while (it.hasNext()) {
-				String key = String.valueOf(it.next());
-				String value = String.valueOf(params.get(key));
-				if (!StringUtil.isEmpty(value) && !"null".equals(value)) {
-						sqlB.append(" AND ");
-						sqlB.append(" " + key +  value );
+				String key = it.next();
+				Object valueObj = params.get(key);
+				String value = (valueObj!= null)? valueObj.toString() : "";
+				if (!StringUtil.isEmpty(value) &&!"null".equals(value)) {
+					sqlB.append(" AND ").append(key).append(" =? ");
+					paramValues.add(valueObj);
 				}
 			}
+			// 将参数占位符添加完毕后，追加orderBy部分
+			sqlB.append(orderBy);
+			// 直接返回构建好的、采用参数绑定形式的SQL语句
+			return sqlB.toString();
 		}
+		sqlB.append(orderBy);
 		return sqlB.toString();
 	}
 	@Override
