@@ -330,40 +330,25 @@ export default {
     initDictConfig() {},
     loadData(arg) {
       if (!this.url.list) {
-        this.$message.error('请设置 url.list 属性!');
-        return;
+        this.$message.error('请设置url.list属性!')
+        return
       }
-      // 加载数据，若传入参数 1 则加载第一页的内容
+      //加载数据 若传入参数1则加载第一页的内容
       if (arg === 1) {
-        this.ipagination.current = 1;
+        this.ipagination.current = 1
       }
-      this.onClearSelected();
-      var params = this.getQueryParams(); // 查询条件
-      this.loading = true;
-      getAction(this.url.list, params)
-        .then((res) => {
-          if (res.success) {
-            if (res.result && res.result.records) {
-              this.dataSource = res.result.records;
-              this.ipagination.total = res.result.total;
-            } else {
-              // 处理结果集为空的情况
-              this.dataSource = [];
-              this.ipagination.total = 0;
-              this.$message.warning('未查询到相关数据');
-            }
-          } else {
-            // 处理请求成功但操作失败的情况
-            this.$message.warning(this.$t('操作失败'));
-          }
-          this.loading = false;
-        })
-        .catch((error) => {
-          // 处理请求异常的情况
-          console.error('请求发生异常:', error);
-          this.loading = false;
-          this.$message.error('数据请求失败');
-        });
+      var params = this.getQueryParams() //查询条件
+      this.loading = true
+      getAction(this.url.list, params).then(res => {
+        if (res.success) {
+          this.dataSource = res.result.records
+          this.ipagination.total = res.result.total
+        }
+        if (res.code === 510) {
+          this.$message.warning(this.$t('操作失败'))
+        }
+        this.loading = false
+      })
     },
     onChangeDate(val) {
       this.queryParam.lastMove_begin1 = moment(val[0]).format('YYYY-MM-DD')
