@@ -60,12 +60,12 @@ public class CostTask {
 
 	//@Scheduled(cron = "0 */1 * * * ?")
 	//@Scheduled(cron = "0 0 * * * ?")
-	//@Scheduled(cron="0 0/1 * * * ?")
+	@Scheduled(cron="0 0/1 * * * ?")
 	public void run1() {
 		String key ="xjdsrwht";
 			System.out.println("下架定时任务开始执行：=====" + new Date());
 			try{
-				String redisvalue = redisUtil.get(key).toString();
+				String redisvalue = (String)redisUtil.get(key);
 				if(com.alibaba.csp.sentinel.util.StringUtil.isNotEmpty(redisvalue))  {
 					System.out.println("上次下架定时任务还未结束：=====" + new Date());
 					return;

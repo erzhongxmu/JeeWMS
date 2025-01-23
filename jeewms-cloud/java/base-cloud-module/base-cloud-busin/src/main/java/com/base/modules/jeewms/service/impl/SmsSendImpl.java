@@ -401,7 +401,7 @@ public class SmsSendImpl {
         try {// 生成下架任务
                 System.out.println("下架定时任务开始执行：=====" + new Date());
                 try {
-                    String redisvalue = redisUtil.get(key).toString();
+                    String redisvalue = (String)redisUtil.get(key);
                     if (StringUtil.isNotEmpty(redisvalue)) {
                         System.out.println("上次下架定时任务还未结束：=====" + new Date());
                         return;
