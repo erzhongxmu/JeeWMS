@@ -9,7 +9,9 @@
   ├─ 智能制造平台 JEEMES 已开源 (https://gitee.com/erzhongxmu/jeemes)  
   ├─ Android移动端开源仓库 [JeeWMSapp-uni](https://gitee.com/erzhongxmu/JeeWMSapp-uni)  
   └─ 在线体验环境：http://47.113.229.131:9080/jeewms (admin/llg123)
+- **生态伙伴**： 
 
+![输入图片说明](%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20250226182400.png)[输入链接说明](https://ccflow.org/)
 ---
 
 #### **✧ 价值主张**
