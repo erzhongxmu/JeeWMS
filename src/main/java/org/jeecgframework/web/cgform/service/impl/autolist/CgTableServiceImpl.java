@@ -70,14 +70,35 @@ public class CgTableServiceImpl extends CommonServiceImpl implements CgTableServ
                                                  String sort, String order, int page, int rows) {
 		StringBuilder sqlB = new StringBuilder();
 		dealQuerySql(table,field,params,sqlB);
-		if(!StringUtil.isEmpty(sort)&& !StringUtil.isEmpty(order)){
-			sqlB.append(" ORDER BY "+sort+" "+ order);
+		// 对 sort 和 order 进行安全过滤
+		sort = sanitizeSort(sort);
+		order = sanitizeOrder(order);
+		if (!StringUtil.isEmpty(sort) && !StringUtil.isEmpty(order)) {
+			sqlB.append(" ORDER BY ").append(sort).append(" ").append(order);
 		}
 		List<Map<String, Object>> result = commonService.findForJdbcParam(sqlB
 				.toString(), page, rows);
 		return result;
 	}
 
+	private String sanitizeSort(String sort) {
+		if (sort == null) {
+			return null;
+		}
+		if (sort.matches("[a-zA-Z0-9_]+")) {
+			return sort;
+		}
+		return null;
+	}
+	private String sanitizeOrder(String order) {
+		if (order == null) {
+			return null;
+		}
+		if ("ASC".equalsIgnoreCase(order) || "DESC".equalsIgnoreCase(order)) {
+			return order.toUpperCase();
+		}
+		return null;
+	}
 	@Override
     @SuppressWarnings("unchecked")
 
