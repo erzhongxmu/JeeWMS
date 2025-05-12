@@ -89,6 +89,7 @@ D --> G[动态SQL引擎]
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/1016/070614_dad8bb5b_544004.png "ysd.png")![输入图片说明](%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20250512130436.png)
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/1016/070625_7ab42b77_544004.png "货品ID.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/1016/070641_343c5b31_544004.png "拣货单.png")
+![输入图片说明](DOC/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20250512130436.png)
 ![输入图片说明](DOC/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20250512131643.png)
 ![输入图片说明](DOC/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20250512131811.png)
 ![输入图片说明](DOC/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20250512131834.png)
