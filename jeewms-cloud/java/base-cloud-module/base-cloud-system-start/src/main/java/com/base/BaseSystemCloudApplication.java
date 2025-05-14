@@ -31,6 +31,7 @@ public class BaseSystemCloudApplication extends SpringBootServletInitializer {
         return application.sources(BaseSystemCloudApplication.class);
     }
 
+
     public static void main(String[] args) throws UnknownHostException {
         ConfigurableApplicationContext application = SpringApplication.run(BaseSystemCloudApplication.class, args);
         Environment env = application.getEnvironment();
