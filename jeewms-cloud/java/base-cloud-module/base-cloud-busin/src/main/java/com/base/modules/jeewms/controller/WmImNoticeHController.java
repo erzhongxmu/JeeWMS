@@ -1101,7 +1101,7 @@ public class WmImNoticeHController extends JeecgController<WmImNoticeH, IWmImNot
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String[] ids = id.split(",");
             for (String s : ids) {
-                HashMap<String,String> map1 = new HashMap<>();
+                HashMap<String,String> map1 = new HashMap<>(1024);
                 if(type.equals("xiangmai") || type.equals("rk")){
                     if(pageType.equals("DHSH")){
                         WmImNoticeI   wmImNoticeI = wmImNoticeIService.getById(s);

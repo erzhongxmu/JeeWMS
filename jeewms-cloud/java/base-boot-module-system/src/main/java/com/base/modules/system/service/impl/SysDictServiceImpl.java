@@ -68,7 +68,7 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 	@Override
 	public Map<String, List<DictModel>> queryDictItemsByCodeList(List<String> dictCodeList) {
 		List<DictModelMany> list = sysDictMapper.queryDictItemsByCodeList(dictCodeList);
-		Map<String, List<DictModel>> dictMap = new HashMap<>();
+		Map<String, List<DictModel>> dictMap = new HashMap<>(1024);
 		for (DictModelMany dict : list) {
 			List<DictModel> dictItemList = dictMap.computeIfAbsent(dict.getDictCode(), i -> new ArrayList<>());
 			dict.setDictCode(null);
@@ -116,7 +116,7 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 	@Override
 	public Map<String, List<DictModel>> queryManyDictByKeys(List<String> dictCodeList, List<String> keys) {
 		List<DictModelMany> list = sysDictMapper.queryManyDictByKeys(dictCodeList, keys);
-		Map<String, List<DictModel>> dictMap = new HashMap<>();
+		Map<String, List<DictModel>> dictMap = new HashMap<>(1024);
 		for (DictModelMany dict : list) {
 			List<DictModel> dictItemList = dictMap.computeIfAbsent(dict.getDictCode(), i -> new ArrayList<>());
 			dictItemList.add(new DictModel(dict.getValue(), dict.getText()));

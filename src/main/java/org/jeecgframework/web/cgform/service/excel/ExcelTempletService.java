@@ -295,7 +295,7 @@ public class ExcelTempletService {
 	 * 数据处理
 	 */
 	private static Map<String,CgFormFieldEntity> ConvertDate(List<CgFormFieldEntity> lists){
-		Map<String,CgFormFieldEntity> maps = new HashMap<String, CgFormFieldEntity>();
+		Map<String,CgFormFieldEntity> maps = new HashMap<String, CgFormFieldEntity>(1024);
 		
 		for (CgFormFieldEntity cgFormFieldEntity : lists) {
 			maps.put(cgFormFieldEntity.getContent(), cgFormFieldEntity);

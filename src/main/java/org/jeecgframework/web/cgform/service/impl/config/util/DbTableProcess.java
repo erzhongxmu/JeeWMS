@@ -196,7 +196,7 @@ public class DbTableProcess {
 		DatabaseMetaData dbMetaData = conn.getMetaData();
 		ResultSet rs = dbMetaData.getColumns(null, schemaName, tableName, "%");	
 		ColumnMeta columnMeta;
-		Map<String, ColumnMeta> columnMap = new HashMap<String, ColumnMeta>();
+		Map<String, ColumnMeta> columnMap = new HashMap<String, ColumnMeta>(1024);
 		while (rs.next()){
 
 			columnMeta = new ColumnMeta();
@@ -242,7 +242,7 @@ public class DbTableProcess {
 	 * @return
 	 */
 	public static Map<String, ColumnMeta> getColumnMetadataFormCgForm(CgFormHeadEntity table){
-		Map<String, ColumnMeta> map = new HashMap<String, ColumnMeta>();
+		Map<String, ColumnMeta> map = new HashMap<String, ColumnMeta>(1024);
 		List<CgFormFieldEntity> cgFormFieldEntities = table.getColumns();
 		ColumnMeta columnMeta;
 		for (CgFormFieldEntity cgFormFieldEntity : cgFormFieldEntities) {

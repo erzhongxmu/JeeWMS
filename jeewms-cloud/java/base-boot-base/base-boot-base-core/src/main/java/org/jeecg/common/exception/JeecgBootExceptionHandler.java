@@ -143,7 +143,7 @@ public class JeecgBootExceptionHandler {
 		List<Map<String, Object>> list = new ArrayList<>();
 		List<ObjectError> allErrors = bindingResult.getAllErrors();
 		for (ObjectError allError : allErrors) {
-			Map<String, Object> map = new HashMap<>();
+			Map<String, Object> map = new HashMap<>(1024);
 			map.put("defaultMessage", allError.getDefaultMessage());
 			map.put("objectName", allError.getObjectName());
 			//注意，这里面拿到具体的某一个属性

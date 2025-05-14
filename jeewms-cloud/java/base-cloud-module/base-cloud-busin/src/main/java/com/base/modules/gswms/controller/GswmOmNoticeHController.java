@@ -70,7 +70,7 @@ public class GswmOmNoticeHController extends JeecgController<WmOmNoticeH, IWmOmN
             Date newDate2 = cn.hutool.core.date.DateUtil.offsetDay(date1, 1);
             String date2 = DateUtil.format(newDate2, "yyyy-MM-dd");
             //     FCREATEDATE >= '+  2019-09-10 + '   and FCREATEDATE <= '2019-09-11'
-            Map<String, String> map = new HashMap<>();
+            Map<String, String> map = new HashMap<>(1024);
             map.put("FormId", "PRD_PickMtrl");
             map.put("FieldKeys", "FBILLNO,FPPBOMBILLNO,FMOBILLNO,FSTOCKORGID.FNumber,FSTOCKORGID.FName,FCREATEDATE,FBASEUNITID.FName,FACTUALQTY,FCREATORID.FName,FPICKERID.FName,FSTOCKERID.FName," +
                     "FAPPROVEDATE,FBILLTYPE.FName,FMaterialId.FNumber,FMaterialId.FName,FLOT");
@@ -205,7 +205,7 @@ public class GswmOmNoticeHController extends JeecgController<WmOmNoticeH, IWmOmN
             Date newDate2 = cn.hutool.core.date.DateUtil.offsetDay(date1, 1);
             String date2 = DateUtil.format(newDate2, "yyyy-MM-dd");
             //     FCREATEDATE >= '+  2019-09-10 + '   and FCREATEDATE <= '2019-09-11'
-            Map<String, String> map = new HashMap<>();
+            Map<String, String> map = new HashMap<>(1024);
             map.put("FormId", "SAL_DELIVERYNOTICE");
             map.put("FieldKeys", "FCUSTOMERID.FNumber,FCUSTOMERID.FName,FDELIVERYORGID.FNumber,FDELIVERYORGID.FName,FDELIVERYDEPTID.FNumber,FDELIVERYDEPTID.FName,FBILLNO," +
                     "FMaterialId.FNumber,FMaterialId.FName,FUNITID.FName,FQTY,FDELIVERYDATE,FNOTE,FCREATORID.FName,FAPPROVERID.FName,FBILLTYPEID.FName");

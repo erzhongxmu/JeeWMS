@@ -230,7 +230,7 @@ public class wmUtil {
 
     //通过客户商品编码，或者WMS商品编码和单位找到WMS编码
     public static Map<String, String> getGoodsId(String cusCode, String cusgoodsid, String goodsUnit) {
-        Map<String, String> resultmap = new HashMap<>();
+        Map<String, String> resultmap = new HashMap<>(1024);
         String goodsCode = null;
         SystemService systemService = ApplicationContextUtil.getContext().getBean(SystemService.class);
         String tsql = "select cus_code,chailing, goods_id,goods_code,shp_bian_makh,shl_dan_wei,baseunit" +

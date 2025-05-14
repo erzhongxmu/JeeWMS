@@ -100,7 +100,7 @@ public class SysRolePermissionServiceImpl extends ServiceImpl<SysRolePermissionM
 
 		String[] mainArr = main.split(",");
 		String[] diffArr = diff.split(",");
-		Map<String, Integer> map = new HashMap<>();
+		Map<String, Integer> map = new HashMap<>(1024);
 		for (String string : mainArr) {
 			map.put(string, 1);
 		}

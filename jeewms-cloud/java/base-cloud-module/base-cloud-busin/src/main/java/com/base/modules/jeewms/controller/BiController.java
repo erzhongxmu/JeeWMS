@@ -59,7 +59,7 @@ public class BiController extends JeecgController<WmImNoticeI, IBiCService> {
         if(ObjectUtil.isNotEmpty(biCService.getNum5())){
             num5 = biCService.getNum5().get("linecount").toString();
         }
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>(1024);
         map.put("num1", num1);
         map.put("num2", num2);
         map.put("num3", num3);

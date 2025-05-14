@@ -154,7 +154,7 @@ public class SysPermissionController {
 			query.eq(SysPermission::getDelFlag, CommonConstant.DEL_FLAG_0);
 			query.orderByAsc(SysPermission::getSortNo);
 			List<SysPermission> list = sysPermissionService.list(query);
-			Map<String, List<SysPermissionTree>> listMap = new HashMap<>();
+			Map<String, List<SysPermissionTree>> listMap = new HashMap<>(1024);
 			for (SysPermission item : list) {
 				String pid = item.getParentId();
 				if (parentIdList.contains(pid)) {

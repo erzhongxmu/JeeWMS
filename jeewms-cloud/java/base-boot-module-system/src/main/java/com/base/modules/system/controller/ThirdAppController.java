@@ -38,7 +38,7 @@ public class ThirdAppController {
      */
     @GetMapping("/getEnabledType")
     public Result getEnabledType() {
-        Map<String, Boolean> enabledMap = new HashMap<>();
+        Map<String, Boolean> enabledMap = new HashMap<>(1024);
         enabledMap.put("wechatEnterprise", thirdAppConfig.isWechatEnterpriseEnabled());
         enabledMap.put("dingtalk", thirdAppConfig.isDingtalkEnabled());
         return Result.OK(enabledMap);

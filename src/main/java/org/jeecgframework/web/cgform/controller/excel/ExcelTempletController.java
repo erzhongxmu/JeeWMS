@@ -384,7 +384,7 @@ public class ExcelTempletController extends BaseController {
 		}
 
 		private Map<String, CgFormFieldEntity> convertDate(List<CgFormFieldEntity> lists) {
-			Map<String, CgFormFieldEntity> maps = new HashMap<String, CgFormFieldEntity>();
+			Map<String, CgFormFieldEntity> maps = new HashMap<String, CgFormFieldEntity>(1024);
 
 			for (CgFormFieldEntity cgFormFieldEntity : lists) {
 				maps.put(cgFormFieldEntity.getContent(), cgFormFieldEntity);

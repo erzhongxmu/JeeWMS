@@ -81,7 +81,7 @@ public class SysPermissionServiceImpl extends ServiceImpl<SysPermissionMapper, S
 		// 该节点可能是子节点但也可能是其它节点的父节点,所以需要级联删除
 		this.removeChildrenBy(sysPermission.getId());
 		//关联删除
-		Map map = new HashMap<>();
+		Map map = new HashMap<>(1024);
 		map.put("permission_id",id);
 		//删除数据规则
 		this.deletePermRuleByPermId(id);
@@ -112,7 +112,7 @@ public class SysPermissionServiceImpl extends ServiceImpl<SysPermissionMapper, S
 			// 再遍历刚才查出的集合, 根据每个对象,查找其是否仍有子级
 			for (int i = 0, len = permissionList.size(); i < len; i++) {
 				id = permissionList.get(i).getId();
-				Map map = new HashMap<>();
+				Map map = new HashMap<>(1024);
 				map.put("permission_id",id);
 				//删除数据规则
 				this.deletePermRuleByPermId(id);

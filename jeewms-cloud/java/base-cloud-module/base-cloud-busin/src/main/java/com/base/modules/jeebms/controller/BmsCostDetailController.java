@@ -204,7 +204,7 @@ public class BmsCostDetailController extends BaseController<BmsCostDetail, IBmsC
 		 } else {
 			 exportList = pageList;
 		 }
-		 HashMap<String, String> objMap = new HashMap<>();
+		 HashMap<String, String> objMap = new HashMap<>(1024);
 		 for (BmsCostDetail costDetail : exportList) {
 			 if (!"0".equals(costDetail.getStatus())) {
 				 continue;

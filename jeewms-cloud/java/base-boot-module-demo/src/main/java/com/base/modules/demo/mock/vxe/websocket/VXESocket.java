@@ -46,12 +46,12 @@ public class VXESocket {
      * 因为一个用户可能打开多个页面，多个页面就会有多个连接；
      * key是userId，value是Map对象；子Map的key是pageId，value是VXESocket对象
      */
-    private static Map<String, Map<String, VXESocket>> userPool = new HashMap<>();
+    private static Map<String, Map<String, VXESocket>> userPool = new HashMap<>(1024);
     /**
      * 连接池，包含所有WebSocket连接；
      * key是socketId，value是VXESocket对象
      */
-    private static Map<String, VXESocket> socketPool = new HashMap<>();
+    private static Map<String, VXESocket> socketPool = new HashMap<>(1024);
 
     /**
      * 获取某个用户所有的页面

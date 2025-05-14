@@ -66,7 +66,7 @@ public class GswmImNoticeHController extends JeecgController<WmImNoticeH, IWmImN
             Date newDate2 = cn.hutool.core.date.DateUtil.offsetDay(date1, 1);
             String date2 = DateUtil.format(newDate2, "yyyy-MM-dd");
             //     FCREATEDATE >= '2019-09-10'   and FCREATEDATE <= '2019-09-11'
-            Map<String, String> map = new HashMap<>();
+            Map<String, String> map = new HashMap<>(1024);
             map.put("FormId", "STK_InStock");
             map.put("FieldKeys", "FBILLNO,FSupplierId.FNumber,FSupplierId.FName,FSTOCKDEPTID.FNumber,FSTOCKDEPTID.FName,FSTOCKORGID.FNumber,FSTOCKORGID.FName," +
                     "FSTOCKERID.FName,FPURCHASERID.FName,FBILLTYPEID.FName," +
@@ -209,7 +209,7 @@ public class GswmImNoticeHController extends JeecgController<WmImNoticeH, IWmImN
             Date date1 = cn.hutool.core.date.DateUtil.parse(date, "yyyy-MM-dd");
             Date newDate2 = cn.hutool.core.date.DateUtil.offsetDay(date1, 1);
             String date2 = DateUtil.format(newDate2, "yyyy-MM-dd");
-            Map<String, String> map = new HashMap<>();
+            Map<String, String> map = new HashMap<>(1024);
             map.put("FormId", "PRD_INSTOCK");
             map.put("FieldKeys", "FBILLNO,FMOBILLNO,FMaterialId.FNumber,FMaterialId.FName,FBaseUnitID.FName,FBILLTYPE," +
                     "FMUSTQTY,FREALQTY,FSTOCKID.FNumber,FSTOCKID.FName," +
@@ -315,7 +315,7 @@ public class GswmImNoticeHController extends JeecgController<WmImNoticeH, IWmImN
             Date date1 = cn.hutool.core.date.DateUtil.parse(date, "yyyy-MM-dd");
             Date newDate2 = cn.hutool.core.date.DateUtil.offsetDay(date1, 1);
             String date2 = DateUtil.format(newDate2, "yyyy-MM-dd");
-            Map<String, String> map = new HashMap<>();
+            Map<String, String> map = new HashMap<>(1024);
             map.put("FormId", "PRD_ReturnMtrl");
             map.put("FieldKeys", "FBILLNO,FMOBILLNO,FMaterialId.FNumber,FMaterialId.FName,FBaseUnitID.FName,FSTOCKSTATUSID,FAPPQTY,FQTY,FSTOCKID.FNumber,FSTOCKID.FName," +
                     "FRETURNREASON,FRETURNERID.FName,FBILLTYPE,FSTOCKERID.FName,FStockOrgId.FNumber,FStockOrgId.FName,FLot");
@@ -422,7 +422,7 @@ public class GswmImNoticeHController extends JeecgController<WmImNoticeH, IWmImN
             Date date = cn.hutool.core.date.DateUtil.parse(date1, "yyyy-MM-dd");
             Date newDate2 = cn.hutool.core.date.DateUtil.offsetDay(date, 1);
             String date2 = DateUtil.format(newDate2, "yyyy-MM-dd");
-            Map<String, String> map = new HashMap<>();
+            Map<String, String> map = new HashMap<>(1024);
             map.put("FormId", "PRD_INSTOCK");
             map.put("FieldKeys", "FBILLNO,FMOBILLNO,FMaterialId.FNumber,FMaterialId.FName,FBaseUnitID.FName,FBILLTYPEID.FName,FMUSTQTY,FREALQTY,FSTOCKID.FNumber,FSTOCKID.FName,FCREATORID.FName,FPRDORGID.FNumber,FPRDORGID.FName,FSTOCKERID.FName");
             map.put("OrderString", "FCREATEDATE desc");
@@ -512,7 +512,7 @@ public class GswmImNoticeHController extends JeecgController<WmImNoticeH, IWmImN
             Date date1 = cn.hutool.core.date.DateUtil.parse(date, "yyyy-MM-dd");
             Date newDate2 = cn.hutool.core.date.DateUtil.offsetDay(date1, 1);
             String date2 = DateUtil.format(newDate2, "yyyy-MM-dd");
-            Map<String, String> map = new HashMap<>();
+            Map<String, String> map = new HashMap<>(1024);
             map.put("FormId", "STK_MISCELLANEOUS");
             map.put("FieldKeys", "FBillNo,FSUPPLIERID.FNumber,FSUPPLIERID.Fname,FNOTE,FCreateDate,FMATERIALID,FMATERIALNAME,FUnitID.Fname,FLOT,FQty,FSTOCKID.FNumber,FSTOCKID.Fname");
             map.put("OrderString", "FCREATEDATE desc");

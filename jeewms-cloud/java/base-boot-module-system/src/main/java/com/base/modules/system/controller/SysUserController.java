@@ -1009,7 +1009,7 @@ public class SysUserController {
 		LambdaQueryWrapper<SysUser> query = new LambdaQueryWrapper<>();
         query.eq(SysUser::getPhone,phone);
         SysUser user = sysUserService.getOne(query);
-        Map<String,String> map = new HashMap<>();
+        Map<String,String> map = new HashMap<>(1024);
         map.put("smscode",smscode);
         map.put("username",user.getUsername());
         result.setResult(map);

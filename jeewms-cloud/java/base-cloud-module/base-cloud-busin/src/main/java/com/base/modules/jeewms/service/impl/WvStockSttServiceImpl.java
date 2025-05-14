@@ -198,7 +198,7 @@ public class WvStockSttServiceImpl extends ServiceImpl<WvStockSttMapper, WvStock
                     detail.setBatchNumber(wmSttInGoods.getGoodsBatch());
                     //商品明细，需转为json，具体属性见商品明细属性表
                     systemVo.setGoodsDetails(JSON.toJSONString(detail));
-                    Map<String, Object> map = new HashMap<>();
+                    Map<String, Object> map = new HashMap<>(1024);
                     map.put("systemVo",systemVo);
 //                    String post = HttpUtil.post(""https://retail.danbagui.com/api/storage/sync/record/callback", map);
                     String post = HttpUtil.post("https://retail.danbagui.com/api/storage/sync/record/callback", map);

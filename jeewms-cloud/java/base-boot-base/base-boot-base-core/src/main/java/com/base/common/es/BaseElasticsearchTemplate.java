@@ -259,7 +259,7 @@ public class BaseElasticsearchTemplate {
      */
     public <T> Map<String, T> getIndexMappingFormat(String indexName, String typeName, Class<T> clazz) {
         JSONObject mapping = this.getIndexMapping(indexName, typeName);
-        Map<String, T> map = new HashMap<>();
+        Map<String, T> map = new HashMap<>(1024);
         if (mapping == null) {
             return map;
         }

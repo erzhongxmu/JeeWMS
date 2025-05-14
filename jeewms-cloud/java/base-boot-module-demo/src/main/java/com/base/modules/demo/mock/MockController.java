@@ -133,7 +133,7 @@ public class MockController {
 	        	if(fs[i].getTotalSpace()==0) {
 	        		continue;
 	        	}
-	        	Map<String,Object> map = new HashMap<>();
+	        	Map<String,Object> map = new HashMap<>(1024);
 	        	map.put("name", fsv.getSystemDisplayName(fs[i]));
 	        	map.put("max", fs[i].getTotalSpace());
 	        	map.put("rest", fs[i].getFreeSpace());

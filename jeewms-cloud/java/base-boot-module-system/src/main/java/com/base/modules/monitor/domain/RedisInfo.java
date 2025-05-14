@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class RedisInfo {
 
-	private static Map<String, String> map = new HashMap<>();
+	private static Map<String, String> map = new HashMap<>(1024);
 
 	static {
 		map.put("redis_version", "Redis 服务器版本");

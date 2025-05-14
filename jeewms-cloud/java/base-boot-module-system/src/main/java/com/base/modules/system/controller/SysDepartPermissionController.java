@@ -172,7 +172,7 @@ public class SysDepartPermissionController extends BaseController<SysDepartPermi
 		if(list==null || list.size()==0) {
 			return Result.error("未找到权限配置信息");
 		}else {
-			Map<String,Object> map = new HashMap<>();
+			Map<String,Object> map = new HashMap<>(1024);
 			map.put("datarule", list);
 			LambdaQueryWrapper<SysDepartPermission> query = new LambdaQueryWrapper<SysDepartPermission>()
 				 .eq(SysDepartPermission::getPermissionId, permissionId)

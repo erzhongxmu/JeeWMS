@@ -304,7 +304,7 @@ public class LoginController extends BaseController{
 		HttpSession session = ContextHolderUtils.getSession();
 		Client client = ClientManager.getInstance().getClient(session.getId());
 		if (client.getFunctionMap() == null || client.getFunctionMap().size() == 0) {
-			Map<Integer, List<TSFunction>> functionMap = new HashMap<Integer, List<TSFunction>>();
+			Map<Integer, List<TSFunction>> functionMap = new HashMap<Integer, List<TSFunction>>(1024);
 			Map<String, TSFunction> loginActionlist = getUserFunction(user);
 			if (loginActionlist.size() > 0) {
 				Collection<TSFunction> allFunctions = loginActionlist.values();
@@ -348,7 +348,7 @@ public class LoginController extends BaseController{
 
 		if (client.getFunctions() == null || client.getFunctions().size() == 0) {
 
-			Map<String, TSFunction> loginActionlist = new HashMap<String, TSFunction>();
+			Map<String, TSFunction> loginActionlist = new HashMap<String, TSFunction>(1024);
 	           StringBuilder hqlsb1=new StringBuilder("select distinct f from TSFunction f,TSRoleFunction rf,TSRoleUser ru  ").append("where ru.TSRole.id=rf.TSRole.id and rf.TSFunction.id=f.id and ru.TSUser.id=? ");
 	           StringBuilder hqlsb2=new StringBuilder("select distinct c from TSFunction c,TSRoleFunction rf,TSRoleOrg b,TSUserOrg a ")
 	           							.append("where a.tsDepart.id=b.tsDepart.id and b.tsRole.id=rf.TSRole.id and rf.TSFunction.id=c.id and a.tsUser.id=?");

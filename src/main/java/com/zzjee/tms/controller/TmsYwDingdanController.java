@@ -404,8 +404,8 @@ public class TmsYwDingdanController extends BaseController {
 				tmsYwDingdanService.updateEntitie(tmsYwDingdan);
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}
-			Map<String,String> maphz = new HashMap<>();
-			Map<String,String> mapsfoderid = new HashMap<>();
+			Map<String,String> maphz = new HashMap<>(1024);
+			Map<String,String> mapsfoderid = new HashMap<>(1024);
 
 			for(String id1:id.split(",")) {//计算总货主和单数
 				TmsYwDingdanEntity tmsYwDingdan1 = systemService.getEntity(TmsYwDingdanEntity.class,

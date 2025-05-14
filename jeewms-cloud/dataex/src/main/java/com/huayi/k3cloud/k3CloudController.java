@@ -42,7 +42,7 @@ public class k3CloudController {
         Date newDate2 = DateUtil.date();
         String date2 = DateUtil.format(newDate2, "yyyy-MM-dd");
         //     FCREATEDATE >= '+  2019-09-10 + '   and FCREATEDATE <= '2019-09-11'
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>(1024);
         map.put("FormId", "PRD_PickMtrl");
         map.put("FieldKeys", "FBILLNO,FPPBOMBILLNO,FMOBILLNO,FSTOCKORGID.FNumber,FSTOCKORGID.FName,FCREATEDATE,FBASEUNITID.FName,FACTUALQTY,FCREATORID.FName,FPICKERID.FName,FSTOCKERID.FName," +
                 "FAPPROVEDATE,FBILLTYPE.FName,FMaterialId.FNumber,FMaterialId.FName,FLOT,");
@@ -76,7 +76,7 @@ public class k3CloudController {
         Date newDate2 = DateUtil.date();
         String date2 = DateUtil.format(newDate2, "yyyy-MM-dd");
         //     FCREATEDATE >= '+  2019-09-10 + '   and FCREATEDATE <= '2019-09-11'
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>(1024);
         map.put("FormId", "STK_MisDelivery");
         map.put("FieldKeys",
                 "FBILLNO," +
@@ -122,7 +122,7 @@ public class k3CloudController {
         Date newDate2 = DateUtil.date();
         String date2 = DateUtil.format(newDate2, "yyyy-MM-dd");
         //     FCREATEDATE >= '+  2019-09-10 + '   and FCREATEDATE <= '2019-09-11'
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>(1024);
         map.put("FormId", "SAL_DELIVERYNOTICE");
         map.put("FieldKeys", "FCUSTOMERID.FNumber,FCUSTOMERID.FName,FDELIVERYORGID.FNumber,FDELIVERYORGID.FName,FDELIVERYDEPTID.FNumber,FDELIVERYDEPTID.FName,FBILLNO," +
                 "FMaterialId.FNumber,FMaterialId.FName,FUNITID.FName,FQTY,FDELIVERYDATE,FNOTE,FCREATORID.FName,FAPPROVERID.FName,FBILLTYPEID.FName,FCreateDate");
@@ -155,7 +155,7 @@ public class k3CloudController {
         }
         System.out.println("时间" + date1);
         //     FCREATEDATE >= '2019-09-10'   and FCREATEDATE <= '2019-09-11'
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>(1024);
         //id,货主编码(没有)，货主，商品名称，英文名称，日文名称(没有)，商品编码，商品分类(没有)，商品规格，产品属性(没有)，存放温层(没有)，码盘单层数量(没有)，码盘层高(没有)，计费商品类(没有)，商品条码，保质期，允许天数(没有)，
         // 单位，拆零单位(没有)，体积，重量(净重)，价格(采购单价)，长，宽，高，停用(没有)
         map.put("FormId", "BD_MATERIAL");
@@ -211,7 +211,7 @@ public class k3CloudController {
         }
         Date newDate2 = cn.hutool.core.date.DateUtil.date();
         String date2 = DateUtil.format(newDate2, "yyyy-MM-dd");
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>(1024);
         map.put("FormId", "PRD_MO");//FMATERIALID
         map.put("FieldKeys",
                 "FBillNo," +
@@ -262,7 +262,7 @@ public class k3CloudController {
         Date newDate2 = cn.hutool.core.date.DateUtil.date();
         String date2 = DateUtil.format(newDate2, "yyyy-MM-dd");
         //     FCREATEDATE >= '2019-09-10'   and FCREATEDATE <= '2019-09-11'
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>(1024);
         map.put("FormId", "STK_InStock");
         map.put("FieldKeys", "FBILLNO," +
                 "FSupplierId.FNumber," +
@@ -322,7 +322,7 @@ public class k3CloudController {
         }
         Date newDate2 = cn.hutool.core.date.DateUtil.date();
         String date2 = DateUtil.format(newDate2, "yyyy-MM-dd");
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>(1024);
         map.put("FormId", "PRD_INSTOCK");
         map.put("FieldKeys", "FBILLNO,FMOBILLNO,FMaterialId.FNumber,FMaterialId.FName,FBaseUnitID.FName,FBILLTYPE," +
                 "FMUSTQTY,FREALQTY,FSTOCKID.FNumber,FSTOCKID.FName," +
@@ -360,7 +360,7 @@ public class k3CloudController {
         }
         Date newDate2 = cn.hutool.core.date.DateUtil.date();
         String date2 = DateUtil.format(newDate2, "yyyy-MM-dd");
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>(1024);
         map.put("FormId", "PRD_ReturnMtrl");
         map.put("FieldKeys", "FBILLNO,FMOBILLNO,FMaterialId.FNumber,FMaterialId.FName,FBaseUnitID.FName,FSTOCKSTATUSID,FAPPQTY,FQTY,FSTOCKID.FNumber,FSTOCKID.FName," +
                 "FRETURNREASON,FRETURNERID.FName,FBILLTYPE,FSTOCKERID.FName,FStockOrgId.FNumber,FStockOrgId.FName,FApproveDate,FDate,FCreateDate");//,F_TPS_BaseProperty
@@ -394,7 +394,7 @@ public class k3CloudController {
         }
         Date newDate2 = cn.hutool.core.date.DateUtil.date();
         String date2 = DateUtil.format(newDate2, "yyyy-MM-dd");
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>(1024);
         map.put("FormId", "STK_MISCELLANEOUS");//FMATERIALID
         map.put("FieldKeys", "FBillNo,FSUPPLIERID.FNumber,FSUPPLIERID.Fname,FNOTE,FCreateDate,FMaterialId.FNumber,FMATERIALNAME,FUnitID.Fname,FLOT,FQty,FSTOCKID.FNumber,FSTOCKID.Fname");
         map.put("OrderString", "FCREATEDATE desc");

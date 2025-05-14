@@ -345,7 +345,7 @@ public class oConvertUtils {
 	 * 获取Map对象
 	 */
 	public static Map<Object, Object> getHashMap() {
-		return new HashMap<Object, Object>();
+		return new HashMap<Object, Object>(1024);
 	}
 
 	/**

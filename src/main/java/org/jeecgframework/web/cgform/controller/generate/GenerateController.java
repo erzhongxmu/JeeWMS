@@ -248,7 +248,7 @@ public class GenerateController extends BaseController {
 			CgFormHeadEntity mCgFormHead = cgFormFieldService.getCgFormHeadByTableName(mainTable);
 			getCgformConfig(mCgFormHead, mainG);
 			//step.4 填充子表的所有智能表单配置
-			Map<String,GenerateEntity> subsG = new HashMap<String,GenerateEntity>();
+			Map<String,GenerateEntity> subsG = new HashMap<String,GenerateEntity>(1024);
 			List<SubTableEntity>  subTabParamIn = subTableListEntity.getSubTabParamIn();
 			for(SubTableEntity po:subTabParamIn){
 				String sTableName = po.getTableName();

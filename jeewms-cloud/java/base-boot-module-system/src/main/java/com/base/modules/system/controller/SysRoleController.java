@@ -287,7 +287,7 @@ public class SysRoleController {
 		if(list==null || list.size()==0) {
 			return Result.error("未找到权限配置信息");
 		}else {
-			Map<String,Object> map = new HashMap<>();
+			Map<String,Object> map = new HashMap<>(1024);
 			map.put("datarule", list);
 			LambdaQueryWrapper<SysRolePermission> query = new LambdaQueryWrapper<SysRolePermission>()
 					.eq(SysRolePermission::getPermissionId, permissionId)

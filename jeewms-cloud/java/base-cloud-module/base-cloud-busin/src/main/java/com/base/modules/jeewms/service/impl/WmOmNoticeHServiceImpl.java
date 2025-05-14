@@ -1314,7 +1314,7 @@ public class WmOmNoticeHServiceImpl extends ServiceImpl<WmOmNoticeHMapper, WmOmN
         wmOmNoticeH.setPrintStatus("已打印");
         wmOmNoticeHMapper.updateById(wmOmNoticeH);
         //创建返回数据集
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>(1024);
         map.put("wmOmNoticeHPage", wmOmNoticeH);
         map.put("kprq", DateUtils.date2Str(wmOmNoticeH.getCreateTime(), DateUtils.date_sdf.get()));
         if (StringUtil.isNotEmpty(wmOmNoticeH.getImCusCode())) {
@@ -1430,7 +1430,7 @@ public class WmOmNoticeHServiceImpl extends ServiceImpl<WmOmNoticeHMapper, WmOmN
         wmOmNoticeH.setPrintStatus("已打印");
         wmOmNoticeHMapper.updateById(wmOmNoticeH);
         //创建返回数据集
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>(1024);
         map.put("wmOmNoticeHPage", wmOmNoticeH);
         map.put("kprq", DateUtils.date2Str(wmOmNoticeH.getCreateTime(), DateUtils.date_sdf.get()));
         if (StringUtil.isNotEmpty(wmOmNoticeH.getImCusCode())) {
@@ -1474,7 +1474,7 @@ public class WmOmNoticeHServiceImpl extends ServiceImpl<WmOmNoticeHMapper, WmOmN
         wmOmNoticeH.setPrintStatus("已打印");
         wmOmNoticeHMapper.updateById(wmOmNoticeH);
         //创建返回数据集
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>(1024);
         map.put("wmOmNoticeHPage", wmOmNoticeH);
         map.put("kprq", DateUtils.date2Str(wmOmNoticeH.getCreateTime(), DateUtils.date_sdf.get()));
         if (StringUtil.isNotEmpty(wmOmNoticeH.getImCusCode())) {
@@ -1507,7 +1507,7 @@ public class WmOmNoticeHServiceImpl extends ServiceImpl<WmOmNoticeHMapper, WmOmN
     public Result<?> doPrintpageckd(String id) {
         WmOmNoticeH wmOmNoticeH = wmOmNoticeHMapper.selectById(id);
         //创建返回数据集
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>(1024);
         map.put("area", "");
         map.put("tel", "");
         map.put("delvData", DateUtils.date2Str(wmOmNoticeH.getDelvData(), DateUtils.date_sdf.get()));
@@ -1535,7 +1535,7 @@ public class WmOmNoticeHServiceImpl extends ServiceImpl<WmOmNoticeHMapper, WmOmN
         Double sumzl = 0.00;
         int cerconNo = 0;
         for (int i = 0; i < result.size(); i++) {
-            Map<String, Object> map1 = new HashMap<>();
+            Map<String, Object> map1 = new HashMap<>(1024);
             cerconNo++;
             map1.put("cerconNo", Integer.toString(cerconNo));
             map1.put("goodsId", result.get(i).get("goods_id") != null ? result.get(i).get("goods_id").toString() : "");

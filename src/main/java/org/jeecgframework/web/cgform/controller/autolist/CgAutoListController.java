@@ -147,7 +147,7 @@ public class CgAutoListController extends BaseController{
 		Map params =  new HashMap<String,Object>(1024);
 		//step.2 获取查询条件以及值
 		List<CgFormFieldEntity> beans = (List<CgFormFieldEntity>) configs.get(CgAutoListConstant.FILEDS);
-		Map<String, String[]> fieldMap = new HashMap<String, String[]>();
+		Map<String, String[]> fieldMap = new HashMap<String, String[]>(1024);
 		for(CgFormFieldEntity b:beans){
 			QueryParamUtil.loadQueryParams(request,b,params);
 			fieldMap.put(b.getFieldName(), new String[]{b.getType(), b.getFieldDefault()});
@@ -363,7 +363,7 @@ public class CgAutoListController extends BaseController{
 		StringBuilder initQuery = new StringBuilder();
 
 		Set<String> operationCodes = (Set<String>) request.getAttribute(Globals.OPERATIONCODES);
-		Map<String,TSOperation> operationCodesMap = new HashMap<String, TSOperation>();
+		Map<String,TSOperation> operationCodesMap = new HashMap<String, TSOperation>(1024);
 		if(operationCodes != null){
 			TSOperation tsOperation;
 			for (String id : operationCodes) {

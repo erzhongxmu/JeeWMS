@@ -148,7 +148,7 @@ public class ExternalApiController {
 
     @PostMapping("/autoWeighing")
     public String autoWeighing(Map<String,String> params, @RequestBody String body){
-        Map<String,Object> map = new HashMap<>();
+        Map<String,Object> map = new HashMap<>(1024);
         log.info("自动称重返回参数====={}",body);
         map.put("flag","failure");map.put("data",false);map.put("message","");map.put("code","");
         try {

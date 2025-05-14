@@ -261,7 +261,7 @@ public final class JSONHelper {
 	    * json格式：{"name":"admin","retries":"3fff","testname":"ddd","testretries":"fffffffff"} 
 	    */  
 	   public static Map<String, List<Map<String, Object>>> json2MapList(String jsonStr)  {  
-	       Map<String, List<Map<String, Object>>> data = new HashMap<String, List<Map<String, Object>>>();  
+	       Map<String, List<Map<String, Object>>> data = new HashMap<String, List<Map<String, Object>>>(1024);  
 	       // 将json字符串转换成jsonObject  
 	       JSONObject jsonObject = JSONObject.fromObject(jsonStr);  
 	       Iterator it = jsonObject.keys();  

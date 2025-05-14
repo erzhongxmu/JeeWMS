@@ -588,7 +588,7 @@ public class RoleController extends BaseController {
 			List<TSRoleFunction> roleFunctionList = systemService
 					.findByProperty(TSRoleFunction.class, "TSRole.id",
 							role.getId());
-			Map<String, TSRoleFunction> map = new HashMap<String, TSRoleFunction>();
+			Map<String, TSRoleFunction> map = new HashMap<String, TSRoleFunction>(1024);
 			for (TSRoleFunction functionOfRole : roleFunctionList) {
 				map.put(functionOfRole.getTSFunction().getId(), functionOfRole);
 			}
