@@ -50,9 +50,9 @@ public class DayiUtils {
 	 */
 	private static final byte[] DES_KEY = {21, 1, -110, 82, -32, -85, -128, -65};
 
-	private static String HanDigiStr[] = new String[] {"零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"};
+	private static String[] HanDigiStr = new String[] {"零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"};
 
-	private static String HanDiviStr[] = new String[] {"", "拾", "佰", "仟", "万", "拾", "佰", "仟", "亿", "拾", "佰", "仟", "万", "拾", "佰", "仟", "亿", "拾", "佰", "仟", "万", "拾", "佰", "仟"};
+	private static String[] HanDiviStr = new String[] {"", "拾", "佰", "仟", "万", "拾", "佰", "仟", "亿", "拾", "佰", "仟", "万", "拾", "佰", "仟", "亿", "拾", "佰", "仟", "万", "拾", "佰", "仟"};
 
 	/**
 	 * 判断对象是否Empty(null或元素为0)<br>
@@ -124,15 +124,15 @@ public class DayiUtils {
 	public static boolean isTheStyle(String pStr, String pStyle) {
 		for (int i = 0; i < pStr.length(); i++) {
 			char c = pStr.charAt(i);
-			if (pStyle.equals("number")) {
+			if ("number".equals(pStyle)) {
 				if (!Character.isDigit(c)) {
 					return false;
 				}
-			} else if (pStyle.equals("letter")) {
+			} else if ("letter".equals(pStyle)) {
 				if (!Character.isLetter(c)) {
 					return false;
 				}
-			} else if (pStyle.equals("numberletter")) {
+			} else if ("numberletter".equals(pStyle)) {
 				if (Character.isLetterOrDigit(c)) {
 					return false;
 				}
@@ -171,28 +171,44 @@ public class DayiUtils {
 		boolean hasvalue = false; // 亿、万进位前有数值标记
 		int len, n;
 		len = NumStr.length();
-		if (len > 15) return "数值过大!";
+		if (len > 15) {
+			return "数值过大!";
+		}
 		for (int i = len - 1; i >= 0; i--) {
-			if (NumStr.charAt(len - i - 1) == ' ') continue;
+			if (NumStr.charAt(len - i - 1) == ' ') {
+				continue;
+			}
 			n = NumStr.charAt(len - i - 1) - '0';
-			if (n < 0 || n > 9) return "输入含非数字字符!";
+			if (n < 0 || n > 9) {
+				return "输入含非数字字符!";
+			}
 			if (n != 0) {
-				if (lastzero) RMBStr += HanDigiStr[0]; // 若干零后若跟非零值，只显示一个零
+				if (lastzero) {
+					RMBStr += HanDigiStr[0]; // 若干零后若跟非零值，只显示一个零
+				}
 				// 除了亿万前的零不带到后面
 				// if( !( n==1 && (i%4)==1 && (lastzero || i==len-1) ) )
 				// 如十进位前有零也不发壹音用此行
 				if (!(n == 1 && (i % 4) == 1 && i == len - 1)) // 十进位处于第一位不发壹音
-				RMBStr += HanDigiStr[n];
+				{
+					RMBStr += HanDigiStr[n];
+				}
 				RMBStr += HanDiviStr[i]; // 非零值后加进位，个位为空
 				hasvalue = true; // 置万进位前有值标记
 			} else {
 				if ((i % 8) == 0 || ((i % 8) == 4 && hasvalue)) // 亿万之间必须有非零值方显示万
-				RMBStr += HanDiviStr[i]; // “亿”或“万”
+				{
+					RMBStr += HanDiviStr[i]; // “亿”或“万”
+				}
 			}
-			if (i % 8 == 0) hasvalue = false; // 万进位前有值标记逢亿复位
+			if (i % 8 == 0) {
+				hasvalue = false; // 万进位前有值标记逢亿复位
+			}
 			lastzero = (n == 0) && (i % 4 != 0);
 		}
-		if (RMBStr.length() == 0) return HanDigiStr[0]; // 输入空字符或"0"，返回"零"
+		if (RMBStr.length() == 0) {
+			return HanDigiStr[0]; // 输入空字符或"0"，返回"零"
+		}
 		return RMBStr;
 	}
 
@@ -211,7 +227,9 @@ public class DayiUtils {
 			val = -val;
 			SignStr = "负";
 		}
-		if (val > 99999999999999.999 || val < -99999999999999.999) return "数值位数过大!";
+		if (val > 99999999999999.999 || val < -99999999999999.999) {
+			return "数值位数过大!";
+		}
 		// 四舍五入到分
 		long temp = Math.round(val * 100);
 		integer = temp / 100;
@@ -222,9 +240,13 @@ public class DayiUtils {
 			TailStr = "整";
 		} else {
 			TailStr = HanDigiStr[jiao];
-			if (jiao != 0) TailStr += "角";
+			if (jiao != 0) {
+				TailStr += "角";
+			}
 			// 零元后不写零几分
-			if (integer == 0 && jiao == 0) TailStr = "";
+			if (integer == 0 && jiao == 0) {
+				TailStr = "";
+			}
 			if (fen != 0) {
 				TailStr += HanDigiStr[fen] + "分";
 			} else {
@@ -402,8 +424,12 @@ public class DayiUtils {
 		Date rtDate = null;
 		Date tmpDate = (new SimpleDateFormat(srcDateFormat)).parse(strDate, new ParsePosition(0));
 		String tmpString = null;
-		if (tmpDate != null) tmpString = (new SimpleDateFormat(dstDateFormat)).format(tmpDate);
-		if (tmpString != null) rtDate = (new SimpleDateFormat(dstDateFormat)).parse(tmpString, new ParsePosition(0));
+		if (tmpDate != null) {
+			tmpString = (new SimpleDateFormat(dstDateFormat)).format(tmpDate);
+		}
+		if (tmpString != null) {
+			rtDate = (new SimpleDateFormat(dstDateFormat)).parse(tmpString, new ParsePosition(0));
+		}
 		return rtDate;
 	}
 
@@ -415,8 +441,12 @@ public class DayiUtils {
 	 * @return 返回合并后的字符串数组
 	 */
 	public static String[] mergeStringArray(String[] a, String[] b) {
-		if (a.length == 0 || isEmpty(a)) return b;
-		if (b.length == 0 || isEmpty(b)) return a;
+		if (a.length == 0 || isEmpty(a)) {
+			return b;
+		}
+		if (b.length == 0 || isEmpty(b)) {
+			return a;
+		}
 		String[] c = new String[a.length + b.length];
 		for (int m = 0; m < a.length; m++) {
 			c[m] = a[m];
@@ -451,7 +481,7 @@ public class DayiUtils {
 	 * @return
 	 */
 	public static String getWeekDayByDate(String strdate) {
-		final String dayNames[] = {"星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
+		final String[] dayNames = {"星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
 		SimpleDateFormat sdfInput = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar calendar = Calendar.getInstance();
 		Date date = new Date();
@@ -462,7 +492,9 @@ public class DayiUtils {
 		}
 		calendar.setTime(date);
 		int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK) - 1;
-		if (dayOfWeek < 0) dayOfWeek = 0;
+		if (dayOfWeek < 0) {
+			dayOfWeek = 0;
+		}
 		return dayNames[dayOfWeek];
 	}
 
@@ -665,18 +697,25 @@ public class DayiUtils {
 	 * @return
 	 */
 	private static URL getClassLocationURL(final Class cls) {
-		if (cls == null) throw new IllegalArgumentException("null input: cls");
+		if (cls == null) {
+			throw new IllegalArgumentException("null input: cls");
+		}
 		URL result = null;
 		final String clsAsResource = cls.getName().replace('.', '/').concat(".class");
 		final ProtectionDomain pd = cls.getProtectionDomain();
 		if (pd != null) {
 			final CodeSource cs = pd.getCodeSource();
-			if (cs != null) result = cs.getLocation();
+			if (cs != null) {
+				result = cs.getLocation();
+			}
 			if (result != null) {
 				if ("file".equals(result.getProtocol())) {
 					try {
-						if (result.toExternalForm().endsWith(".jar") || result.toExternalForm().endsWith(".zip")) result = new URL("jar:".concat(result.toExternalForm()).concat("!/").concat(clsAsResource));
-						else if (new File(result.getFile()).isDirectory()) result = new URL(result, clsAsResource);
+						if (result.toExternalForm().endsWith(".jar") || result.toExternalForm().endsWith(".zip")) {
+							result = new URL("jar:".concat(result.toExternalForm()).concat("!/").concat(clsAsResource));
+						} else if (new File(result.getFile()).isDirectory()) {
+							result = new URL(result, clsAsResource);
+						}
 					} catch (MalformedURLException ignore) {
 					}
 				}
@@ -713,10 +752,12 @@ public class DayiUtils {
 		BufferedWriter bufferedWriter = null;
 		try {
 			File distFile = new File(filePath);
-			if (!distFile.getParentFile().exists()) distFile.getParentFile().mkdirs();
+			if (!distFile.getParentFile().exists()) {
+				distFile.getParentFile().mkdirs();
+			}
 			bufferedReader = new BufferedReader(new StringReader(res));
 			bufferedWriter = new BufferedWriter(new FileWriter(distFile));
-			char buf[] = new char[1024];
+			char[] buf = new char[1024];
 			int len;
 			while ((len = bufferedReader.read(buf)) != -1) {
 				bufferedWriter.write(buf, 0, len);
@@ -766,14 +807,19 @@ public class DayiUtils {
 			e.printStackTrace();
 			return null;
 		} finally {
-			if (reader != null) try {
-				reader.close();
-			} catch (IOException e) {
-				e.printStackTrace();
+			if (reader != null) {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
-		if (writer != null) return writer.toString();
-		else return null;
+		if (writer != null) {
+			return writer.toString();
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -802,7 +848,9 @@ public class DayiUtils {
 	 * @throws Exception
 	 */
 	public static String toString(Object obj) throws Exception {
-		if (obj == null) return "";
+		if (obj == null) {
+			return "";
+		}
 		if (obj instanceof Date) {
 			return Date2String((Date) obj, "yyyy-MM-dd");
 		} else {

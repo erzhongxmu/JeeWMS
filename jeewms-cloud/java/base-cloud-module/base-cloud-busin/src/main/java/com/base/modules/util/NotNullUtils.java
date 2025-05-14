@@ -17,7 +17,9 @@ public class NotNullUtils {
         Set<String> emptyNames = new HashSet<>();
         for (java.beans.PropertyDescriptor pd : pds) {
             Object srcValue = src.getPropertyValue(pd.getName());
-            if (srcValue == null || srcValue.equals("")) emptyNames.add(pd.getName());
+            if (srcValue == null || "".equals(srcValue)) {
+                emptyNames.add(pd.getName());
+            }
         }
         String[] result = new String[emptyNames.size()];
         return emptyNames.toArray(result);

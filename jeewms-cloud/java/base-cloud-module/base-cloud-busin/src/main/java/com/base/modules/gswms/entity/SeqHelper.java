@@ -21,9 +21,10 @@ public class SeqHelper {
 	public static String genNumber(String pre) {
 		SimpleDateFormat sdf=new  SimpleDateFormat("yyyyMMHHmmss"); 
 		String id=sdf.format(new Date());
-		if(pre==null)
+		if(pre==null) {
 			return id + (genSeq() +  mod);
-		else
+		} else {
 			return pre+id + (genSeq() +  mod);
+		}
 	}
 }

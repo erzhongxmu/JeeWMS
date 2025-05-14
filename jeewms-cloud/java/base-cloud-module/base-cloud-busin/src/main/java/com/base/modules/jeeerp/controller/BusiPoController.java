@@ -517,7 +517,7 @@ public class BusiPoController {
 				 busiPo.setNum02(busiPo.getNum01());
 				 busiPo.setNum03(new Double(0));
 			 }
-			 if(!poPage.getQuery02().equals("打样已完成") && poPage.getQuery01().equals("YP")){
+			 if(!"打样已完成".equals(poPage.getQuery02()) && "YP".equals(poPage.getQuery01())){
 				 QueryWrapper<BusiPoItem> queryWrapper5 = new QueryWrapper<>();
 				 queryWrapper5.lambda().eq(BusiPoItem::getQuery14,poPage.getQuery14());
 				 queryWrapper5.lambda().nested(i -> i.isNull(BusiPoItem::getQuery02).or().eq(BusiPoItem::getQuery02,""));
@@ -809,7 +809,7 @@ public class BusiPoController {
 		 }
 		 // 修改源数据状态
 		 BusiPoItem busiPoItem2 = busiPoItemPage.get(0);
-		 if(busiPoItem2.getQuery02().equals("已完成")){
+		 if("已完成".equals(busiPoItem2.getQuery02())){
 			 return Result.error("单据已完成");
 		 }
 
@@ -826,7 +826,7 @@ public class BusiPoController {
 			 index++;
 			 poItemPage.setId("");
 			 poItemPage.setQuery01(busiPoItem2.getQuery01());
-			 if(!poItemPage.getQuery02().equals("已完成")){
+			 if(!"已完成".equals(poItemPage.getQuery02())){
 				 if(StringUtils.isNotEmpty(str)){
 					poItemPage.setQuery02("入库中");
 				 }else {
@@ -855,7 +855,7 @@ public class BusiPoController {
 			 poItemPage.setSysOrgCode(null);
 			 busiPoItemMapper.insert(poItemPage);
 		 }
-		 if(str.equals("1")){
+		 if("1".equals(str)){
 			 return Result.error(str + "入库数量不能大于未清数量");
 		 }
 
@@ -906,7 +906,7 @@ public class BusiPoController {
 		 busiPoItem1.setQuery02(busiPoItem.getQuery02());
 		 busiPoItemMapper.updateById(busiPoItem1);
 
-		 if(busiPoItem.getQuery30().equals("1")){//1继续打样  2，完成打样
+		 if("1".equals(busiPoItem.getQuery30())){//1继续打样  2，完成打样
 			 PoItem.setAttr1("");
 			 PoItem.setText01("");
 			 busiPoItemMapper.insert(PoItem);
@@ -978,7 +978,7 @@ public class BusiPoController {
 		 Map<String, List<BusiPoItem>> busiPo = busiPoItems.stream().collect(Collectors.groupingBy(BusiPoItem::getQuery13, Collectors.toList()));
 		 for (Map.Entry<String, List<BusiPoItem>> entry : busiPo.entrySet()) {
  			 List<BusiPoItem> value = entry.getValue();
-			 if(value.get(0).getQuery01().equals("RKYY")){
+			 if("RKYY".equals(value.get(0).getQuery01())){
 				 pltnPushWms.putInOrder(value);
 			 }else {
 				 pltnPushWms.sampleOrder(value);
@@ -1005,7 +1005,7 @@ public class BusiPoController {
 							   @RequestParam(name="attr3",required = false) String attr3,
 							   @RequestParam(name="text03",required = false) String text03
 							   ) {
-		 if(query01.equals("CGD") || query01.equals("yp")){ // 采购单,样品单
+		 if("CGD".equals(query01) || "yp".equals(query01)){ // 采购单,样品单
 			 QueryWrapper<BusiPo> queryWrapper = new QueryWrapper<>();
 			 queryWrapper.lambda().eq(BusiPo::getQuery04,query04);
 			 List<BusiPo> list = busiPoService.list(queryWrapper);
@@ -1021,7 +1021,7 @@ public class BusiPoController {
 				 }
 				 busiPoService.updateById(busiPo);
 			 }
-		 }else if(query01.equals("SCWG")){ // 加工单
+		 }else if("SCWG".equals(query01)){ // 加工单
 			 QueryWrapper<BusiPrdOrd> queryWrapper = new QueryWrapper<>();
 			 queryWrapper.lambda().eq(BusiPrdOrd::getQuery04,query04);
 			 List<BusiPrdOrd> list = busiPrdOrdService.list(queryWrapper);
@@ -1138,7 +1138,7 @@ public class BusiPoController {
 		 for (BusiPo busiPo : list) {
 			 busiPo.setQuery40(query22);
 			 busiPo.setQuery02("已完成");
-			 if(busiPo.getNum01() != busiPo.getNum03()){
+			 if(!busiPo.getNum01().equals(busiPo.getNum03())){
 				 list2.add(busiPo);
 			 }
 			 busiPoService.updateById(busiPo);
@@ -1195,7 +1195,7 @@ public class BusiPoController {
 									  HttpServletRequest req) {
 		 List<BusiPo> list3 = new ArrayList<>();
 
-		 if( !type.equals("XSFP") && !type.equals("XSFPHZ") && !type.equals("CGZJ") && !type.equals("ZJDD")){
+		 if( !"XSFP".equals(type) && !"XSFPHZ".equals(type) && !"CGZJ".equals(type) && !"ZJDD".equals(type)){
 			 String[] split1 = orderids.split(",");
 			 for (String s : split1) {
 				 QueryWrapper<BusiPo> BusiPoqueryWrapper = new QueryWrapper<>();
@@ -1210,17 +1210,17 @@ public class BusiPoController {
 			 }
 		 }
 		 List<BusiPoPage> BusiPoPageList = new ArrayList<>();
-		 if(type.equals("CGHS")){ // 采购含税
+		 if("CGHS".equals(type)){ // 采购含税
 			 BusiPoPageList = busiPoService.CGHS(list3);
-		 }else if(type.equals("CGBHS")){ // 采购不含税
+		 }else if("CGBHS".equals(type)){ // 采购不含税
 			 BusiPoPageList = busiPoService.CGHS(list3);
-		 }else if(type.equals("YPHS")){ // 样品含税
+		 }else if("YPHS".equals(type)){ // 样品含税
 			 BusiPoPageList = busiPoService.CGHS(list3);
-		 }else if(type.equals("YPBHS")){ // 样品不含税
+		 }else if("YPBHS".equals(type)){ // 样品不含税
 			 BusiPoPageList = busiPoService.CGHS(list3);
-		 }else if(type.equals("FKD")){ // 付款单
+		 }else if("FKD".equals(type)){ // 付款单
 			 BusiPoPageList = busiPoService.FKD(list3);
-		 }else if(type.equals("XSFP")){ // 形式发票
+		 }else if("XSFP".equals(type)){ // 形式发票
 			 String[] split = orderids.split(",");
 			 List<BusiPaymentReceived> list2 = new ArrayList<>();
 			 for (String s : split) {
@@ -1231,7 +1231,7 @@ public class BusiPoController {
 				 list2.addAll(list1);
 			 }
 			 BusiPoPageList = busiPoService.XSFP(list2);
-		 }else if(type.equals("XSFPHZ")){ // 形式发票汇总
+		 }else if("XSFPHZ".equals(type)){ // 形式发票汇总
 			 String[] split = orderids.split(",");
 			 List<BusiPaymentReceived> list2 = new ArrayList<>();
 			 for (String s : split) {
@@ -1242,10 +1242,10 @@ public class BusiPoController {
 				 list2.addAll(list1);
 			 }
 			 BusiPoPageList = busiPoService.XSFPHZ(list2);
-		 }else if(type.equals("CGZJ")){ // 采购质检单
+		 }else if("CGZJ".equals(type)){ // 采购质检单
 			 List<WmImNoticeI> zjdd = busiPoService.CGZJ(orderids);
 			 return Result.OK(zjdd);
-		 }else if(type.equals("ZJDD")){ // 质检订单
+		 }else if("ZJDD".equals(type)){ // 质检订单
 			 List<WmImNoticeI> zjdd = busiPoService.ZJDD(orderids);
 			 return Result.OK(zjdd);
 		 }
@@ -1302,7 +1302,7 @@ public class BusiPoController {
 		 hashMap.put("query03",busiPo.getQuery03());
          // 查询出所有要展示的供应商 币种  订单类型
 		 IPage<BusiPoPage> iPage = null;
-		 if(type.equals("GYS")){
+		 if("GYS".equals(type)){
 			 iPage = busiPoMapper.selectTotalMoneyList(page, hashMap);
 		 }else {
 			 iPage = busiPoMapper.selectTotalMoneyListKH(page, hashMap);
@@ -1329,7 +1329,7 @@ public class BusiPoController {
 						 hashMap2.put("query03",record.getQuery03());
 						 hashMap2.put("query04",i1);
 					 List<BusiPoPage> list1 = null;
-						 if(type.equals("GYS")){
+						 if("GYS".equals(type)){
 							 list1 = busiPoMapper.selectTotalMoneyList2(hashMap2);
 						 }else {
 							 list1 = busiPoMapper.selectTotalMoneyList2KH(hashMap2);
@@ -1358,7 +1358,7 @@ public class BusiPoController {
 						 hashMap2.put("query03",record.getQuery03());
 						 hashMap2.put("query04","20" + index);
 						 List<BusiPoPage> list1 = null;
-						 if(type.equals("GYS")){
+						 if("GYS".equals(type)){
 							 list1 = busiPoMapper.selectTotalMoneyList2(hashMap2);
 						 }else {
 							 list1 = busiPoMapper.selectTotalMoneyList2KH(hashMap2);
@@ -1427,15 +1427,15 @@ public class BusiPoController {
 		hashMap.put("query18",busiquerypage.getQuery18());
 		hashMap.put("query19",busiquerypage.getQuery19());
 		hashMap.put("query20",busiquerypage.getQuery20());
-		if(type.equals("canPinGenJinTongJi")){
+		if("canPinGenJinTongJi".equals(type)){
 			iPage = busiPoMapper.canPinGenJinTongJi(page, hashMap);
-		}else if(type.equals("chaXunMeiTianDingDan")){
+		}else if("chaXunMeiTianDingDan".equals(type)){
 			iPage = busiPoMapper.chaXunMeiTianDingDan(page, hashMap);
-		}else if(type.equals("XiangChuKuXiangQing")){
+		}else if("XiangChuKuXiangQing".equals(type)){
 			iPage = busiPoMapper.XiangChuKuXiangQing(page, hashMap);
-		}else if(type.equals("huokuanzhichu")){
+		}else if("huokuanzhichu".equals(type)){
 			iPage = busiPoMapper.huokuanzhichu(page, hashMap);
-		}else if(type.equals("rukumingxi")){
+		}else if("rukumingxi".equals(type)){
 			iPage = busiPoMapper.rukumingxi(page, hashMap);
 		}
 		return Result.OK(iPage);
@@ -1478,7 +1478,7 @@ public class BusiPoController {
 		hashMap.put("query19",busiquerypage.getQuery19());
 		hashMap.put("query20",busiquerypage.getQuery20());
 		ModelAndView mv = new ModelAndView(new JeecgEntityExcelView());
-		if(busiquerypage.getType().equals("canPinGenJinTongJi")){
+		if("canPinGenJinTongJi".equals(busiquerypage.getType())){
 			iPage = busiPoMapper.canPinGenJinTongJi(page, hashMap);
 			List<canPinGenJinTongJi> pageList = new ArrayList<canPinGenJinTongJi>();
 			for (BusiQueryPage record : iPage.getRecords()) {
@@ -1490,7 +1490,7 @@ public class BusiPoController {
 			mv.addObject(NormalExcelConstants.CLASS, canPinGenJinTongJi.class);
 			mv.addObject(NormalExcelConstants.PARAMS, new ExportParams("每日产品跟进统计", "导出人:"+sysUser.getRealname(), "busi_po"));
 			mv.addObject(NormalExcelConstants.DATA_LIST, pageList);
-		}else if(busiquerypage.getType().equals("chaXunMeiTianDingDan")){
+		}else if("chaXunMeiTianDingDan".equals(busiquerypage.getType())){
 			iPage = busiPoMapper.chaXunMeiTianDingDan(page, hashMap);
 			List<chaXunMeiTianDingDan> pageList = new ArrayList<chaXunMeiTianDingDan>();
 			for (BusiQueryPage record : iPage.getRecords()) {
@@ -1502,7 +1502,7 @@ public class BusiPoController {
 			mv.addObject(NormalExcelConstants.CLASS, chaXunMeiTianDingDan.class);
 			mv.addObject(NormalExcelConstants.PARAMS, new ExportParams("每天订单量", "导出人:"+sysUser.getRealname(), "busi_po"));
 			mv.addObject(NormalExcelConstants.DATA_LIST, pageList);
-		}else if(busiquerypage.getType().equals("XiangChuKuXiangQing")){
+		}else if("XiangChuKuXiangQing".equals(busiquerypage.getType())){
 			iPage = busiPoMapper.XiangChuKuXiangQing(page, hashMap);
 			List<XiangChuKuXiangQing> pageList = new ArrayList<XiangChuKuXiangQing>();
 			for (BusiQueryPage record : iPage.getRecords()) {
@@ -1514,7 +1514,7 @@ public class BusiPoController {
 			mv.addObject(NormalExcelConstants.CLASS, XiangChuKuXiangQing.class);
 			mv.addObject(NormalExcelConstants.PARAMS, new ExportParams("箱出库详情", "导出人:"+sysUser.getRealname(), "busi_po"));
 			mv.addObject(NormalExcelConstants.DATA_LIST, pageList);
-		}else if(busiquerypage.getType().equals("huokuanzhichu")){
+		}else if("huokuanzhichu".equals(busiquerypage.getType())){
 			iPage = busiPoMapper.huokuanzhichu(page, hashMap);
 			List<huokuanzhichu> pageList = new ArrayList<huokuanzhichu>();
 			for (BusiQueryPage record : iPage.getRecords()) {
@@ -1526,7 +1526,7 @@ public class BusiPoController {
 			mv.addObject(NormalExcelConstants.CLASS, huokuanzhichu.class);
 			mv.addObject(NormalExcelConstants.PARAMS, new ExportParams("箱出库详情", "导出人:"+sysUser.getRealname(), "busi_po"));
 			mv.addObject(NormalExcelConstants.DATA_LIST, pageList);
-		}else if(busiquerypage.getType().equals("rukumingxi")){
+		}else if("rukumingxi".equals(busiquerypage.getType())){
 			iPage = busiPoMapper.rukumingxi(page, hashMap);
 			List<rukumingxi> pageList = new ArrayList<rukumingxi>();
 			for (BusiQueryPage record : iPage.getRecords()) {

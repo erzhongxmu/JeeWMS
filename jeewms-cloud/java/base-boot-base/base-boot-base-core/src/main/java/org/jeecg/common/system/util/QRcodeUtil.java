@@ -58,7 +58,9 @@ public class QRcodeUtil {
      * 在二维码中间插入logo图片
      */
     private static void insertImage(BufferedImage source, InputStream logo, boolean needCompress) throws Exception {
-        if (logo == null) return;
+        if (logo == null) {
+            return;
+        }
         Image src = ImageIO.read(logo);
         int width = src.getWidth(null);
         int height = src.getHeight(null);

@@ -89,12 +89,12 @@ public class ExcelUtil {
 		String fileName = file.getOriginalFilename();
 		InputStream fis = file.getInputStream();
 		Workbook wb = null;
-		if(fileName.substring((fileName.lastIndexOf(".")+1)).equalsIgnoreCase("xls")){
+		if("xls".equalsIgnoreCase(fileName.substring((fileName.lastIndexOf(".")+1)))){
 			//获取2003版本
 			wb = new HSSFWorkbook(fis);
 
 		}
-		else if(fileName.substring((fileName.lastIndexOf(".")+1)).equalsIgnoreCase("xlsx")){
+		else if("xlsx".equalsIgnoreCase(fileName.substring((fileName.lastIndexOf(".")+1)))){
 			//获取2007版本
 			wb = new XSSFWorkbook(fis);
 		}
@@ -202,7 +202,7 @@ public class ExcelUtil {
 	        }
 	        sheetList.add(rowList);
 	    }
-	    if(!alertmsg.equals("")){
+	    if(!"".equals(alertmsg)){
 	    	return null;
 	    }
 	    return sheetList;
@@ -218,12 +218,12 @@ public class ExcelUtil {
 			String fileName = file.getName();
 			InputStream fis = new FileInputStream(file);
 			Workbook wb = null;
-			if(fileName.substring((fileName.lastIndexOf(".")+1)).equalsIgnoreCase("xls")){
+			if("xls".equalsIgnoreCase(fileName.substring((fileName.lastIndexOf(".")+1)))){
 				//获取2003版本
 				wb = new HSSFWorkbook(fis);
 
 			}
-			else if(fileName.substring((fileName.lastIndexOf(".")+1)).equalsIgnoreCase("xlsx")){
+			else if("xlsx".equalsIgnoreCase(fileName.substring((fileName.lastIndexOf(".")+1)))){
 				//获取2007版本
 				wb = new XSSFWorkbook(fis);
 			}
@@ -331,7 +331,7 @@ public class ExcelUtil {
 				}
 				sheetList.add(rowList);
 			}
-			if(!alertmsg.equals("")){
+			if(!"".equals(alertmsg)){
 				return null;
 			}
 			return sheetList;
@@ -381,10 +381,11 @@ public class ExcelUtil {
 					nwstr = "0." + nwxsd;
 //				System.out.println("0." + nwxsd);
 				} else {
-					if (!"0".equals(nwxsd))
+					if (!"0".equals(nwxsd)) {
 						nwstr = resultStr.substring(0, resultStr.indexOf(".")) + "." + nwxsd;
-					else
+					} else {
 						nwstr = resultStr.substring(0, resultStr.indexOf("."));
+					}
 				}
 
 //				System.out.println(nwstr);

@@ -142,7 +142,7 @@ public class ExportReportForExcel implements IExportReport {
 			for (int j = 0; j < cols.length; j++) {
 				cell = row.createCell((short)j);
 				String value= DayiUtils.toString(datapdf.get(cols[j]));
-				cell.setCellValue(value.equals("")?null:value);
+				cell.setCellValue("".equals(value)?null:value);
 				cell.setCellStyle(cellStyle);
 				int w=sheet.getColumnWidth((short)j);
 				if(value!=null&&value.length()>w/256){
@@ -181,9 +181,10 @@ public class ExportReportForExcel implements IExportReport {
 					cell = row.createCell((short) j);
 					String value = DayiUtils.toString(datapdf.get(cols[j]));
 					String temp ="ss";
-					if(!value.equals("."))
+					if(!".".equals(value)) {
 						temp = value.split("\\.")[0];
-					if((!value.equals("") &&(temp.equals("") || temp.equals("-"))) || (temp.matches("^[-+]?\\d+$") && j!=0)){
+					}
+					if((!"".equals(value) &&("".equals(temp) || "-".equals(temp))) || (temp.matches("^[-+]?\\d+$") && j!=0)){
 						if(value.split("\\.").length>1){
 							if(value.split("\\.")[1].matches("^\\d+$") && value.split("\\.").length==2){
 								cell.setCellValue(Double.valueOf(value));
@@ -198,7 +199,7 @@ public class ExportReportForExcel implements IExportReport {
 							}
 						}
 					}else{
-						cell.setCellValue(value.equals("")?null:value);
+						cell.setCellValue("".equals(value)?null:value);
 					}
 					int w = sheet.getColumnWidth((short) j);
 					if (value != null && value.length() > w / 256) {
@@ -244,9 +245,10 @@ public class ExportReportForExcel implements IExportReport {
 					cell = row.createCell((short) j);
 					String value = DayiUtils.toString(datapdf.get(cols[j]));
 					String temp ="ss";
-					if(!value.equals("."))
+					if(!".".equals(value)) {
 						temp = value.split("\\.")[0];
-					if((!value.equals("") &&(temp.equals("") || temp.equals("-"))) || (temp.matches("^[-+]?\\d+$") && j!=0)){
+					}
+					if((!"".equals(value) &&("".equals(temp) || "-".equals(temp))) || (temp.matches("^[-+]?\\d+$") && j!=0)){
 						if(value.split("\\.").length>1){
 							if(value.split("\\.")[1].matches("^\\d+$") && value.split("\\.").length==2){
 								cell.setCellValue(Double.valueOf(value));
@@ -261,7 +263,7 @@ public class ExportReportForExcel implements IExportReport {
 							}
 						}
 					}else{
-							cell.setCellValue(value.equals("")?null:value);
+							cell.setCellValue("".equals(value)?null:value);
 					}
 					int w = sheet.getColumnWidth((short) j);
 					if (value != null && value.length() > w / 256) {
@@ -317,23 +319,25 @@ public class ExportReportForExcel implements IExportReport {
 					//cell.setCellStyle(style);
 					String value = DayiUtils.toString(datapdf.get(cols[j]));
 					String temp ="ss";
-					if(!value.equals("."))
+					if(!".".equals(value)) {
 						temp = value.split("\\.")[0];
-					if((!value.equals("") &&(temp.equals("") || temp.equals("-"))) || (temp.matches("^[-+]?\\d+$") && j!=0)){
+					}
+					if((!"".equals(value) &&("".equals(temp) || "-".equals(temp))) || (temp.matches("^[-+]?\\d+$") && j!=0)){
 						if(value.split("\\.").length>1){
 							if(value.split("\\.")[1].matches("^\\d+$") && value.split("\\.").length==2){
 								cell.setCellValue(Double.valueOf(value));
 							}else{
 								cell.setCellValue(value);
 							}
-						}else
+						}else {
 							try{
 								cell.setCellValue(Double.valueOf(value));
 								}catch(Exception e){
 									cell.setCellValue(value);
 							}
+						}
 					}else{
-							cell.setCellValue(value.equals("")?null:value);
+							cell.setCellValue("".equals(value)?null:value);
 					}
 				}
 				rowIndex++;
@@ -385,23 +389,25 @@ public class ExportReportForExcel implements IExportReport {
 					//cell.setCellStyle(style);
 					String value = DayiUtils.toString(datapdf.get(cols[j]));
 					String temp ="ss";
-					if(!value.equals("."))
+					if(!".".equals(value)) {
 						temp = value.split("\\.")[0];
-					if((!value.equals("") &&(temp.equals("") || temp.equals("-"))) || (temp.matches("^[-+]?\\d+$") && j!=0)){
+					}
+					if((!"".equals(value) &&("".equals(temp) || "-".equals(temp))) || (temp.matches("^[-+]?\\d+$") && j!=0)){
 						if(value.split("\\.").length>1){
 							if(value.split("\\.")[1].matches("^\\d+$") && value.split("\\.").length==2){
 								cell.setCellValue(Double.valueOf(value));
 							}else{
 								cell.setCellValue(value);
 							}
-						}else
+						}else {
 							try{
 								cell.setCellValue(Double.valueOf(value));
 								}catch(Exception e){
 									cell.setCellValue(value);
 							}
+						}
 					}else{
-							cell.setCellValue(value.equals("")?null:value);
+							cell.setCellValue("".equals(value)?null:value);
 					}
 //					int w = sheet.getColumnWidth((int) j);
 //					if (value != null && value.length() > w / 256) {
