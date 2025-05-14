@@ -238,7 +238,7 @@ public class WvStockSttController extends JeecgController<WvStockStt, IWvStockSt
     public Result<?> labelPrinting(@RequestParam(name = "ids", required = true) String ids, HttpServletRequest request) throws InterruptedException {
         String[] split = ids.split(",");
         Page<WvStockStt> page = new Page<WvStockStt>(1, 100);
-        HashMap<String, String> querymap = new HashMap<>();
+        HashMap<String, String> querymap = new HashMap<>(1024);
         for (String id : split) {
             String[] split1 = id.split("/");
             String upid = "";
@@ -345,7 +345,7 @@ public class WvStockSttController extends JeecgController<WvStockStt, IWvStockSt
     public Result<?> labelPrints(@RequestParam(name = "ids", required = true) String ids, HttpServletResponse response) throws InterruptedException {
         String[] split = ids.split(",");
         Page<WvStockStt> page = new Page<WvStockStt>(1, 100);
-        HashMap<String, String> querymap = new HashMap<>();
+        HashMap<String, String> querymap = new HashMap<>(1024);
         for (String id : split) {
             String[] split1 = id.split("/");
             String upid = "";

@@ -1193,7 +1193,7 @@ public class WmOmNoticeHController extends JeecgController<WmOmNoticeH, IWmOmNot
             }
         }
 
-        HashMap<String, WmOmQmI> map = new HashMap<>();
+        HashMap<String, WmOmQmI> map = new HashMap<>(1024);
         for (WmOmQmI item : omQmIS1) {// 遍历原集合
             if (map.containsKey(item.getBaseGoodscount() + item.getGoodsId() + item.getOmNoticeId())) {// 若map中的key包含该型号
                 WmOmQmI itemDTO = map.get(item.getBaseGoodscount() + item.getGoodsId() + item.getOmNoticeId());// 取出该对象，与集合中相同的对象进行数量合并

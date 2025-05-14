@@ -54,7 +54,7 @@ public class dataexchangeController {
     public JSONObject exData(@RequestBody JSONObject jsonObject, HttpServletResponse response, HttpServletRequest request) {
         log.info("接口传入内容:{}", jsonObject.toJSONString());
         JSONObject json = new JSONObject();
-        Map<String, Object> resmap = new HashMap<>();
+        Map<String, Object> resmap = new HashMap<>(1024);
         try {
             //RFC名字
             String rfcName = "ZFM_PP01_GET";

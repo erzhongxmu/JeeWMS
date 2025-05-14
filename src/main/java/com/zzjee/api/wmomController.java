@@ -97,7 +97,7 @@ wmomController {
 		query.setCurPage(pageNumber <= 0 ? 1 : pageNumber);
 		query.setPageSize(pageSize < 1 ? 1 : pageSize);
 		query.add();
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<String, Object>(1024);
 		map.put("createDate", "desc");
 		query.setOrder(map);
 		List<WmOmNoticeHPage> list = this.systemService.getListByCriteriaQuery(query, true);
@@ -137,7 +137,7 @@ wmomController {
 		query.setCurPage(pageNumber <= 0 ? 1 : pageNumber);
 		query.setPageSize(pageSize < 1 ? 1 : pageSize);
 		query.add();
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<String, Object>(1024);
 		map.put("createDate", "desc");
 		query.setOrder(map);
 		List<WmOmNoticeHPage> list = this.systemService.getListByCriteriaQuery(query, true);
@@ -573,7 +573,7 @@ wmomController {
 		query.setCurPage(pageNumber <= 0 ? 1 : pageNumber);
 		query.setPageSize(pageSize < 1 ? 1 : pageSize);
 		query.add();
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<String, Object>(1024);
 		map.put("binId", "asc");
 		query.setOrder(map);
 		List<WaveToDownEntity> list = this.systemService.getListByCriteriaQuery(query, true);
@@ -609,7 +609,7 @@ wmomController {
 		query.setCurPage(pageNumber <= 0 ? 1 : pageNumber);
 		query.setPageSize(pageSize < 1 ? 1 : pageSize);
 		query.add();
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<String, Object>(1024);
 		map.put("binId", "asc");
 		query.setOrder(map);
 		List<WaveToFjEntity> list = this.systemService.getListByCriteriaQuery(query, true);

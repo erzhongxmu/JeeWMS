@@ -110,7 +110,7 @@ public class JobLogController {
 		int list_count = xxlJobLogDao.pageListCount(start, length, jobGroup, jobId, triggerTimeStart, triggerTimeEnd, logStatus);
 		
 		// package result
-		Map<String, Object> maps = new HashMap<String, Object>();
+		Map<String, Object> maps = new HashMap<String, Object>(1024);
 	    maps.put("recordsTotal", list_count);		// 总记录数
 	    maps.put("recordsFiltered", list_count);	// 过滤后的总记录数
 	    maps.put("data", list);  					// 分页列表

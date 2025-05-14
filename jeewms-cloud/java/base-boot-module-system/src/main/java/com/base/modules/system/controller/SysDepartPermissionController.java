@@ -172,7 +172,7 @@ public class SysDepartPermissionController extends BaseController<SysDepartPermi
 		if(list==null || list.size()==0) {
 			return Result.error("未找到权限配置信息");
 		}else {
-			Map<String,Object> map = new HashMap<>();
+			Map<String,Object> map = new HashMap<>(1024);
 			map.put("datarule", list);
 			LambdaQueryWrapper<SysDepartPermission> query = new LambdaQueryWrapper<SysDepartPermission>()
 				 .eq(SysDepartPermission::getPermissionId, permissionId)
@@ -280,7 +280,7 @@ public class SysDepartPermissionController extends BaseController<SysDepartPermi
 			 }
 			 List<TreeModel> treeList = new ArrayList<>();
 			 getTreeModelList(treeList, list, null);
-			 Map<String,Object> resMap = new HashMap<String,Object>();
+			 Map<String,Object> resMap = new HashMap<String,Object>(1024);
 			 resMap.put("treeList", treeList); //全部树节点数据
 			 resMap.put("ids", ids);//全部树ids
 			 result.setResult(resMap);

@@ -388,7 +388,7 @@ public abstract class GenericBaseCommonDao<T, PK extends Serializable>
 
 		Query query = getSession().createQuery(hql);
 		List list = query.list();
-		Map<Object, Object> map = new HashMap<Object, Object>();
+		Map<Object, Object> map = new HashMap<Object, Object>(1024);
 		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
 			Object[] tm = (Object[]) iterator.next();
 			map.put(tm[0].toString(), tm[1].toString());

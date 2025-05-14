@@ -256,7 +256,7 @@ public class TmsYwDingdanController extends BaseController {
 
 		}
 		if(!StringUtil.isEmpty(user.getUserType())){
-			if(user.getUserType().equals("4")){
+			if("4".equals(user.getUserType())){
 				cq.eq("username",user.getUserName());
 			}
 
@@ -404,8 +404,8 @@ public class TmsYwDingdanController extends BaseController {
 				tmsYwDingdanService.updateEntitie(tmsYwDingdan);
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}
-			Map<String,String> maphz = new HashMap<>();
-			Map<String,String> mapsfoderid = new HashMap<>();
+			Map<String,String> maphz = new HashMap<>(1024);
+			Map<String,String> mapsfoderid = new HashMap<>(1024);
 
 			for(String id1:id.split(",")) {//计算总货主和单数
 				TmsYwDingdanEntity tmsYwDingdan1 = systemService.getEntity(TmsYwDingdanEntity.class,
@@ -923,7 +923,7 @@ public class TmsYwDingdanController extends BaseController {
 		}
 		TSUser user = ResourceUtil.getSessionUser();
 		if(!StringUtil.isEmpty(user.getUserType())){
-			if(user.getUserType().equals("4")){
+			if("4".equals(user.getUserType())){
 				tmsYwDingdan.setUsername(user.getUserName());
 				tmsYwDingdan.setXdrmz(user.getRealName());
 			}
@@ -1060,7 +1060,7 @@ public class TmsYwDingdanController extends BaseController {
 			String fileKey = b.getId();//附件主键
 			String path = b.getRealpath();//附件路径
 			String field = b.getCgformField();//表单中作为附件控件的字段
-			Map<String, Object> file = new HashMap<String, Object>();
+			Map<String, Object> file = new HashMap<String, Object>(1024);
 			file.put("title", title);
 			file.put("fileKey", fileKey);
 			file.put("path", path);

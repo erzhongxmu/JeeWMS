@@ -239,7 +239,7 @@ public class CgformSqlController extends BaseController {
 			if(null == dataList || dataList.size() < 1) {
                 return;
             }
-			Map<String, String> idMap = new HashMap<String, String>();
+			Map<String, String> idMap = new HashMap<String, String>(1024);
 			String id = "";
 			String countSql = "";
 			SqlParameterSource sqlParameterSource;

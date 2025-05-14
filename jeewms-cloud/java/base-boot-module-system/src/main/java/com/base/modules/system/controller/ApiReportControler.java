@@ -64,7 +64,7 @@ public class ApiReportControler {
         synchronized (this) {
 
             Result var4 = this.b(id, req);
-            HashMap var18 = new HashMap();
+            HashMap var18 = new HashMap(1024);
 
             Page page = new Page(pageNo, pageSize);
             zdOnlCgreportHead cgreportHead = onlCgreportHeadService.getById(id);
@@ -119,10 +119,10 @@ public class ApiReportControler {
             JSONObject var5 = JSON.parseObject(JSONObject.toJSONString(var4.getResult()));
             JSONArray var6 = var5.getJSONArray("records");
 
-            HashMap var9 = new HashMap();
+            HashMap var9 = new HashMap(1024);
 
             for (zdOnlCgreportItem cgreportCondition : cgreportConditions) {
-                HashMap var1 = new HashMap();
+                HashMap var1 = new HashMap(1024);
                 var1.put("align","center");
                 var1.put("dataIndex",cgreportCondition.getFieldName());
                 var1.put("fieldType",cgreportCondition.getFieldType());

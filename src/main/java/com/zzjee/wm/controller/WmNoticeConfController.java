@@ -131,7 +131,7 @@ public class WmNoticeConfController extends BaseController {
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
         }
-        Map<String, Object> map1 = new HashMap<String, Object>();
+        Map<String, Object> map1 = new HashMap<String, Object>(1024);
         map1.put("wmNoticeId", "desc");
         cq.setOrder(map1);
         cq.add();
@@ -169,7 +169,7 @@ public class WmNoticeConfController extends BaseController {
     public AjaxJson doGethuozhu(HttpServletRequest request) {
         AjaxJson j = new AjaxJson();
         WmOmNoticeHEntity wmOmNoticeHEntity = systemService.findUniqueByProperty(WmOmNoticeHEntity.class, "omNoticeId", oConvertUtils.getString(request.getParameter("wmNoticeId")));
-        if (wmOmNoticeHEntity != null && (!wmOmNoticeHEntity.getOmSta().equals("已删除") || !wmOmNoticeHEntity.getOmSta().equals("已完成"))) {
+        if (wmOmNoticeHEntity != null && (!"已删除".equals(wmOmNoticeHEntity.getOmSta()) || !"已完成".equals(wmOmNoticeHEntity.getOmSta()))) {
             MdCusEntity md = systemService.findUniqueByProperty(MdCusEntity.class, "keHuBianMa", wmOmNoticeHEntity.getCusCode());
             j.setObj(md);
         } else {

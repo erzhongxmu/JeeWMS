@@ -125,7 +125,7 @@ public class dataExchangeController {
             String code = t.getDiDatasource();
             try {
                 if(StringUtil.isNotEmpty(code)){
-                    Map maps = new HashMap();
+                    Map maps = new HashMap(1024);
                     maps.put("getAll", "true");
                     Object result = this.cgreportAPIService.getDataById(code, maps).get("records");
                     list1 = (List<Map<String, Object>>) result;

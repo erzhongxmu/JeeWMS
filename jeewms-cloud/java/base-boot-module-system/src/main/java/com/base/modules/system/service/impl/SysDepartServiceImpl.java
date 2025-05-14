@@ -397,7 +397,7 @@ public class SysDepartServiceImpl extends ServiceImpl<SysDepartMapper, SysDepart
 	 * @return
 	 */
 	private String getMyDeptParentNode(List<SysDepart> list){
-		Map<String,String> map = new HashMap<>();
+		Map<String,String> map = new HashMap<>(1024);
 		//1.先将同一公司归类
 		for(SysDepart dept : list){
 			String code = dept.getOrgCode().substring(0,3);

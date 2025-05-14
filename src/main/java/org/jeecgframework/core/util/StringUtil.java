@@ -351,7 +351,7 @@ public class StringUtil {
 	 * @return
 	 */
 	public static boolean isEmpty(String s) {
-		if (s != null && !s.equals("")) {
+		if (s != null && !"".equals(s)) {
 			return false;
 		}
 		return true;
@@ -411,7 +411,7 @@ public class StringUtil {
 			while (it.hasNext()) {
 				String name = (String) it.next();
 				String value = (String) map.get(name);
-				result += (result.equals("")) ? "" : "&";
+				result += ("".equals(result)) ? "" : "&";
 				result += String.format("%s=%s", name, value);
 			}
 			return result;
@@ -428,7 +428,7 @@ public class StringUtil {
 	 */
 	@SuppressWarnings("unchecked")
 	public static LinkedHashMap<String, String> toLinkedHashMap(String str) {
-		if (str != null && !str.equals("") && str.indexOf("=") > 0) {
+		if (str != null && !"".equals(str) && str.indexOf("=") > 0) {
 			LinkedHashMap result = new LinkedHashMap();
 
 			String name = null;
@@ -441,7 +441,7 @@ public class StringUtil {
 					value = "";
 					break;
 				case 38: // &
-					if (name != null && value != null && !name.equals("")) {
+					if (name != null && value != null && !"".equals(name)) {
 						result.put(name, value);
 					}
 					name = null;
@@ -458,7 +458,7 @@ public class StringUtil {
 
 			}
 
-			if (name != null && value != null && !name.equals("")) {
+			if (name != null && value != null && !"".equals(name)) {
 				result.put(name, value);
 			}
 
@@ -499,7 +499,7 @@ public class StringUtil {
 	 * @return 一般
 	 */
 	public static String getCaption(String captions, int index) {
-		if (index > 0 && captions != null && !captions.equals("")) {
+		if (index > 0 && captions != null && !"".equals(captions)) {
 			String[] ss = captions.split(",");
 			if (ss != null && ss.length > 0 && index < ss.length) {
 				return ss[index];
@@ -543,7 +543,7 @@ public class StringUtil {
 		if (money != null && style != null && (money instanceof Double || money instanceof Float)) {
 			Double num = (Double) money;
 
-			if (style.equalsIgnoreCase("default")) {
+			if ("default".equalsIgnoreCase(style)) {
 				// 缺省样式 0 不输出 ,如果没有输出小数位则不输出.0
 				if (num == 0) {
 					// 不输出0
@@ -1423,7 +1423,7 @@ public class StringUtil {
 	 * @return
 	 */
 	public static String isEmpty(String s, String result) {
-		if (s != null && !s.equals("")) {
+		if (s != null && !"".equals(s)) {
 			return s;
 		}
 		return result;
@@ -1437,7 +1437,7 @@ public class StringUtil {
 	 */
 	public static boolean isNotEmpty(Object str) {
 		boolean flag = true;
-		if (str != null && !str.equals("")) {
+		if (str != null && !"".equals(str)) {
 			if (str.toString().length() > 0) {
 				flag = true;
 			}
@@ -1508,7 +1508,7 @@ public class StringUtil {
 	@SuppressWarnings("unchecked")
 	public static Map<String, String> parseQuery(String query, char split1, char split2, String dupLink) {
 		if (!isEmpty(query) && query.indexOf(split2) > 0) {
-			Map<String, String> result = new HashMap();
+			Map<String, String> result = new HashMap(1024);
 
 			String name = null;
 			String value = null;
@@ -1846,9 +1846,9 @@ public class StringUtil {
 		if(clazz.isArray()){
 			isBaseClass = false;
 		}else if (clazz.isPrimitive()||clazz.getPackage()==null
-				|| clazz.getPackage().getName().equals("java.lang")
-				|| clazz.getPackage().getName().equals("java.math")
-				|| clazz.getPackage().getName().equals("java.util")) {
+				|| "java.lang".equals(clazz.getPackage().getName())
+				|| "java.math".equals(clazz.getPackage().getName())
+				|| "java.util".equals(clazz.getPackage().getName())) {
 			isBaseClass =  true;
 		}
 		return isBaseClass;

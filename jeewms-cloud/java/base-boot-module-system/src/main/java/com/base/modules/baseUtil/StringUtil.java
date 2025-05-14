@@ -1524,7 +1524,7 @@ public class StringUtil {
 	@SuppressWarnings("unchecked")
 	public static Map<String, String> parseQuery(String query, char split1, char split2, String dupLink) {
 		if (!isEmpty(query) && query.indexOf(split2) > 0) {
-			Map<String, String> result = new HashMap();
+			Map<String, String> result = new HashMap(1024);
 
 			String name = null;
 			String value = null;

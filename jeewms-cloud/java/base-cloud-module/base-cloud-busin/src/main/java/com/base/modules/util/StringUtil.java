@@ -267,7 +267,7 @@ public final class StringUtil {
     public static Map<String, Object> getProxyPojoValue(Object object, Set<String> key) {
         String id = null;
         // 返回参数
-        HashMap<String, Object> hashMap = new HashMap<>();
+        HashMap<String, Object> hashMap = new HashMap<>(1024);
         for (String s : key) {
             Field[] fields = object.getClass().getDeclaredFields();
             for (Field field : fields) {

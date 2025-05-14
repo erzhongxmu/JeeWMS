@@ -18,7 +18,7 @@ public class Base64Utils {
 //		String base64Str = GetImageStr("D:\\wangyc.jpg");
 //	     String result =null;
 //	        String url ="http://apis.juhe.cn/idimage/verify";//请求接口地址
-//	        Map params = new HashMap();//请求参数
+//	        Map params = new HashMap(1024);//请求参数
 //	        params.put("key",sfzappkey);//应用APPKEY(应用详细页查询)
 ////	        params.put("dtype","");//返回数据的格式,xml或json，默认json
 //	        params.put("side","front");//固定值：

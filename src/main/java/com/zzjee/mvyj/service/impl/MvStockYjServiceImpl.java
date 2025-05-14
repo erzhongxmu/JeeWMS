@@ -85,7 +85,7 @@ public class MvStockYjServiceImpl extends CommonServiceImpl implements MvStockYj
 	 */
  	private Map<String,Object> populationMap(MvStockYjEntity t){
 		//进行存储数据
-		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map = new HashMap<String,Object>(1024);
 		//将t对象的属性值逐个储存
 		map.put("id", t.getId());
 		map.put("kuctype", t.getKuctype());

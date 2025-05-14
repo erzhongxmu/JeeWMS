@@ -77,7 +77,7 @@ public class WvGiServiceImpl extends CommonServiceImpl implements WvGiServiceI {
  	}
  	
  	private Map<String,Object> populationMap(WvGiEntity t){
-		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("id", t.getId());
 		map.put("ku_wei_bian_ma", t.getKuWeiBianMa());
 		map.put("order_id", t.getOrderId());

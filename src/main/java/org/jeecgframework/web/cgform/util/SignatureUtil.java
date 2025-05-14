@@ -87,7 +87,7 @@ public abstract class SignatureUtil {
      * @return
      */
     public static Map<String,String> getSignMap(HttpServletRequest request){
-		Map<String,String>  paramMap = new HashMap<String, String>();
+		Map<String,String>  paramMap = new HashMap<String, String>(1024);
 		Map<String, String[]> map = request.getParameterMap();
 		Set<Entry<String, String[]>> es = map.entrySet();
 		Iterator<Entry<String, String[]>> it = es.iterator();
@@ -114,7 +114,7 @@ public abstract class SignatureUtil {
      * @return
      */
     public static Map<String,String> getSignMap(String url){
-    	Map<String,String>  paramMap = new HashMap<String, String>();
+    	Map<String,String>  paramMap = new HashMap<String, String>(1024);
     	url = url.substring(url.indexOf("?")+1);
     	String[] params = url.split("&");
     	for(int i=0;i<params.length;i++){
@@ -142,7 +142,7 @@ public abstract class SignatureUtil {
 //    	     System.out.println(entry.getKey()+"--->"+entry.getValue());    
 //    	}  
     	String key = "26F72780372E84B6CFAED6F7B19139CC47B1912B6CAED753";
-    	Map<String, String> paramMap = new HashMap<String, String>();
+    	Map<String, String> paramMap = new HashMap<String, String>(1024);
 		paramMap.put("tableName", "jform_le_main");
 		paramMap.put("id", "402813815398698b015398698b710000");
 		paramMap.put("data", "{jform_le_main:[{id=\"402813815398698b015398698b710000\",name:\"ceshi111111\",sex:1,remark:\"java developer\"}],jform_le_subone:[{main_id=\"402813815398698b015398698b710000\",name:\"ceshi111111\",sex:1,remark:\"java developer\"}],jform_le_submany:[{main_id=\"402813815398698b015398698b710000\",name:\"ceshi111111\",sex:1,remark:\"java developer\"},{name:\"ceshi111111\",sex:1,remark:\"java developer\"}]}");

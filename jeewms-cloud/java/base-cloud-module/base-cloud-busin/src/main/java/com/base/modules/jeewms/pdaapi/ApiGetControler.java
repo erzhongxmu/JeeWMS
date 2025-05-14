@@ -61,7 +61,7 @@ public class ApiGetControler {
                              @RequestParam(name = "pageSize", required = false, defaultValue = "100") Integer pageSize,
                              HttpServletRequest req) {
         Page<ApiresEntity> page = new Page<ApiresEntity>(pageNo, pageSize);
-        HashMap<String, String> querymap = new HashMap<>();
+        HashMap<String, String> querymap = new HashMap<>(1024);
         querymap.put("tenantId", tenantId);
         synchronized (this) {
             if (listtype.equals(CONSTANTTYPE.listtype01)) {//成品入库
@@ -97,7 +97,7 @@ public class ApiGetControler {
                 List<MdGoodsItem> mdGoodsItems = itemService.lambdaQuery().eq(MdGoodsItem::getSttr1, query02).list();
                 if (CollectionUtils.isNotEmpty(mdGoodsItems)) {
                     for (MdGoodsItem mdGoodsItem : mdGoodsItems) {
-                        HashMap<String, String> querymap1 = new HashMap<>();
+                        HashMap<String, String> querymap1 = new HashMap<>(1024);
                         querymap1.put("query01", query01);
                         querymap1.put("query02", mdGoodsItem.getShpBianMa());
                         IPage<ApiresEntity> page1 = wmsPdaService.queryListType02(page, querymap1);
@@ -129,7 +129,7 @@ public class ApiGetControler {
                     List<MdGoodsItem> mdGoodsItems = itemService.lambdaQuery().eq(MdGoodsItem::getSttr1, query02).list();
                     if (CollectionUtils.isNotEmpty(mdGoodsItems)) {
                         for (MdGoodsItem mdGoodsItem : mdGoodsItems) {
-                            HashMap<String, String> querymap1 = new HashMap<>();
+                            HashMap<String, String> querymap1 = new HashMap<>(1024);
                             querymap1.put("query01", query01);
                             querymap1.put("query02", mdGoodsItem.getShpBianMa());
                             IPage<ApiresEntity> page1 = wmsPdaService.queryListType03(page, querymap1);
@@ -154,7 +154,7 @@ public class ApiGetControler {
                 IPage<ApiresEntity> pageList = wmsPdaService.queryListType04(page, querymap);
                 List<ApiresEntity> apiresEntityList = pageList.getRecords();
                 for (ApiresEntity apiresEntity : apiresEntityList) {
-                    HashMap<String, String> map = new HashMap<>();
+                    HashMap<String, String> map = new HashMap<>(1024);
                     map.put("goods_id", apiresEntity.getQuery03());
                     List<ApiEntity> apiEntityList = wmsPdaService.querySpkcxx(map);
                     apiresEntity.setList01(apiEntityList);
@@ -205,7 +205,7 @@ public class ApiGetControler {
                 IPage<ApiresEntity> pageList = wmsPdaService.queryListType12(page, querymap);
                 return Result.ok(pageList);
             } else if (listtype.equals(CONSTANTTYPE.listtype13)) {//今日任务
-                /*HashMap<String, String> querymap = new HashMap<>();
+                /*HashMap<String, String> querymap = new HashMap<>(1024);
                 querymap.put("query01", query01);
                 querymap.put("query02", query02);
                 IPage<ApiresEntity> pageList = wmsPdaService.queryListType13(page, querymap);*/
@@ -229,7 +229,7 @@ public class ApiGetControler {
                 if(ObjectUtil.isNotEmpty(biCService.getNum5())){
                     num5 = biCService.getNum5().get("linecount").toString();
                 }
-                Map<String, Object> map = new HashMap<>();
+                Map<String, Object> map = new HashMap<>(1024);
                 map.put("num1", num1);
                 map.put("num2", num2);
                 map.put("num3", num3);
@@ -351,7 +351,7 @@ public class ApiGetControler {
                     List<MdGoodsItem> mdGoodsItems = itemService.lambdaQuery().eq(MdGoodsItem::getSttr1, query02).list();
                     if (CollectionUtils.isNotEmpty(mdGoodsItems)) {
                         for (MdGoodsItem mdGoodsItem : mdGoodsItems) {
-                            HashMap<String, String> querymap1 = new HashMap<>();
+                            HashMap<String, String> querymap1 = new HashMap<>(1024);
                             querymap1.put("query01", query01);
                             querymap1.put("query02", mdGoodsItem.getShpBianMa());
                             IPage<ApiresEntity> page1 = wmsPdaService.queryListType26(page, querymap1);

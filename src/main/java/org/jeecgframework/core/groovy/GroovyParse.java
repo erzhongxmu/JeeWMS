@@ -24,7 +24,7 @@ public class GroovyParse {
 
 	public static void main(String[] args) {
 		String formula = "println 'Hello World!';po = '9s00';return (a * b);";
-		Map map = new HashMap();
+		Map map = new HashMap(1024);
 		map.put("a", 900);
 		map.put("b", 10);
 		GroovyScriptEngine groovyScriptEngine = new GroovyScriptEngine();

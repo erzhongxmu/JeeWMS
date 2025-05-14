@@ -41,7 +41,7 @@ public class ZdOnlCgreportItemServiceImpl extends ServiceImpl<com.base.modules.b
 		HashMap var8;
 		for(Iterator var6 = var3.iterator(); var6.hasNext(); var4.add(var8)) {
 			zdOnlCgreportItem var7 = (zdOnlCgreportItem)var6.next();
-			var8 = new HashMap();
+			var8 = new HashMap(1024);
 			var8.put("label", var7.getFieldTxt());
 			if (oConvertUtils.isNotEmpty(var7.getDictCode())) {
 				var8.put("view", "list");

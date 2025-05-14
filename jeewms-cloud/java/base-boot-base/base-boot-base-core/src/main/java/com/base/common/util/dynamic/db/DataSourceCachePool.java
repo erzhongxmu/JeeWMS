@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public class DataSourceCachePool {
     /** 数据源连接池缓存【本地 class缓存 - 不支持分布式】 */
-    private static Map<String, DruidDataSource> dbSources = new HashMap<>();
+    private static Map<String, DruidDataSource> dbSources = new HashMap<>(1024);
     private static RedisTemplate<String, Object> redisTemplate;
 
     private static RedisTemplate<String, Object> getRedisTemplate() {

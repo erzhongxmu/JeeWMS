@@ -55,7 +55,7 @@ public final class JSONHelper {
 	// 将JSON转换成Map,其中valueClz为Map中value的Class,keyArray为Map的key
 	public static Map json2Map(Object[] keyArray, String json, Class valueClz) {
 		JSONObject jsonObject = JSONObject.fromObject(json);
-		Map classMap = new HashMap();
+		Map classMap = new HashMap(1024);
 
 		for (int i = 0; i < keyArray.length; i++) {
 			classMap.put(keyArray[i], valueClz);
@@ -224,7 +224,7 @@ public final class JSONHelper {
 	 * @return
 	 */
 	public static HashMap toHashMap(Object object) {
-		HashMap<String, Object> data = new HashMap<String, Object>();
+		HashMap<String, Object> data = new HashMap<String, Object>(1024);
 		JSONObject jsonObject = JSONHelper.toJSONObject(object);
 		Iterator it = jsonObject.keys();
 		while (it.hasNext()) {
@@ -241,7 +241,7 @@ public final class JSONHelper {
 	    * json格式：{"name":"admin","retries":"3fff","testname":"ddd","testretries":"fffffffff"} 
 	    */  
 	   public static Map<String, Object> json2Map(String jsonStr)  {  
-	       Map<String, Object> data = new HashMap<String, Object>();  
+	       Map<String, Object> data = new HashMap<String, Object>(1024);  
 	       // 将json字符串转换成jsonObject  
 	       JSONObject jsonObject = JSONObject.fromObject(jsonStr);  
 	       Iterator it = jsonObject.keys();  
@@ -261,7 +261,7 @@ public final class JSONHelper {
 	    * json格式：{"name":"admin","retries":"3fff","testname":"ddd","testretries":"fffffffff"} 
 	    */  
 	   public static Map<String, List<Map<String, Object>>> json2MapList(String jsonStr)  {  
-	       Map<String, List<Map<String, Object>>> data = new HashMap<String, List<Map<String, Object>>>();  
+	       Map<String, List<Map<String, Object>>> data = new HashMap<String, List<Map<String, Object>>>(1024);  
 	       // 将json字符串转换成jsonObject  
 	       JSONObject jsonObject = JSONObject.fromObject(jsonStr);  
 	       Iterator it = jsonObject.keys();  
@@ -288,7 +288,7 @@ public final class JSONHelper {
 		JSONArray jsonArray = JSONArray.fromObject(object);
 		for (Object obj : jsonArray) {
 			JSONObject jsonObject = (JSONObject) obj;
-			Map<String, Object> map = new HashMap<String, Object>();
+			Map<String, Object> map = new HashMap<String, Object>(1024);
 			Iterator it = jsonObject.keys();
 			while (it.hasNext()) {
 				String key = (String) it.next();
@@ -305,7 +305,7 @@ public final class JSONHelper {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		for (Object obj : jsonArray) {
 			JSONObject jsonObject = (JSONObject) obj;
-			Map<String, Object> map = new HashMap<String, Object>();
+			Map<String, Object> map = new HashMap<String, Object>(1024);
 			Iterator it = jsonObject.keys();
 			while (it.hasNext()) {
 				String key = (String) it.next();

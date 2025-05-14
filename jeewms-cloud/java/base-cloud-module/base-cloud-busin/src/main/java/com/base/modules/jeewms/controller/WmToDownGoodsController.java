@@ -121,7 +121,7 @@ public class WmToDownGoodsController extends JeecgController<WmToDownGoods, IWmT
                                       @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize,
                                       HttpServletRequest req) {
         Page<WmToDownGoods> page = new Page<WmToDownGoods>(pageNo, pageSize);
-        HashMap hashMap = new HashMap();
+        HashMap hashMap = new HashMap(1024);
         IPage<WmToDownGoods> iPage = null;
         hashMap.put("goods_id",wmToDownGoods.getGoodsId());
         hashMap.put("order_id",wmToDownGoods.getOrderId());

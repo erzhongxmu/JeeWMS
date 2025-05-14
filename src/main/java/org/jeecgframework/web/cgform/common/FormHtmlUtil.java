@@ -16,25 +16,25 @@ public class FormHtmlUtil {
      */
     public static String getFormHTML(CgFormFieldEntity cgFormFieldEntity){
     	String html="";
-        if(cgFormFieldEntity.getShowType().equals("text")){
+        if("text".equals(cgFormFieldEntity.getShowType())){
         	html=getTextFormHtml(cgFormFieldEntity);
-        }else if(cgFormFieldEntity.getShowType().equals("password")){
+        }else if("password".equals(cgFormFieldEntity.getShowType())){
         	html=getPwdFormHtml(cgFormFieldEntity);
-        }else if(cgFormFieldEntity.getShowType().equals("radio")){
+        }else if("radio".equals(cgFormFieldEntity.getShowType())){
         	html=getRadioFormHtml(cgFormFieldEntity);
-        }else if(cgFormFieldEntity.getShowType().equals("checkbox")){
+        }else if("checkbox".equals(cgFormFieldEntity.getShowType())){
         	html=getCheckboxFormHtml(cgFormFieldEntity);
-        }else if(cgFormFieldEntity.getShowType().equals("list")){
+        }else if("list".equals(cgFormFieldEntity.getShowType())){
         	html=getListFormHtml(cgFormFieldEntity);
-        }else if(cgFormFieldEntity.getShowType().equals("date")){
+        }else if("date".equals(cgFormFieldEntity.getShowType())){
         	html=getDateFormHtml(cgFormFieldEntity);
-        }else if(cgFormFieldEntity.getShowType().equals("datetime")){
+        }else if("datetime".equals(cgFormFieldEntity.getShowType())){
         	html=getDatetimeFormHtml(cgFormFieldEntity);
-        }else if(cgFormFieldEntity.getShowType().equals("file")){
+        }else if("file".equals(cgFormFieldEntity.getShowType())){
         	html=getFileFormHtml(cgFormFieldEntity);
-        }else if(cgFormFieldEntity.getShowType().equals("textarea")){
+        }else if("textarea".equals(cgFormFieldEntity.getShowType())){
         	html=getTextAreaFormHtml(cgFormFieldEntity);
-        }else if(cgFormFieldEntity.getShowType().equals("popup")){
+        }else if("popup".equals(cgFormFieldEntity.getShowType())){
         	html=getPopupFormHtml(cgFormFieldEntity);
         }
         else {

@@ -59,7 +59,7 @@ public class BiController extends JeecgController<WmImNoticeI, IBiCService> {
         if(ObjectUtil.isNotEmpty(biCService.getNum5())){
             num5 = biCService.getNum5().get("linecount").toString();
         }
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>(1024);
         map.put("num1", num1);
         map.put("num2", num2);
         map.put("num3", num3);
@@ -87,7 +87,7 @@ public class BiController extends JeecgController<WmImNoticeI, IBiCService> {
         Map<String, Object> map;
         if (maplist.size() > 0) {
             for (Map<String, Object> object : maplist) {
-                map = new HashMap<String, Object>();
+                map = new HashMap<String, Object>(1024);
                 Map<String, Object> obj = object;
                 try {
 
@@ -133,7 +133,7 @@ public class BiController extends JeecgController<WmImNoticeI, IBiCService> {
 
         if (maplist.size() > 0) {
             for (Map<String, Object> object : maplist) {
-                map = new HashMap<String, Object>();
+                map = new HashMap<String, Object>(1024);
                 Map<String, Object> obj = object;
                 map.put("name", obj.get("goodsid").toString());
                 map.put("y", (int) Double.parseDouble(obj.get("amount").toString()));
@@ -166,7 +166,7 @@ public class BiController extends JeecgController<WmImNoticeI, IBiCService> {
 
         if (maplist.size() > 0) {
             for (Map<String, Object> object : maplist) {
-                map = new HashMap<String, Object>();
+                map = new HashMap<String, Object>(1024);
                 Map<String, Object> obj = object;
                 map.put("name", obj.get("goodsid").toString());
                 map.put("y", (int) Double.parseDouble(obj.get("amount").toString()));

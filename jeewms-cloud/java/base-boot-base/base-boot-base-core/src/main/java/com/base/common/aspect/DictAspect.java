@@ -91,7 +91,7 @@ public class DictAspect {
                 //step.1 筛选出加了 Dict 注解的字段列表
                 List<Field> dictFieldList = new ArrayList<>();
                 // 字典数据列表， key = 字典code，value=数据列表
-                Map<String, List<String>> dataListMap = new HashMap<>();
+                Map<String, List<String>> dataListMap = new HashMap<>(1024);
 
                 for (Object record : ((IPage) ((Result) result).getResult()).getRecords()) {
                     ObjectMapper mapper = new ObjectMapper();
@@ -198,7 +198,7 @@ public class DictAspect {
      */
     private Map<String, List<DictModel>> translateAllDict(Map<String, List<String>> dataListMap) {
         // 翻译后的字典文本，key=dictCode
-        Map<String, List<DictModel>> translText = new HashMap<>();
+        Map<String, List<DictModel>> translText = new HashMap<>(1024);
         // 需要翻译的数据（有些可以从redis缓存中获取，就不走数据库查询）
         List<String> needTranslData = new ArrayList<>();
         //step.1 先通过redis中获取缓存字典数据

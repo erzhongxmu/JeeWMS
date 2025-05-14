@@ -1271,7 +1271,7 @@ public class BusiPoController {
 									@RequestParam(name="pageSize", defaultValue="10") Integer pageSize,
 									HttpServletRequest req) {
 		 Page<BusiPoPage> page = new Page<BusiPoPage>(pageNo, pageSize);
-		 HashMap hashMap = new HashMap();
+		 HashMap hashMap = new HashMap(1024);
 		 IPage<BusiPoPage> iPage = busiPoMapper.MakeOutAnInvoiceData(page, hashMap);
 		 return Result.OK(iPage);
 	 }
@@ -1296,7 +1296,7 @@ public class BusiPoController {
 											  @RequestParam(name="type", defaultValue="GYS") String type,
 											  HttpServletRequest req) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 		 Page<BusiPoPage> page = new Page<BusiPoPage>(pageNo, pageSize);
-		 HashMap hashMap = new HashMap();
+		 HashMap hashMap = new HashMap(1024);
 		 hashMap.put("query01",busiPo.getQuery01());
 		 hashMap.put("query02",busiPo.getQuery02());
 		 hashMap.put("query03",busiPo.getQuery03());
@@ -1323,7 +1323,7 @@ public class BusiPoController {
 				 for (BusiPoPage record : iPage.getRecords()) {
 					 record.setAttr1(String.valueOf(i));
 					 Class<?> css = record.getClass();
-						 HashMap hashMap2 = new HashMap();
+						 HashMap hashMap2 = new HashMap(1024);
 						 hashMap2.put("query01",record.getQuery01());
 						 hashMap2.put("query02",record.getQuery02());
 						 hashMap2.put("query03",record.getQuery03());
@@ -1352,7 +1352,7 @@ public class BusiPoController {
 					 Class<?> css = record.getClass();
 					 for (int i3 = 0; i3 < i2; i3++) {
 						 int index = i + i3;
-						 HashMap hashMap2 = new HashMap();
+						 HashMap hashMap2 = new HashMap(1024);
 						 hashMap2.put("query01",record.getQuery01());
 						 hashMap2.put("query02",record.getQuery02());
 						 hashMap2.put("query03",record.getQuery03());
@@ -1405,7 +1405,7 @@ public class BusiPoController {
 							  @RequestParam(name="pageSize", defaultValue="10") Integer pageSize,
 							  HttpServletRequest req) {
 		Page<BusiQueryPage> page = new Page<BusiQueryPage>(pageNo, pageSize);
-		HashMap hashMap = new HashMap();
+		HashMap hashMap = new HashMap(1024);
 		IPage<BusiQueryPage> iPage = null;
 		hashMap.put("query01",busiquerypage.getQuery01());
 		hashMap.put("query02",busiquerypage.getQuery02());
@@ -1455,7 +1455,7 @@ public class BusiPoController {
 		LoginUser sysUser = (LoginUser) SecurityUtils.getSubject().getPrincipal();
 
 		Page<BusiQueryPage> page = new Page<BusiQueryPage>(1, 10000000);
-		HashMap hashMap = new HashMap();
+		HashMap hashMap = new HashMap(1024);
 		IPage<BusiQueryPage> iPage = null;
 		hashMap.put("query01",busiquerypage.getQuery01());
 		hashMap.put("query02",busiquerypage.getQuery02());

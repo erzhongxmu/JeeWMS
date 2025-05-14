@@ -499,7 +499,7 @@ public class WmCusCostHController extends BaseController {
 			String fileKey = b.getId();//附件主键
 			String path = b.getRealpath();//附件路径
 			String field = b.getCgformField();//表单中作为附件控件的字段
-			Map<String, Object> file = new HashMap<String, Object>();
+			Map<String, Object> file = new HashMap<String, Object>(1024);
 			file.put("title", title);
 			file.put("fileKey", fileKey);
 			file.put("path", path);

@@ -187,8 +187,10 @@ public class ApiController {
                                    @RequestParam(value = "searchstr3", required = false) String searchstr3) {
         return waveToDownController.list(username, searchstr, searchstr2, searchstr3);
     }
+
     /**
      * 波次下架保存
+     *
      * @param waveToDownstr
      * @param uriBuilder
      * @return
@@ -203,8 +205,9 @@ public class ApiController {
 
     /**
      * 波次分拣列表
-     * @param username 用户名
-     * @param searchstr 搜索条件
+     *
+     * @param username   用户名
+     * @param searchstr  搜索条件
      * @param searchstr2 搜索条件2
      * @param searchstr3
      * @return
@@ -235,7 +238,7 @@ public class ApiController {
                                    @RequestParam(value = "searchstr", required = false) String searchstr,
                                    @RequestParam(value = "searchstr2", required = false) String searchstr2,
                                    @RequestParam(value = "searchstr3", required = false) String searchstr3) {
-        return wvStockController.list(username, searchstr, searchstr2,searchstr3);
+        return wvStockController.list(username, searchstr, searchstr2, searchstr3);
     }
 
     //移储列表
@@ -276,7 +279,6 @@ public class ApiController {
     }
 
 
-
     @RequestMapping(value = "/mdGoodsController/list", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<?> list10(@RequestParam(value = "username", required = false) String username,
@@ -301,15 +303,16 @@ public class ApiController {
     //PDA自主移储保存 -未更新到接口文档
     @RequestMapping(value = "/wvStockController/pdazysave", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<?> update11(@RequestParam(value = "id", required = false) String id ,
+    public ResponseEntity<?> update11(@RequestParam(value = "id", required = false) String id,
 
-                                      @RequestParam (value = "username", required = false) String username ,
-                                      @RequestParam(value = "binto", required = false) String binto ,
-                                      @RequestParam(value = "tinto", required = false) String tinto ,
-                                      @RequestParam(value = "goodsqua", required = false) String goodsqua ,
-                                     UriComponentsBuilder uriBuilder) {
-        return wvStockController.doSttpda(id,username,binto,tinto, goodsqua,uriBuilder);
+                                      @RequestParam(value = "username", required = false) String username,
+                                      @RequestParam(value = "binto", required = false) String binto,
+                                      @RequestParam(value = "tinto", required = false) String tinto,
+                                      @RequestParam(value = "goodsqua", required = false) String goodsqua,
+                                      UriComponentsBuilder uriBuilder) {
+        return wvStockController.doSttpda(id, username, binto, tinto, goodsqua, uriBuilder);
     }
+
     //商品下单
     @RequestMapping(value = "/mdGoodsController/order", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -411,6 +414,7 @@ public class ApiController {
 
     /**
      * 获取用户消息
+     *
      * @param username
      * @param request
      * @return
@@ -451,10 +455,10 @@ public class ApiController {
 
     @RequestMapping(value = "/callback", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public AjaxJson callback( HttpServletRequest request, HttpServletResponse response) {
+    public AjaxJson callback(HttpServletRequest request, HttpServletResponse response) {
 
         AjaxJson j = new AjaxJson();
-        Map map = new HashMap();
+        Map map = new HashMap(1024);
         Enumeration paramNames = request.getParameterNames();
         while (paramNames.hasMoreElements()) {
             String paramName = (String) paramNames.nextElement();

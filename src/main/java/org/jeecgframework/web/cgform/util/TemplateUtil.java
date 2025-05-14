@@ -129,7 +129,7 @@ public class TemplateUtil {
      */
 	public Map<String,Object> processor(String content) {
 			
-		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map = new HashMap<String,Object>(1024);
 		try {
 			JSONObject jsonObj = JSONObject.fromObject(content);
 			String template  = (String)jsonObj.get("template");
@@ -153,7 +153,7 @@ public class TemplateUtil {
 				Matcher ctrlM = ctrlP.matcher(result.get(i));
 				//2.1 如果含有，则插入解析data.生成html后，讲html替换
 				if(ctrlM.find()){
-					tableData = new HashMap<String, Object>();
+					tableData = new HashMap<String, Object>(1024);
 					for(int j=index;j<jsonArray.size();j++){
 						JSONObject item = jsonArray.getJSONObject(j);
 						if("listctrl".equals(item.getString("leipiplugins"))){

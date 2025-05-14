@@ -31,7 +31,7 @@ public class ExceptionUtils {
 	 */
 	public static void throwIfEmpty(String target,String errorMessage)
 	{
-		if(target==null || target.equals("")){
+		if(target==null || "".equals(target)){
 			throw new BusinessException(errorMessage);
 		}
 	}

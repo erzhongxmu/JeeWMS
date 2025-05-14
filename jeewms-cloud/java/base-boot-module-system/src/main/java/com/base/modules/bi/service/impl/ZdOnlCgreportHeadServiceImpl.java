@@ -141,7 +141,7 @@ public class ZdOnlCgreportHeadServiceImpl extends ServiceImpl<com.base.modules.b
         List<Map<String, Object>> ob = zdOnlCgreportHeadMapper.executeQuery(sql);
         if (ob.size() == 0) {
             if (!"超期物料列表".equals(zdOnlCgreportHead.getName())) {
-                return new HashMap<>();
+                return new HashMap<>(1024);
             } else {
                 return new ArrayList<>();
             }
@@ -161,10 +161,10 @@ public class ZdOnlCgreportHeadServiceImpl extends ServiceImpl<com.base.modules.b
         }
         String sql = zdOnlCgreportHead.getCgrSql();
         List<Map<String, Object>> ob = zdOnlCgreportHeadMapper.executeQuery(sql);
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>(1024);
         List<String> tape = new ArrayList<>();
         List<String> value = new ArrayList<>();
-        Map<String, Object> map2 = new HashMap<>();
+        Map<String, Object> map2 = new HashMap<>(1024);
         List<Map<String, Object>> list = new ArrayList<>();
         if (ob.size() > 0) {
             for (Map<String, Object> map1 : ob) {
@@ -224,7 +224,7 @@ public class ZdOnlCgreportHeadServiceImpl extends ServiceImpl<com.base.modules.b
             }
         }
 
-        HashMap var18 = new HashMap();
+        HashMap var18 = new HashMap(1024);
         Integer var19 = oConvertUtils.getInt(params.get("pageSize"), 10);
         Integer var20 = oConvertUtils.getInt(params.get("pageNo"), 1);
         Page var21 = new Page((long)var20, (long)var19);
@@ -298,7 +298,7 @@ public class ZdOnlCgreportHeadServiceImpl extends ServiceImpl<com.base.modules.b
             a.info("多数据源 报表查询sql=>querySql: " + var16);
             a.info("多数据源 报表查询sql=>pageSQL: " + var19);
             a.info("多数据源 报表查询sql=>countSql: " + var17);
-            HashMap var20 = new HashMap();
+            HashMap var20 = new HashMap(1024);
             Map var21 = (Map) DynamicDBUtil.findOne(dbKey, var17, new Object[0]);
             var20.put("total", var21.get("total"));
             List var22 = DynamicDBUtil.findList(dbKey, var19, new Object[0]);

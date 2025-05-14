@@ -78,7 +78,7 @@ public class WvNoticeServiceImpl extends CommonServiceImpl implements WvNoticeSe
  	}
  	
  	private Map<String,Object> populationMap(WvNoticeEntity t){
-		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("id", t.getId());
 		map.put("notice_id", t.getNoticeId());
 		map.put("cus_code", t.getCusCode());

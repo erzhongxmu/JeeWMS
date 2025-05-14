@@ -41,7 +41,7 @@ public class UploadUtils {
 	// 最大文件大小
 	private long maxSize = 1000000;
 	// 定义允许上传的文件扩展名
-	private Map<String, String> extMap = new HashMap<String, String>();
+	private Map<String, String> extMap = new HashMap<String, String>(1024);
 	// 文件保存目录相对路径
 	private String basePath = "upload";
 	// 文件的目录名
@@ -81,8 +81,8 @@ public class UploadUtils {
 		// 验证
 		infos[0] = this.validateFields(request);
 		// 初始化表单元素
-		Map<String, Object> fieldsMap = new HashMap<String, Object>();
-		if (infos[0].equals("true")) {
+		Map<String, Object> fieldsMap = new HashMap<String, Object>(1024);
+		if ("true".equals(infos[0])) {
 			fieldsMap = this.initFields(request);
 		}
 		// 上传
@@ -175,7 +175,7 @@ public class UploadUtils {
 	private Map<String, Object> initFields(HttpServletRequest request) {
 
 		// 存储表单字段和非表单字段
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<String, Object>(1024);
 
 		// 第一步：判断request
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
@@ -212,7 +212,7 @@ public class UploadUtils {
 				// 文件域对象
 				List<FileItem> list = new ArrayList<FileItem>();
 				// 表单字段
-				Map<String, String> fields = new HashMap<String, String>();
+				Map<String, String> fields = new HashMap<String, String>(1024);
 				while (iter.hasNext()) {
 					FileItem item = iter.next();
 					// 处理所有表单元素和文件域表单元素

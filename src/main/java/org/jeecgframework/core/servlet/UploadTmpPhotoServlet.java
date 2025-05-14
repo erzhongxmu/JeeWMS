@@ -96,7 +96,7 @@ public class UploadTmpPhotoServlet extends HttpServlet {
 
 			String savePath = "";
 
-			Map<String, String> fileNames = new HashMap<String, String>();
+			Map<String, String> fileNames = new HashMap<String, String>(1024);
 
 			for (int i = 0; i < items.size(); i++) {
 

@@ -263,7 +263,7 @@ public class MdBinController extends BaseController {
                     result.add(jsonParts);
                 }
                 j.setObj(resultt.size());
-                Map<String, Object> attrs = new HashMap<String, Object>();
+                Map<String, Object> attrs = new HashMap<String, Object>(1024);
                 attrs.put("messageList", result);
                 j.setAttributes(attrs);
             }
@@ -350,7 +350,7 @@ public class MdBinController extends BaseController {
                     result.add(jsonParts);
                 }
                 j.setObj(resultt.size());
-                Map<String, Object> attrs = new HashMap<String, Object>();
+                Map<String, Object> attrs = new HashMap<String, Object>(1024);
                 attrs.put("messageList", result);
                 j.setAttributes(attrs);
             }
@@ -387,7 +387,7 @@ public class MdBinController extends BaseController {
                 wmsPlcController.run("", startcom, hxstepNum);
             }
             // 根据起始位置的y坐标决定是沿x轴还是y轴移动
-            if (y0.equals("01")) {
+            if ("01".equals(y0)) {
                 wmsPlcController.run("", "runx", xstepNum);
             } else {
                 wmsPlcController.run("", "runy", ystepNum);
@@ -396,7 +396,7 @@ public class MdBinController extends BaseController {
                 hxstepNum = "1";
                 wmsPlcController.run("", midcom, hxstepNum);
             }
-            if (y0.equals("01")) {
+            if ("01".equals(y0)) {
                 wmsPlcController.run("", "runy", ystepNum);
             } else {
                 wmsPlcController.run("", "runx", xstepNum);

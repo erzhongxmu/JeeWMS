@@ -648,7 +648,7 @@ public class WmOmQmIController extends JeecgController<WmOmQmI, IWmOmQmIService>
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String[] ids = id.split(",");
             for (String s : ids) {
-                HashMap<String,String> map1 = new HashMap<>();
+                HashMap<String,String> map1 = new HashMap<>(1024);
                 if(pageType.equals("XJ")){
                     String tinids = "T0000";
                     String tinids1 = "T0000";
@@ -797,7 +797,7 @@ public class WmOmQmIController extends JeecgController<WmOmQmI, IWmOmQmIService>
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String[] ids = id.split(",");
             for (String s : ids) {
-                HashMap<String,String> map1 = new HashMap<>();
+                HashMap<String,String> map1 = new HashMap<>(1024);
                 if(pageType.equals("XJ")){
                     WmOmQmI omQmI = wmOmQmIService.getById(s);
                     WmOmNoticeH wmOmNoticeHS = wmOmNoticeHService.lambdaQuery().eq(WmOmNoticeH::getOmNoticeId, omQmI.getOmNoticeId()).one();

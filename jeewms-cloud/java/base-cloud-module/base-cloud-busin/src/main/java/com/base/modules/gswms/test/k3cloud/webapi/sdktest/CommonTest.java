@@ -124,7 +124,7 @@ public class CommonTest extends JeecgController<WmImNoticeH, IWmImNoticeHService
 		Date newDate2 = cn.hutool.core.date.DateUtil.offsetDay(date, 1);
 		String date2 = DateUtil.format(newDate2, "yyyy-MM-dd");
 		//     FCREATEDATE >= '+  2019-09-10 + '   and FCREATEDATE <= '2019-09-11'
-		Map<String, String> map = new HashMap<>();
+		Map<String, String> map = new HashMap<>(1024);
 		map.put("FormId","STK_InStock");
 		map.put("FieldKeys","FBILLNO,FSupplierId.FNumber,FSupplierId.FName,FSTOCKDEPTID.FNumber,FSTOCKDEPTID.FName," +
 				"FSTOCKORGID.FNumber,FSTOCKORGID.FName,FSTOCKERID.FName,FPURCHASERID.FName,,FBILLTYPEID.FName");
@@ -165,7 +165,7 @@ public class CommonTest extends JeecgController<WmImNoticeH, IWmImNoticeHService
 				wmImNoticeHService.save(wmImNoticeH);
 				//获取子表数据
 				List<WmImNoticeI> noticeIS = new ArrayList<>();
-				Map<String, String> map1 = new HashMap<>();
+				Map<String, String> map1 = new HashMap<>(1024);
 				map1.put("FormId","STK_InStock");
 				map1.put("FieldKeys","FMaterialId.FNumber,FMaterialId.FName,F_PAEZ_BaseProperty1,FUOM,FBaseUnitID.FName,FMustQty," +
 						"FRealQty,FLot,FNote,FContractlNo");
@@ -222,7 +222,7 @@ public class CommonTest extends JeecgController<WmImNoticeH, IWmImNoticeHService
 		String date2 = DateUtil.format(newDate2, "yyyy-MM-dd");
 
 		//     FCREATEDATE >= '+  2019-09-10 + '   and FCREATEDATE <= '2019-09-11'
-		Map<String, String> map = new HashMap<>();
+		Map<String, String> map = new HashMap<>(1024);
 		map.put("FormId","STK_InStock");
 		map.put("FieldKeys","FBILLNO,FSupplierId.FNumber,FSupplierId.FName,FSTOCKDEPTID.FNumber,FSTOCKDEPTID.FName," +
 				"FSTOCKORGID.FNumber,FSTOCKORGID.FName,FSTOCKERID.FName,FPURCHASERID.FName,,FBILLTYPEID.FName");
@@ -263,7 +263,7 @@ public class CommonTest extends JeecgController<WmImNoticeH, IWmImNoticeHService
 //				wmImNoticeHService.save(wmImNoticeH);
 				//获取子表数据
 				List<WmImNoticeI> noticeIS = new ArrayList<>();
-				Map<String, String> map1 = new HashMap<>();
+				Map<String, String> map1 = new HashMap<>(1024);
 				map1.put("FormId","STK_InStock");
 				map1.put("FieldKeys","FMaterialId.FNumber,FMaterialId.FName,F_PAEZ_BaseProperty1,FUOM,FBaseUnitID.FName,FMustQty," +
 						"FRealQty,FLot,FNote,FContractlNo");

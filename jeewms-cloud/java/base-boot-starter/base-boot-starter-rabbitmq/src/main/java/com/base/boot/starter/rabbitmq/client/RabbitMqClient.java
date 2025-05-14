@@ -101,7 +101,7 @@ public class RabbitMqClient {
     }
 
 
-    private Map sentObj = new HashMap<>();
+    private Map sentObj = new HashMap<>(1024);
 
 
     @Autowired

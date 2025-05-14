@@ -25,16 +25,16 @@ public class DBTypeUtil {
 			org.springframework.orm.hibernate4.LocalSessionFactoryBean sf = (org.springframework.orm.hibernate4.LocalSessionFactoryBean)ctx.getBean("&sessionFactory");
 			String dbdialect = sf.getHibernateProperties().getProperty("hibernate.dialect");
 			log.debug(dbdialect);
-			if (dbdialect.equals("org.hibernate.dialect.MySQLDialect")) {
+			if ("org.hibernate.dialect.MySQLDialect".equals(dbdialect)) {
 				retStr="mysql";
 			}else if (dbdialect.contains("Oracle")) {//oracle有多个版本的方言
 				retStr = "oracle";
-			}else if (dbdialect.equals("org.hibernate.dialect.SQLServerDialect")) {
+			}else if ("org.hibernate.dialect.SQLServerDialect".equals(dbdialect)) {
 				retStr = "sqlserver";
-			}else if (dbdialect.equals("org.hibernate.dialect.PostgreSQLDialect")) {
+			}else if ("org.hibernate.dialect.PostgreSQLDialect".equals(dbdialect)) {
 				retStr = "postgres";
 			}
-			else if (dbdialect.equals("org.jeecgframework.core.common.hibernate.dialect.MySQLServer2008Dialect")) {
+			else if ("org.jeecgframework.core.common.hibernate.dialect.MySQLServer2008Dialect".equals(dbdialect)) {
 				retStr = "sqlserver";
 			}
 			return retStr;

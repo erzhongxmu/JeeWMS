@@ -118,7 +118,7 @@ public class GenerateController extends BaseController {
 		    Cookie[] cookies=request.getCookies();
 		    if(cookies!=null){
 		    for(int i=0;i<cookies.length;i++){
-		        if(cookies[i].getName().equals("cookie_projectPath")){
+		        if("cookie_projectPath".equals(cookies[i].getName())){
 		        String value =  cookies[i].getValue();
 		        if(value!=null&&!"".equals(value)){
 		        	projectPath=cookies[i].getValue();
@@ -179,7 +179,7 @@ public class GenerateController extends BaseController {
 
 						//step.3 判断是不是用用户自定义界面
 						CgformCodeGenerate generate = new CgformCodeGenerate(createFileProperty,generateEntity);
-						if(createFileProperty.getJspMode().equals("04")){
+						if("04".equals(createFileProperty.getJspMode())){
 							String formhtml = templetContextWord.autoFormGenerateHtml(tableName, null, null);
 							generate.setCgformJspHtml(formhtml);
 						}
@@ -248,7 +248,7 @@ public class GenerateController extends BaseController {
 			CgFormHeadEntity mCgFormHead = cgFormFieldService.getCgFormHeadByTableName(mainTable);
 			getCgformConfig(mCgFormHead, mainG);
 			//step.4 填充子表的所有智能表单配置
-			Map<String,GenerateEntity> subsG = new HashMap<String,GenerateEntity>();
+			Map<String,GenerateEntity> subsG = new HashMap<String,GenerateEntity>(1024);
 			List<SubTableEntity>  subTabParamIn = subTableListEntity.getSubTabParamIn();
 			for(SubTableEntity po:subTabParamIn){
 				String sTableName = po.getTableName();

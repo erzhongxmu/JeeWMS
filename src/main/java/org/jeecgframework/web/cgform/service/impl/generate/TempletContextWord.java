@@ -180,7 +180,7 @@ public class TempletContextWord {
 	 * @return
 	 */
 	private String autoFormViewGenerateHtml(String tableName,String id,String mode){
-        Map<String, Object> data = new HashMap<String, Object>();
+        Map<String, Object> data = new HashMap<String, Object>(1024);
 		String templateName=tableName+"_";
 		TemplateUtil.TemplateType templateType = TemplateUtil.TemplateType.LIST;
 		if(StringUtils.isBlank(id)){
@@ -200,7 +200,7 @@ public class TempletContextWord {
     	data = new HashMap(configData);
     	//如果该表是主表查出关联的附表
     	CgFormHeadEntity head = (CgFormHeadEntity)data.get("head");
-        Map<String, Object> dataForm = new HashMap<String, Object>();
+        Map<String, Object> dataForm = new HashMap<String, Object>(1024);
         if(StringUtils.isNotEmpty(id)){
         	dataForm = dataBaseService.findOneForJdbc(tableName, id);
         }
@@ -211,7 +211,7 @@ public class TempletContextWord {
 	        Object ov=entry.getValue();
 	        data.put(ok, ov);
 	    }
-        Map<String, Object> tableData  = new HashMap<String, Object>();
+        Map<String, Object> tableData  = new HashMap<String, Object>(1024);
         //获取主表或单表表单数据
         tableData.put(tableName, dataForm);
         //获取附表表表单数据

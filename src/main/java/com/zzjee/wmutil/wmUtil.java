@@ -100,28 +100,28 @@ public class wmUtil {
         if (StringUtil.isEmpty(orderType)) {
             orderType = "01";
         }
-        if (orderType.equals("03")) {
+        if ("03".equals(orderType)) {
             noticeid = "TH"
                     + DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
                     + "-"
                     + StringUtil.leftPad(
                     newcount, 4,
                     '0');
-        } else if (orderType.equals("01")) {
+        } else if ("01".equals(orderType)) {
             noticeid = "RK"
                     + DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
                     + "-"
                     + StringUtil.leftPad(
                     newcount, 4,
                     '0');
-        } else if (orderType.equals("04")) {
+        } else if ("04".equals(orderType)) {
             noticeid = "YK"
                     + DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
                     + "-"
                     + StringUtil.leftPad(
                     newcount, 4,
                     '0');
-        } else if (orderType.equals("09")) {
+        } else if ("09".equals(orderType)) {
             noticeid = "QTRK"
                     + DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
                     + "-"
@@ -153,14 +153,14 @@ public class wmUtil {
         if (StringUtil.isEmpty(orderType)) {
             orderType = "11";
         }
-        if (orderType.equals("19")) {
+        if ("19".equals(orderType)) {
             noticeid = "QTCK"
                     + DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
                     + "-"
                     + StringUtil.leftPad(
                     newcount, 4,
                     '0');
-        } else if (orderType.equals("11")) {
+        } else if ("11".equals(orderType)) {
             noticeid = "CK"
                     + DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
                     + "-"
@@ -192,14 +192,14 @@ public class wmUtil {
         if (StringUtil.isEmpty(orderType)) {
             orderType = "11";
         }
-        if (orderType.equals("19")) {
+        if ("19".equals(orderType)) {
             noticeid = "QTCK"
                     + DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
                     + "-"
                     + StringUtil.leftPad(
                     newcount, 4,
                     '0');
-        } else if (orderType.equals("11")) {
+        } else if ("11".equals(orderType)) {
             noticeid = "CK"
                     + DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
                     + "-"
@@ -230,7 +230,7 @@ public class wmUtil {
 
     //通过客户商品编码，或者WMS商品编码和单位找到WMS编码
     public static Map<String, String> getGoodsId(String cusCode, String cusgoodsid, String goodsUnit) {
-        Map<String, String> resultmap = new HashMap<>();
+        Map<String, String> resultmap = new HashMap<>(1024);
         String goodsCode = null;
         SystemService systemService = ApplicationContextUtil.getContext().getBean(SystemService.class);
         String tsql = "select cus_code,chailing, goods_id,goods_code,shp_bian_makh,shl_dan_wei,baseunit" +
@@ -294,7 +294,7 @@ public class wmUtil {
 
     public static String gettuopanma() {
         String tuopanma = "";
-        if (ResourceUtil.getConfigByName("usetuopan").equals("no")) {
+        if ("no".equals(ResourceUtil.getConfigByName("usetuopan"))) {
             try {
                 if (StringUtil.isNotEmpty(ResourceUtil.getConfigByName("tuopanma"))) {
                     tuopanma = ResourceUtil.getConfigByName("tuopanma");

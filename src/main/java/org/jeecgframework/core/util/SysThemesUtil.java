@@ -27,7 +27,7 @@ public class SysThemesUtil {
 				if (cookie == null || StringUtils.isEmpty(cookie.getName())) {
 					continue;
 				}
-				if (cookie.getName().equalsIgnoreCase("JEECGINDEXSTYLE")) {
+				if ("JEECGINDEXSTYLE".equalsIgnoreCase(cookie.getName())) {
 					indexStyle = cookie.getValue();
 				}
 			}

@@ -86,7 +86,7 @@ public class MvCusCostServiceImpl extends CommonServiceImpl implements MvCusCost
 	 * @return
 	 */
  	private Map<String,Object> populationMap(MvCusCostEntity t){
-		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("id", t.getId());
 		map.put("cus_code", t.getCusCode());
 		map.put("cus_name", t.getCusName());

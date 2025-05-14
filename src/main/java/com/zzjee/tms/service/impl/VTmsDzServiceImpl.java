@@ -80,7 +80,7 @@ public class VTmsDzServiceImpl extends CommonServiceImpl implements VTmsDzServic
  	}
  	
  	private Map<String,Object> populationMap(VTmsDzEntity t){
-		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("id", t.getId());
 		map.put("dizhi", t.getDizhi());
 		return map;

@@ -51,22 +51,22 @@ public final class ToEntityUtil {
 			Method method = entity.getClass().getDeclaredMethod(methodName,
 					field.getType());
 			String val = data[j].toString();
-			if (parameterType.equals("String")) {
+			if ("String".equals(parameterType)) {
 				method.invoke(entity, val);
-			} else if (parameterType.equals("Character")) {
+			} else if ("Character".equals(parameterType)) {
 				method.invoke(entity, val.charAt(0));
-			} else if (parameterType.equals("Boolean")) {
+			} else if ("Boolean".equals(parameterType)) {
 				method.invoke(entity,
-						val.equals("true") || val.equals("1") ? true : false);
-			} else if (parameterType.equals("Short")) {
+						"true".equals(val) || "1".equals(val) ? true : false);
+			} else if ("Short".equals(parameterType)) {
 				method.invoke(entity, Short.parseShort(val));
-			} else if (parameterType.equals("Integer")) {
+			} else if ("Integer".equals(parameterType)) {
 				method.invoke(entity, Integer.parseInt(val));
-			} else if (parameterType.equals("Float")) {
+			} else if ("Float".equals(parameterType)) {
 				method.invoke(entity, Float.parseFloat(val));
-			} else if (parameterType.equals("Long")) {
+			} else if ("Long".equals(parameterType)) {
 				method.invoke(entity, Long.parseLong(val));
-			} else if (parameterType.equals("Double")) {
+			} else if ("Double".equals(parameterType)) {
 				method.invoke(entity, Double.parseDouble(val));
 			}
 		}

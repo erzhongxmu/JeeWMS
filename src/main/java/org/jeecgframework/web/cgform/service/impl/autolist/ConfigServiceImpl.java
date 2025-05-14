@@ -47,7 +47,7 @@ public class ConfigServiceImpl implements ConfigServiceI {
     @Ehcache
 	public Map<String, Object> queryConfigs(String tableName,String jversion) {
 		//step.1 要返回的配置数据
-		Map<String, Object> configs = new HashMap<String,Object>();
+		Map<String, Object> configs = new HashMap<String,Object>(1024);
 		//step.2 获取动态表配置
 		CgFormHeadEntity tableEntity = null;
 		try{

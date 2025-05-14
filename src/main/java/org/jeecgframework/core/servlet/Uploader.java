@@ -57,7 +57,7 @@ public class Uploader {
 	// 文件大小限制，单位Byte
 	private long maxSize = 0;
 
-	private HashMap<String, String> errorInfo = new HashMap<String, String>();
+	private HashMap<String, String> errorInfo = new HashMap<String, String>(1024);
 	private Map<String, String> params = null;
 	// 上传的文件数据
 	private InputStream inputStream = null;
@@ -66,7 +66,7 @@ public class Uploader {
 
 	public Uploader(HttpServletRequest request) {
 		this.request = request;
-		this.params = new HashMap<String, String>();
+		this.params = new HashMap<String, String>(1024);
 
 		this.setMaxSize(Uploader.MAX_SIZE);
 

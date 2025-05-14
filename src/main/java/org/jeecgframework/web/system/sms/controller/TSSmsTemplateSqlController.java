@@ -75,7 +75,7 @@ public class TSSmsTemplateSqlController extends BaseController {
 			j.setSuccess(false);
 			j.setMsg("配置CODE不能为空");
 		}else {
-			Map<String,Object> map = new HashMap<String,Object>();
+			Map<String,Object> map = new HashMap<String,Object>(1024);
 			map.put("id", "4028d881436d514601436d521ae80165");
 			String r = TuiSongMsgUtil.sendMessage("消息推送测试333","2", tSSmsTemplateSql.getCode(), map, "411944058@qq.com");
 			if (!"success".equals(r)){

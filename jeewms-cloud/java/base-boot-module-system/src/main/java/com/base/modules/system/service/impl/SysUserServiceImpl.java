@@ -246,7 +246,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 	public Map<String, String> getDepNamesByUserIds(List<String> userIds) {
 		List<SysUserDepVo> list = this.baseMapper.getDepNamesByUserIds(userIds);
 
-		Map<String, String> res = new HashMap<String, String>();
+		Map<String, String> res = new HashMap<String, String>(1024);
 		list.forEach(item -> {
 					if (res.get(item.getUserId()) == null) {
 						res.put(item.getUserId(), item.getDepartName());

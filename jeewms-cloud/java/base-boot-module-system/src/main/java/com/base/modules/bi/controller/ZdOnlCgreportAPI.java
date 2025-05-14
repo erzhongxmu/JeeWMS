@@ -70,7 +70,7 @@ public class ZdOnlCgreportAPI {
                 QueryWrapper var7 = new QueryWrapper();
                 ((QueryWrapper)((QueryWrapper)var7.eq("cgrhead_id", var1)).eq("is_show", 1)).orderByAsc("order_num");
                 List var8 = this.onlCgreportItemService.list(var7);
-                HashMap var9 = new HashMap();
+                HashMap var9 = new HashMap(1024);
                 JSONArray var10 = new JSONArray();
                 JSONArray var11 = new JSONArray();
                 Iterator var12 = var8.iterator();
@@ -170,7 +170,7 @@ public class ZdOnlCgreportAPI {
             var3.orderByAsc("order_num");
             List var4 = this.onlCgreportItemService.list(var3);
             ArrayList var5 = new ArrayList();
-            HashMap var6 = new HashMap();
+            HashMap var6 = new HashMap(1024);
             Iterator var7 = var4.iterator();
 
             while(var7.hasNext()) {
@@ -359,7 +359,7 @@ public class ZdOnlCgreportAPI {
             var4.orderByAsc("order_num");
             List var5 = this.onlCgreportItemService.list(var4);
             ArrayList var6 = new ArrayList();
-            HashMap var7 = new HashMap();
+            HashMap var7 = new HashMap(1024);
 
             HashMap var10;
             for(Iterator var8 = var5.iterator(); var8.hasNext(); var6.add(var10)) {

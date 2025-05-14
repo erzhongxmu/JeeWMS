@@ -117,7 +117,7 @@ public class DBTempletLoader implements TemplateLoader {
 	    	//1、根据table name 查询cgformftl 有则获取模板内容
 	    	//2、没有cgformftl 则查询cgformfield 根据cgformfield生成模板
 
-	    	Map<String,Object> cgformFtlEntity = new HashMap<String, Object>();
+	    	Map<String,Object> cgformFtlEntity = new HashMap<String, Object>(1024);
             if (ftlVersion != null && ftlVersion.length() > 0) {
                 cgformFtlEntity = cgformFtlService.getCgformFtlByTableName(name, ftlVersion);
             } else {

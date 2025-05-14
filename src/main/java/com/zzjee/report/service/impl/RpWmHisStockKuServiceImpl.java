@@ -78,7 +78,7 @@ public class RpWmHisStockKuServiceImpl extends CommonServiceImpl implements RpWm
  	}
  	
  	private Map<String,Object> populationMap(RpWmHisStockKuEntity t){
-		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("id", t.getId());
 		map.put("his_date", t.getHisDate());
 		map.put("cus_code", t.getCusCode());

@@ -428,7 +428,7 @@ public class GraphReportController extends BaseController {
 	@ResponseBody
 	public Object getSqlFields(String sql){
 		List<String> result = null;
-		Map reJson = new HashMap<String, Object>();
+		Map reJson = new HashMap<String, Object>(1024);
 		try{
 			result = graphReportService.getSqlFields(sql);
 		}catch (Exception e) {
@@ -483,7 +483,7 @@ public class GraphReportController extends BaseController {
 		}
 		
 		if(params == null) {
-			params = new HashMap<String, Object>();
+			params = new HashMap<String, Object>(1024);
 		}
 		if(StringUtil.isEmpty(tagName)) {
 			tagName = title;
@@ -508,7 +508,7 @@ public class GraphReportController extends BaseController {
 			
 			List<Map<String, Object>> fieldList = new ArrayList<Map<String, Object>>();
 			for (int i = 0; i < fields.length; i++,i++) {
-				Map<String, Object> map = new HashMap<String, Object>();
+				Map<String, Object> map = new HashMap<String, Object>(1024);
 				map.put("field_txt", fields[i]);
 				map.put("field_name", fields[i + 1]);
 				fieldList.add(map);

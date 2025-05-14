@@ -37,7 +37,7 @@ public class CostTask {
     public void run() {
         long start = System.currentTimeMillis();
         String run = ResourceUtil.getConfigByName("timerun");
-        if (!run.equals("run")) {
+        if (!"run".equals(run)) {
             return;
         }
         String datestr = DateUtils.date2Str(DateUtils.date_sdf);
@@ -55,7 +55,7 @@ public class CostTask {
 
     public void costcountv2(String datestr, String chongsuan, WmDayCostConfEntity t) {
         String tsql = "select COST_SF  from wm_day_cost_conf   where to_days(cost_date) = to_days(?)";
-        if (chongsuan.equals("N")) {//非重算
+        if ("N".equals(chongsuan)) {//非重算
             List<Map<String, Object>> resultconf = systemService.findForJdbc(tsql, datestr);
             if (resultconf.size() > 0) {
                 return;

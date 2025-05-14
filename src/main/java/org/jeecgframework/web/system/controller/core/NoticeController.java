@@ -104,7 +104,7 @@ public class NoticeController extends BaseController{
 				}
 			}
 			
-			Map<String,Object> attrs = new HashMap<String, Object>();
+			Map<String,Object> attrs = new HashMap<String, Object>(1024);
 			attrs.put("noticeList", result);
 			
 			String tip = MutiLangUtil.getMutiLangInstance().getLang("notice.tip");
@@ -193,7 +193,7 @@ public class NoticeController extends BaseController{
 			if(resultList!=null && resultList.size()>0){
 				for(int i=0;i<resultList.size();i++){
 					Map<String, Object> obj =  resultList.get(i);
-					Map<String, Object> n = new HashMap<String, Object>();
+					Map<String, Object> n = new HashMap<String, Object>(1024);
 					n.put("id",String.valueOf(obj.get("id")));
 					n.put("noticeTitle", String.valueOf(obj.get("notice_title")));
 					n.put("noticeContent", String.valueOf(obj.get("notice_content")));
@@ -553,7 +553,7 @@ public class NoticeController extends BaseController{
 			}
 			req.setAttribute("tSNoticePage", tSNotice);
 
-			if (tSNotice.getNoticeLevel().equals("2")){
+			if ("2".equals(tSNotice.getNoticeLevel())){
 				TSNoticeAuthorityRole role=new TSNoticeAuthorityRole();
 				role.setNoticeId(tSNotice.getId());
 				List<TSNoticeAuthorityRole>roles=systemService.findByExample(TSNoticeAuthorityRole.class.getName(),role);
@@ -565,7 +565,7 @@ public class NoticeController extends BaseController{
 				}
 				req.setAttribute("rolesid",rolesid);
 				req.setAttribute("rolesName",rolesName);
-			}else if (tSNotice.getNoticeLevel().equals("3")) {
+			}else if ("3".equals(tSNotice.getNoticeLevel())) {
 				TSNoticeAuthorityUser user=new TSNoticeAuthorityUser();
 				user.setNoticeId(tSNotice.getId());
 

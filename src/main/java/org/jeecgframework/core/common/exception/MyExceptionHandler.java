@@ -29,7 +29,7 @@ public class MyExceptionHandler implements HandlerExceptionResolver {
                                          HttpServletResponse response, Object handler, Exception ex) {
 		String exceptionMessage = ExceptionUtil.getExceptionMessage(ex);
 		logger.error(exceptionMessage);
-		Map<String, Object> model = new HashMap<String, Object>();
+		Map<String, Object> model = new HashMap<String, Object>(1024);
 		model.put("exceptionMessage", exceptionMessage);
 		model.put("ex", ex);
 		return new ModelAndView("common/error", model);

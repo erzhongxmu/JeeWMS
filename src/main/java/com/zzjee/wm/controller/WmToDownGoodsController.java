@@ -115,7 +115,7 @@ public class WmToDownGoodsController extends BaseController {
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq,
                 wmToDownGoods, request.getParameterMap());
         // 设置排序规则，按创建日期降序排列
-        Map<String, Object> map1 = new HashMap<String, Object>();
+        Map<String, Object> map1 = new HashMap<String, Object>(1024);
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.add();
@@ -157,7 +157,7 @@ public class WmToDownGoodsController extends BaseController {
             throw new BusinessException(e.getMessage());
         }
         // 设置排序规则
-        Map<String, Object> map1 = new HashMap<String, Object>();
+        Map<String, Object> map1 = new HashMap<String, Object>(1024);
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         // 添加查询条件：downSta字段为空
@@ -194,7 +194,7 @@ public class WmToDownGoodsController extends BaseController {
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
         }
-        Map<String, Object> map1 = new HashMap<String, Object>();
+        Map<String, Object> map1 = new HashMap<String, Object>(1024);
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.isNull("downSta");
@@ -777,7 +777,7 @@ public class WmToDownGoodsController extends BaseController {
         try {
             WmOmQmIEntity wmOmQmI = systemService.getEntity(
                     WmOmQmIEntity.class, id);
-            if (wmOmQmI != null && wmOmQmI.getBinSta().equals("N")) {
+            if (wmOmQmI != null && "N".equals(wmOmQmI.getBinSta())) {
                 WmToDownGoodsEntity wmToDownGoods = new WmToDownGoodsEntity();
                 wmToDownGoods.setCreateBy(username);
                 wmToDownGoods.setCreateName(realname);

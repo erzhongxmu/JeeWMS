@@ -377,31 +377,31 @@ public class TagUtil {
 				String name = fields[i].getName(); // 获取属性的名字
 				String filedType = fields[i].getGenericType().toString(); // 获取属性的类型
 				if (fileName.equals(name)) {
-					if (filedType.equals("class java.lang.Integer")) {
+					if ("class java.lang.Integer".equals(filedType)) {
 						filedType = "int";
 						type = filedType;
-					}else if (filedType.equals("class java.lang.Short")) {
+					}else if ("class java.lang.Short".equals(filedType)) {
 						filedType = "short";
 						type = filedType;
-					}else if (filedType.equals("class java.lang.Double")) {
+					}else if ("class java.lang.Double".equals(filedType)) {
 						filedType = "double";
 						type = filedType;
-					}else if (filedType.equals("class java.util.Date")) {
+					}else if ("class java.util.Date".equals(filedType)) {
 						filedType = "date";
 						type = filedType;
-					}else if (filedType.equals("class java.lang.String")) {
+					}else if ("class java.lang.String".equals(filedType)) {
 						filedType = "string";
 						type = filedType;
-					}else if (filedType.equals("class java.sql.Timestamp")) {
+					}else if ("class java.sql.Timestamp".equals(filedType)) {
 						filedType = "Timestamp";
 						type = filedType;
-					}else if (filedType.equals("class java.lang.Character")) {
+					}else if ("class java.lang.Character".equals(filedType)) {
 						filedType = "character";
 						type = filedType;
-					}else if (filedType.equals("class java.lang.Boolean")) {
+					}else if ("class java.lang.Boolean".equals(filedType)) {
 						filedType = "boolean";
 						type = filedType;
-					}else if (filedType.equals("class java.lang.Long")) {
+					}else if ("class java.lang.Long".equals(filedType)) {
 						filedType = "long";
 						type = filedType;
 					}
@@ -438,7 +438,7 @@ public class TagUtil {
 	public static void ListtoView(HttpServletResponse response, PageList pageList) {
 		response.setContentType("application/json");
 		response.setHeader("Cache-Control", "no-store");
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<String, Object>(1024);
 		map.put("total", pageList.getCount());
 		map.put("rows", pageList.getResultList());
 		ObjectMapper mapper = new ObjectMapper();

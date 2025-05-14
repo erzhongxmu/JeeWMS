@@ -20,7 +20,7 @@ public class FileTypeFilter {
     private static String[] forbidType = {"jsp","php"};
 
     // 初始化文件头类型，不够的自行补充
-    final static HashMap<String, String> fileTypeMap = new HashMap<>();
+    final static HashMap<String, String> fileTypeMap = new HashMap<>(1024);
 
     static {
         fileTypeMap.put("3c25402070616765206c", "jsp");

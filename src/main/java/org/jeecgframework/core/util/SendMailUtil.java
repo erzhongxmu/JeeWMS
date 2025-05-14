@@ -25,7 +25,7 @@ public class SendMailUtil
   private static final String charSet = "utf-8";
   private static final String username = "zhangdh@163.com";
   private static final String password = "123456";
-	private static Map<String, String> hostMap = new HashMap<String, String>();
+	private static Map<String, String> hostMap = new HashMap<String, String>(1024);
 	static {
 		// 126
 		hostMap.put("smtp.126", "smtp.126.com");
@@ -268,7 +268,7 @@ public class SendMailUtil
 //	      e.printStackTrace();
 //	      org.jeecgframework.core.util.LogUtil.info("email send error!");
 //	    }
-	  Map<String, Object> map = new HashMap<String, Object>();
+	  Map<String, Object> map = new HashMap<String, Object>(1024);
 	  map.put("subject", "测试标题");
 	  map.put("content", "测试 内容");
 	  String templatePath = "mailtemplate/test.ftl";

@@ -135,7 +135,7 @@ public class WmDayCostConfController extends BaseController {
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
         }
-        Map<String, Object> map1 = new HashMap<String, Object>();
+        Map<String, Object> map1 = new HashMap<String, Object>(1024);
         map1.put("costDate", "desc");
         cq.setOrder(map1);
         cq.add();
@@ -244,7 +244,7 @@ public class WmDayCostConfController extends BaseController {
 
             WmDayCostConfEntity t = wmDayCostConfService.get(WmDayCostConfEntity.class, request.getParameter("id"));
 
-            if (t.getCostSf() != null && t.getCostSf().equals("Y")) {
+            if (t.getCostSf() != null && "Y".equals(t.getCostSf())) {
                 j.setMsg(message);
                 message = "费用已经更新";
                 return j;

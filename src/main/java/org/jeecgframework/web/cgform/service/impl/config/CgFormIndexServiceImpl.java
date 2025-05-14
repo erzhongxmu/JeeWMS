@@ -153,7 +153,7 @@ public class CgFormIndexServiceImpl extends CommonServiceImpl implements CgFormI
 		if(indexes.size()!=0){
 			for(CgFormIndexEntity cgform : indexes){
 				String sql = "";
-				if(cgform.getIndexType().equals("normal")){
+				if("normal".equals(cgform.getIndexType())){
 					sql = "create index " + cgform.getIndexName() + " on " + formhead.getTableName() + "(" + cgform.getIndexField() + ")";
 				}else{
 					sql = "create " + cgform.getIndexType() + " index " + cgform.getIndexName() + " on " + formhead.getTableName() + "(" + cgform.getIndexField() + ")";

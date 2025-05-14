@@ -669,7 +669,7 @@ public class ListtoMenu {
         StringBuffer dataString = new StringBuffer();
 
         String colName = function.getTSIconDesk() == null ? null : function.getTSIconDesk().getIconPath();
-        colName = (colName == null || colName.equals("")) ? "plug-in/sliding/icon/default.png" : colName;
+        colName = (colName == null || "".equals(colName)) ? "plug-in/sliding/icon/default.png" : colName;
         String functionName = getMutiLang(function.getFunctionName());
 
         dataString.append("icon:'" + colName + "',");
@@ -751,7 +751,7 @@ public class ListtoMenu {
             for (TSFunction function : list) {
                 menuString.append("<li>");
 
-                if(function.getFunctionIconStyle()!=null&&!function.getFunctionIconStyle().trim().equals("")){
+                if(function.getFunctionIconStyle()!=null&&!"".equals(function.getFunctionIconStyle().trim())){
     				 menuString.append("<a href=\"#\" class=\"dropdown-toggle\" ><i class=\"menu-icon fa "+function.getFunctionIconStyle()+"\"></i>");
     			}else{
     				 menuString.append("<a href=\"#\" class=\"dropdown-toggle\" ><i class=\"menu-icon fa fa-desktop\"></i>");
@@ -818,7 +818,7 @@ public class ListtoMenu {
             for (TSFunction function : list) {
                 menuString.append("<li>");
 
-    			if(function.getFunctionIconStyle()!=null&&!function.getFunctionIconStyle().trim().equals("")){
+    			if(function.getFunctionIconStyle()!=null&&!"".equals(function.getFunctionIconStyle().trim())){
     				menuString.append("<a href=\"#\" class=\"dropdown-toggle\" ><i class=\""+function.getFunctionIconStyle()+"\"></i>");
     			}else{
     				menuString.append("<a href=\"#\" class=\"dropdown-toggle\" ><i class=\""+SysACEIconEnum.toEnum(function.getTSIcon().getIconClas()).getThemes()+"\"></i>");
@@ -864,7 +864,7 @@ public class ListtoMenu {
 					/* 20160830 wangkun TASK #1330 【改造】ace首页风格，菜单不支持三级菜单，改造支持三级*/
 					menuString.append("<li>");
 
-					if(function.getFunctionIconStyle()!=null&&!function.getFunctionIconStyle().trim().equals("")){
+					if(function.getFunctionIconStyle()!=null&&!"".equals(function.getFunctionIconStyle().trim())){
 						menuString.append("<a href=\"#\" class=\"dropdown-toggle\" ><i class=\""+function.getFunctionIconStyle()+"\"></i>");
 					}else{
 						menuString.append("<a href=\"#\" class=\"dropdown-toggle\" ><i class=\""+SysACEIconEnum.toEnum(function.getTSIcon().getIconClas()).getThemes()+"\"></i>");
@@ -954,7 +954,7 @@ public class ListtoMenu {
 		for (TSFunction function : list) {
 			menuString.append("<li>");
 
-			if(function.getFunctionIconStyle()!=null&&!function.getFunctionIconStyle().trim().equals("")){
+			if(function.getFunctionIconStyle()!=null&&!"".equals(function.getFunctionIconStyle().trim())){
 				menuString.append("<a href=\"#\" class=\"\" ><i class=\"fa "+function.getFunctionIconStyle()+"\"></i>");
 			}else{
 				menuString.append("<a href=\"#\" class=\"\" ><i class=\"fa fa-columns\"></i>");
@@ -1006,7 +1006,7 @@ public class ListtoMenu {
 		String name = getMutiLang(function.getFunctionName()) ;
 		menuString.append("<li> <a class=\"J_menuItem\" href=\"").append(function.getFunctionUrl()).append("\">");
 		if(!function.hasSubFunction(map)){
-			if(function.getFunctionIconStyle()!=null&&!function.getFunctionIconStyle().trim().equals("")){
+			if(function.getFunctionIconStyle()!=null&&!"".equals(function.getFunctionIconStyle().trim())){
 				menuString.append("<i class=\"fa "+function.getFunctionIconStyle()+"\"></i>");
 			}
 			menuString.append("<span class=\"menu-text\">");
@@ -1015,7 +1015,7 @@ public class ListtoMenu {
 			menuString.append("</a>");
 			menuString.append("</li>");
 		}else {
-			if(function.getFunctionIconStyle()!=null&&!function.getFunctionIconStyle().trim().equals("")){
+			if(function.getFunctionIconStyle()!=null&&!"".equals(function.getFunctionIconStyle().trim())){
 				menuString.append("<i class=\"fa "+function.getFunctionIconStyle()+"\"></i>");
 			}else{
 				menuString.append("<i class=\"fa fa-columns\"></i>");

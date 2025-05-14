@@ -113,7 +113,7 @@ public class CgFormBuildController extends BaseController {
 		try {
 			long start = System.currentTimeMillis();
 //			String tableName =request.getParameter("tableName");
-	        Map<String, Object> data = new HashMap<String, Object>();
+	        Map<String, Object> data = new HashMap<String, Object>(1024);
 	        String id = request.getParameter("id");
 
 //			String mode=request.getParameter("mode");
@@ -140,7 +140,7 @@ public class CgFormBuildController extends BaseController {
 	    	data = new HashMap(configData);
 	    	//如果该表是主表查出关联的附表
 	    	CgFormHeadEntity head = (CgFormHeadEntity)data.get("head");
-	        Map<String, Object> dataForm = new HashMap<String, Object>();
+	        Map<String, Object> dataForm = new HashMap<String, Object>(1024);
 	        if(StringUtils.isNotEmpty(id)){
 
 	        	dataForm = dataBaseService.findOneForJdbc(tablename, id);
@@ -154,7 +154,7 @@ public class CgFormBuildController extends BaseController {
 		        Object ov=entry.getValue();
 		        data.put(ok, ov);
 		    }
-	        Map<String, Object> tableData  = new HashMap<String, Object>();
+	        Map<String, Object> tableData  = new HashMap<String, Object>(1024);
 	        //获取主表或单表表单数据
 
 	        tableData.put(tablename, dataForm);
@@ -339,7 +339,7 @@ public class CgFormBuildController extends BaseController {
 			String fileKey = b.getId();//附件主键
 			String path = b.getRealpath();//附件路径
 			String field = b.getCgformField();//表单中作为附件控件的字段
-			Map<String, Object> file = new HashMap<String, Object>();
+			Map<String, Object> file = new HashMap<String, Object>(1024);
 			file.put("title", title);
 			file.put("fileKey", fileKey);
 			file.put("path", path);
@@ -362,7 +362,7 @@ public class CgFormBuildController extends BaseController {
 			String fileKey = b.getId();//附件主键
 			String path = b.getRealpath();//附件路径
 			String field = b.getCgformField();//表单中作为附件控件的字段
-			Map<String, Object> image = new HashMap<String, Object>();
+			Map<String, Object> image = new HashMap<String, Object>(1024);
 			image.put("title", title);
 			image.put("fileKey", fileKey);
 			image.put("path", path);

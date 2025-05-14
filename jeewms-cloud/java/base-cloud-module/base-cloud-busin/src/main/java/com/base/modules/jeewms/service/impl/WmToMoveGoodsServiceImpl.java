@@ -123,7 +123,7 @@ public class WmToMoveGoodsServiceImpl extends ServiceImpl<WmToMoveGoodsMapper, W
     }
 
     private Map<String, Object> verification(List<EditBatchWmToMoveGoodsVo> list) {
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>(1024);
         for (EditBatchWmToMoveGoodsVo vo : list) {
             WmToMoveGoods en = wmToMoveGoodsMapper.selectById(vo.getId());
             if ("TPZY".equals(en.getOrderTypeCode())) {
@@ -200,7 +200,7 @@ public class WmToMoveGoodsServiceImpl extends ServiceImpl<WmToMoveGoodsMapper, W
     @Override
     public Result<?> findPageLists(WvStockStt wvStock, Integer pageNo, Integer pageSize, HttpServletRequest req) {
         Page<WvStockStt> page = new Page<WvStockStt>(pageNo, pageSize);
-        HashMap<String, String> querymap = new HashMap<>();
+        HashMap<String, String> querymap = new HashMap<>(1024);
         querymap.put("shpMingCheng", wvStock.getShpMingCheng());
         querymap.put("goodsCode", wvStock.getGoodsId());
         querymap.put("KuWeiBianMa", wvStock.getKuWeiBianMa());
@@ -244,7 +244,7 @@ public class WmToMoveGoodsServiceImpl extends ServiceImpl<WmToMoveGoodsMapper, W
     IPage<WvStockStt> wvStockSttPage = null;
     if(kwCodeList.size()>0){
     Page<WvStockStt> page = new Page<WvStockStt>(pageNo, pageSize);
-    HashMap<String, Object> querymap = new HashMap<>();
+    HashMap<String, Object> querymap = new HashMap<>(1024);
         querymap.put("shpMingCheng", wvStock.getShpMingCheng());
         querymap.put("goodsCode", wvStock.getGoodsId());
         querymap.put("KuWeiBianMa", wvStock.getKuWeiBianMa());

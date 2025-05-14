@@ -66,8 +66,8 @@ public class otherutil {
 //
 //        String dbKey = (String) configM.get("db_source");
 //        List<Map<String, Object>> result = null;
-//        Map params = new HashMap();
-//        Map paramData = new HashMap();
+//        Map params = new HashMap(1024);
+//        Map paramData = new HashMap(1024);
 //        if (StringUtils.isNotBlank(dbKey)) {
 //            result = DynamicDBUtil.findList(dbKey, SqlUtil.jeecgCreatePageSql(dbKey, querySql, params, p, r));
 //

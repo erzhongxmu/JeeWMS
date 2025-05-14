@@ -63,7 +63,7 @@ public class CgReportQueryParamUtil
 					value = value.replaceAll("\\*", "%");
 					params.put(filedName, CgReportConstant.OP_LIKE+value);
 				}else{
-					if(ResourceUtil.getConfigByName("sysfuzseach").equals("on")){
+					if("on".equals(ResourceUtil.getConfigByName("sysfuzseach"))){
 						params.put(filedName, CgReportConstant.OP_LIKE+ "'"+"%"+value+"%"+ "'");//模糊查询
 
 					}else{
@@ -205,7 +205,7 @@ public class CgReportQueryParamUtil
 				//if(ResourceUtil.fuzzySearch&&(!value.contains("*"))){
 				//	value="*"+value+"*";
 				//}
-				if(ResourceUtil.getConfigByName("sysfuzseach").equals("on")){
+				if("on".equals(ResourceUtil.getConfigByName("sysfuzseach"))){
 					if(value.contains("*")){
 						result = "'" +value+ "'";
 					}else{

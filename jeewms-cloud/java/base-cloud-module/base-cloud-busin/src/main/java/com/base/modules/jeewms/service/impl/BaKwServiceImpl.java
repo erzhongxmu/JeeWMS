@@ -96,7 +96,7 @@ public class BaKwServiceImpl extends ServiceImpl<BaKwMapper, BaKw> implements IB
                 jsonArray.add(jsonObject);
             }
         }
-        Map<String,Object> resultMap = new HashMap<>();
+        Map<String,Object> resultMap = new HashMap<>(1024);
 
         resultMap.put("dataList",jsonArray);
         resultMap.put("size",jsonArray.size());

@@ -42,23 +42,23 @@ public class DbTablePostgresHandleImpl implements DbTableHandleI {
 	@Override
     public String getMatchClassTypeByDataType(String dataType, int digits) {
 		String result ="";
-		if (dataType.equalsIgnoreCase("varchar")) {
+		if ("varchar".equalsIgnoreCase(dataType)) {
 			result="string";
-		} else if(dataType.equalsIgnoreCase("double")){
+		} else if("double".equalsIgnoreCase(dataType)){
 			result="double";
 		}else if (dataType.contains("int")) {
 			result="int";
-		}else if (dataType.equalsIgnoreCase("Date")) {
+		}else if ("Date".equalsIgnoreCase(dataType)) {
 			result="date";
-		}else if (dataType.equalsIgnoreCase("timestamp")) {
+		}else if ("timestamp".equalsIgnoreCase(dataType)) {
 			result="date";
-		}else if (dataType.equalsIgnoreCase("bytea")) {
+		}else if ("bytea".equalsIgnoreCase(dataType)) {
 			result="blob";
-		}else if (dataType.equalsIgnoreCase("text")) {
+		}else if ("text".equalsIgnoreCase(dataType)) {
 			result="text";
-		}else if (dataType.equalsIgnoreCase("decimal")) {
+		}else if ("decimal".equalsIgnoreCase(dataType)) {
 			result="bigdecimal";
-		}else if (dataType.equalsIgnoreCase("numeric")) {
+		}else if ("numeric".equalsIgnoreCase(dataType)) {
 			//double和decimal都会返回numeric，先暂时返回bigdecimal
 			result="bigdecimal";
 		}
@@ -80,20 +80,20 @@ public class DbTablePostgresHandleImpl implements DbTableHandleI {
 	private String getUpdateFieldDesc(ColumnMeta cgfromcolumnMeta,ColumnMeta datacolumnMeta) throws DBException {
 		String result ="";
 		//TODO 对于非空情况 ，需要特殊增加约束方法，默认是空
-		if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("string")){
+		if("string".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
 			result = cgfromcolumnMeta.getColumnName()+"  type character varying("+cgfromcolumnMeta.getColumnSize()+")"+" ";
-		}else if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("date")){
+		}else if("date".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
 			result = cgfromcolumnMeta.getColumnName()+"  type datetime"+" ";
-		}else if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("int")){
+		}else if("int".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
 			//postpres数据库整形没有长度概念
 			result = cgfromcolumnMeta.getColumnName()+" type int4 ";
-		}else if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("double")){
+		}else if("double".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
 			result = cgfromcolumnMeta.getColumnName()+" type  numeric("+cgfromcolumnMeta.getColumnSize()+","+cgfromcolumnMeta.getDecimalDigits()+")"+" ";
-		}else if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("BigDecimal")){
+		}else if("BigDecimal".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
 			result = cgfromcolumnMeta.getColumnName()+" type  decimal("+cgfromcolumnMeta.getColumnSize()+","+cgfromcolumnMeta.getDecimalDigits()+")"+" ";
-		}else if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("text")){
+		}else if("text".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
 			result = cgfromcolumnMeta.getColumnName()+"  type text("+cgfromcolumnMeta.getColumnSize()+")"+" ";
-		}else if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("blob")){
+		}else if("blob".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
 //			bytea类型不可修改，修改会报错
 			throw new DBException("blob类型不可修改");
 		}
@@ -104,22 +104,22 @@ public class DbTablePostgresHandleImpl implements DbTableHandleI {
 		String result ="";
 		
 		if(!cgfromcolumnMeta.equalsDefault(datacolumnMeta)){
-			if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("string")){
+			if("string".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
 				result = cgfromcolumnMeta.getColumnName();
 				result += (StringUtils.isNotEmpty(cgfromcolumnMeta.getFieldDefault())?" SET DEFAULT "+cgfromcolumnMeta.getFieldDefault():" DROP DEFAULT");
-			}else if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("date")){
+			}else if("date".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
 				result = cgfromcolumnMeta.getColumnName();
 				result += (StringUtils.isNotEmpty(cgfromcolumnMeta.getFieldDefault())?" SET DEFAULT "+cgfromcolumnMeta.getFieldDefault():" DROP DEFAULT");
-			}else if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("int")){
+			}else if("int".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
 				result = cgfromcolumnMeta.getColumnName();
 				result += (StringUtils.isNotEmpty(cgfromcolumnMeta.getFieldDefault())?" SET DEFAULT "+cgfromcolumnMeta.getFieldDefault():" DROP DEFAULT");
-			}else if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("double")){
+			}else if("double".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
 				result = cgfromcolumnMeta.getColumnName();
 				result += (StringUtils.isNotEmpty(cgfromcolumnMeta.getFieldDefault())?" SET DEFAULT "+cgfromcolumnMeta.getFieldDefault():" DROP DEFAULT");
-			}else if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("bigdecimal")){
+			}else if("bigdecimal".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
 				result = cgfromcolumnMeta.getColumnName();
 				result += (StringUtils.isNotEmpty(cgfromcolumnMeta.getFieldDefault())?" SET DEFAULT "+cgfromcolumnMeta.getFieldDefault():" DROP DEFAULT");
-			}else if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("text")){
+			}else if("text".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
 				result = cgfromcolumnMeta.getColumnName();
 				result += (StringUtils.isNotEmpty(cgfromcolumnMeta.getFieldDefault())?" SET DEFAULT "+cgfromcolumnMeta.getFieldDefault():" DROP DEFAULT");
 			}
@@ -131,19 +131,19 @@ public class DbTablePostgresHandleImpl implements DbTableHandleI {
 	
 	private String getAddFieldDesc(ColumnMeta cgfromcolumnMeta) {
 		String result ="";
-		if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("string")){
+		if("string".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
 			result = cgfromcolumnMeta.getColumnName()+" character varying("+cgfromcolumnMeta.getColumnSize()+")"+" ";
-		}else if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("date")){
+		}else if("date".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
 			result = cgfromcolumnMeta.getColumnName()+" datetime"+" ";
-		}else if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("int")){
+		}else if("int".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
 			result = cgfromcolumnMeta.getColumnName()+" int4";
-		}else if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("double")){
+		}else if("double".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
 			result = cgfromcolumnMeta.getColumnName()+" numeric("+cgfromcolumnMeta.getColumnSize()+","+cgfromcolumnMeta.getDecimalDigits()+")"+" ";
-		}else if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("bigdecimal")){
+		}else if("bigdecimal".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
 			result = cgfromcolumnMeta.getColumnName()+" decimal("+cgfromcolumnMeta.getColumnSize()+","+cgfromcolumnMeta.getDecimalDigits()+")"+" ";
-		}else if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("blob")){
+		}else if("blob".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
 			result = cgfromcolumnMeta.getColumnName()+" bytea("+cgfromcolumnMeta.getColumnSize()+")"+" ";
-		}else if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("text")){
+		}else if("text".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
 			result = cgfromcolumnMeta.getColumnName()+" text("+cgfromcolumnMeta.getColumnSize()+")"+" ";
 		}
 		result += (StringUtils.isNotEmpty(cgfromcolumnMeta.getFieldDefault())?" DEFAULT "+cgfromcolumnMeta.getFieldDefault():" ");
@@ -152,13 +152,13 @@ public class DbTablePostgresHandleImpl implements DbTableHandleI {
 	
 	private String getRenameFieldDesc(ColumnMeta cgfromcolumnMeta) {
 		String result ="";
-		if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("string")){
+		if("string".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
 			result = cgfromcolumnMeta.getColumnName()+" character varying("+cgfromcolumnMeta.getColumnSize()+")"+" ";
-		}else if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("date")){
+		}else if("date".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
 			result = cgfromcolumnMeta.getColumnName()+" datetime"+" ";
-		}else if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("int")){
+		}else if("int".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
 			result = cgfromcolumnMeta.getColumnName()+" int("+cgfromcolumnMeta.getColumnSize()+")"+" ";
-		}else if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("double")){
+		}else if("double".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
 			result = cgfromcolumnMeta.getColumnName()+" numeric("+cgfromcolumnMeta.getColumnSize()+","+cgfromcolumnMeta.getDecimalDigits()+")"+" ";
 		}
 		return result;

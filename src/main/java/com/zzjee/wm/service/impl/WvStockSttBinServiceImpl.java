@@ -77,7 +77,7 @@ public class WvStockSttBinServiceImpl extends CommonServiceImpl implements WvSto
  	}
  	
  	private Map<String,Object> populationMap(WvStockSttBinEntity t){
-		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("create_date", t.getCreateDate());
 		map.put("create_name", t.getCreateName());
 		map.put("create_by", t.getCreateBy());

@@ -55,7 +55,7 @@ public class PageValueConvertRuleEnum {
 //			rule = HqlRuleEnum.LIKE;
 //		}
 
-		if(ResourceUtil.getConfigByName("sysfuzseach").equals("on")){
+		if("on".equals(ResourceUtil.getConfigByName("sysfuzseach"))){
 			return rule != null ? rule : HqlRuleEnum.LIKE;
 
 		}else{
@@ -80,7 +80,7 @@ public class PageValueConvertRuleEnum {
 		}
 		String val = (value + "").toString().trim();
 		if (rule == HqlRuleEnum.LIKE) {
-			if(ResourceUtil.getConfigByName("sysfuzseach").equals("off")) {
+			if("off".equals(ResourceUtil.getConfigByName("sysfuzseach"))) {
 				value = val.substring(1, val.length() - 1);
 			}
 //			value = val.substring(1, val.length() - 1);

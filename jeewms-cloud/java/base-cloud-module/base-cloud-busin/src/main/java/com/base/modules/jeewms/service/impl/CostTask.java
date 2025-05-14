@@ -79,7 +79,7 @@ public class CostTask {
 		queryWrapper8.eq("plan_sta", "N");
 		queryWrapper8.orderByDesc("create_time");
 		List<WmOmNoticeI> noticeIS = wmOmNoticeIMapper.selectList(queryWrapper8);
-		HashMap<String,String> noticeNo = new HashMap<>();
+		HashMap<String,String> noticeNo = new HashMap<>(1024);
 
 		for (WmOmNoticeI noticeI : noticeIS) {
 			noticeNo.put(noticeI.getOmNoticeId(),noticeI.getOmNoticeId());
@@ -104,7 +104,7 @@ public class CostTask {
 					queryWrapper8.eq("plan_sta", "N");
 					queryWrapper8.orderByDesc("create_time");
 					List<WmOmNoticeI> noticeIS = wmOmNoticeIMapper.selectList(queryWrapper8);
-					HashMap<String,String> noticeNo = new HashMap<>();
+					HashMap<String,String> noticeNo = new HashMap<>(1024);
 
 					for (WmOmNoticeI noticeI : noticeIS) {
 						noticeNo.put(noticeI.getOmNoticeId(),noticeI.getOmNoticeId());
@@ -234,7 +234,7 @@ public class CostTask {
 
 	public  void costcount(String datestr,String chongsuan){
 		WmDayCostConf t = new WmDayCostConf();
-		Map<String, String[]> parameterMap = new HashMap<>();
+		Map<String, String[]> parameterMap = new HashMap<>(1024);
 		QueryWrapper<WmDayCostConf> queryWrapper = new QueryWrapper<>();
 		queryWrapper.eq("cost_date",datestr);
 		queryWrapper.eq("cost_sf","Y");

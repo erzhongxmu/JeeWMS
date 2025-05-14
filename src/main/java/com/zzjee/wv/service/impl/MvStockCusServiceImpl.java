@@ -78,7 +78,7 @@ public class MvStockCusServiceImpl extends CommonServiceImpl implements MvStockC
  	}
  	
  	private Map<String,Object> populationMap(MvStockCusEntity t){
-		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("id", t.getId());
 		map.put("kuctype", t.getKuctype());
 		map.put("goods_qua", t.getGoodsQua());

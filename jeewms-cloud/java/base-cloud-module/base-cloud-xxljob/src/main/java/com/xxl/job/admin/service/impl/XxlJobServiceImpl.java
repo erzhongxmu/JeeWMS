@@ -50,7 +50,7 @@ public class XxlJobServiceImpl implements XxlJobService {
 		int list_count = xxlJobInfoDao.pageListCount(start, length, jobGroup, triggerStatus, jobDesc, executorHandler, author);
 		
 		// package result
-		Map<String, Object> maps = new HashMap<String, Object>();
+		Map<String, Object> maps = new HashMap<String, Object>(1024);
 	    maps.put("recordsTotal", list_count);		// 总记录数
 	    maps.put("recordsFiltered", list_count);	// 过滤后的总记录数
 	    maps.put("data", list);  					// 分页列表
@@ -371,7 +371,7 @@ public class XxlJobServiceImpl implements XxlJobService {
 
 		int executorCount = executorAddressSet.size();
 
-		Map<String, Object> dashboardMap = new HashMap<String, Object>();
+		Map<String, Object> dashboardMap = new HashMap<String, Object>(1024);
 		dashboardMap.put("jobInfoCount", jobInfoCount);
 		dashboardMap.put("jobLogCount", jobLogCount);
 		dashboardMap.put("jobLogSuccessCount", jobLogSuccessCount);
@@ -418,7 +418,7 @@ public class XxlJobServiceImpl implements XxlJobService {
 			}
 		}
 
-		Map<String, Object> result = new HashMap<String, Object>();
+		Map<String, Object> result = new HashMap<String, Object>(1024);
 		result.put("triggerDayList", triggerDayList);
 		result.put("triggerDayCountRunningList", triggerDayCountRunningList);
 		result.put("triggerDayCountSucList", triggerDayCountSucList);

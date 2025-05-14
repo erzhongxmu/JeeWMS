@@ -137,7 +137,7 @@ public enum CgformEnum {
         List<Map<String, Object>> ls = new ArrayList<Map<String, Object>>();
         for (CgformEnum e : CgformEnum.values()) {
             if (e.type == type) {
-                Map<String, Object> map = new HashMap<String, Object>();
+                Map<String, Object> map = new HashMap<String, Object>(1024);
                 map.put("code", e.code);
                 map.put("note", e.note);
                 ls.add(map);

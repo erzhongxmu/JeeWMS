@@ -147,7 +147,7 @@ public class FormValidationTag extends TagSupport {
 				sysThemesEnum = SysThemesEnum.toEnum(cssTheme);
 			}
 			out = this.pageContext.getOut();
-			if (layout.equals("div")) {
+			if ("div".equals(layout)) {
 
 //				if("metro".equals(cssTheme)){
 //					sb.append("<link rel=\"stylesheet\" href=\"plug-in/Validform/css/"+cssTheme+"/divfrom.css\" type=\"text/css\"/>");
@@ -193,7 +193,7 @@ public class FormValidationTag extends TagSupport {
 			sb.append("$(\"#" + formid + "\").Validform({");
 			if(this.getTiptype()!=null && !"".equals(this.getTiptype())){
 
-				if(tiptype.equals("1")){
+				if("1".equals(tiptype)){
 					sb.append("tiptype:function(msg,o,cssctl){");
 					sb.append("if(o.type == 3){");
 					sb.append("layer.open({");

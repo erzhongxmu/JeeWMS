@@ -472,7 +472,7 @@ public class WaveToFjController extends BaseController {
             String omnoticeid = "";
             WmOmQmIEntity wmOmQmI = systemService.getEntity(
                     WmOmQmIEntity.class, waveToFj.getId());
-            if (wmOmQmI != null && wmOmQmI.getBinSta().equals("H")) {
+            if (wmOmQmI != null && "H".equals(wmOmQmI.getBinSta())) {
                 wmOmQmI.setBinSta("Y");
                 wmOmQmI.setSecondRq(waveToFj.getSecondRq());
                 wmOmQmI.setUpdateBy(waveToFj.getCreateBy());//分拣人
@@ -507,7 +507,7 @@ public class WaveToFjController extends BaseController {
         try {
             WmOmQmIEntity wmOmQmI = systemService.getEntity(
                     WmOmQmIEntity.class, waveToFj.getId());
-            if (wmOmQmI != null && wmOmQmI.getBinSta().equals("H")) {
+            if (wmOmQmI != null && "H".equals(wmOmQmI.getBinSta())) {
                 wmOmQmI.setBinSta("Y");
                 systemService.saveOrUpdate(wmOmQmI);
             }

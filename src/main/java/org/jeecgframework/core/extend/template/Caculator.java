@@ -80,7 +80,7 @@ public class Caculator {
                 case '/':
                     
 					newItem.value=op1/op2;
-					if(newItem.value==Double.NEGATIVE_INFINITY || newItem.value==Double.POSITIVE_INFINITY || new Double(newItem.value).toString().equals("NaN"))
+					if(newItem.value==Double.NEGATIVE_INFINITY || newItem.value==Double.POSITIVE_INFINITY || "NaN".equals(new Double(newItem.value).toString()))
 					{
 						newItem.value=0.0;
 					}

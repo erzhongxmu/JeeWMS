@@ -384,7 +384,7 @@ public class DictSelectTag extends TagSupport {
 	 * @return sb
 	 */
 	private StringBuffer readonly(StringBuffer sb){
-		if(!StringUtils.isBlank(readonly) &&readonly.equals("readonly")){
+		if(!StringUtils.isBlank(readonly) && "readonly".equals(readonly)){
 			if ("radio".equals(type)) {
 				sb.append(" disable= \"disabled\" disabled=\"disabled\" ");
 			}

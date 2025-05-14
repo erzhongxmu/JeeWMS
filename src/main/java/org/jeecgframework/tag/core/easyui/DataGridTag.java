@@ -522,7 +522,7 @@ public class DataGridTag extends TagSupport {
 //				}
 //			}
 //			SysThemesEnum sysThemesEnum = SysThemesUtil.getSysTheme((HttpServletRequest) super.pageContext.getRequest());
-			if (style.equals("easyui")) {
+			if ("easyui".equals(style)) {
 //				if("ace".equals(sysThemesEnum.getStyle())){
 //					out.print(this.aceStyleTable().toString());
 //				}else{
@@ -817,17 +817,17 @@ public class DataGridTag extends TagSupport {
 				//工具栏图标显示
 				String toolBarIcon = toolBar.getIcon();
 				if(oConvertUtils.isNotEmpty(toolBarIcon)){
-					if(toolBarIcon.equals("icon-add") ){
+					if("icon-add".equals(toolBarIcon) ){
 						sb.append("<i class=\"fa fa-plus\"></i>");
-					}else if(toolBarIcon.equals("icon-edit") ){
+					}else if("icon-edit".equals(toolBarIcon) ){
 						sb.append("<i class=\"fa fa-edit\"></i>");
-					}else if (toolBarIcon.equals("icon-put") ) {
+					}else if ("icon-put".equals(toolBarIcon) ) {
 						sb.append("<i class=\"fa fa-download\"></i>");
-					}else if (toolBarIcon.equals("icon-putout")) {
+					}else if ("icon-putout".equals(toolBarIcon)) {
 						sb.append("<i class=\"fa fa-upload\"></i>");
-					}else if (toolBarIcon.equals("icon-remove") ) {
+					}else if ("icon-remove".equals(toolBarIcon) ) {
 						sb.append("<i class=\"fa fa-trash-o\"></i>");
-					}else if (toolBarIcon.equals("icon-search") ) {
+					}else if ("icon-search".equals(toolBarIcon) ) {
 						sb.append("<i class=\"fa fa-search\"></i>");
 					}else{
 						sb.append("<i class=\"fa "+toolBarIcon+"\"></i>");
@@ -946,7 +946,7 @@ public class DataGridTag extends TagSupport {
 			i++;
 			sb.append("{");
 			sb.append("\"sTitle\":\"" + column.getTitle() + "\"");
-			if (column.getField().equals("opt")) {
+			if ("opt".equals(column.getField())) {
 				sb.append(",\"mData\":\"" + idField + "\"");
 				sb.append(",\"sWidth\":\"20%\"");
 				sb.append(",\"bSortable\":false");
@@ -1035,7 +1035,7 @@ public class DataGridTag extends TagSupport {
 			String queryParams = "";
 			queryParams += "queryParams:{";
 			for (DataGridColumn col : columnList) {
-				if (col.isQuery()&&col.getDefaultVal()!=null&&!col.getDefaultVal().trim().equals("")) {
+				if (col.isQuery()&&col.getDefaultVal()!=null&&!"".equals(col.getDefaultVal().trim())) {
 					//sb.append("queryParams:{documentTitle:'woniu'},");
 
 					if(!"group".equals(col.getQueryMode())){
@@ -1272,7 +1272,7 @@ public class DataGridTag extends TagSupport {
 				}
 				else {
 					sb.append("onclick=\""+toolBar.getFunname()+"(");
-					if(!toolBar.getFunname().equals("doSubmit"))
+					if(!"doSubmit".equals(toolBar.getFunname()))
 					{
 					sb.append("\'"+toolBar.getTitle()+"\',");
 					}
@@ -1353,7 +1353,7 @@ public class DataGridTag extends TagSupport {
 								//System.out.println(dic[0]+"--"+dic[1]+"--"+dic[2]);
 							//	<input type="text" name="order_code"  style="width: 100px"  class="searchbox-inputtext" value="" onClick="inputClick(this,'account','user_msg');" />
 
-								if(col.getDefaultVal()!=null&&!col.getDefaultVal().trim().equals("")){
+								if(col.getDefaultVal()!=null&&!"".equals(col.getDefaultVal().trim())){
 									sb.append("<input type=\"text\" name=\""+col.getField().replaceAll("_","\\.")+"\" style=\"width: 120px\" class=\"searchbox-inputtext\" value=\"\" onClick=\"inputClick(this,'"+dic[1]+"','"+dic[0]+"');\" value=\""+col.getDefaultVal()+"\"/> ");
 								}else{
 									sb.append("<input type=\"text\" name=\""+col.getField().replaceAll("_","\\.")+"\" style=\"width: 120px\" class=\"searchbox-inputtext\" value=\"\" onClick=\"inputClick(this,'"+dic[1]+"','"+dic[0]+"');\" /> ");
@@ -1602,10 +1602,10 @@ public class DataGridTag extends TagSupport {
 					if ("ne".equals(exptype)) {
 						sb.append("if($.inArray(rec." + field + ",[" + value + "])<0){");
 					}
-					if ("empty".equals(exptype) && value.equals("'true'")) {
+					if ("empty".equals(exptype) && "'true'".equals(value)) {
 						sb.append("if(rec." + field + "==''){");
 					}
-					if ("empty".equals(exptype) && value.equals("'false'")) {
+					if ("empty".equals(exptype) && "'false'".equals(value)) {
 						sb.append("if(rec." + field + "!=''){");
 					}
 				}
@@ -1885,7 +1885,7 @@ public class DataGridTag extends TagSupport {
 					sb.append(",formatter:function(value,rec,index){");
 					this.getFun(sb, column);
 					sb.append("}");
-				}else if (column.getField().equals("opt")) {// 加入操作
+				}else if ("opt".equals(column.getField())) {// 加入操作
 					sb.append(",formatter:function(value,rec,index){");
 					// sb.append("return \"");
 					this.getOptUrl(sb);
@@ -1902,7 +1902,7 @@ public class DataGridTag extends TagSupport {
 					sb.append(" if(value.length<=");sb.append(column.getShowLen());sb.append(") {return value}");
 					sb.append(" else{ return '<a title= '+value+'>'+ value.substring(0,");sb.append(column.getShowLen());sb.append(")+'...';}}");
 				}
-				else if (columnValueList.size() > 0 && !column.getField().equals("opt")) {// 值替換
+				else if (columnValueList.size() > 0 && !"opt".equals(column.getField())) {// 值替換
 					String testString = "";
 					for (ColumnValue columnValue : columnValueList) {
 						if (columnValue.getName().equals(column.getField())) {
@@ -1933,7 +1933,7 @@ public class DataGridTag extends TagSupport {
 				}
 			}
 			// 背景设置
-			if (columnStyleList.size() > 0 && !column.getField().equals("opt")) {
+			if (columnStyleList.size() > 0 && !"opt".equals(column.getField())) {
 				String testString = "";
 				for (ColumnValue columnValue : columnStyleList) {
 					if (columnValue.getName().equals(column.getField())) {
@@ -2006,7 +2006,7 @@ public class DataGridTag extends TagSupport {
   
 	public String getNoAuthOperButton(){
 		StringBuffer sb = new StringBuffer();
-		if(ResourceUtil.getSessionUserName().getUserName().equals("admin")|| !Globals.BUTTON_AUTHORITY_CHECK){
+		if("admin".equals(ResourceUtil.getSessionUserName().getUserName())|| !Globals.BUTTON_AUTHORITY_CHECK){
 		}else{
 			Set<String> operationCodes = (Set<String>) super.pageContext.getRequest().getAttribute(Globals.OPERATIONCODES);
 			if (null!=operationCodes) {
@@ -2043,7 +2043,7 @@ public class DataGridTag extends TagSupport {
 	 * @version 1.0
 	 */
 	private void installOperationCode(DataGridUrl dataGridUrl,String operationCode,List optList){
-		if(ResourceUtil.getSessionUserName().getUserName().equals("admin")|| !Globals.BUTTON_AUTHORITY_CHECK){
+		if("admin".equals(ResourceUtil.getSessionUserName().getUserName())|| !Globals.BUTTON_AUTHORITY_CHECK){
 			optList.add(dataGridUrl);
 		}else if(!oConvertUtils.isEmpty(operationCode)){
 			Set<String> operationCodes = (Set<String>) super.pageContext.getRequest().getAttribute(Globals.OPERATIONCODES);
@@ -2426,7 +2426,7 @@ public class DataGridTag extends TagSupport {
 				}
 				else {
 					sb.append("onclick=\""+toolBar.getFunname()+"(");
-					if(!toolBar.getFunname().equals("doSubmit"))
+					if(!"doSubmit".equals(toolBar.getFunname()))
 					{
 					sb.append("\'"+toolBar.getTitle()+"\',");
 					}

@@ -343,7 +343,7 @@ public class WmImNoticeHController extends BaseController {
         if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
             cq.eq("cusCode", wmUtil.getCusCode());
         }
-        Map<String,Object> map1 = new HashMap<String,Object>();
+        Map<String,Object> map1 = new HashMap<String,Object>(1024);
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.add();
@@ -386,7 +386,7 @@ public class WmImNoticeHController extends BaseController {
         if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
             cq.eq("cusCode", wmUtil.getCusCode());
         }
-        Map<String,Object> map1 = new HashMap<String,Object>();
+        Map<String,Object> map1 = new HashMap<String,Object>(1024);
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.eq("orderTypeCode", "09");
@@ -426,7 +426,7 @@ public class WmImNoticeHController extends BaseController {
         if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
             cq.eq("cusCode", wmUtil.getCusCode());
         }
-        Map<String,Object> map1 = new HashMap<String,Object>();
+        Map<String,Object> map1 = new HashMap<String,Object>(1024);
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.eq("orderTypeCode", "03");
@@ -467,7 +467,7 @@ public class WmImNoticeHController extends BaseController {
         if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
             cq.eq("cusCode", wmUtil.getCusCode());
         }
-        Map<String,Object> map1 = new HashMap<String,Object>();
+        Map<String,Object> map1 = new HashMap<String,Object>(1024);
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.eq("orderTypeCode", "04");
@@ -607,7 +607,7 @@ public class WmImNoticeHController extends BaseController {
             // ===================================================================================
             // 查询-进货通知明细
 
-            if(wmImNoticeH.getOrderTypeCode().equals("04")){
+            if("04".equals(wmImNoticeH.getOrderTypeCode())){
                 String 	tsql = "delete  from wm_in_qm_i where im_notice_id = ?";
                 systemService.executeSql(tsql, wmImNoticeH.getNoticeId());
             }
@@ -1313,13 +1313,13 @@ public class WmImNoticeHController extends BaseController {
                 Row row1 = sheet.createRow((short) page*20+1); // 第二行标题
                 row1.setHeight((short) 700);
                 Cell cellTitle = row1.createCell(0);
-                if(wmImNoticeH.getOrderTypeCode().equals("03")){
+                if("03".equals(wmImNoticeH.getOrderTypeCode())){
                     cellTitle.setCellValue(ResourceUtil.getConfigByName("comname")+"退货验收单");
-                }else if(wmImNoticeH.getOrderTypeCode().equals("01")){
+                }else if("01".equals(wmImNoticeH.getOrderTypeCode())){
                     cellTitle.setCellValue(ResourceUtil.getConfigByName("comname")+"收货验收单");
-                }else if(wmImNoticeH.getOrderTypeCode().equals("04")){
+                }else if("04".equals(wmImNoticeH.getOrderTypeCode())){
                     cellTitle.setCellValue(ResourceUtil.getConfigByName("comname")+"越库单");
-                }else if(wmImNoticeH.getOrderTypeCode().equals("09")){
+                }else if("09".equals(wmImNoticeH.getOrderTypeCode())){
                     cellTitle.setCellValue(ResourceUtil.getConfigByName("comname")+"收货验收单");
                 }
 
@@ -1431,14 +1431,14 @@ public class WmImNoticeHController extends BaseController {
 
                 Row rowColumnName = sheet.createRow((short) page*20+8); // 列名
                 String[] columnNames = { "序号", "商品编码", "商品名称", "生产日期", "生产批号","单位", "数量", "毛重KG","规格","备注" };
-                if(ResourceUtil.getConfigByName("systuopan").equals("yes")){
+                if("yes".equals(ResourceUtil.getConfigByName("systuopan"))){
                     String[]   columnNamest = { "序号", "商品编码", "商品名称", "生产日期", "生产批号","单位", "数量", "毛重KG","规格","备注" };
                     columnNames = columnNamest;
                 }
                 try{
                     if("hr".equals(ResourceUtil.getConfigByName("wm.ckd"))){
                         String[] columnNames1 = { "序号", "商品编码", "商品名称", "生产日期", "生产批号","单位", "数量", "毛重KG","规格","备注" };
-                        if(ResourceUtil.getConfigByName("systuopan").equals("yes")){
+                        if("yes".equals(ResourceUtil.getConfigByName("systuopan"))){
                             String[]   columnNamest1 = { "序号", "商品编码", "商品名称", "生产日期", "生产批号","单位", "数量", "毛重KG","规格","备注" };
                             columnNames1 = columnNamest1;
                         }
@@ -1804,13 +1804,13 @@ public class WmImNoticeHController extends BaseController {
                 Row row1 = sheet.createRow((short) page*20+1); // 第二行标题
                 row1.setHeight((short) 700);
                 Cell cellTitle = row1.createCell(0);
-                if(wmImNoticeH.getOrderTypeCode().equals("03")){
+                if("03".equals(wmImNoticeH.getOrderTypeCode())){
                     cellTitle.setCellValue(ResourceUtil.getConfigByName("comname")+"退货入库单");
-                }else if(wmImNoticeH.getOrderTypeCode().equals("01")){
+                }else if("01".equals(wmImNoticeH.getOrderTypeCode())){
                     cellTitle.setCellValue(ResourceUtil.getConfigByName("comname")+"收货入库单");
-                }else if(wmImNoticeH.getOrderTypeCode().equals("04")){
+                }else if("04".equals(wmImNoticeH.getOrderTypeCode())){
                     cellTitle.setCellValue(ResourceUtil.getConfigByName("comname")+"越库单");
-                }else if(wmImNoticeH.getOrderTypeCode().equals("09")){
+                }else if("09".equals(wmImNoticeH.getOrderTypeCode())){
                     cellTitle.setCellValue(ResourceUtil.getConfigByName("comname")+"收货入库单");
                 }
 
@@ -1910,14 +1910,14 @@ public class WmImNoticeHController extends BaseController {
 
                 Row rowColumnName = sheet.createRow((short) page*20+8); // 列名
                 String[] columnNames = { "序号", "商品编码", "商品名称", "生产日期", "生产批号","单位", "数量", "毛重KG","体积cm³","备注" };
-                if(ResourceUtil.getConfigByName("systuopan").equals("yes")){
+                if("yes".equals(ResourceUtil.getConfigByName("systuopan"))){
                     String[]   columnNamest = { "序号", "商品编码", "商品名称", "生产日期", "生产批号","单位", "数量", "毛重KG","体积cm³","备注" };
                     columnNames = columnNamest;
                 }
                 try{
                     if("hr".equals(ResourceUtil.getConfigByName("wm.ckd"))){
                         String[] columnNames1 = { "序号", "商品编码", "商品名称", "生产日期", "生产批号","单位", "数量", "毛重KG","体积cm³","备注" };
-                        if(ResourceUtil.getConfigByName("systuopan").equals("yes")){
+                        if("yes".equals(ResourceUtil.getConfigByName("systuopan"))){
                             String[]   columnNamest1 = { "序号", "商品编码", "商品名称", "生产日期", "生产批号","单位", "数量", "毛重KG","体积","备注" };
                             columnNames1 = columnNamest1;
                         }
@@ -2102,13 +2102,13 @@ public class WmImNoticeHController extends BaseController {
         PrintHeader printHeader  = new PrintHeader();
         WmImNoticeHEntity wmImNoticeH = systemService.getEntity(WmImNoticeHEntity.class,
                 id);// 获取抬头
-        if(wmImNoticeH.getOrderTypeCode().equals("03")){
+        if("03".equals(wmImNoticeH.getOrderTypeCode())){
             printHeader.setHeader01(ResourceUtil.getConfigByName("comname")+"退货入库单");
-        }else if(wmImNoticeH.getOrderTypeCode().equals("01")){
+        }else if("01".equals(wmImNoticeH.getOrderTypeCode())){
             printHeader.setHeader01(ResourceUtil.getConfigByName("comname")+"收货入库单");
-        }else if(wmImNoticeH.getOrderTypeCode().equals("04")){
+        }else if("04".equals(wmImNoticeH.getOrderTypeCode())){
             printHeader.setHeader01(ResourceUtil.getConfigByName("comname")+"越库单");
-        }else if(wmImNoticeH.getOrderTypeCode().equals("09")){
+        }else if("09".equals(wmImNoticeH.getOrderTypeCode())){
             printHeader.setHeader01(ResourceUtil.getConfigByName("comname")+"收货入库单");
         }
 
@@ -2203,7 +2203,7 @@ public class WmImNoticeHController extends BaseController {
                 // TODO: handle exception
             }
             try {
-                if(ResourceUtil.getConfigByName("systuopan").equals("yes")){
+                if("yes".equals(ResourceUtil.getConfigByName("systuopan"))){
                     printItem.setItem08(result.get(i).get("tuopan")
                             .toString());
                 }else{
@@ -2295,7 +2295,7 @@ public class WmImNoticeHController extends BaseController {
                     + wmImNoticeH.getImCarMobile());
             systemService.save(wmPlatIo);
 
-            Map<String, Object> map = new HashMap<String, Object>();
+            Map<String, Object> map = new HashMap<String, Object>(1024);
             map.put("id", wmImNoticeH.getNoticeId());
             TSUser user = ResourceUtil.getSessionUserName();
             String roles = "";
@@ -2308,18 +2308,18 @@ public class WmImNoticeHController extends BaseController {
                 if (roles.length() > 0) {
                     roles = roles.substring(0, roles.length() - 1);
                 }
-                if(roles.equals("CUS")){
+                if("CUS".equals(roles)){
                     wmImNoticeH.setCusCode(user.getUserName());
 
                 }
             }
-            if(roles.equals("CUS")){
+            if("CUS".equals(roles)){
                 wmImNoticeH.setImSta(Constants.wm_sta0);
             }else{
                 wmImNoticeH.setImSta(Constants.wm_sta1);
             }
             if(wmImNoticeH.getCusCode()==null){
-                if(roles.equals("CUS")){
+                if("CUS".equals(roles)){
                     wmImNoticeH.setCusCode(user.getUserName());
                 }
             }
@@ -2433,7 +2433,7 @@ public class WmImNoticeHController extends BaseController {
                     if (roles.length() > 0) {
                         roles = roles.substring(0, roles.length() - 1);
                     }
-                    if(roles.equals("CUS")){
+                    if("CUS".equals(roles)){
                         wmImNoticeH.setCusCode(user.getUserName());
 
                     }
@@ -2479,7 +2479,7 @@ public class WmImNoticeHController extends BaseController {
                 if (roles.length() > 0) {
                     roles = roles.substring(0, roles.length() - 1);
                 }
-                if(roles.equals("CUS")){
+                if("CUS".equals(roles)){
                     wmImNoticeH.setCusCode(user.getUserName());
                     wmImNoticeH.setReadonly("readonly");
                     wmImNoticeH.setWherecon("where cus_code = '"+user.getUserName()+"'");
@@ -2529,7 +2529,7 @@ public class WmImNoticeHController extends BaseController {
                 if (roles.length() > 0) {
                     roles = roles.substring(0, roles.length() - 1);
                 }
-                if(roles.equals("CUS")){
+                if("CUS".equals(roles)){
                     wmImNoticeH.setCusCode(user.getUserName());
                     wmImNoticeH.setReadonly("readonly");
                     wmImNoticeH.setWherecon("where cus_code = '"+user.getUserName()+"'");
@@ -2597,7 +2597,7 @@ public class WmImNoticeHController extends BaseController {
                 if (roles.length() > 0) {
                     roles = roles.substring(0, roles.length() - 1);
                 }
-                if(roles.equals("CUS")){
+                if("CUS".equals(roles)){
                     cq.eq("cusCode", user.getUserName());
 
                 }
@@ -2728,7 +2728,7 @@ public class WmImNoticeHController extends BaseController {
 
                     WmImNoticeHEntity wmImNoticeH  = new WmImNoticeHEntity();
 
-                    if(roles.equals("CUS")){
+                    if("CUS".equals(roles)){
                         wmImNoticeH.setImSta(Constants.wm_sta0);
                     }else{
                         wmImNoticeH.setImSta(Constants.wm_sta1);

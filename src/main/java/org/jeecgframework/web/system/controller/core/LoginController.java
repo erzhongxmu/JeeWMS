@@ -113,7 +113,7 @@ public class LoginController extends BaseController{
 			}
 			if (u != null && u.getStatus() != 0) {
 				// 处理用户有多个组织机构的情况，以弹出框的形式让用户选择
-				Map<String, Object> attrMap = new HashMap<String, Object>();
+				Map<String, Object> attrMap = new HashMap<String, Object>(1024);
 				j.setAttributes(attrMap);
 
 				String orgId = req.getParameter("orgId");
@@ -153,7 +153,7 @@ public class LoginController extends BaseController{
 	@ResponseBody
 	public AjaxJson changeDefaultOrg(TSUser user, HttpServletRequest req) {
 		AjaxJson j = new AjaxJson();
-		Map<String, Object> attrMap = new HashMap<String, Object>();
+		Map<String, Object> attrMap = new HashMap<String, Object>(1024);
 		String orgId = req.getParameter("orgId");
 		TSUser u = userService.checkUserExits(user);
 		if (oConvertUtils.isNotEmpty(orgId)) {
@@ -304,7 +304,7 @@ public class LoginController extends BaseController{
 		HttpSession session = ContextHolderUtils.getSession();
 		Client client = ClientManager.getInstance().getClient(session.getId());
 		if (client.getFunctionMap() == null || client.getFunctionMap().size() == 0) {
-			Map<Integer, List<TSFunction>> functionMap = new HashMap<Integer, List<TSFunction>>();
+			Map<Integer, List<TSFunction>> functionMap = new HashMap<Integer, List<TSFunction>>(1024);
 			Map<String, TSFunction> loginActionlist = getUserFunction(user);
 			if (loginActionlist.size() > 0) {
 				Collection<TSFunction> allFunctions = loginActionlist.values();
@@ -348,7 +348,7 @@ public class LoginController extends BaseController{
 
 		if (client.getFunctions() == null || client.getFunctions().size() == 0) {
 
-			Map<String, TSFunction> loginActionlist = new HashMap<String, TSFunction>();
+			Map<String, TSFunction> loginActionlist = new HashMap<String, TSFunction>(1024);
 	           StringBuilder hqlsb1=new StringBuilder("select distinct f from TSFunction f,TSRoleFunction rf,TSRoleUser ru  ").append("where ru.TSRole.id=rf.TSRole.id and rf.TSFunction.id=f.id and ru.TSUser.id=? ");
 	           StringBuilder hqlsb2=new StringBuilder("select distinct c from TSFunction c,TSRoleFunction rf,TSRoleOrg b,TSUserOrg a ")
 	           							.append("where a.tsDepart.id=b.tsDepart.id and b.tsRole.id=rf.TSRole.id and rf.TSFunction.id=c.id and a.tsUser.id=?");

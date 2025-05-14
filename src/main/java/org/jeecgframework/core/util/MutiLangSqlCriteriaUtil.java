@@ -24,7 +24,7 @@ public class MutiLangSqlCriteriaUtil {
      * @param fieldValue 待查询字段值 - 页面传入
      */
     public static void assembleCondition(List<String> fieldLangKeyList, CriteriaQuery cq, String fieldName, String fieldValue) {
-        Map<String,String> fieldLangMap = new HashMap<String, String>();
+        Map<String,String> fieldLangMap = new HashMap<String, String>(1024);
         for (String nameKey : fieldLangKeyList) {
             String name = MutiLangUtil.getMutiLangInstance().getLang(nameKey);
             fieldLangMap.put(nameKey, name);

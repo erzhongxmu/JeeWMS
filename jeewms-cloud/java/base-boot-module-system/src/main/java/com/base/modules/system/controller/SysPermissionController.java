@@ -154,7 +154,7 @@ public class SysPermissionController {
 			query.eq(SysPermission::getDelFlag, CommonConstant.DEL_FLAG_0);
 			query.orderByAsc(SysPermission::getSortNo);
 			List<SysPermission> list = sysPermissionService.list(query);
-			Map<String, List<SysPermissionTree>> listMap = new HashMap<>();
+			Map<String, List<SysPermissionTree>> listMap = new HashMap<>(1024);
 			for (SysPermission item : list) {
 				String pid = item.getParentId();
 				if (parentIdList.contains(pid)) {
@@ -362,7 +362,7 @@ public class SysPermissionController {
 			List<TreeModel> treeList = new ArrayList<>();
 			getTreeModelList(treeList, list, null);
 
-			Map<String, Object> resMap = new HashMap<String, Object>();
+			Map<String, Object> resMap = new HashMap<String, Object>(1024);
 			resMap.put("treeList", treeList); // 全部树节点数据
 			resMap.put("ids", ids);// 全部树ids
 			result.setResult(resMap);

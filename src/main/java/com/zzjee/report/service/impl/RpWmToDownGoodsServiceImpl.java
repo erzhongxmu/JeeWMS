@@ -78,7 +78,7 @@ public class RpWmToDownGoodsServiceImpl extends CommonServiceImpl implements RpW
  	}
  	
  	private Map<String,Object> populationMap(RpWmToDownGoodsEntity t){
-		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("id", t.getId());
 		map.put("create_date", t.getCreateDate());
 		map.put("create_name", t.getCreateName());

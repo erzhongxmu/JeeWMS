@@ -110,7 +110,7 @@ public class WmToMoveGoodsController extends BaseController {
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
         }
-        Map<String, Object> map1 = new HashMap<String, Object>();
+        Map<String, Object> map1 = new HashMap<String, Object>(1024);
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.add();

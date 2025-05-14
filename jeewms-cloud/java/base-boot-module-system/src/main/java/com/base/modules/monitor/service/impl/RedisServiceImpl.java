@@ -54,7 +54,7 @@ public class RedisServiceImpl implements RedisService {
 	@Override
 	public Map<String, Object> getKeysSize() throws RedisConnectException {
 		Long dbSize = redisConnectionFactory.getConnection().dbSize();
-		Map<String, Object> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<>(1024);
 		map.put("create_time", System.currentTimeMillis());
 		map.put("dbSize", dbSize);
 
@@ -69,7 +69,7 @@ public class RedisServiceImpl implements RedisService {
 		for (Map.Entry<Object, Object> entry : info.entrySet()) {
 			String key = oConvertUtils.getString(entry.getKey());
 			if ("used_memory".equals(key)) {
-				map = new HashMap<>();
+				map = new HashMap<>(1024);
 				map.put("used_memory", entry.getValue());
 				map.put("create_time", System.currentTimeMillis());
 			}

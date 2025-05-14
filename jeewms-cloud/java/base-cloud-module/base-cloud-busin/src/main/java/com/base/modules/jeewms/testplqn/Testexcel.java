@@ -503,7 +503,7 @@ public class Testexcel {
         list.add("c");
         list.add("c");
 
-        Map<String, Integer> map = new HashMap<>();
+        Map<String, Integer> map = new HashMap<>(1024);
         for (String s : list) {
             Integer i = 1;
             if (map.get(s) !=null){

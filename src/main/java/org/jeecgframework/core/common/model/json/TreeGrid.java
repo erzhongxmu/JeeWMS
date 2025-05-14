@@ -129,7 +129,7 @@ public class TreeGrid implements java.io.Serializable {
     private String assembleFieldsJson() {
         String fieldsJson = ", 'fieldMap':" + fieldMap;
         if (fieldMap != null && fieldMap.size() > 0) {
-            Map<String, Object> resultMap = new HashMap<String, Object>();
+            Map<String, Object> resultMap = new HashMap<String, Object>(1024);
             for (Map.Entry<String, Object> entry : fieldMap.entrySet()) {
                 resultMap.put("fieldMap." + entry.getKey(), entry.getValue());
             }

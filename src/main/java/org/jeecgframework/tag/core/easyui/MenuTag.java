@@ -76,12 +76,12 @@ public class MenuTag extends TagSupport {
 	public StringBuffer end() {	
 		StringBuffer sb = new StringBuffer();
 
-        if (style.equals("easyui")) {
+        if ("easyui".equals(style)) {
             sb.append("<ul id=\"nav\" class=\"easyui-tree tree-lines\" fit=\"true\" border=\"false\">");
             sb.append(ListtoMenu.getEasyuiMultistageTree(menuFun, style));
             sb.append("</ul>");
         }
-		if(style.equals("shortcut"))
+		if("shortcut".equals(style))
 
 //		{	sb.append("<div id=\"nav\" style=\"display:none;\" class=\"easyui-accordion\" fit=\"true\" border=\"false\">");
 		{
@@ -91,29 +91,29 @@ public class MenuTag extends TagSupport {
 			sb.append("</div>");
 		}
 
-		if(style.equals("bootstrap"))
+		if("bootstrap".equals(style))
 		{
 			sb.append(ListtoMenu.getBootMenu(parentFun, childFun));
 		}
-		if(style.equals("json"))
+		if("json".equals(style))
 		{
 			sb.append("<script type=\"text/javascript\">");
 			sb.append("var _menus="+ListtoMenu.getMenu(parentFun, childFun));
 			sb.append("</script>");
 		}
-		if(style.equals("june_bootstrap"))
+		if("june_bootstrap".equals(style))
 		{
 			sb.append(ListtoMenu.getBootstrapMenu(menuFun));
 		}
-		if(style.equals("ace"))
+		if("ace".equals(style))
 		{
 			sb.append(ListtoMenu.getAceMultistageTree(menuFun));
 		}
-		if(style.equals("diy"))
+		if("diy".equals(style))
 		{
 			sb.append(ListtoMenu.getDIYMultistageTree(menuFun));
 		}
-		if(style.equals("hplus")){
+		if("hplus".equals(style)){
 			sb.append(ListtoMenu.getHplusMultistageTree(menuFun));
 		}
 		return sb;

@@ -98,7 +98,7 @@ public class WmToUpGoodsServiceImpl extends CommonServiceImpl implements WmToUpG
  	}
 
  	private Map<String,Object> populationMap(WmToUpGoodsEntity t){
-		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("id", t.getId());
 		map.put("create_name", t.getCreateName());
 		map.put("create_by", t.getCreateBy());

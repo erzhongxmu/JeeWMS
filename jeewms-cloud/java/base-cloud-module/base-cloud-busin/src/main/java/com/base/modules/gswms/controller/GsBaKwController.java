@@ -124,7 +124,7 @@ public class GsBaKwController extends JeecgController<BaKw, IBaKwService> {
 	@ApiOperation(value="库位-下拉列表", notes="库位-下拉列表")
 	@PostMapping(value = "/getKwListByGoodsType")
 	public Result<?> getKwListByGoodsType(@RequestBody List<String> goodsTypeIdList) {
-		Map<String,Object> resultMap = new HashMap<>();
+		Map<String,Object> resultMap = new HashMap<>(1024);
 //		for (String typeId : goodsTypeIdList) {
 //			List<BaKw> baKwList = baKwService.lambdaQuery().apply("find_in_set('"+typeId+"',part_type)").list();
 		QueryWrapper<BaKw> queryWrapper = new QueryWrapper<>();
