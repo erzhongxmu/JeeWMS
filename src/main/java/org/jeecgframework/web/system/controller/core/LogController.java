@@ -239,16 +239,16 @@ public class LogController extends BaseController {
 				svg = svg.replaceAll(":rect", "rect");
 				String ext = "";
 				Transcoder t = null;
-				if (type.equals("image/png")) {
+				if ("image/png".equals(type)) {
 					ext = "png";
 					t = new PNGTranscoder();
-				} else if (type.equals("image/jpeg")) {
+				} else if ("image/jpeg".equals(type)) {
 					ext = "jpg";
 					t = new JPEGTranscoder();
-				} else if (type.equals("application/pdf")) {
+				} else if ("application/pdf".equals(type)) {
 					ext = "pdf";
 					t = (Transcoder) new PDFTranscoder();
-				} else if (type.equals("image/svg+xml")) {
+				} else if ("image/svg+xml".equals(type)) {
                     ext = "svg";
                 }
 				response.addHeader("Content-Disposition",
@@ -266,7 +266,7 @@ public class LogController extends BaseController {
 						out.print("Problem transcoding stream. See the web logs for more details.");
 						e.printStackTrace();
 					}
-				} else if (ext.equals("svg")) {
+				} else if ("svg".equals(ext)) {
 					// out.print(svg);
 					OutputStreamWriter writer = new OutputStreamWriter(out,
 							"UTF-8");

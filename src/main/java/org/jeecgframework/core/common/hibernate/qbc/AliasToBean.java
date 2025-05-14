@@ -56,7 +56,7 @@ public class AliasToBean implements ResultTransformer {
 		try {
 			Object root = resultClass.newInstance();
 			for (int i = 0; i < aliases.length; i++) {
-				if(aliases[i]!=null && !aliases[i].equals(""))
+				if(aliases[i]!=null && !"".equals(aliases[i]))
 				{
 					Ognl.setValue(ognlUntil.compile(aliases[i]), context, root, tuple[i]);
 				}

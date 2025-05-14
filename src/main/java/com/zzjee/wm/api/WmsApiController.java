@@ -432,7 +432,7 @@ public class WmsApiController {
             Object id0 = wmImNoticeH.getNoticeId();
             // ===================================================================================
             // 查询-进货通知明细
-            if (wmImNoticeH.getOrderTypeCode().equals("04")) {
+            if ("04".equals(wmImNoticeH.getOrderTypeCode())) {
                 String tsql = "delete  from wm_in_qm_i where im_notice_id = ?";
                 systemService.executeSql(tsql, wmImNoticeH.getNoticeId());
             }

@@ -43,23 +43,23 @@ public class ConStant {
 	{
 		HttpServletRequest request=ContextHolderUtils.getRequest();
 		SWFTOOLS_HOME=request.getSession().getServletContext().getRealPath("/") + SWFTOOLS_BASE_DIR + "/";
-		if(extend.equals("pdf"))
+		if("pdf".equals(extend))
 		{
 			SWFTOOLS_HOME+=SWFTOOLS_PDF2SWF_PATH;
 		}
-		if(extend.equals("gif"))
+		if("gif".equals(extend))
 		{
 			SWFTOOLS_HOME+=SWFTOOLS_GIF2SWF_PATH;
 		}
-		if(extend.equals("png"))
+		if("png".equals(extend))
 		{
 			SWFTOOLS_HOME+=SWFTOOLS_PNG2SWF_PATH;
 		}
-		if(extend.equals("jpeg"))
+		if("jpeg".equals(extend))
 		{
 			SWFTOOLS_HOME+=SWFTOOLS_JPEG2SWF_PATH;
 		}
-		if(extend.equals("wav"))
+		if("wav".equals(extend))
 		{
 			SWFTOOLS_HOME+=SWFTOOLS_WAV2SWF_PATH;
 		}

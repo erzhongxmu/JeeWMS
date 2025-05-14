@@ -34,19 +34,19 @@ public class DbTableOracleHandleImpl implements DbTableHandleI {
 	@Override
     public String getMatchClassTypeByDataType(String dataType, int digits) {
 		String result ="";
-		if (dataType.equalsIgnoreCase("varchar2")) {
+		if ("varchar2".equalsIgnoreCase(dataType)) {
 			result="string";
-		} else if(dataType.equalsIgnoreCase("double")){
+		} else if("double".equalsIgnoreCase(dataType)){
 			result="double";
-		}else if (dataType.equalsIgnoreCase("number") && digits==0) {
+		}else if ("number".equalsIgnoreCase(dataType) && digits==0) {
 			result="int";
-		}else if (dataType.equalsIgnoreCase("number") && digits!=0) {
+		}else if ("number".equalsIgnoreCase(dataType) && digits!=0) {
 			result="double";
-		}else if (dataType.equalsIgnoreCase("int")) {
+		}else if ("int".equalsIgnoreCase(dataType)) {
 			result="int";
-		}else if (dataType.equalsIgnoreCase("Date")) {
+		}else if ("Date".equalsIgnoreCase(dataType)) {
 			result="date";
-		}else if (dataType.equalsIgnoreCase("Datetime")) {
+		}else if ("Datetime".equalsIgnoreCase(dataType)) {
 			result="date";
 		}
 		return result;
@@ -66,23 +66,23 @@ public class DbTableOracleHandleImpl implements DbTableHandleI {
 	
 	private String getAddFieldDesc(ColumnMeta columnMeta) {
 		String result ="";
-		if(columnMeta.getColunmType().equalsIgnoreCase("string")){
+		if("string".equalsIgnoreCase(columnMeta.getColunmType())){
 			result = columnMeta.getColumnName()+" varchar2("+columnMeta.getColumnSize()+")";
-		}else if(columnMeta.getColunmType().equalsIgnoreCase("date")){
+		}else if("date".equalsIgnoreCase(columnMeta.getColunmType())){
 			result = columnMeta.getColumnName()+" datetime";
-		}else if(columnMeta.getColunmType().equalsIgnoreCase("int")){
+		}else if("int".equalsIgnoreCase(columnMeta.getColunmType())){
 			result = columnMeta.getColumnName()+" NUMBER("+columnMeta.getColumnSize()+")";
-		}else if(columnMeta.getColunmType().equalsIgnoreCase("double")){
+		}else if("double".equalsIgnoreCase(columnMeta.getColunmType())){
 			result = columnMeta.getColumnName()+" NUMBER("+columnMeta.getColumnSize()+","+columnMeta.getDecimalDigits()+")";
-		}else if(columnMeta.getColunmType().equalsIgnoreCase("bigdecimal")){
+		}else if("bigdecimal".equalsIgnoreCase(columnMeta.getColunmType())){
 			result = columnMeta.getColumnName()+" NUMBER("+columnMeta.getColumnSize()+","+columnMeta.getDecimalDigits()+")";
-		}else if(columnMeta.getColunmType().equalsIgnoreCase("text")){ 
+		}else if("text".equalsIgnoreCase(columnMeta.getColunmType())){
 			result = columnMeta.getColumnName()+" CLOB ";
-		}else if(columnMeta.getColunmType().equalsIgnoreCase("blob")){
+		}else if("blob".equalsIgnoreCase(columnMeta.getColunmType())){
 			result = columnMeta.getColumnName()+" BLOB ";
 		}
 		result += (StringUtils.isNotEmpty(columnMeta.getFieldDefault())?" DEFAULT "+columnMeta.getFieldDefault():" ");
-		result += (columnMeta.getIsNullable().equals("Y")?" NULL":" NOT NULL");
+		result += ("Y".equals(columnMeta.getIsNullable())?" NULL":" NOT NULL");
 		return result;
 	}
 	private String getUpdateFieldDesc(ColumnMeta cgformcolumnMeta,ColumnMeta datacolumnMeta) {
@@ -90,21 +90,21 @@ public class DbTableOracleHandleImpl implements DbTableHandleI {
 		String isnull="";
 		//oracle对于是否为空必须跟原来的比对
 		if (!datacolumnMeta.getIsNullable().equals(cgformcolumnMeta.getIsNullable())) {
-			isnull=(cgformcolumnMeta.getIsNullable().equals("Y")?"NULL":"NOT NULL");
+			isnull=("Y".equals(cgformcolumnMeta.getIsNullable())?"NULL":"NOT NULL");
 		}
 		
-		if(cgformcolumnMeta.getColunmType().equalsIgnoreCase("string")||cgformcolumnMeta.getColunmType().equalsIgnoreCase("text")){
+		if("string".equalsIgnoreCase(cgformcolumnMeta.getColunmType())|| "text".equalsIgnoreCase(cgformcolumnMeta.getColunmType())){
 				result = cgformcolumnMeta.getColumnName()+" varchar2("+cgformcolumnMeta.getColumnSize()+")"+isnull;
 			
-		}else if(cgformcolumnMeta.getColunmType().equalsIgnoreCase("date")){
+		}else if("date".equalsIgnoreCase(cgformcolumnMeta.getColunmType())){
 				result = cgformcolumnMeta.getColumnName()+" date "+isnull;
 			
-		}else if(cgformcolumnMeta.getColunmType().equalsIgnoreCase("int")){
+		}else if("int".equalsIgnoreCase(cgformcolumnMeta.getColunmType())){
 				result = cgformcolumnMeta.getColumnName()+" NUMBER("+cgformcolumnMeta.getColumnSize()+") "+isnull;
 			
-		}else if(cgformcolumnMeta.getColunmType().equalsIgnoreCase("double")){
+		}else if("double".equalsIgnoreCase(cgformcolumnMeta.getColunmType())){
 				result = cgformcolumnMeta.getColumnName()+" NUMBER("+cgformcolumnMeta.getColumnSize()+","+cgformcolumnMeta.getDecimalDigits()+") "+isnull;
-		}else if(cgformcolumnMeta.getColunmType().equalsIgnoreCase("bigdecimal")){
+		}else if("bigdecimal".equalsIgnoreCase(cgformcolumnMeta.getColunmType())){
 			result = cgformcolumnMeta.getColumnName()+" NUMBER("+cgformcolumnMeta.getColumnSize()+","+cgformcolumnMeta.getDecimalDigits()+") "+isnull;
 		}
 		result += (StringUtils.isNotEmpty(cgformcolumnMeta.getFieldDefault())?" DEFAULT "+cgformcolumnMeta.getFieldDefault():" ");

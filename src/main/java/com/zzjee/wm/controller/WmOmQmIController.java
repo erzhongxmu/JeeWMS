@@ -387,7 +387,7 @@ public class WmOmQmIController extends BaseController {
         try {
             WmOmQmIEntity wmOmQmI = systemService.getEntity(
                     WmOmQmIEntity.class, request.getParameter("id").toString());
-            if (wmOmQmI != null && wmOmQmI.getBinSta().equals("N")) {
+            if (wmOmQmI != null && "N".equals(wmOmQmI.getBinSta())) {
                 WmToDownGoodsEntity wmToDownGoods = new WmToDownGoodsEntity();
                 wmToDownGoods.setBinIdFrom(wmOmQmI.getTinId());//下架托盘
                 wmToDownGoods.setKuWeiBianMa(wmOmQmI.getBinId());//储位
@@ -454,7 +454,7 @@ public class WmOmQmIController extends BaseController {
         try {
             WmOmQmIEntity wmOmQmI = systemService.getEntity(
                     WmOmQmIEntity.class, id);
-            if (wmOmQmI != null && wmOmQmI.getBinSta().equals("N")) {
+            if (wmOmQmI != null && "N".equals(wmOmQmI.getBinSta())) {
                 WmToDownGoodsEntity wmToDownGoods = new WmToDownGoodsEntity();
                 wmToDownGoods.setBinIdFrom(wmOmQmI.getTinId());//下架托盘
                 wmToDownGoods.setKuWeiBianMa(wmOmQmI.getBinId());//储位

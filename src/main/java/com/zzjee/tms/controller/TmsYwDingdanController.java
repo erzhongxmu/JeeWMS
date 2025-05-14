@@ -256,7 +256,7 @@ public class TmsYwDingdanController extends BaseController {
 
 		}
 		if(!StringUtil.isEmpty(user.getUserType())){
-			if(user.getUserType().equals("4")){
+			if("4".equals(user.getUserType())){
 				cq.eq("username",user.getUserName());
 			}
 
@@ -923,7 +923,7 @@ public class TmsYwDingdanController extends BaseController {
 		}
 		TSUser user = ResourceUtil.getSessionUser();
 		if(!StringUtil.isEmpty(user.getUserType())){
-			if(user.getUserType().equals("4")){
+			if("4".equals(user.getUserType())){
 				tmsYwDingdan.setUsername(user.getUserName());
 				tmsYwDingdan.setXdrmz(user.getRealName());
 			}

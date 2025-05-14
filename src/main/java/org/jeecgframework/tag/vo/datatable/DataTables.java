@@ -136,7 +136,7 @@ public class DataTables {
 			SortInfo sortInfo = new SortInfo();
 			sortInfo.setColumnId(this.ParseIntParameter(formatter.format("iSortCol_{0}", i)));
 			String aString = this.ParseStringParameter(formatter.format("sSortDir_{0}", i));
-			if (this.ParseStringParameter(formatter.format("sSortDir_{0}", i)).equals("desc")) {
+			if ("desc".equals(this.ParseStringParameter(formatter.format("sSortDir_{0}", i)))) {
 				sortInfo.setSortOrder(SortDirection.asc);
 			} else {
 				sortInfo.setSortOrder(SortDirection.desc);

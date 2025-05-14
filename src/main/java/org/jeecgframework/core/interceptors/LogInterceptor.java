@@ -38,13 +38,13 @@ public class LogInterceptor {
 				args[i] = Array.newInstance(Class.forName("java.lang.Long"), 1)
 						.getClass();
 			} else if (sArgs[i].indexOf(".") == -1) {
-				if (sArgs[i].equals("int")) {
+				if ("int".equals(sArgs[i])) {
 					args[i] = int.class;
-				} else if (sArgs[i].equals("char")) {
+				} else if ("char".equals(sArgs[i])) {
 					args[i] = char.class;
-				} else if (sArgs[i].equals("float")) {
+				} else if ("float".equals(sArgs[i])) {
 					args[i] = float.class;
-				} else if (sArgs[i].equals("long")) {
+				} else if ("long".equals(sArgs[i])) {
 					args[i] = long.class;
 				}
 			} else {

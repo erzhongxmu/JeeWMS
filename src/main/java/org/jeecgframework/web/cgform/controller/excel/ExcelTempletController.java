@@ -159,12 +159,12 @@ public class ExcelTempletController extends BaseController {
 		Collections.sort(lists, new FieldNumComparator());
 		List<ExcelExportEntity> entityList = new ArrayList<ExcelExportEntity>();
 		for (int i = 0; i < lists.size(); i++) {
-			if (lists.get(i).getIsShow().equals("Y")) {
+			if ("Y".equals(lists.get(i).getIsShow())) {
 				ExcelExportEntity entity = new ExcelExportEntity(lists.get(i).getContent(), lists.get(i).getFieldName());
 				int columnWidth = lists.get(i).getLength() == 0 ? 12 : lists.get(i).getLength() > 30 ? 30 : lists.get(i).getLength();
-				if (lists.get(i).getShowType().equals("date")) {
+				if ("date".equals(lists.get(i).getShowType())) {
 					entity.setFormat("yyyy-MM-dd");
-				} else if (lists.get(i).getShowType().equals("datetime")) {
+				} else if ("datetime".equals(lists.get(i).getShowType())) {
 					entity.setFormat("yyyy-MM-dd HH:mm:ss");
 				}
 				entity.setWidth(columnWidth);
@@ -330,7 +330,7 @@ public class ExcelTempletController extends BaseController {
 			m.put(CgAutoListConstant.FIELD_DICTLIST, new ArrayList(0));
 			return;
 		}
-		if (!bean.getShowType().equals("popup")) {
+		if (!"popup".equals(bean.getShowType())) {
 			List<DictEntity> dicDatas = queryDic(dicT, dicF, dicText);
 			m.put(CgAutoListConstant.FIELD_DICTLIST, dicDatas);
 		} else {
@@ -359,7 +359,7 @@ public class ExcelTempletController extends BaseController {
 				//不需要处理字典
 				continue;
 			} else {
-				if (!bean.getShowType().equals("popup")) {
+				if (!"popup".equals(bean.getShowType())) {
 					List<DictEntity> dicDataList = queryDic(dicTable, dicCode, dicText);
 					for (Map r : result) {
 						String value = String.valueOf(r.get(bean.getFieldName()));

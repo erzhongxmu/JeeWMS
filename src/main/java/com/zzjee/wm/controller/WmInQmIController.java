@@ -524,13 +524,13 @@ public class WmInQmIController extends BaseController {
                 j.setMsg(message);
                 return j;
             }
-            if (!flag.equals("X")) {
+            if (!"X".equals(flag)) {
                 j.setSuccess(false);
                 message = "收货通知下此商品不存在或已经全部收货";
                 j.setMsg(message);
                 return j;
             }
-            if (flag.equals("X")) {
+            if ("X".equals(flag)) {
                 MvGoodsEntity mvgoods = systemService.findUniqueByProperty(
                         MvGoodsEntity.class, "goodsCode", wmInQmI.getGoodsId());
                 if (mvgoods != null) {
@@ -771,7 +771,7 @@ public class WmInQmIController extends BaseController {
             // TODO: handle exception
         }
 
-        if (ResourceUtil.getConfigByName("giwq").equals("no")) {
+        if ("no".equals(ResourceUtil.getConfigByName("giwq"))) {
             MvGoodsEntity mvgoods = systemService.findUniqueByProperty(
                     MvGoodsEntity.class, "goodsCode",
                     WmImNoticeI.getGoodsCode());
@@ -792,7 +792,7 @@ public class WmInQmIController extends BaseController {
         wmInQmI.setQmOkQuat(Long.toString(quat));
         wmInQmI.setTinId(wmUtil.gettuopanma());
 
-        if (ResourceUtil.getConfigByName("sys.weight").equals("on")) {
+        if ("on".equals(ResourceUtil.getConfigByName("sys.weight"))) {
             String rfidcontent = "";
             try{
                 CriteriaQuery cq;
@@ -830,7 +830,7 @@ public class WmInQmIController extends BaseController {
             wmInQmI = wmInQmIService.getEntity(WmInQmIEntity.class,
                     wmInQmI.getId());
 
-            if (ResourceUtil.getConfigByName("sys.weight").equals("on")&&StringUtil.isEmpty(wmInQmI.getBaseOutGoodscount())) {
+            if ("on".equals(ResourceUtil.getConfigByName("sys.weight"))&&StringUtil.isEmpty(wmInQmI.getBaseOutGoodscount())) {
                 String rfidcontent = "";
                 try{
                     CriteriaQuery cq;

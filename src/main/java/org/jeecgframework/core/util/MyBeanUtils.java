@@ -192,8 +192,8 @@ public class MyBeanUtils
                   continue;
               }
               String className = clazz.getName();
-              if (className.equalsIgnoreCase("java.sql.Timestamp")) {
-                  if (value == null || value.equals("")) {
+              if ("java.sql.Timestamp".equalsIgnoreCase(className)) {
+                  if (value == null || "".equals(value)) {
                       continue;
                   }
               }
@@ -241,7 +241,7 @@ public class MyBeanUtils
               }
               String className = clazz.getName();
               // 临时对策（如果不处理默认的类型转换时会出错）
-              if (className.equalsIgnoreCase("java.util.Date")) {
+              if ("java.util.Date".equalsIgnoreCase(className)) {
                   value = new java.util.Date(((java.sql.Timestamp)value).getTime());// wait to do：貌似有时区问题, 待进一步确认
               }
 //              if (className.equalsIgnoreCase("java.sql.Timestamp")) {
@@ -287,12 +287,12 @@ public class MyBeanUtils
                   continue;
               }
               String className = clazz.getName();
-              if (className.equalsIgnoreCase("java.sql.Timestamp")) {
-                  if (value == null || value.equals("")) {
+              if ("java.sql.Timestamp".equalsIgnoreCase(className)) {
+                  if (value == null || "".equals(value)) {
                       continue;
                   }
               }
-              if (className.equalsIgnoreCase("java.lang.String")) {
+              if ("java.lang.String".equalsIgnoreCase(className)) {
                   if (value == null) {
                       value = defaultValue;
                   }

@@ -171,7 +171,7 @@ public class TimeTaskController extends BaseController {
 	@ResponseBody
 	public AjaxJson startOrStopTask(TSTimeTaskEntity timeTask, HttpServletRequest request) {
 		AjaxJson j = new AjaxJson();
-		boolean isStart = timeTask.getIsStart().equals("1");
+		boolean isStart = "1".equals(timeTask.getIsStart());
 		timeTask = timeTaskService.get(TSTimeTaskEntity.class, timeTask.getId());
 		boolean isSuccess = false;
 		try {

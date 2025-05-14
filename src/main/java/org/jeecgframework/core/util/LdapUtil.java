@@ -114,9 +114,9 @@ public class LdapUtil {
 							   DirContext dc) {
 		String dn = null;
 		SearchControls sc = new SearchControls();
-		if (scope.equals("base")) {
+		if ("base".equals(scope)) {
 			sc.setSearchScope(SearchControls.OBJECT_SCOPE);
-		} else if (scope.equals("one")) {
+		} else if ("one".equals(scope)) {
 			sc.setSearchScope(SearchControls.ONELEVEL_SCOPE);
 		} else {
 			sc.setSearchScope(SearchControls.SUBTREE_SCOPE);
@@ -128,7 +128,7 @@ public class LdapUtil {
 				//System.out.println();
 				SearchResult sr = (SearchResult) ne.next();
 				String name = sr.getName();
-				if (base != null && !base.equals("")) {
+				if (base != null && !"".equals(base)) {
 					LogUtil.info("entry: " + name + "," + base);
 				} else {
 					LogUtil.info("entry: " + name);
@@ -250,9 +250,9 @@ public class LdapUtil {
 	public static void searchInformation(String base, String scope, String filter,
 										 DirContext dc) {
 		SearchControls sc = new SearchControls();
-		if (scope.equals("base")) {
+		if ("base".equals(scope)) {
 			sc.setSearchScope(SearchControls.OBJECT_SCOPE);
-		} else if (scope.equals("one")) {
+		} else if ("one".equals(scope)) {
 			sc.setSearchScope(SearchControls.ONELEVEL_SCOPE);
 		} else {
 			sc.setSearchScope(SearchControls.SUBTREE_SCOPE);
@@ -266,7 +266,7 @@ public class LdapUtil {
 				//System.out.println();
 				SearchResult sr = (SearchResult) ne.next();
 				String name = sr.getName();
-				if (base != null && !base.equals("")) {
+				if (base != null && !"".equals(base)) {
 					LogUtil.info("entry: " + name + "," + base);
 				} else {
 					LogUtil.info("entry: " + name);

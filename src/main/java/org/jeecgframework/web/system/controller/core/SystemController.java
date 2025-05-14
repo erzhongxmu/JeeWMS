@@ -575,7 +575,7 @@ public class SystemController extends BaseController {
 		String message = null;
 		// 设置上级部门
 		String pid = request.getParameter("TSPDepart.id");
-		if (pid.equals("")) {
+		if ("".equals(pid)) {
 			depart.setTSPDepart(null);
 		}
 		AjaxJson j = new AjaxJson();
@@ -1174,7 +1174,7 @@ public class SystemController extends BaseController {
 	            MultipartFile mf=multipartRequest.getFile("file");// 获取上传文件对象
 	    		fileName = mf.getOriginalFilename();// 获取文件名
 				String fileExt = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
-				if(fileExt.equals("jsp")||fileExt.equals("js")){
+				if("jsp".equals(fileExt)|| "js".equals(fileExt)){
 					msg="警告:禁止上传可执行文件";
 					j.setMsg(msg);
 					return j;

@@ -17,15 +17,15 @@ public class DialectFactoryBean implements FactoryBean<Dialect> {
 
 	@Override
     public Dialect getObject() throws Exception {
-		if (this.dbType.equals("oracle")) {
+		if ("oracle".equals(this.dbType)) {
 			this.dialect = new OracleDialect();
-		} else if (this.dbType.equals("sqlserver")) {
+		} else if ("sqlserver".equals(this.dbType)) {
 			this.dialect = new SQLServer2005Dialect();
-		} else if (this.dbType.equals("db2")) {
+		} else if ("db2".equals(this.dbType)) {
 			this.dialect = new DB2Dialect();
-		} else if (this.dbType.equals("mysql")) {
+		} else if ("mysql".equals(this.dbType)) {
 			this.dialect = new MySQLDialect();
-		}  else if (this.dbType.equals("postgres")) {
+		}  else if ("postgres".equals(this.dbType)) {
 			this.dialect = new PostgreSQLDialect();
 		} else {
 			throw new Exception("没有设置合适的数据库类型");

@@ -33,21 +33,21 @@ public class DbTableMysqlHandleImpl implements DbTableHandleI {
 	@Override
     public String getMatchClassTypeByDataType(String dataType, int digits) {
 		String result ="";
-		if (dataType.equalsIgnoreCase("varchar")) {
+		if ("varchar".equalsIgnoreCase(dataType)) {
 			result="string";
-		} else if(dataType.equalsIgnoreCase("double")){
+		} else if("double".equalsIgnoreCase(dataType)){
 			result="double";
-		}else if (dataType.equalsIgnoreCase("int")) {
+		}else if ("int".equalsIgnoreCase(dataType)) {
 			result="int";
-		}else if (dataType.equalsIgnoreCase("Date")) {
+		}else if ("Date".equalsIgnoreCase(dataType)) {
 			result="date";
-		}else if (dataType.equalsIgnoreCase("Datetime")) {
+		}else if ("Datetime".equalsIgnoreCase(dataType)) {
 			result="date";
-		}else if (dataType.equalsIgnoreCase("decimal")){
+		}else if ("decimal".equalsIgnoreCase(dataType)){
 			result="bigdecimal";
-		}else if (dataType.equalsIgnoreCase("text")){
+		}else if ("text".equalsIgnoreCase(dataType)){
 			result="text";
-		}else if (dataType.equalsIgnoreCase("blob")){
+		}else if ("blob".equalsIgnoreCase(dataType)){
 			result="blob";
 		}
 		return result;
@@ -72,20 +72,20 @@ public class DbTableMysqlHandleImpl implements DbTableHandleI {
 	 */
 	private String getFieldDesc(ColumnMeta cgfromcolumnMeta,ColumnMeta datacolumnMeta){
 		String result ="";
-		if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("string")){
-			result = cgfromcolumnMeta.getColumnName()+" varchar("+cgfromcolumnMeta.getColumnSize()+")"+" "+(cgfromcolumnMeta.getIsNullable().equals("Y")?"NULL":"NOT NULL");
-		}else if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("date")){
-			result = cgfromcolumnMeta.getColumnName()+" datetime"+" "+(cgfromcolumnMeta.getIsNullable().equals("Y")?"NULL":"NOT NULL");
-		}else if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("int")){
-			result = cgfromcolumnMeta.getColumnName()+" int("+cgfromcolumnMeta.getColumnSize()+")"+" "+(cgfromcolumnMeta.getIsNullable().equals("Y")?"NULL":"NOT NULL");
-		}else if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("double")){
-			result = cgfromcolumnMeta.getColumnName()+" double("+cgfromcolumnMeta.getColumnSize()+","+cgfromcolumnMeta.getDecimalDigits()+")"+" "+(cgfromcolumnMeta.getIsNullable().equals("Y")?"NULL":"NOT NULL");
-		}else if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("bigdecimal")){
-			result = cgfromcolumnMeta.getColumnName()+" decimal("+cgfromcolumnMeta.getColumnSize()+","+cgfromcolumnMeta.getDecimalDigits()+")"+" "+(cgfromcolumnMeta.getIsNullable().equals("Y")?"NULL":"NOT NULL");
-		}else if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("text")){
-			result = cgfromcolumnMeta.getColumnName()+" text "+(cgfromcolumnMeta.getIsNullable().equals("Y")?"NULL":"NOT NULL");
-		}else if(cgfromcolumnMeta.getColunmType().equalsIgnoreCase("blob")){
-			result = cgfromcolumnMeta.getColumnName()+" blob "+(cgfromcolumnMeta.getIsNullable().equals("Y")?"NULL":"NOT NULL");
+		if("string".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
+			result = cgfromcolumnMeta.getColumnName()+" varchar("+cgfromcolumnMeta.getColumnSize()+")"+" "+("Y".equals(cgfromcolumnMeta.getIsNullable())?"NULL":"NOT NULL");
+		}else if("date".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
+			result = cgfromcolumnMeta.getColumnName()+" datetime"+" "+("Y".equals(cgfromcolumnMeta.getIsNullable())?"NULL":"NOT NULL");
+		}else if("int".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
+			result = cgfromcolumnMeta.getColumnName()+" int("+cgfromcolumnMeta.getColumnSize()+")"+" "+("Y".equals(cgfromcolumnMeta.getIsNullable())?"NULL":"NOT NULL");
+		}else if("double".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
+			result = cgfromcolumnMeta.getColumnName()+" double("+cgfromcolumnMeta.getColumnSize()+","+cgfromcolumnMeta.getDecimalDigits()+")"+" "+("Y".equals(cgfromcolumnMeta.getIsNullable())?"NULL":"NOT NULL");
+		}else if("bigdecimal".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
+			result = cgfromcolumnMeta.getColumnName()+" decimal("+cgfromcolumnMeta.getColumnSize()+","+cgfromcolumnMeta.getDecimalDigits()+")"+" "+("Y".equals(cgfromcolumnMeta.getIsNullable())?"NULL":"NOT NULL");
+		}else if("text".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
+			result = cgfromcolumnMeta.getColumnName()+" text "+("Y".equals(cgfromcolumnMeta.getIsNullable())?"NULL":"NOT NULL");
+		}else if("blob".equalsIgnoreCase(cgfromcolumnMeta.getColunmType())){
+			result = cgfromcolumnMeta.getColumnName()+" blob "+("Y".equals(cgfromcolumnMeta.getIsNullable())?"NULL":"NOT NULL");
 		}
 		result += (StringUtils.isNotEmpty(cgfromcolumnMeta.getComment())?" COMMENT '"+cgfromcolumnMeta.getComment()+"'":" ");
 		result += (StringUtils.isNotEmpty(cgfromcolumnMeta.getFieldDefault())?" DEFAULT "+cgfromcolumnMeta.getFieldDefault():" ");

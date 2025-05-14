@@ -230,7 +230,7 @@ public class WmSttInGoodsController extends BaseController {
         wmSttInGoods = systemService.getEntity(WmSttInGoodsEntity.class, request
                 .getParameter("id").toString());
         message = "库存盘点差异过账成功";
-        if (wmSttInGoods.getSttSta().equals("已完成")) {
+        if ("已完成".equals(wmSttInGoods.getSttSta())) {
 
             if (!wmSttInGoods.getGoodsQua().equals(wmSttInGoods.getSttQua())) {
                 try {

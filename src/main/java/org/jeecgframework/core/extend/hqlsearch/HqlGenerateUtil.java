@@ -100,7 +100,7 @@ public class HqlGenerateUtil {
         PropertyDescriptor origDescriptors[] = PropertyUtils.getPropertyDescriptors(searchObj);
         String aliasName, name, type;
         for (int i = 0; i < origDescriptors.length; i++) {
-            aliasName = (alias.equals("") ? "" : alias + ".") + origDescriptors[i].getName();
+            aliasName = ("".equals(alias) ? "" : alias + ".") + origDescriptors[i].getName();
             name = origDescriptors[i].getName();
             type = origDescriptors[i].getPropertyType().toString();
             try {
@@ -128,7 +128,7 @@ public class HqlGenerateUtil {
                         || type.contains("class java.math")) {
 
                     // for：查询拼装的替换
-                    if (value != null && !value.equals("")) {
+                    if (value != null && !"".equals(value)) {
                         HqlRuleEnum rule = PageValueConvertRuleEnum.convert(value);
 
 //						if(HqlRuleEnum.LIKE.equals(rule)&&(!(value+"").contains("*"))&&!"class java.lang.Integer".contains(type)){
@@ -460,7 +460,7 @@ public class HqlGenerateUtil {
                 if (type.contains("class java.lang") || type.contains("class java.math")) {
 
                     // for：查询拼装的替换
-                    if (value != null && !value.equals("")) {
+                    if (value != null && !"".equals(value)) {
                         HqlRuleEnum rule = PageValueConvertRuleEnum.convert(value);
                         value = PageValueConvertRuleEnum.replaceValue(rule, value);
                         ObjectParseUtil.addCriteria(cq, aliasName, rule, value);

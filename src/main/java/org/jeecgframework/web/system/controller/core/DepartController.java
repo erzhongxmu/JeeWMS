@@ -193,7 +193,7 @@ public class DepartController extends BaseController {
 		String message = null;
 		// 设置上级部门
 		String pid = request.getParameter("TSPDepart.id");
-		if (pid.equals("")) {
+		if ("".equals(pid)) {
 			depart.setTSPDepart(null);
 		}
 		AjaxJson j = new AjaxJson();

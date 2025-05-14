@@ -145,7 +145,7 @@ public class FileUtils {
 		// 获得文件后缀名
 		String tmpName = getExtend(filename);
 		// 声明图片后缀名数组
-		if (tmpName.equals("dwg")) {
+		if ("dwg".equals(tmpName)) {
 			return true;
 		}
 		return false;

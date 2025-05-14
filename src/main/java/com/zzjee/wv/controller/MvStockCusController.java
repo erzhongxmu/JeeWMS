@@ -142,7 +142,7 @@ public class MvStockCusController extends BaseController {
 			if (roles.length() > 0) {
 				roles = roles.substring(0, roles.length() - 1);
 			}
-			if(roles.equals("CUS")){
+			if("CUS".equals(roles)){
 				cq.eq("cusCode", user.getUserName());
 
 			}
@@ -175,7 +175,7 @@ public class MvStockCusController extends BaseController {
 			if (roles.length() > 0) {
 				roles = roles.substring(0, roles.length() - 1);
 			}
-			if(roles.equals("CUS")){
+			if("CUS".equals(roles)){
 				cq.eq("cusCode", user.getUserName());
 
 			}

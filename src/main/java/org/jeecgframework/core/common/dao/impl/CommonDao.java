@@ -227,10 +227,10 @@ public class CommonDao extends GenericBaseCommonDao implements ICommonDao, IGene
 			}
 			String entityName = uploadFile.getObject().getClass().getSimpleName();
 			// 设置文件上传路径
-			if (entityName.equals("TSTemplate")) {
+			if ("TSTemplate".equals(entityName)) {
 				realPath = uploadFile.getMultipartRequest().getSession().getServletContext().getRealPath("/") + ResourceUtil.getConfigByName("templatepath") + "/";
 				path = ResourceUtil.getConfigByName("templatepath") + "/";
-			} else if (entityName.equals("TSIcon")) {
+			} else if ("TSIcon".equals(entityName)) {
 				realPath = uploadFile.getMultipartRequest().getSession().getServletContext().getRealPath("/") + uploadFile.getCusPath() + "/";
 				path = uploadFile.getCusPath() + "/";
 			}
@@ -376,15 +376,15 @@ public class CommonDao extends GenericBaseCommonDao implements ICommonDao, IGene
 		}
 		try {
 			if (!uploadFile.isView() && uploadFile.getExtend() != null) {
-				if (uploadFile.getExtend().equals("text")) {
+				if ("text".equals(uploadFile.getExtend())) {
 					response.setContentType("text/plain;");
-				} else if (uploadFile.getExtend().equals("doc")) {
+				} else if ("doc".equals(uploadFile.getExtend())) {
 					response.setContentType("application/msword;");
-				} else if (uploadFile.getExtend().equals("xls")) {
+				} else if ("xls".equals(uploadFile.getExtend())) {
 					response.setContentType("application/ms-excel;");
-				} else if (uploadFile.getExtend().equals("pdf")) {
+				} else if ("pdf".equals(uploadFile.getExtend())) {
 					response.setContentType("application/pdf;");
-				} else if (uploadFile.getExtend().equals("jpg") || uploadFile.getExtend().equals("jpeg")) {
+				} else if ("jpg".equals(uploadFile.getExtend()) || "jpeg".equals(uploadFile.getExtend())) {
 					response.setContentType("image/jpeg;");
 				} else {
 					response.setContentType("application/x-msdownload;");
@@ -509,15 +509,15 @@ public class CommonDao extends GenericBaseCommonDao implements ICommonDao, IGene
 							String setName = "set" + stringLetter + fieldName.substring(1);
 							Method setMethod = entityClass.getMethod(setName, new Class[] { fields[k].getType() });
 							String type = TagUtil.getColumnType(fieldName, fields);
-							if (type.equals("int")) {
+							if ("int".equals(type)) {
 								setMethod.invoke(obj1, new Integer(node.getText()));
-							} else if (type.equals("string")) {
+							} else if ("string".equals(type)) {
 								setMethod.invoke(obj1, node.getText().toString());
-							} else if (type.equals("short")) {
+							} else if ("short".equals(type)) {
 								setMethod.invoke(obj1, new Short(node.getText()));
-							} else if (type.equals("double")) {
+							} else if ("double".equals(type)) {
 								setMethod.invoke(obj1, new Double(node.getText()));
-							} else if (type.equals("Timestamp")) {
+							} else if ("Timestamp".equals(type)) {
 								setMethod.invoke(obj1, new Timestamp(DateUtils.str2Date(node.getText(), DateUtils.datetimeFormat).getTime()));
 							}
 						}

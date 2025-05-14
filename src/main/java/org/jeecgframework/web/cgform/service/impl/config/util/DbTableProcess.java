@@ -69,7 +69,7 @@ public class DbTableProcess {
 	
 	public  List<String> updateTable(CgFormHeadEntity table,Session session) throws DBException{
 		//StringBuilder sb = new StringBuilder();
-		String tableName = DbTableUtil.getDataType(session).equals("ORACLE")?table.getTableName().toUpperCase():table.getTableName();
+		String tableName = "ORACLE".equals(DbTableUtil.getDataType(session))?table.getTableName().toUpperCase():table.getTableName();
 		String alterTable="alter table  "+tableName+" ";
 		List<String> strings = new ArrayList<String>();
 	       //对表的修改列和删除列的处理，解决hibernate没有该机制
@@ -87,7 +87,7 @@ public class DbTableProcess {
 					 ColumnMeta cgFormColumnMeta = cgFormColumnMetaMap.get(columnName);
 					if(newAndOldFieldMap.containsKey(columnName)&&(dataBaseColumnMetaMap.containsKey(newAndOldFieldMap.get(columnName)))){
 						ColumnMeta dataColumnMeta = dataBaseColumnMetaMap.get(newAndOldFieldMap.get(columnName));
-						if (DbTableUtil.getDataType(session).equals("SQLSERVER")) {
+						if ("SQLSERVER".equals(DbTableUtil.getDataType(session))) {
 							//sqlserver 修改类名称需要调用存储过程
 							strings.add(getReNameFieldName(cgFormColumnMeta));
 						}else {
@@ -98,7 +98,7 @@ public class DbTableProcess {
 						//修改表名之后继续判断值有没有变化,有变化继续修改值
 						if (!dataColumnMeta.equals(cgFormColumnMeta)) {
 								strings.add(alterTable+getUpdateColumnSql(cgFormColumnMeta,dataColumnMeta));
-								if (DbTableUtil.getDataType(session).equals("POSTGRESQL")) {
+								if ("POSTGRESQL".equals(DbTableUtil.getDataType(session))) {
 									strings.add(alterTable + getUpdateSpecialSql(cgFormColumnMeta, dataColumnMeta));
 								}
 						}

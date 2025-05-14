@@ -651,7 +651,7 @@ public class PinyinUtil {
 	 * @return Set<String>
 	 */
 	public static Set<String> getPinyin(String src) {
-		if (src != null && !src.trim().equalsIgnoreCase("")) {
+		if (src != null && !"".equalsIgnoreCase(src.trim())) {
 			char[] srcChar;
 			srcChar = src.toCharArray();
 			// 汉语拼音格式输出类

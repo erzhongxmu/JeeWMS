@@ -431,9 +431,9 @@ public class UserController extends BaseController {
 	@ResponseBody
 	public AjaxJson delete(TSUser user, @RequestParam String deleteType, HttpServletRequest req) {
 
-		if (deleteType.equals("delete")) {
+		if ("delete".equals(deleteType)) {
 			return this.del(user, req);
-		}else if (deleteType.equals("deleteTrue")) {
+		}else if ("deleteTrue".equals(deleteType)) {
 			return this.trueDel(user, req);
 		}else{
 			AjaxJson j = new AjaxJson();
@@ -863,7 +863,7 @@ public class UserController extends BaseController {
 	public ModelAndView chooseDepart(HttpServletRequest request) {
 		String nodeid = request.getParameter("nodeid");
 		ModelAndView modelAndView = null;
-		if (nodeid.equals("role")) {
+		if ("role".equals(nodeid)) {
 			modelAndView = new ModelAndView("system/membership/users");
 		} else {
 			modelAndView = new ModelAndView("system/membership/departList");
@@ -1168,9 +1168,9 @@ public class UserController extends BaseController {
 					String roleCodes = tsUser.getUserKey();
 					String deptCodes = tsUser.getDepartid();
 
-					if(username==null||username.equals("")){
+					if(username==null|| "".equals(username)){
 						j.setMsg("用户名为必填字段，导入失败");
-					}else if((roleCodes==null||roleCodes.equals(""))||(deptCodes==null||deptCodes.equals(""))){
+					}else if((roleCodes==null|| "".equals(roleCodes))||(deptCodes==null|| "".equals(deptCodes))){
 						List<TSUser> users = systemService.findByProperty(TSUser.class,"userName",username);
 						if(users.size()!=0){
 							//用户存在更新

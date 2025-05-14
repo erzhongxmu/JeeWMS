@@ -223,7 +223,7 @@ public class WmsPlcController extends BaseController {
 
     public void run(String id, String comNo, String stepNum) {
         System.out.println("id:" + id + ";comNo:" + comNo + ";stepNum:" + stepNum);
-        if (stepNum.equals("0")) {
+        if ("0".equals(stepNum)) {
             return;
         }
         WmsPlcEntity wmsPlc = null;
@@ -283,24 +283,24 @@ public class WmsPlcController extends BaseController {
                 }
                 String[] split = com.split(",");
                 String defaultAddress = split[1];
-                if (split[0].equals("boolean")) {
-                    if (split[2].equals("false")) {
+                if ("boolean".equals(split[0])) {
+                    if ("false".equals(split[2])) {
                         siemensS7Net.Write(defaultAddress, false);
                     } else {
                         siemensS7Net.Write(defaultAddress, true);
                     }
-                } else if (split[0].equals("float")) {
+                } else if ("float".equals(split[0])) {
                     Float runfloat = Float.parseFloat(split[2]) * stepNumrun;
                     siemensS7Net.Write(defaultAddress, Math.abs(runfloat));
-                } else if (split[0].equals("-float")) {
+                } else if ("-float".equals(split[0])) {
                     Float runfloat = Float.parseFloat(split[2]) * stepNumrun;
                     siemensS7Net.Write(defaultAddress, runfloat);
-                } else if (split[0].equals("int")) {
+                } else if ("int".equals(split[0])) {
                     Float runfloat = Float.parseFloat(split[2]) * stepNumrun;
                     Float abs = Math.abs(runfloat);
                     int runint = abs.intValue();
                     siemensS7Net.Write(defaultAddress, runint);
-                } else if (split[0].equals("-int")) {
+                } else if ("-int".equals(split[0])) {
                     Float runfloat = Float.parseFloat(split[2]) * stepNumrun;
                     int runint = runfloat.intValue();
                     siemensS7Net.Write(defaultAddress, runint);

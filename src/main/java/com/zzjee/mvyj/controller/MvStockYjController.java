@@ -155,7 +155,7 @@ public class MvStockYjController extends BaseController {
 				roles = roles.substring(0, roles.length() - 1);
 			}
 			//判断角色是否为"CUS"，如果是，则添加特定的查询条件
-			if(roles.equals("CUS")){
+			if("CUS".equals(roles)){
 				cq.eq("cusCode", user.getUserName());
 
 			}
@@ -371,7 +371,7 @@ public class MvStockYjController extends BaseController {
 				roles = roles.substring(0, roles.length() - 1);
 			}
 			//根据角色code判断是否为CUST类型，如果是，则在查询条件中添加用户用户名的等于条件
-			if(roles.equals("CUS")){
+			if("CUS".equals(roles)){
 				cq.eq("cusCode", user.getUserName());
 
 			}

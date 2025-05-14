@@ -235,7 +235,7 @@ public class FormUtil {
 				String check = (json.has("checked") && json
 						.getString("checked") != null) ? json.getString(
 						"checked").toString() : "";
-				if (check.equals("checked") || check.equals("true")) {
+				if ("checked".equals(check) || "true".equals(check)) {
 					Ischecked = " checked=\"checked\" ";
 					view_value += cvalue + "&nbsp";// view 查看值
 				}
@@ -296,47 +296,47 @@ public class FormUtil {
 			String date_format = "";
 			
 			Date date = new Date();//date”、“week”、“month”、“time”、“datetime”和“datetime-local
-			if (type.equals("sys_date")) {
+			if ("sys_date".equals(type)) {
 				date_format = "yyyy-MM-dd";
 				value = DateUtils.formatDate(date, date_format);
 				microtype = "date";
-			} else if (type.equals("sys_date_cn")) {
+			} else if ("sys_date_cn".equals(type)) {
 				date_format = "yyyy年MM月dd日";
 				value = DateUtils.formatDate(date, date_format);
-			} else if (type.equals("sys_date_cn_short3")) {
+			} else if ("sys_date_cn_short3".equals(type)) {
 				date_format = "yyyy年";
 				value = DateUtils.formatDate(date, date_format);
-			} else if (type.equals("sys_date_cn_short4")) {
+			} else if ("sys_date_cn_short4".equals(type)) {
 				date_format = "yyyy";
 				value = DateUtils.formatDate(date, date_format);
-			} else if (type.equals("sys_date_cn_short1")) {
+			} else if ("sys_date_cn_short1".equals(type)) {
 				date_format = "yyyy年MM月";
 				value = DateUtils.formatDate(date, date_format);
 				microtype = "month";
-			} else if (type.equals("sys_date_cn_short2")) {
+			} else if ("sys_date_cn_short2".equals(type)) {
 				date_format = "MM月dd日";
 				value = DateUtils.formatDate(date, date_format);
-			} else if (type.equals("sys_time")) {
+			} else if ("sys_time".equals(type)) {
 				date_format = "HH:mm:ss";
 				microtype = "time";
 				value = DateUtils.formatDate(date, date_format);
-			} else if (type.equals("sys_datetime")) {
+			} else if ("sys_datetime".equals(type)) {
 				date_format = "yyyy-MM-dd'T'HH:mm";
 				microtype = "datetime-local";
 				value = DateUtils.formatDate(date, date_format);
-			} else if (type.equals("sys_week")) {
+			} else if ("sys_week".equals(type)) {
 				// String[] Day = new String[] { "星期日", "星期一", "星期二", "星期三",
 				// "星期四", "星期五", "星期六" };
 				// value =
 				// Day[Convert.ToInt32(DateTime.Now.DayOfWeek.ToString("d"))].ToString();
 				value = DateUtils.formatDate(date, "EEEE");
 				//microtype = "week";
-			} else if (type.equals("sys_userid")) {
+			} else if ("sys_userid".equals(type)) {
 				// if(!$def_value)
 				// $def_value = $controller["user"]["uid"];
 				// $tpl = str_replace("{macros}",$def_value,$tpl);
 				value="${userId}";
-			} else if (type.equals("sys_realname")) {
+			} else if ("sys_realname".equals(type)) {
 				// if(!$def_value)
 				// $def_value = $controller["user"]["real_name"];
 				value="${userName}";

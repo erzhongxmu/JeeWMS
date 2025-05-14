@@ -12,11 +12,11 @@ public class SwfToolsUtil {
 		String extend=FileUtils.getExtend(inputFile);
 		PDFConverter pdfConverter = new OpenOfficePDFConverter();
 		SWFConverter swfConverter = new SWFToolsSWFConverter();
-		if(extend.equals("pdf"))
+		if("pdf".equals(extend))
 		{
 			swfConverter.convert2SWF(inputFile,extend);
 		}
-		if(extend.equals("doc")||extend.equals("docx")||extend.equals("xls")||extend.equals("pptx")||extend.equals("xlsx")||extend.equals("ppt")||extend.equals("txt")||extend.equals("odt"))
+		if("doc".equals(extend)|| "docx".equals(extend)|| "xls".equals(extend)|| "pptx".equals(extend)|| "xlsx".equals(extend)|| "ppt".equals(extend)|| "txt".equals(extend)|| "odt".equals(extend))
 		{
 			DocConverter converter = new DocConverter(pdfConverter,swfConverter);
 			converter.convert(inputFile,extend);

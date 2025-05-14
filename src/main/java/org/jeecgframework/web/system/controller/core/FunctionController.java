@@ -258,7 +258,7 @@ public class FunctionController extends BaseController {
 		if (StringUtils.isEmpty(functionOrder)) {
 			function.setFunctionOrder("0");
 		}
-		if (function.getTSFunction().getId().equals("")) {
+		if ("".equals(function.getTSFunction().getId())) {
 			function.setTSFunction(null);
 		} else {
 			TSFunction parent = systemService.getEntity(TSFunction.class,
@@ -312,7 +312,7 @@ public class FunctionController extends BaseController {
 	public AjaxJson saveop(TSOperation operation, HttpServletRequest request) {
 		String message = null;
 		String pid = request.getParameter("TSFunction.id");
-		if (pid.equals("")) {
+		if ("".equals(pid)) {
 			operation.setTSFunction(null);
 		}
 		AjaxJson j = new AjaxJson();

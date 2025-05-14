@@ -386,7 +386,7 @@ public class MigrateForm<T> {
 					}
 
 					insertSQL(tableName, ColumnName, ColumnValue);// 拼装并放到全局list里面
-					if(tableName.equals("cgform_head")){
+					if("cgform_head".equals(tableName)){
 						insertList.add("update cgform_head set is_dbsynch='N' where id='"+tableId+"';");// 设为未同步
 					}
 
@@ -549,7 +549,7 @@ public class MigrateForm<T> {
 	 */
 	public static String zip(String zipFileName, String relativePath, String directory) throws FileNotFoundException, IOException {
 		String fileName = zipFileName;
-		if (fileName == null || fileName.trim().equals("")) {
+		if (fileName == null || "".equals(fileName.trim())) {
 			File temp = new File(directory);
 			if (temp.isDirectory()) {
 				fileName = directory + ".zip";
@@ -776,7 +776,7 @@ public class MigrateForm<T> {
                     continue;
                 }
 			}
-			if(pd.getName().toLowerCase().equals("id")){// || pd.getPropertyType().equals(List.class)
+			if("id".equals(pd.getName().toLowerCase())){// || pd.getPropertyType().equals(List.class)
 				continue;
 			}
 			if (pd.getWriteMethod() != null) {

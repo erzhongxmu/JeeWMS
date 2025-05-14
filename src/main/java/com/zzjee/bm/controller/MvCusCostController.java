@@ -394,7 +394,7 @@ public class MvCusCostController extends BaseController {
                     + " from		 wm_day_cost wc"
                     + " where (wc.cost_js <> 'Y' or wc.cost_js is null) and  wc.day_cost_yj <> 0 and  wc.cus_code = ? and to_days(wc.cost_data) >= to_days(?) and to_days(wc.cost_data) <= to_days(?)"
                     + "  group by wc.cus_code , wc.cus_name , wc.cost_code , wc.cost_name ";
-            if (request.getParameter("qj").equals("qj")) {
+            if ("qj".equals(request.getParameter("qj"))) {
                 tsql = "select 	wc.cus_code,    wc.cus_name,    wc.cost_code,    wc.cost_name, "
                         + " sum(wc.day_cost_yj) as yuanj,   (sum(wc.day_cost_bhs)- sum(wc.day_cost_yj)) as tiaozheng,    sum(wc.day_cost_bhs) as bhsj,"
                         + "  sum(wc.day_cost_se) as shuie,     sum(wc.day_cost_hsj) as hansj,  sum(wc.cost_sl) as costsl,wc.cost_unit  "
@@ -409,7 +409,7 @@ public class MvCusCostController extends BaseController {
                     + " from		 wm_day_cost wc"
                     + " where (wc.cost_js <> 'Y' or wc.cost_js is null) and  wc.day_cost_yj <> 0 and  wc.cus_code = ? and to_days(wc.cost_data) >= to_days(?) and to_days(wc.cost_data) <= to_days(?)"
                     + "     group by wc.cost_data, wc.cus_code , wc.cus_name , wc.cost_code , wc.cost_name order by wc.cost_data";
-            if (request.getParameter("qj").equals("qj")) {
+            if ("qj".equals(request.getParameter("qj"))) {
                 mxtsql = "select DATE_FORMAT(wc.cost_data,'%Y-%m-%d') as cost_data,  	wc.cus_code,    wc.cus_name,    wc.cost_code,    wc.cost_name, "
                         + " sum(wc.day_cost_yj) as yuanj,   (sum(wc.day_cost_bhs)- sum(wc.day_cost_yj)) as tiaozheng,    sum(wc.day_cost_bhs) as bhsj,"
                         + "  sum(wc.day_cost_se) as shuie,     sum(wc.day_cost_hsj) as hansj,  sum(wc.cost_sl) as costsl,wc.cost_unit  "
@@ -422,7 +422,7 @@ public class MvCusCostController extends BaseController {
                     "   from wm_day_cost wc"
                     + " where (wc.cost_js <> 'Y' or wc.cost_js is null) and  wc.day_cost_yj <> 0 and  wc.cus_code = ? and to_days(wc.cost_data) >= to_days(?) and to_days(wc.cost_data) <= to_days(?)"
                     + "     group by wc.cus_code , wc.cus_name ,DATE_FORMAT(wc.cost_data,'%Y-%m-%d'), wc.cost_code , wc.cost_name ORDER BY wc.cost_data";
-            if (request.getParameter("qj").equals("qj")) {
+            if ("qj".equals(request.getParameter("qj"))) {
                 sumsql = " select  wc.cus_code,    wc.cus_name, DATE_FORMAT(wc.cost_data,'%Y-%m-%d') AS  cost_data,  wc.cost_code,    wc.cost_name, sum(wc.day_cost_hsj) as hansj,  sum(wc.cost_sl) as costsl,wc.cost_unit  " +
                         "   from wm_day_cost wc"
                         + " where       wc.cus_code = ? and to_days(wc.cost_data) >= to_days(?) and to_days(wc.cost_data) <= to_days(?)"
@@ -432,7 +432,7 @@ public class MvCusCostController extends BaseController {
                     "   from wm_day_cost wc"
                     + " where (wc.cost_js <> 'Y' or wc.cost_js is null)   and  wc.cus_code = ? and to_days(wc.cost_data) >= to_days(?) and to_days(wc.cost_data) <= to_days(?)"
                     + "     group by wc.cus_code , wc.cus_name ,DATE_FORMAT(wc.cost_data,'%Y-%m-%d')  ORDER BY wc.cost_data";
-            if (request.getParameter("qj").equals("qj")) {
+            if ("qj".equals(request.getParameter("qj"))) {
                 sumdissql = " select  wc.cus_code,    wc.cus_name, DATE_FORMAT(wc.cost_data,'%Y-%m-%d') AS  cost_data  " +
                         "   from wm_day_cost wc"
                         + " where         wc.cus_code = ? and to_days(wc.cost_data) >= to_days(?) and to_days(wc.cost_data) <= to_days(?)"
@@ -662,7 +662,7 @@ public class MvCusCostController extends BaseController {
                 for (int j = 0; j < resultsum.size(); j++) {
                     if (resultcountsum.get(i).get("cost_data").toString().equals(resultsum.get(j).get("cost_data").toString())) {
                         //wc.cost_name, sum(wc.day_cost_hsj) as hansj,  sum(wc.cost_sl) as costsl,wc.cost_unit
-                        if (resultsum.get(j).get("cost_code").toString().equals("501")) {// 操作费
+                        if ("501".equals(resultsum.get(j).get("cost_code").toString())) {// 操作费
                             sumcount = sumcount + 1;
                             try {
                                 Cell cell3 = rowColumnValue.createCell(3);
@@ -686,7 +686,7 @@ public class MvCusCostController extends BaseController {
 
                             }
                         }
-                        if (resultsum.get(j).get("cost_code").toString().equals("5011")) {// 操作费出
+                        if ("5011".equals(resultsum.get(j).get("cost_code").toString())) {// 操作费出
                             sumcount = sumcount + 1;
                             try {
                                 Cell cell3 = rowColumnValue.createCell(6);
@@ -706,7 +706,7 @@ public class MvCusCostController extends BaseController {
                             } catch (Exception e) {
                             }
                         }
-                        if (resultsum.get(j).get("cost_code").toString().equals("1011")) {// 仓租
+                        if ("1011".equals(resultsum.get(j).get("cost_code").toString())) {// 仓租
                             sumcount = sumcount + 1;
                             try {
                                 Cell cell3 = rowColumnValue.createCell(9);
@@ -919,7 +919,7 @@ public class MvCusCostController extends BaseController {
                 cell1.setCellStyle(cs32c);
                 Cell cell2 = rowColumnValue.createCell(1);
                 try {
-                    if (ResourceUtil.getConfigByName("sysdzd").equals("yes")) {
+                    if ("yes".equals(ResourceUtil.getConfigByName("sysdzd"))) {
                         cell2.setCellValue(result.get(i).get("cost_name")
                                 .toString() + "(" + df.format(Double.parseDouble(result.get(i).get("costsl")
                                 .toString())) + result.get(i).get("cost_unit")

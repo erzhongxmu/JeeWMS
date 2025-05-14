@@ -82,7 +82,7 @@ public class UploadUtils {
 		infos[0] = this.validateFields(request);
 		// 初始化表单元素
 		Map<String, Object> fieldsMap = new HashMap<String, Object>(1024);
-		if (infos[0].equals("true")) {
+		if ("true".equals(infos[0])) {
 			fieldsMap = this.initFields(request);
 		}
 		// 上传

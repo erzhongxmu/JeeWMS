@@ -553,7 +553,7 @@ public class NoticeController extends BaseController{
 			}
 			req.setAttribute("tSNoticePage", tSNotice);
 
-			if (tSNotice.getNoticeLevel().equals("2")){
+			if ("2".equals(tSNotice.getNoticeLevel())){
 				TSNoticeAuthorityRole role=new TSNoticeAuthorityRole();
 				role.setNoticeId(tSNotice.getId());
 				List<TSNoticeAuthorityRole>roles=systemService.findByExample(TSNoticeAuthorityRole.class.getName(),role);
@@ -565,7 +565,7 @@ public class NoticeController extends BaseController{
 				}
 				req.setAttribute("rolesid",rolesid);
 				req.setAttribute("rolesName",rolesName);
-			}else if (tSNotice.getNoticeLevel().equals("3")) {
+			}else if ("3".equals(tSNotice.getNoticeLevel())) {
 				TSNoticeAuthorityUser user=new TSNoticeAuthorityUser();
 				user.setNoticeId(tSNotice.getId());
 

@@ -62,7 +62,7 @@ public class DbTableUtil {
 		DbTableServiceI tableUtil = null;
 		String dialect = ((SessionImpl)session).getFactory().getDialect()
 				.getClass().getName();
-		if (dialect.equals("org.hibernate.dialect.MySQLDialect")) {
+		if ("org.hibernate.dialect.MySQLDialect".equals(dialect)) {
 			tableUtil = new DbTableServiceMysqlImpl();
 		}
 		return tableUtil;
@@ -72,16 +72,16 @@ public class DbTableUtil {
 		DbTableHandleI dbTableHandle = null;
 		String dialect = ((SessionImpl)session).getFactory().getDialect()
 				.getClass().getName();
-		if (dialect.equals("org.hibernate.dialect.MySQLDialect")) {
+		if ("org.hibernate.dialect.MySQLDialect".equals(dialect)) {
 			dbTableHandle = new DbTableMysqlHandleImpl();
 		}else if (dialect.contains("Oracle")) {
 			dbTableHandle = new DbTableOracleHandleImpl();
-		}else if (dialect.equals("org.hibernate.dialect.PostgreSQLDialect")) {
+		}else if ("org.hibernate.dialect.PostgreSQLDialect".equals(dialect)) {
 			dbTableHandle = new DbTablePostgresHandleImpl();
-		}else if (dialect.equals("org.hibernate.dialect.SQLServerDialect")) {
+		}else if ("org.hibernate.dialect.SQLServerDialect".equals(dialect)) {
 			dbTableHandle = new TableSQLServerHandleImpl();
 		}
-		else if (dialect.equals("org.jeecgframework.core.common.hibernate.dialect.MySQLServer2008Dialect")) {
+		else if ("org.jeecgframework.core.common.hibernate.dialect.MySQLServer2008Dialect".equals(dialect)) {
 			dbTableHandle = new TableSQLServerHandleImpl();
 		}
 		return dbTableHandle;
@@ -97,16 +97,16 @@ public class DbTableUtil {
 		String dataType="MYSQL";
 		String dialect = ((SessionImpl)session).getFactory().getDialect()
 		.getClass().getName();
-		if (dialect.equals("org.hibernate.dialect.MySQLDialect")) {
+		if ("org.hibernate.dialect.MySQLDialect".equals(dialect)) {
 			dataType="MYSQL";
 		}else if (dialect.contains("Oracle")) {
 			dataType="ORACLE";
-		}else if (dialect.equals("org.hibernate.dialect.PostgreSQLDialect")) {
+		}else if ("org.hibernate.dialect.PostgreSQLDialect".equals(dialect)) {
 			dataType = "POSTGRESQL";
-		}else if (dialect.equals("org.hibernate.dialect.SQLServerDialect")) {
+		}else if ("org.hibernate.dialect.SQLServerDialect".equals(dialect)) {
 			dataType="SQLSERVER";
 		}
-		else if (dialect.equals("org.jeecgframework.core.common.hibernate.dialect.MySQLServer2008Dialect")) {
+		else if ("org.jeecgframework.core.common.hibernate.dialect.MySQLServer2008Dialect".equals(dialect)) {
 			dataType="SQLSERVER";
 		}
 		return dataType;

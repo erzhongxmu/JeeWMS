@@ -101,11 +101,11 @@ public class AuthInterceptor implements HandlerInterceptor {
 			Client client = ClientManager.getInstance().getClient(ContextHolderUtils.getSession().getId());
 			TSUser currLoginUser = client!= null? client.getUser() : null;
 			if (client!= null && currLoginUser!= null) {
-				if (requestPath.equals("cgAutoListController.do?datagrid")) {
+				if ("cgAutoListController.do?datagrid".equals(requestPath)) {
 					// 对添加的参数进行验证和过滤，防止恶意代码注入
 					requestPath += "&configId=" + validateAndSanitize(request.getParameter("configId"));
 				}
-				if (requestPath.equals("cgAutoListController.do?list")) {
+				if ("cgAutoListController.do?list".equals(requestPath)) {
 					// 对添加的参数进行验证和过滤，防止恶意代码注入
 					requestPath += "&id=" + validateAndSanitize(request.getParameter("id"));
 				}
@@ -115,7 +115,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 				}
 
 				// 步骤三： 根据重组请求 URL,进行权限授权判断
-				if ((!hasMenuAuth(requestPath, clickFunctionId, currLoginUser)) &&!currLoginUser.getUserName().equals("admin")) {
+				if ((!hasMenuAuth(requestPath, clickFunctionId, currLoginUser)) &&!"admin".equals(currLoginUser.getUserName())) {
 					response.sendRedirect(request.getSession().getServletContext().getContextPath() + "/loginController.do?noAuth");
 					return false;
 				}

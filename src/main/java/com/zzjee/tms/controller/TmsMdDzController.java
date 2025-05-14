@@ -103,7 +103,7 @@ public class TmsMdDzController extends BaseController {
 			cq.like("sysOrgCode",user.getCurrentDepart().getOrgCode()+"%");
 		}
 		if(!StringUtil.isEmpty(user.getUserType())){
-			if(user.getUserType().equals("4")){
+			if("4".equals(user.getUserType())){
 				cq.eq("username",user.getUserName());
 			}
 		}
@@ -122,7 +122,7 @@ public class TmsMdDzController extends BaseController {
 
 		}
 		if(!StringUtil.isEmpty(user.getUserType())){
-			if(user.getUserType().equals("4")){
+			if("4".equals(user.getUserType())){
 				cq.eq("username",user.getUserName());
 			}
 		}

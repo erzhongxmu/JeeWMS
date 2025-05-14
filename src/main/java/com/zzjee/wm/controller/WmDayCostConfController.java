@@ -244,7 +244,7 @@ public class WmDayCostConfController extends BaseController {
 
             WmDayCostConfEntity t = wmDayCostConfService.get(WmDayCostConfEntity.class, request.getParameter("id"));
 
-            if (t.getCostSf() != null && t.getCostSf().equals("Y")) {
+            if (t.getCostSf() != null && "Y".equals(t.getCostSf())) {
                 j.setMsg(message);
                 message = "费用已经更新";
                 return j;

@@ -26,7 +26,7 @@ public class DataBaseCronTriggerBean extends CronTriggerBean{
 		super.afterPropertiesSet();
 		TSTimeTaskEntity task = timeTaskService.findUniqueByProperty
 				(TSTimeTaskEntity.class,"taskId",this.getName());
-		if(task!=null&&task.getIsEffect().equals("1")
+		if(task!=null&& "1".equals(task.getIsEffect())
 				&&!task.getCronExpression().equals(this.getCronExpression())){
 
 			try {

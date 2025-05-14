@@ -160,7 +160,7 @@ public class DynamicTask {
 				beans = bean.elements();
 				for (Element temp : beans) {
 					if(temp.attribute("name")!=null&&
-							temp.attribute("name").getValue().equals("cronExpression")){
+							"cronExpression".equals(temp.attribute("name").getValue())){
 						temp.attribute("value").setValue(cronExpression);
 						break;
 					}

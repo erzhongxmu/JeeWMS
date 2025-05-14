@@ -44,7 +44,7 @@ public class SmsSendTask {
     public void run() {
         long start = System.currentTimeMillis();
         String run = ResourceUtil.getConfigByName("timerun");
-        if (!run.equals("run")) {
+        if (!"run".equals(run)) {
             return;
         }
         org.jeecgframework.core.util.LogUtil
@@ -462,7 +462,7 @@ public class SmsSendTask {
                                 .getOmNoticeId());
                         wmOmQmIEntity.setIomNoticeItem(wmOmNoticeIEntity.getId());
                         wmOmQmIEntity.setBinSta("I");//预分配
-                        if (ResourceUtil.getConfigByName("autocon").equals("yes")) {
+                        if ("yes".equals(ResourceUtil.getConfigByName("autocon"))) {
                             wmOmQmIEntity.setBinSta("N");//预分配
                         }
                         MvGoodsEntity mvgoods = new MvGoodsEntity();

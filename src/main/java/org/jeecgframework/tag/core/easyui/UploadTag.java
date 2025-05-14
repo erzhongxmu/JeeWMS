@@ -110,7 +110,7 @@ public class UploadTag extends TagSupport {
 		{
 			extend="*.jpg;*,jpeg;*.png;*.gif;*.bmp;*.ico;*.tif";
 		}
-		if(extend.equals("office"))
+		if("office".equals(extend))
 		{
 			extend="*.doc;*.docx;*.txt;*.ppt;*.xls;*.xlsx;*.html;*.htm";
 		}

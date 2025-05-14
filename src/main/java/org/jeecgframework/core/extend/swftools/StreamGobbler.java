@@ -22,7 +22,7 @@ public class StreamGobbler extends Thread {
 			BufferedReader br = new BufferedReader(isr);
 			String line = null;
 			while ((line = br.readLine()) != null) {
-				if (type.equals("Error")) {
+				if ("Error".equals(type)) {
 					org.jeecgframework.core.util.LogUtil.info("Error	:" + line);
 				} else {
 					org.jeecgframework.core.util.LogUtil.info("文件转换:" + line);

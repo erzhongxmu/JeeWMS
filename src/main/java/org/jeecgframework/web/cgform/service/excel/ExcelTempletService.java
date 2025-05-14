@@ -75,7 +75,7 @@ public class ExcelTempletService {
 			while (it.hasNext()) {
 				CgFormFieldEntity type = (CgFormFieldEntity) it.next();
 				// 输入需要显示的字段信息
-				if (type.getIsShow().equals("Y")) {
+				if ("Y".equals(type.getIsShow())) {
 					Cell cell = row.createCell(index);
 					RichTextString text = new HSSFRichTextString(type
 							.getContent());
@@ -96,7 +96,7 @@ public class ExcelTempletService {
 				while (it.hasNext()) {
 					CgFormFieldEntity type = (CgFormFieldEntity) it.next();
 					// 输入需要显示的字段信息
-					if (type.getIsShow().equals("Y")) {
+					if ("Y".equals(type.getIsShow())) {
 						Cell cell = row.createCell(index);
 						if(datalist.get(i).get(type.getFieldName()) != null){
 							RichTextString text = new HSSFRichTextString(datalist.get(i).get(type.getFieldName()).toString());

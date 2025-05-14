@@ -38,7 +38,7 @@ public class DbTableServiceMysqlImpl implements DbTableServiceI {
 			if(i>0){agoColumn = cgFormHead.getColumns().get(i-1);}
 			column = cgFormHead.getColumns().get(i);
 			sb.append(getColumnPorperty(column,agoColumn,false));
-			if(column.getIsKey().equals("Y")){
+			if("Y".equals(column.getIsKey())){
 				idField+=DbTableUtil.translatorToDbField(DbTableUtil.translatorToDbField(column.getFieldName()))+",";
 			}
 		}
@@ -76,7 +76,7 @@ public class DbTableServiceMysqlImpl implements DbTableServiceI {
 			}else{
 				sb.append(createAddColumnSql(column,agoColumn));
 			}
-			if(column.getIsKey().equals("Y")){
+			if("Y".equals(column.getIsKey())){
 				idField+=DbTableUtil.translatorToDbField(column.getFieldName())+",";
 			}
 			
@@ -149,13 +149,13 @@ public class DbTableServiceMysqlImpl implements DbTableServiceI {
 	 */
 	private String getFieldType(CgFormFieldEntity cloumn){
 		String result ="";
-		if(cloumn.getType().equals("string")){
+		if("string".equals(cloumn.getType())){
 			result = "varchar("+cloumn.getLength()+")";
-		}else if(cloumn.getType().equals("Date")){
+		}else if("Date".equals(cloumn.getType())){
 			result = "datetime";
-		}else if(cloumn.getType().equals("int")){
+		}else if("int".equals(cloumn.getType())){
 			result = cloumn.getType()+"("+cloumn.getLength()+")";
-		}else if(cloumn.getType().equals("double")){
+		}else if("double".equals(cloumn.getType())){
 			result = cloumn.getType()+"("+cloumn.getLength()+","+cloumn.getPointLength()+")";
 		}
 		return result;

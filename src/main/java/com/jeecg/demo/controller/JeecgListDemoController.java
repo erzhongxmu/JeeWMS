@@ -135,7 +135,7 @@ public class JeecgListDemoController extends BaseController {
 		/*
 		 * 说明：格式为 字段名:值(可选，不写该值时为分页数据的合计) 多个合计 以 , 分割
 		 */
-		dataGrid.setFooter("salary:"+(total_salary.equalsIgnoreCase("null")?"0.0":total_salary)+",age,email:合计");
+		dataGrid.setFooter("salary:"+("null".equalsIgnoreCase(total_salary)?"0.0":total_salary)+",age,email:合计");
 		TagUtil.datagrid(response, dataGrid);
 	}
 	

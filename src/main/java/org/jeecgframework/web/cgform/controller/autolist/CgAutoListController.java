@@ -272,7 +272,7 @@ public class CgAutoListController extends BaseController{
 				//不需要处理字典
 				continue;
 			}else{
-				if(!bean.getShowType().equals("popup")){
+				if(!"popup".equals(bean.getShowType())){
 					List<DictEntity> dicDataList = queryDic(dicTable, dicCode,dicText);
 					for(Map r:result){
 						String value = String.valueOf(r.get(bean.getFieldName()));
@@ -487,7 +487,7 @@ public class CgAutoListController extends BaseController{
 	 */
 	private void loadAuth(Map<String, Object> paras, HttpServletRequest request) {
 		List<TSOperation>  nolist = (List<TSOperation>) request.getAttribute(Globals.NOAUTO_OPERATIONCODES);
-		if(ResourceUtil.getSessionUserName().getUserName().equals("admin")|| !Globals.BUTTON_AUTHORITY_CHECK){
+		if("admin".equals(ResourceUtil.getSessionUserName().getUserName())|| !Globals.BUTTON_AUTHORITY_CHECK){
 			nolist = null;
 		}
 		List<String> list = new ArrayList<String>();
@@ -510,7 +510,7 @@ public class CgAutoListController extends BaseController{
 	 */
 	private void loadInitQuery(StringBuilder initQuery, CgFormFieldEntity bean,
 			HttpServletRequest request) {
-		if(bean.getFieldName().equalsIgnoreCase("id")){
+		if("id".equalsIgnoreCase(bean.getFieldName())){
 			return;
 		}
 		String paramV = request.getParameter(bean.getFieldName());
@@ -540,7 +540,7 @@ public class CgAutoListController extends BaseController{
 		String paramV = request.getParameter(bean.getFieldName());
 		String paramVbegin = request.getParameter(bean.getFieldName()+"_begin");
 		String paramVend = request.getParameter(bean.getFieldName()+"_end");
-		if(bean.getFieldName().equalsIgnoreCase("id")){
+		if("id".equalsIgnoreCase(bean.getFieldName())){
 			return;
 		}
 		for(Map mq:queryList){
@@ -573,13 +573,13 @@ public class CgAutoListController extends BaseController{
 	@SuppressWarnings("unchecked")
 	private void loadDefaultValue(Map fmq, CgFormFieldEntity bean,
 			HttpServletRequest request) {
-		if(bean.getQueryMode().equalsIgnoreCase("single")){
+		if("single".equalsIgnoreCase(bean.getQueryMode())){
 			String paramV = request.getParameter(bean.getFieldName());
 			if(!StringUtil.isEmpty(paramV)){
 				paramV = getSystemValue(paramV);
 				fmq.put(CgAutoListConstant.FIELD_VALUE, paramV);
 			}
-		}else if(bean.getQueryMode().equalsIgnoreCase("group")){
+		}else if("group".equalsIgnoreCase(bean.getQueryMode())){
 			String paramVbegin = request.getParameter(bean.getFieldName()+"_begin");
 			String paramVend = request.getParameter(bean.getFieldName()+"_end");
 			fmq.put(CgAutoListConstant.FIELD_VALUE_BEGIN, StringUtil.isEmpty(paramVbegin)?"":paramVbegin);
@@ -602,7 +602,7 @@ public class CgAutoListController extends BaseController{
 			m.put(CgAutoListConstant.FIELD_DICTLIST, new ArrayList(0));
 			return;
 		}
-		if(!bean.getShowType().equals("popup")){
+		if(!"popup".equals(bean.getShowType())){
 			List<DictEntity> dicDatas = queryDic(dicT, dicF,dicText);
 			m.put(CgAutoListConstant.FIELD_DICTLIST, dicDatas);
 		}else{

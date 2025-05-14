@@ -238,7 +238,7 @@ public class SystemServiceImpl extends CommonServiceImpl implements SystemServic
         StringBuilder out = new StringBuilder();
         out.append("<script type=\"text/javascript\">");
         out.append("$(document).ready(function(){");
-        if (ResourceUtil.getSessionUserName().getUserName().equals("admin") || !Globals.BUTTON_AUTHORITY_CHECK) {
+        if ("admin".equals(ResourceUtil.getSessionUserName().getUserName()) || !Globals.BUTTON_AUTHORITY_CHECK) {
             return "";
         } else {
             HttpServletRequest request = ContextHolderUtils.getRequest();
