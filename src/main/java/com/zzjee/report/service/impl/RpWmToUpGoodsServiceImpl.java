@@ -78,7 +78,7 @@ public class RpWmToUpGoodsServiceImpl extends CommonServiceImpl implements RpWmT
  	}
  	
  	private Map<String,Object> populationMap(RpWmToUpGoodsEntity t){
-		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("id", t.getId());
 		map.put("create_date", t.getCreateDate());
 		map.put("create_name", t.getCreateName());

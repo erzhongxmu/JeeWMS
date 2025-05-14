@@ -221,7 +221,7 @@ public class WmsApiController {
         CriteriaQuery cq = new CriteriaQuery(MdCusEntity.class, dataGrid);
         //查询条件组装器
         org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, mdCus, request.getParameterMap());
-        Map<String,Object> map1 = new HashMap<String,Object>();
+        Map<String,Object> map1 = new HashMap<String,Object>(1024);
         map1.put("zhuJiMa", "desc");
         cq.setOrder(map1);
         cq.add();
@@ -351,7 +351,7 @@ public class WmsApiController {
             String noticeid =  wmUtil.getNextNoticeid(wmImNoticeH.getOrderTypeCode()) ;
             wmImNoticeH.setNoticeId(noticeid);
             wmImNoticeH.setCreateDate(DateUtils.getDate());
-            Map<String, Object> map = new HashMap<String, Object>();
+            Map<String, Object> map = new HashMap<String, Object>(1024);
             map.put("id", wmImNoticeH.getNoticeId());
             wmImNoticeH.setImSta(Constants.wm_sta0);
             //获取供应商
@@ -603,7 +603,7 @@ public class WmsApiController {
         if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
             cq.eq("cusCode", wmUtil.getCusCode());
         }
-        Map<String,Object> map1 = new HashMap<String,Object>();
+        Map<String,Object> map1 = new HashMap<String,Object>(1024);
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.add();
@@ -638,7 +638,7 @@ public class WmsApiController {
         if (wmOmNoticeH.getOmSta() == null) {
             cq.notEq("omSta", Constants.wm_sta4);
         }
-        Map<String,Object> map1 = new HashMap<String,Object>();
+        Map<String,Object> map1 = new HashMap<String,Object>(1024);
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.add();

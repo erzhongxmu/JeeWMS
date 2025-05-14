@@ -63,7 +63,7 @@ public class CommUtils {
     
     @SuppressWarnings("unchecked")
 	public static Map<String,List<Map<String,Object>>> mapConvertMore(Map map,String tableName) {
-    	Map<String,List<Map<String,Object>>> fanalMap = new HashMap<String, List<Map<String,Object>>>();
+    	Map<String,List<Map<String,Object>>> fanalMap = new HashMap<String, List<Map<String,Object>>>(1024);
     	Map<String,Map<String,Object>> dataMap= new HashMap<String, Map<String,Object>>(0);
     	Map<String,Object> mapField = null;
         if(map!=null){

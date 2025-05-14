@@ -78,7 +78,7 @@ public class RpWmUpAndDownServiceImpl extends CommonServiceImpl implements RpWmU
  	}
  	
  	private Map<String,Object> populationMap(RpWmUpAndDownEntity t){
-		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("id", t.getId());
 		map.put("create_date", t.getCreateDate());
 		map.put("order_id", t.getOrderId());

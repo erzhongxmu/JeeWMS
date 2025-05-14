@@ -193,7 +193,7 @@ public class SqlUtil {
 
     public static Map<String, Object> a(HttpServletRequest var0) {
         Map var1 = var0.getParameterMap();
-        HashMap var2 = new HashMap();
+        HashMap var2 = new HashMap(1024);
         Iterator var3 = var1.entrySet().iterator();
         String var5 = "";
         String var6 = "";

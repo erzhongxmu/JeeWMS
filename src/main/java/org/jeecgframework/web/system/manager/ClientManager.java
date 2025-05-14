@@ -38,7 +38,7 @@ public class ClientManager {
 	private boolean addClientToCachedMap(String sessionId,Client client ){
 		HashMap<String, Client> onLineClients ;
 		if(EhcacheUtil.get(CACHENAME, OnlineClientsKey)==null){
-			onLineClients = new HashMap<String, Client>();
+			onLineClients = new HashMap<String, Client>(1024);
 		}
 		else{
 			onLineClients =(HashMap<String, Client>) EhcacheUtil.get(CACHENAME,OnlineClientsKey);

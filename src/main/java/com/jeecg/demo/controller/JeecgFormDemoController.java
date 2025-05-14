@@ -127,6 +127,7 @@ public class JeecgFormDemoController extends BaseController {
      * @param request
      * @return
      */
+    @SuppressWarnings("AlibabaCollectionInitShouldAssignCapacity")
     @RequestMapping(params = "getTreeData", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
     public AjaxJson getTreeData(TSDepart depatr, HttpServletResponse response, HttpServletRequest request) {
@@ -141,7 +142,7 @@ public class JeecgFormDemoController extends BaseController {
             for (TSDepart tsdepart : depatrList) {
                 String sqls = null;
                 Object[] paramss = null;
-                map = new HashMap<String, Object>();
+                map = new HashMap<String, Object>(1024);
                 map.put("id", tsdepart.getId());
                 map.put("name", tsdepart.getDepartname());
                 if (tsdepart.getTSPDepart() != null) {

@@ -343,7 +343,7 @@ public class WmImNoticeHController extends BaseController {
         if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
             cq.eq("cusCode", wmUtil.getCusCode());
         }
-        Map<String,Object> map1 = new HashMap<String,Object>();
+        Map<String,Object> map1 = new HashMap<String,Object>(1024);
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.add();
@@ -386,7 +386,7 @@ public class WmImNoticeHController extends BaseController {
         if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
             cq.eq("cusCode", wmUtil.getCusCode());
         }
-        Map<String,Object> map1 = new HashMap<String,Object>();
+        Map<String,Object> map1 = new HashMap<String,Object>(1024);
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.eq("orderTypeCode", "09");
@@ -426,7 +426,7 @@ public class WmImNoticeHController extends BaseController {
         if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
             cq.eq("cusCode", wmUtil.getCusCode());
         }
-        Map<String,Object> map1 = new HashMap<String,Object>();
+        Map<String,Object> map1 = new HashMap<String,Object>(1024);
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.eq("orderTypeCode", "03");
@@ -467,7 +467,7 @@ public class WmImNoticeHController extends BaseController {
         if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
             cq.eq("cusCode", wmUtil.getCusCode());
         }
-        Map<String,Object> map1 = new HashMap<String,Object>();
+        Map<String,Object> map1 = new HashMap<String,Object>(1024);
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.eq("orderTypeCode", "04");
@@ -2295,7 +2295,7 @@ public class WmImNoticeHController extends BaseController {
                     + wmImNoticeH.getImCarMobile());
             systemService.save(wmPlatIo);
 
-            Map<String, Object> map = new HashMap<String, Object>();
+            Map<String, Object> map = new HashMap<String, Object>(1024);
             map.put("id", wmImNoticeH.getNoticeId());
             TSUser user = ResourceUtil.getSessionUserName();
             String roles = "";

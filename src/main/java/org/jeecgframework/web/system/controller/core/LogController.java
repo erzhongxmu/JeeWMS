@@ -198,7 +198,7 @@ public class LogController extends BaseController {
 		Map<String, Object> map;
 		if (userBroswerList.size() > 0) {
 			for (Object object : userBroswerList) {
-				map = new HashMap<String, Object>();
+				map = new HashMap<String, Object>(1024);
 				Object[] obj = (Object[]) object;
 				map.put("name", obj[0]);
 				map.put("y", obj[1]);

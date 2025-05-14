@@ -89,7 +89,7 @@ public class MvCusOtherServiceImpl extends CommonServiceImpl implements MvCusOth
 	 * @return
 	 */
  	private Map<String,Object> populationMap(MvCusOtherEntity t){
-		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("id", t.getId());
 		map.put("suo_shu_ke_hu", t.getSuoShuKeHu());
 		map.put("cus_code", t.getCusCode());

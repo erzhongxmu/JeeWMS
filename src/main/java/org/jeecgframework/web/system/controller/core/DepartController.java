@@ -325,7 +325,7 @@ public class DepartController extends BaseController {
 		treeGridModel.setSrc("description");
 		treeGridModel.setIdField("id");
 		treeGridModel.setChildList("TSDeparts");
-        Map<String,Object> fieldMap = new HashMap<String, Object>();
+        Map<String,Object> fieldMap = new HashMap<String, Object>(1024);
         fieldMap.put("orgCode", "orgCode");
         fieldMap.put("orgType", "orgType");
 		fieldMap.put("mobile", "mobile");
@@ -702,7 +702,7 @@ public class DepartController extends BaseController {
 			String sql = null;
 			 Object[] params = null;
 			for(TSDepart depart:tSDeparts){
-				map = new HashMap<String,Object>();
+				map = new HashMap<String,Object>(1024);
 				map.put("id", depart.getId());
 				map.put("name", depart.getDepartname());
 				

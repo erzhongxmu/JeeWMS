@@ -74,7 +74,7 @@ public class CgFormDataController {
 				j.setTableType(head.getJformType());
 				Map<String, Object> mainForm = dataBaseService.findOneForJdbc(tableName, id);
 				j.setTableData(mainForm);
-				Map<String, Object> tableData = new HashMap<String, Object>();
+				Map<String, Object> tableData = new HashMap<String, Object>(1024);
 				String subTableStr = head.getSubTableStr();
 				if (StringUtils.isNotEmpty(subTableStr)) {
 					String[] subTables = subTableStr.split(",");
@@ -178,7 +178,7 @@ public class CgFormDataController {
 			if (head.getJformType() == 1) {
 				Map<String, Object> formData;
 				try {
-					formData = new HashMap<String, Object>();
+					formData = new HashMap<String, Object>(1024);
 					formData = JSONHelper.json2Map(data);
 				} catch (Exception e) {
 					throw new BusinessException("json解析异常");
@@ -258,7 +258,7 @@ public class CgFormDataController {
 			if (head.getJformType() == 1) {
 				Map<String, Object> formData;
 				try {
-					formData = new HashMap<String, Object>();
+					formData = new HashMap<String, Object>(1024);
 					formData = JSONHelper.json2Map(data);
 				} catch (Exception e) {
 					throw new BusinessException("json解析异常");

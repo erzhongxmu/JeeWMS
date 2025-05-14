@@ -78,7 +78,7 @@ public class WvGiNoticeServiceImpl extends CommonServiceImpl implements WvGiNoti
  	}
  	
  	private Map<String,Object> populationMap(WvGiNoticeEntity t){
-		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("create_date", t.getCreateDate());
 		map.put("create_name", t.getCreateName());
 		map.put("create_by", t.getCreateBy());

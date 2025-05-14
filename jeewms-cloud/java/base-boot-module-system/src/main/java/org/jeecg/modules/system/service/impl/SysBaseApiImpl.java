@@ -1088,7 +1088,7 @@ public class SysBaseApiImpl implements ISysBaseAPI {
             List<Map> list = new ArrayList();
             //4.处理部门和下级用户数据
             for (SysDepart dept : departs) {
-                Map map = new HashMap();
+                Map map = new HashMap(1024);
                 //部门名称
                 String departName = dept.getDepartName();
                 //根据部门编码获取下级部门id

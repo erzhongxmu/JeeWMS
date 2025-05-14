@@ -12,7 +12,7 @@ import java.util.Map;
 public class sapWmUtil {
    //获取储位
     public  static Map<String,Object> getWmbin(String lgnum) {
-        Map<String, Object> result = new HashMap<String, Object>();
+        Map<String, Object> result = new HashMap<String, Object>(1024);
         try {
             // 创建SAP RFC连接实例
             SapRFC saprfc = SapRFC.getInstance();
@@ -42,7 +42,7 @@ public class sapWmUtil {
      * @return 包含物流凭证信息的Map，其中键为"IT_OUT"，值为包含物流凭证信息的JCoTable对象
      */
     public  static Map<String,Object> getWmmseg(String mblnr) {
-        Map<String, Object> result = new HashMap<String, Object>();
+        Map<String, Object> result = new HashMap<String, Object>(1024);
         try {
             // 创建SAP RFC连接实例
             SapRFC saprfc = SapRFC.getInstance();
@@ -73,7 +73,7 @@ public class sapWmUtil {
     * @return 包含WM单据信息的Map，其中键为"IT_OUT"，值为包含WM单据信息的JCoTable对象
     */
     public  static Map<String,Object> getWmdoc(String DOCTYPE,String DOCID,String tablename) {
-        Map<String, Object> result = new HashMap<String, Object>();
+        Map<String, Object> result = new HashMap<String, Object>(1024);
         try {
             // 创建SAP RFC连接实例
             SapRFC saprfc = SapRFC.getInstance();
@@ -99,7 +99,7 @@ public class sapWmUtil {
 
     //获取储位
     public  static Map<String,Object> getcw(String LGNUM,String LGPLA) {
-        Map<String, Object> result = new HashMap<String, Object>();
+        Map<String, Object> result = new HashMap<String, Object>(1024);
         try {
             // 创建SapRFC对象
             SapRFC saprfc = SapRFC.getInstance();
@@ -122,7 +122,7 @@ public class sapWmUtil {
     }
 
     public  static Map<String,Object> getcwkc(String LGNUM,String MATNR,String LGPLA) {
-        Map<String, Object> result = new HashMap<String, Object>();
+        Map<String, Object> result = new HashMap<String, Object>(1024);
         try {
             // 创建SapRFC对象
             SapRFC saprfc = SapRFC.getInstance();

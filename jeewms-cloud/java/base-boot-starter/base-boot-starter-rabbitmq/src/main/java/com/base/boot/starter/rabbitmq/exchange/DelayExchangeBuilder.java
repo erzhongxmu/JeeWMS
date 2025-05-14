@@ -26,7 +26,7 @@ public class DelayExchangeBuilder {
      * @return
      */
     public static CustomExchange buildExchange() {
-        Map<String, Object> args = new HashMap<String, Object>();
+        Map<String, Object> args = new HashMap<String, Object>(1024);
         args.put("x-delayed-type", "direct");
         return new CustomExchange(DEFAULT_DELAY_EXCHANGE, "x-delayed-message", true, false, args);
     }

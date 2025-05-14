@@ -372,7 +372,7 @@ public class CgformFtlController extends BaseController {
 			HttpServletResponse response, CgformFtlEntity cgformFtl) {
 		String message = null;
 		AjaxJson j = new AjaxJson();
-		Map<String, Object> attributes = new HashMap<String, Object>();
+		Map<String, Object> attributes = new HashMap<String, Object>(1024);
 
 		LogUtil.info("-------------------------step.1-------------------------------------");
 		String fileKey = oConvertUtils.getString(request.getParameter("id"));// 文件ID
@@ -593,7 +593,7 @@ public class CgformFtlController extends BaseController {
 			cgformFtlService.save(cgformFtl);
 			j.setMsg("上传成功");
 		}
-		Map<String, Object> attributes = new HashMap<String, Object>();
+		Map<String, Object> attributes = new HashMap<String, Object>(1024);
 		attributes.put("id", cgformFtl.getId());
 		j.setAttributes(attributes);
 		return j;

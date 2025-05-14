@@ -99,8 +99,8 @@ public class CriteriaQuery {
 
 	public CriteriaQuery(Class<?> c) {
 		this.detachedCriteria = DetachedCriteria.forClass(c);
-		this.map = new HashMap<String, Object>();
-		this.ordermap = new HashMap<String, Object>();
+		this.map = new HashMap<String, Object>(1024);
+		this.ordermap = new HashMap<String, Object>(1024);
 	}
 
 	public CriteriaQuery(Class<?> c, int curPage, String myAction, String myForm) {
@@ -114,14 +114,14 @@ public class CriteriaQuery {
 		this.myAction = myAction;
 		this.curPage = curPage;
 		this.detachedCriteria = DetachedCriteria.forClass(c);
-		this.map = new HashMap<String, Object>();
-		this.ordermap = new HashMap<String, Object>();
+		this.map = new HashMap<String, Object>(1024);
+		this.ordermap = new HashMap<String, Object>(1024);
 	}
 
 	public CriteriaQuery(Class<?> entityClass, int curPage) {
 		this.curPage = curPage;
 		this.detachedCriteria = DetachedCriteria.forClass(entityClass);
-		this.map = new HashMap<String, Object>();
+		this.map = new HashMap<String, Object>(1024);
 	}
 	public CriteriaQuery(Class<?> entityClass,DataGrid dg) {
 		this.curPage = dg.getPage();
@@ -135,8 +135,8 @@ public class CriteriaQuery {
 		this.entityClass=entityClass;
 		this.dataGrid=dg;
 		this.pageSize=dg.getRows();
-		this.map = new HashMap<String, Object>();
-		this.ordermap = new HashMap<String, Object>();
+		this.map = new HashMap<String, Object>(1024);
+		this.ordermap = new HashMap<String, Object>(1024);
 	}
 	public CriteriaQuery(Class entityClass,DataTables dataTables) {
 		this.curPage = dataTables.getDisplayStart();
@@ -148,8 +148,8 @@ public class CriteriaQuery {
 		this.entityClass=entityClass;
 		this.dataTables=dataTables;
 		this.pageSize=dataTables.getDisplayLength();
-		this.map = new HashMap<String, Object>();
-		this.ordermap = new HashMap<String, Object>();
+		this.map = new HashMap<String, Object>(1024);
+		this.ordermap = new HashMap<String, Object>(1024);
 		addJqCriteria(dataTables);
 	}
 

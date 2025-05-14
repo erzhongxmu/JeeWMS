@@ -861,7 +861,7 @@ public class SysUserController {
         try {
         	LoginUser sysUser = (LoginUser)SecurityUtils.getSubject().getPrincipal();
             List<SysDepart> list = this.sysDepartService.queryUserDeparts(sysUser.getId());
-            Map<String,Object> map = new HashMap<String,Object>();
+            Map<String,Object> map = new HashMap<String,Object>(1024);
             map.put("list", list);
             map.put("orgCode", sysUser.getOrgCode());
             result.setSuccess(true);
@@ -963,7 +963,7 @@ public class SysUserController {
 //		String phone = sysUser.getPhone();
 //		String username = sysUser.getUsername();
 //		Result<Map<String, Object>> result = new Result<Map<String, Object>>();
-//		Map<String, Object> map = new HashMap<String, Object>();
+//		Map<String, Object> map = new HashMap<String, Object>(1024);
 //		if (oConvertUtils.isNotEmpty(phone)) {
 //			SysUser user = sysUserService.getUserByPhone(phone);
 //			if(user!=null) {
@@ -1082,7 +1082,7 @@ public class SysUserController {
 
 			// 根据用户名查询用户信息
 			SysUser sysUser = sysUserService.getUserByName(username);
-			Map<String, Object> map = new HashMap<String, Object>();
+			Map<String, Object> map = new HashMap<String, Object>(1024);
 			map.put("sysUserId", sysUser.getId());
 			map.put("sysUserCode", sysUser.getUsername()); // 当前登录用户登录账号
 			map.put("sysUserName", sysUser.getRealname()); // 当前登录用户真实名称
@@ -1276,7 +1276,7 @@ public class SysUserController {
     @GetMapping("/queryChildrenByUsername")
     public Result queryChildrenByUsername(@RequestParam("userId") String userId) {
         //获取用户信息
-        Map<String,Object> map=new HashMap<String,Object>();
+        Map<String,Object> map=new HashMap<String,Object>(1024);
         SysUser sysUser = sysUserService.getById(userId);
         String username = sysUser.getUsername();
         Integer identity = sysUser.getUserIdentity();

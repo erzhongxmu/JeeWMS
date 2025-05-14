@@ -89,7 +89,7 @@ public class WvDayCostSumServiceImpl extends CommonServiceImpl implements WvDayC
 	 * @return
 	 */
  	private Map<String,Object> populationMap(WvDayCostSumEntity t){
-		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("id", t.getId());
 		map.put("cost_data", t.getCostData());
 		map.put("cus_code", t.getCusCode());

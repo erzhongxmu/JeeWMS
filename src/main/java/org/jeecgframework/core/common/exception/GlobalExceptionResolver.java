@@ -148,7 +148,7 @@ public class GlobalExceptionResolver implements HandlerExceptionResolver {
 	private ModelAndView processNotAjax(HttpServletRequest request,
 			HttpServletResponse response, Object handler, Throwable ex) {
 		String exceptionMessage = getThrowableMessage(ex);
-		Map<String, Object> model = new HashMap<String, Object>();
+		Map<String, Object> model = new HashMap<String, Object>(1024);
 		model.put("exceptionMessage", exceptionMessage);
 		model.put("ex", ex);
 		return new ModelAndView("common/error", model);

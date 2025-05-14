@@ -830,13 +830,13 @@ public class DayiUtils {
 	 *                   Jul 10, 2013 wangww v1.0.0 create
 	 */
 	public static Map toExportMap(List l, String type, String title, String header, String cols) throws Exception {
-		Map report_map = new HashMap();
+		Map report_map = new HashMap(1024);
 		String[] headerInfo = header.split(";");
 		String[] col = cols.split(";");
 		Object[][] cellInfo = (Object[][]) null;
 		if (l != null) {
 			for (int i = 0; i < l.size(); i++) {
-				Map m = new HashMap();
+				Map m = new HashMap(1024);
 				try {
 					m = (Map) l.get(i);
 				} catch (Exception e) {

@@ -599,7 +599,7 @@ public class CommonDao extends GenericBaseCommonDao implements ICommonDao, IGene
      */
 	private ComboTree comboTree(Object obj, ComboTreeModel comboTreeModel, List in, boolean recursive) {
 		ComboTree tree = new ComboTree();
-		Map<String, Object> attributes = new HashMap<String, Object>();
+		Map<String, Object> attributes = new HashMap<String, Object>(1024);
 		ReflectHelper reflectHelper = new ReflectHelper(obj);
 		String id = oConvertUtils.getString(reflectHelper.getMethodValue(comboTreeModel.getIdField()));
 		tree.setId(id);
@@ -730,7 +730,7 @@ public class CommonDao extends GenericBaseCommonDao implements ICommonDao, IGene
 				tg.setOperations(attributes.toString());
 			}
             if (treeGridModel.getFieldMap() != null) {
-                tg.setFieldMap(new HashMap<String, Object>());
+                tg.setFieldMap(new HashMap<String, Object>(1024));
                 for (Map.Entry<String, Object> entry : treeGridModel.getFieldMap().entrySet()) {
                     Object fieldValue = reflectHelper.getMethodValue(entry.getValue().toString());
                     tg.getFieldMap().put(entry.getKey(), fieldValue);

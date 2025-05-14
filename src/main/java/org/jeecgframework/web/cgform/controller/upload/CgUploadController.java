@@ -58,7 +58,7 @@ public class CgUploadController extends BaseController {
 	@ResponseBody
 	public AjaxJson saveFiles(HttpServletRequest request, HttpServletResponse response, CgUploadEntity cgUploadEntity) {
 		AjaxJson j = new AjaxJson();
-		Map<String, Object> attributes = new HashMap<String, Object>();
+		Map<String, Object> attributes = new HashMap<String, Object>(1024);
 		String fileKey = oConvertUtils.getString(request.getParameter("fileKey"));// 文件ID
 		String id = oConvertUtils.getString(request.getParameter("cgFormId"));//动态表主键ID
 		String tableName = oConvertUtils.getString(request.getParameter("cgFormName"));//动态表名

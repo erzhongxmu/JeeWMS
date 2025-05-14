@@ -122,7 +122,7 @@ public class BiBinController extends BaseController {
         Map<String, Object> map;
         if (maplist.size() > 0) {
             for (Map<String,Object> object : maplist) {
-                map = new HashMap<String, Object>();
+                map = new HashMap<String, Object>(1024);
                 Map<String,Object> obj =   object;
                 map.put("name", obj.get("create_date").toString());
                 map.put("y",  (int) Double.parseDouble(obj.get("amount").toString()));
@@ -158,7 +158,7 @@ public class BiBinController extends BaseController {
         Map<String, Object> map;
         if (maplist.size() > 0) {
             for (Map<String,Object> object : maplist) {
-                map = new HashMap<String, Object>();
+                map = new HashMap<String, Object>(1024);
                 Map<String,Object> obj =   object;
                 map.put("name", obj.get("goodsid").toString());
                 map.put("y",  (int) Double.parseDouble(obj.get("amount").toString()));
@@ -196,7 +196,7 @@ public class BiBinController extends BaseController {
         Map<String, Object> map;
         if (maplist.size() > 0) {
             for (Map<String,Object> object : maplist) {
-                map = new HashMap<String, Object>();
+                map = new HashMap<String, Object>(1024);
                 Map<String,Object> obj =   object;
                 map.put("name", obj.get("goodsid").toString());
                 map.put("y",  (int) Double.parseDouble(obj.get("amount").toString()));

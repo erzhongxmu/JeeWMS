@@ -113,7 +113,7 @@ public class LoginController extends BaseController{
 			}
 			if (u != null && u.getStatus() != 0) {
 				// 处理用户有多个组织机构的情况，以弹出框的形式让用户选择
-				Map<String, Object> attrMap = new HashMap<String, Object>();
+				Map<String, Object> attrMap = new HashMap<String, Object>(1024);
 				j.setAttributes(attrMap);
 
 				String orgId = req.getParameter("orgId");
@@ -153,7 +153,7 @@ public class LoginController extends BaseController{
 	@ResponseBody
 	public AjaxJson changeDefaultOrg(TSUser user, HttpServletRequest req) {
 		AjaxJson j = new AjaxJson();
-		Map<String, Object> attrMap = new HashMap<String, Object>();
+		Map<String, Object> attrMap = new HashMap<String, Object>(1024);
 		String orgId = req.getParameter("orgId");
 		TSUser u = userService.checkUserExits(user);
 		if (oConvertUtils.isNotEmpty(orgId)) {

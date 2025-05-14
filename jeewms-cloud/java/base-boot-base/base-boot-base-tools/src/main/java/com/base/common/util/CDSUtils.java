@@ -107,7 +107,7 @@ public class CDSUtils {
             return null;
         }
         RestTemplate restTemplate = new RestTemplate();
-        Map params = new HashMap();
+        Map params = new HashMap(1024);
         params.put("company_name", cancelOrderInfo.getCompanyName());
         params.put("order_id", cancelOrderInfo.getOrderId());
         params.put("reason", cancelOrderInfo.getReason());
@@ -140,7 +140,7 @@ public class CDSUtils {
 
     @NotNull
     private static Map getPushOrderParams(CDSPushOrder cdsPushOrder) {
-        Map params = new HashMap();
+        Map params = new HashMap(1024);
         params.put("company_name", cdsPushOrder.getCompanyName());
         params.put("order_id", cdsPushOrder.getOrderId());
         params.put("in_order_no", cdsPushOrder.getInOrderNo());

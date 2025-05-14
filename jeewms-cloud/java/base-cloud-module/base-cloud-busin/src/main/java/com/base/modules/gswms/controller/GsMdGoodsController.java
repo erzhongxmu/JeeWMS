@@ -406,11 +406,11 @@ public class GsMdGoodsController extends JeecgController<MdGoods, IMdGoodsServic
 				QueryWrapper<MdCus> w1 =new QueryWrapper<>();
 				w1.select("ke_hu_bian_ma","zhong_wen_qch");
 				List<MdCus> cuslist = mdCusService.list(w1);
-				Map<String,String> cusmap = new HashMap();
+				Map<String,String> cusmap = new HashMap(1024);
 				for(MdCus cus:cuslist){
 					cusmap.put(cus.getZhongWenQch(),cus.getKeHuBianMa());
 				}
-				Map idmap = new HashMap();
+				Map idmap = new HashMap(1024);
 				QueryWrapper<MdGoods> w2 = new QueryWrapper();
 				for (int i = 0; i < sheetsize; i++) {
 					List<String> l = sheetlist.get(i);

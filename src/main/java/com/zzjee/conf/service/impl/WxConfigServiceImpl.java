@@ -89,7 +89,7 @@ public class WxConfigServiceImpl extends CommonServiceImpl implements WxConfigSe
 	 * @return
 	 */
  	private Map<String,Object> populationMap(WxConfigEntity t){
-		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("id", t.getId());
 		map.put("create_name", t.getCreateName());
 		map.put("create_by", t.getCreateBy());

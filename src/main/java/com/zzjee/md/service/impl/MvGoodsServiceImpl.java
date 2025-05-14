@@ -88,7 +88,7 @@ public class MvGoodsServiceImpl extends CommonServiceImpl implements MvGoodsServ
 	 * @return
 	 */
  	private Map<String,Object> populationMap(MvGoodsEntity t){
-		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("cus_code", t.getCusCode());
 		map.put("goods_code", t.getGoodsCode());
 		map.put("goods_name", t.getGoodsName());

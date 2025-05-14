@@ -43,7 +43,7 @@ public class FormUtil {
 
 		// action=action!=null && !"".equals(action)?action:"view";
 
-		Map<String, Object> tableData = new HashMap<String, Object>();// 表单数据
+		Map<String, Object> tableData = new HashMap<String, Object>(1024);// 表单数据
 
 		String html = parseHtml;
 		JSONArray jsonArray = new JSONArray().fromObject(contentData);

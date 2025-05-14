@@ -394,7 +394,7 @@
 //                    Trigger trigger = scheduler.getTrigger(triggerKey);
 //                    JobDetail jobDetail = scheduler.getJobDetail(jobKey);
 //                    TriggerState triggerState = scheduler.getTriggerState(triggerKey);
-//                    Map<String, Object> jobMap = new HashMap<String, Object>();
+//                    Map<String, Object> jobMap = new HashMap<String, Object>(1024);
 //                    jobMap.put("TriggerKey", triggerKey);
 //                    jobMap.put("Trigger", trigger);
 //                    jobMap.put("JobDetail", jobDetail);

@@ -41,7 +41,7 @@ public class ResourceUtil {
 	/**
 	 * 国际化【缓存】
 	 */
-	public static Map<String, String> mutiLangMap = new HashMap<String, String>();
+	public static Map<String, String> mutiLangMap = new HashMap<String, String>(1024);
 	/**
 	 * 缓存系统图标【缓存】
 	 */

@@ -145,7 +145,7 @@ public class WmOmNoticeHController extends BaseController {
 
         }
 
-        Map<String, Object> map1 = new HashMap<String, Object>();
+        Map<String, Object> map1 = new HashMap<String, Object>(1024);
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.add();
@@ -757,7 +757,7 @@ public class WmOmNoticeHController extends BaseController {
             cq.notEq("omSta", Constants.wm_sta4);
         }
         cq.like("omNoticeId", "QT%");
-        Map<String, Object> map1 = new HashMap<String, Object>();
+        Map<String, Object> map1 = new HashMap<String, Object>(1024);
         map1.put("createDate", "desc");
         cq.setOrder(map1);
 
@@ -796,7 +796,7 @@ public class WmOmNoticeHController extends BaseController {
         if (wmOmNoticeH.getOmSta() == null) {
             cq.notEq("omSta", Constants.wm_sta4);
         }
-        Map<String, Object> map1 = new HashMap<String, Object>();
+        Map<String, Object> map1 = new HashMap<String, Object>(1024);
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.add();
@@ -986,7 +986,7 @@ public class WmOmNoticeHController extends BaseController {
             wmOmNoticeHService.addMain(wmOmNoticeH, wmomNoticeIListnew);
 
 
-            Map<String, Object> map = new HashMap<String, Object>();
+            Map<String, Object> map = new HashMap<String, Object>(1024);
             map.put("id", wmOmNoticeH.getOmNoticeId());
             try {
                 TuiSongMsgUtil.sendMessage("出货通知", Constants.SMS_SEND_TYPE_3, "CKYYTZ", map, "admin", ResourceUtil.getSessionUserName().getUserName());

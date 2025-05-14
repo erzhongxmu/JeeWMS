@@ -481,7 +481,7 @@ public class TSSmsController extends BaseController {
 		        	j.setObj(list.size());
 				}
 				
-				Map<String,Object> attrs = new HashMap<String, Object>();
+				Map<String,Object> attrs = new HashMap<String, Object>(1024);
 				attrs.put("messageList", result);
 				String tip = MutiLangUtil.getMutiLangInstance().getLang("message.tip");
 				attrs.put("tip", tip);
@@ -532,7 +532,7 @@ public class TSSmsController extends BaseController {
 		try {
 			if(StringUtil.isNotEmpty(msgId)){
 				TSSmsEntity tSSmsEntity = this.systemService.get(TSSmsEntity.class, msgId);
-				Map<String,Object> attrs = new HashMap<String, Object>();
+				Map<String,Object> attrs = new HashMap<String, Object>(1024);
 				attrs.put("msginfo", tSSmsEntity);
 				j.setAttributes(attrs);
 			}

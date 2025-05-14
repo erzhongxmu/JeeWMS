@@ -594,8 +594,8 @@ public class CgFormFieldServiceImpl extends CommonServiceImpl implements
 	 */
 	@Override
 	public Map<String, Object> getFtlFormConfig(String tableName, String version) {
-		Map<String, Object> data = new HashMap<String, Object>();
-		Map<String, Object> field = new HashMap<String, Object>();
+		Map<String, Object> data = new HashMap<String, Object>(1024);
+		Map<String, Object> field = new HashMap<String, Object>(1024);
 
 		//处理一遍权限问题
 		Set<String> operationCodes = (Set<String>) ContextHolderUtils.getRequest().getAttribute(Globals.OPERATIONCODES);

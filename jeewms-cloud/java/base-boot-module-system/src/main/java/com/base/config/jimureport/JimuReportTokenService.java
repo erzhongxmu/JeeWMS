@@ -47,7 +47,7 @@ public class JimuReportTokenService implements JmReportTokenServiceI {
         String username = JwtUtil.getUsername(token);
         //此处通过token只能拿到一个信息 用户账号  后面的就是根据账号获取其他信息 查询数据或是走redis 用户根据自身业务可自定义
         SysUserCacheInfo userInfo = sysBaseAPI.getCacheUser(username);
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<String, Object>(1024);
         //设置账号名
         map.put(SYS_USER_CODE, userInfo.getSysUserCode());
         //设置部门编码

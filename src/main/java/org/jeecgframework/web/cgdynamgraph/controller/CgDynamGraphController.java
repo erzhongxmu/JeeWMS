@@ -313,7 +313,7 @@ public class CgDynamGraphController extends BaseController {
 	public Object getSqlFields(String sql,String dbKey){
 		List<String> fields = null;
 		List<String> params = null;
-		Map reJson = new HashMap<String, Object>();
+		Map reJson = new HashMap<String, Object>(1024);
 		try{
 			fields = getFields(sql, dbKey);
 			params = getSqlParams(sql);

@@ -197,7 +197,7 @@ public class ExcelTempletService {
 			// 得到第一行的所有列
 			Iterator<Cell> cellTitle = title.cellIterator();
 			// 将标题的文字内容放入到一个map中。
-			Map titlemap = new HashMap();
+			Map titlemap = new HashMap(1024);
 			// 从标题第一列开始
 			int i = 0;
 			// 循环标题所有的列
@@ -213,7 +213,7 @@ public class ExcelTempletService {
 			// 用来格式化日期的DateFormat
 			Map<String, Object> retMap=null;
 			while (row.hasNext()) {
-				retMap= new HashMap<String, Object>();
+				retMap= new HashMap<String, Object>(1024);
 				// 标题下的第一行
 				Row rown = row.next();
 				// 行的所有列

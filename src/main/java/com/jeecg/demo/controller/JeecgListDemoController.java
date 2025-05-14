@@ -166,10 +166,10 @@ public class JeecgListDemoController extends BaseController {
 		 */
 		//dataGrid.setFooter("salary:"+(total_salary.equalsIgnoreCase("null")?"0.0":total_salary)+",age,email:合计");
 		List<JeecgDemoEntity> list=dataGrid.getResults();
-		Map<String,Map<String,Object>> extMap = new HashMap<String, Map<String,Object>>();
+		Map<String,Map<String,Object>> extMap = new HashMap<String, Map<String,Object>>(1024);
 		for(JeecgDemoEntity temp:list){
 		        //此为针对原来的行数据，拓展的新字段
-		        Map m = new HashMap();
+		        Map m = new HashMap(1024);
 		        m.put("extField",this.jeecgMinidaoDao.getOrgCode(temp.getDepId()));
 		        extMap.put(temp.getId(), m);
 		}

@@ -78,7 +78,7 @@ public class BaUnitServiceImpl extends CommonServiceImpl implements BaUnitServic
  	}
  	
  	private Map<String,Object> populationMap(BaUnitEntity t){
-		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("id", t.getId());
 		map.put("create_name", t.getCreateName());
 		map.put("create_by", t.getCreateBy());

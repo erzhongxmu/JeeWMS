@@ -30,7 +30,7 @@ public class DbTableUtil {
 	 */
 	public static Map<String, Object> getColumnMap(
 			List<Map<String, Object>> queryForList) {
-		Map<String, Object> columnMap = new HashMap<String, Object>();
+		Map<String, Object> columnMap = new HashMap<String, Object>(1024);
 		for(int i =0 ;i<queryForList.size();i++){
 			columnMap.put(queryForList.get(i).get("column_name").toString(), queryForList.get(i));
 		}

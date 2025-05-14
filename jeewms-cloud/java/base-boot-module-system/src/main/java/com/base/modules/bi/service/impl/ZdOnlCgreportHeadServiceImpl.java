@@ -224,7 +224,7 @@ public class ZdOnlCgreportHeadServiceImpl extends ServiceImpl<com.base.modules.b
             }
         }
 
-        HashMap var18 = new HashMap();
+        HashMap var18 = new HashMap(1024);
         Integer var19 = oConvertUtils.getInt(params.get("pageSize"), 10);
         Integer var20 = oConvertUtils.getInt(params.get("pageNo"), 1);
         Page var21 = new Page((long)var20, (long)var19);
@@ -298,7 +298,7 @@ public class ZdOnlCgreportHeadServiceImpl extends ServiceImpl<com.base.modules.b
             a.info("多数据源 报表查询sql=>querySql: " + var16);
             a.info("多数据源 报表查询sql=>pageSQL: " + var19);
             a.info("多数据源 报表查询sql=>countSql: " + var17);
-            HashMap var20 = new HashMap();
+            HashMap var20 = new HashMap(1024);
             Map var21 = (Map) DynamicDBUtil.findOne(dbKey, var17, new Object[0]);
             var20.put("total", var21.get("total"));
             List var22 = DynamicDBUtil.findList(dbKey, var19, new Object[0]);

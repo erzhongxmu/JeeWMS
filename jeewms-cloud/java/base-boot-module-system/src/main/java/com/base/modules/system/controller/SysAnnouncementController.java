@@ -352,7 +352,7 @@ public class SysAnnouncementController {
 		anntMsgList = sysAnnouncementService.querySysCementPageByUserId(anntMsgList,userId,"1");//通知公告消息
 		Page<SysAnnouncement> sysMsgList = new Page<SysAnnouncement>(0,5);
 		sysMsgList = sysAnnouncementService.querySysCementPageByUserId(sysMsgList,userId,"2");//系统消息
-		Map<String,Object> sysMsgMap = new HashMap<String, Object>();
+		Map<String,Object> sysMsgMap = new HashMap<String, Object>(1024);
 		sysMsgMap.put("sysMsgList", sysMsgList.getRecords());
 		sysMsgMap.put("sysMsgTotal", sysMsgList.getTotal());
 		sysMsgMap.put("anntMsgList", anntMsgList.getRecords());

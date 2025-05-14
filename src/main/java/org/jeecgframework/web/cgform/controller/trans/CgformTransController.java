@@ -232,7 +232,7 @@ public class CgformTransController {
 				yes += ids[i];
 			}
 		}
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new HashMap<String, String>(1024);
 		map.put("no", no);
 		map.put("yes", yes);
 		j.setObj(map);

@@ -462,7 +462,7 @@ public class SysDepartController {
 	public Result<Map<String,Object>> queryTreeByKeyWord(@RequestParam(name = "keyWord", required = false) String keyWord) {
 		Result<Map<String,Object>> result = new Result<>();
 		try {
-			Map<String,Object> map=new HashMap<String,Object>();
+			Map<String,Object> map=new HashMap<String,Object>(1024);
 			List<SysDepartTreeModel> list = sysDepartService.queryTreeByKeyWord(keyWord);
 			//根据keyWord获取用户信息
 			LambdaQueryWrapper<SysUser> queryUser = new LambdaQueryWrapper<SysUser>();

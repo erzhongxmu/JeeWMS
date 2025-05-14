@@ -89,7 +89,7 @@ public class WmsPlcServiceImpl extends CommonServiceImpl implements WmsPlcServic
 	 * @return 返回一个包含实体属性名和对应值的 Map 对象
 	 */
  	private Map<String,Object> populationMap(WmsPlcEntity t){
-		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("id", t.getId());
 		map.put("create_name", t.getCreateName());
 		map.put("create_by", t.getCreateBy());

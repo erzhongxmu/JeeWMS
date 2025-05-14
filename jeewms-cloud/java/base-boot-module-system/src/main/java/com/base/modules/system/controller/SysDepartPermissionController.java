@@ -280,7 +280,7 @@ public class SysDepartPermissionController extends BaseController<SysDepartPermi
 			 }
 			 List<TreeModel> treeList = new ArrayList<>();
 			 getTreeModelList(treeList, list, null);
-			 Map<String,Object> resMap = new HashMap<String,Object>();
+			 Map<String,Object> resMap = new HashMap<String,Object>(1024);
 			 resMap.put("treeList", treeList); //全部树节点数据
 			 resMap.put("ids", ids);//全部树ids
 			 result.setResult(resMap);

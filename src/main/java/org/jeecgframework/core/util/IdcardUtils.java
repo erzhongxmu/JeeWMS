@@ -40,7 +40,7 @@ public class IdcardUtils extends StringUtils {
     };
     /** 最低年限 */
     public static final int MIN = 1930;
-    public static Map<String, String> cityCodes = new HashMap<String, String>();
+    public static Map<String, String> cityCodes = new HashMap<String, String>(1024);
     /** 台湾身份首字母对应数字 */
     public static Map<String, Integer> twFirstCode = new HashMap<String, Integer>();
     /** 香港身份首字母对应数字 */

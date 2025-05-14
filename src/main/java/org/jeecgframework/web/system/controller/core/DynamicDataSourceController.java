@@ -212,7 +212,7 @@ public class DynamicDataSourceController extends BaseController {
     	SysDatabaseEnum sysDatabaseEnum = SysDatabaseEnum.toEnum(dbType);
 
     	if (sysDatabaseEnum != null) {
-    		Map<String, String> map = new HashMap<String, String>();
+    		Map<String, String> map = new HashMap<String, String>(1024);
         	map.put("driverClass", sysDatabaseEnum.getDriverClass());
         	map.put("url", sysDatabaseEnum.getUrl());
         	map.put("dbtype", sysDatabaseEnum.getDbtype());
@@ -229,7 +229,7 @@ public class DynamicDataSourceController extends BaseController {
     public AjaxJson testConnection(DynamicDataSourceEntity dbSource, HttpServletRequest request){
     	AjaxJson j = new AjaxJson();
     	Connection con = null;
-    	Map map = new HashMap();
+    	Map map = new HashMap(1024);
     	try {
 			Class.forName(dbSource.getDriverClass());//加载及注册JDBC驱动程序
 			//建立连接对象

@@ -56,7 +56,7 @@ public class DbTableProcess {
 	
 	@SuppressWarnings("all")
 	private static Object getRootMap(CgFormHeadEntity table,String dataType) {
-		Map map = new HashMap();
+		Map map = new HashMap(1024);
 		for(CgFormFieldEntity field :table.getColumns()){
 			field.setFieldDefault(judgeIsNumber(field.getFieldDefault()));
 		}
@@ -272,7 +272,7 @@ public class DbTableProcess {
 	 * @return
 	 */
 	public static Map<String, String> getNewAndOldFieldName(CgFormHeadEntity table){
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new HashMap<String, String>(1024);
 		List<CgFormFieldEntity> cgFormFieldEntities = table.getColumns();
 		for (CgFormFieldEntity cgFormFieldEntity : cgFormFieldEntities) {
 			map.put(cgFormFieldEntity.getFieldName(), cgFormFieldEntity.getOldFieldName());

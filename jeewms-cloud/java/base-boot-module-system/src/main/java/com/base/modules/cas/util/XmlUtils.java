@@ -208,7 +208,7 @@ public final class XmlUtils {
 
         @Override
         public void startDocument() throws SAXException {
-            this.attributes = new HashMap<String, Object>();
+            this.attributes = new HashMap<String, Object>(1024);
         }
 
         @Override

@@ -77,7 +77,7 @@ public class RfidBuseServiceImpl extends CommonServiceImpl implements RfidBuseSe
  	}
  	//将RfidBuseEntity对象的各个属性以键值对的形式放入map中
  	private Map<String,Object> populationMap(RfidBuseEntity t){
-		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("id", t.getId());
 		map.put("create_name", t.getCreateName());
 		map.put("create_by", t.getCreateBy());

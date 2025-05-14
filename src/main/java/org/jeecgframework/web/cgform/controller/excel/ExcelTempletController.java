@@ -95,7 +95,7 @@ public class ExcelTempletController extends BaseController {
 			String configId = request.getParameter("tableName");
 			String jversion = cgFormFieldService.getCgFormVersionByTableName(configId);
 			Map<String, Object> configs = configService.queryConfigs(configId, jversion);
-			Map params = new HashMap<String, Object>();
+			Map params = new HashMap<String, Object>(1024);
 			//step.2 获取查询条件以及值
 			List<CgFormFieldEntity> beans = (List<CgFormFieldEntity>) configs.get(CgAutoListConstant.FILEDS);
 			for (CgFormFieldEntity b : beans) {
@@ -205,7 +205,7 @@ public class ExcelTempletController extends BaseController {
 	 * @param result
 	 */
 	private void handlePageDic(List<CgFormFieldEntity> beans, List<Map<String, Object>> result) {
-		Map<String, Object> dicMap = new HashMap<String, Object>();
+		Map<String, Object> dicMap = new HashMap<String, Object>(1024);
 		for (CgFormFieldEntity b : beans) {
 			loadDic(dicMap, b);
 			List<DictEntity> dicList = (List<DictEntity>) dicMap.get(CgAutoListConstant.FIELD_DICTLIST);

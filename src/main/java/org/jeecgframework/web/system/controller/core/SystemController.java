@@ -1083,7 +1083,7 @@ public class SystemController extends BaseController {
 				map2 = JSONHelper.toHashMap(datalogEntity1.getDataContent().replaceAll("^\\[|\\]$", ""));
 			}
 
-			Map<String, Object> mapAll = new HashMap<String, Object>();
+			Map<String, Object> mapAll = new HashMap<String, Object>(1024);
 			mapAll.putAll(map1);
 			mapAll.putAll(map2);
 			Set<String> set = mapAll.keySet();

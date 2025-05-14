@@ -438,7 +438,7 @@ public class TagUtil {
 	public static void ListtoView(HttpServletResponse response, PageList pageList) {
 		response.setContentType("application/json");
 		response.setHeader("Cache-Control", "no-store");
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<String, Object>(1024);
 		map.put("total", pageList.getCount());
 		map.put("rows", pageList.getResultList());
 		ObjectMapper mapper = new ObjectMapper();

@@ -65,7 +65,7 @@ public class JeecgDemoServiceImpl extends CommonServiceImpl implements JeecgDemo
  	}
  	
  	private Map<String,Object> populationMap(JeecgDemoEntity t){
-		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("id", t.getId());
 		map.put("name", t.getName());
 		map.put("age", t.getAge());

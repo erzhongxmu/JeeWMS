@@ -169,7 +169,7 @@ public class WvStockController extends BaseController {
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
         }
-        Map<String, Object> map1 = new HashMap<String, Object>();
+        Map<String, Object> map1 = new HashMap<String, Object>(1024);
         map1.put("id", "desc");
         cq.setOrder(map1);
         cq.eq("kuctype", "库存");
@@ -215,7 +215,7 @@ public class WvStockController extends BaseController {
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
         }
-        Map<String, Object> map1 = new HashMap<String, Object>();
+        Map<String, Object> map1 = new HashMap<String, Object>(1024);
         map1.put("id", "desc");
         cq.setOrder(map1);
         cq.eq("kuctype", "库存");

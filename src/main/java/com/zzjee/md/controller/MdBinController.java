@@ -263,7 +263,7 @@ public class MdBinController extends BaseController {
                     result.add(jsonParts);
                 }
                 j.setObj(resultt.size());
-                Map<String, Object> attrs = new HashMap<String, Object>();
+                Map<String, Object> attrs = new HashMap<String, Object>(1024);
                 attrs.put("messageList", result);
                 j.setAttributes(attrs);
             }
@@ -350,7 +350,7 @@ public class MdBinController extends BaseController {
                     result.add(jsonParts);
                 }
                 j.setObj(resultt.size());
-                Map<String, Object> attrs = new HashMap<String, Object>();
+                Map<String, Object> attrs = new HashMap<String, Object>(1024);
                 attrs.put("messageList", result);
                 j.setAttributes(attrs);
             }

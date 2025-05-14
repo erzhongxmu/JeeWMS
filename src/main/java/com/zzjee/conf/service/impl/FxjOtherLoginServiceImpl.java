@@ -89,7 +89,7 @@ public class FxjOtherLoginServiceImpl extends CommonServiceImpl implements FxjOt
 	 * @return
 	 */
  	private Map<String,Object> populationMap(FxjOtherLoginEntity t){
-		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("id", t.getId());
 		map.put("create_name", t.getCreateName());
 		map.put("create_by", t.getCreateBy());

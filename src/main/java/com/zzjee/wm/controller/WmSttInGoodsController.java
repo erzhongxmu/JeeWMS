@@ -128,7 +128,7 @@ public class WmSttInGoodsController extends BaseController {
             throw new BusinessException(e.getMessage());
         }
         // 设置排序规则
-        Map<String, Object> map1 = new HashMap<String, Object>();
+        Map<String, Object> map1 = new HashMap<String, Object>(1024);
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         // 设置查询条件：状态不等于"已删除"
@@ -149,7 +149,7 @@ public class WmSttInGoodsController extends BaseController {
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
         }
-        Map<String, Object> map1 = new HashMap<String, Object>();
+        Map<String, Object> map1 = new HashMap<String, Object>(1024);
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.eq("sttSta", "已完成");
@@ -178,7 +178,7 @@ public class WmSttInGoodsController extends BaseController {
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
         }
-        Map<String, Object> map1 = new HashMap<String, Object>();
+        Map<String, Object> map1 = new HashMap<String, Object>(1024);
         map1.put("createDate", "desc");
         cq.setOrder(map1);
         cq.eq("sttSta", "已完成");

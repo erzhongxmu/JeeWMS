@@ -84,7 +84,7 @@ public class CgAutoListController extends BaseController{
 		Map<String, Object> configs = configService.queryConfigs(id,jversion);
 		//step.2 获取列表ftl模板路径
 		FreemarkerHelper viewEngine = new FreemarkerHelper();
-		Map<String, Object> paras = new HashMap<String, Object>();
+		Map<String, Object> paras = new HashMap<String, Object>(1024);
 		//step.3 封装页面数据
 		loadVars(configs,paras,request);
 		//step.4 组合模板+数据参数，进行页面展现
@@ -144,7 +144,7 @@ public class CgAutoListController extends BaseController{
 
 		table = PublicUtil.replaceTableName(table);
 
-		Map params =  new HashMap<String,Object>();
+		Map params =  new HashMap<String,Object>(1024);
 		//step.2 获取查询条件以及值
 		List<CgFormFieldEntity> beans = (List<CgFormFieldEntity>) configs.get(CgAutoListConstant.FILEDS);
 		Map<String, String[]> fieldMap = new HashMap<String, String[]>();
@@ -202,7 +202,7 @@ public class CgAutoListController extends BaseController{
 
 		
 		//处理页面中若存在checkbox只能显示code值而不能显示text值问题
-		Map<String, Object> dicMap = new HashMap<String, Object>();
+		Map<String, Object> dicMap = new HashMap<String, Object>(1024);
 		for(CgFormFieldEntity b:beans){
 			loadDic(dicMap, b);
 			List<DictEntity> dicList = (List<DictEntity>)dicMap.get(CgAutoListConstant.FIELD_DICTLIST);
@@ -378,7 +378,7 @@ public class CgAutoListController extends BaseController{
 				continue;
 			}
 
-			Map fm = new HashMap<String, Object>();
+			Map fm = new HashMap<String, Object>(1024);
 			fm.put(CgAutoListConstant.FILED_ID, bean.getFieldName());
 			fm.put(CgAutoListConstant.FIELD_TITLE, bean.getContent());
 			String isShowList = bean.getIsShowList();
@@ -398,7 +398,7 @@ public class CgAutoListController extends BaseController{
 			loadDic(fm,bean);
 			fieldList.add(fm);
 			if (CgAutoListConstant.BOOL_TRUE.equals(bean.getIsQuery())) {
-				Map fmq = new HashMap<String, Object>();
+				Map fmq = new HashMap<String, Object>(1024);
 				fmq.put(CgAutoListConstant.FILED_ID, bean.getFieldName());
 				fmq.put(CgAutoListConstant.FIELD_TITLE, bean.getContent());
 				fmq.put(CgAutoListConstant.FIELD_QUERYMODE, bean.getQueryMode());
@@ -549,7 +549,7 @@ public class CgAutoListController extends BaseController{
 			}
 		}
 		if(!StringUtil.isEmpty(paramV) || !StringUtil.isEmpty(paramVbegin) ||!StringUtil.isEmpty(paramVend)){
-			Map fmq = new HashMap<String, Object>();
+			Map fmq = new HashMap<String, Object>(1024);
 			fmq.put(CgAutoListConstant.FILED_ID, bean.getFieldName());
 			fmq.put(CgAutoListConstant.FIELD_TITLE, bean.getContent());
 			fmq.put(CgAutoListConstant.FIELD_QUERYMODE, bean.getQueryMode());
