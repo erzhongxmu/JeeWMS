@@ -11,6 +11,7 @@ import java.util.Date;
 public class AnnouncementSendModel {
     /**发布时间*/
     private java.lang.String startTime;
+
     /**标题*/
     private java.lang.String titile;
     /**内容*/
