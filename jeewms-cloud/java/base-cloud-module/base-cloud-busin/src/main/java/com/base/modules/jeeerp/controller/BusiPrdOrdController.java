@@ -513,9 +513,9 @@ public class BusiPrdOrdController {
             QueryWrapper<BusiPrdOrd> queryWrapperdd = new QueryWrapper<>();
             queryWrapperdd.lambda().eq(BusiPrdOrd::getQuery04, ordId);
             BusiPrdOrd onedd = busiPrdOrdService.getOne(queryWrapperdd, false);
-            if (type.equals("timeLimit")) {
+            if ("timeLimit".equals(type)) {
                 onedd.setQuery21(query21);
-            } else if (type.equals("finish")) {
+            } else if ("finish".equals(type)) {
                 onedd.setQuery22(query22);
                 onedd.setQuery19(query19);
                 onedd.setQuery02("已完成");
@@ -527,7 +527,7 @@ public class BusiPrdOrdController {
         } catch (Exception e) {
 
         }
-        if (!type.equals("finish")) {
+        if (!"finish".equals(type)) {
             QueryWrapper<BusiPrdOrd> queryWrapper = new QueryWrapper<>();
             queryWrapper.lambda().eq(BusiPrdOrd::getLink02, ordId);
             queryWrapper.lambda().eq(BusiPrdOrd::getQuery01, "SCWG");
@@ -536,13 +536,13 @@ public class BusiPrdOrdController {
             QueryWrapper<BusiPrdOrd> queryWrapper2 = new QueryWrapper<>();
             queryWrapper2.lambda().eq(BusiPrdOrd::getQuery04, ordId);
             BusiPrdOrd one2 = busiPrdOrdService.getOne(queryWrapper2, false);
-            if (type.equals("timeLimit")) {
+            if ("timeLimit".equals(type)) {
                 one.setQuery21(query21);
-            } else if (type.equals("finish")) {
+            } else if ("finish".equals(type)) {
                 one.setQuery22(query22);
                 one.setQuery19(query19);
             }
-            if (one2.getQuery01().equals("ZJDD")) {
+            if ("ZJDD".equals(one2.getQuery01())) {
                 Result<?> result = sysBaseAPIClient.queryPageList2(one.getQuery14(), 100);
                 if (result.getCode() != 200) {
                     return Result.error("未查询出排班数据");
@@ -611,7 +611,7 @@ public class BusiPrdOrdController {
         QueryWrapper<BusiPo> queryWrapper = new QueryWrapper<BusiPo>();
         queryWrapper.lambda().eq(BusiPo::getQuery04, ordId);
         BusiPo one = busiPoService.getOne(queryWrapper, false);
-        if (!one.getQuery01().equals("JG")) {
+        if (!"JG".equals(one.getQuery01())) {
             Result<?> result = sysBaseAPIClient.queryPageList2(one.getQuery13(), 100);
             if (result.getCode() == 200) {
                 JSONObject jsonObject = JSONObject.parseObject(result.getResult().toString());

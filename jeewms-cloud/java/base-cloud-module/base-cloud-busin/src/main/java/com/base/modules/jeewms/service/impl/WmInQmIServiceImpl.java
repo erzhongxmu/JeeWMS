@@ -390,7 +390,7 @@ public class WmInQmIServiceImpl extends ServiceImpl<WmInQmIMapper, WmInQmI> impl
                 System.out.println("输出参数："+post);
                 parse = (JSONObject) JSONObject.parse(post);
                 code = parse.get("code") != null ? parse.get("code").toString() : "";
-                if (org.apache.commons.lang3.StringUtils.isNotEmpty(code) && code.equals("SUCCESS")) {
+                if (org.apache.commons.lang3.StringUtils.isNotEmpty(code) && "SUCCESS".equals(code)) {
                     //查询上架列表
                     WmToUpGoods wmToUpGoods = wmToUpGoodsService.lambdaQuery().eq(WmToUpGoods::getOrderIdI, id).one();
                     if (wmToUpGoods != null) { //已经有了

@@ -432,7 +432,7 @@ public class SmsSendImpl {
                     System.out.println("wmOmNoticeIEntity+++++++++" + wmOmNoticeIEntity);
                     WmOmNoticeH wmOmNoticeH = wmOmNoticeHService.lambdaQuery().eq(WmOmNoticeH::getOmNoticeId, wmOmNoticeIEntity.getOmNoticeId()).one();
                     try{
-                        if (wmOmNoticeH.getOrderTypeCode().equals("19") && wmOmNoticeH.getOrderTypes().equals("退货")) {
+                        if ("19".equals(wmOmNoticeH.getOrderTypeCode()) && "退货".equals(wmOmNoticeH.getOrderTypes())) {
                             kwType = "不良品";
                         }
                     }catch (Exception e){

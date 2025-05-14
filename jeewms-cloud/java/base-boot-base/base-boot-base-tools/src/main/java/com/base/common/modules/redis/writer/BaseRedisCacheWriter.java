@@ -19,8 +19,12 @@ import org.springframework.data.redis.core.types.Expiration;
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
+
 /**
- * 该类参照 DefaultRedisCacheWriter 重写了 remove 方法实现通配符*删除
+ * Demo class
+ *该类参照 DefaultRedisCacheWriter 重写了 remove 方法实现通配符*删除
+ * @author yinyu
+ * @date 2016/10/31
  */
 @Slf4j
 public class BaseRedisCacheWriter implements RedisCacheWriter {
@@ -39,6 +43,7 @@ public class BaseRedisCacheWriter implements RedisCacheWriter {
         this.sleepTime = sleepTime;
     }
 
+    @Override
     public void put(String name, byte[] key, byte[] value, @Nullable Duration ttl) {
         Assert.notNull(name, "Name must not be null!");
         Assert.notNull(key, "Key must not be null!");
@@ -54,19 +59,21 @@ public class BaseRedisCacheWriter implements RedisCacheWriter {
         });
     }
 
+    @Override
     public byte[] get(String name, byte[] key) {
         Assert.notNull(name, "Name must not be null!");
         Assert.notNull(key, "Key must not be null!");
-        return (byte[])this.execute(name, (connection) -> {
+        return (byte[]) this.execute(name, (connection) -> {
             return connection.get(key);
         });
     }
 
+    @Override
     public byte[] putIfAbsent(String name, byte[] key, byte[] value, @Nullable Duration ttl) {
         Assert.notNull(name, "Name must not be null!");
         Assert.notNull(key, "Key must not be null!");
         Assert.notNull(value, "Value must not be null!");
-        return (byte[])this.execute(name, (connection) -> {
+        return (byte[]) this.execute(name, (connection) -> {
             if (this.isLockingCacheWriter()) {
                 this.doLock(name, connection);
             }
@@ -93,16 +100,18 @@ public class BaseRedisCacheWriter implements RedisCacheWriter {
 
             }
 
-            return (byte[])var7;
+            return (byte[]) var7;
         });
     }
 
+    @Override
     public void remove(String name, byte[] key) {
         Assert.notNull(name, "Name must not be null!");
         Assert.notNull(key, "Key must not be null!");
         String keyString = new String(key);
         log.info("redis remove key:" + keyString);
-        if(keyString!=null && keyString.endsWith("*")){
+        String str = "*";
+        if (keyString != null && keyString.endsWith(str)) {
             execute(name, connection -> {
                 // 获取某个前缀所拥有的所有的键，某个前缀开头，后面肯定是*
                 Set<byte[]> keys = connection.keys(key);
@@ -112,13 +121,14 @@ public class BaseRedisCacheWriter implements RedisCacheWriter {
                 }
                 return delNum;
             });
-        }else{
+        } else {
             this.execute(name, (connection) -> {
                 return connection.del(new byte[][]{key});
             });
         }
     }
 
+    @Override
     public void clean(String name, byte[] pattern) {
         Assert.notNull(name, "Name must not be null!");
         Assert.notNull(pattern, "Pattern must not be null!");
@@ -131,7 +141,7 @@ public class BaseRedisCacheWriter implements RedisCacheWriter {
                     wasLocked = true;
                 }
 
-                byte[][] keys = (byte[][])((Set)Optional.ofNullable(connection.keys(pattern)).orElse(Collections.emptySet())).toArray(new byte[0][]);
+                byte[][] keys = (byte[][]) ((Set) Optional.ofNullable(connection.keys(pattern)).orElse(Collections.emptySet())).toArray(new byte[0][]);
                 if (keys.length > 0) {
                     connection.del(keys);
                 }
@@ -200,7 +210,7 @@ public class BaseRedisCacheWriter implements RedisCacheWriter {
     private void checkAndPotentiallyWaitUntilUnlocked(String name, RedisConnection connection) {
         if (this.isLockingCacheWriter()) {
             try {
-                while(this.doCheckLock(name, connection)) {
+                while (this.doCheckLock(name, connection)) {
                     Thread.sleep(this.sleepTime.toMillis());
                 }
 

@@ -105,7 +105,7 @@ public class QueryGenerator {
 		*/
 
 		//区间条件组装 模糊查询 高级查询组装 简单排序 权限查询
-		PropertyDescriptor origDescriptors[] = PropertyUtils.getPropertyDescriptors(searchObj);
+		PropertyDescriptor[] origDescriptors = PropertyUtils.getPropertyDescriptors(searchObj);
 		Map<String, SysPermissionDataRuleModel> ruleMap = getRuleMap();
 
 		//权限规则自定义SQL表达式
@@ -931,7 +931,7 @@ public class QueryGenerator {
 		StringBuffer sb = new StringBuffer();
 		//权限查询
 		Map<String,SysPermissionDataRuleModel> ruleMap = getRuleMap();
-		PropertyDescriptor origDescriptors[] = PropertyUtils.getPropertyDescriptors(clazz);
+		PropertyDescriptor[] origDescriptors = PropertyUtils.getPropertyDescriptors(clazz);
 		String sql_and = " and ";
 		for (String c : ruleMap.keySet()) {
 			if(oConvertUtils.isNotEmpty(c) && c.startsWith(SQL_RULES_COLUMN)){
@@ -976,7 +976,7 @@ public class QueryGenerator {
 	public static void installAuthMplus(QueryWrapper<?> queryWrapper,Class<?> clazz) {
 		//权限查询
 		Map<String,SysPermissionDataRuleModel> ruleMap = getRuleMap();
-		PropertyDescriptor origDescriptors[] = PropertyUtils.getPropertyDescriptors(clazz);
+		PropertyDescriptor[] origDescriptors = PropertyUtils.getPropertyDescriptors(clazz);
 		for (String c : ruleMap.keySet()) {
 			if(oConvertUtils.isNotEmpty(c) && c.startsWith(SQL_RULES_COLUMN)){
 				queryWrapper.and(i ->i.apply(getSqlRuleValue(ruleMap.get(c).getRuleValue())));

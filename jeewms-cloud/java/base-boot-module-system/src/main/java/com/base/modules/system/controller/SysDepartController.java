@@ -445,7 +445,7 @@ public class SysDepartController {
 		LambdaQueryWrapper<SysDepart> query = new LambdaQueryWrapper<SysDepart>();
 		query.orderByAsc(SysDepart::getOrgCode);
 		if(oConvertUtils.isNotEmpty(id)){
-			String arr[] = id.split(",");
+			String[] arr = id.split(",");
 			query.in(SysDepart::getId,arr);
 		}
 		List<SysDepart> ls = this.sysDepartService.list(query);

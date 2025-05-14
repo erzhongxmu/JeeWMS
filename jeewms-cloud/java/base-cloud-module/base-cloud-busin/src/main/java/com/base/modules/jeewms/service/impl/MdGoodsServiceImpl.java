@@ -222,9 +222,9 @@ public class MdGoodsServiceImpl extends ServiceImpl<MdGoodsMapper, MdGoods> impl
             //查出wms商品的库存（良次品混合在一起）
             List<WmsToShopStock> goodsStock = this.baseMapper.stockQuery(wmsStockQueryDTO.getSku_ids());
             //过滤出良品库存
-            List<WmsToShopStock> goodsCounts = goodsStock.stream().filter(wmsToShopStock -> wmsToShopStock.getGoodsType().equals("良品")).collect(Collectors.toList());
+            List<WmsToShopStock> goodsCounts = goodsStock.stream().filter(wmsToShopStock -> "良品".equals(wmsToShopStock.getGoodsType())).collect(Collectors.toList());
             //过滤出次品库存
-            List<WmsToShopStock> badCounts = goodsStock.stream().filter(wmsToShopStock -> wmsToShopStock.getGoodsType().equals("次品")).collect(Collectors.toList());
+            List<WmsToShopStock> badCounts = goodsStock.stream().filter(wmsToShopStock -> "次品".equals(wmsToShopStock.getGoodsType())).collect(Collectors.toList());
             //List<WmsToShopStock> stockSumList = goodsCounts.stream().filter(wmsToShopStock -> wmsToShopStock.getStockType().equals("库存")).collect(Collectors.toList());
             //区分锁扣库存
             //List<WmsToShopStock> lockStockList = goodsCounts.stream().filter(wmsToShopStock -> wmsToShopStock.getStockType().equals("待下架")).collect(Collectors.toList());
@@ -269,12 +269,12 @@ public class MdGoodsServiceImpl extends ServiceImpl<MdGoodsMapper, MdGoods> impl
         if (StringUtil.isEmpty(orderType)) {
             orderType = "11";
         }
-        if (orderType.equals("19")) {
+        if ("19".equals(orderType)) {
             noticeid = "QTCK"
                     + DateUtils.date2Str(new Date(), new SimpleDateFormat("yyyyMMdd"))
                     + "-"
                     + String.format("%04d", newcount);
-        } else if (orderType.equals("11")) {
+        } else if ("11".equals(orderType)) {
             noticeid = "CK"
                     + DateUtils.date2Str(new Date(), new SimpleDateFormat("yyyyMMdd"))
                     + "-"

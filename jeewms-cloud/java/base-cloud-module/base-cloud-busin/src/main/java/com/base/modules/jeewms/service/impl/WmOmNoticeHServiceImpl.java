@@ -516,7 +516,7 @@ public class WmOmNoticeHServiceImpl extends ServiceImpl<WmOmNoticeHMapper, WmOmN
         Boolean flag = false;
         if (wmOmNoticeIList != null && wmOmNoticeIList.size() > 0) {
             for (WmOmNoticeI entity : wmOmNoticeIList) {
-                if(entity.getPlanSta().equals("Y")){
+                if("Y".equals(entity.getPlanSta())){
                     //外键设置
                     //entity = findWmOmNoticeIE(entity, wmOmNoticeH, wmOmNoticeH.getId());
                     wmOmNoticeIMapper.updateById(entity);
@@ -1662,7 +1662,7 @@ public class WmOmNoticeHServiceImpl extends ServiceImpl<WmOmNoticeHMapper, WmOmN
             List<WmToDownGoods> wmToDownGoods = wmToDownGoodsMapper.selectList(Wrappers.<WmToDownGoods>lambdaQuery().select(WmToDownGoods::getId, WmToDownGoods::getDownSta, WmToDownGoods::getBaseGoodscount, WmToDownGoods::getImCusCode).eq(WmToDownGoods::getImCusCode, orderId));
             if (!CollectionUtils.isEmpty(wmToDownGoods)) {
                 for (WmToDownGoods wmToDownGood : wmToDownGoods) {
-                    if (wmToDownGood.getDownSta().equals("已拣货")) {
+                    if ("已拣货".equals(wmToDownGood.getDownSta())) {
                         throw new JeecgBootException("已拣货，不能取消");
                     }
                     wmToDownGood.setBaseGoodscount("0");

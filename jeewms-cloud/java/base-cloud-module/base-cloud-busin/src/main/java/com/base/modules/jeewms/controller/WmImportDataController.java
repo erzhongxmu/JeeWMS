@@ -219,7 +219,7 @@ public class WmImportDataController extends BaseController<WmImportData, IWmImpo
 				List<WmImportData> list = new ArrayList<>();
 				for (WmImportData wmImportData : listim) {
 					wmImportData.setQuery01(imType);//入库或者出库
-					if(imType.equals("出库")){
+					if("出库".equals(imType)){
 						QueryWrapper<WmImportData> query2 = new QueryWrapper<>();
 						query2.eq("query01", "入库");
 						query2.eq("query02", wmImportData.getQuery02());
@@ -296,7 +296,7 @@ public class WmImportDataController extends BaseController<WmImportData, IWmImpo
 				List<WmImportData> list1 = new ArrayList<>();
 				for (Map.Entry<String, List<WmImportData>> stringListEntry : collect2.entrySet()) {
 					WmImportData wmImportData = stringListEntry.getValue().get(0);
-					if(wmImportData.getQuery01().equals("入库")||wmImportData.getQuery01().equals("stockin")){
+					if("入库".equals(wmImportData.getQuery01())|| "stockin".equals(wmImportData.getQuery01())){
 						list1.add(wmImportData);
 					}
 				}

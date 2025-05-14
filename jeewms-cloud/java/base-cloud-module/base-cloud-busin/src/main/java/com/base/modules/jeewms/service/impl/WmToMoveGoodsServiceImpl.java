@@ -87,7 +87,7 @@ public class WmToMoveGoodsServiceImpl extends ServiceImpl<WmToMoveGoodsMapper, W
      */
     @Override
     public Result<?> editBatch(List<EditBatchWmToMoveGoodsVo> list) {
-        if (verification(list).get("type").equals("true")) {
+        if ("true".equals(verification(list).get("type"))) {
             return Result.ok(verification(list).get("massge"));
         }
         int eer = list.size();

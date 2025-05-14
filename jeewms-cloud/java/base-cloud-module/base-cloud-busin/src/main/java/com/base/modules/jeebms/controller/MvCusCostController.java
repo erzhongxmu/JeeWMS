@@ -756,7 +756,7 @@ public class MvCusCostController extends BaseController<MvCusCost, IMvCusCostSer
 				 for (int j = 0; j < resultsum.size(); j++) {
 					 if(resultcountsum.get(i).get("cost_data").toString().equals(resultsum.get(j).get("cost_data").toString())){
 						 //wc.cost_name, sum(wc.day_cost_hsj) as hansj,  sum(wc.cost_sl) as costsl,wc.cost_unit
-						 if(resultsum.get(j).get("cost_code").toString().equals("501")){// 操作费
+						 if("501".equals(resultsum.get(j).get("cost_code").toString())){// 操作费
 							 sumcount =sumcount + 1;
 							 try{
 								 Cell cell3 = rowColumnValue.createCell(3);
@@ -780,7 +780,7 @@ public class MvCusCostController extends BaseController<MvCusCost, IMvCusCostSer
 
 							 }
 						 }
-						 if(resultsum.get(j).get("cost_code").toString().equals("5011")){// 操作费出
+						 if("5011".equals(resultsum.get(j).get("cost_code").toString())){// 操作费出
 							 sumcount =sumcount + 1;
 							 try{
 								 Cell cell3 = rowColumnValue.createCell(6);
@@ -804,7 +804,7 @@ public class MvCusCostController extends BaseController<MvCusCost, IMvCusCostSer
 
 							 }
 						 }
-						 if(resultsum.get(j).get("cost_code").toString().equals("1011")){// 仓租
+						 if("1011".equals(resultsum.get(j).get("cost_code").toString())){// 仓租
 							 sumcount =sumcount + 1;
 							 try{
 								 Cell cell3 = rowColumnValue.createCell(9);

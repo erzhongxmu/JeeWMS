@@ -41,7 +41,7 @@ public class oConvertUtils {
 	}
 
 	public static boolean isNotEmpty(Object object) {
-		if (object != null && !object.equals("") && !object.equals("null")) {
+		if (object != null && !"".equals(object) && !"null".equals(object)) {
 			return (true);
 		}
 		return (false);
@@ -66,7 +66,7 @@ public class oConvertUtils {
 
 	private static String code2code(String strIn, String sourceCode, String targetCode) {
 		String strOut = null;
-		if (strIn == null || (strIn.trim()).equals("")) {
+		if (strIn == null || "".equals(strIn.trim())) {
 			return strIn;
 		}
 		try {
@@ -396,7 +396,7 @@ public class oConvertUtils {
 		long bEnd = getIpNum("172.31.255.255");
 		long cBegin = getIpNum("192.168.0.0");
 		long cEnd = getIpNum("192.168.255.255");
-		isInnerIp = isInner(ipNum, aBegin, aEnd) || isInner(ipNum, bBegin, bEnd) || isInner(ipNum, cBegin, cEnd) || ipAddress.equals("127.0.0.1");
+		isInnerIp = isInner(ipNum, aBegin, aEnd) || isInner(ipNum, bBegin, bEnd) || isInner(ipNum, cBegin, cEnd) || "127.0.0.1".equals(ipAddress);
 		return isInnerIp;
 	}
 
@@ -438,7 +438,7 @@ public class oConvertUtils {
 			//update-end--Author:zhoujf  Date:20180503 for：TASK #2500 【代码生成器】代码生成器开发一通用模板生成功能
 		}
 		// 用下划线将原始字符串分割
-		String camels[] = name.split("_");
+		String[] camels = name.split("_");
 		for (String camel : camels) {
 			// 跳过原始字符串中开头、结尾的下换线或双重下划线
 			if (camel.isEmpty()) {
@@ -467,7 +467,7 @@ public class oConvertUtils {
 	 * @return 转换后的驼峰式命名的字符串
 	 */
 	public static String camelNames(String names) {
-		if(names==null||names.equals("")){
+		if(names==null|| "".equals(names)){
 			return null;
 		}
 		StringBuffer sf = new StringBuffer();
@@ -501,7 +501,7 @@ public class oConvertUtils {
 			return name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
 		}
 		// 用下划线将原始字符串分割
-		String camels[] = name.split("_");
+		String[] camels = name.split("_");
 		for (String camel : camels) {
 			// 跳过原始字符串中开头、结尾的下换线或双重下划线
 			if (camel.isEmpty()) {

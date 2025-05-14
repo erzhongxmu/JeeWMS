@@ -243,7 +243,7 @@ public class CDSRSA {
             PublicKey rsaPublic = rsaKeyPair.getPublic();
             PrivateKey rsaPrivate = rsaKeyPair.getPrivate();
 
-            String privateAndPublic[] = new String[2];
+            String[] privateAndPublic = new String[2];
             privateAndPublic[0] = bytesToHex(rsaPrivate.getEncoded());
             privateAndPublic[1] = bytesToHex(rsaPublic.getEncoded());
             logger.info("私钥:" + privateAndPublic[0]);

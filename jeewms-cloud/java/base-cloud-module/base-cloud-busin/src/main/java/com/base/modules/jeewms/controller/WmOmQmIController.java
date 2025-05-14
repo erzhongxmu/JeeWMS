@@ -798,7 +798,7 @@ public class WmOmQmIController extends JeecgController<WmOmQmI, IWmOmQmIService>
             String[] ids = id.split(",");
             for (String s : ids) {
                 HashMap<String,String> map1 = new HashMap<>(1024);
-                if(pageType.equals("XJ")){
+                if("XJ".equals(pageType)){
                     WmOmQmI omQmI = wmOmQmIService.getById(s);
                     WmOmNoticeH wmOmNoticeHS = wmOmNoticeHService.lambdaQuery().eq(WmOmNoticeH::getOmNoticeId, omQmI.getOmNoticeId()).one();
                     WmOmQmI omQmI2 = wmOmQmIService.getById(s);
@@ -807,7 +807,7 @@ public class WmOmQmIController extends JeecgController<WmOmQmI, IWmOmQmIService>
                     map1.put("data03", omQmI2.getSecondRq());
                     map1.put("data04",sdf.format(omQmI2.getCreateTime()));
                     map1.put("id",s);
-                }else if(pageType.equals("XJTZ")){
+                }else if("XJTZ".equals(pageType)){
                     WmToDownGoods wmToDownGoods = wmToDownGoodsService.getById(s);
                     WmOmQmI omQmI = wmOmQmIService.getById(wmToDownGoods.getOrderIdI());
                     if(omQmI==null){

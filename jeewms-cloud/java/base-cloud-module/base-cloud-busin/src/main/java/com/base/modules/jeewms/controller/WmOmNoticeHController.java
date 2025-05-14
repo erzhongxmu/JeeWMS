@@ -466,7 +466,7 @@ public class WmOmNoticeHController extends JeecgController<WmOmNoticeH, IWmOmNot
             } else {
                 try {
                     // 创建销售追踪
-                    if(StringUtil.isNotEmpty(omNoticeH.getRemarks()) && omNoticeH.getOrderTypeCode().equals("12")){
+                    if(StringUtil.isNotEmpty(omNoticeH.getRemarks()) && "12".equals(omNoticeH.getOrderTypeCode())){
                         BusiOmTrace busiOmTrace = new BusiOmTrace();
                         LambdaQueryWrapper<BusiOmTrace> objectLambdaQueryWrapper1 = new LambdaQueryWrapper<>();
                         objectLambdaQueryWrapper1.eq(BusiOmTrace::getQuery01,omNoticeH.getU8Djcode1());
@@ -788,7 +788,7 @@ public class WmOmNoticeHController extends JeecgController<WmOmNoticeH, IWmOmNot
         for (WmOmNoticeH main : wmOmNoticeHList) {
             WmOmNoticeHPage vo = new WmOmNoticeHPage();
             BeanUtils.copyProperties(main, vo);
-            if(main.getOrderTypeCode().equals("13")){
+            if("13".equals(main.getOrderTypeCode())){
                 List<WmOmNoticeI> wmOmNoticeIS = wmOmNoticeIService.selectByMainId(main.getOmNoticeId());
                 for (WmOmNoticeI wmOmNoticeI : wmOmNoticeIS) {
                     QueryWrapper<WmOmQmI> queryWrapper2 = new QueryWrapper<>();
@@ -1244,7 +1244,7 @@ public class WmOmNoticeHController extends JeecgController<WmOmNoticeH, IWmOmNot
             //omNoticeI.setShpYanEnse(mdGoods.getShpYanEnse());
             omNoticeI.setGoodsTypeName(mdGoods.getChpShuXing());
 
-            omNoticeI.setTaxrefund(omNoticeI.getCheckname().equals("0") ? "否" : "是");
+            omNoticeI.setTaxrefund("0".equals(omNoticeI.getCheckname()) ? "否" : "是");
             omNoticeI.setBillingproductunit(mdGoods.getGoodsUnit());
             omNoticeI.setBaseGoodscount(wmOmQmI.getBaseGoodscount());
             omNoticeI.setQtypercarton(wmOmQmI.getQmOkQuat());
@@ -1317,7 +1317,7 @@ public class WmOmNoticeHController extends JeecgController<WmOmNoticeH, IWmOmNot
                 omNoticeI.setTotalweight(StringUtils.isNotEmpty(omNoticeI.getWeightctn()) ? Convert.toDouble(NumberUtil.mul(omNoticeI.getWeightctn(), omNoticeI.getTotalqtypercarton())).toString() : "");
             }
 
-            if (omNoticeI.getCheckname().equals("1")) {
+            if ("1".equals(omNoticeI.getCheckname())) {
                 if (CollectionUtil.isNotEmpty(mdGoodsItems)) {
                     int index = 0;
                     for (MdGoodsItem mdGoodsItem : mdGoodsItems) {
@@ -1427,7 +1427,7 @@ public class WmOmNoticeHController extends JeecgController<WmOmNoticeH, IWmOmNot
                         omNoticeI.setGoodsjianchen(mdGoods.getYwMingCheng());
                         //omNoticeI.setShpYanEnse(mdGoods.getShpYanEnse());
                         omNoticeI.setGoodsTypeName(mdGoods.getChpShuXing());
-                        omNoticeI.setTaxrefund(omNoticeI.getCheckname().equals("0") ? "否" : "是");
+                        omNoticeI.setTaxrefund("0".equals(omNoticeI.getCheckname()) ? "否" : "是");
                         omNoticeI.setBillingproductunit(mdGoods.getGoodsUnit());
 
                         omNoticeI.setGoodsUnitPrice(wmImNoticeI.getUnitPrice());
@@ -1443,7 +1443,7 @@ public class WmOmNoticeHController extends JeecgController<WmOmNoticeH, IWmOmNot
 
                         List<MdGoodsItem> mdGoodsItems = goodsItemService.lambdaQuery().eq(MdGoodsItem::getSttr1, mdGoods.getShpBianMa()).list();
 
-                        if (omNoticeI.getCheckname().equals("1")) {
+                        if ("1".equals(omNoticeI.getCheckname())) {
                             if (CollectionUtil.isNotEmpty(mdGoodsItems)) {
                                 int index = 0;
                                 for (MdGoodsItem mdGoodsItem : mdGoodsItems) {

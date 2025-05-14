@@ -92,7 +92,7 @@ public class BaCityServiceImpl extends ServiceImpl<BaCityMapper, BaCity> impleme
 		QueryWrapper queryWrapper = new QueryWrapper();
 		List<BaCity> baCityList = baseMapper.selectList(queryWrapper);
 
-		List<BaCity> listUser = baCityList.stream().filter(baCity -> baCity.getPid().equals("0"))
+		List<BaCity> listUser = baCityList.stream().filter(baCity -> "0".equals(baCity.getPid()))
 				.peek(baCity -> baCity.setBaCityChild(getChildrens(baCity,baCityList))).collect(Collectors.toList());
 
 		return Result.ok(listUser);

@@ -135,7 +135,9 @@ public class Base64Utils {
     public static boolean GenerateImage(String imgStr,String imgFilePath )
     {   //对字节数组字符串进行Base64解码并生成图片
         if (imgStr == null) //图像数据为空
+        {
             return false;
+        }
         BASE64Decoder decoder = new BASE64Decoder();
         try
         {

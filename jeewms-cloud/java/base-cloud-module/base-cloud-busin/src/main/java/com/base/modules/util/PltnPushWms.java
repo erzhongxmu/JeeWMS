@@ -67,7 +67,7 @@ public class PltnPushWms {
         BusiPoItem pOitem =  busiPoItemPage.get(0);
         WmImNoticeHPage wmImNoticeHPage = new WmImNoticeHPage();
         // 订单类型：采购入库、其他入库
-        if(pOitem.getQuery18().equals("入库预约")){
+        if("入库预约".equals(pOitem.getQuery18())){
             wmImNoticeHPage.setOrderType("06");
         }else {
             wmImNoticeHPage.setOrderType("09");
@@ -154,7 +154,7 @@ public class PltnPushWms {
         List<WmImNoticeH> imNoticeHS = wmImNoticeHService.lambdaQuery().eq(WmImNoticeH::getImBeizhu, wmImNoticeHPage.getImBeizhu()).list();
         if (CollectionUtil.isNotEmpty(imNoticeHS)){
             for (WmImNoticeH imNoticeH : imNoticeHS) {
-                if (!imNoticeH.getOrderType().equals("07") && !imNoticeH.getOrderType().equals("09")){
+                if (!"07".equals(imNoticeH.getOrderType()) && !"09".equals(imNoticeH.getOrderType())){
                     if (imNoticeH.getOrderType().equals(wmImNoticeHPage.getOrderType())){
                         throw new JeecgBootException("主PO号已存在，请重新输入");
                     }
@@ -179,7 +179,7 @@ public class PltnPushWms {
 //             throw new JeecgBootException("主PO号已存在，不要重复推送");
 //        }
         //	订单类型:销售出库、其他出库
-        if(Omitem.getQuery20().equals("出库预约")){
+        if("出库预约".equals(Omitem.getQuery20())){
             wmOmNoticeH.setOrderTypeCode("12");
         }else {
             wmOmNoticeH.setOrderTypeCode("19");
@@ -298,7 +298,7 @@ public class PltnPushWms {
             MdCus one2 = mdCusService.getOne(MdCusqueryWrapper, false);
             wmOmNoticeH.setOmBeizhu(one2.getZhongWenQch());
         }
-        if(str.equals("ZJDD")){
+        if("ZJDD".equals(str)){
             wmOmNoticeH.setRemarks(busiPrdOrd.getQuery14());
         }else {
             wmOmNoticeH.setRemarks(busiPrdOrd.getQuery13());

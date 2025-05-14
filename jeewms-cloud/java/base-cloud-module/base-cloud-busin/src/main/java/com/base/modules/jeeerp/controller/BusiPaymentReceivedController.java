@@ -314,7 +314,7 @@ public class BusiPaymentReceivedController extends BaseController<BusiPaymentRec
 //			 }
 //		 }
         if (StringUtils.isNotEmpty(busiPaymentReceived1.getQuery04())) {
-            if (busiPaymentReceived1.getQuery01().equals("FKD")) {
+            if ("FKD".equals(busiPaymentReceived1.getQuery01())) {
                 QueryWrapper<BusiPaymentReceived> queryWrapper = new QueryWrapper<>();
                 queryWrapper.lambda().eq(BusiPaymentReceived::getQuery04, busiPaymentReceived1.getQuery04());
                 List<BusiPaymentReceived> list = busiPaymentReceivedService.list(queryWrapper);
@@ -327,7 +327,7 @@ public class BusiPaymentReceivedController extends BaseController<BusiPaymentRec
                     queryWrapper2.lambda().eq(BusiPo::getQuery04, list.get(0).getLink02());
                     List<BusiPo> list1 = busiPoService.list(queryWrapper2);
                     for (BusiPo busiPo : list1) {
-                        if (busiPo.getQuery01().equals("CGD")) {
+                        if ("CGD".equals(busiPo.getQuery01())) {
                             busiPo.setNum11(busiPo.getNum11() - list.get(0).getNum02());
                             busiPo.setNum12(busiPo.getNum12() - list.get(0).getNum03());
                         } else {
@@ -340,7 +340,7 @@ public class BusiPaymentReceivedController extends BaseController<BusiPaymentRec
                         busiPoService.updateById(busiPo);
                     }
                 }
-            } else if (busiPaymentReceived1.getQuery01().equals("SKD")) {
+            } else if ("SKD".equals(busiPaymentReceived1.getQuery01())) {
                 QueryWrapper<BusiPaymentReceived> queryWrapper = new QueryWrapper<>();
                 queryWrapper.lambda().eq(BusiPaymentReceived::getQuery04, busiPaymentReceived1.getQuery04());
                 List<BusiPaymentReceived> list = busiPaymentReceivedService.list(queryWrapper);
@@ -357,7 +357,7 @@ public class BusiPaymentReceivedController extends BaseController<BusiPaymentRec
             index++;
             BusiPaymentReceived BusiPayment = new BusiPaymentReceived();
             BeanUtils.copyProperties(PaymentReceived, BusiPayment);
-            if (busiPaymentReceived1.getQuery01().equals("CGFKJH") || busiPaymentReceived1.getQuery01().equals("YPFKJH")) {
+            if ("CGFKJH".equals(busiPaymentReceived1.getQuery01()) || "YPFKJH".equals(busiPaymentReceived1.getQuery01())) {
                 BusiPayment.setQuery02("付款中");
                 String str = "";
                 // 客户编码
@@ -380,11 +380,11 @@ public class BusiPaymentReceivedController extends BaseController<BusiPaymentRec
                     index2++;
                 }
                 BusiPayment.setText01(str);
-            } else if (busiPaymentReceived1.getQuery01().equals("XSSKJH") || busiPaymentReceived1.getQuery01().equals("YPSKJH")) {
+            } else if ("XSSKJH".equals(busiPaymentReceived1.getQuery01()) || "YPSKJH".equals(busiPaymentReceived1.getQuery01())) {
                 BusiPayment.setQuery02("收款中");
-            } else if (busiPaymentReceived1.getQuery01().equals("SKD")) {
+            } else if ("SKD".equals(busiPaymentReceived1.getQuery01())) {
                 BusiPayment.setQuery02("已收款");
-            } else if (busiPaymentReceived1.getQuery01().equals("FKD")) {
+            } else if ("FKD".equals(busiPaymentReceived1.getQuery01())) {
                 BusiPayment.setQuery02("已付款");
             } else {
                 BusiPayment.setQuery02("计划中");
@@ -553,10 +553,10 @@ public class BusiPaymentReceivedController extends BaseController<BusiPaymentRec
             MdCus one2 = mdCusService.getOne(MdCusqueryWrapper, false);
             busiPaymentReceived.setQuery31(one2.getXingYeFenLei());
 
-            if (postType.equals("SKD")) {
+            if ("SKD".equals(postType)) {
                 busiPaymentReceived.setQuery02("已收款");
             }
-            if (postType.equals("FKD")) {
+            if ("FKD".equals(postType)) {
                 if (busiPaymentReceived.getNum08() == 0) {
                     busiPaymentReceived.setQuery02("已付全款");
                 } else {
@@ -576,7 +576,7 @@ public class BusiPaymentReceivedController extends BaseController<BusiPaymentRec
 
     void changeStatus(String postType, VOmsPoWq vOmsPoWq) {
 
-        if (postType.equals("FKD")) {
+        if ("FKD".equals(postType)) {
             // 查询本次付款的所有同一计划的付款单
             QueryWrapper<BusiPaymentReceived> queryWrapper2 = new QueryWrapper<>();
             queryWrapper2.lambda().eq(BusiPaymentReceived::getLink02, vOmsPoWq.getQuery04());
@@ -607,7 +607,7 @@ public class BusiPaymentReceivedController extends BaseController<BusiPaymentRec
                 }
             }
         }
-        if (postType.equals("SKD")) {
+        if ("SKD".equals(postType)) {
             BusiPaymentReceived byId = busiPaymentReceivedService.getById(vOmsPoWq.getId());
             byId.setQuery02("已收款");
             busiPaymentReceivedService.updateById(byId);

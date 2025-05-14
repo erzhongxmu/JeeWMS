@@ -214,7 +214,7 @@ public class WmOmQmIServiceImpl extends ServiceImpl<WmOmQmIMapper, WmOmQmI> impl
                 parse = (JSONObject) JSONObject.parse(post);
                 code = parse.get("code") != null ? parse.get("code").toString() : "";
 
-                if (org.apache.commons.lang3.StringUtils.isNotEmpty(code) && code.equals("SUCCESS")) {
+                if (org.apache.commons.lang3.StringUtils.isNotEmpty(code) && "SUCCESS".equals(code)) {
                     ordersNumList.add(en.getImCusCode());
                     //配置下架详情参数
                     downGoods = getWmToDownGoods(en);
@@ -290,7 +290,7 @@ public class WmOmQmIServiceImpl extends ServiceImpl<WmOmQmIMapper, WmOmQmI> impl
 
         for (WmOmNoticeH wmOmNoticeH : list) {
             System.out.println(wmOmNoticeH.getOrderTypeCode()+"===");
-            if(wmOmNoticeH.getOrderTypeCode().equals("19")||wmOmNoticeH.getOrderTypeCode().equals("13")){
+            if("19".equals(wmOmNoticeH.getOrderTypeCode())|| "13".equals(wmOmNoticeH.getOrderTypeCode())){
             }else {
                 if(StringUtils.isEmpty(wmOmNoticeH.getU8Djcode1())){
                     throw  new JeecgBootException("装箱单为空");
@@ -626,7 +626,7 @@ public class WmOmQmIServiceImpl extends ServiceImpl<WmOmQmIMapper, WmOmQmI> impl
             parse = (JSONObject) JSONObject.parse(post);
             code = parse.get("code") != null ? parse.get("code").toString() : "";
         }
-        if (org.apache.commons.lang3.StringUtils.isNotEmpty(code) && code.equals("SUCCESS")) {
+        if (org.apache.commons.lang3.StringUtils.isNotEmpty(code) && "SUCCESS".equals(code)) {
             return Result.OK("仓库已下架，同步信息成功！");
         } else {
             return Result.error("同步信息失败！" + parse.get("msg"));

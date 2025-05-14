@@ -155,12 +155,12 @@ public class BusiPoServiceImpl extends ServiceImpl<BusiPoMapper, BusiPo> impleme
 			obj.setQuery07(MdSupone2.getDiZhi()); // 地址
 			obj.setQuery09(one.getZhuLianXiRen()); // 联系人
 			obj.setQuery11(one.getShouJi()); // 联系电话
-			if(busiPo.getQuery25().equals("是")){
+			if("是".equals(busiPo.getQuery25())){
 				obj.setQuery19(one.getCorporateAccount()); // 银行信息
 			}else {
 				obj.setQuery19(one.getPersonalAccount()); // 银行信息
 			}
-			if (!busiPo.getQuery22().equals("CNY")) {
+			if (!"CNY".equals(busiPo.getQuery22())) {
 				obj.setQuery19(one.getForeignAccount()); // 银行信息
 			}
 			obj.setQuery12(busiPo.getLink03() + "/" + busiPo.getQuery30()); // 销售单号
@@ -268,10 +268,10 @@ public class BusiPoServiceImpl extends ServiceImpl<BusiPoMapper, BusiPo> impleme
 			obj.setQuery14(one2.getXingYeFenLei()); // 企业属性
 			obj.setQuery15(qty.toString()); // 数量
 			obj.setQuery16(new DecimalFormat("0.00").format(unitprice)); // 单价
-			if(!busiPo.getQuery22().equals("CNY")){
+			if(!"CNY".equals(busiPo.getQuery22())){
 				obj.setQuery17("USD Account"); // 外币账户
 			}else {
-				if(busiPo.getQuery25().equals("是")){
+				if("是".equals(busiPo.getQuery25())){
 					obj.setQuery17("Company Account"); // 公司账户
 				}else {
 					obj.setQuery17("Personal Account"); // 私人账户
@@ -287,10 +287,10 @@ public class BusiPoServiceImpl extends ServiceImpl<BusiPoMapper, BusiPo> impleme
 				obj.setQuery18(busiPo1.getQuery27()+","+ busiPo1.getNum09()); // 是否退样版费
 			}
 
-			if(busiPo.getQuery25().equals("是")){
+			if("是".equals(busiPo.getQuery25())){
 				obj.setQuery19(one.getCorporateAccount()); // 银行信息
 				double v = busiPo.getNum09();
-				if(busiPo.getQuery27() != null && busiPo.getQuery27().equals("是") && busiPo.getQuery01().equals("CGD")){
+				if(busiPo.getQuery27() != null && "是".equals(busiPo.getQuery27()) && "CGD".equals(busiPo.getQuery01())){
 					v = busiPo.getNum09();
 					//  - busiPo.getNum16()
 				}
@@ -303,7 +303,7 @@ public class BusiPoServiceImpl extends ServiceImpl<BusiPoMapper, BusiPo> impleme
 
 			}
 
-			if (!busiPo.getQuery22().equals("CNY")) {
+			if (!"CNY".equals(busiPo.getQuery22())) {
 				obj.setQuery19(one.getForeignAccount()); // 银行信息
 			}
 			obj.setQuery22(one1.getClassification()); // 商品分类
@@ -312,8 +312,8 @@ public class BusiPoServiceImpl extends ServiceImpl<BusiPoMapper, BusiPo> impleme
 			// 子表
 			List<BusiPoItem> busiPoItemList = new ArrayList<>();
 			BusiPoItem obj2 = new BusiPoItem();
-			if(busiPo.getQuery01().equals("YP")){
-				if(busiPo.getQuery27().equals("是")){
+			if("YP".equals(busiPo.getQuery01())){
+				if("是".equals(busiPo.getQuery27())){
 					obj2.setQuery23("PR02"); // 付款代码
 				}else {
 					obj2.setQuery23("PR03"); // 付款代码
@@ -388,7 +388,7 @@ public class BusiPoServiceImpl extends ServiceImpl<BusiPoMapper, BusiPo> impleme
 				BaUnit one3 = baUnitService.getOne(queryWrapperUnit, false);
 				String unit = one3.getUnitEnName();
 				obj2.setQuery14(busiPaymentReceived.getNum01().toString() + unit); // 数量
- 				if(busiPaymentReceived.getQuery25().equals("是")){
+ 				if("是".equals(busiPaymentReceived.getQuery25())){
 					obj2.setQuery15(busiPaymentReceived.getNum06().toString()); // 单价
 					obj2.setQuery16( busiPaymentReceived.getNum10()+" %"); // 税率
 				}else {

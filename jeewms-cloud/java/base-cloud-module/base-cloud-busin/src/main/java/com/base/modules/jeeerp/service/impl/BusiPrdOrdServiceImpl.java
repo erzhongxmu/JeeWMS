@@ -126,7 +126,7 @@ public class BusiPrdOrdServiceImpl extends ServiceImpl<BusiPrdOrdMapper, BusiPrd
 		String code = generateCodeUtil.generateCode("busi_prd_ord", busiPrdOrdPage.getQuery01());
 		busiPrdOrdPage.setQuery04(code);
 		boolean kucunbuzu = false;
-		if (busiPrdOrdPage.getQuery01().equals("ZJDD")) {
+		if ("ZJDD".equals(busiPrdOrdPage.getQuery01())) {
 			busiPrdOrdPage.setNum02(busiPrdOrdPage.getNum01());
 			// 库存不足不可以建单
 //            List<BusiPrdOrdItem> busiPrdOrdItemList1 = busiPrdOrdPage.getBusiPrdOrdItemList();
@@ -189,7 +189,7 @@ public class BusiPrdOrdServiceImpl extends ServiceImpl<BusiPrdOrdMapper, BusiPrd
 		if (!kucunbuzu) {
 			pltnPushWms.materialsPutout(busiPrdOrd2,busiPrdOrdPage.getQuery01());
 		}
-		if (busiPrdOrdPage.getQuery01().equals("JG")) {
+		if ("JG".equals(busiPrdOrdPage.getQuery01())) {
 			// 生成生产完工
 			BusiPrdOrd busiPrdOrd3 = new BusiPrdOrd();
 			BeanUtils.copyProperties(busiPrdOrdPage, busiPrdOrd3);

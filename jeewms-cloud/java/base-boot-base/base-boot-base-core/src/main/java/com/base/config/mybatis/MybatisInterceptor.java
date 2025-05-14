@@ -48,7 +48,7 @@ public class MybatisInterceptor implements Interceptor {
 						field.setAccessible(true);
 						Object local_createBy = field.get(parameter);
 						field.setAccessible(false);
-						if (local_createBy == null || local_createBy.equals("")) {
+						if (local_createBy == null || "".equals(local_createBy)) {
 							if (sysUser != null) {
 								// 登录人账号
 								field.setAccessible(true);
@@ -62,7 +62,7 @@ public class MybatisInterceptor implements Interceptor {
 						field.setAccessible(true);
 						Object local_createBy = field.get(parameter);
 						field.setAccessible(false);
-						if (local_createBy == null || local_createBy.equals("")) {
+						if (local_createBy == null || "".equals(local_createBy)) {
 							if (sysUser != null) {
 								// 登录人账号
 								field.setAccessible(true);
@@ -78,7 +78,7 @@ public class MybatisInterceptor implements Interceptor {
 						field.setAccessible(true);
 						Object local_createDate = field.get(parameter);
 						field.setAccessible(false);
-						if (local_createDate == null || local_createDate.equals("")) {
+						if (local_createDate == null || "".equals(local_createDate)) {
 							field.setAccessible(true);
 							field.set(parameter, new Date());
 							field.setAccessible(false);
@@ -89,7 +89,7 @@ public class MybatisInterceptor implements Interceptor {
 						field.setAccessible(true);
 						Object local_sysOrgCode = field.get(parameter);
 						field.setAccessible(false);
-						if (local_sysOrgCode == null || local_sysOrgCode.equals("")) {
+						if (local_sysOrgCode == null || "".equals(local_sysOrgCode)) {
 							// 获取登录用户信息
 							if (sysUser != null) {
 								field.setAccessible(true);
@@ -144,7 +144,7 @@ public class MybatisInterceptor implements Interceptor {
 						field.setAccessible(true);
 						Object local_createBy = field.get(parameter);
 						field.setAccessible(false);
-						if (local_createBy == null || local_createBy.equals("")) {
+						if (local_createBy == null || "".equals(local_createBy)) {
 							if (sysUser != null) {
 								// 登录人账号
 								field.setAccessible(true);

@@ -131,7 +131,7 @@ public class WmToDownGoodsController extends JeecgController<WmToDownGoods, IWmT
         hashMap.put("u8_djcode1",wmToDownGoods.getU8Djcode1());
         hashMap.put("goods_name",wmToDownGoods.getGoodsName());
         String s = wmToDownGoods.getColumn().replaceAll("[A-Z]", "_$0").toLowerCase();
-        if(s.equals("u8_djcode1")){
+        if("u8_djcode1".equals(s)){
             s = "c.u8_djcode1";
         }else {
             s = "a." + s;
@@ -202,7 +202,7 @@ public class WmToDownGoodsController extends JeecgController<WmToDownGoods, IWmT
             List<WmTuopan> wmTuopans = tuopanService.lambdaQuery().eq(WmTuopan::getTinId, wmToDownGoods.getBinIdTo()).list();
             if (CollectionUtil.isNotEmpty(wmTuopans)){
                 WmTuopan tuopan = wmTuopans.get(0);
-                if (StringUtils.isNotEmpty(tuopan.getIsfails())  && tuopan.getIsfails().equals("1")){
+                if (StringUtils.isNotEmpty(tuopan.getIsfails())  && "1".equals(tuopan.getIsfails())){
                     throw  new JeecgBootException("该箱已出，请重新输入"+tuopan.getTinId());
                 }
                 tuopan.setIsfails("1");

@@ -98,14 +98,14 @@ public class BaKwController extends JeecgController<BaKw, IBaKwService> {
 		Map<String, String[]> parameterMap = req.getParameterMap();
 		String strings = parameterMap.get("column")[0];
 		String order = parameterMap.get("order")[0];
-		if (strings.equals("createTime")){
+		if ("createTime".equals(strings)){
 			queryWrapper.orderByDesc("create_time");
 		}else {
 			Set<String> key1= new HashSet<>();
 			key1.add(strings);
 			Map<String, Object> proxyPojoValue = StringUtil.getProxyPojoValue(new BaKw(), key1);
 			System.out.println(proxyPojoValue);
-			if (order.equals("asc")){
+			if ("asc".equals(order)){
 				queryWrapper.orderByAsc(proxyPojoValue.get(strings).toString());
 			}{
 				queryWrapper.orderByDesc(proxyPojoValue.get(strings).toString());

@@ -61,7 +61,7 @@ public class dataExchangeController {
         queryWrapper.eq(DiItMethod::getDiItRuleNo, ruleno);
         List<DiItMethod> list = diItMethodService.list(queryWrapper);
         for (DiItMethod t : list) {
-            if (t.getDiDsType().toUpperCase().equals("API") && t.getDiDdsType().toUpperCase().equals("SQL")) {
+            if ("API".equals(t.getDiDsType().toUpperCase()) && "SQL".equals(t.getDiDdsType().toUpperCase())) {
                 try {
                     //        "http://172.26.5.199:8088/device/getDeviceInfo"
                     //接口地址  暂时只能读取返回值为JSONARRAY实体
@@ -100,8 +100,8 @@ public class dataExchangeController {
             }
 
 
-            if (t.getDiDsType().toUpperCase().equals("SQL")
-                    && t.getDiDdsType().toUpperCase().equals("SQL")) {
+            if ("SQL".equals(t.getDiDsType().toUpperCase())
+                    && "SQL".equals(t.getDiDdsType().toUpperCase())) {
                 String scgreportheadkey = t.getDiSdata();//源数据源
                 String sSQL = t.getDiSsql();
                 String dcgreportheadkey = t.getDiDdata();//目的数据源

@@ -331,7 +331,7 @@ public class WmImNoticeHController extends JeecgController<WmImNoticeH, IWmImNot
         List<WmImNoticeH> imNoticeHS = wmImNoticeHService.lambdaQuery().eq(WmImNoticeH::getImBeizhu, wmImNoticeHPage.getImBeizhu()).list();
         if (CollectionUtil.isNotEmpty(imNoticeHS)){
             for (WmImNoticeH imNoticeH : imNoticeHS) {
-                if (!imNoticeH.getOrderType().equals("07") && !imNoticeH.getOrderType().equals("09")){
+                if (!"07".equals(imNoticeH.getOrderType()) && !"09".equals(imNoticeH.getOrderType())){
                     if (imNoticeH.getOrderType().equals(wmImNoticeHPage.getOrderType())){
                         throw new JeecgBootException("主PO号已存在，请重新输入");
                     }
@@ -1102,8 +1102,8 @@ public class WmImNoticeHController extends JeecgController<WmImNoticeH, IWmImNot
             String[] ids = id.split(",");
             for (String s : ids) {
                 HashMap<String,String> map1 = new HashMap<>(1024);
-                if(type.equals("xiangmai") || type.equals("rk")){
-                    if(pageType.equals("DHSH")){
+                if("xiangmai".equals(type) || "rk".equals(type)){
+                    if("DHSH".equals(pageType)){
                         WmImNoticeI   wmImNoticeI = wmImNoticeIService.getById(s);
                         if(StringUtil.isNotEmpty(wmImNoticeI.getGoodsUnit())){
                             List<BaUnit> baUnit = baUnitService.lambdaQuery().eq(BaUnit::getUnitCode, wmImNoticeI.getGoodsUnit()).list();
@@ -1111,7 +1111,7 @@ public class WmImNoticeHController extends JeecgController<WmImNoticeH, IWmImNot
                         }
                         map1.put("id",s);
                         map1.put("contractlno",wmImNoticeI.getContractlno());
-                    }else if(pageType.equals("SJ")){
+                    }else if("SJ".equals(pageType)){
                         WmInQmI   wmInQmI = wmInQmIService.getById(s);
                         WmImNoticeI   wmImNoticeI = wmImNoticeIService.getById(wmInQmI.getImNoticeItem());
                         if(StringUtil.isNotEmpty(wmImNoticeI.getGoodsUnit())){
@@ -1121,7 +1121,7 @@ public class WmImNoticeHController extends JeecgController<WmImNoticeH, IWmImNot
                         map1.put("id",s);
                         map1.put("contractlno",wmInQmI.getGoodsBatch());
                         map1.put("createTime",sdf.format(wmImNoticeI.getCreateTime()));
-                    }else if(pageType.equals("SJTZ") || pageType.equals("FX")){
+                    }else if("SJTZ".equals(pageType) || "FX".equals(pageType)){
                         String[] split = s.split("/");
                         WmToUpGoods wmToUpGoods = wmToUpGoodsService.getById(split[0]);
                         //WmInQmI wmInQmI = new WmInQmI();

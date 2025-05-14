@@ -127,15 +127,15 @@ public class BusiOrdPriceController extends BaseController<BusiOrdPrice, IBusiOr
 	@PostMapping(value = "/add")
 	public Result<?> add(@RequestBody BusiOrdPrice busiOrdPrice) {
 		String code = "";
-		if(busiOrdPrice.getQuery01().equals("QTFY")){
+		if("QTFY".equals(busiOrdPrice.getQuery01())){
 			code = generateCodeUtil.generateCode("busi_ord_price","QTFY");
 			busiOrdPrice.setQuery05(code);
 		}
-		if(busiOrdPrice.getQuery01().equals("YGGZ")){
+		if("YGGZ".equals(busiOrdPrice.getQuery01())){
 			code = generateCodeUtil.generateCode("busi_ord_price","YGGZ");
 			busiOrdPrice.setQuery08(code);
 		}
-		if(busiOrdPrice.getQuery01().equals("QCFY")){
+		if("QCFY".equals(busiOrdPrice.getQuery01())){
 			code = generateCodeUtil.generateCode("busi_ord_price","QCFY");
 			busiOrdPrice.setQuery05(code);
 		}
@@ -390,7 +390,7 @@ public class BusiOrdPriceController extends BaseController<BusiOrdPrice, IBusiOr
 					 po.setQuery01("QTFY");
 					 if(StringUtils.isEmpty(po.getQuery05())){
 						 String code = "";
-						 if(po.getQuery01().equals("QTFY")){
+						 if("QTFY".equals(po.getQuery01())){
 							 code = generateCodeUtil.generateCode("busi_ord_price","QTFY");
 						 }
 						 po.setQuery05(code);
@@ -437,7 +437,7 @@ public class BusiOrdPriceController extends BaseController<BusiOrdPrice, IBusiOr
 					 po.setQuery01("QCFY");
 					 if(StringUtils.isEmpty(po.getQuery05())){
 						 String code = "";
-						 if(po.getQuery01().equals("QCFY")){
+						 if("QCFY".equals(po.getQuery01())){
 							 code = generateCodeUtil.generateCode("busi_ord_price","QCFY");
 						 }
 						 po.setQuery05(code);

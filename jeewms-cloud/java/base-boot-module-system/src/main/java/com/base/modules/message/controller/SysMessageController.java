@@ -156,7 +156,7 @@ public class SysMessageController extends BaseController<SysMessage, ISysMessage
 											   @RequestParam(name="templateCode", required = true) String templateCode){
 		TemplateMessageDTO templateMessageDTO = new TemplateMessageDTO();
 		String str = "";
-		if(toUser.equals("QTYG")){
+		if("QTYG".equals(toUser)){
 //            SysUser
 			QueryWrapper<SysUser> queryWrapper = new QueryWrapper();
 			List<SysUser> list = sysUserService.list(queryWrapper);

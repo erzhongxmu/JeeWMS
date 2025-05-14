@@ -120,10 +120,10 @@ public class ApiGetControler {
                 querymap.put("query01", query01);
                 querymap.put("query02", query02);
                 IPage<ApiresEntity> pageList = new Page<>();
-                if (project.equals("SW") || project.equals("GS")){
+                if ("SW".equals(project) || "GS".equals(project)){
                     pageList = wmsPdaService.queryListType03(page, querymap);
                     return Result.ok(pageList);
-                }else if (project.equals("PLTN")){
+                }else if ("PLTN".equals(project)){
                     pageList = wmsPdaService.queryListType03pltn(page, querymap);
                     List<ApiresEntity> records1 = new ArrayList<>();
                     List<MdGoodsItem> mdGoodsItems = itemService.lambdaQuery().eq(MdGoodsItem::getSttr1, query02).list();
@@ -264,10 +264,10 @@ public class ApiGetControler {
             } else if (listtype.equals(CONSTANTTYPE.listtype19)) {//下架
                 querymap.put("query01", query01);
                 querymap.put("query02", query02);
-                if (project.equals("SW") || project.equals("GS")) {
+                if ("SW".equals(project) || "GS".equals(project)) {
                     IPage<ApiresEntity> pageList = wmsPdaService.queryListType19swgs(page, querymap);
                     return Result.ok(pageList);
-                } else if (project.equals("PLTN")) {
+                } else if ("PLTN".equals(project)) {
 
                     if (StringUtils.isEmpty(query01)){
                         throw new JeecgBootException("请扫描单号");
@@ -291,7 +291,7 @@ public class ApiGetControler {
                 querymap.put("query01", query01);
                 querymap.put("query02", query02);
                 IPage<ApiresEntity> pageList = new Page<>();
-                if (project.equals("PLTN")){
+                if ("PLTN".equals(project)){
                     if (StringUtils.isEmpty(query01)){
                         throw new JeecgBootException("请扫描单号");
                     }
@@ -311,7 +311,7 @@ public class ApiGetControler {
                     }
                     record.setQuery10(wmToUpGoods.getKuWeiBianMa());
                     if (StringUtils.isNotEmpty(record.getQuery09())){
-                        record.setQuery09(record.getQuery09().equals("A") ? "" : record.getQuery09());
+                        record.setQuery09("A".equals(record.getQuery09()) ? "" : record.getQuery09());
                     }
                 }
                 return Result.ok(pageList);
@@ -342,10 +342,10 @@ public class ApiGetControler {
                 querymap.put("query01", query01);
                 querymap.put("query02", query02);
                 IPage<ApiresEntity> pageList = new Page<>();
-                if (project.equals("SW") || project.equals("GS")){
+                if ("SW".equals(project) || "GS".equals(project)){
                     pageList = wmsPdaService.queryListType26(page, querymap);
                     return Result.ok(pageList);
-                }else if (project.equals("PLTN")){
+                }else if ("PLTN".equals(project)){
                     pageList = wmsPdaService.queryListType26(page, querymap);
                     List<ApiresEntity> records1 = new ArrayList<>();
                     List<MdGoodsItem> mdGoodsItems = itemService.lambdaQuery().eq(MdGoodsItem::getSttr1, query02).list();

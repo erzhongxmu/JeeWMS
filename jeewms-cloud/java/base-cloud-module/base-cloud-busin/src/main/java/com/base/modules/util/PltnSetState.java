@@ -54,7 +54,7 @@ public class PltnSetState {
      */
     @Transactional
     public void setState(String State, String ordertype, String orderCode) {
-        if (ordertype.equals("CGFKJH") || ordertype.equals("CGD") || ordertype.equals("YPFKJH") || ordertype.equals("RKYY")) { // 采购付款计划,新增采购单,样品付款计划
+        if ("CGFKJH".equals(ordertype) || "CGD".equals(ordertype) || "YPFKJH".equals(ordertype) || "RKYY".equals(ordertype)) { // 采购付款计划,新增采购单,样品付款计划
             QueryWrapper<BusiPo> queryWrapper = new QueryWrapper<>();
             queryWrapper.lambda().eq(BusiPo::getQuery04, orderCode);
             List<BusiPo> list = busiPoService.list(queryWrapper);
@@ -64,7 +64,7 @@ public class PltnSetState {
                     busiPoService.updateById(busiPo);
                 }
              }
-        } else if (ordertype.equals("XSSKJH") || ordertype.equals("XSD") || ordertype.equals("CKYY")) { // 销售收款计划，销售单状态
+        } else if ("XSSKJH".equals(ordertype) || "XSD".equals(ordertype) || "CKYY".equals(ordertype)) { // 销售收款计划，销售单状态
             QueryWrapper<BusiOm> queryWrapper = new QueryWrapper<>();
             queryWrapper.lambda().eq(BusiOm::getQuery04, orderCode);
             List<BusiOm> list = busiOmService.list(queryWrapper);
@@ -72,7 +72,7 @@ public class PltnSetState {
                 busiOm.setQuery02(State);
                 busiOmService.updateById(busiOm);
             }
-        } else if (ordertype.equals("JG")) { // 加工订单状态
+        } else if ("JG".equals(ordertype)) { // 加工订单状态
             QueryWrapper<BusiPrdOrd> queryWrapper = new QueryWrapper<>();
             queryWrapper.lambda().eq(BusiPrdOrd::getQuery04, orderCode);
             List<BusiPrdOrd> list = busiPrdOrdService.list(queryWrapper);
@@ -80,7 +80,7 @@ public class PltnSetState {
                 busiPrdOrd.setQuery02(State);
                 busiPrdOrdService.updateById(busiPrdOrd);
             }
-        } else if (ordertype.equals("SKD") || ordertype.equals("FKD")) { // 修改计划收款单状态/修改付款单状态
+        } else if ("SKD".equals(ordertype) || "FKD".equals(ordertype)) { // 修改计划收款单状态/修改付款单状态
             QueryWrapper<BusiPaymentReceived> queryWrapper = new QueryWrapper<>();
             queryWrapper.lambda().eq(BusiPaymentReceived::getQuery04, orderCode);
             List<BusiPaymentReceived> list = busiPaymentReceivedService.list(queryWrapper);
@@ -100,8 +100,8 @@ public class PltnSetState {
      * @return
      */
     public void wmsPoSetState(String type, WmImNoticeH wmImNoticeH, WmToUpGoods wmToUpGoodsEntity) {
-        if (type.equals("number")) {
-            if (wmImNoticeH.getOrderTypeCode().equals("06")) {
+        if ("number".equals(type)) {
+            if ("06".equals(wmImNoticeH.getOrderTypeCode())) {
                 // 修改采购的入库数量
                 QueryWrapper<BusiPo> QueryWrapper = new QueryWrapper<>();
                 QueryWrapper.lambda().eq(BusiPo::getQuery14, wmToUpGoodsEntity.getGoodsBatch());
@@ -117,7 +117,7 @@ public class PltnSetState {
                     one.setNum02(one.getNum01() - num03);
                     busiPoService.updateById(one);
                 }
-            } else if (wmImNoticeH.getOrderTypeCode().equals("07")) {
+            } else if ("07".equals(wmImNoticeH.getOrderTypeCode())) {
                 //  修改加工的入库数量
                 QueryWrapper<BusiPrdOrd> QueryWrapper = new QueryWrapper<>();
                 QueryWrapper.lambda().eq(BusiPrdOrd::getQuery14, wmToUpGoodsEntity.getGoodsBatch());
@@ -135,8 +135,8 @@ public class PltnSetState {
                     busiPrdOrdService.updateById(one);
                 }
             }
-        } else if (type.equals("state")) {
-            if (wmImNoticeH.getOrderTypeCode().equals("06")) {
+        } else if ("state".equals(type)) {
+            if ("06".equals(wmImNoticeH.getOrderTypeCode())) {
                 // 修改采购的入库状态
                 QueryWrapper<BusiPo> QueryWrapper = new QueryWrapper<>();
                 QueryWrapper.lambda().eq(BusiPo::getQuery13, wmImNoticeH.getImBeizhu());
@@ -160,7 +160,7 @@ public class PltnSetState {
                     }
                 }
 
-            } else if (wmImNoticeH.getOrderTypeCode().equals("07")) {
+            } else if ("07".equals(wmImNoticeH.getOrderTypeCode())) {
                 // 修改加工的入库状态
                 QueryWrapper<BusiPrdOrd> QueryWrapper = new QueryWrapper<>();
                 QueryWrapper.lambda().eq(BusiPrdOrd::getQuery13, wmImNoticeH.getImBeizhu());
@@ -215,8 +215,8 @@ public class PltnSetState {
      */
     @Transactional
     public void wmsOmSetState(String type, WmOmNoticeH wmOmNoticeH, WmToDownGoods wmToDownGoods) {
-        if (type.equals("number")) {
-            if (wmOmNoticeH.getOrderTypeCode().equals("12")) { // 采购或者样品推过来的出库单
+        if ("number".equals(type)) {
+            if ("12".equals(wmOmNoticeH.getOrderTypeCode())) { // 采购或者样品推过来的出库单
                 // 更新busi_po出库数量
                 QueryWrapper<BusiPo> QueryWrapper = new QueryWrapper<>();
                 QueryWrapper.lambda().eq(BusiPo::getQuery14, wmToDownGoods.getGoodsBatch());
@@ -237,7 +237,7 @@ public class PltnSetState {
                     one1.setNum19(one1.getNum01() - num20);
                     busiPoService.updateById(one1);
                 }
-            } else if (wmOmNoticeH.getOrderTypeCode().equals("13")) { // 加工推过来的领料单
+            } else if ("13".equals(wmOmNoticeH.getOrderTypeCode())) { // 加工推过来的领料单
                 // 查询更新busi_prd_ord领料数量
                 if (!StringUtil.isBlankOrNull(wmOmNoticeH.getRemarks())) {
 
@@ -270,8 +270,8 @@ public class PltnSetState {
                     }
                 }
             }
-        } else if (type.equals("state")) {
-            if (wmOmNoticeH.getOrderTypeCode().equals("12")) { // 采购或者样品推过来的出库单
+        } else if ("state".equals(type)) {
+            if ("12".equals(wmOmNoticeH.getOrderTypeCode())) { // 采购或者样品推过来的出库单
                 if (!StringUtil.isBlankOrNull(wmOmNoticeH.getRemarks())) {
                     QueryWrapper<BusiPo> QueryWrapper = new QueryWrapper<>();
                     QueryWrapper.lambda().eq(BusiPo::getQuery13, wmOmNoticeH.getRemarks());
@@ -303,7 +303,7 @@ public class PltnSetState {
                     }
                 }
 
-            } else if (wmOmNoticeH.getOrderTypeCode().equals("13")) { // 加工推过来的领料单
+            } else if ("13".equals(wmOmNoticeH.getOrderTypeCode())) { // 加工推过来的领料单
                 if (!StringUtil.isBlankOrNull(wmOmNoticeH.getRemarks())) {
 
                     QueryWrapper<BusiPrdOrd> QueryWrapper = new QueryWrapper<>();

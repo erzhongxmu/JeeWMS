@@ -229,7 +229,7 @@ public class CommonController {
     public static int[] getImgWidthHeight(File file) {
         InputStream is = null;
         BufferedImage src = null;
-        int result[] = { 0, 0 };
+        int[] result = { 0, 0 };
         try {
             // 获得文件输入流
             is = new FileInputStream(file);

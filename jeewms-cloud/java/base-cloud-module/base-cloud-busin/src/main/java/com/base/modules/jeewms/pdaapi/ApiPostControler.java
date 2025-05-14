@@ -126,7 +126,7 @@ public class ApiPostControler {
             }
             if (listtype.equals(CONSTANTTYPE.listtype01)) {
 
-                if (project.equals("PLTN")){
+                if ("PLTN".equals(project)){
                     if (StringUtils.isEmpty(apiEntity.getQuery08())){
                         throw new JeecgBootException("数量不能为空");
                     }
@@ -190,7 +190,7 @@ public class ApiPostControler {
                             public void run() {
                                 smsSend.labelPrinting(wmImNoticeI2.getId(),tinids,div,query15);
                                 //打印箱唛
-                                if (StringUtils.isNotEmpty(apiEntity.getQuery16()) && apiEntity.getQuery16().equals("1")){
+                                if (StringUtils.isNotEmpty(apiEntity.getQuery16()) && "1".equals(apiEntity.getQuery16())){
                                     smsSend.labelPrints(wmImNoticeI2.getId(),tinids,div,query15);
                                 }
                             }
@@ -240,7 +240,7 @@ public class ApiPostControler {
                 if(new BigDecimal(query13).compareTo(new BigDecimal(query12)) == 1){
                     throw new JeecgBootException("本次入库数量大于待入库数量");
                 }
-                if (project.equals("SW") || project.equals("GS")) {
+                if ("SW".equals(project) || "GS".equals(project)) {
                     if (StringUtils.isEmpty(apiEntity.getQuery07())) {
                         throw new JeecgBootException("日期不能为空");
                     }
@@ -271,7 +271,7 @@ public class ApiPostControler {
                     wmImNoticeIList.add(wmImNoticeI);
                     wmInQmIService.batchAdd(wmImNoticeIList);
                     return Result.ok("操作成功");
-                } else if (project.equals("PLTN")) {
+                } else if ("PLTN".equals(project)) {
                     String query15 = apiEntity.getQuery15();//每箱数量
 
                     if(new BigDecimal(query15).compareTo(new BigDecimal(query13)) == 1){
@@ -342,7 +342,7 @@ public class ApiPostControler {
                                     }
                                     //打印箱唛
                                     try{
-                                        if (StringUtils.isNotEmpty(apiEntity.getQuery16()) && apiEntity.getQuery16().equals("1")){
+                                        if (StringUtils.isNotEmpty(apiEntity.getQuery16()) && "1".equals(apiEntity.getQuery16())){
                                             smsSend.labelPrints(wmImNoticeI2.getId(),tinids,div,query15);
                                         }
                                     }catch (Exception exm){
@@ -747,10 +747,10 @@ public class ApiPostControler {
                 ids.add(apiEntity.getId());
                 Result<?> result = null;
 
-                if (project.equals("SW")) {
+                if ("SW".equals(project)) {
                     result = wmOmQmIService.dotowavedown1(ids,apiEntity.getQuery09(),apiEntity.getTenantId(), ConstUtil.wm_y);
                     return Result.ok(result);
-                } else if (project.equals("GS") || project.equals("PLTN")) {
+                } else if ("GS".equals(project) || "PLTN".equals(project)) {
                     List<WvStockSttQuery> wvStockStt = new ArrayList<>();
                     WmOmQmI byId = wmOmQmIService.getById(apiEntity.getId());
                     if(!byId.getTinId().equals(apiEntity.getQuery08())) {
@@ -826,7 +826,7 @@ public class ApiPostControler {
                 }*/
                 WmInQmI wmInQmI = wmInQmIService.getById(apiEntity.getId());
                 List<String> idList = new ArrayList<>();
-                if (project.equals("SW")) {
+                if ("SW".equals(project)) {
                     wmInQmI.setBinId(apiEntity.getQuery10());
                     wmInQmI.setTinId(apiEntity.getQuery09());
                     wmInQmI.setTenantId(apiEntity.getTenantId());
@@ -864,11 +864,11 @@ public class ApiPostControler {
                     tuopan.setIsupfails("1");
                     tuopanService.updateById(tuopan);
                     return Result.ok("操作成功！");
-                }*/ else if (project.equals("GS") || project.equals("PLTN")){
+                }*/ else if ("GS".equals(project) || "PLTN".equals(project)){
                     String[] split = apiEntity.getId().split(",");
                     for (String s : split) {
                         WmInQmI wmInQmIpltn = wmInQmIService.getById(s);
-                        if(wmInQmIpltn.getBinSta().equals("N")){
+                        if("N".equals(wmInQmIpltn.getBinSta())){
                             wmInQmIpltn.setBinId(apiEntity.getQuery10());
                             wmInQmIService.updateById(wmInQmIpltn);
                         }
@@ -908,7 +908,7 @@ public class ApiPostControler {
                 if(new BigDecimal(query13).compareTo(new BigDecimal(query12)) == 1){
                     throw new JeecgBootException("本次入库数量大于待入库数量");
                 }
-                if (project.equals("SW") || project.equals("GS")) {
+                if ("SW".equals(project) || "GS".equals(project)) {
                     if (StringUtils.isEmpty(apiEntity.getQuery07())) {
                         throw new JeecgBootException("日期不能为空");
                     }
@@ -939,7 +939,7 @@ public class ApiPostControler {
                     wmImNoticeIList.add(wmImNoticeI);
                     wmInQmIService.batchAdd(wmImNoticeIList);
                     return Result.ok("操作成功");
-                } else if (project.equals("PLTN")) {
+                } else if ("PLTN".equals(project)) {
 
                     String query15 = apiEntity.getQuery15();//每箱数量
 
@@ -1012,7 +1012,7 @@ public class ApiPostControler {
                                 }
                                 //打印箱唛
                                 try{
-                                    if (StringUtils.isNotEmpty(apiEntity.getQuery16()) && apiEntity.getQuery16().equals("1")){
+                                    if (StringUtils.isNotEmpty(apiEntity.getQuery16()) && "1".equals(apiEntity.getQuery16())){
                                         smsSend.labelPrints(wmImNoticeI2.getId(),tinids,div,query15);
                                     }
                                 }catch (Exception exm){

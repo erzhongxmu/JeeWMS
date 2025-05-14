@@ -430,11 +430,11 @@ public class WmImNoticeHServiceImpl extends ServiceImpl<WmImNoticeHMapper, WmImN
                 Cell cellTitle = row1.createCell(0);
                 if ("03".equals(wmImNoticeH.getOrderTypeCode())) {
                     cellTitle.setCellValue("退货验收单");
-                } else if (wmImNoticeH.getOrderTypeCode().equals("01")) {
+                } else if ("01".equals(wmImNoticeH.getOrderTypeCode())) {
                     cellTitle.setCellValue("收货验收单");
-                } else if (wmImNoticeH.getOrderTypeCode().equals("04")) {
+                } else if ("04".equals(wmImNoticeH.getOrderTypeCode())) {
                     cellTitle.setCellValue("越库单");
-                } else if (wmImNoticeH.getOrderTypeCode().equals("09")) {
+                } else if ("09".equals(wmImNoticeH.getOrderTypeCode())) {
                     cellTitle.setCellValue("收货验收单");
                 }
 
@@ -2260,7 +2260,7 @@ public class WmImNoticeHServiceImpl extends ServiceImpl<WmImNoticeHMapper, WmImN
 
     @Override
     public void doPrintckd(String id,String language, HttpServletResponse response) {
-        if (StringUtils.isNotEmpty(language) && language.equals("en")){
+        if (StringUtils.isNotEmpty(language) && "en".equals(language)){
             try {
                 WmImNoticeH wmImNoticeH = wmImNoticeHMapper.selectById(id);//获取抬头
                 MdSup mdSup = new MdSup();
