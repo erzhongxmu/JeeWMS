@@ -251,7 +251,7 @@ public class ZdOnlCgreportHeadServiceImpl extends ServiceImpl<com.base.modules.b
             return var18;
         }
     }
-
+    @Override
     public Map<String, Object> executeSelectSqlDynamic(String dbKey, String sql, Map<String, Object> params, String onlCgreportHeadId) {
         DynamicDataSourceModel var5 = DataSourceCachePool.getCacheDynamicDataSourceModel(dbKey);
         String var6 = (String)params.get("order");
@@ -310,6 +310,7 @@ public class ZdOnlCgreportHeadServiceImpl extends ServiceImpl<com.base.modules.b
     @Transactional(
             rollbackFor = {Exception.class}
     )
+    @Override
     public Result<?> editAll(zdOnlCgreportModel values) {
         zdOnlCgreportHead var2 = values.getHead();
         zdOnlCgreportHead var3 = (zdOnlCgreportHead)super.getById(var2.getId());
@@ -347,6 +348,7 @@ public class ZdOnlCgreportHeadServiceImpl extends ServiceImpl<com.base.modules.b
     @Transactional(
             rollbackFor = {Exception.class}
     )
+    @Override
     public Result<?> delete(String id) {
         boolean var2 = super.removeById(id);
         if (var2) {
@@ -364,6 +366,7 @@ public class ZdOnlCgreportHeadServiceImpl extends ServiceImpl<com.base.modules.b
     @Transactional(
             rollbackFor = {Exception.class}
     )
+    @Override
     public Result<?> bathDelete(String[] ids) {
         String[] var2 = ids;
         int var3 = ids.length;
@@ -383,7 +386,7 @@ public class ZdOnlCgreportHeadServiceImpl extends ServiceImpl<com.base.modules.b
 
         return Result.ok("删除成功");
     }
-
+    @Override
     public List<String> getSqlFields(String sql, String dbKey) throws SQLException {
         List var3 = null;
         if (StringUtils.isNotBlank(dbKey)) {
@@ -394,7 +397,7 @@ public class ZdOnlCgreportHeadServiceImpl extends ServiceImpl<com.base.modules.b
 
         return var3;
     }
-
+    @Override
     public List<String> getSqlParams(String sql) {
         if (oConvertUtils.isEmpty(sql)) {
             return null;
@@ -469,7 +472,7 @@ public class ZdOnlCgreportHeadServiceImpl extends ServiceImpl<com.base.modules.b
             return new ArrayList(var3);
         }
     }
-
+    @Override
     public Map<String, Object> queryCgReportConfig(String reportId) {
         HashMap var2 = new HashMap(0);
         Map var3 = this.mapper.queryCgReportMainConfig(reportId);
@@ -486,7 +489,7 @@ public class ZdOnlCgreportHeadServiceImpl extends ServiceImpl<com.base.modules.b
         var2.put("params", var5);
         return var2;
     }
-
+    @Override
     public List<Map<?, ?>> queryByCgReportSql(String sql, Map params, Map paramData, int pageNo, int pageSize) {
         String var6 = SqlUtil.a(sql, params);
         List var7 = null;

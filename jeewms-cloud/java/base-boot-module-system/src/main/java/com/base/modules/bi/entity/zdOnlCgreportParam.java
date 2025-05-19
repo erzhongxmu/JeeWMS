@@ -143,7 +143,7 @@ public class zdOnlCgreportParam implements Serializable {
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
-
+	@Override
 	public boolean equals(Object o) {
 		if (o == this) {
 			return true;
@@ -278,7 +278,7 @@ public class zdOnlCgreportParam implements Serializable {
 	protected boolean canEqual(Object other) {
 		return other instanceof zdOnlCgreportParam;
 	}
-
+	@Override
 	public int hashCode() {
 		boolean var1 = true;
 		byte var2 = 1;
@@ -304,7 +304,7 @@ public class zdOnlCgreportParam implements Serializable {
 		var13 = var13 * 59 + (var12 == null ? 43 : var12.hashCode());
 		return var13;
 	}
-
+	@Override
 	public String toString() {
 		return "zdOnlCgreportParam(id=" + this.getId() + ", cgrheadId=" + this.getCgrheadId() + ", paramName=" + this.getParamName() + ", paramTxt=" + this.getParamTxt() + ", paramValue=" + this.getParamValue() + ", orderNum=" + this.getOrderNum() + ", createBy=" + this.getCreateBy() + ", createTime=" + this.getCreateTime() + ", updateBy=" + this.getUpdateBy() + ", updateTime=" + this.getUpdateTime() + ")";
 	}
