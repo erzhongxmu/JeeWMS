@@ -3,15 +3,19 @@ package org.jeecgframework.core.enums;
 import org.jeecgframework.core.util.StringUtil;
 
 /**
- *
  * 系统数据库默认参数类
+ *
  * @author jg_huangxg
  */
 public enum SysDatabaseEnum {
-
-	MYSQL("mysql","jdbc:mysql://SERVERADDRESS:PORT/YOURDATABASENAME?useUnicode=true&characterEncoding=UTF-8","com.mysql.jdbc.Driver"),
-	SQLSERVER2008("sqlserver2008","jdbc:sqlserver://SERVERADDRESS:PORT;DatabaseName=YOURDATABASENAME","com.microsoft.sqlserver.jdbc.SQLServerDriver"),
-	ORACLE("oracle","jdbc:oracle:thin:@SERVERADDRESS:PORT:YOURDATABASENAME","oracle.jdbc.driver.OracleDriver");
+    /**
+     * MYSQL("mysql","jdbc:mysql://SERVERADDRESS:PORT/YOURDATABASENAME?useUnicode=true&characterEncoding=UTF-8","com.mysql.jdbc.Driver"),
+     * SQLSERVER2008("sqlserver2008","jdbc:sqlserver://SERVERADDRESS:PORT;DatabaseName=YOURDATABASENAME","com.microsoft.sqlserver.jdbc.SQLServerDriver"),
+     * ORACLE("oracle","jdbc:oracle:thin:@SERVERADDRESS:PORT:YOURDATABASENAME","oracle.jdbc.driver.OracleDriver");
+     */
+    MYSQL("mysql", "jdbc:mysql://SERVERADDRESS:PORT/YOURDATABASENAME?useUnicode=true&characterEncoding=UTF-8", "com.mysql.jdbc.Driver"),
+    SQLSERVER2008("sqlserver2008", "jdbc:sqlserver://SERVERADDRESS:PORT;DatabaseName=YOURDATABASENAME", "com.microsoft.sqlserver.jdbc.SQLServerDriver"),
+    ORACLE("oracle", "jdbc:oracle:thin:@SERVERADDRESS:PORT:YOURDATABASENAME", "oracle.jdbc.driver.OracleDriver");
 
 
     /**
@@ -19,7 +23,7 @@ public enum SysDatabaseEnum {
      */
     private String dbtype;
 
-	/**
+    /**
      * 默认连接字符串
      */
     private String url;
@@ -36,44 +40,44 @@ public enum SysDatabaseEnum {
     }
 
     public String getDbtype() {
-		return dbtype;
-	}
+        return dbtype;
+    }
 
-	public void setDbtype(String dbtype) {
-		this.dbtype = dbtype;
-	}
+    public void setDbtype(String dbtype) {
+        this.dbtype = dbtype;
+    }
 
-	public String getUrl() {
-		return url;
-	}
+    public String getUrl() {
+        return url;
+    }
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-	public String getDriverClass() {
-		return driverClass;
-	}
+    public String getDriverClass() {
+        return driverClass;
+    }
 
-	public void setDriverClass(String driverClass) {
-		this.driverClass = driverClass;
-	}
+    public void setDriverClass(String driverClass) {
+        this.driverClass = driverClass;
+    }
 
-	public static SysDatabaseEnum toEnum(String dbtype) {
-		if (StringUtil.isEmpty(dbtype)) {
-			return null;
+    public static SysDatabaseEnum toEnum(String dbtype) {
+        if (StringUtil.isEmpty(dbtype)) {
+            return null;
         }
-		for(SysDatabaseEnum item : SysDatabaseEnum.values()) {
-			if(item.getDbtype().equals(dbtype)) {
-				return item;
-			}
-		}
-		return null;
-	}
+        for (SysDatabaseEnum item : SysDatabaseEnum.values()) {
+            if (item.getDbtype().equals(dbtype)) {
+                return item;
+            }
+        }
+        return null;
+    }
 
     @Override
     public String toString() {
-        return "{dbtype: " + dbtype + ", url: " + url + ", driverClass: " + driverClass +"}";
+        return "{dbtype: " + dbtype + ", url: " + url + ", driverClass: " + driverClass + "}";
     }
 
 }
