@@ -152,6 +152,7 @@ public class WmOmNoticeHController extends BaseController {
         this.wmOmNoticeHService.getDataGridReturn(cq, true);
         TagUtil.datagrid(response, dataGrid);
     }
+
     @RequestMapping(params = "saveOmnotice")
     @ResponseBody
     public AjaxJson saveOmnotice(wmomnoticeipage page) {
@@ -3279,7 +3280,8 @@ public class WmOmNoticeHController extends BaseController {
             List<WmOmNoticeIEntity> listWaveToDownsafter = new ArrayList<>();
             hql = "from WmOmNoticeIEntity where   omNoticeId = ? and omSta <> ? order by  chpShuXing";
             listWaveToDownsafter = wmOmNoticeHService.findHql(hql, listWaveToDowns.get(0).getOmNoticeId(), "复核完成");
-            if (listWaveToDownsafter == null || (listWaveToDownsafter != null && listWaveToDownsafter.size() == 0)) {
+            Boolean bol = listWaveToDownsafter == null || (listWaveToDownsafter != null && listWaveToDownsafter.size() == 0);
+            if (bol) {
                 String noticeid = listWaveToDowns.get(0).getOmNoticeId();
                 String hqlh = " from WmOmNoticeHEntity where omNoticeId = ? ";
                 List<WmOmNoticeHEntity> listWaveToDowns11 = wmOmNoticeHService.findHql(hqlh, noticeid);

@@ -20,10 +20,10 @@ import com.opensymphony.xwork2.util.reflection.ReflectionContextState;
  */
 public class AliasToBean implements ResultTransformer {
 	private static final long serialVersionUID = 1L;
-	private static final OgnlUtil ognlUntil = new OgnlUtil();
-	private static final Map<String,Boolean> context = new HashMap<String,Boolean>(1);
+	private static final OgnlUtil OGNL_UNTIL = new OgnlUtil();
+	private static final Map<String,Boolean> CONTEXT = new HashMap<String,Boolean>(1);
 	static{
-		context.put(ReflectionContextState.CREATE_NULL_OBJECTS, true);
+		CONTEXT.put(ReflectionContextState.CREATE_NULL_OBJECTS, true);
 	}
 	
 	/** POJO的class */
@@ -58,7 +58,7 @@ public class AliasToBean implements ResultTransformer {
 			for (int i = 0; i < aliases.length; i++) {
 				if(aliases[i]!=null && !"".equals(aliases[i]))
 				{
-					Ognl.setValue(ognlUntil.compile(aliases[i]), context, root, tuple[i]);
+					Ognl.setValue(OGNL_UNTIL.compile(aliases[i]), CONTEXT, root, tuple[i]);
 				}
 			}
 			return root;

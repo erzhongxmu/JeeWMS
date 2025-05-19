@@ -169,7 +169,8 @@ public class WmNoticeConfController extends BaseController {
     public AjaxJson doGethuozhu(HttpServletRequest request) {
         AjaxJson j = new AjaxJson();
         WmOmNoticeHEntity wmOmNoticeHEntity = systemService.findUniqueByProperty(WmOmNoticeHEntity.class, "omNoticeId", oConvertUtils.getString(request.getParameter("wmNoticeId")));
-        if (wmOmNoticeHEntity != null && (!"已删除".equals(wmOmNoticeHEntity.getOmSta()) || !"已完成".equals(wmOmNoticeHEntity.getOmSta()))) {
+        Boolean bol = wmOmNoticeHEntity != null && (!"已删除".equals(wmOmNoticeHEntity.getOmSta()) || !"已完成".equals(wmOmNoticeHEntity.getOmSta()));
+        if (bol) {
             MdCusEntity md = systemService.findUniqueByProperty(MdCusEntity.class, "keHuBianMa", wmOmNoticeHEntity.getCusCode());
             j.setObj(md);
         } else {

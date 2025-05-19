@@ -17,14 +17,14 @@ import freemarker.template.TemplateDirectiveModel;
  * @version V1.0
  */
 public class FreemarkerHelper {
-	private static Configuration _tplConfig = new Configuration();
+	private static Configuration tplConfig1 = new Configuration();
 	static{
-		_tplConfig.setSharedVariable("DictData", (TemplateDirectiveModel)ApplicationContextUtil.getContext().getBean("dictDataTag"));
-		_tplConfig.setSharedVariable("mutiLang", (TemplateDirectiveModel)ApplicationContextUtil.getContext().getBean("mutiLangTag"));
-		_tplConfig.setClassForTemplateLoading(FreemarkerHelper.class, "/");
-		_tplConfig.setDateTimeFormat("yyyy-MM-dd HH:mm:ss");  
-		_tplConfig.setDateFormat("yyyy-MM-dd");  
-		_tplConfig.setTimeFormat("HH:mm:ss"); 
+		tplConfig1.setSharedVariable("DictData", (TemplateDirectiveModel)ApplicationContextUtil.getContext().getBean("dictDataTag"));
+		tplConfig1.setSharedVariable("mutiLang", (TemplateDirectiveModel)ApplicationContextUtil.getContext().getBean("mutiLangTag"));
+		tplConfig1.setClassForTemplateLoading(FreemarkerHelper.class, "/");
+		tplConfig1.setDateTimeFormat("yyyy-MM-dd HH:mm:ss");
+		tplConfig1.setDateFormat("yyyy-MM-dd");
+		tplConfig1.setTimeFormat("HH:mm:ss");
 	}
 
 	/**
@@ -39,7 +39,7 @@ public class FreemarkerHelper {
 		try {
 			StringWriter swriter = new StringWriter();
 			Template mytpl = null;
-			mytpl = _tplConfig.getTemplate(tplName, encoding);
+			mytpl = tplConfig1.getTemplate(tplName, encoding);
 			mytpl.setDateTimeFormat("yyyy-MM-dd HH:mm:ss");  
 			mytpl.setDateFormat("yyyy-MM-dd");
 			mytpl.setTimeFormat("HH:mm:ss"); 

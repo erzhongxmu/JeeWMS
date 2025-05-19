@@ -14,6 +14,7 @@ import javax.persistence.Column;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.xpath.operations.Bool;
 import org.hibernate.criterion.Restrictions;
 import org.jeecgframework.core.annotation.query.QueryTimeFormat;
 import org.jeecgframework.core.common.hibernate.qbc.CriteriaQuery;
@@ -94,9 +95,7 @@ public class HqlGenerateUtil {
      * @param alias
      * @date 2014年1月19日
      */
-    private static void installHqlJoinAlias(CriteriaQuery cq, Object searchObj,
-                                            Map<String, TSDataRule> ruleMap,
-                                            Map<String, String[]> parameterMap, String alias) {
+    private static void installHqlJoinAlias(CriteriaQuery cq, Object searchObj, Map<String, TSDataRule> ruleMap, Map<String, String[]> parameterMap, String alias) {
         PropertyDescriptor origDescriptors[] = PropertyUtils.getPropertyDescriptors(searchObj);
         String aliasName, name, type;
         for (int i = 0; i < origDescriptors.length; i++) {
@@ -124,8 +123,7 @@ public class HqlGenerateUtil {
 
                 Object value = PropertyUtils.getSimpleProperty(searchObj, name);
                 // 根据类型分类处理
-                if (type.contains("class java.lang")
-                        || type.contains("class java.math")) {
+                if (type.contains("class java.lang") || type.contains("class java.math")) {
 
                     // for：查询拼装的替换
                     if (value != null && !"".equals(value)) {
@@ -138,8 +136,7 @@ public class HqlGenerateUtil {
 //						}
 
 
-                        value = PageValueConvertRuleEnum.replaceValue(rule,
-                                value);
+                        value = PageValueConvertRuleEnum.replaceValue(rule, value);
                         ObjectParseUtil.addCriteria(cq, aliasName, rule, value);
                     } else if (parameterMap != null) {
 
@@ -183,10 +180,8 @@ public class HqlGenerateUtil {
                             beginValue_ = beginValue;
                             endValue_ = endValue;
                         }
-                        ObjectParseUtil.addCriteria(cq, aliasName,
-                                HqlRuleEnum.GE, beginValue_);
-                        ObjectParseUtil.addCriteria(cq, aliasName,
-                                HqlRuleEnum.LE, endValue_);
+                        ObjectParseUtil.addCriteria(cq, aliasName, HqlRuleEnum.GE, beginValue_);
+                        ObjectParseUtil.addCriteria(cq, aliasName, HqlRuleEnum.LE, endValue_);
                     }
 
                     // for：查询拼装的替换
@@ -220,7 +215,8 @@ public class HqlGenerateUtil {
                     }
                 } else if (!StringUtil.isJavaClass(origDescriptors[i].getPropertyType())) {
                     Object param = PropertyUtils.getSimpleProperty(searchObj, name);
-                    if (isHaveRuleData(ruleMap, aliasName) || (isNotEmpty(param) && itIsNotAllEmpty(param))) {
+                    Boolean bol1 = isHaveRuleData(ruleMap, aliasName) || (isNotEmpty(param) && itIsNotAllEmpty(param));
+                    if (bol1) {
                         // 如果是实体类,创建别名,继续创建查询条件
 
                         // for：用户反馈
@@ -242,8 +238,7 @@ public class HqlGenerateUtil {
      * @param aliasName
      * @return
      */
-    private static boolean isHaveRuleData(Map<String, TSDataRule> ruleMap,
-                                          String aliasName) {
+    private static boolean isHaveRuleData(Map<String, TSDataRule> ruleMap, String aliasName) {
         for (String key : ruleMap.keySet()) {
             if (key.contains(aliasName)) {
                 return true;
@@ -252,8 +247,7 @@ public class HqlGenerateUtil {
         return false;
     }
 
-    private static void addRuleToCriteria(TSDataRule tsDataRule,
-                                          String aliasName, Class propertyType, CriteriaQuery cq) {
+    private static void addRuleToCriteria(TSDataRule tsDataRule, String aliasName, Class propertyType, CriteriaQuery cq) {
         HqlRuleEnum rule = HqlRuleEnum.getByValue(tsDataRule.getRuleConditions());
         if (rule.equals(HqlRuleEnum.IN)) {
             String[] values = tsDataRule.getRuleValue().split(",");
@@ -283,9 +277,7 @@ public class HqlGenerateUtil {
     }
 
     private static boolean judgedIsUselessField(String name) {
-        return "class".equals(name) || "ids".equals(name)
-                || "page".equals(name) || "rows".equals(name)
-                || "sort".equals(name) || "order".equals(name);
+        return "class".equals(name) || "ids".equals(name) || "page".equals(name) || "rows".equals(name) || "sort".equals(name) || "order".equals(name);
     }
 
     /**
@@ -304,33 +296,26 @@ public class HqlGenerateUtil {
     private static boolean itIsNotAllEmpty(Object param) {
         boolean isNotEmpty = false;
         try {
-            PropertyDescriptor origDescriptors[] = PropertyUtils
-                    .getPropertyDescriptors(param);
+            PropertyDescriptor origDescriptors[] = PropertyUtils.getPropertyDescriptors(param);
             String name;
             for (int i = 0; i < origDescriptors.length; i++) {
                 name = origDescriptors[i].getName();
-                if ("class".equals(name)
-                        || !PropertyUtils.isReadable(param, name)) {
+                if ("class".equals(name) || !PropertyUtils.isReadable(param, name)) {
                     continue;
                 }
-                if (Map.class.isAssignableFrom(origDescriptors[i]
-                        .getPropertyType())) {
-                    Map<?, ?> map = (Map<?, ?>) PropertyUtils
-                            .getSimpleProperty(param, name);
+                if (Map.class.isAssignableFrom(origDescriptors[i].getPropertyType())) {
+                    Map<?, ?> map = (Map<?, ?>) PropertyUtils.getSimpleProperty(param, name);
                     if (map != null && map.size() > 0) {
                         isNotEmpty = true;
                         break;
                     }
-                } else if (Collection.class.isAssignableFrom(origDescriptors[i]
-                        .getPropertyType())) {
-                    Collection<?> c = (Collection<?>) PropertyUtils
-                            .getSimpleProperty(param, name);
+                } else if (Collection.class.isAssignableFrom(origDescriptors[i].getPropertyType())) {
+                    Collection<?> c = (Collection<?>) PropertyUtils.getSimpleProperty(param, name);
                     if (c != null && c.size() > 0) {
                         isNotEmpty = true;
                         break;
                     }
-                } else if (StringUtil.isNotEmpty(PropertyUtils
-                        .getSimpleProperty(param, name))) {
+                } else if (StringUtil.isNotEmpty(PropertyUtils.getSimpleProperty(param, name))) {
                     isNotEmpty = true;
                     break;
                 }
@@ -478,7 +463,8 @@ public class HqlGenerateUtil {
                     }
                 } else if (!StringUtil.isJavaClass(origDescriptors[i].getPropertyType())) {
                     Object param = PropertyUtils.getSimpleProperty(searchObj, name);
-                    if (isHaveRuleData(ruleMap, aliasName) || (isNotEmpty(param) && itIsNotAllEmpty(param))) {
+                    Boolean bol = isHaveRuleData(ruleMap, aliasName) || (isNotEmpty(param) && itIsNotAllEmpty(param));
+                    if (bol) {
                         // 如果是实体类,创建别名,继续创建查询条件
 
                         // for：用户反馈

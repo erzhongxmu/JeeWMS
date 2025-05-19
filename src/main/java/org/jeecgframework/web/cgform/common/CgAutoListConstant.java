@@ -105,7 +105,7 @@ public class CgAutoListConstant {
 	public static final String SYS_DIC = "t_s_type";
 
 	/** 智能表单生成的表的前缀为jform_ */
-	public static final String jform_ = "jform_";
+	public static final String JFORM_ = "jform_";
 
 	/** sql增强insert */
 	public static final String SQL_INSERT = "insert";

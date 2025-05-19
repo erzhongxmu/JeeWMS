@@ -242,7 +242,7 @@ public class ApiController {
     }
 
     //移储列表
-    public static final String ToMoveGoodsController = "/rest/wmToMoveGoodsController";
+    public static final String TO_MOVE_GOODS_CONTROLLER = "/rest/wmToMoveGoodsController";
 
     @RequestMapping(value = "/wmToMoveGoodsController/list", method = RequestMethod.GET)
     @ResponseBody
