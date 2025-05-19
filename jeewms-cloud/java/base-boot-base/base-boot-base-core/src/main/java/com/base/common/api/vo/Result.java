@@ -78,6 +78,12 @@ public class Result<T> implements Serializable {
 //		r.setMessage(msg);
 //		return r;
 //	}
+
+	/**
+	 *
+	 * @param msg
+	 * @return
+	 */
 	public static Result<String> ok(String msg) {
 		Result<String> r = new Result<>();
 		r.setSuccess(true);
