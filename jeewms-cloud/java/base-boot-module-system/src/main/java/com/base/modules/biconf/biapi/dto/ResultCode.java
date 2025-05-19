@@ -19,10 +19,11 @@ public enum ResultCode implements IResultCode {
     final int code;
     final String message;
 
+    @Override
     public int getCode() {
         return this.code;
     }
-
+    @Override
     public String getMessage() {
         return this.message;
     }

@@ -671,6 +671,7 @@ public class ThirdAppDingtalkServiceImpl implements IThirdAppService {
      * @param verifyConfig
      * @return
      */
+    @Override
     public boolean sendMessage(MessageDTO message, boolean verifyConfig) {
         Response<String> response = this.sendMessageResponse(message, verifyConfig);
         if (response != null) {

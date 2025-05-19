@@ -42,13 +42,13 @@ public class CustomThreadPool extends ThreadPoolExecutor {
     @Override
     protected void beforeExecute(Thread t, Runnable r) {
         log.info(String.valueOf(r.hashCode())+"添加任务");
-        startTimes.put(String.valueOf(r.hashCode()), new Date().getTime());
+        startTimes.put(String.valueOf(r.hashCode()), System.currentTimeMillis());
     }
 
     @Override
     protected void afterExecute(Runnable r, Throwable t) {
         long startDate = startTimes.remove(String.valueOf(r.hashCode()));
-        long finishDate = new Date().getTime();
+        long finishDate = System.currentTimeMillis();
         long diff = finishDate - startDate;
         // 统计任务耗时、初始线程数、核心线程数、正在执行的任务数量、
         // 已完成任务数量、任务总数、队列里缓存的任务数量、池中存在的最大线程数、

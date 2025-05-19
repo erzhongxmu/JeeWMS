@@ -138,6 +138,7 @@ public class R<T> implements Serializable {
         this.msg = msg;
     }
 
+    @Override
     public String toString() {
         return "R(code=" + this.getCode() + ", success=" + this.isSuccess() + ", data=" + this.getData() + ", msg=" + this.getMsg() + ")";
     }

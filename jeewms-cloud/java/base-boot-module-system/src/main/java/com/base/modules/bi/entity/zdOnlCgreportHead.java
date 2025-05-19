@@ -192,7 +192,7 @@ public class zdOnlCgreportHead implements Serializable {
     public void setRepository(String repository) {
         this.repository = repository;
     }
-
+    @Override
     public boolean equals(Object o) {
         if (o == this) {
             return true;
@@ -369,7 +369,7 @@ public class zdOnlCgreportHead implements Serializable {
     protected boolean canEqual(Object other) {
         return other instanceof zdOnlCgreportHead;
     }
-
+    @Override
     public int hashCode() {
         boolean var1 = true;
         byte var2 = 1;
@@ -401,7 +401,7 @@ public class zdOnlCgreportHead implements Serializable {
         var16 = var16 * 59 + (var15 == null ? 43 : var15.hashCode());
         return var16;
     }
-
+    @Override
     public String toString() {
         return "zdOnlCgreportHead(id=" + this.getId() + ", code=" + this.getCode() + ", name=" + this.getName() + ", cgrSql=" + this.getCgrSql() + ", returnValField=" + this.getReturnValField() + ", returnTxtField=" + this.getReturnTxtField() + ", returnType=" + this.getReturnType() + ", dbSource=" + this.getDbSource() + ", content=" + this.getContent() + ", updateTime=" + this.getUpdateTime() + ", updateBy=" + this.getUpdateBy() + ", createTime=" + this.getCreateTime() + ", createBy=" + this.getCreateBy() + ")";
     }
