@@ -118,25 +118,33 @@ public class AutoLogAspect {
      * 获取操作类型
      */
     private int getOperateType(String methodName,int operateType) {
+
+        String list="list";
+        String add="add";
+        String edit="edit";
+        String delete="delete";
+        String imports="import";
+        String export="export";
+
         if (operateType > 0) {
             return operateType;
         }
-        if (methodName.startsWith("list")) {
+        if (methodName.startsWith(list)) {
             return CommonConstant.OPERATE_TYPE_1;
         }
-        if (methodName.startsWith("add")) {
+        if (methodName.startsWith(add)) {
             return CommonConstant.OPERATE_TYPE_2;
         }
-        if (methodName.startsWith("edit")) {
+        if (methodName.startsWith(edit)) {
             return CommonConstant.OPERATE_TYPE_3;
         }
-        if (methodName.startsWith("delete")) {
+        if (methodName.startsWith(delete)) {
             return CommonConstant.OPERATE_TYPE_4;
         }
-        if (methodName.startsWith("import")) {
+        if (methodName.startsWith(imports)) {
             return CommonConstant.OPERATE_TYPE_5;
         }
-        if (methodName.startsWith("export")) {
+        if (methodName.startsWith(export)) {
             return CommonConstant.OPERATE_TYPE_6;
         }
         return CommonConstant.OPERATE_TYPE_1;
