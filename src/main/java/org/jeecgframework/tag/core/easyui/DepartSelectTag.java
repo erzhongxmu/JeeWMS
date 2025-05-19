@@ -56,16 +56,16 @@ public class DepartSelectTag extends TagSupport {
 		return selectedNamesInputId;
 	}
 
-	public void setSelectedNamesInputId(String _selectedNamesInputId) {
-		this.selectedNamesInputId = _selectedNamesInputId;
+	public void setSelectedNamesInputId(String selectedNamesInputId1) {
+		this.selectedNamesInputId = selectedNamesInputId1;
 	}
 
 	public String getSelectedIdsInputId() {
 		return selectedIdsInputId;
 	}
 
-	public void setSelectedIdsInputId(String _selectedIdsInputId) {
-		this.selectedIdsInputId = _selectedIdsInputId;
+	public void setSelectedIdsInputId(String selectedIdsInputId1) {
+		this.selectedIdsInputId = selectedIdsInputId1;
 	}
 	
 	public String getInputWidth() {
