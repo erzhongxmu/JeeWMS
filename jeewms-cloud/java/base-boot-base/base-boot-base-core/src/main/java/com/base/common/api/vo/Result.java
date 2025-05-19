@@ -70,9 +70,16 @@ public class Result<T> implements Serializable {
 		return r;
 	}
 
-	@Deprecated
-	public static Result<Object> ok(String msg) {
-		Result<Object> r = new Result<Object>();
+//	@Deprecated
+//	public static Result<Object> ok(String msg) {
+//		Result<Object> r = new Result<Object>();
+//		r.setSuccess(true);
+//		r.setCode(CommonConstant.SC_OK_200);
+//		r.setMessage(msg);
+//		return r;
+//	}
+	public static Result<String> ok(String msg) {
+		Result<String> r = new Result<>();
 		r.setSuccess(true);
 		r.setCode(CommonConstant.SC_OK_200);
 		r.setMessage(msg);
