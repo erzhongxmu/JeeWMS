@@ -20,6 +20,13 @@ import java.util.Objects;
  * @date 2021/7/22 14:04
  * @description
  */
+
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public class JwtUtils {
 
     /**
@@ -35,6 +42,7 @@ public class JwtUtils {
 
     /**
      * 生成Token
+     *
      * @param account
      * @return
      */
@@ -51,7 +59,7 @@ public class JwtUtils {
                     .subject("doi")
                     .issuer("http://www.doiduoyi.com")
                     .expirationTime(new Date(System.currentTimeMillis() + EXPIRE_TIME))
-                    .claim("ACCOUNT",account)
+                    .claim("ACCOUNT", account)
                     .build();
 
             /**
@@ -75,10 +83,11 @@ public class JwtUtils {
 
     /**
      * 校验token
+     *
      * @param token
      * @return
      */
-    public static String vaildToken(String token ) {
+    public static String vaildToken(String token) {
         try {
             SignedJWT jwt = SignedJWT.parse(token);
             JWSVerifier verifier = new MACVerifier(SECRET);
@@ -96,8 +105,8 @@ public class JwtUtils {
             //获取载体中的数据
             Object account = jwt.getJWTClaimsSet().getClaim("ACCOUNT");
             //是否有openUid
-            if (Objects.isNull(account)){
-                throw new BusinessException( "账号为空");
+            if (Objects.isNull(account)) {
+                throw new BusinessException("账号为空");
             }
             return account.toString();
         } catch (ParseException e) {

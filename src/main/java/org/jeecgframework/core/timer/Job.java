@@ -3,6 +3,12 @@ package org.jeecgframework.core.timer;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Component
 public class Job {
 
