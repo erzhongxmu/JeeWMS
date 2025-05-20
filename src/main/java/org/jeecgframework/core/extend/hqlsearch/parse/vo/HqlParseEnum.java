@@ -4,6 +4,13 @@ package org.jeecgframework.core.extend.hqlsearch.parse.vo;
  * HQL 解析 常量
  * Created by jue on 14-8-23.
  */
+
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public enum HqlParseEnum {
     /**
      * SUFFIX_COMMA(",","多条数据"),

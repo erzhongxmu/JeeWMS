@@ -4,6 +4,13 @@ package org.jeecgframework.core.extend.hqlsearch.parse.vo;
  * HQL 规则 常量
  * Created by jue on 14-8-23.
  */
+
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public enum HqlRuleEnum {
     /**
      * GT(">","大于"),
