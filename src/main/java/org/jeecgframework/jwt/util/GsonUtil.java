@@ -14,6 +14,13 @@ import java.util.Map;
 /**
  * Created by ChenSS on 2016/9/28.
  */
+
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public class GsonUtil {
     private static final Gson gson = new Gson();
 
