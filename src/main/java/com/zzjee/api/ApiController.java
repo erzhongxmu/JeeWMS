@@ -39,9 +39,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
 /**
- * @Package com.zzjee.api
- * @date 2021/7/22 10:47
- * @description
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
  */
 @RestController
 @RequestMapping("/pdaapi")
