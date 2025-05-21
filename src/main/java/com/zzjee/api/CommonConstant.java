@@ -2,122 +2,148 @@ package com.zzjee.api;
 
 import java.math.BigDecimal;
 
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public interface CommonConstant {
 
-	/**
-	 * 正常状态
-	 */
-	public static final Integer STATUS_NORMAL = 0;
+    /**
+     * 正常状态
+     */
+    public static final Integer STATUS_NORMAL = 0;
 
-	/**
-	 * 禁用状态
-	 */
-	public static final Integer STATUS_DISABLE = -1;
+    /**
+     * 禁用状态
+     */
+    public static final Integer STATUS_DISABLE = -1;
 
-	/**
-	 * 删除标志
-	 */
-	public static final Integer DEL_FLAG_1 = 1;
+    /**
+     * 删除标志
+     */
+    public static final Integer DEL_FLAG_1 = 1;
 
-	/**
-	 * 未删除
-	 */
-	public static final Integer DEL_FLAG_0 = 0;
+    /**
+     * 未删除
+     */
+    public static final Integer DEL_FLAG_0 = 0;
 
-	/**
-	 * 系统日志类型： 登录
-	 */
-	public static final int LOG_TYPE_1 = 1;
+    /**
+     * 系统日志类型： 登录
+     */
+    public static final int LOG_TYPE_1 = 1;
 
-	/**
-	 * 系统日志类型： 操作
-	 */
-	public static final int LOG_TYPE_2 = 2;
+    /**
+     * 系统日志类型： 操作
+     */
+    public static final int LOG_TYPE_2 = 2;
 
-	/**
-	 * 操作日志类型： 查询
-	 */
-	public static final int OPERATE_TYPE_1 = 1;
+    /**
+     * 操作日志类型： 查询
+     */
+    public static final int OPERATE_TYPE_1 = 1;
 
-	/**
-	 * 操作日志类型： 添加
-	 */
-	public static final int OPERATE_TYPE_2 = 2;
+    /**
+     * 操作日志类型： 添加
+     */
+    public static final int OPERATE_TYPE_2 = 2;
 
-	/**
-	 * 操作日志类型： 更新
-	 */
-	public static final int OPERATE_TYPE_3 = 3;
+    /**
+     * 操作日志类型： 更新
+     */
+    public static final int OPERATE_TYPE_3 = 3;
 
-	/**
-	 * 操作日志类型： 删除
-	 */
-	public static final int OPERATE_TYPE_4 = 4;
+    /**
+     * 操作日志类型： 删除
+     */
+    public static final int OPERATE_TYPE_4 = 4;
 
-	/**
-	 * 操作日志类型： 倒入
-	 */
-	public static final int OPERATE_TYPE_5 = 5;
+    /**
+     * 操作日志类型： 倒入
+     */
+    public static final int OPERATE_TYPE_5 = 5;
 
-	/**
-	 * 操作日志类型： 导出
-	 */
-	public static final int OPERATE_TYPE_6 = 6;
+    /**
+     * 操作日志类型： 导出
+     */
+    public static final int OPERATE_TYPE_6 = 6;
 
 
-	/** {@code 500 Server Error} (HTTP/1.0 - RFC 1945) */
+    /**
+     * {@code 500 Server Error} (HTTP/1.0 - RFC 1945)
+     */
     public static final Integer SC_INTERNAL_SERVER_ERROR_500 = 500;
-    /** {@code 200 OK} (HTTP/1.0 - RFC 1945) */
+    /**
+     * {@code 200 OK} (HTTP/1.0 - RFC 1945)
+     */
     public static final Integer SC_OK_200 = 200;
 
-    /**访问权限认证未通过 510*/
-    public static final Integer SC_BASE_NO_AUTHZ=510;
+    /**
+     * 访问权限认证未通过 510
+     */
+    public static final Integer SC_BASE_NO_AUTHZ = 510;
 
-    /** 登录用户Shiro权限缓存KEY前缀 */
-    public static String PREFIX_USER_SHIRO_CACHE  = "shiro:cache:com.base.config.shiro.ShiroRealm.authorizationCache:";
-    /** 登录用户Token令牌缓存KEY前缀 */
-    public static final String PREFIX_USER_TOKEN  = "prefix_user_token_";
-    /** Token缓存时间：3600秒即一小时 */
-    public static final int  TOKEN_EXPIRE_TIME  = 3600;
+    /**
+     * 登录用户Shiro权限缓存KEY前缀
+     */
+    public static String PREFIX_USER_SHIRO_CACHE = "shiro:cache:com.base.config.shiro.ShiroRealm.authorizationCache:";
+    /**
+     * 登录用户Token令牌缓存KEY前缀
+     */
+    public static final String PREFIX_USER_TOKEN = "prefix_user_token_";
+    /**
+     * Token缓存时间：3600秒即一小时
+     */
+    public static final int TOKEN_EXPIRE_TIME = 3600;
 
 
     /**
-     *  0：一级菜单
+     * 0：一级菜单
      */
-    public static final Integer MENU_TYPE_0  = 0;
-   /**
-    *  1：子菜单
-    */
-    public static final Integer MENU_TYPE_1  = 1;
+    public static final Integer MENU_TYPE_0 = 0;
     /**
-     *  2：按钮权限
+     * 1：子菜单
      */
-    public static final Integer MENU_TYPE_2  = 2;
+    public static final Integer MENU_TYPE_1 = 1;
+    /**
+     * 2：按钮权限
+     */
+    public static final Integer MENU_TYPE_2 = 2;
 
-    /**通告对象类型（USER:指定用户，ALL:全体用户）*/
-    public static final String MSG_TYPE_UESR  = "USER";
-    public static final String MSG_TYPE_ALL  = "ALL";
+    /**
+     * 通告对象类型（USER:指定用户，ALL:全体用户）
+     */
+    public static final String MSG_TYPE_UESR = "USER";
+    public static final String MSG_TYPE_ALL = "ALL";
 
-    /**发布状态（0未发布，1已发布，2已撤销）*/
-    public static final String NO_SEND  = "0";
-    public static final String HAS_SEND  = "1";
-    public static final String HAS_CANCLE  = "2";
+    /**
+     * 发布状态（0未发布，1已发布，2已撤销）
+     */
+    public static final String NO_SEND = "0";
+    public static final String HAS_SEND = "1";
+    public static final String HAS_CANCLE = "2";
 
-    /**阅读状态（0未读，1已读）*/
-    public static final String HAS_READ_FLAG  = "1";
-    public static final String NO_READ_FLAG  = "0";
+    /**
+     * 阅读状态（0未读，1已读）
+     */
+    public static final String HAS_READ_FLAG = "1";
+    public static final String NO_READ_FLAG = "0";
 
-    /**优先级（L低，M中，H高）*/
-    public static final String PRIORITY_L  = "L";
-    public static final String PRIORITY_M  = "M";
-    public static final String PRIORITY_H  = "H";
+    /**
+     * 优先级（L低，M中，H高）
+     */
+    public static final String PRIORITY_L = "L";
+    public static final String PRIORITY_M = "M";
+    public static final String PRIORITY_H = "H";
 
     /**
      * 短信模板方式  0 .登录模板、1.注册模板、2.忘记密码模板
      */
-    public static final String SMS_TPL_TYPE_0  = "0";
-    public static final String SMS_TPL_TYPE_1  = "1";
-    public static final String SMS_TPL_TYPE_2  = "2";
+    public static final String SMS_TPL_TYPE_0 = "0";
+    public static final String SMS_TPL_TYPE_1 = "1";
+    public static final String SMS_TPL_TYPE_2 = "2";
 
     /**
      * 状态(0无效1有效)
@@ -149,7 +175,9 @@ public interface CommonConstant {
     public static final Integer USER_UNFREEZE = 1;
     public static final Integer USER_FREEZE = 2;
 
-    /**字典翻译文本后缀*/
+    /**
+     * 字典翻译文本后缀
+     */
     public static final String DICT_TEXT_SUFFIX = "_dictText";
 
     /**
@@ -225,21 +253,37 @@ public interface CommonConstant {
     public static final Integer USER_IDENTITY_1 = 1;
     public static final Integer USER_IDENTITY_2 = 2;
 
-    /** sys_user 表 username 唯一键索引 */
+    /**
+     * sys_user 表 username 唯一键索引
+     */
     public static final String SQL_INDEX_UNIQ_SYS_USER_USERNAME = "uniq_sys_user_username";
-    /** sys_user 表 work_no 唯一键索引 */
+    /**
+     * sys_user 表 work_no 唯一键索引
+     */
     public static final String SQL_INDEX_UNIQ_SYS_USER_WORK_NO = "uniq_sys_user_work_no";
-    /** sys_user 表 phone 唯一键索引 */
+    /**
+     * sys_user 表 phone 唯一键索引
+     */
     public static final String SQL_INDEX_UNIQ_SYS_USER_PHONE = "uniq_sys_user_phone";
-    /** sys_user 表 email 唯一键索引 */
+    /**
+     * sys_user 表 email 唯一键索引
+     */
     public static final String SQL_INDEX_UNIQ_SYS_USER_EMAIL = "uniq_sys_user_email";
-    /** sys_quartz_job 表 job_class_name 唯一键索引 */
+    /**
+     * sys_quartz_job 表 job_class_name 唯一键索引
+     */
     public static final String SQL_INDEX_UNIQ_JOB_CLASS_NAME = "uniq_job_class_name";
-    /** sys_position 表 code 唯一键索引 */
+    /**
+     * sys_position 表 code 唯一键索引
+     */
     public static final String SQL_INDEX_UNIQ_CODE = "uniq_code";
-    /** sys_role 表 code 唯一键索引 */
+    /**
+     * sys_role 表 code 唯一键索引
+     */
     public static final String SQL_INDEX_UNIQ_SYS_ROLE_CODE = "uniq_sys_role_role_code";
-    /** sys_depart 表 code 唯一键索引 */
+    /**
+     * sys_depart 表 code 唯一键索引
+     */
     public static final String SQL_INDEX_UNIQ_DEPART_ORG_CODE = "uniq_depart_org_code";
     /**
      * 在线聊天 是否为默认分组
@@ -279,7 +323,7 @@ public interface CommonConstant {
      * 公文文档上传自定义路径
      */
     public static final String UPLOAD_CUSTOM_PATH_OFFICIAL = "officialdoc";
-     /**
+    /**
      * 公文文档下载自定义路径
      */
     public static final String DOWNLOAD_CUSTOM_PATH_OFFICIAL = "officaldown";
@@ -287,8 +331,8 @@ public interface CommonConstant {
     /**
      * WPS存储值类别(1 code文号 2 text（WPS模板还是公文发文模板）)
      */
-    public static final String WPS_TYPE_1="1";
-    public static final String WPS_TYPE_2="2";
+    public static final String WPS_TYPE_1 = "1";
+    public static final String WPS_TYPE_2 = "2";
 
 
     public final static String X_ACCESS_TOKEN = "X-Access-Token";
@@ -319,60 +363,98 @@ public interface CommonConstant {
      */
     String THIRD_SYNC_TO_LOCAL = "SYNC_TO_LOCAL";
 
-    /** 系统通告消息状态：0=未发布 */
+    /**
+     * 系统通告消息状态：0=未发布
+     */
     String ANNOUNCEMENT_SEND_STATUS_0 = "0";
-    /** 系统通告消息状态：1=已发布 */
+    /**
+     * 系统通告消息状态：1=已发布
+     */
     String ANNOUNCEMENT_SEND_STATUS_1 = "1";
-    /** 系统通告消息状态：2=已撤销 */
+    /**
+     * 系统通告消息状态：2=已撤销
+     */
     String ANNOUNCEMENT_SEND_STATUS_2 = "2";
 
-    /** 任务配置缓存前缀 */
-    public static final String PREFIX_TASK_CONF  = "prefix_task_conf_";
-    public static final String DATE_UNIT_DD  = "dd";
-    public static final String DATE_UNIT_MM  = "mm";
-    public static final String ONE_HOUR  = 60 * 60 * 1000 + "";
-    public static final String ONE_MINUTE  = 60 * 1000 + "";
+    /**
+     * 任务配置缓存前缀
+     */
+    public static final String PREFIX_TASK_CONF = "prefix_task_conf_";
+    public static final String DATE_UNIT_DD = "dd";
+    public static final String DATE_UNIT_MM = "mm";
+    public static final String ONE_HOUR = 60 * 60 * 1000 + "";
+    public static final String ONE_MINUTE = 60 * 1000 + "";
 
     String PREFIX_REDIS_CONF = "prefix_redis_conf_";
 
-    /** 任务类型*/
+    /**
+     * 任务类型
+     */
 
     String TASK_TYPE_NARU = "naru";
 
     String TASK_TYPE_RUKU = "ruku";
 
     String TASK_TYPE_NARU_FULFIL = "naru_fulfil";
-    /** 任务类型*/
+    /**
+     * 任务类型
+     */
     String TASK_TYPE_PEISONG = "peisong";
-    /** 任务类型*/
+    /**
+     * 任务类型
+     */
     String TASK_TYPE_SHANGJIA = "shangjia";
-    /** 任务类型*/
+    /**
+     * 任务类型
+     */
     String TASK_TYPE_FALIAO = "faliao";
- /** 任务类型*/
- String TASK_TYPE_RECHECH = "JHRW";
-    /** 任务状态*/
+    /**
+     * 任务类型
+     */
+    String TASK_TYPE_RECHECH = "JHRW";
+    /**
+     * 任务状态
+     */
     String TASK_STATUS_YWC = "ywc";
-    /** 任务状态*/
+    /**
+     * 任务状态
+     */
     String TASK_STATUS_WWC = "wwc";
-    /** 库存类型*/
+    /**
+     * 库存类型
+     */
     String STOCK_STATUS_ZT = "zt";
-    /** 库存类型*/
+    /**
+     * 库存类型
+     */
     String STOCK_STATUS_ZW = "zw";
-    /** 库存类型*/
+    /**
+     * 库存类型
+     */
     String STOCK_STATUS_LP = "lp";
     String STOCK_STATUS_BLP = "blp";
-    /** 库存类型*/
+    /**
+     * 库存类型
+     */
     String STOCK_STATUS_JY = "jy";
-    /** 库存类型*/
+    /**
+     * 库存类型
+     */
     String STOCK_API_STATUS_ZY = "zy";  //正在使用
-    /** 库存类型*/
+    /**
+     * 库存类型
+     */
     String STOCK_API_STATUS_WL = "wl";//未来计划需求
-    /** 库存类型*/
+    /**
+     * 库存类型
+     */
     String STOCK_API_STATUS_ZK = "zk";//在库库存
     String STOCK_API_STATUS_ZT = "zt";//在途库存
 
 
-    /** 资源状态*/
+    /**
+     * 资源状态
+     */
     String RESOURCE_STATUS_OCCUPY = "occupy";
     String RESOURCE_STATUS_FETCH = "fetch";
     String TASK_TYPE_JIANYAN = "jianyan";
@@ -409,7 +491,7 @@ public interface CommonConstant {
     String TASK_TYPE_SHANGXIAN = "shangxian";
     String STOCK_STATUS_KY = "ky";
     String PLAN_TYPE_CANCEL = "cancel";
- String STOCK_STATUS_ZY = "zy";
+    String STOCK_STATUS_ZY = "zy";
     String TABLE_NAME_OT_LY_SCRAP = "ot_ly_scrap";
     String TABLE_NAME_OT_LY_NG_REASON = "ot_ly_ng_reason";
     String TABLE_NAME_OT_LY_OPER = "ot_ly_oper";

@@ -24,142 +24,152 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service(value="cgReportService")
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
+@Service(value = "cgReportService")
 @Transactional
 public class CgReportServiceImpl extends CommonServiceImpl implements
-		CgReportServiceI {
-	@Autowired
-	private JdbcDao jdbcDao;
-	@Autowired
-	private CgReportDao cgReportDao;
+        CgReportServiceI {
+    @Autowired
+    private JdbcDao jdbcDao;
+    @Autowired
+    private CgReportDao cgReportDao;
 
 
-	@Override
+    @Override
     public Map<String, Object> queryCgReportConfig(String reportId) {
-		Map<String,Object> cgReportM = new HashMap<String, Object>(0);
-		Map<String,Object> mainM = queryCgReportMainConfig(reportId);
-		List<Map<String,Object>> itemsM = queryCgReportItems(reportId);
-		List<CgreportConfigParamEntity> params =queryCgReportParam(reportId);
-		cgReportM.put(CgReportConstant.MAIN, mainM);
-		cgReportM.put(CgReportConstant.ITEMS, itemsM);
-		cgReportM.put(CgReportConstant.PARAMS, params);
-		return cgReportM;
-	}
+        Map<String, Object> cgReportM = new HashMap<String, Object>(0);
+        Map<String, Object> mainM = queryCgReportMainConfig(reportId);
+        List<Map<String, Object>> itemsM = queryCgReportItems(reportId);
+        List<CgreportConfigParamEntity> params = queryCgReportParam(reportId);
+        cgReportM.put(CgReportConstant.MAIN, mainM);
+        cgReportM.put(CgReportConstant.ITEMS, itemsM);
+        cgReportM.put(CgReportConstant.PARAMS, params);
+        return cgReportM;
+    }
 
-	@Override
-    public Map<String,Object> queryCgReportMainConfig(String reportId){
+    @Override
+    public Map<String, Object> queryCgReportMainConfig(String reportId) {
 //		String sql = JeecgSqlUtil.getMethodSql(JeecgSqlUtil.getMethodUrl());
 //		Map<String,Object> parameters = new LinkedHashMap<String,Object>();
 //		parameters.put("id", reportId);
 //		Map mainM = jdbcDao.findForMap(sql, parameters);
 
-		//采用MiniDao实现方式
-		return cgReportDao.queryCgReportMainConfig(reportId);
-	}
+        //采用MiniDao实现方式
+        return cgReportDao.queryCgReportMainConfig(reportId);
+    }
 
-	@Override
-    public List<Map<String,Object>> queryCgReportItems(String reportId){
+    @Override
+    public List<Map<String, Object>> queryCgReportItems(String reportId) {
 //		String sql = JeecgSqlUtil.getMethodSql(JeecgSqlUtil.getMethodUrl());
 //		Map<String,Object> parameters = new LinkedHashMap<String,Object>();
 //		parameters.put("configId", reportId);
 //		List<Map<String,Object>> items = jdbcDao.findForListMap(sql, parameters);
 
-		//采用MiniDao实现方式
-		return cgReportDao.queryCgReportItems(reportId);
-	}
+        //采用MiniDao实现方式
+        return cgReportDao.queryCgReportItems(reportId);
+    }
 
-	public List<CgreportConfigParamEntity> queryCgReportParam(String reportId){
-		List<String> list = null;
-		CgreportConfigHeadEntity cgreportConfigHead = this.findUniqueByProperty(CgreportConfigHeadEntity.class, "code", reportId);
-    	String hql0 = "from CgreportConfigParamEntity where 1 = 1 AND cgrheadId = ? ";
-    	List<CgreportConfigParamEntity> cgreportConfigParamList = this.findHql(hql0,cgreportConfigHead.getId());
+    public List<CgreportConfigParamEntity> queryCgReportParam(String reportId) {
+        List<String> list = null;
+        CgreportConfigHeadEntity cgreportConfigHead = this.findUniqueByProperty(CgreportConfigHeadEntity.class, "code", reportId);
+        String hql0 = "from CgreportConfigParamEntity where 1 = 1 AND cgrheadId = ? ";
+        List<CgreportConfigParamEntity> cgreportConfigParamList = this.findHql(hql0, cgreportConfigHead.getId());
 //    	if(cgreportConfigParamList!=null&cgreportConfigParamList.size()>0){
 //    		list = new ArrayList<String>();
 //    		for(CgreportConfigParamEntity cgreportConfigParam :cgreportConfigParamList){
 //    			list.add(cgreportConfigParam.getParamName());
 //    		}
 //    	}
-		return cgreportConfigParamList;
-	}
+        return cgreportConfigParamList;
+    }
 
-	@Override
+    @Override
     @SuppressWarnings("unchecked")
 
-	public List<Map<String, Object>> queryByCgReportSql(String sql, Map params,
-			int page, int rows) {
-		String querySql = getFullSql(sql,params);
-		List<Map<String,Object>> result = null;
-		if(page==-1 && rows==-1){
-			result = jdbcDao.findForJdbc(querySql);
-		}else{
-			result = jdbcDao.findForJdbc(querySql, page, rows);
-		}
-		return result;
-	}
-	/**
-	 * 获取拼装查询条件之后的sql
-	 * @param sql
-	 * @param params
-	 * @return
-	 */
-	@SuppressWarnings("unchecked")
-	private String getFullSql(String sql,Map params){
-		// 提取sql中的order by部分，在下面追加到SQL结尾
-		String orderBy = "";
-		Pattern p = Pattern.compile("order +by.*", Pattern.CASE_INSENSITIVE);
-		Matcher m = p.matcher(sql);
-		if(m.find()) {
-			orderBy = " " + m.group();
-			sql = sql.replace(orderBy, "");
-		}
+    public List<Map<String, Object>> queryByCgReportSql(String sql, Map params,
+                                                        int page, int rows) {
+        String querySql = getFullSql(sql, params);
+        List<Map<String, Object>> result = null;
+        if (page == -1 && rows == -1) {
+            result = jdbcDao.findForJdbc(querySql);
+        } else {
+            result = jdbcDao.findForJdbc(querySql, page, rows);
+        }
+        return result;
+    }
 
-		StringBuilder sqlB =  new StringBuilder();
-		sqlB.append("SELECT t.* FROM ( ");
-		sqlB.append(sql + " ");
-		sqlB.append(") t ");
-		if (params.size() >= 1) {
-			sqlB.append("WHERE 1=1  ");
-			List<Object> paramValues = new ArrayList<>();
-			Iterator<String> it = params.keySet().iterator();
-			while (it.hasNext()) {
-				String key = it.next();
-				Object valueObj = params.get(key);
-				String value = (valueObj!= null)? valueObj.toString() : "";
-				if (!StringUtil.isEmpty(value) &&!"null".equals(value)) {
-					sqlB.append(" AND ").append(key).append(" =? ");
-					paramValues.add(valueObj);
-				}
-			}
-			// 将参数占位符添加完毕后，追加orderBy部分
-			sqlB.append(orderBy);
-			// 直接返回构建好的、采用参数绑定形式的SQL语句
-			return sqlB.toString();
-		}
-		sqlB.append(orderBy);
-		return sqlB.toString();
-	}
-	@Override
+    /**
+     * 获取拼装查询条件之后的sql
+     *
+     * @param sql
+     * @param params
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    private String getFullSql(String sql, Map params) {
+        // 提取sql中的order by部分，在下面追加到SQL结尾
+        String orderBy = "";
+        Pattern p = Pattern.compile("order +by.*", Pattern.CASE_INSENSITIVE);
+        Matcher m = p.matcher(sql);
+        if (m.find()) {
+            orderBy = " " + m.group();
+            sql = sql.replace(orderBy, "");
+        }
+
+        StringBuilder sqlB = new StringBuilder();
+        sqlB.append("SELECT t.* FROM ( ");
+        sqlB.append(sql + " ");
+        sqlB.append(") t ");
+        if (params.size() >= 1) {
+            sqlB.append("WHERE 1=1  ");
+            List<Object> paramValues = new ArrayList<>();
+            Iterator<String> it = params.keySet().iterator();
+            while (it.hasNext()) {
+                String key = it.next();
+                Object valueObj = params.get(key);
+                String value = (valueObj != null) ? valueObj.toString() : "";
+                if (!StringUtil.isEmpty(value) && !"null".equals(value)) {
+                    sqlB.append(" AND ").append(key).append(" =? ");
+                    paramValues.add(valueObj);
+                }
+            }
+            // 将参数占位符添加完毕后，追加orderBy部分
+            sqlB.append(orderBy);
+            // 直接返回构建好的、采用参数绑定形式的SQL语句
+            return sqlB.toString();
+        }
+        sqlB.append(orderBy);
+        return sqlB.toString();
+    }
+
+    @Override
     @SuppressWarnings("unchecked")
 
-	public long countQueryByCgReportSql(String sql, Map params) {
-		String querySql = getFullSql(sql,params);
-		querySql = "SELECT COUNT(*) FROM ("+querySql+") t2";
-		long result = jdbcDao.findForLong(querySql,new HashMap(0));
-		return result;
-	}
-	@Override
-    @SuppressWarnings( "unchecked" )
+    public long countQueryByCgReportSql(String sql, Map params) {
+        String querySql = getFullSql(sql, params);
+        querySql = "SELECT COUNT(*) FROM (" + querySql + ") t2";
+        long result = jdbcDao.findForLong(querySql, new HashMap(0));
+        return result;
+    }
 
-	public List<String> getSqlFields(String sql) {
-		if(oConvertUtils.isEmpty(sql)){
-			return null;
-		}
-		List<Map<String, Object>> result = jdbcDao.findForJdbc(sql, 1, 1);
-		if(result.size()<1){
-			throw new BusinessException("该报表sql没有数据");
-		}
-		Set fieldsSet= result.get(0).keySet();
-		List<String> fileds = new ArrayList<String>(fieldsSet);
-		return fileds;
-	}
+    @Override
+    @SuppressWarnings("unchecked")
+
+    public List<String> getSqlFields(String sql) {
+        if (oConvertUtils.isEmpty(sql)) {
+            return null;
+        }
+        List<Map<String, Object>> result = jdbcDao.findForJdbc(sql, 1, 1);
+        if (result.size() < 1) {
+            throw new BusinessException("该报表sql没有数据");
+        }
+        Set fieldsSet = result.get(0).keySet();
+        List<String> fileds = new ArrayList<String>(fieldsSet);
+        return fileds;
+    }
 }

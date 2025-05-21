@@ -48,6 +48,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sun.star.uno.RuntimeException;
 
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Service("cgFormFieldService")
 @Transactional
 public class CgFormFieldServiceImpl extends CommonServiceImpl implements

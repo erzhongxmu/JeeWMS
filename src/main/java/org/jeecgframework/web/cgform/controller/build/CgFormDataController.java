@@ -26,6 +26,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/api/cgFormDataController")
 
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public class CgFormDataController {
     @Autowired
     private DataBaseService dataBaseService;

@@ -6,8 +6,15 @@ import com.zzjee.wm.entity.WmOmNoticeHEntity;
 import com.zzjee.wm.entity.WmToDownGoodsEntity;
 
 
+/**
+ *
+ */
 
 /**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
  */
 public class confrowpage {
     private List<WmOmNoticeHEntity> downrows;

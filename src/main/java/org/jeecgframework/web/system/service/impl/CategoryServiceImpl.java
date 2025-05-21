@@ -13,58 +13,64 @@ import org.jeecgframework.web.system.service.CategoryServiceI;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Service("tSCategoryService")
 @Transactional
 public class CategoryServiceImpl extends CommonServiceImpl implements
-		CategoryServiceI {
+        CategoryServiceI {
 
 //	private static final String MAX_SQL = "SELECT MAX(code) FROM t_s_category WHERE parent_code";
 
-	@Override
-	public void saveCategory(TSCategoryEntity category) {
+    @Override
+    public void saveCategory(TSCategoryEntity category) {
 
-		String parentCode = null;
-		if(category.getParent()!=null&&oConvertUtils.isNotEmpty(category.getParent().getCode())){
-			parentCode = category.getParent().getCode();
-			String localMaxCode  = getMaxLocalCode(parentCode);
-			category.setCode(YouBianCodeUtil.getSubYouBianCode(parentCode, localMaxCode));
-		}else{
-			String localMaxCode  = getMaxLocalCode(null);
-			category.setParent(null);
-			category.setCode(YouBianCodeUtil.getNextYouBianCode(localMaxCode));
-		}
+        String parentCode = null;
+        if (category.getParent() != null && oConvertUtils.isNotEmpty(category.getParent().getCode())) {
+            parentCode = category.getParent().getCode();
+            String localMaxCode = getMaxLocalCode(parentCode);
+            category.setCode(YouBianCodeUtil.getSubYouBianCode(parentCode, localMaxCode));
+        } else {
+            String localMaxCode = getMaxLocalCode(null);
+            category.setParent(null);
+            category.setCode(YouBianCodeUtil.getNextYouBianCode(localMaxCode));
+        }
 
-		this.save(category);
-	}
-	
-	private synchronized String getMaxLocalCode(String parentCode){
-		if(oConvertUtils.isEmpty(parentCode)){
-			parentCode = "";
-		}
-		int localCodeLength = parentCode.length() + YouBianCodeUtil.zhanweiLength;
-		StringBuilder sb = new StringBuilder();
+        this.save(category);
+    }
 
-		if(ResourceUtil.getJdbcUrl().indexOf(JdbcDao.DATABSE_TYPE_SQLSERVER)!=-1){
-			sb.append("SELECT code FROM t_s_category");
-			sb.append(" where LEN(code) = ").append(localCodeLength);
-		}else{
-			sb.append("SELECT code FROM t_s_category");
-			sb.append(" where LENGTH(code) = ").append(localCodeLength);
-		}
+    private synchronized String getMaxLocalCode(String parentCode) {
+        if (oConvertUtils.isEmpty(parentCode)) {
+            parentCode = "";
+        }
+        int localCodeLength = parentCode.length() + YouBianCodeUtil.zhanweiLength;
+        StringBuilder sb = new StringBuilder();
 
-		if(oConvertUtils.isNotEmpty(parentCode)){
-			sb.append(" and  code like '").append(parentCode).append("%'");
-		}
+        if (ResourceUtil.getJdbcUrl().indexOf(JdbcDao.DATABSE_TYPE_SQLSERVER) != -1) {
+            sb.append("SELECT code FROM t_s_category");
+            sb.append(" where LEN(code) = ").append(localCodeLength);
+        } else {
+            sb.append("SELECT code FROM t_s_category");
+            sb.append(" where LENGTH(code) = ").append(localCodeLength);
+        }
 
-		sb.append(" ORDER BY code DESC ");
-		List<Map<String, Object>> objMapList = this.findForJdbc(sb.toString(), 1, 1);
-		String returnCode = null;
-		if(objMapList!=null&& objMapList.size()>0){
-			returnCode = (String)objMapList.get(0).get("code");
-		}
+        if (oConvertUtils.isNotEmpty(parentCode)) {
+            sb.append(" and  code like '").append(parentCode).append("%'");
+        }
 
-		return returnCode;
-	}
+        sb.append(" ORDER BY code DESC ");
+        List<Map<String, Object>> objMapList = this.findForJdbc(sb.toString(), 1, 1);
+        String returnCode = null;
+        if (objMapList != null && objMapList.size() > 0) {
+            returnCode = (String) objMapList.get(0).get("code");
+        }
+
+        return returnCode;
+    }
 
 //	/**
 //	 * 获取类型编码 加锁防止并发问题

@@ -7,40 +7,52 @@ import org.jeecgframework.web.cgdynamgraph.entity.core.CgDynamGraphConfigHeadEnt
 import org.jeecgframework.web.cgdynamgraph.entity.core.CgDynamGraphConfigItemEntity;
 import org.jeecgframework.web.cgdynamgraph.entity.core.CgDynamGraphConfigParamEntity;
 
-public interface CgDynamGraphConfigHeadServiceI extends CommonService{
-	
- 	@Override
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
+public interface CgDynamGraphConfigHeadServiceI extends CommonService {
+
+    @Override
     public <T> void delete(T entity);
-	/**
-	 * 添加一对多
-	 * 
-	 */
-	public void addMain(CgDynamGraphConfigHeadEntity cgDynamGraphConfigHead,
-	        List<CgDynamGraphConfigItemEntity> cgDynamGraphConfigItemList,List<CgDynamGraphConfigParamEntity> cgDynamGraphConfigParamList) ;
-	/**
-	 * 修改一对多
-	 * 
-	 */
-	public void updateMain(CgDynamGraphConfigHeadEntity cgDynamGraphConfigHead,
-	        List<CgDynamGraphConfigItemEntity> cgDynamGraphConfigItemList,List<CgDynamGraphConfigParamEntity> cgDynamGraphConfigParamList);
-	public void delMain (CgDynamGraphConfigHeadEntity cgDynamGraphConfigHead);
-	
- 	/**
-	 * 默认按钮-sql增强-新增操作
-	 * @param t
-	 * @return
-	 */
- 	public boolean doAddSql(CgDynamGraphConfigHeadEntity t);
- 	/**
-	 * 默认按钮-sql增强-更新操作
-	 * @param t
-	 * @return
-	 */
- 	public boolean doUpdateSql(CgDynamGraphConfigHeadEntity t);
- 	/**
-	 * 默认按钮-sql增强-删除操作
-	 * @param t
-	 * @return
-	 */
- 	public boolean doDelSql(CgDynamGraphConfigHeadEntity t);
+
+    /**
+     * 添加一对多
+     */
+    public void addMain(CgDynamGraphConfigHeadEntity cgDynamGraphConfigHead,
+                        List<CgDynamGraphConfigItemEntity> cgDynamGraphConfigItemList, List<CgDynamGraphConfigParamEntity> cgDynamGraphConfigParamList);
+
+    /**
+     * 修改一对多
+     */
+    public void updateMain(CgDynamGraphConfigHeadEntity cgDynamGraphConfigHead,
+                           List<CgDynamGraphConfigItemEntity> cgDynamGraphConfigItemList, List<CgDynamGraphConfigParamEntity> cgDynamGraphConfigParamList);
+
+    public void delMain(CgDynamGraphConfigHeadEntity cgDynamGraphConfigHead);
+
+    /**
+     * 默认按钮-sql增强-新增操作
+     *
+     * @param t
+     * @return
+     */
+    public boolean doAddSql(CgDynamGraphConfigHeadEntity t);
+
+    /**
+     * 默认按钮-sql增强-更新操作
+     *
+     * @param t
+     * @return
+     */
+    public boolean doUpdateSql(CgDynamGraphConfigHeadEntity t);
+
+    /**
+     * 默认按钮-sql增强-删除操作
+     *
+     * @param t
+     * @return
+     */
+    public boolean doDelSql(CgDynamGraphConfigHeadEntity t);
 }

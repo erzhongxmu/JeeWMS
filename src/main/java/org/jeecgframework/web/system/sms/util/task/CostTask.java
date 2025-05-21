@@ -27,6 +27,13 @@ import java.util.Map;
  * @Description: 根据计费配置，生成费用详情
  * @date 2014-11-13 下午5:06:34
  */
+
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Service("costTask")
 public class CostTask {
     @Autowired
