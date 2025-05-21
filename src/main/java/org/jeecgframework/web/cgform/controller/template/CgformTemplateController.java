@@ -7,8 +7,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
-import java.util.List;
-import java.util.Map;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
 import java.util.zip.ZipOutputStream;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,6 +44,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.util.SystemPropertyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -55,7 +58,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @Description: 自定义模板
  * @author onlineGenerator
  * @date 2015-06-15 11:04:12
- * @version V1.0   
+ * @version V1.0
  *
  */
 //@Scope("prototype")
@@ -75,7 +78,7 @@ public class CgformTemplateController extends BaseController {
 
 	/**
 	 * 自定义模板列表 页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "cgformTemplate")
@@ -85,7 +88,7 @@ public class CgformTemplateController extends BaseController {
 
 	/**
 	 * easyui AJAX请求数据
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @param dataGrid
@@ -106,16 +109,39 @@ public class CgformTemplateController extends BaseController {
 		this.cgformTemplateService.getDataGridReturn(cq, true);
 		List<CgformTemplateEntity> dataList=dataGrid.getResults();
 		if(dataList!=null&&dataList.size()>0){
-			for(CgformTemplateEntity entity:dataList){
-				entity.setTemplatePic("cgformTemplateController.do?showPic&code="+entity.getTemplateCode()+"&path="+entity.getTemplatePic());
+			for (CgformTemplateEntity entity : dataList) {
+				// 安全处理文件路径
+				String safePath = sanitizeFilePath(entity.getTemplatePic());
+				if (StringUtils.isNotBlank(safePath)) {
+					entity.setTemplatePic("cgformTemplateController.do?showPic&code=" + entity.getTemplateCode() + "&path=" + safePath);
+				} else {
+					entity.setTemplatePic("cgformTemplateController.do?showPic&code=" + entity.getTemplateCode() + "&path=default.png");
+				}
 			}
 		}
 		TagUtil.datagrid(response, dataGrid);
 	}
+	private String sanitizeFilePath(String rawPath) {
+		if (StringUtils.isBlank(rawPath)) {
+			return null;
+		}
+		// 1. 禁止目录遍历字符（../、\、绝对路径等）
+		if (rawPath.contains("..") || rawPath.contains("\\") || rawPath.startsWith("/")) {
+			return null;
+		}
+		// 2. 限制文件扩展名
+		String extension = StringUtils.substringAfterLast(rawPath, ".").toLowerCase();
+		Set<String> allowedExtensions = new HashSet<>(Arrays.asList("jpg", "jpeg", "png", "gif", "bmp"));
+		if (!allowedExtensions.contains(extension)) {
+			return null;
+		}
 
+		// 3. 返回安全路径（确保不包含特殊字符）
+		return rawPath.replaceAll("[^a-zA-Z0-9._-]", ""); // 移除非法字符
+	}
 	/**
 	 * 删除自定义模板
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "doDel")
@@ -149,7 +175,7 @@ public class CgformTemplateController extends BaseController {
 	}
 	/**
 	 * 批量删除自定义模板
-	 * 
+	 *
 	 * @return
 	 */
 	 @RequestMapping(params = "doBatchDel")
@@ -160,7 +186,7 @@ public class CgformTemplateController extends BaseController {
 		message = "自定义模板删除成功";
 		try{
 			for(String id:ids.split(",")){
-				CgformTemplateEntity cgformTemplate = systemService.getEntity(CgformTemplateEntity.class, 
+				CgformTemplateEntity cgformTemplate = systemService.getEntity(CgformTemplateEntity.class,
 				id
 				);
 				cgformTemplateService.delete(cgformTemplate);
@@ -181,7 +207,7 @@ public class CgformTemplateController extends BaseController {
 
 	/**
 	 * 添加自定义模板
-	 * 
+	 *
 	 * @param
 	 * @return
 	 */
@@ -246,7 +272,7 @@ public class CgformTemplateController extends BaseController {
 	}
 	/**
 	 * 更新自定义模板
-	 * 
+	 *
 	 * @param
 	 * @return
 	 */
@@ -276,11 +302,11 @@ public class CgformTemplateController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
+
 
 	/**
 	 * 自定义模板新增页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goAdd")
@@ -293,7 +319,7 @@ public class CgformTemplateController extends BaseController {
 	}
 	/**
 	 * 自定义模板编辑页面跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "goUpdate")
@@ -304,10 +330,10 @@ public class CgformTemplateController extends BaseController {
 		}
 		return new ModelAndView("jeecg/cgform/template/cgformTemplate-update");
 	}
-	
+
 	/**
 	 * 导入功能跳转
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(params = "upload")
@@ -315,10 +341,10 @@ public class CgformTemplateController extends BaseController {
 		req.setAttribute("controller_name", "cgformTemplateController");
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
-	
+
 	/**
 	 * 导出excel
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 */
@@ -359,7 +385,7 @@ public class CgformTemplateController extends BaseController {
 	}
 	/**
 	 * 下载模板
-	 * 
+	 *
 	 * @param id
 	 */
 	@RequestMapping(params = "downloadTemplate")
@@ -391,13 +417,13 @@ public class CgformTemplateController extends BaseController {
 			return ;
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {
 		AjaxJson j = new AjaxJson();
-		
+
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
@@ -527,6 +553,9 @@ public class CgformTemplateController extends BaseController {
 		OutputStream out = null;
 		response.setContentType("image/" + FileUtils.getExtend(path));
 		try {
+			if (path.contains("..") || path.contains(":") || path.contains("|")) {
+				throw new IllegalArgumentException("非法路径");
+			}
 			out = response.getOutputStream();
 			File file = new File(getUploadBasePath(request),code+path);
 			if(!file.exists()||file.isDirectory()){
@@ -555,9 +584,9 @@ public class CgformTemplateController extends BaseController {
 
 //		String path=request.getSession().getServletContext().getRealPath("/WEB-INF/classes/online/template");
 
-		ClassLoader classLoader = this.getClass().getClassLoader();  
+		ClassLoader classLoader = this.getClass().getClassLoader();
         URL resource = classLoader.getResource("sysConfig.properties");
-        String path = resource.getPath(); 
+        String path = resource.getPath();
         path = path.substring(0,path.indexOf("sysConfig.properties"))+"online/template";
 //		String path= this.getClass().getResource("/").getPath()+"online/template";
 
