@@ -22,97 +22,102 @@ import java.util.*;
 import static com.xiaoleilu.hutool.date.DateTime.now;
 
 /**
- *
  * @ClassName:SmsSendTask
  * @Description: 对启用货品ABC分类的，自动根据效期生成库存转移
  * @date 2014-11-13 下午5:06:34
+ */
+
+/**
+ * Demo class
  *
+ * @author admin
+ * @date 2016/10/31
  */
 @Service("goodsMoveTask")
 public class GoodsMoveTask {
 
 
-	@Autowired
-	private SystemService systemService;
+    @Autowired
+    private SystemService systemService;
 
-	/* @Scheduled(cron="0 0 01 * * ?") */
-	public void run() {
-		long start = System.currentTimeMillis();
-		String datestr = DateUtils.date2Str(DateUtils.date_sdf);
-		org.jeecgframework.core.util.LogUtil
-				.info("===================转移定时任务开始===================");
-		String moveStats = ResourceUtil.getConfigByName("moveStats");
-		String binStoress = ResourceUtil.getConfigByName("binStoress");
+    /* @Scheduled(cron="0 0 01 * * ?") */
+    public void run() {
+        long start = System.currentTimeMillis();
+        String datestr = DateUtils.date2Str(DateUtils.date_sdf);
+        org.jeecgframework.core.util.LogUtil
+                .info("===================转移定时任务开始===================");
+        String moveStats = ResourceUtil.getConfigByName("moveStats");
+        String binStoress = ResourceUtil.getConfigByName("binStoress");
 
-		if(StringUtil.isEmpty(moveStats)){
-			moveStats = "计划中";
-		}
-		if(StringUtil.isNotEmpty(binStoress)){
-			String binStoressa[] = binStoress.split(",");
-			for(String binstore:binStoressa){
-				this.goodsMove(binstore,moveStats);
-			}
-		}
+        if (StringUtil.isEmpty(moveStats)) {
+            moveStats = "计划中";
+        }
+        if (StringUtil.isNotEmpty(binStoress)) {
+            String binStoressa[] = binStoress.split(",");
+            for (String binstore : binStoressa) {
+                this.goodsMove(binstore, moveStats);
+            }
+        }
 
 
+        org.jeecgframework.core.util.LogUtil
+                .info("===================转移定时任务结束===================");
+        long end = System.currentTimeMillis();
+        long times = end - start;
+        org.jeecgframework.core.util.LogUtil.info("转移定时任务总耗时" + times + "毫秒");
+    }
 
-		org.jeecgframework.core.util.LogUtil
-				.info("===================转移定时任务结束===================");
-		long end = System.currentTimeMillis();
-		long times = end - start;
-		org.jeecgframework.core.util.LogUtil.info("转移定时任务总耗时" + times + "毫秒");
-	}
-	public  void goodsMove(String binstrore,String moveStatus ){
-	    //转移到B
-		String tsql = "SELECT id FROM wv_stock_stt " +
+    public void goodsMove(String binstrore, String moveStatus) {
+        //转移到B
+        String tsql = "SELECT id FROM wv_stock_stt " +
                 "where yushoutianshu <> bzhi_qi  " +
                 "and bzhi_qi > 0 " +
                 "and  bin_id = 'A' " +
                 "and to_days(`goods_pro_data` + interval  (bzhi_qi - yushoutianshu) day) < to_days(now())  " +
                 "and to_days(`goods_pro_data` + interval  (bzhi_qi ) day) > to_days(now())";
-		this.genGoodsMove(tsql,"B","",moveStatus);
+        this.genGoodsMove(tsql, "B", "", moveStatus);
 
-		//转移到C
+        //转移到C
         tsql = "SELECT id FROM wv_stock_stt " +
                 "where yushoutianshu <>  bzhi_qi   " +
                 "and bzhi_qi > 0 " +
                 "and   bin_id in ('A','B') " +
                 "and to_days(`goods_pro_data` + interval  (bzhi_qi ) day) <= to_days(now())";
-        this.genGoodsMove(tsql,"C","",moveStatus);
+        this.genGoodsMove(tsql, "C", "", moveStatus);
 
 
-		//转移到DB
+        //转移到DB
         tsql = "SELECT id FROM wv_stock_stt " +
-				"where yushoutianshu <> bzhi_qi  " +
-				"and bzhi_qi > 0 " +
-				"and  bin_id = 'DA' " +
-				"and to_days(`goods_pro_data` + interval  (bzhi_qi - yushoutianshu) day) < to_days(now())  " +
-				"and to_days(`goods_pro_data` + interval  (bzhi_qi ) day) > to_days(now())";
-		this.genGoodsMove(tsql,"DB","",moveStatus);
+                "where yushoutianshu <> bzhi_qi  " +
+                "and bzhi_qi > 0 " +
+                "and  bin_id = 'DA' " +
+                "and to_days(`goods_pro_data` + interval  (bzhi_qi - yushoutianshu) day) < to_days(now())  " +
+                "and to_days(`goods_pro_data` + interval  (bzhi_qi ) day) > to_days(now())";
+        this.genGoodsMove(tsql, "DB", "", moveStatus);
 
 
-		//转移到DC
-		tsql = "SELECT id FROM wv_stock_stt " +
-				"where yushoutianshu <>  bzhi_qi   " +
-				"and bzhi_qi > 0 " +
-				"and   bin_id in ('DA','DB') " +
-				"and to_days(`goods_pro_data` + interval  (bzhi_qi ) day) <= to_days(now())";
-		this.genGoodsMove(tsql,"DC","",moveStatus);
+        //转移到DC
+        tsql = "SELECT id FROM wv_stock_stt " +
+                "where yushoutianshu <>  bzhi_qi   " +
+                "and bzhi_qi > 0 " +
+                "and   bin_id in ('DA','DB') " +
+                "and to_days(`goods_pro_data` + interval  (bzhi_qi ) day) <= to_days(now())";
+        this.genGoodsMove(tsql, "DC", "", moveStatus);
 
-	}
+    }
 
-	private void  genGoodsMove(String Tsql,String TinId,String binstrore,String moveStatus  ){
-              List<Map<String, Object>> resulmovea = systemService
+    private void genGoodsMove(String Tsql, String TinId, String binstrore, String moveStatus) {
+        List<Map<String, Object>> resulmovea = systemService
                 .findForJdbc(Tsql);
         //生成任务转B
         for (int i = 0; i < resulmovea.size(); i++) {
-        	try{
+            try {
 
-            WvStockEntity t = systemService.get(WvStockEntity.class,resulmovea.get(i).get("id").toString());
+                WvStockEntity t = systemService.get(WvStockEntity.class, resulmovea.get(i).get("id").toString());
 
                 WmToMoveGoodsEntity wmtomove = new WmToMoveGoodsEntity();
-				wmtomove.setCreateDate(now());
-				wmtomove.setCreateBy("system");
+                wmtomove.setCreateDate(now());
+                wmtomove.setCreateBy("system");
                 wmtomove.setOrderTypeCode("TPZY");
                 wmtomove.setBinFrom(t.getKuWeiBianMa());
                 wmtomove.setBinTo(t.getKuWeiBianMa());
@@ -131,7 +136,7 @@ public class GoodsMoveTask {
                 wmtomove.setTinFrom(t.getBinId());
                 wmtomove.setTinId(TinId);
                 systemService.save(wmtomove);
-            }catch (Exception e){
+            } catch (Exception e) {
             }
         }
 

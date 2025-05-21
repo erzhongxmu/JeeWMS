@@ -3,9 +3,10 @@ package com.zzjee.ba.vo;
 import java.util.List;
 
 /**
- * @Package com.zzjee.ba.vo
- * @date 2021/8/20 11:38 上午
- * @description
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
  */
 public class BaGoodsCategoryVoo {
 

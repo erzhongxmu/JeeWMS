@@ -7,6 +7,12 @@ import org.jeecgframework.web.graphreport.entity.core.JformGraphreportItemEntity
 
 import java.io.Serializable;
 
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public interface JformGraphreportHeadServiceI extends CommonService{
 	
  	@Override

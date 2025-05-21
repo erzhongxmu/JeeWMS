@@ -13,6 +13,12 @@ import org.jeecgframework.core.util.MyClassLoader;
 import org.jeecgframework.core.util.StringUtil;
 import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
 
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Service("baCostService")
 @Transactional
 public class BaCostServiceImpl extends CommonServiceImpl implements BaCostServiceI {

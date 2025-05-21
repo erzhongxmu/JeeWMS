@@ -14,28 +14,36 @@ import java.util.UUID;
  * Date: 13-7-26
  * Time: 下午2:07
  */
+
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public class IconImageUtil {
     /**
      * 把数据库中图片byte，存到项目temp目录下，并且把路径返设置给TsIcon
+     *
      * @param dataGrid
      * @param request
      */
-    public static void convertDataGrid(DataGrid dataGrid,HttpServletRequest request){
-        String fileDirName=request.getSession().getServletContext().getRealPath("")+File.separator+"temp";
+    public static void convertDataGrid(DataGrid dataGrid, HttpServletRequest request) {
+        String fileDirName = request.getSession().getServletContext().getRealPath("") + File.separator + "temp";
         delFolder(fileDirName);
         File fileDir = new File(fileDirName);
         if (!fileDir.exists()) {
             fileDir.mkdirs();
         }
         try {
-            List list=dataGrid.getResults();
-            for(Object obj:list){
-                TSIcon icon=(TSIcon)obj;
-                String fileName="icon"+ UUID.randomUUID()+"."+icon.getExtend();
-                File tempFile=new File(fileDirName+File.separator+fileName);
-                if(icon.getIconContent()!=null){
-                byte2image(icon.getIconContent(),tempFile);
-                icon.setIconPath("temp/"+fileName);
+            List list = dataGrid.getResults();
+            for (Object obj : list) {
+                TSIcon icon = (TSIcon) obj;
+                String fileName = "icon" + UUID.randomUUID() + "." + icon.getExtend();
+                File tempFile = new File(fileDirName + File.separator + fileName);
+                if (icon.getIconContent() != null) {
+                    byte2image(icon.getIconContent(), tempFile);
+                    icon.setIconPath("temp/" + fileName);
                 }
             }
         } catch (Exception e) {
@@ -44,16 +52,16 @@ public class IconImageUtil {
     }
 
     //byte数组到图片
-    private static void byte2image(byte[] data,File file){
-        if( data.length < 3 ) {
+    private static void byte2image(byte[] data, File file) {
+        if (data.length < 3) {
             return;
         }
         FileImageOutputStream imageOutput = null;
-        String fileName=null;
+        String fileName = null;
         try {
             imageOutput = new FileImageOutputStream(file);
             imageOutput.write(data, 0, data.length);
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
             try {
@@ -66,6 +74,7 @@ public class IconImageUtil {
 
     /**
      * 删除文件夹
+     *
      * @param folderPath 文件夹完整绝对路径
      */
     private static void delFolder(String folderPath) {
@@ -77,8 +86,10 @@ public class IconImageUtil {
             e.printStackTrace();
         }
     }
+
     /**
      * 删除指定文件夹下所有文件
+     *
      * @param path 文件夹完整绝对路径
      * @return
      */

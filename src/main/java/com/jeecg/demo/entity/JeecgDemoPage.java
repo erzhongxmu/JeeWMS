@@ -3,6 +3,10 @@ package com.jeecg.demo.entity;
 import java.util.List;
 
 /**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
  */
 public class JeecgDemoPage {
     private List<JeecgDemoEntity> demos;
