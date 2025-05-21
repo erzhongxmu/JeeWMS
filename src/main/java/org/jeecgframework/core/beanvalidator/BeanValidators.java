@@ -19,6 +19,13 @@ import javax.validation.Validator;
  * 2.List<String>, String内容为propertyPath + separator + message
  * 3.Map<propertyPath, message>
  */
+
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public class BeanValidators {
 
     /**

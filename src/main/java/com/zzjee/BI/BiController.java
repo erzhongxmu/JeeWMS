@@ -24,6 +24,13 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * 大屏
  */
+
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Controller
 @RequestMapping("/BiController")
 public class BiController extends BaseController {
@@ -31,27 +38,26 @@ public class BiController extends BaseController {
     private SystemService systemService;
 
     /**
-     *
      * @param request
      * @return
      */
     @RequestMapping(params = "homebi")
     public ModelAndView bi(HttpServletRequest request) {
-        String num1= "0";
-        String num2= "0";
-        String num3= "0";
-        String num4= "0";
-        String num5= "0";   //库存转移计划中的数量
+        String num1 = "0";
+        String num2 = "0";
+        String num3 = "0";
+        String num4 = "0";
+        String num5 = "0";   //库存转移计划中的数量
 
-        String ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_im_notice_i where bin_pre = 'N'" ;
-        if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
+        String ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_im_notice_i where bin_pre = 'N'";
+        if (StringUtil.isNotEmpty(wmUtil.getCusCode())) {
             String cusCode = wmUtil.getCusCode();
             ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_im_notice_i i ,wm_im_notice_h h where bin_pre = 'N' " +
-                    " and h.notice_id = i.im_notice_id and h.cus_code = '" +cusCode+
-                    "' " ;
-         }
-        List<Map<String,Object>> ymaplist1=systemService.findForJdbc(ysql);
-        for (Map<String,Object> object : ymaplist1) {
+                    " and h.notice_id = i.im_notice_id and h.cus_code = '" + cusCode +
+                    "' ";
+        }
+        List<Map<String, Object>> ymaplist1 = systemService.findForJdbc(ysql);
+        for (Map<String, Object> object : ymaplist1) {
             Map<String, Object> obj = object;
 
             try {
@@ -60,15 +66,15 @@ public class BiController extends BaseController {
 
             }
         }
-        ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_in_qm_i where bin_sta = 'N'" ;
+        ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_in_qm_i where bin_sta = 'N'";
 
-        if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
+        if (StringUtil.isNotEmpty(wmUtil.getCusCode())) {
             String cusCode = wmUtil.getCusCode();
-            ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_in_qm_i where bin_sta = 'N' and cus_code = '" +cusCode+
-                    "' " ;
+            ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_in_qm_i where bin_sta = 'N' and cus_code = '" + cusCode +
+                    "' ";
         }
-        List<Map<String,Object>> ymaplist2=systemService.findForJdbc(ysql);
-        for (Map<String,Object> object : ymaplist2) {
+        List<Map<String, Object>> ymaplist2 = systemService.findForJdbc(ysql);
+        for (Map<String, Object> object : ymaplist2) {
             Map<String, Object> obj = object;
 
             try {
@@ -77,14 +83,14 @@ public class BiController extends BaseController {
 
             }
         }
-        ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_om_qm_i where bin_sta = 'I'" ;
-        if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
+        ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_om_qm_i where bin_sta = 'I'";
+        if (StringUtil.isNotEmpty(wmUtil.getCusCode())) {
             String cusCode = wmUtil.getCusCode();
-            ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_om_qm_i where bin_sta = 'I' and cus_code = '" +cusCode+
-                    "' " ;
+            ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_om_qm_i where bin_sta = 'I' and cus_code = '" + cusCode +
+                    "' ";
         }
-        List<Map<String,Object>> ymaplist3=systemService.findForJdbc(ysql);
-        for (Map<String,Object> object : ymaplist3) {
+        List<Map<String, Object>> ymaplist3 = systemService.findForJdbc(ysql);
+        for (Map<String, Object> object : ymaplist3) {
             Map<String, Object> obj = object;
 
             try {
@@ -93,15 +99,15 @@ public class BiController extends BaseController {
 
             }
         }
-        ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_om_qm_i where bin_sta = 'N'" ;
+        ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_om_qm_i where bin_sta = 'N'";
 
-        if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
+        if (StringUtil.isNotEmpty(wmUtil.getCusCode())) {
             String cusCode = wmUtil.getCusCode();
-            ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_om_qm_i where bin_sta = 'N' and cus_code = '" +cusCode+
-                    "' " ;
+            ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_om_qm_i where bin_sta = 'N' and cus_code = '" + cusCode +
+                    "' ";
         }
-        List<Map<String,Object>> ymaplist4=systemService.findForJdbc(ysql);
-        for (Map<String,Object> object : ymaplist4) {
+        List<Map<String, Object>> ymaplist4 = systemService.findForJdbc(ysql);
+        for (Map<String, Object> object : ymaplist4) {
             Map<String, Object> obj = object;
 
             try {
@@ -111,14 +117,14 @@ public class BiController extends BaseController {
             }
         }
 
-        ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_to_move_goods where move_Sta = '计划中'" ;
-        if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
+        ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_to_move_goods where move_Sta = '计划中'";
+        if (StringUtil.isNotEmpty(wmUtil.getCusCode())) {
             String cusCode = wmUtil.getCusCode();
-            ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_to_move_goods where move_Sta = '计划中' and cus_code = '" +cusCode+
-                    "' " ;
+            ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_to_move_goods where move_Sta = '计划中' and cus_code = '" + cusCode +
+                    "' ";
         }
-        List<Map<String,Object>> ymaplist5=systemService.findForJdbc(ysql);
-        for (Map<String,Object> object : ymaplist5) {
+        List<Map<String, Object>> ymaplist5 = systemService.findForJdbc(ysql);
+        for (Map<String, Object> object : ymaplist5) {
             Map<String, Object> obj = object;
 
             try {
@@ -128,14 +134,15 @@ public class BiController extends BaseController {
             }
         }
 
-        request.setAttribute("num1",num1);
-        request.setAttribute("num2",num2);
-        request.setAttribute("num3",num3);
-        request.setAttribute("num4",num4);
-        request.setAttribute("num5",num5);
+        request.setAttribute("num1", num1);
+        request.setAttribute("num2", num2);
+        request.setAttribute("num3", num3);
+        request.setAttribute("num4", num4);
+        request.setAttribute("num5", num5);
 
         return new ModelAndView("com/zzjee/BI/home/reportbi");
     }
+
     /**
      * highchart
      *
@@ -158,35 +165,35 @@ public class BiController extends BaseController {
                 "group by DATE_FORMAT(create_date, '%Y-%m-%d') " +
                 "order by DATE_FORMAT(create_date, '%Y-%m-%d') desc " +
                 "limit 7)  temptable order by create_date  ";
-        if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
+        if (StringUtil.isNotEmpty(wmUtil.getCusCode())) {
             String cusCode = wmUtil.getCusCode();
             sql = "select * from ( " +
                     "SELECT  " +
                     "    DATE_FORMAT(create_date, '%Y-%m-%d') as create_date, " +
                     "    floor(sum(BASE_GOODSCOUNT)) as amount " +
                     "FROM" +
-                    "    wm_to_down_goods where ORDER_ID <> 'ZY'  and cus_code = '" +cusCode+
+                    "    wm_to_down_goods where ORDER_ID <> 'ZY'  and cus_code = '" + cusCode +
                     "'  " +
                     "group by DATE_FORMAT(create_date, '%Y-%m-%d') " +
                     "order by DATE_FORMAT(create_date, '%Y-%m-%d') desc " +
                     "limit 7)  temptable order by create_date  ";
         }
 
-        List<Map<String,Object>> maplist=systemService.findForJdbc(sql);
+        List<Map<String, Object>> maplist = systemService.findForJdbc(sql);
         List lt = new ArrayList();
         hc.setName("近七日下架数量");
         hc.setType(reportType);
         Map<String, Object> map;
 
         if (maplist.size() > 0) {
-            for (Map<String,Object> object : maplist) {
+            for (Map<String, Object> object : maplist) {
                 map = new HashMap<String, Object>(1024);
-                Map<String,Object> obj =   object;
-                try{
+                Map<String, Object> obj = object;
+                try {
 
                     map.put("name", obj.get("create_date").toString());
-                    map.put("y",  (int) Double.parseDouble(obj.get("amount").toString()));
-                }catch (Exception e){
+                    map.put("y", (int) Double.parseDouble(obj.get("amount").toString()));
+                } catch (Exception e) {
 
                 }
                 lt.add(map);
@@ -201,6 +208,7 @@ public class BiController extends BaseController {
 
     /**
      * highchart
+     *
      * @param request
      * @param reportType
      * @param response
@@ -211,7 +219,7 @@ public class BiController extends BaseController {
     public List<Highchart> studentCountmonth(HttpServletRequest request, String reportType, HttpServletResponse response) {
         List<Highchart> list = new ArrayList<Highchart>();
         Highchart hc = new Highchart();
-       String sql = "select * from ( " +
+        String sql = "select * from ( " +
                 "SELECT  " +
                 "    GOODS_name as goodsid, " +
                 "    floor(sum(BASE_GOODSCOUNT)) as amount " +
@@ -219,20 +227,20 @@ public class BiController extends BaseController {
                 "    wm_to_up_goods where ORDER_ID <> 'ZY'   " +
                 "group by GOODS_ID   " +
                 ")  temptable  order by amount desc limit 6  ";
-        if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
+        if (StringUtil.isNotEmpty(wmUtil.getCusCode())) {
             String cusCode = wmUtil.getCusCode();
             sql = "select * from ( " +
                     "SELECT  " +
                     "    GOODS_name as goodsid, " +
                     "    floor(sum(BASE_GOODSCOUNT)) as amount " +
                     "FROM" +
-                    "    wm_to_up_goods where ORDER_ID <> 'ZY'  and cus_code = '" +cusCode+
+                    "    wm_to_up_goods where ORDER_ID <> 'ZY'  and cus_code = '" + cusCode +
                     "' " +
                     "group by GOODS_ID   " +
                     ")  temptable  order by amount desc limit 6  ";
         }
 
-        List<Map<String,Object>> maplist=systemService.findForJdbc(sql);
+        List<Map<String, Object>> maplist = systemService.findForJdbc(sql);
 
         List lt = new ArrayList();
         hc.setName("上架数量前6");
@@ -240,11 +248,11 @@ public class BiController extends BaseController {
         Map<String, Object> map;
 
         if (maplist.size() > 0) {
-            for (Map<String,Object> object : maplist) {
+            for (Map<String, Object> object : maplist) {
                 map = new HashMap<String, Object>(1024);
-                Map<String,Object> obj =   object;
+                Map<String, Object> obj = object;
                 map.put("name", obj.get("goodsid").toString());
-                map.put("y",  (int) Double.parseDouble(obj.get("amount").toString()));
+                map.put("y", (int) Double.parseDouble(obj.get("amount").toString()));
                 lt.add(map);
             }
         }
@@ -256,6 +264,7 @@ public class BiController extends BaseController {
 
     /**
      * highchart
+     *
      * @return
      */
     @RequestMapping(params = "cpNamedownCount")
@@ -270,34 +279,34 @@ public class BiController extends BaseController {
                 "FROM" +
                 "    wm_to_down_goods where ORDER_ID <> 'ZY'   " +
                 "group by GOODS_ID   " +
-                ")  temptable   order by amount desc limit 6 " ;
+                ")  temptable   order by amount desc limit 6 ";
 
-        if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
+        if (StringUtil.isNotEmpty(wmUtil.getCusCode())) {
             String cusCode = wmUtil.getCusCode();
             sql = "select * from ( " +
                     "SELECT  " +
                     "    GOODS_name as goodsid, " +
                     "    floor(sum(BASE_GOODSCOUNT)) as amount " +
                     "FROM" +
-                    "    wm_to_down_goods where ORDER_ID <> 'ZY'  and cus_code = '" +cusCode+
+                    "    wm_to_down_goods where ORDER_ID <> 'ZY'  and cus_code = '" + cusCode +
                     "'  " +
                     "group by GOODS_ID   " +
-                    ")  temptable   order by amount desc limit 6 " ;
+                    ")  temptable   order by amount desc limit 6 ";
 
         }
 
-        List<Map<String,Object>> maplist=systemService.findForJdbc(sql);
+        List<Map<String, Object>> maplist = systemService.findForJdbc(sql);
         List lt = new ArrayList();
         hc.setName("下架数量前6");
         hc.setType(reportType);
         Map<String, Object> map;
 
         if (maplist.size() > 0) {
-            for (Map<String,Object> object : maplist) {
+            for (Map<String, Object> object : maplist) {
                 map = new HashMap<String, Object>(1024);
-                Map<String,Object> obj =   object;
+                Map<String, Object> obj = object;
                 map.put("name", obj.get("goodsid").toString());
-                map.put("y",  (int) Double.parseDouble(obj.get("amount").toString()));
+                map.put("y", (int) Double.parseDouble(obj.get("amount").toString()));
                 lt.add(map);
             }
         }
