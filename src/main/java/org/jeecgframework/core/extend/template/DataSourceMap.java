@@ -8,6 +8,13 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
+
 @SuppressWarnings("unchecked")
 public class DataSourceMap {
     private static Map<Object, Object> dsm;
