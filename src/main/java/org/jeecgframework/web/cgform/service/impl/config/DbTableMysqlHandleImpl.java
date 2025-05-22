@@ -9,6 +9,12 @@ import org.jeecgframework.web.cgform.service.impl.config.util.ColumnMeta;
 /**
  * mysql的表工具类
  */
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public class DbTableMysqlHandleImpl implements DbTableHandleI {
 
 
