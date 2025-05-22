@@ -2,6 +2,12 @@ package org.jeecgframework.core.util;
 
 import java.io.*;
 
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public class DbBackorRestoreUtil {
     public static void Mysqlbackup() {
         try {
@@ -45,6 +51,7 @@ public class DbBackorRestoreUtil {
         }
 
     }
+
     public static void restore(String databaseName) {
         try {
             Runtime runtime = Runtime.getRuntime();
