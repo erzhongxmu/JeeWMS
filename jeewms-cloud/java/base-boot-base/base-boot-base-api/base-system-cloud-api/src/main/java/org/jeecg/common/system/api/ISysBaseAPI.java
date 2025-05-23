@@ -108,6 +108,7 @@ public interface ISysBaseAPI extends CommonAPI {
      * @param code
      * @return
      */
+    @Override
     @GetMapping("/sys/api/queryDictItemsByCode")
     List<DictModel> queryDictItemsByCode(@RequestParam("code") String code);
 
@@ -116,6 +117,7 @@ public interface ISysBaseAPI extends CommonAPI {
      * @param code
      * @return
      */
+    @Override
     @GetMapping("/sys/api/queryEnableDictItemsByCode")
     public List<DictModel> queryEnableDictItemsByCode(@RequestParam("code") String code);
 
@@ -371,6 +373,7 @@ public interface ISysBaseAPI extends CommonAPI {
      * @param key
      * @return
      */
+
     @GetMapping("/sys/api/translateDict")
     String translateDict(@RequestParam("code") String code, @RequestParam("key") String key);
 
@@ -378,6 +381,7 @@ public interface ISysBaseAPI extends CommonAPI {
      * 42查询数据权限
      * @return
      */
+
     @GetMapping("/sys/api/queryPermissionDataRule")
     List<SysPermissionDataRuleModel> queryPermissionDataRule(@RequestParam("component") String component, @RequestParam("requestPath")String requestPath, @RequestParam("username") String username);
 
