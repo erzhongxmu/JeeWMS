@@ -328,6 +328,7 @@ public interface ISysBaseAPI extends CommonAPI {
      * @param username
      * @return
      */
+    @Override
     @GetMapping("/sys/api/queryUserAuths")
     Set<String> queryUserAuths(@RequestParam("username")String username);
 
@@ -392,6 +393,7 @@ public interface ISysBaseAPI extends CommonAPI {
      * @param username
      * @return
      */
+    @Override
     @GetMapping("/sys/api/getCacheUser")
     com.base.common.system.vo.SysUserCacheInfo getCacheUser(@RequestParam("username") String username);
 
