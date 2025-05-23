@@ -337,6 +337,7 @@ public interface ISysBaseAPI extends CommonAPI {
      * @param dbSourceId
      * @return
      */
+    @Override
     @GetMapping("/sys/api/getDynamicDbSourceById")
     DynamicDataSourceModel getDynamicDbSourceById(@RequestParam("dbSourceId") String dbSourceId);
 
@@ -346,6 +347,7 @@ public interface ISysBaseAPI extends CommonAPI {
      * @param dbSourceCode
      * @return
      */
+    @Override
     @GetMapping("/sys/api/getDynamicDbSourceByCode")
     DynamicDataSourceModel getDynamicDbSourceByCode(@RequestParam("dbSourceCode") String dbSourceCode);
 
