@@ -321,6 +321,7 @@ public interface ISysBaseAPI extends CommonAPI {
      * @param username
      * @return
      */
+    @Override
     @GetMapping("/sys/api/queryUserRoles")
     Set<String> queryUserRoles(@RequestParam("username")String username);
 
