@@ -139,6 +139,7 @@ public interface ISysBaseAPI extends CommonAPI {
      * @param code
      * @return
      */
+    @Override
     @GetMapping("/sys/api/queryTableDictItemsByCode")
     List<DictModel> queryTableDictItemsByCode(@RequestParam("table") String table, @RequestParam("text") String text, @RequestParam("code") String code);
 
