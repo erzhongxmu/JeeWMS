@@ -358,6 +358,7 @@ public interface ISysBaseAPI extends CommonAPI {
      * 39根据用户账号查询用户信息 CommonAPI中定义
      * @param username
      */
+    @Override
     @GetMapping("/sys/api/getUserByName")
     LoginUser getUserByName(@RequestParam("username") String username);
 
