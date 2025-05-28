@@ -370,6 +370,7 @@ public interface ISysBaseAPI extends CommonAPI {
      * @param key
      * @return
      */
+    @Override
     @GetMapping("/sys/api/translateDictFromTable")
     String translateDictFromTable(@RequestParam("table") String table, @RequestParam("text") String text, @RequestParam("code") String code, @RequestParam("key") String key);
 
