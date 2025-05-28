@@ -380,7 +380,7 @@ public interface ISysBaseAPI extends CommonAPI {
      * @param key
      * @return
      */
-
+    @Override
     @GetMapping("/sys/api/translateDict")
     String translateDict(@RequestParam("code") String code, @RequestParam("key") String key);
 
