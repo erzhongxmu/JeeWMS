@@ -321,7 +321,7 @@ public class DayiUtils {
 		startCal.setTime(startDate);
 		Calendar endCal = Calendar.getInstance();
 		endCal.setTime(endDate);
-		int startDateM = startCal.MONTH;
+		int startDateM = Calendar.MONTH;
 		int startDateY = startCal.YEAR;
 		int enddatem = endCal.MONTH;
 		int enddatey = endCal.YEAR;
