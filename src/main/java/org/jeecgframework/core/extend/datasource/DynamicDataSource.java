@@ -6,37 +6,44 @@ import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 import org.springframework.jdbc.datasource.lookup.DataSourceLookup;
 
 /**
- *类名：DynamicDataSource.java
- *功能：动态数据源类
+ * 类名：DynamicDataSource.java
+ * 功能：动态数据源类
+ */
+
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
  */
 public class DynamicDataSource extends AbstractRoutingDataSource {
 
-	/* 
-	 * 该方法必须要重写  方法是为了根据数据库标示符取得当前的数据库
-	 */
-	
-	@Override
+    /*
+     * 该方法必须要重写  方法是为了根据数据库标示符取得当前的数据库
+     */
+
+    @Override
     protected Object determineCurrentLookupKey() {
-		DataSourceType dataSourceType= DataSourceContextHolder.getDataSourceType();
-		return dataSourceType;
-	}
+        DataSourceType dataSourceType = DataSourceContextHolder.getDataSourceType();
+        return dataSourceType;
+    }
 
-	
-	@Override
+
+    @Override
     public void setDataSourceLookup(DataSourceLookup dataSourceLookup) {
-		super.setDataSourceLookup(dataSourceLookup);
-	}
+        super.setDataSourceLookup(dataSourceLookup);
+    }
 
-	
-	@Override
+
+    @Override
     public void setDefaultTargetDataSource(Object defaultTargetDataSource) {
-		super.setDefaultTargetDataSource(defaultTargetDataSource);
-	}
+        super.setDefaultTargetDataSource(defaultTargetDataSource);
+    }
 
-	
-	@Override
+
+    @Override
     public void setTargetDataSources(Map targetDataSources) {
-		super.setTargetDataSources(targetDataSources);
-	}
+        super.setTargetDataSources(targetDataSources);
+    }
 
 }
