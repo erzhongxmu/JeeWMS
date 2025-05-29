@@ -1,65 +1,71 @@
 package org.jeecgframework.web.system.pojo.base;
 
 /**
- *@类:DuplicateCheckPage
- *@作者:admin
- *@E-mail:zhangdaiscott@163.com
- *@日期:2012-11-15
- *update-begin--Author:yankang  Date:201309012 for：[TASK#63]UI库常用控件参考示例【重复校验】
- *update-end--Author:yankang  Date:20130912 for：[TASK#63]UI库常用控件参考示例【重复校验】
+ * @类:DuplicateCheckPage
+ * @作者:admin
+ * @E-mail:zhangdaiscott@163.com
+ * @日期:2012-11-15 update-begin--Author:yankang  Date:201309012 for：[TASK#63]UI库常用控件参考示例【重复校验】
+ * update-end--Author:yankang  Date:20130912 for：[TASK#63]UI库常用控件参考示例【重复校验】
+ */
+
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
  */
 
 @SuppressWarnings("serial")
-public class DuplicateCheckPage   implements java.io.Serializable {
+public class DuplicateCheckPage implements java.io.Serializable {
 
-	/**
-	 * 表名
-	 */
-	private String tableName;
-	
-	/**
-	 * 字段名
-	 */
-	private String fieldName;
-	
-	/**
-	 * 字段值
-	 */
-	private String fieldVlaue;
-	
-	/**编辑数据ID*/
-	private String rowObid;
+    /**
+     * 表名
+     */
+    private String tableName;
 
-	public String getRowObid() {
-		return rowObid;
-	}
+    /**
+     * 字段名
+     */
+    private String fieldName;
 
-	public void setRowObid(String rowObid) {
-		this.rowObid = rowObid;
-	}
+    /**
+     * 字段值
+     */
+    private String fieldVlaue;
 
-	public String getTableName() {
-		return tableName;
-	}
+    /**编辑数据ID*/
+    private String rowObid;
 
-	public String getFieldName() {
-		return fieldName;
-	}
+    public String getRowObid() {
+        return rowObid;
+    }
 
-	public String getFieldVlaue() {
-		return fieldVlaue;
-	}
+    public void setRowObid(String rowObid) {
+        this.rowObid = rowObid;
+    }
 
-	public void setTableName(String tableName) {
-		this.tableName = tableName;
-	}
+    public String getTableName() {
+        return tableName;
+    }
 
-	public void setFieldName(String fieldName) {
-		this.fieldName = fieldName;
-	}
+    public String getFieldName() {
+        return fieldName;
+    }
 
-	public void setFieldVlaue(String fieldVlaue) {
-		this.fieldVlaue = fieldVlaue;
-	}
+    public String getFieldVlaue() {
+        return fieldVlaue;
+    }
+
+    public void setTableName(String tableName) {
+        this.tableName = tableName;
+    }
+
+    public void setFieldName(String fieldName) {
+        this.fieldName = fieldName;
+    }
+
+    public void setFieldVlaue(String fieldVlaue) {
+        this.fieldVlaue = fieldVlaue;
+    }
 
 }
