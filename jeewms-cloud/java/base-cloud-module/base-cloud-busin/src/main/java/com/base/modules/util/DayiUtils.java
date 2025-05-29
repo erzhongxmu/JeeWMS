@@ -324,7 +324,7 @@ public class DayiUtils {
 		int startDateM = Calendar.MONTH;
 		int startDateY = startCal.YEAR;
 		int enddatem = Calendar.MONTH;
-		int enddatey = endCal.YEAR;
+		int enddatey = Calendar.YEAR;
 		int interval = (enddatey * 12 + enddatem) - (startDateY * 12 + startDateM);
 		return interval;
 	}
