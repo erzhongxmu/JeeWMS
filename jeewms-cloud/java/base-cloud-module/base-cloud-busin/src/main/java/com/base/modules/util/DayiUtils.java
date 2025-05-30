@@ -322,7 +322,7 @@ public class DayiUtils {
 		Calendar endCal = Calendar.getInstance();
 		endCal.setTime(endDate);
 		int startDateM = Calendar.MONTH;
-		int startDateY = startCal.YEAR;
+		int startDateY = Calendar.YEAR;
 		int enddatem = Calendar.MONTH;
 		int enddatey = Calendar.YEAR;
 		int interval = (enddatey * 12 + enddatem) - (startDateY * 12 + startDateM);
