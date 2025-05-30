@@ -88,7 +88,7 @@ public class RestfulUtil {
 		String s = null;
         b = str.getBytes(StandardCharsets.UTF_8);
         if (b != null) {
-			s =  new Base64().encode(b);
+			s = Base64().encode(b);
 		}
 		return s;
 	}
