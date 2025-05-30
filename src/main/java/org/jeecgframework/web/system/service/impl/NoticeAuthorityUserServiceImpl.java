@@ -9,19 +9,24 @@ import org.jeecgframework.web.system.pojo.base.TSNoticeAuthorityUser;
 import org.jeecgframework.web.system.service.NoticeAuthorityUserServiceI;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Service("noticeAuthorityUserService")
 @Transactional
 public class NoticeAuthorityUserServiceImpl extends CommonServiceImpl implements NoticeAuthorityUserServiceI {
 
-	
+
  	@Override
     public <T> void delete(T entity) {
  		super.delete(entity);
  		//执行删除操作配置的sql增强
 		this.doDelSql((TSNoticeAuthorityUser)entity);
  	}
- 	
+
  	@Override
     public <T> Serializable save(T entity) {
  		Serializable t = super.save(entity);
@@ -29,14 +34,14 @@ public class NoticeAuthorityUserServiceImpl extends CommonServiceImpl implements
  		this.doAddSql((TSNoticeAuthorityUser)entity);
  		return t;
  	}
- 	
+
  	@Override
     public <T> void saveOrUpdate(T entity) {
  		super.saveOrUpdate(entity);
  		//执行更新操作配置的sql增强
  		this.doUpdateSql((TSNoticeAuthorityUser)entity);
  	}
- 	
+
  	/**
 	 * 默认按钮-sql增强-新增操作
 	 * @param t
@@ -64,7 +69,7 @@ public class NoticeAuthorityUserServiceImpl extends CommonServiceImpl implements
     public boolean doDelSql(TSNoticeAuthorityUser t){
 	 	return true;
  	}
- 	
+
  	/**
 	 * 替换sql中的变量
 	 * @param sql
@@ -77,7 +82,7 @@ public class NoticeAuthorityUserServiceImpl extends CommonServiceImpl implements
  		sql  = sql.replace("#{UUID}",UUID.randomUUID().toString());
  		return sql;
  	}
- 	
+
  	/**
  	 * 检查通知公告授权用户是否存在
  	 */
