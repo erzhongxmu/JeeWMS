@@ -13,24 +13,29 @@ import org.jeecgframework.web.system.service.MutiLangServiceI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Service("mutiLangService")
 @Transactional
 public class MutiLangServiceImpl extends CommonServiceImpl implements MutiLangServiceI {
 
-	@Autowired  
-	private  HttpServletRequest request; 
-	
+	@Autowired
+	private  HttpServletRequest request;
+
 	/**初始化语言信息，TOMCAT启动时直接加入到内存中**/
 	@Override
     public void initAllMutiLang() {
 		List<MutiLangEntity> mutiLang = this.commonDao.loadAll(MutiLangEntity.class);
-		
+
 		for (MutiLangEntity mutiLangEntity : mutiLang) {
 			ResourceUtil.mutiLangMap.put(mutiLangEntity.getLangKey() + "_" + mutiLangEntity.getLangCode(), mutiLangEntity.getLangContext());
 		}
 	}
-	
+
 	/**
 	 * 更新缓存，插入缓存
 	 */
@@ -38,7 +43,7 @@ public class MutiLangServiceImpl extends CommonServiceImpl implements MutiLangSe
     public void putMutiLang(String langKey, String langCode, String langContext) {
 		ResourceUtil.mutiLangMap.put(langKey + "_" + langCode, langContext);
 	}
-	
+
 	/**
 	 * 更新缓存，插入缓存
 	 */
@@ -46,21 +51,21 @@ public class MutiLangServiceImpl extends CommonServiceImpl implements MutiLangSe
     public void putMutiLang(MutiLangEntity mutiLangEntity) {
 		ResourceUtil.mutiLangMap.put(mutiLangEntity.getLangKey() + "_" + mutiLangEntity.getLangCode(), mutiLangEntity.getLangContext());
 	}
-	
-	
+
+
 	/**取 o_muti_lang.lang_key 的值返回当前语言的值**/
 	@Override
     public String getLang(String langKey)
 	{
 		String language = BrowserUtils.getBrowserLanguage(request);
-		
+
 		if(request.getSession().getAttribute("lang") != null)
 		{
 			language = (String)request.getSession().getAttribute("lang");
 		}
-		
-		String langContext = ResourceUtil.mutiLangMap.get(langKey + "_" + language); 
-		
+
+		String langContext = ResourceUtil.mutiLangMap.get(langKey + "_" + language);
+
 		if(StringUtil.isEmpty(langContext))
 		{
 			langContext = ResourceUtil.mutiLangMap.get("common.notfind.langkey" + "_" + request.getSession().getAttribute("lang"));
@@ -82,7 +87,7 @@ public class MutiLangServiceImpl extends CommonServiceImpl implements MutiLangSe
 		{
 			String[] argArray = langArg.split(",");
 			langContext = getLang(lanKey);
-			
+
 			for(int i=0; i< argArray.length; i++)
 			{
 				String langKeyArg = argArray[i].trim();
@@ -99,5 +104,5 @@ public class MutiLangServiceImpl extends CommonServiceImpl implements MutiLangSe
 		ResourceUtil.mutiLangMap.clear();
 		initAllMutiLang();
 	}
-	
+
 }
