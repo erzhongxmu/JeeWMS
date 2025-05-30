@@ -9,19 +9,24 @@ import org.jeecgframework.web.system.pojo.base.TSNoticeAuthorityRole;
 import org.jeecgframework.web.system.service.NoticeAuthorityRoleServiceI;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Service("noticeAuthorityRoleService")
 @Transactional
 public class NoticeAuthorityRoleServiceImpl extends CommonServiceImpl implements NoticeAuthorityRoleServiceI {
 
-	
+
  	@Override
     public <T> void delete(T entity) {
  		super.delete(entity);
  		//执行删除操作配置的sql增强
 		this.doDelSql((TSNoticeAuthorityRole)entity);
  	}
- 	
+
  	@Override
     public <T> Serializable save(T entity) {
  		Serializable t = super.save(entity);
@@ -29,14 +34,14 @@ public class NoticeAuthorityRoleServiceImpl extends CommonServiceImpl implements
  		this.doAddSql((TSNoticeAuthorityRole)entity);
  		return t;
  	}
- 	
+
  	@Override
     public <T> void saveOrUpdate(T entity) {
  		super.saveOrUpdate(entity);
  		//执行更新操作配置的sql增强
  		this.doUpdateSql((TSNoticeAuthorityRole)entity);
  	}
- 	
+
  	/**
 	 * 默认按钮-sql增强-新增操作
 	 * @param t
@@ -64,7 +69,7 @@ public class NoticeAuthorityRoleServiceImpl extends CommonServiceImpl implements
     public boolean doDelSql(TSNoticeAuthorityRole t){
 	 	return true;
  	}
- 	
+
  	/**
 	 * 替换sql中的变量
 	 * @param sql
@@ -77,7 +82,7 @@ public class NoticeAuthorityRoleServiceImpl extends CommonServiceImpl implements
  		sql  = sql.replace("#{UUID}",UUID.randomUUID().toString());
  		return sql;
  	}
- 	
+
  	/**
  	 * 检查通知公告授权角色是否存在
  	 */
