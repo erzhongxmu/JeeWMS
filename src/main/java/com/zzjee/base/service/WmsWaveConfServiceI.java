@@ -3,7 +3,12 @@ import com.zzjee.base.entity.WmsWaveConfEntity;
 import org.jeecgframework.core.common.service.CommonService;
 
 import java.io.Serializable;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public interface WmsWaveConfServiceI extends CommonService{
 	/**
 	 * 删除
@@ -26,5 +31,5 @@ public interface WmsWaveConfServiceI extends CommonService{
 	 * @throws Exception
 	 */
  	public void saveOrUpdate(WmsWaveConfEntity entity) throws Exception;
- 	
+
 }
