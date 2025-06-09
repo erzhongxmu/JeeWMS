@@ -34,133 +34,139 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public class UploadTmpPhotoServlet extends HttpServlet {
 
-	
-	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
 
-	throws ServletException, IOException {
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
 
-	}
+            throws ServletException, IOException {
 
-	
-	@Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
+    }
 
-	throws ServletException, IOException {
 
-		DiskFileItemFactory factory = new DiskFileItemFactory();
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
 
-		// 设置内存缓冲区，超过后写入临时文件
+            throws ServletException, IOException {
 
-		factory.setSizeThreshold(10240000);
+        DiskFileItemFactory factory = new DiskFileItemFactory();
 
-		// 设置临时文件存储位置
+        // 设置内存缓冲区，超过后写入临时文件
 
-		String base = "";// this.getServletContext().getRealPath("/")+"files";
+        factory.setSizeThreshold(10240000);
 
-		File file = new File(base);
+        // 设置临时文件存储位置
 
-		if (!file.exists()) {
-			file.mkdirs();
-		}
+        String base = "";// this.getServletContext().getRealPath("/")+"files";
 
-		factory.setRepository(file);
+        File file = new File(base);
 
-		ServletFileUpload upload = new ServletFileUpload(factory);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
 
-		// 设置单个文件的最大上传值
+        factory.setRepository(file);
 
-		upload.setFileSizeMax(10002400000L);
+        ServletFileUpload upload = new ServletFileUpload(factory);
 
-		// 设置整个request的最大值
+        // 设置单个文件的最大上传值
 
-		upload.setSizeMax(10002400000L);
+        upload.setFileSizeMax(10002400000L);
 
-		upload.setHeaderEncoding("UTF-8");
+        // 设置整个request的最大值
 
-		request.setCharacterEncoding("utf-8");
+        upload.setSizeMax(10002400000L);
 
-		response.setCharacterEncoding("utf-8");
+        upload.setHeaderEncoding("UTF-8");
 
-		PrintWriter out = response.getWriter();
+        request.setCharacterEncoding("utf-8");
 
-		try {
+        response.setCharacterEncoding("utf-8");
 
-			List<?> items = upload.parseRequest(request);
+        PrintWriter out = response.getWriter();
 
-			FileItem item = null;
+        try {
 
-			String tpmFilePathName = null;
+            List<?> items = upload.parseRequest(request);
 
-			String savePath = "";
+            FileItem item = null;
 
-			Map<String, String> fileNames = new HashMap<String, String>(1024);
+            String tpmFilePathName = null;
 
-			for (int i = 0; i < items.size(); i++) {
+            String savePath = "";
 
-				item = (FileItem) items.get(i);
+            Map<String, String> fileNames = new HashMap<String, String>(1024);
 
-				// 保存文件
+            for (int i = 0; i < items.size(); i++) {
 
-				if (!item.isFormField() && item.getName().length() > 0) {
+                item = (FileItem) items.get(i);
 
-					fileNames.put("oldName", item.getName());
+                // 保存文件
 
-					String suffixName = item.getName().substring(item.getName().lastIndexOf("."));
+                if (!item.isFormField() && item.getName().length() > 0) {
 
-					String newName = "";
+                    fileNames.put("oldName", item.getName());
 
-					fileNames.put("newName", newName);
+                    String suffixName = item.getName().substring(item.getName().lastIndexOf("."));
 
-					fileNames.put("fileSize", "");
+                    String newName = "";
 
-					// org.jeecgframework.core.util.LogUtil.info(item.getName()+"=="+UploadTool.createPhotoID()+suffixName+"=="+UploadTool.FormetFileSize(item.getSize())+"savePath"+savePath);
+                    fileNames.put("newName", newName);
 
-					tpmFilePathName = base + newName;// File.separator
+                    fileNames.put("fileSize", "");
 
-					item.write(new File(tpmFilePathName));
+                    // org.jeecgframework.core.util.LogUtil.info(item.getName()+"=="+UploadTool.createPhotoID()+suffixName+"=="+UploadTool.FormetFileSize(item.getSize())+"savePath"+savePath);
 
-					// UploadTool.removeFile(tpmFilePathName);
+                    tpmFilePathName = base + newName;// File.separator
 
-					BufferedImage bufImg = ImageIO.read(new File(tpmFilePathName));
+                    item.write(new File(tpmFilePathName));
 
-					// System.out.print("======"+bufImg.getHeight()+"====="+bufImg.getWidth());
+                    // UploadTool.removeFile(tpmFilePathName);
 
-					// 数据库操作，包图片的路径及其相应的信息保存到数据库，
+                    BufferedImage bufImg = ImageIO.read(new File(tpmFilePathName));
 
-					out.print(newName + "^" + bufImg.getHeight() + "^" + bufImg.getWidth());
+                    // System.out.print("======"+bufImg.getHeight()+"====="+bufImg.getWidth());
 
-				}
+                    // 数据库操作，包图片的路径及其相应的信息保存到数据库，
 
-			}
+                    out.print(newName + "^" + bufImg.getHeight() + "^" + bufImg.getWidth());
 
-			// Map<String,String> fileNames =
-			// UploadTool.WorkGroupFileUpload(request,
-			// Config.getInstance().getLinkfiletmpPath(),
-			// Config.getInstance().getLinkfilesavePath());
+                }
 
-		} catch (FileUploadException e) {
+            }
 
-			out.print(-1);
+            // Map<String,String> fileNames =
+            // UploadTool.WorkGroupFileUpload(request,
+            // Config.getInstance().getLinkfiletmpPath(),
+            // Config.getInstance().getLinkfilesavePath());
 
-			e.printStackTrace();
+        } catch (FileUploadException e) {
 
-		} catch (Exception e) {
+            out.print(-1);
 
-			out.print(-1);
+            e.printStackTrace();
 
-			e.printStackTrace();
+        } catch (Exception e) {
 
-		} finally {
+            out.print(-1);
 
-			out.flush();
+            e.printStackTrace();
 
-			out.close();
+        } finally {
 
-		}
+            out.flush();
 
-	}
+            out.close();
+
+        }
+
+    }
 
 }
