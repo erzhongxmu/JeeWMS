@@ -5,7 +5,12 @@ import java.io.DataInputStream;
 import java.io.IOException;
 
 import org.apache.log4j.Logger;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 /**
  * CMPP_DELIVER操作的目的是ISMG把从短信中心或其它ISMG转发来的短信送交SP，SP以CMPP_DELIVER_RESP消息回应.
  */
@@ -34,7 +39,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @param data
 	 *            byte[]
 	 */
@@ -113,7 +118,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @return long
 	 */
 	public long getMsgId() {
@@ -122,7 +127,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @param msgId
 	 *            long
 	 */
@@ -132,7 +137,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @return String
 	 */
 	public String getDestId() {
@@ -141,7 +146,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @param destId
 	 *            String
 	 */
@@ -151,7 +156,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @return String
 	 */
 	public String getServiceId() {
@@ -160,7 +165,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @param serviceId
 	 *            String
 	 */
@@ -170,7 +175,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @return byte
 	 */
 	public byte getTPPid() {
@@ -179,7 +184,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @param tpPid
 	 *            byte
 	 */
@@ -189,7 +194,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @return byte
 	 */
 	public byte getTPUdhi() {
@@ -198,7 +203,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @param tpUdhi
 	 *            byte
 	 */
@@ -208,7 +213,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @return byte
 	 */
 	public byte getMsgFmt() {
@@ -217,7 +222,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @param msgFmt
 	 *            byte
 	 */
@@ -227,7 +232,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @return String
 	 */
 	public String getSrcTerminalId() {
@@ -236,7 +241,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @param srcTerminalId
 	 *            String
 	 */
@@ -246,7 +251,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @return byte
 	 */
 	public byte getSrcTerminalType() {
@@ -255,7 +260,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @param srcTerminalType
 	 *            byte
 	 */
@@ -265,7 +270,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @return byte
 	 */
 	public byte getRegisteredDelivery() {
@@ -274,7 +279,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @param registeredDelivery
 	 *            byte
 	 */
@@ -284,7 +289,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @return byte
 	 */
 	public byte getMsgLength() {
@@ -293,7 +298,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @param msgLength
 	 *            byte
 	 */
@@ -303,7 +308,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @return byte
 	 */
 	public String getMsgContent() {
@@ -312,7 +317,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @param msgContent
 	 *            String
 	 */
@@ -322,7 +327,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @return String
 	 */
 	public String getLinkID() {
@@ -331,7 +336,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @param linkID
 	 *            String
 	 */
@@ -341,7 +346,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @return long
 	 */
 	public long getMsgIdReport() {
@@ -350,7 +355,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @param msgIdReport
 	 *            long
 	 */
@@ -360,7 +365,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @return String
 	 */
 	public String getStat() {
@@ -369,7 +374,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @param stat
 	 *            String
 	 */
@@ -379,7 +384,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @return String
 	 */
 	public String getSubmitTime() {
@@ -388,7 +393,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @param submitTime
 	 *            String
 	 */
@@ -398,7 +403,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @return String
 	 */
 	public String getDoneTime() {
@@ -407,7 +412,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @param doneTime
 	 *            String
 	 */
@@ -417,7 +422,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @return String
 	 */
 	public String getDestTerminalId() {
@@ -426,7 +431,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @param destTerminalId
 	 *            String
 	 */
@@ -436,7 +441,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @return String
 	 */
 	public int getSMSCSequence() {
@@ -445,7 +450,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @param sMSCSequence
 	 *            int
 	 */
@@ -455,7 +460,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @return int
 	 */
 	public int getResult() {
@@ -464,7 +469,7 @@ public class MsgDeliver extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @param result
 	 *            int
 	 */
