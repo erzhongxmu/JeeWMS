@@ -22,19 +22,24 @@ import org.jeecgframework.web.system.sms.util.Constants;
 import org.jeecgframework.web.system.sms.util.MailUtil;
 
 import com.sun.mail.smtp.SMTPAddressFailedException;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Service("tSSmsService")
 @Transactional
 public class TSSmsServiceImpl extends CommonServiceImpl implements TSSmsServiceI {
 
-	
+
  	@Override
     public <T> void delete(T entity) {
  		super.delete(entity);
  		//执行删除操作配置的sql增强
 		this.doDelSql((TSSmsEntity)entity);
  	}
- 	
+
  	@Override
     public <T> Serializable save(T entity) {
  		Serializable t = super.save(entity);
@@ -42,14 +47,14 @@ public class TSSmsServiceImpl extends CommonServiceImpl implements TSSmsServiceI
  		this.doAddSql((TSSmsEntity)entity);
  		return t;
  	}
- 	
+
  	@Override
     public <T> void saveOrUpdate(T entity) {
  		super.saveOrUpdate(entity);
  		//执行更新操作配置的sql增强
  		this.doUpdateSql((TSSmsEntity)entity);
  	}
- 	
+
  	/**
 	 * 默认按钮-sql增强-新增操作
 	 * @param t
@@ -77,7 +82,7 @@ public class TSSmsServiceImpl extends CommonServiceImpl implements TSSmsServiceI
     public boolean doDelSql(TSSmsEntity t){
 	 	return true;
  	}
- 	
+
  	/**
 	 * 替换sql中的变量
 	 * @param sql
@@ -119,8 +124,8 @@ public class TSSmsServiceImpl extends CommonServiceImpl implements TSSmsServiceI
 			if(Constants.SMS_SEND_TYPE_2.equals(tsSmsEntity.getEsType())){
 				//邮件
 				try {
-					MailUtil.sendEmail(util.readProperty("mail.smtpHost"), tsSmsEntity.getEsReceiver(),tsSmsEntity.getEsTitle(), 
-							tsSmsEntity.getEsContent(), util.readProperty("mail.sender"), 
+					MailUtil.sendEmail(util.readProperty("mail.smtpHost"), tsSmsEntity.getEsReceiver(),tsSmsEntity.getEsTitle(),
+							tsSmsEntity.getEsContent(), util.readProperty("mail.sender"),
 							util.readProperty("mail.user"), util.readProperty("mail.pwd"));
 					tsSmsEntity.setEsStatus(Constants.SMS_SEND_STATUS_2);
 					tsSmsEntity.setEsSendtime(new Date());
