@@ -9,7 +9,12 @@ import org.apache.log4j.Logger;
 import org.jeecgframework.web.system.sms.util.msg.util.MsgUtils;
 
 
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 /**
  * SP请求连接到ISMG消息体定义CMPP_CONNECT操作的目的是SP向ISMG注册作为一个合法SP身份.
  * 若注册成功后即建立了应用层的连接，此后SP可以通过此ISMG接收和发送短信。<br/>
@@ -34,7 +39,7 @@ public class MsgConnect extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @return byte[]
 	 */
 	@Override
@@ -58,7 +63,7 @@ public class MsgConnect extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @return String
 	 */
 	public String getSourceAddr() {
@@ -67,7 +72,7 @@ public class MsgConnect extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @param sourceAddr
 	 *            String
 	 */
@@ -77,7 +82,7 @@ public class MsgConnect extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @return String
 	 */
 	public byte[] getAuthenticatorSource() {
@@ -86,7 +91,7 @@ public class MsgConnect extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @param authenticatorSource
 	 *            String
 	 */
@@ -96,7 +101,7 @@ public class MsgConnect extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @return String
 	 */
 	public byte getVersion() {
@@ -105,7 +110,7 @@ public class MsgConnect extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @param version
 	 *            String
 	 */
@@ -115,7 +120,7 @@ public class MsgConnect extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @return String
 	 */
 	public int getTimestamp() {
@@ -124,7 +129,7 @@ public class MsgConnect extends MsgHead {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @param timestamp
 	 *            String
 	 */
