@@ -4,17 +4,23 @@ import org.jeecgframework.core.common.service.CommonService;
 
 import java.io.Serializable;
 
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public interface TSSmsTemplateSqlServiceI extends CommonService{
-	
+
  	@Override
     public <T> void delete(T entity);
- 	
+
  	@Override
     public <T> Serializable save(T entity);
- 	
+
  	@Override
     public <T> void saveOrUpdate(T entity);
- 	
+
  	/**
 	 * 默认按钮-sql增强-新增操作
 	 * @param t
