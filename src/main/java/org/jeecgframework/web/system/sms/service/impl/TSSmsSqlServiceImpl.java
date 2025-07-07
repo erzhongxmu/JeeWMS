@@ -11,7 +11,12 @@ import java.util.UUID;
 import java.io.Serializable;
 
 import javax.annotation.Resource;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Service("tSSmsSqlService")
 @Transactional
 public class TSSmsSqlServiceImpl extends CommonServiceImpl implements TSSmsSqlServiceI {
@@ -41,7 +46,7 @@ public class TSSmsSqlServiceImpl extends CommonServiceImpl implements TSSmsSqlSe
 	@Override
     public Map<String, Object> getMap(String sql, Map<String, Object> map){
 		return this.jdbcTemplate.queryForMap(sql, map);
-		
+
 	}
- 	
+
 }
