@@ -6,19 +6,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.UUID;
 import java.io.Serializable;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Service("tSSmsTemplateSqlService")
 @Transactional
 public class TSSmsTemplateSqlServiceImpl extends CommonServiceImpl implements TSSmsTemplateSqlServiceI {
 
-	
+
  	@Override
     public <T> void delete(T entity) {
  		super.delete(entity);
  		//执行删除操作配置的sql增强
 		this.doDelSql((TSSmsTemplateSqlEntity)entity);
  	}
- 	
+
  	@Override
     public <T> Serializable save(T entity) {
  		Serializable t = super.save(entity);
@@ -26,14 +31,14 @@ public class TSSmsTemplateSqlServiceImpl extends CommonServiceImpl implements TS
  		this.doAddSql((TSSmsTemplateSqlEntity)entity);
  		return t;
  	}
- 	
+
  	@Override
     public <T> void saveOrUpdate(T entity) {
  		super.saveOrUpdate(entity);
  		//执行更新操作配置的sql增强
  		this.doUpdateSql((TSSmsTemplateSqlEntity)entity);
  	}
- 	
+
  	/**
 	 * 默认按钮-sql增强-新增操作
 	 * @param t
@@ -61,7 +66,7 @@ public class TSSmsTemplateSqlServiceImpl extends CommonServiceImpl implements TS
     public boolean doDelSql(TSSmsTemplateSqlEntity t){
 	 	return true;
  	}
- 	
+
  	/**
 	 * 替换sql中的变量
 	 * @param sql
