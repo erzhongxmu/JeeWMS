@@ -20,7 +20,12 @@ import org.jeecgframework.core.common.service.impl.CommonServiceImpl;
 import org.jeecgframework.core.util.StringUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Service("menuInitService")
 @Transactional
 public class MenuInitServiceImpl extends CommonServiceImpl implements
