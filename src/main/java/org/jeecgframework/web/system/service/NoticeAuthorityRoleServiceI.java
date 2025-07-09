@@ -3,18 +3,23 @@ import java.io.Serializable;
 
 import org.jeecgframework.core.common.service.CommonService;
 import org.jeecgframework.web.system.pojo.base.TSNoticeAuthorityRole;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public interface NoticeAuthorityRoleServiceI extends CommonService{
-	
+
  	@Override
     public <T> void delete(T entity);
- 	
+
  	@Override
     public <T> Serializable save(T entity);
- 	
+
  	@Override
     public <T> void saveOrUpdate(T entity);
- 	
+
  	/**
 	 * 默认按钮-sql增强-新增操作
 	 * @param t
@@ -33,6 +38,6 @@ public interface NoticeAuthorityRoleServiceI extends CommonService{
 	 * @return
 	 */
  	public boolean doDelSql(TSNoticeAuthorityRole t);
- 	
+
  	public boolean checkAuthorityRole(String noticeId, String roleid);
 }
