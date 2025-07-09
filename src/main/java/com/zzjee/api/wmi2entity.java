@@ -1,5 +1,10 @@
 package com.zzjee.api;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public class wmi2entity {
     /**
      * 字段1
