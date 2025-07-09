@@ -5,18 +5,23 @@ import java.util.List;
 import org.jeecgframework.core.common.hibernate.qbc.CriteriaQuery;
 import org.jeecgframework.core.common.service.CommonService;
 import org.jeecgframework.web.system.pojo.base.TSNoticeAuthorityUser;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public interface NoticeAuthorityUserServiceI extends CommonService{
-	
+
  	@Override
     public <T> void delete(T entity);
- 	
+
  	@Override
     public <T> Serializable save(T entity);
- 	
+
  	@Override
     public <T> void saveOrUpdate(T entity);
- 	
+
  	/**
 	 * 默认按钮-sql增强-新增操作
 	 * @param t
@@ -35,6 +40,6 @@ public interface NoticeAuthorityUserServiceI extends CommonService{
 	 * @return
 	 */
  	public boolean doDelSql(TSNoticeAuthorityUser t);
- 	
+
  	public boolean checkAuthorityUser(String noticeId, String userid);
 }
