@@ -12,7 +12,12 @@ import org.jeecgframework.core.util.ApplicationContextUtil;
 import org.jeecgframework.core.util.MyClassLoader;
 import org.jeecgframework.core.util.StringUtil;
 import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Service("wmsWaveConfService")
 @Transactional
 public class WmsWaveConfServiceImpl extends CommonServiceImpl implements WmsWaveConfServiceI {
@@ -54,7 +59,7 @@ public class WmsWaveConfServiceImpl extends CommonServiceImpl implements WmsWave
  		//执行更新操作增强业务
  		this.doUpdateBus(entity);
  	}
- 	
+
  	/**
 	 * 新增操作增强业务
 	 * @param t 待转实体
@@ -63,7 +68,7 @@ public class WmsWaveConfServiceImpl extends CommonServiceImpl implements WmsWave
 	private void doAddBus(WmsWaveConfEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -75,7 +80,7 @@ public class WmsWaveConfServiceImpl extends CommonServiceImpl implements WmsWave
 	private void doUpdateBus(WmsWaveConfEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -87,7 +92,7 @@ public class WmsWaveConfServiceImpl extends CommonServiceImpl implements WmsWave
 	private void doDelBus(WmsWaveConfEntity t) throws Exception{
 	    //-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -116,7 +121,7 @@ public class WmsWaveConfServiceImpl extends CommonServiceImpl implements WmsWave
 		map.put("wv_by3", t.getWvBy3());
 		return map;
 	}
- 	
+
  	/**
 	 * 替换sql中的变量
 	 * @param sql
@@ -142,7 +147,7 @@ public class WmsWaveConfServiceImpl extends CommonServiceImpl implements WmsWave
  		sql  = sql.replace("#{UUID}",UUID.randomUUID().toString());
  		return sql;
  	}
- 	
+
  	/**
 	 * 执行JAVA增强
 	 */
@@ -163,7 +168,7 @@ public class WmsWaveConfServiceImpl extends CommonServiceImpl implements WmsWave
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new Exception("执行JAVA增强出现异常！");
-			} 
+			}
 		}
  	}
 }
