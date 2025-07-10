@@ -12,7 +12,12 @@ import org.jeecgframework.core.util.ApplicationContextUtil;
 import org.jeecgframework.core.util.MyClassLoader;
 import org.jeecgframework.core.util.StringUtil;
 import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Service("tmsYufeiConfService")
 @Transactional
 public class TmsYufeiConfServiceImpl extends CommonServiceImpl implements TmsYufeiConfServiceI {
@@ -54,7 +59,7 @@ public class TmsYufeiConfServiceImpl extends CommonServiceImpl implements TmsYuf
  		//执行更新操作增强业务
  		this.doUpdateBus(entity);
  	}
- 	
+
  	/**
 	 * 新增操作增强业务
 	 * @param t
@@ -63,7 +68,7 @@ public class TmsYufeiConfServiceImpl extends CommonServiceImpl implements TmsYuf
 	private void doAddBus(TmsYufeiConfEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -75,7 +80,7 @@ public class TmsYufeiConfServiceImpl extends CommonServiceImpl implements TmsYuf
 	private void doUpdateBus(TmsYufeiConfEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -87,7 +92,7 @@ public class TmsYufeiConfServiceImpl extends CommonServiceImpl implements TmsYuf
 	private void doDelBus(TmsYufeiConfEntity t) throws Exception{
 	    //-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -118,7 +123,7 @@ public class TmsYufeiConfServiceImpl extends CommonServiceImpl implements TmsYuf
 		map.put("yf_bz3", t.getYfBz3());
 		return map;
 	}
- 	
+
  	/**
 	 * 替换sql中的变量
 	 * @param sql
@@ -146,7 +151,7 @@ public class TmsYufeiConfServiceImpl extends CommonServiceImpl implements TmsYuf
  		sql  = sql.replace("#{UUID}",UUID.randomUUID().toString());
  		return sql;
  	}
- 	
+
  	/**
 	 * 执行JAVA增强
 	 */
@@ -167,7 +172,7 @@ public class TmsYufeiConfServiceImpl extends CommonServiceImpl implements TmsYuf
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new Exception("执行JAVA增强出现异常！");
-			} 
+			}
 		}
  	}
 }
