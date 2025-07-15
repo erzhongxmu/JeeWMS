@@ -13,7 +13,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.UUID;
 
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Service("tMdBomHeadService")
 @Transactional
 public class TMdBomHeadServiceImpl extends CommonServiceImpl implements TMdBomHeadServiceI {
