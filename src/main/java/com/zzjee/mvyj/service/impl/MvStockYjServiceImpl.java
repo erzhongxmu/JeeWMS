@@ -12,19 +12,24 @@ import org.jeecgframework.core.util.ApplicationContextUtil;
 import org.jeecgframework.core.util.MyClassLoader;
 import org.jeecgframework.core.util.StringUtil;
 import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Service("mvStockYjService")
 @Transactional
 public class MvStockYjServiceImpl extends CommonServiceImpl implements MvStockYjServiceI {
 
-	
+
  	@Override
     public void delete(MvStockYjEntity entity) throws Exception{
  		super.delete(entity);
  		//执行删除操作增强业务
 		this.doDelBus(entity);
  	}
- 	
+
  	@Override
     public Serializable save(MvStockYjEntity entity) throws Exception{
  		Serializable t = super.save(entity);
@@ -32,14 +37,14 @@ public class MvStockYjServiceImpl extends CommonServiceImpl implements MvStockYj
  		this.doAddBus(entity);
  		return t;
  	}
- 	
+
  	@Override
     public void saveOrUpdate(MvStockYjEntity entity) throws Exception{
  		super.saveOrUpdate(entity);
  		//执行更新操作增强业务
  		this.doUpdateBus(entity);
  	}
- 	
+
  	/**
 	 * 新增操作增强业务
 	 * @param t
@@ -48,7 +53,7 @@ public class MvStockYjServiceImpl extends CommonServiceImpl implements MvStockYj
 	private void doAddBus(MvStockYjEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -60,7 +65,7 @@ public class MvStockYjServiceImpl extends CommonServiceImpl implements MvStockYj
 	private void doUpdateBus(MvStockYjEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -72,7 +77,7 @@ public class MvStockYjServiceImpl extends CommonServiceImpl implements MvStockYj
 	private void doDelBus(MvStockYjEntity t) throws Exception{
 	    //-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -104,7 +109,7 @@ public class MvStockYjServiceImpl extends CommonServiceImpl implements MvStockYj
 		map.put("shang_jia_ci_xu", t.getShangJiaCiXu());
 		return map;
 	}
- 	
+
  	/**
 	 * 替换sql中的变量
 	 * @param sql
@@ -158,7 +163,7 @@ public class MvStockYjServiceImpl extends CommonServiceImpl implements MvStockYj
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new Exception("执行JAVA增强出现异常！");
-			} 
+			}
 		}
  	}
 }
