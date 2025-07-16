@@ -5,25 +5,30 @@ import com.zzjee.md.entity.TMdBomItemEntity;
 import org.jeecgframework.core.common.service.CommonService;
 
 import java.util.List;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public interface TMdBomHeadServiceI extends CommonService {
-	
+
  	@Override
     public <T> void delete(T entity);
 	/**
 	 * 添加一对多
-	 * 
+	 *
 	 */
 	public void addMain(TMdBomHeadEntity tMdBomHead,
                         List<TMdBomItemEntity> tMdBomItemList) ;
 	/**
 	 * 修改一对多
-	 * 
+	 *
 	 */
 	public void updateMain(TMdBomHeadEntity tMdBomHead,
                            List<TMdBomItemEntity> tMdBomItemList);
 	public void delMain(TMdBomHeadEntity tMdBomHead);
-	
+
  	/**
 	 * 默认按钮-sql增强-新增操作
 	 * @param t
