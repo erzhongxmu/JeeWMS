@@ -3,6 +3,12 @@ import com.zzjee.plc.entity.WmsPlcEntity;
 import org.jeecgframework.core.common.service.CommonService;
 
 import java.io.Serializable;
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public interface WmsPlcServiceI extends CommonService{
 	/**
 	 * 删除WmsPlcEntity对象
@@ -23,5 +29,5 @@ public interface WmsPlcServiceI extends CommonService{
 	 * @throws Exception 保存或更新过程中的异常
 	 */
  	public void saveOrUpdate(WmsPlcEntity entity) throws Exception;
- 	
+
 }
