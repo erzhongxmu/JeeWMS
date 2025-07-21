@@ -3,7 +3,12 @@ import com.zzjee.report.entity.RpWmHisStockKuEntity;
 import org.jeecgframework.core.common.service.CommonService;
 
 import java.io.Serializable;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public interface RpWmHisStockKuServiceI extends CommonService{
     /**
      * 删除RpWmHisStockKuEntity实体对象
@@ -17,5 +22,5 @@ public interface RpWmHisStockKuServiceI extends CommonService{
 	 * 保存或更新RpWmHisStockKuEntity实体对象
 	 */
  	public void saveOrUpdate(RpWmHisStockKuEntity entity) throws Exception;
- 	
+
 }
