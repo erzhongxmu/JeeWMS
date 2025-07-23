@@ -11,7 +11,12 @@ import java.util.Properties;
 /**
  *   连接SAP
  */
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public class SapRFC {
 	private JCoFunction function;//SAP函数对象
 
