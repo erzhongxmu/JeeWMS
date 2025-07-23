@@ -12,7 +12,12 @@ import org.jeecgframework.core.util.ApplicationContextUtil;
 import org.jeecgframework.core.util.MyClassLoader;
 import org.jeecgframework.core.util.StringUtil;
 import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Service("sysParaService")
 @Transactional
 public class SysParaServiceImpl extends CommonServiceImpl implements SysParaServiceI {
@@ -24,7 +29,7 @@ public class SysParaServiceImpl extends CommonServiceImpl implements SysParaServ
  		//执行删除操作增强业务
 		this.doDelBus(entity);
  	}
- 	
+
  	@Override
     public Serializable save(SysParaEntity entity) throws Exception{
  		Serializable t = super.save(entity);
@@ -32,14 +37,14 @@ public class SysParaServiceImpl extends CommonServiceImpl implements SysParaServ
  		this.doAddBus(entity);
  		return t;
  	}
- 	
+
  	@Override
     public void saveOrUpdate(SysParaEntity entity) throws Exception{
  		super.saveOrUpdate(entity);
  		//执行更新操作增强业务
  		this.doUpdateBus(entity);
  	}
- 	
+
  	/**
 	 * 新增操作增强业务
 	 * @param t
@@ -73,7 +78,7 @@ public class SysParaServiceImpl extends CommonServiceImpl implements SysParaServ
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
- 	
+
  	private Map<String,Object> populationMap(SysParaEntity t){
 		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("id", t.getId());
@@ -91,7 +96,7 @@ public class SysParaServiceImpl extends CommonServiceImpl implements SysParaServ
 		map.put("par_value", t.getParValue());
 		return map;
 	}
- 	
+
  	/**
 	 * 替换sql中的变量
 	 * @param sql
@@ -137,7 +142,7 @@ public class SysParaServiceImpl extends CommonServiceImpl implements SysParaServ
 				e.printStackTrace();
 				// 抛出异常
 				throw new Exception("执行JAVA增强出现异常！");
-			} 
+			}
 		}
  	}
 }
