@@ -14,19 +14,24 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Service("tmsMdDzService")
 @Transactional
 public class TmsMdDzServiceImpl extends CommonServiceImpl implements TmsMdDzServiceI {
 
-	
+
  	@Override
     public void delete(TmsMdDzEntity entity) throws Exception{
  		super.delete(entity);
  		//执行删除操作增强业务
 		this.doDelBus(entity);
  	}
- 	
+
  	@Override
     public Serializable save(TmsMdDzEntity entity) throws Exception{
  		Serializable t = super.save(entity);
@@ -34,14 +39,14 @@ public class TmsMdDzServiceImpl extends CommonServiceImpl implements TmsMdDzServ
  		this.doAddBus(entity);
  		return t;
  	}
- 	
+
  	@Override
     public void saveOrUpdate(TmsMdDzEntity entity) throws Exception{
  		super.saveOrUpdate(entity);
  		//执行更新操作增强业务
  		this.doUpdateBus(entity);
  	}
- 	
+
  	/**
 	 * 新增操作增强业务
 	 * @param t
@@ -50,7 +55,7 @@ public class TmsMdDzServiceImpl extends CommonServiceImpl implements TmsMdDzServ
 	private void doAddBus(TmsMdDzEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -62,7 +67,7 @@ public class TmsMdDzServiceImpl extends CommonServiceImpl implements TmsMdDzServ
 	private void doUpdateBus(TmsMdDzEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -74,11 +79,11 @@ public class TmsMdDzServiceImpl extends CommonServiceImpl implements TmsMdDzServ
 	private void doDelBus(TmsMdDzEntity t) throws Exception{
 	    //-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
- 	
+
  	private Map<String,Object> populationMap(TmsMdDzEntity t){
 		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("id", t.getId());
@@ -103,7 +108,7 @@ public class TmsMdDzServiceImpl extends CommonServiceImpl implements TmsMdDzServ
 		map.put("dizhileixing", t.getDizhileixing());
 		return map;
 	}
- 	
+
  	/**
 	 * 替换sql中的变量
 	 * @param sql
@@ -134,7 +139,7 @@ public class TmsMdDzServiceImpl extends CommonServiceImpl implements TmsMdDzServ
  		sql  = sql.replace("#{UUID}",UUID.randomUUID().toString());
  		return sql;
  	}
- 	
+
  	/**
 	 * 执行JAVA增强
 	 */
@@ -155,7 +160,7 @@ public class TmsMdDzServiceImpl extends CommonServiceImpl implements TmsMdDzServ
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new Exception("执行JAVA增强出现异常！");
-			} 
+			}
 		}
  	}
 }
