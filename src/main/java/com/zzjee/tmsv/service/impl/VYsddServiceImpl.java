@@ -14,19 +14,24 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Service("vYsddService")
 @Transactional
 public class VYsddServiceImpl extends CommonServiceImpl implements VYsddServiceI {
 
-	
+
  	@Override
     public void delete(VYsddEntity entity) throws Exception{
  		super.delete(entity);
  		//执行删除操作增强业务
 		this.doDelBus(entity);
  	}
- 	
+
  	@Override
     public Serializable save(VYsddEntity entity) throws Exception{
  		Serializable t = super.save(entity);
@@ -34,14 +39,14 @@ public class VYsddServiceImpl extends CommonServiceImpl implements VYsddServiceI
  		this.doAddBus(entity);
  		return t;
  	}
- 	
+
  	@Override
     public void saveOrUpdate(VYsddEntity entity) throws Exception{
  		super.saveOrUpdate(entity);
  		//执行更新操作增强业务
  		this.doUpdateBus(entity);
  	}
- 	
+
  	/**
 	 * 新增操作增强业务
 	 * @param t
@@ -50,7 +55,7 @@ public class VYsddServiceImpl extends CommonServiceImpl implements VYsddServiceI
 	private void doAddBus(VYsddEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -62,7 +67,7 @@ public class VYsddServiceImpl extends CommonServiceImpl implements VYsddServiceI
 	private void doUpdateBus(VYsddEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -74,11 +79,11 @@ public class VYsddServiceImpl extends CommonServiceImpl implements VYsddServiceI
 	private void doDelBus(VYsddEntity t) throws Exception{
 	    //-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
- 	
+
  	private Map<String,Object> populationMap(VYsddEntity t){
 		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("id", t.getId());
@@ -102,7 +107,7 @@ public class VYsddServiceImpl extends CommonServiceImpl implements VYsddServiceI
 		map.put("sdsj", t.getSdsj());
 		return map;
 	}
- 	
+
  	/**
 	 * 替换sql中的变量
 	 * @param sql
@@ -132,7 +137,7 @@ public class VYsddServiceImpl extends CommonServiceImpl implements VYsddServiceI
  		sql  = sql.replace("#{UUID}",UUID.randomUUID().toString());
  		return sql;
  	}
- 	
+
  	/**
 	 * 执行JAVA增强
 	 */
@@ -153,7 +158,7 @@ public class VYsddServiceImpl extends CommonServiceImpl implements VYsddServiceI
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new Exception("执行JAVA增强出现异常！");
-			} 
+			}
 		}
  	}
 }
