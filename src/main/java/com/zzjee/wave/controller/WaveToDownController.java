@@ -76,7 +76,12 @@ import org.springframework.http.MediaType;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import static com.xiaoleilu.hutool.date.DateTime.now;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Controller
 @RequestMapping("/waveToDownController")
 public class WaveToDownController extends BaseController {
