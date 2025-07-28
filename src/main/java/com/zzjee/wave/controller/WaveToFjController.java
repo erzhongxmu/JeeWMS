@@ -68,7 +68,12 @@ import java.net.URI;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.util.UriComponentsBuilder;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Controller
 @RequestMapping("/waveToFjController")
 public class WaveToFjController extends BaseController {
