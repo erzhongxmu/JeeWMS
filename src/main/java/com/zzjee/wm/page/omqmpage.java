@@ -7,6 +7,10 @@ import java.util.List;
 
 
 /**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
  */
 public class omqmpage {
     private List<WmOmQmIEntity> omqmrows;
