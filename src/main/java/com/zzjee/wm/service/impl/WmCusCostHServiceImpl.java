@@ -15,25 +15,30 @@ import org.jeecgframework.core.util.oConvertUtils;
 import java.util.ArrayList;
 import java.util.UUID;
 import java.io.Serializable;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 
 @Service("wmCusCostHService")
 @Transactional
 public class WmCusCostHServiceImpl extends CommonServiceImpl implements WmCusCostHServiceI {
-	
+
  	@Override
     public <T> void delete(T entity) {
  		super.delete(entity);
  		//执行删除操作配置的sql增强
 		this.doDelSql((WmCusCostHEntity)entity);
  	}
-	
+
 	@Override
     public void addMain(WmCusCostHEntity wmCusCostH,
                         List<WmCusCostIEntity> wmCusCostIList){
 			//保存主信息
 			this.save(wmCusCostH);
-		
+
 			/**保存-费用项目*/
 			for(WmCusCostIEntity wmCusCostI:wmCusCostIList){
 				//外键设置
@@ -44,7 +49,7 @@ public class WmCusCostHServiceImpl extends CommonServiceImpl implements WmCusCos
  			this.doAddSql(wmCusCostH);
 	}
 
-	
+
 	@Override
     public void updateMain(WmCusCostHEntity wmCusCostH,
                            List<WmCusCostIEntity> wmCusCostIList) {
@@ -79,7 +84,7 @@ public class WmCusCostHServiceImpl extends CommonServiceImpl implements WmCusCos
 		    		//如果数据库存在的明细，前台没有传递过来则是删除-费用项目
 		    		super.delete(oldE);
 	    		}
-	    		
+
 			}
 			//3.持久化新增的数据-费用项目
 			for(WmCusCostIEntity wmCusCostI:wmCusCostIList){
@@ -94,7 +99,7 @@ public class WmCusCostHServiceImpl extends CommonServiceImpl implements WmCusCos
  		this.doUpdateSql(wmCusCostH);
 	}
 
-	
+
 	@Override
     public void delMain(WmCusCostHEntity wmCusCostH) {
 		//删除主表信息
@@ -108,8 +113,8 @@ public class WmCusCostHServiceImpl extends CommonServiceImpl implements WmCusCos
 	    List<WmCusCostIEntity> wmCusCostIOldList = this.findHql(hql0,id0);
 		this.deleteAllEntitie(wmCusCostIOldList);
 	}
-	
- 	
+
+
  	/**
 	 * 默认按钮-sql增强-新增操作
 	 * @param t
@@ -137,7 +142,7 @@ public class WmCusCostHServiceImpl extends CommonServiceImpl implements WmCusCos
     public boolean doDelSql(WmCusCostHEntity t){
 	 	return true;
  	}
- 	
+
  	/**
 	 * 替换sql中的变量
 	 * @param sql
