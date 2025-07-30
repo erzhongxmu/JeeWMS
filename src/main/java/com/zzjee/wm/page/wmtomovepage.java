@@ -7,6 +7,10 @@ import java.util.List;
 
 
 /**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
  */
 public class wmtomovepage {
     private List<WmToMoveGoodsEntity> wmtomoverows;
