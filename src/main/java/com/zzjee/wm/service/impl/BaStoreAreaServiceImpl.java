@@ -12,7 +12,12 @@ import org.jeecgframework.core.util.ApplicationContextUtil;
 import org.jeecgframework.core.util.MyClassLoader;
 import org.jeecgframework.core.util.StringUtil;
 import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Service("baStoreAreaService")
 @Transactional
 public class BaStoreAreaServiceImpl extends CommonServiceImpl implements BaStoreAreaServiceI {
@@ -22,20 +27,20 @@ public class BaStoreAreaServiceImpl extends CommonServiceImpl implements BaStore
  		//执行删除操作增强业务
 		this.doDelBus(entity);
  	}
- 	
+
  	public Serializable save(BaStoreAreaEntity entity) throws Exception{
  		Serializable t = super.save(entity);
  		//执行新增操作增强业务
  		this.doAddBus(entity);
  		return t;
  	}
- 	
+
  	public void saveOrUpdate(BaStoreAreaEntity entity) throws Exception{
  		super.saveOrUpdate(entity);
  		//执行更新操作增强业务
  		this.doUpdateBus(entity);
  	}
- 	
+
  	/**
 	 * 新增操作增强业务
 	 * @param t
@@ -44,7 +49,7 @@ public class BaStoreAreaServiceImpl extends CommonServiceImpl implements BaStore
 	private void doAddBus(BaStoreAreaEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -56,7 +61,7 @@ public class BaStoreAreaServiceImpl extends CommonServiceImpl implements BaStore
 	private void doUpdateBus(BaStoreAreaEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -68,11 +73,11 @@ public class BaStoreAreaServiceImpl extends CommonServiceImpl implements BaStore
 	private void doDelBus(BaStoreAreaEntity t) throws Exception{
 	    //-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
- 	
+
  	private Map<String,Object> populationMap(BaStoreAreaEntity t){
 		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("id", t.getId());
@@ -91,7 +96,7 @@ public class BaStoreAreaServiceImpl extends CommonServiceImpl implements BaStore
 		map.put("ware_name", t.getWareName());
 		return map;
 	}
- 	
+
  	/**
 	 * 替换sql中的变量
 	 * @param sql
@@ -116,7 +121,7 @@ public class BaStoreAreaServiceImpl extends CommonServiceImpl implements BaStore
  		sql  = sql.replace("#{UUID}",UUID.randomUUID().toString());
  		return sql;
  	}
- 	
+
  	/**
 	 * 执行JAVA增强
 	 */
@@ -137,7 +142,7 @@ public class BaStoreAreaServiceImpl extends CommonServiceImpl implements BaStore
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new Exception("执行JAVA增强出现异常！");
-			} 
+			}
 		}
  	}
 }
