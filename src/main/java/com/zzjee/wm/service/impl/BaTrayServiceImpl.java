@@ -12,31 +12,36 @@ import org.jeecgframework.core.util.ApplicationContextUtil;
 import org.jeecgframework.core.util.MyClassLoader;
 import org.jeecgframework.core.util.StringUtil;
 import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Service("baTrayService")
 @Transactional
 public class BaTrayServiceImpl extends CommonServiceImpl implements BaTrayServiceI {
 
-	
+
  	public void delete(BaTrayEntity entity) throws Exception{
  		super.delete(entity);
  		//执行删除操作增强业务
 		this.doDelBus(entity);
  	}
- 	
+
  	public Serializable save(BaTrayEntity entity) throws Exception{
  		Serializable t = super.save(entity);
  		//执行新增操作增强业务
  		this.doAddBus(entity);
  		return t;
  	}
- 	
+
  	public void saveOrUpdate(BaTrayEntity entity) throws Exception{
  		super.saveOrUpdate(entity);
  		//执行更新操作增强业务
  		this.doUpdateBus(entity);
  	}
- 	
+
  	/**
 	 * 新增操作增强业务
 	 * @param t
@@ -45,7 +50,7 @@ public class BaTrayServiceImpl extends CommonServiceImpl implements BaTrayServic
 	private void doAddBus(BaTrayEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -57,7 +62,7 @@ public class BaTrayServiceImpl extends CommonServiceImpl implements BaTrayServic
 	private void doUpdateBus(BaTrayEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -69,11 +74,11 @@ public class BaTrayServiceImpl extends CommonServiceImpl implements BaTrayServic
 	private void doDelBus(BaTrayEntity t) throws Exception{
 	    //-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
- 	
+
  	private Map<String,Object> populationMap(BaTrayEntity t){
 		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("id", t.getId());
@@ -94,7 +99,7 @@ public class BaTrayServiceImpl extends CommonServiceImpl implements BaTrayServic
 		map.put("attr5", t.getAttr5());
 		return map;
 	}
- 	
+
  	/**
 	 * 替换sql中的变量
 	 * @param sql
@@ -121,7 +126,7 @@ public class BaTrayServiceImpl extends CommonServiceImpl implements BaTrayServic
  		sql  = sql.replace("#{UUID}",UUID.randomUUID().toString());
  		return sql;
  	}
- 	
+
  	/**
 	 * 执行JAVA增强
 	 */
@@ -142,7 +147,7 @@ public class BaTrayServiceImpl extends CommonServiceImpl implements BaTrayServic
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new Exception("执行JAVA增强出现异常！");
-			} 
+			}
 		}
  	}
 }
