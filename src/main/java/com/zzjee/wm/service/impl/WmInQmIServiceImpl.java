@@ -12,19 +12,24 @@ import org.jeecgframework.core.util.ApplicationContextUtil;
 import org.jeecgframework.core.util.MyClassLoader;
 import org.jeecgframework.core.util.StringUtil;
 import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Service("wmInQmIService")
 @Transactional
 public class WmInQmIServiceImpl extends CommonServiceImpl implements WmInQmIServiceI {
 
-	
+
  	@Override
     public void delete(WmInQmIEntity entity) throws Exception{
  		super.delete(entity);
  		//执行删除操作增强业务
 		this.doDelBus(entity);
  	}
- 	
+
  	@Override
     public synchronized Serializable save(WmInQmIEntity entity) throws Exception{
  		Serializable t = super.save(entity);
@@ -32,14 +37,14 @@ public class WmInQmIServiceImpl extends CommonServiceImpl implements WmInQmIServ
  		this.doAddBus(entity);
  		return t;
  	}
- 	
+
  	@Override
     public void saveOrUpdate(WmInQmIEntity entity) throws Exception{
  		super.saveOrUpdate(entity);
  		//执行更新操作增强业务
  		this.doUpdateBus(entity);
  	}
- 	
+
  	/**
 	 * 新增操作增强业务
 	 * @param t
@@ -48,7 +53,7 @@ public class WmInQmIServiceImpl extends CommonServiceImpl implements WmInQmIServ
 	private void doAddBus(WmInQmIEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -60,7 +65,7 @@ public class WmInQmIServiceImpl extends CommonServiceImpl implements WmInQmIServ
 	private void doUpdateBus(WmInQmIEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -72,11 +77,11 @@ public class WmInQmIServiceImpl extends CommonServiceImpl implements WmInQmIServ
 	private void doDelBus(WmInQmIEntity t) throws Exception{
 	    //-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
- 	
+
  	private Map<String,Object> populationMap(WmInQmIEntity t){
 		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("id", t.getId());
@@ -111,7 +116,7 @@ public class WmInQmIServiceImpl extends CommonServiceImpl implements WmInQmIServ
 		map.put("goods_name", t.getGoodsName());
 		return map;
 	}
- 	
+
  	/**
 	 * 替换sql中的变量
 	 * @param sql
@@ -152,7 +157,7 @@ public class WmInQmIServiceImpl extends CommonServiceImpl implements WmInQmIServ
  		sql  = sql.replace("#{UUID}",UUID.randomUUID().toString());
  		return sql;
  	}
- 	
+
  	/**
 	 * 执行JAVA增强
 	 */
@@ -173,7 +178,7 @@ public class WmInQmIServiceImpl extends CommonServiceImpl implements WmInQmIServ
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new Exception("执行JAVA增强出现异常！");
-			} 
+			}
 		}
  	}
 }
