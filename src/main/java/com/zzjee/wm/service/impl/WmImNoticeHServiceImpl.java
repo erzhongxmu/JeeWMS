@@ -25,7 +25,12 @@ import org.jeecgframework.web.system.pojo.base.TSUser;
 import java.util.ArrayList;
 import java.util.UUID;
 import java.io.Serializable;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 
 @Service("wmImNoticeHService")
 @Transactional
