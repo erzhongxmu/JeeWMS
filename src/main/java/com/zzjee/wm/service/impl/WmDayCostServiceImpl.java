@@ -12,19 +12,24 @@ import org.jeecgframework.core.util.ApplicationContextUtil;
 import org.jeecgframework.core.util.MyClassLoader;
 import org.jeecgframework.core.util.StringUtil;
 import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Service("wmDayCostService")
 @Transactional
 public class WmDayCostServiceImpl extends CommonServiceImpl implements WmDayCostServiceI {
 
-	
+
  	@Override
     public void delete(WmDayCostEntity entity) throws Exception{
  		super.delete(entity);
  		//执行删除操作增强业务
 		this.doDelBus(entity);
  	}
- 	
+
  	@Override
     public Serializable save(WmDayCostEntity entity) throws Exception{
  		Serializable t = super.save(entity);
@@ -32,14 +37,14 @@ public class WmDayCostServiceImpl extends CommonServiceImpl implements WmDayCost
  		this.doAddBus(entity);
  		return t;
  	}
- 	
+
  	@Override
     public void saveOrUpdate(WmDayCostEntity entity) throws Exception{
  		super.saveOrUpdate(entity);
  		//执行更新操作增强业务
  		this.doUpdateBus(entity);
  	}
- 	
+
  	/**
 	 * 新增操作增强业务
 	 * @param t
@@ -48,7 +53,7 @@ public class WmDayCostServiceImpl extends CommonServiceImpl implements WmDayCost
 	private void doAddBus(WmDayCostEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -60,7 +65,7 @@ public class WmDayCostServiceImpl extends CommonServiceImpl implements WmDayCost
 	private void doUpdateBus(WmDayCostEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -72,11 +77,11 @@ public class WmDayCostServiceImpl extends CommonServiceImpl implements WmDayCost
 	private void doDelBus(WmDayCostEntity t) throws Exception{
 	    //-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
- 	
+
  	private Map<String,Object> populationMap(WmDayCostEntity t){
 		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("id", t.getId());
@@ -104,7 +109,7 @@ public class WmDayCostServiceImpl extends CommonServiceImpl implements WmDayCost
 		map.put("cost_unit", t.getCostUnit());
 		return map;
 	}
- 	
+
  	/**
 	 * 替换sql中的变量
 	 * @param sql
@@ -138,7 +143,7 @@ public class WmDayCostServiceImpl extends CommonServiceImpl implements WmDayCost
  		sql  = sql.replace("#{UUID}",UUID.randomUUID().toString());
  		return sql;
  	}
- 	
+
  	/**
 	 * 执行JAVA增强
 	 */
@@ -159,7 +164,7 @@ public class WmDayCostServiceImpl extends CommonServiceImpl implements WmDayCost
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new Exception("执行JAVA增强出现异常！");
-			} 
+			}
 		}
  	}
 }
