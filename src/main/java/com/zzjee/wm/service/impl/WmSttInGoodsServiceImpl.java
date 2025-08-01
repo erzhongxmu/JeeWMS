@@ -12,19 +12,24 @@ import org.jeecgframework.core.util.ApplicationContextUtil;
 import org.jeecgframework.core.util.MyClassLoader;
 import org.jeecgframework.core.util.StringUtil;
 import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Service("wmSttInGoodsService")
 @Transactional
 public class WmSttInGoodsServiceImpl extends CommonServiceImpl implements WmSttInGoodsServiceI {
 
-	
+
  	@Override
     public void delete(WmSttInGoodsEntity entity) throws Exception{
  		super.delete(entity);
  		//执行删除操作增强业务
 		this.doDelBus(entity);
  	}
- 	
+
  	@Override
     public Serializable save(WmSttInGoodsEntity entity) throws Exception{
  		Serializable t = super.save(entity);
@@ -32,14 +37,14 @@ public class WmSttInGoodsServiceImpl extends CommonServiceImpl implements WmSttI
  		this.doAddBus(entity);
  		return t;
  	}
- 	
+
  	@Override
     public void saveOrUpdate(WmSttInGoodsEntity entity) throws Exception{
  		super.saveOrUpdate(entity);
  		//执行更新操作增强业务
  		this.doUpdateBus(entity);
  	}
- 	
+
  	/**
 	 * 新增操作增强业务
 	 * @param t
@@ -48,7 +53,7 @@ public class WmSttInGoodsServiceImpl extends CommonServiceImpl implements WmSttI
 	private void doAddBus(WmSttInGoodsEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -60,7 +65,7 @@ public class WmSttInGoodsServiceImpl extends CommonServiceImpl implements WmSttI
 	private void doUpdateBus(WmSttInGoodsEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -72,11 +77,11 @@ public class WmSttInGoodsServiceImpl extends CommonServiceImpl implements WmSttI
 	private void doDelBus(WmSttInGoodsEntity t) throws Exception{
 	    //-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
- 	
+
  	private Map<String,Object> populationMap(WmSttInGoodsEntity t){
 		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("id", t.getId());
@@ -106,7 +111,7 @@ public class WmSttInGoodsServiceImpl extends CommonServiceImpl implements WmSttI
 		map.put("base_goodscount", t.getBaseGoodscount());
 		return map;
 	}
- 	
+
  	/**
 	 * 替换sql中的变量
 	 * @param sql
@@ -143,7 +148,7 @@ public class WmSttInGoodsServiceImpl extends CommonServiceImpl implements WmSttI
  		sql  = sql.replace("#{UUID}",UUID.randomUUID().toString());
  		return sql;
  	}
- 	
+
  	/**
 	 * 执行JAVA增强
 	 */
@@ -164,7 +169,7 @@ public class WmSttInGoodsServiceImpl extends CommonServiceImpl implements WmSttI
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new Exception("执行JAVA增强出现异常！");
-			} 
+			}
 		}
  	}
 }
