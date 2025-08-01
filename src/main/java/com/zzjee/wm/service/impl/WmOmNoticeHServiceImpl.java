@@ -25,7 +25,12 @@ import java.util.ArrayList;
 import java.util.UUID;
 import java.io.Serializable;
 
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Service("wmOmNoticeHService")
 @Transactional
 public class WmOmNoticeHServiceImpl extends CommonServiceImpl implements WmOmNoticeHServiceI {
