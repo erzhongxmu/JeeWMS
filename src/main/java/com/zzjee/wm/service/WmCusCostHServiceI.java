@@ -5,25 +5,30 @@ import com.zzjee.wm.entity.WmCusCostIEntity;
 import java.util.List;
 import org.jeecgframework.core.common.service.CommonService;
 import java.io.Serializable;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public interface WmCusCostHServiceI extends CommonService{
-	
+
  	@Override
     public <T> void delete(T entity);
 	/**
 	 * 添加一对多
-	 * 
+	 *
 	 */
 	public void addMain(WmCusCostHEntity wmCusCostH,
 	        List<WmCusCostIEntity> wmCusCostIList) ;
 	/**
 	 * 修改一对多
-	 * 
+	 *
 	 */
 	public void updateMain(WmCusCostHEntity wmCusCostH,
 	        List<WmCusCostIEntity> wmCusCostIList);
 	public void delMain (WmCusCostHEntity wmCusCostH);
-	
+
  	/**
 	 * 默认按钮-sql增强-新增操作
 	 * @param t
