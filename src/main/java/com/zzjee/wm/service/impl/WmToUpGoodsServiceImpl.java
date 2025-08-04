@@ -29,7 +29,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.ConstraintViolation;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Service("wmToUpGoodsService")
 @Transactional
 public class WmToUpGoodsServiceImpl extends CommonServiceImpl implements WmToUpGoodsServiceI {
