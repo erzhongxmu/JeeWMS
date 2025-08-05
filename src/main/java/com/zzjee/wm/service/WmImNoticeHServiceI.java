@@ -5,25 +5,30 @@ import com.zzjee.wm.entity.WmImNoticeIEntity;
 import java.util.List;
 import org.jeecgframework.core.common.service.CommonService;
 import java.io.Serializable;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public interface WmImNoticeHServiceI extends CommonService{
-	
+
  	@Override
     public <T> void delete(T entity);
 	/**
 	 * 添加一对多
-	 * 
+	 *
 	 */
 	public void addMain(WmImNoticeHEntity wmImNoticeH,
 	        List<WmImNoticeIEntity> wmImNoticeIList) ;
 	/**
 	 * 修改一对多
-	 * 
+	 *
 	 */
 	public void updateMain(WmImNoticeHEntity wmImNoticeH,
 	        List<WmImNoticeIEntity> wmImNoticeIList);
 	public void delMain (WmImNoticeHEntity wmImNoticeH);
-	
+
  	/**
 	 * 默认按钮-sql增强-新增操作
 	 * @param t
