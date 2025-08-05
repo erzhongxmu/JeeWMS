@@ -3,13 +3,18 @@ import com.zzjee.wm.entity.WmInQmIEntity;
 import org.jeecgframework.core.common.service.CommonService;
 
 import java.io.Serializable;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public interface WmInQmIServiceI extends CommonService{
-	
+
  	public void delete(WmInQmIEntity entity) throws Exception;
- 	
+
  	public Serializable save(WmInQmIEntity entity) throws Exception;
- 	
+
  	public void saveOrUpdate(WmInQmIEntity entity) throws Exception;
- 	
+
 }
