@@ -9,14 +9,19 @@ import com.zzjee.wm.entity.WmTmsNoticeHEntity;
 import com.zzjee.wm.entity.WmTmsNoticeIEntity;
 import org.jeecgframework.core.common.service.CommonService;
 import java.io.Serializable;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public interface WmOmNoticeHServiceI extends CommonService{
-	
+
  	@Override
     public <T> void delete(T entity);
 	/**
 	 * 添加一对多
-	 * 
+	 *
 	 */
 	public  void addMain(WmOmNoticeHEntity wmOmNoticeH,
 	        List<WmOmNoticeIEntity> wmOmNoticeIList) ;
@@ -24,12 +29,12 @@ public interface WmOmNoticeHServiceI extends CommonService{
 						List<WmTmsNoticeIEntity> wmOmNoticeIList) ;
 	/**
 	 * 修改一对多
-	 * 
+	 *
 	 */
 	public void updateMain(WmOmNoticeHEntity wmOmNoticeH,
 	        List<WmOmNoticeIEntity> wmOmNoticeIList,List<TmsYwDingdanEntity> wmOmtmsIList);
 	public void delMain (WmOmNoticeHEntity wmOmNoticeH);
-	
+
  	/**
 	 * 默认按钮-sql增强-新增操作
 	 * @param t
