@@ -1,5 +1,10 @@
 package com.zzjee.wmapi.entity;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public class wmi1entity {
     public String wmX1;
     public String wmX2;
