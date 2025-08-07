@@ -6,7 +6,12 @@
 package com.zzjee.wmapi.entity;
 
 import java.io.Serializable;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public class ResultDO<T>  implements Serializable {
     private static final long serialVersionUID = -2042618546543630713L;
     private boolean isOK = true;
