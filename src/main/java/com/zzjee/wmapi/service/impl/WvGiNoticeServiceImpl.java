@@ -12,19 +12,24 @@ import org.jeecgframework.core.util.ApplicationContextUtil;
 import org.jeecgframework.core.util.MyClassLoader;
 import org.jeecgframework.core.util.StringUtil;
 import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Service("wvGiNoticeService")
 @Transactional
 public class WvGiNoticeServiceImpl extends CommonServiceImpl implements WvGiNoticeServiceI {
 
-	
+
  	@Override
 	public void delete(WvGiNoticeEntity entity) throws Exception{
  		super.delete(entity);
  		//执行删除操作增强业务
 		this.doDelBus(entity);
  	}
- 	
+
  	@Override
 	public Serializable save(WvGiNoticeEntity entity) throws Exception{
  		Serializable t = super.save(entity);
@@ -32,14 +37,14 @@ public class WvGiNoticeServiceImpl extends CommonServiceImpl implements WvGiNoti
  		this.doAddBus(entity);
  		return t;
  	}
- 	
+
  	@Override
 	public void saveOrUpdate(WvGiNoticeEntity entity) throws Exception{
  		super.saveOrUpdate(entity);
  		//执行更新操作增强业务
  		this.doUpdateBus(entity);
  	}
- 	
+
  	/**
 	 * 新增操作增强业务
 	 * @param t
@@ -48,7 +53,7 @@ public class WvGiNoticeServiceImpl extends CommonServiceImpl implements WvGiNoti
 	private void doAddBus(WvGiNoticeEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -60,7 +65,7 @@ public class WvGiNoticeServiceImpl extends CommonServiceImpl implements WvGiNoti
 	private void doUpdateBus(WvGiNoticeEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -72,11 +77,11 @@ public class WvGiNoticeServiceImpl extends CommonServiceImpl implements WvGiNoti
 	private void doDelBus(WvGiNoticeEntity t) throws Exception{
 	    //-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
- 	
+
  	private Map<String,Object> populationMap(WvGiNoticeEntity t){
 		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("create_date", t.getCreateDate());
@@ -103,7 +108,7 @@ public class WvGiNoticeServiceImpl extends CommonServiceImpl implements WvGiNoti
 		map.put("om_bei_zhu", t.getOmBeiZhu());
 		return map;
 	}
- 	
+
  	/**
 	 * 替换sql中的变量
 	 * @param sql
@@ -136,7 +141,7 @@ public class WvGiNoticeServiceImpl extends CommonServiceImpl implements WvGiNoti
  		sql  = sql.replace("#{UUID}",UUID.randomUUID().toString());
  		return sql;
  	}
- 	
+
  	/**
 	 * 执行JAVA增强
 	 */
@@ -161,7 +166,7 @@ public class WvGiNoticeServiceImpl extends CommonServiceImpl implements WvGiNoti
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new Exception("执行JAVA增强出现异常！");
-			} 
+			}
 		}
  	}
 }
