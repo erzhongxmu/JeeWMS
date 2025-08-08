@@ -3,7 +3,12 @@ package com.zzjee.wmapi.entity;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public class wmientity {
     public wmientity(){
 
