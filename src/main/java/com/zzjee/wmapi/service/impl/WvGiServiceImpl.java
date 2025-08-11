@@ -12,7 +12,12 @@ import org.jeecgframework.core.util.ApplicationContextUtil;
 import org.jeecgframework.core.util.MyClassLoader;
 import org.jeecgframework.core.util.StringUtil;
 import org.jeecgframework.web.cgform.enhance.CgformEnhanceJavaInter;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 @Service("wvGiService")
 @Transactional
 public class WvGiServiceImpl extends CommonServiceImpl implements WvGiServiceI {
@@ -23,7 +28,7 @@ public class WvGiServiceImpl extends CommonServiceImpl implements WvGiServiceI {
  		//执行删除操作增强业务
 		this.doDelBus(entity);
  	}
- 	
+
  	@Override
 	public Serializable save(WvGiEntity entity) throws Exception{
  		Serializable t = super.save(entity);
@@ -31,14 +36,14 @@ public class WvGiServiceImpl extends CommonServiceImpl implements WvGiServiceI {
  		this.doAddBus(entity);
  		return t;
  	}
- 	
+
  	@Override
 	public void saveOrUpdate(WvGiEntity entity) throws Exception{
  		super.saveOrUpdate(entity);
  		//执行更新操作增强业务
  		this.doUpdateBus(entity);
  	}
- 	
+
  	/**
 	 * 新增操作增强业务
 	 * @param t
@@ -47,7 +52,7 @@ public class WvGiServiceImpl extends CommonServiceImpl implements WvGiServiceI {
 	private void doAddBus(WvGiEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -59,7 +64,7 @@ public class WvGiServiceImpl extends CommonServiceImpl implements WvGiServiceI {
 	private void doUpdateBus(WvGiEntity t) throws Exception{
 		//-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
@@ -71,11 +76,11 @@ public class WvGiServiceImpl extends CommonServiceImpl implements WvGiServiceI {
 	private void doDelBus(WvGiEntity t) throws Exception{
 	    //-----------------sql增强 start----------------------------
 	 	//-----------------sql增强 end------------------------------
-	 	
+
 	 	//-----------------java增强 start---------------------------
 	 	//-----------------java增强 end-----------------------------
  	}
- 	
+
  	private Map<String,Object> populationMap(WvGiEntity t){
 		Map<String,Object> map = new HashMap<String,Object>(1024);
 		map.put("id", t.getId());
@@ -93,7 +98,7 @@ public class WvGiServiceImpl extends CommonServiceImpl implements WvGiServiceI {
 		map.put("down_sta", t.getDownSta());
 		return map;
 	}
- 	
+
  	/**
 	 * 替换sql中的变量
 	 * @param sql
@@ -117,7 +122,7 @@ public class WvGiServiceImpl extends CommonServiceImpl implements WvGiServiceI {
  		sql  = sql.replace("#{UUID}",UUID.randomUUID().toString());
  		return sql;
  	}
- 	
+
  	/**
 	 * 执行JAVA增强
 	 */
@@ -142,7 +147,7 @@ public class WvGiServiceImpl extends CommonServiceImpl implements WvGiServiceI {
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new Exception("执行JAVA增强出现异常！");
-			} 
+			}
 		}
  	}
 }
