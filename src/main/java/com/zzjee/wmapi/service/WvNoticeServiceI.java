@@ -3,13 +3,18 @@ import com.zzjee.wmapi.entity.WvNoticeEntity;
 import org.jeecgframework.core.common.service.CommonService;
 
 import java.io.Serializable;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public interface WvNoticeServiceI extends CommonService{
-	
+
  	public void delete(WvNoticeEntity entity) throws Exception;
- 	
+
  	public Serializable save(WvNoticeEntity entity) throws Exception;
- 	
+
  	public void saveOrUpdate(WvNoticeEntity entity) throws Exception;
- 	
+
 }
