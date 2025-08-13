@@ -4,7 +4,12 @@ package com.zzjee.wmutil.sql;
 import org.jeecgframework.core.util.StringUtil;
 
 import java.util.Map;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public class SqlUtils {
 
 	public static String getAndLike(String sql, String filedName, Object params) {
