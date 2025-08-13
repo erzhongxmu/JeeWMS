@@ -22,6 +22,12 @@ import java.util.*;
 /**
  * 仓储公用类
  */
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2016/10/31
+ */
 public class wmUtil {
 
     public synchronized static void genrp(String datafrom, String datato, String username) {
