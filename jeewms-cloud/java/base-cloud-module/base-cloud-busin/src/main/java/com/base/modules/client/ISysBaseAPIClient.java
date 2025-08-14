@@ -6,7 +6,12 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2020/10/31
+ */
 @Component
 @FeignClient(value = "base-system")
 public interface ISysBaseAPIClient {
