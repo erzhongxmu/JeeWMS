@@ -6,7 +6,12 @@ import java.lang.reflect.Method;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2020/10/31
+ */
 public class dbUtil {
     public static Connection getConnection(){
         Connection conn=null;
