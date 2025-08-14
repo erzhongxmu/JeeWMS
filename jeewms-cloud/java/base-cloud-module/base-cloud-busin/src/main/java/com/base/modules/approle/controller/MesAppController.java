@@ -22,7 +22,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2020/10/31
+ */
 @Api(tags="MES-APP模块")
 @RestController
 @RequestMapping("/jeewms/mesapp")
