@@ -1,5 +1,10 @@
 package com.base.modules.data;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2020/10/31
+ */
 public class U8SqlConstant {
 
     public static  String   DEMO = "";
