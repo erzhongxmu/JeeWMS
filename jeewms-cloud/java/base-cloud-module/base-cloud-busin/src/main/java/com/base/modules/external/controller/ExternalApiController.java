@@ -33,7 +33,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2020/10/31
+ */
 @Api(tags = "对外接口对接")
 @RestController
 @RequestMapping("/jeewms/externalApi")
