@@ -24,7 +24,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2021-05-18
+ */
 
 public class CommonTest extends JeecgController<WmImNoticeH, IWmImNoticeHService> {
 
@@ -60,7 +65,7 @@ public class CommonTest extends JeecgController<WmImNoticeH, IWmImNoticeHService
 		}
 
 	}
-	
+
 	/*��������ͻ���Ϣ*/
 	@Test
 	public void testBatchSaveCustomer() throws Exception {
@@ -87,7 +92,7 @@ public class CommonTest extends JeecgController<WmImNoticeH, IWmImNoticeHService
 			fail("dcs is null!");
 		}
 	}
-	
+
 	/*����ѯ�ӿڣ���ѯ�ͻ���Ϣ*/
 	@Test
 	public void testQueryCustomer() {
@@ -316,6 +321,6 @@ public class CommonTest extends JeecgController<WmImNoticeH, IWmImNoticeHService
 		String code = parse.get("code") != null ? parse.get("code").toString() : "";
 		System.out.println(code);
 	}
-	
-	
+
+
 }
