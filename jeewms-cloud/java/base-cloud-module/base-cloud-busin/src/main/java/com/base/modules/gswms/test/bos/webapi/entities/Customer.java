@@ -1,5 +1,10 @@
 package com.base.modules.gswms.test.bos.webapi.entities;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2021-05-18
+ */
 public class Customer {
 
 	long CustID;
@@ -23,7 +28,7 @@ public class Customer {
 		FName = fName;
 	}
 	String FName;
-	
+
 	String FShortName;
 	public String getFShortName() {
 		return FShortName;
