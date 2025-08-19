@@ -5,7 +5,12 @@ package com.base.modules.jeeerp.api;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2021-05-18
+ */
 @Data
 public class ApiPostPage {
     private   String id;
