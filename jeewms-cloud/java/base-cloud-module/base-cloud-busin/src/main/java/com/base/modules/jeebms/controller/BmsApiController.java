@@ -32,7 +32,12 @@ import java.util.concurrent.Executors;
 import static com.base.modules.util.CommonConstant.*;
 import static com.base.modules.util.CommonConstantMSG.BMS_RULE_MSG;
 
-
+/**
+ * Demo class
+ *
+ * @author admin
+ * @date 2021-05-18
+ */
 @Api(tags = "费用管理控制器")
 @RestController
 @RequestMapping("/bms/api")
