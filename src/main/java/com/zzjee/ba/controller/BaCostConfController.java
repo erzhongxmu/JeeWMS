@@ -334,7 +334,12 @@ public class BaCostConfController extends BaseController {
 		List<BaCostConfEntity> listBaCostConfs=baCostConfService.getList(BaCostConfEntity.class);
 		return listBaCostConfs;
 	}
-
+	/**
+	 * 根据ID查询计费配置
+	 *
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
