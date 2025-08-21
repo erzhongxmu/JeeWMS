@@ -287,7 +287,7 @@ public class BaCostConfController extends BaseController {
 	 * 导入Excel
 	 *
 	 * @param request
-	 * @param response 
+	 * @param response
 	 *
 	 */
 	@SuppressWarnings("unchecked")
@@ -323,7 +323,11 @@ public class BaCostConfController extends BaseController {
 		}
 		return j;
 	}
-
+	/**
+	 * 查询所有计费配置
+	 *
+	 * @return 计费配置列表
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<BaCostConfEntity> list() {
