@@ -349,7 +349,12 @@ public class BaCostConfController extends BaseController {
 		}
 		return new ResponseEntity(task, HttpStatus.OK);
 	}
-
+	/**
+	 创建计费配置
+	 @param baCostConf
+	 @param uriBuilder
+	 @return
+	 */
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> create(@RequestBody BaCostConfEntity baCostConf, UriComponentsBuilder uriBuilder) {
