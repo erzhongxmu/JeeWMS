@@ -346,7 +346,12 @@ public class BaCostController extends BaseController {
 		}
 		return new ResponseEntity(task, HttpStatus.OK);
 	}
-
+	/**
+	 创建费用名称
+	 @param baCost
+	 @param uriBuilder
+	 @return
+	 */
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> create(@RequestBody BaCostEntity baCost, UriComponentsBuilder uriBuilder) {
