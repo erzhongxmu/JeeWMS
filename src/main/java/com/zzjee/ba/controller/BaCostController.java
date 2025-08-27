@@ -329,7 +329,10 @@ public class BaCostController extends BaseController {
 		}
 		return j;
 	}
-
+	/**
+	 * 查询所有费用名称
+	 * @return 
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<BaCostEntity> list() {
