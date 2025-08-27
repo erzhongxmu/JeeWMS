@@ -336,7 +336,11 @@ public class BaCostController extends BaseController {
 		List<BaCostEntity> listBaCosts=baCostService.getList(BaCostEntity.class);
 		return listBaCosts;
 	}
-
+	/**
+	  根据ID查询费用名称
+	  @param id
+	  @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
