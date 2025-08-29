@@ -381,7 +381,10 @@ public class BaGoodsCategoryController extends BaseController {
 		List<BaGoodsCategoryEntity> listBaGoodsCategorys=baGoodsCategoryService.getList(BaGoodsCategoryEntity.class);
 		return listBaGoodsCategorys;
 	}
-
+	/**
+	 * 查询所有商品类目
+	 * @return 
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
@@ -395,7 +398,7 @@ public class BaGoodsCategoryController extends BaseController {
 	 * 创建商品类目
 	 * @param baGoodsCategory
 	 * @param uriBuilder
-	 * @return 
+	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
