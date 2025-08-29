@@ -416,7 +416,11 @@ public class BaGoodsCategoryController extends BaseController {
 
 		return new ResponseEntity(headers, HttpStatus.CREATED);
 	}
-
+	/**
+	 * 更新商品类目
+	 * @param baGoodsCategory
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> update(@RequestBody BaGoodsCategoryEntity baGoodsCategory) {
 		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
@@ -438,7 +442,7 @@ public class BaGoodsCategoryController extends BaseController {
 	}
 	/**
 	 * 删除商品类目
-	 * @param id 
+	 * @param id
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
