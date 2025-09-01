@@ -341,7 +341,7 @@ public class BaGoodsCategoryController extends BaseController {
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 	/**
-	 * 导出excel 
+	 * 导出excel
 	 *
 	 * @param request
 	 * @param response
@@ -379,7 +379,10 @@ public class BaGoodsCategoryController extends BaseController {
 		}
 		return j;
 	}
-
+	/**
+	 * 查询所有商品类目
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<BaGoodsCategoryEntity> list() {
@@ -387,7 +390,7 @@ public class BaGoodsCategoryController extends BaseController {
 		return listBaGoodsCategorys;
 	}
 	/**
-	 * 查询所有商品类目
+	 * 根据ID查询所有商品类目
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
