@@ -340,7 +340,12 @@ public class BaGoodsCategoryController extends BaseController {
     	modelMap.put(NormalExcelConstants.DATA_LIST,new ArrayList());
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
-
+	/**
+	 * 导出excel 
+	 *
+	 * @param request
+	 * @param response
+	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
@@ -383,7 +388,7 @@ public class BaGoodsCategoryController extends BaseController {
 	}
 	/**
 	 * 查询所有商品类目
-	 * @return 
+	 * @return
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
