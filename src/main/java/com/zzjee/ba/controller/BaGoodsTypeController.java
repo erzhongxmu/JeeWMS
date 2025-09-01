@@ -294,7 +294,7 @@ public class BaGoodsTypeController extends BaseController {
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 	/**
-	 * 导入excel 
+	 * 导入excel
 	 *
 	 * @param request
 	 * @param response
@@ -332,7 +332,10 @@ public class BaGoodsTypeController extends BaseController {
 		}
 		return j;
 	}
-
+	/**
+	 * 查询所有产品属性
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<BaGoodsTypeEntity> list() {
