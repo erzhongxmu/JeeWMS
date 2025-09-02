@@ -342,7 +342,10 @@ public class BaGoodsTypeController extends BaseController {
 		List<BaGoodsTypeEntity> listBaGoodsTypes=baGoodsTypeService.getList(BaGoodsTypeEntity.class);
 		return listBaGoodsTypes;
 	}
-
+	/**
+	 * 根据ID查询所有商品类目
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
