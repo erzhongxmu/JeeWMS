@@ -342,7 +342,10 @@ public class BaPlatformController extends BaseController {
 		List<BaPlatformEntity> listBaPlatforms=baPlatformService.getList(BaPlatformEntity.class);
 		return listBaPlatforms;
 	}
-
+	/**
+	 * 根据ID查询所有月台主数据
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
