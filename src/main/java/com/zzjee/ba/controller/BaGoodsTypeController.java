@@ -343,7 +343,7 @@ public class BaGoodsTypeController extends BaseController {
 		return listBaGoodsTypes;
 	}
 	/**
-	 * 根据ID查询所有商品类目
+	 * 根据ID查询所有产品属性
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -355,7 +355,12 @@ public class BaGoodsTypeController extends BaseController {
 		}
 		return new ResponseEntity(task, HttpStatus.OK);
 	}
-
+	/**
+	 * 创建产品属性
+	 * @param baGoodsType
+	 * @param uriBuilder
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> create(@RequestBody BaGoodsTypeEntity baGoodsType, UriComponentsBuilder uriBuilder) {
