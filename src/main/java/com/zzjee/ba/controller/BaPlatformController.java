@@ -332,7 +332,10 @@ public class BaPlatformController extends BaseController {
 		}
 		return j;
 	}
-
+	/**
+	 * 查询所有月台主数据
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<BaPlatformEntity> list() {
