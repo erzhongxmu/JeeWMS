@@ -355,7 +355,12 @@ public class BaPlatformController extends BaseController {
 		}
 		return new ResponseEntity(task, HttpStatus.OK);
 	}
-
+	/**
+	 * 创建月台主数据
+	 * @param baPlatform
+	 * @param uriBuilder
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> create(@RequestBody BaPlatformEntity baPlatform, UriComponentsBuilder uriBuilder) {
