@@ -385,7 +385,11 @@ public class BaPlatformController extends BaseController {
 
 		return new ResponseEntity(headers, HttpStatus.CREATED);
 	}
-
+	/**
+	 * 更新月台主数据
+	 * @param baPlatform
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> update(@RequestBody BaPlatformEntity baPlatform) {
 		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
