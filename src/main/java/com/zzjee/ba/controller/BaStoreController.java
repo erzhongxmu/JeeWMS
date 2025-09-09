@@ -332,7 +332,10 @@ public class BaStoreController extends BaseController {
 		}
 		return j;
 	}
-
+	/**
+	 * 查询所有仓库
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<BaStoreEntity> list() {
