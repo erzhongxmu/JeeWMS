@@ -342,7 +342,10 @@ public class BaStoreController extends BaseController {
 		List<BaStoreEntity> listBaStores=baStoreService.getList(BaStoreEntity.class);
 		return listBaStores;
 	}
-
+	/**
+	 * 根据ID查询所有仓库
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
