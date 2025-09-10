@@ -355,7 +355,12 @@ public class BaStoreController extends BaseController {
 		}
 		return new ResponseEntity(task, HttpStatus.OK);
 	}
-
+	/**
+	 * 创建仓库
+	 * @param baStore
+	 * @param uriBuilder
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> create(@RequestBody BaStoreEntity baStore, UriComponentsBuilder uriBuilder) {
