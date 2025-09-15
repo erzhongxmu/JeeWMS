@@ -347,7 +347,10 @@ public class BaUnitController extends BaseController {
 		List<BaUnitEntity> listBaUnits=baUnitService.getList(BaUnitEntity.class);
 		return listBaUnits;
 	}
-
+	/**
+	 * 根据ID查询所有计量单位
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
