@@ -332,7 +332,10 @@ public class BaUnitController extends BaseController {
 		}
 		return j;
 	}
-
+	/**
+	 * 查询计量单位
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<BaUnitEntity> list() {
