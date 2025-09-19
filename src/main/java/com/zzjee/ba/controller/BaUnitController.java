@@ -360,7 +360,12 @@ public class BaUnitController extends BaseController {
 		}
 		return new ResponseEntity(task, HttpStatus.OK);
 	}
-
+	/**
+	 * 创建计量单位
+	 * @param baUnit
+	 * @param uriBuilder
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> create(@RequestBody BaUnitEntity baUnit, UriComponentsBuilder uriBuilder) {
