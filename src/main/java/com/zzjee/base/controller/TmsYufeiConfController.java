@@ -333,7 +333,10 @@ public class TmsYufeiConfController extends BaseController {
 		}
 		return j;
 	}
-
+	/**
+	 * 查询所有运费配置
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<TmsYufeiConfEntity> list() {
