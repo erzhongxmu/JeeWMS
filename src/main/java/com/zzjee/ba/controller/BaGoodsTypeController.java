@@ -387,7 +387,7 @@ public class BaGoodsTypeController extends BaseController {
 	}
 	/**
 	 * 更新产品属性
-	 * @param baPlatform
+	 * @param baGoodsType
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
