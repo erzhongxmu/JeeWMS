@@ -343,7 +343,10 @@ public class TmsYufeiConfController extends BaseController {
 		List<TmsYufeiConfEntity> listTmsYufeiConfs=tmsYufeiConfService.getList(TmsYufeiConfEntity.class);
 		return listTmsYufeiConfs;
 	}
-
+	/**
+	 * 根据ID查询所有运费配置
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
