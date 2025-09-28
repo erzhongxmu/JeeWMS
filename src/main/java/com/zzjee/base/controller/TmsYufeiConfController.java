@@ -356,7 +356,12 @@ public class TmsYufeiConfController extends BaseController {
 		}
 		return new ResponseEntity(task, HttpStatus.OK);
 	}
-
+	/**
+	 * 创建运费配置
+	 * @param tmsYufeiConf
+	 * @param uriBuilder
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> create(@RequestBody TmsYufeiConfEntity tmsYufeiConf, UriComponentsBuilder uriBuilder) {
