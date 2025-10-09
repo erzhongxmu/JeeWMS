@@ -336,7 +336,10 @@ public class WmsWaveConfController extends BaseController {
 		}
 		return j;
 	}
-
+	/**
+	 * 查询所有波次配置
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<WmsWaveConfEntity> list() {
