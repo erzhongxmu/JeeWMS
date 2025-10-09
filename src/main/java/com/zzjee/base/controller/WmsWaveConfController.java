@@ -346,7 +346,10 @@ public class WmsWaveConfController extends BaseController {
 		List<WmsWaveConfEntity> listWmsWaveConfs=wmsWaveConfService.getList(WmsWaveConfEntity.class);
 		return listWmsWaveConfs;
 	}
-
+	/**
+	 * 根据ID查询所有波次配置
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
