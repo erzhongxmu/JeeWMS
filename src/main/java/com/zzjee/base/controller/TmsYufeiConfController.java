@@ -386,7 +386,11 @@ public class TmsYufeiConfController extends BaseController {
 
 		return new ResponseEntity(headers, HttpStatus.CREATED);
 	}
-
+	/**
+	 * 更新运费配置
+	 * @param tmsYufeiConf
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> update(@RequestBody TmsYufeiConfEntity tmsYufeiConf) {
 		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
