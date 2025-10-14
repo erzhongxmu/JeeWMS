@@ -359,7 +359,12 @@ public class WmsWaveConfController extends BaseController {
 		}
 		return new ResponseEntity(task, HttpStatus.OK);
 	}
-
+	/**
+	 * 创建波次配置
+	 * @param wmsWaveConf
+	 * @param uriBuilder
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> create(@RequestBody WmsWaveConfEntity wmsWaveConf, UriComponentsBuilder uriBuilder) {
