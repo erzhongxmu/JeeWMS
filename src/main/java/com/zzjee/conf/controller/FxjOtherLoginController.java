@@ -347,7 +347,10 @@ public class FxjOtherLoginController extends BaseController {
 		List<FxjOtherLoginEntity> listFxjOtherLogins=fxjOtherLoginService.getList(FxjOtherLoginEntity.class);
 		return listFxjOtherLogins;
 	}
-
+	/**
+	 * 根据ID查询所有第三方登录
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
