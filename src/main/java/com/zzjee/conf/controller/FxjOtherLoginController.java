@@ -337,7 +337,10 @@ public class FxjOtherLoginController extends BaseController {
 		}
 		return j;
 	}
-
+	/**
+	 * 查询所有第三方登录
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<FxjOtherLoginEntity> list() {
