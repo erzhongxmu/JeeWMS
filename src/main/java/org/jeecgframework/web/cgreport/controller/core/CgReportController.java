@@ -291,28 +291,19 @@ public class CgReportController extends BaseController {
 		List<Map<String,Object>> items = (List<Map<String, Object>>) cgReportMap.get(CgReportConstant.ITEMS);
 		List<CgreportConfigParamEntity> paramList = (List<CgreportConfigParamEntity>) cgReportMap.get(CgReportConstant.PARAMS);
 		Map queryparams =  new LinkedHashMap<String,Object>();
-		if (paramList!= null && paramList.size() > 0) {
-			StringBuilder finalSql = new StringBuilder(querySql);
-			List<Object> paramValues = new ArrayList<>();
-			for (CgreportConfigParamEntity param : paramList) {
+		if(paramList!=null&&paramList.size()>0){
+			for(CgreportConfigParamEntity param :paramList){
 				String value = request.getParameter(param.getParamName());
-				value = StringUtil.isEmpty(value)? param.getParamValue() : value;
-				paramValues.add(value);
-				String placeholder = "${" + param.getParamName() + "}";
-				int index = finalSql.indexOf(placeholder);
-				while (index!= -1) {
-					finalSql = finalSql.replace(index, index + placeholder.length(), "?");
-					index = finalSql.indexOf(placeholder);
-				}
+				value = StringUtil.isEmpty(value)?param.getParamValue():value;
+				querySql = querySql.replace("${"+param.getParamName()+"}", value);
 			}
-			try (Connection connection = dataSource.getConnection();
-				 PreparedStatement preparedStatement = connection.prepareStatement(finalSql.toString())) {
-				for (int i = 0; i < paramValues.size(); i++) {
-					preparedStatement.setObject(i + 1, paramValues.get(i));
+		}else{
+			for(Map<String,Object> item:items){
+				String isQuery = (String) item.get(CgReportConstant.ITEM_ISQUERY);
+				if(CgReportConstant.BOOL_TRUE.equalsIgnoreCase(isQuery)){
+					//step.3 装载查询条件
+					CgReportQueryParamUtil.loadQueryParams(request, item, queryparams);
 				}
-				ResultSet resultSet = preparedStatement.executeQuery();
-			} catch (SQLException e) {
-				e.printStackTrace();
 			}
 		}
 		//step.4 进行查询返回结果

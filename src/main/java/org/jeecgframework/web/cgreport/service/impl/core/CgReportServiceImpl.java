@@ -111,39 +111,23 @@ public class CgReportServiceImpl extends CommonServiceImpl implements
      * @return
      */
     @SuppressWarnings("unchecked")
-    private String getFullSql(String sql, Map params) {
-        // 提取sql中的order by部分，在下面追加到SQL结尾
-        String orderBy = "";
-        Pattern p = Pattern.compile("order +by.*", Pattern.CASE_INSENSITIVE);
-        Matcher m = p.matcher(sql);
-        if (m.find()) {
-            orderBy = " " + m.group();
-            sql = sql.replace(orderBy, "");
-        }
-
-        StringBuilder sqlB = new StringBuilder();
+    private String getFullSql(String sql,Map params){
+        StringBuilder sqlB =  new StringBuilder();
         sqlB.append("SELECT t.* FROM ( ");
-        sqlB.append(sql + " ");
+        sqlB.append(sql+" ");
         sqlB.append(") t ");
         if (params.size() >= 1) {
             sqlB.append("WHERE 1=1  ");
-            List<Object> paramValues = new ArrayList<>();
-            Iterator<String> it = params.keySet().iterator();
+            Iterator it = params.keySet().iterator();
             while (it.hasNext()) {
-                String key = it.next();
-                Object valueObj = params.get(key);
-                String value = (valueObj != null) ? valueObj.toString() : "";
+                String key = String.valueOf(it.next());
+                String value = String.valueOf(params.get(key));
                 if (!StringUtil.isEmpty(value) && !"null".equals(value)) {
-                    sqlB.append(" AND ").append(key).append(" =? ");
-                    paramValues.add(valueObj);
+                    sqlB.append(" AND ");
+                    sqlB.append(" " + key +  value );
                 }
             }
-            // 将参数占位符添加完毕后，追加orderBy部分
-            sqlB.append(orderBy);
-            // 直接返回构建好的、采用参数绑定形式的SQL语句
-            return sqlB.toString();
         }
-        sqlB.append(orderBy);
         return sqlB.toString();
     }
 
