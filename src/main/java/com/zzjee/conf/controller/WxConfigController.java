@@ -337,7 +337,10 @@ public class WxConfigController extends BaseController {
 		}
 		return j;
 	}
-
+	/**
+	 * 查询所有配置信息
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<WxConfigEntity> list() {
