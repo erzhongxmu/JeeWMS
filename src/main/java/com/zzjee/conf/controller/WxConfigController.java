@@ -347,7 +347,10 @@ public class WxConfigController extends BaseController {
 		List<WxConfigEntity> listWxConfigs=wxConfigService.getList(WxConfigEntity.class);
 		return listWxConfigs;
 	}
-
+	/**
+	 * 根据ID查询所有配置信息
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
