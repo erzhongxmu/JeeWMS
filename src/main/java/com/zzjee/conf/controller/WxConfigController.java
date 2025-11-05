@@ -360,7 +360,12 @@ public class WxConfigController extends BaseController {
 		}
 		return new ResponseEntity(task, HttpStatus.OK);
 	}
-
+	/**
+	 * 创建配置信息
+	 * @param wxConfig
+	 * @param uriBuilder
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> create(@RequestBody WxConfigEntity wxConfig, UriComponentsBuilder uriBuilder) {
