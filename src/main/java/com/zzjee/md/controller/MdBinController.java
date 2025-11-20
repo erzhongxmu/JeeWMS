@@ -672,7 +672,10 @@ public class MdBinController extends BaseController {
         List<MdBinEntity> listMdBins = mdBinService.getList(MdBinEntity.class);
         return listMdBins;
     }
-
+    /**
+     * 根据ID查询所有仓位定义
+     * @return
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<?> get(@PathVariable("id") String id) {
