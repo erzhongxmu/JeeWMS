@@ -662,7 +662,10 @@ public class MdBinController extends BaseController {
         }
         return j;
     }
-
+    /**
+     * 查询所有仓位定义
+     * @return
+     */
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<MdBinEntity> list() {
