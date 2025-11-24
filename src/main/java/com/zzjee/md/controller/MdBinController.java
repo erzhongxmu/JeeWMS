@@ -685,7 +685,12 @@ public class MdBinController extends BaseController {
         }
         return new ResponseEntity(task, HttpStatus.OK);
     }
-
+    /**
+     * 创建仓位定义
+     * @param mdBin
+     * @param uriBuilder
+     * @return
+     */
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<?> create(@RequestBody MdBinEntity mdBin, UriComponentsBuilder uriBuilder) {
