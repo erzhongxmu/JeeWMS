@@ -399,7 +399,10 @@ public class MdCusController extends BaseController {
 		List<MdCusEntity> listMdCuss=mdCusService.getList(MdCusEntity.class);
 		return listMdCuss;
 	}
-
+	/**
+	 * 根据ID查询所有客户
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
