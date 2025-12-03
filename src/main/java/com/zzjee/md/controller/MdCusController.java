@@ -389,7 +389,10 @@ public class MdCusController extends BaseController {
 		}
 		return j;
 	}
-
+	/**
+	 * 查询所有客户
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<MdCusEntity> list() {
