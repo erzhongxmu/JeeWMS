@@ -355,7 +355,10 @@ public class MdCusOtherController extends BaseController {
 		}
 		return j;
 	}
-
+	/**
+	 * 查询第三方客户
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<MdCusOtherEntity> list() {
