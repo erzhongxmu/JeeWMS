@@ -378,7 +378,12 @@ public class MdCusOtherController extends BaseController {
 		}
 		return new ResponseEntity(task, HttpStatus.OK);
 	}
-
+	/**
+	 * 创建第三方客户
+	 * @param mdCusOther
+	 * @param uriBuilder
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> create(@RequestBody MdCusOtherEntity mdCusOther, UriComponentsBuilder uriBuilder) {
