@@ -365,7 +365,10 @@ public class MdCusOtherController extends BaseController {
 		List<MdCusOtherEntity> listMdCusOthers=mdCusOtherService.getList(MdCusOtherEntity.class);
 		return listMdCusOthers;
 	}
-
+	/**
+	 * 根据ID查询第三方客户
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
