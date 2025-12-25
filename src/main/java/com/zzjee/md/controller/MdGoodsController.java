@@ -493,7 +493,10 @@ public class MdGoodsController extends BaseController {
 		}
 		return j;
 	}
-
+	/**
+	 * 查询商品信息
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?>  list( @RequestParam(value="username", required=false) String username,
