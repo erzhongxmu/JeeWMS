@@ -530,7 +530,10 @@ public class MdGoodsController extends BaseController {
 		D0.setObj(result);
 		return new ResponseEntity(D0, HttpStatus.OK);
 	}
-
+	/**
+	 * 根据ID查询商品信息
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
