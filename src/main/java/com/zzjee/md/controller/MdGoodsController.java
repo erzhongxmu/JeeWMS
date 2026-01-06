@@ -607,7 +607,12 @@ public class MdGoodsController extends BaseController {
 		}
 		return new ResponseEntity(D0, HttpStatus.OK);
 	}
-
+	/**
+	 * 添加商品
+	 * @param mdGoodsstr
+	 * @param uriBuilder
+	 * @return
+	 */
 	@RequestMapping(value = "/addgoods", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> addgoods(@RequestParam String mdGoodsstr,
