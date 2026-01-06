@@ -636,7 +636,12 @@ public class MdGoodsController extends BaseController {
 		// 按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
 		return new ResponseEntity(D0, HttpStatus.OK);
 	}
-
+	/**
+	 * 更新商品
+	 * @param mdGoodsstr
+	 * @param uriBuilder
+	 * @return
+	 */
 	@RequestMapping(value = "/change", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> update(@RequestParam String mdGoodsstr,
