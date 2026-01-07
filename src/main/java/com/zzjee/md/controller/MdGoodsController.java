@@ -710,7 +710,11 @@ public class MdGoodsController extends BaseController {
 		// 按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
 		return new ResponseEntity(D0, HttpStatus.OK);
 	}
-
+	/**
+	 * 删除商品信息
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable("id") String id) {
