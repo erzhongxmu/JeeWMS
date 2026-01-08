@@ -386,7 +386,10 @@ public class MdSupController extends BaseController {
 		List<MdSupEntity> listMdSups = mdSupService.getList(MdSupEntity.class);
 		return listMdSups;
 	}
-
+	/**
+	 * 根据ID查询供应商信息
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
