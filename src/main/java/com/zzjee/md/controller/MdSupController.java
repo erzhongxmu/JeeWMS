@@ -376,7 +376,10 @@ public class MdSupController extends BaseController {
 		}
 		return j;
 	}
-
+	/**
+	 * 查询供应商列表
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<MdSupEntity> list() {
