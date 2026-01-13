@@ -414,7 +414,10 @@ public class MvGoodsController extends BaseController {
 		}
 		return j;
 	}
-
+	/**
+	 * 查询商品视图
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<MvGoodsEntity> list() {
