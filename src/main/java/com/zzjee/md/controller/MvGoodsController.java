@@ -424,7 +424,10 @@ public class MvGoodsController extends BaseController {
 		List<MvGoodsEntity> listMvGoodss=mvGoodsService.getList(MvGoodsEntity.class);
 		return listMvGoodss;
 	}
-
+	/**
+	 * 根据ID查询商品视图
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
