@@ -437,7 +437,12 @@ public class MvGoodsController extends BaseController {
 		}
 		return new ResponseEntity(task, HttpStatus.OK);
 	}
-
+	/**
+	 * 创建商品视图
+	 * @param mvGoods
+	 * @param uriBuilder
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> create(@RequestBody MvGoodsEntity mvGoods, UriComponentsBuilder uriBuilder) {
