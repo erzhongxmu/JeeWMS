@@ -446,7 +446,11 @@ public class WvDayCostSumController extends BaseController {
 		List<WvDayCostSumEntity> listWvDayCostSums=wvDayCostSumService.getList(WvDayCostSumEntity.class);
 		return listWvDayCostSums;
 	}
-
+	/**
+	 * 根据ID查询WvDayCostSumEntity列表
+	 *
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
