@@ -460,7 +460,12 @@ public class WvDayCostSumController extends BaseController {
 		}
 		return new ResponseEntity(task, HttpStatus.OK);
 	}
-
+	/**
+	 * 创建WvDayCostSumEntity列表
+	 * @param wvDayCostSum
+	 * @param uriBuilder
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> create(@RequestBody WvDayCostSumEntity wvDayCostSum, UriComponentsBuilder uriBuilder) {
