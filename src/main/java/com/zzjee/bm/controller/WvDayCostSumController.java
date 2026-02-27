@@ -490,7 +490,11 @@ public class WvDayCostSumController extends BaseController {
 
 		return new ResponseEntity(headers, HttpStatus.CREATED);
 	}
-
+	/**
+	 更新WvDayCostSumEntity列表
+	 @param wvDayCostSum
+	 @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> update(@RequestBody WvDayCostSumEntity wvDayCostSum) {
 		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
