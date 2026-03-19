@@ -435,7 +435,10 @@ public class TMdBomHeadController extends BaseController {
         }
 		return Result.success(pageList);
 	}
-
+	/**
+	 * 根据ID获取BOM抬头信息
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	@ApiOperation(value="根据ID获取BOM抬头信息",notes="根据ID获取BOM抬头信息",httpMethod="GET",produces="application/json")
