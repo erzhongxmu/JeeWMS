@@ -459,7 +459,10 @@ public class TMdBomHeadController extends BaseController {
 		}
 		return Result.success(page);
 	}
-
+	/**
+	 * 创建BOM抬头
+	 * @return
+	 */
  	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@ApiOperation(value="创建BOM抬头")
