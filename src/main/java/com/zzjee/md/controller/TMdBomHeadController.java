@@ -408,7 +408,10 @@ public class TMdBomHeadController extends BaseController {
 		req.setAttribute("controller_name", "tMdBomHeadController");
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
-
+	/**
+	 * BOM抬头列表信息
+	 * @return
+	 */
  	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	@ApiOperation(value="BOM抬头列表信息",produces="application/json",httpMethod="GET")
