@@ -5,7 +5,6 @@ JEEWMS 开源仓储数字化平台生态体系
 - **生态矩阵**：  
   - 智能制造平台 JEEMES 已开源 [Gitee链接](https://gitee.com/erzhongxmu/jeemes)  
   - Android移动端开源仓库 [JeeWMSapp-uni](https://gitee.com/erzhongxmu/JeeWMSapp-uni)  
-  - 在线体验环境：[http://47.113.229.131:9080/jeewms](http://47.113.229.131:9080/jeewms) (账号：admin，密码：llg123)
 - **合作伙伴**：  
   ![合作伙伴](DOC/gzl.png)
 
