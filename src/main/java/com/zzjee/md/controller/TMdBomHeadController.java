@@ -516,7 +516,10 @@ public class TMdBomHeadController extends BaseController {
 		//按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
 		return Result.success();
 	}
-
+	/**
+	 * 删除BOM抬头
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@ApiOperation(value="删除BOM抬头")
