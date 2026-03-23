@@ -363,7 +363,10 @@ public class MvCusOtherController extends BaseController {
 		List<MvCusOtherEntity> listMvCusOthers=mvCusOtherService.getList(MvCusOtherEntity.class);
 		return listMvCusOthers;
 	}
-
+	/**
+	 * 根据ID查询 mv_cus_other
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
