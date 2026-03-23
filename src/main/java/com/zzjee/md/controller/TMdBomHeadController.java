@@ -487,7 +487,10 @@ public class TMdBomHeadController extends BaseController {
 
 		return Result.success(tMdBomHead);
 	}
-
+	/**
+	 * 更新BOM抬头
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@ApiOperation(value="更新BOM抬头",notes="更新BOM抬头")
