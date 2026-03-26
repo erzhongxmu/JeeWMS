@@ -376,7 +376,12 @@ public class MvCusOtherController extends BaseController {
 		}
 		return new ResponseEntity(task, HttpStatus.OK);
 	}
-
+	/**
+	 * 创建 mv_cus_other
+	 * @param mvCusOther
+	 * @param uriBuilder
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> create(@RequestBody MvCusOtherEntity mvCusOther, UriComponentsBuilder uriBuilder) {
