@@ -518,7 +518,10 @@ public class MvStockYjController extends BaseController {
 
 		return new ResponseEntity(headers, HttpStatus.CREATED);
 	}
-
+	/**
+	 * 更新效期预警
+	 * @param mvStockYj
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> update(@RequestBody MvStockYjEntity mvStockYj) {
 		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
