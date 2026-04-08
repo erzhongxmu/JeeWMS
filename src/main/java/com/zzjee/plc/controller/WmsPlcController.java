@@ -529,7 +529,10 @@ public class WmsPlcController extends BaseController {
         //返回AjaxJson对象作为HTTP响应的内容
         return j;
     }
-
+    /**
+     * 查询PLC指令列表
+     * @return
+     */
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<WmsPlcEntity> list() {
