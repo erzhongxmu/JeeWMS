@@ -484,7 +484,12 @@ public class WmsPlcController extends BaseController {
         //返回视图名，以导出Excel文件
         return NormalExcelConstants.JEECG_EXCEL_VIEW;
     }
-
+    /**
+     * 导入excel
+     *
+     * @param request
+     * @param response
+     */
     @SuppressWarnings("unchecked")
     @RequestMapping(params = "importExcel", method = RequestMethod.POST)
     @ResponseBody
