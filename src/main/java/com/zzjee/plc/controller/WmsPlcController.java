@@ -541,7 +541,10 @@ public class WmsPlcController extends BaseController {
         //返回WmsPlcEntity实体类的列表作为响应
         return listWmsPlcs;
     }
-
+    /**
+     * 根据ID查询PLC指令列表
+     * @return
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<?> get(@PathVariable("id") String id) {
