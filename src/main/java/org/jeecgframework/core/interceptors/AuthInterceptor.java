@@ -86,6 +86,11 @@ public class AuthInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object object) throws Exception {
         String requestPath = ResourceUtil.getRequestPath(request); // 用户访问的资源地址
         //logger.info("-----authInterceptor----requestPath------" + requestPath);
+        // 基础安全校验：防止鉴权绕过漏洞
+        if (requestPath != null && (requestPath.contains("..") || requestPath.contains("%2e") || requestPath.contains("%2E"))) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid request path");
+            return false;
+        }
         // 步骤一： 判断是否是排除拦截请求，直接返回 TRUE
         if (requestPath.matches("^rest/[a-zA-Z0-9_/]+$")) {
             return true;
