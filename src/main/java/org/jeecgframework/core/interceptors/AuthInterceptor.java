@@ -92,9 +92,6 @@ public class AuthInterceptor implements HandlerInterceptor {
             return false;
         }
         // 步骤一： 判断是否是排除拦截请求，直接返回 TRUE
-        if (requestPath.matches("^rest/[a-zA-Z0-9_/]+$")) {
-            return true;
-        }
         if (excludeUrls.contains(requestPath)) {
             return true;
         } else if (moHuContain(excludeContainUrls, requestPath)) {
