@@ -49,6 +49,7 @@ import org.jeecgframework.web.system.pojo.base.TSRoleFunction;
 import org.jeecgframework.web.system.pojo.base.TSRoleUser;
 import org.jeecgframework.web.system.pojo.base.TSUser;
 import org.jeecgframework.web.system.pojo.base.TSUserOrg;
+import org.jeecgframework.web.system.security.DataScopeSecurityHelper;
 import org.jeecgframework.web.system.service.SystemService;
 import org.jeecgframework.web.system.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -586,6 +587,12 @@ public class UserController extends BaseController {
         // 得到用户的角色
         String roleid = oConvertUtils.getString(req.getParameter("roleid"));
         String password = oConvertUtils.getString(req.getParameter("password"));
+        String scopeMessage = validateSaveUserScope(req, user, roleid);
+        if (scopeMessage != null) {
+            j.setSuccess(false);
+            j.setMsg(scopeMessage);
+            return j;
+        }
         if (StringUtil.isNotEmpty(user.getId())) {
             TSUser users = systemService.getEntity(TSUser.class, user.getId());
             users.setEmail(user.getEmail());
@@ -632,6 +639,32 @@ public class UserController extends BaseController {
         j.setMsg(message);
 
         return j;
+    }
+
+    private String validateSaveUserScope(HttpServletRequest request, TSUser user, String roleIds) {
+        DataScopeSecurityHelper helper = new DataScopeSecurityHelper(systemService);
+        TSUser currentUser = helper.getCurrentUser();
+        if (currentUser == null) {
+            return "请登录后再操作";
+        }
+        if (helper.isAdmin(currentUser)) {
+            return null;
+        }
+        if (StringUtil.isNotEmpty(user.getId()) && !helper.canAccessUser(currentUser, user.getId())) {
+            return "没有权限访问用户数据！";
+        }
+        for (String roleId : helper.parseIds(roleIds)) {
+            if (!helper.canAssignRole(currentUser, roleId)) {
+                return "没有权限分配角色！";
+            }
+        }
+        String orgIds = oConvertUtils.getString(request.getParameter("orgIds"));
+        for (String orgId : helper.parseIds(orgIds)) {
+            if (!helper.canAssignDepart(currentUser, orgId)) {
+                return "没有权限分配组织机构！";
+            }
+        }
+        return null;
     }
 
     /**
