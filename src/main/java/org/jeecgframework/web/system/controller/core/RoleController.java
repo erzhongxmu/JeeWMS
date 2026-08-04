@@ -54,6 +54,7 @@ import org.jeecgframework.web.system.pojo.base.TSRoleFunction;
 import org.jeecgframework.web.system.pojo.base.TSRoleOrg;
 import org.jeecgframework.web.system.pojo.base.TSRoleUser;
 import org.jeecgframework.web.system.pojo.base.TSUser;
+import org.jeecgframework.web.system.security.DataScopeSecurityHelper;
 import org.jeecgframework.web.system.service.SystemService;
 import org.jeecgframework.web.system.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -584,6 +585,12 @@ public class RoleController extends BaseController {
 		try {
 			String roleId = request.getParameter("roleId");
 			String rolefunction = request.getParameter("rolefunctions");
+			String scopeMessage = validateRoleAuthorityScope(roleId, rolefunction);
+			if (scopeMessage != null) {
+				j.setSuccess(false);
+				j.setMsg(scopeMessage);
+				return j;
+			}
 			TSRole role = this.systemService.get(TSRole.class, roleId);
 			List<TSRoleFunction> roleFunctionList = systemService
 					.findByProperty(TSRoleFunction.class, "TSRole.id",
@@ -604,6 +611,26 @@ public class RoleController extends BaseController {
 			j.setMsg("权限更新失败");
 		}
 		return j;
+	}
+
+	private String validateRoleAuthorityScope(String roleId, String functionIds) {
+		DataScopeSecurityHelper helper = new DataScopeSecurityHelper(systemService);
+		TSUser currentUser = helper.getCurrentUser();
+		if (currentUser == null) {
+			return "请登录后再操作";
+		}
+		if (helper.isAdmin(currentUser)) {
+			return null;
+		}
+		if (!helper.canManageRole(currentUser, roleId)) {
+			return "没有权限操作该角色！";
+		}
+		for (String functionId : helper.parseIds(functionIds)) {
+			if (!helper.currentUserHasFunction(currentUser, functionId)) {
+				return "没有权限授予该功能！";
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -823,7 +850,6 @@ public class RoleController extends BaseController {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-
 		CriteriaQuery cq1 = new CriteriaQuery(TSRoleFunction.class);
 		cq1.eq("TSRole.id", roleId);
 		cq1.eq("TSFunction.id", functionId);
@@ -886,6 +912,12 @@ public class RoleController extends BaseController {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
+		String scopeMessage = validateDataRuleScope(roleId, functionId, dataRulecodes);
+		if (scopeMessage != null) {
+			j.setSuccess(false);
+			j.setMsg(scopeMessage);
+			return j;
+		}
 
 		CriteriaQuery cq1 = new CriteriaQuery(TSRoleFunction.class);
 		cq1.eq("TSRole.id", roleId);
@@ -900,6 +932,27 @@ public class RoleController extends BaseController {
 		}
 		j.setMsg("数据权限更新成功");
 		return j;
+	}
+
+	private String validateDataRuleScope(String roleId, String functionId, String dataRuleIds) {
+		DataScopeSecurityHelper helper = new DataScopeSecurityHelper(systemService);
+		TSUser currentUser = helper.getCurrentUser();
+		if (currentUser == null) {
+			return "请登录后再操作";
+		}
+		if (helper.isAdmin(currentUser)) {
+			return null;
+		}
+		if (!helper.canManageRole(currentUser, roleId)) {
+			return "没有权限操作该角色！";
+		}
+		if (!helper.currentUserHasFunction(currentUser, functionId)) {
+			return "没有权限授予该功能的数据规则！";
+		}
+		if (!helper.canGrantDataRules(currentUser, functionId, helper.parseIds(dataRuleIds))) {
+			return "没有权限授予该数据规则！";
+		}
+		return null;
 	}
 	
 	
@@ -949,7 +1002,14 @@ public class RoleController extends BaseController {
     public AjaxJson doAddUserToOrg(HttpServletRequest req) {
     	String message = null;
         AjaxJson j = new AjaxJson();
-        TSRole role = systemService.getEntity(TSRole.class, req.getParameter("roleId"));
+        String roleId = req.getParameter("roleId");
+        String scopeMessage = validateAddUserToRoleScope(req, roleId);
+        if (scopeMessage != null) {
+            j.setSuccess(false);
+            j.setMsg(scopeMessage);
+            return j;
+        }
+        TSRole role = systemService.getEntity(TSRole.class, roleId);
         saveRoleUserList(req, role);
         message =  MutiLangUtil.paramAddSuccess("common.user");
 //      systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
@@ -980,6 +1040,27 @@ public class RoleController extends BaseController {
         if (!roleUserList.isEmpty()) {
             systemService.batchSave(roleUserList);
         }
+    }
+
+    private String validateAddUserToRoleScope(HttpServletRequest request, String roleId) {
+        DataScopeSecurityHelper helper = new DataScopeSecurityHelper(systemService);
+        TSUser currentUser = helper.getCurrentUser();
+        if (currentUser == null) {
+            return "请登录后再操作";
+        }
+        if (helper.isAdmin(currentUser)) {
+            return null;
+        }
+        if (!helper.canAssignRole(currentUser, roleId)) {
+            return "没有权限操作该角色！";
+        }
+        String userIds = oConvertUtils.getString(request.getParameter("userIds"));
+        for (String userId : helper.parseIds(userIds)) {
+            if (!helper.canAccessUser(currentUser, userId)) {
+                return "没有权限添加该用户！";
+            }
+        }
+        return null;
     }
 
 	/**
