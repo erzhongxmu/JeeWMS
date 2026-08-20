@@ -418,12 +418,10 @@ public class CgDynamGraphController extends BaseController {
 	 * @return
 	 */
 	private List<Map<String, Object>> queryDic(String diccode) {
-		StringBuilder dicSql = new StringBuilder();
-		dicSql.append(" SELECT TYPECODE,TYPENAME FROM");
-		dicSql.append(" "+CgReportConstant.SYS_DIC);
-		dicSql.append(" "+"WHERE TYPEGROUPID = ");
-		dicSql.append(" "+"(SELECT ID FROM "+CgReportConstant.SYS_DICGROUP+" WHERE TYPEGROUPCODE = '"+diccode+"' )");
-		List<Map<String, Object>> dicDatas = cgDynamGraphService.findForJdbc(dicSql.toString());
+		String dicSql = "SELECT TYPECODE,TYPENAME FROM " + CgReportConstant.SYS_DIC
+				+ " WHERE TYPEGROUPID = (SELECT ID FROM " + CgReportConstant.SYS_DICGROUP
+				+ " WHERE TYPEGROUPCODE = ?)";
+		List<Map<String, Object>> dicDatas = cgDynamGraphService.findForJdbc(dicSql, diccode);
 		return dicDatas;
 	}
 }
