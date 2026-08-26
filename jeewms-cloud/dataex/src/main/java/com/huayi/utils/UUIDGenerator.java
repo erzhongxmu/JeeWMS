@@ -35,11 +35,11 @@ public class UUIDGenerator {
 
 	private static final int JVM = (int) (System.currentTimeMillis() >>> 8);
 
-	private final static String format(int intval) {
-		String formatted = Integer.toHexString(intval);
-		StringBuilder buf = new StringBuilder("00000000");
-		buf.replace(8 - formatted.length(), 8, formatted);
-		return buf.toString();
+	private final static String format(int value) {
+		String hex = Integer.toHexString(value);
+		StringBuilder builder = new StringBuilder("00000000");
+		builder.replace(8 - hex.length(), 8, hex);
+		return builder.toString();
 	}
 
 	private final static String format(short shortval) {
