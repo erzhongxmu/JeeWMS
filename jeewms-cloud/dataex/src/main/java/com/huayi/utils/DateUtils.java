@@ -121,9 +121,9 @@ public class DateUtils extends PropertyEditorSupport {
      * @return
      */
     public static String timestamptoStr(Timestamp time) {
-        Date date = null;
-        if (null != time) {
-            date = new Date(time.getTime());
+        Date convertedDate = null;
+        if (time != null) {
+            convertedDate = new Date(time.getTime());
         }
         return date2Str(date_sdf.get());
     }
