@@ -147,7 +147,7 @@ public class DateUtils extends PropertyEditorSupport {
      * @return
      */
     public static Date str2Date(String str, SimpleDateFormat sdf) {
-        if (null == str || "".equals(str)) {
+        if (str == null || str.isEmpty()) {
             return null;
         }
         Date date = null;
