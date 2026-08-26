@@ -13,15 +13,7 @@ public class StringUtil {
 	 * @return
 	 */
 	public static boolean isNotEmpty(Object str) {
-		boolean flag = true;
-		if (str != null && !str.equals("")) {
-			if (str.toString().length() > 0) {
-				flag = true;
-			}
-		} else {
-			flag = false;
-		}
-		return flag;
+		return str != null && !str.equals("");
 	}
 
 }
