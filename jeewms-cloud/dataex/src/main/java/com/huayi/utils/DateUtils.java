@@ -85,7 +85,6 @@ public class DateUtils extends PropertyEditorSupport {
      */
     public static Calendar getCalendar(long millis) {
         Calendar cal = Calendar.getInstance();
-        // --------------------cal.setTimeInMillis(millis);
         cal.setTime(new Date(millis));
         return cal;
     }
