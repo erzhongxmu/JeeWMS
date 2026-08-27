@@ -44,7 +44,7 @@ Runtime:    JDK 1.8 + MySQL 5.7
 
 - Gitee (primary): <https://gitee.com/erzhongxmu/JEEWMS>
 - GitHub (mirror): <https://github.com/erzhongxmu/JeeWMS>
-- Mobile PDA app: <https://gitee.com/erzhongxmu/JeeWMSapp-uni>
+- Mobile PDA app (UNI-APP): <https://gitee.com/erzhongxmu/jeewmsapp> (formerly JeeWMSapp-uni, merged)
 - Smart manufacturing platform JEEMES: <https://gitee.com/erzhongxmu/jeemes>
 
 ## 📧 Contact
