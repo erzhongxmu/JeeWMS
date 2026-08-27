@@ -209,11 +209,7 @@ public class CgFormFieldServiceImpl extends CommonServiceImpl implements
             }
             DatabaseMetaData dbMetaData = conn.getMetaData();
             rs = dbMetaData.getTables(null, null, tableNamePattern, types);
-            if (rs.next()) {
-                return true;
-            } else {
-                return false;
-            }
+            return rs.next();
         } catch (SQLException e) {
             throw new RuntimeException();
         } finally {//关闭连接
