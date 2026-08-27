@@ -60,9 +60,7 @@ public class ClientManager {
 			EhcacheUtil.put(CACHENAME, OnlineClientsKey, onLineClients);
 			return true;
 		}
-		else{
-			return false;
-		}
+		return false;
 	}
 	
 	/**
