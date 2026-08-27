@@ -93,10 +93,6 @@ public class NoticeAuthorityUserServiceImpl extends CommonServiceImpl implements
 		cq.eq("noticeId", noticeId);
 		cq.add();
 		List<TSNoticeAuthorityUser> rlist =   this.getListByCriteriaQuery(cq, false);
-		if(rlist.size()==0){
-			return false;
-		}else{
-			return true;
-		}
+		return !rlist.isEmpty();
 	}
 }
