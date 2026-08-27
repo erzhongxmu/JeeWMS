@@ -8,7 +8,7 @@ JEEWMS 开源仓储管理数字化平台生态体系
 
 - **开源生态矩阵**：  
   - 智能制造平台 JEEMES： 已开源 [Gitee链接](https://gitee.com/erzhongxmu/jeemes)  
-  - Android移动端开源仓库 [JeeWMSapp-uni](https://gitee.com/erzhongxmu/JeeWMSapp-uni)  
+  - 移动端（UNI-APP）开源仓库 [jeewmsapp](https://gitee.com/erzhongxmu/jeewmsapp)（原 JeeWMSapp-uni 已合并）  
 - **合作伙伴**：  
   ![合作伙伴](DOC/gzl.png)
 
@@ -41,7 +41,7 @@ JeeWMS 遵循 **GPL-3.0 开源协议**，欢迎开发者、实施伙伴、行业
 
 ## 🧩 技术全景图
 ```
-A[Java技术生态] --> B[SpringMVC+Hibernate，SpringCloud]
+A[Java技术生态] --> B[Spring Cloud 微服务 + Vue 前端]
 A --> C[Redis+Ehcache]
 A --> D[Minidao持久层]
 B --> E[分布式事务管理]
