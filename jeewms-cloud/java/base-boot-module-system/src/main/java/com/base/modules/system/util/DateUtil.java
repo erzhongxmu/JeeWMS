@@ -70,11 +70,7 @@ public class DateUtil {
         Calendar end = Calendar.getInstance();
         end.setTime(endTime);
 
-        if (date.after(begin) && date.before(end)) {
-            return true;
-        } else {
-            return false;
-        }
+        return date.after(begin) && date.before(end);
     }
     /**
      * 转sql的time格式

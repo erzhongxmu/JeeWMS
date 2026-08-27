@@ -1719,11 +1719,7 @@ public class StringUtil {
         List<String> tempList = Arrays.asList(stringArray);
 
         // 利用list的包含方法,进行判断
-        if (tempList.contains(source)) {
-            return true;
-        } else {
-            return false;
-        }
+        return tempList.contains(source);
     }
 
     /**
