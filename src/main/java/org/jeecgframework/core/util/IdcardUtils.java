@@ -320,7 +320,7 @@ public class IdcardUtils extends StringUtils {
             sum = sum + Integer.valueOf(c + "") * iflag;
             iflag--;
         }
-        return (sum % 10 == 0 ? 0 : (10 - sum % 10)) == Integer.valueOf(end) ? true : false;
+        return (sum % 10 == 0 ? 0 : (10 - sum % 10)) == Integer.valueOf(end);
     }
 
     /**
@@ -359,7 +359,7 @@ public class IdcardUtils extends StringUtils {
         } else {
             sum = sum + Integer.valueOf(end);
         }
-        return (sum % 11 == 0) ? true : false;
+        return sum % 11 == 0;
     }
 
     /**
