@@ -68,12 +68,12 @@ public class Pager {
 
 	// 第一页
 	public boolean isFirst() {
-		return (curPageNO == 1) ? true : false;
+		return curPageNO == 1;
 	}
 
 	// 最后一页
 	public boolean isLast() {
-		return (curPageNO == pageCount) ? true : false;
+		return curPageNO == pageCount;
 	}
 	@Override
 	public String toString() {
