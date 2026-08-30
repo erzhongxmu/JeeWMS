@@ -18,7 +18,7 @@ public class SWFToolsSWFConverter implements SWFConverter {
      */
    private  boolean isWindowsSystem() {
        String p = System.getProperty("os.name");
-       return p.toLowerCase().indexOf("windows") >= 0 ? true : false;
+       return p.toLowerCase().indexOf("windows") >= 0;
    }
 
 	@Override

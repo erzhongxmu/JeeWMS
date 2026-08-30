@@ -42,12 +42,12 @@ public class PagerUtil {
 
 	// 第一页
 	public boolean isFirst() {
-		return (curPageNO == 1) ? true : false;
+		return (curPageNO == 1);
 	}
 
 	// 最后一页
 	public boolean isLast() {
-		return (curPageNO == pageCount) ? true : false;
+		return (curPageNO == pageCount);
 	}
 	protected StringBuffer getStrByImage(StringBuffer sb) {
 		String join = getJoin();
