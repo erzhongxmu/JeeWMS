@@ -92,7 +92,7 @@ public class BrowserUtils {
 	private static boolean getBrowserType(HttpServletRequest request,
 			String brosertype) {
 		return request.getHeader("USER-AGENT").toLowerCase()
-				.indexOf(brosertype) > 0 ? true : false;
+				.indexOf(brosertype) > 0;
 	}
 
 	private final static String IE11 = "rv:11.0";

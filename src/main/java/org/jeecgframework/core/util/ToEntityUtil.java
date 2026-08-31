@@ -57,7 +57,7 @@ public final class ToEntityUtil {
 				method.invoke(entity, val.charAt(0));
 			} else if ("Boolean".equals(parameterType)) {
 				method.invoke(entity,
-						"true".equals(val) || "1".equals(val) ? true : false);
+						"true".equals(val) || "1".equals(val));
 			} else if ("Short".equals(parameterType)) {
 				method.invoke(entity, Short.parseShort(val));
 			} else if ("Integer".equals(parameterType)) {
