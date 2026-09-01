@@ -1238,7 +1238,7 @@ public class DataGridTag extends TagSupport {
         sb.append("<table width=\"100%\"   id=\"" + name + "\" toolbar=\"#" + name + "tb\"></table>");
         sb.append("<div id=\"" + name + "tb\" style=\"padding:3px; height: auto\">");
 
-        if (hasQueryColum(columnList) && isShowSearch == true) {
+        if (hasQueryColum(columnList) && isShowSearch) {
             sb.append("<input  id=\"columsShow\" type=\"image\" src=\"plug-in/easyui/themes/default/images/accordion_collapse.png\" onclick=\"isShowBut()\">");
         }
 
@@ -1994,7 +1994,7 @@ public class DataGridTag extends TagSupport {
         } else {
             sb.append("displayMsg:\'\',");
         }
-        if (showPageList == true) {
+        if (showPageList) {
             sb.append("showPageList:true,");
         } else {
             sb.append("showPageList:false,");
