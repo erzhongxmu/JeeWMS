@@ -1097,7 +1097,7 @@ public class QueryGenerator {
 			if (field != null) {
 				TableField tableField = field.getAnnotation(TableField.class);
 				if (tableField != null){
-					if(tableField.exist() == false){
+					if(!tableField.exist()){
 						//如果设置了TableField false 这个字段不需要处理
 						return null;
 					}else{

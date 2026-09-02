@@ -291,7 +291,7 @@ public class LoginController {
 				}
 			}
 
-			if (b == false) {
+			if (!b) {
 				result.setMessage("短信验证码发送失败,请稍后重试");
 				result.setSuccess(false);
 				return result;
