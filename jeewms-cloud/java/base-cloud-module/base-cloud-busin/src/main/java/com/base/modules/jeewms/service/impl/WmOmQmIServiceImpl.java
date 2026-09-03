@@ -661,7 +661,7 @@ public class WmOmQmIServiceImpl extends ServiceImpl<WmOmQmIMapper, WmOmQmI> impl
 
     @Override
     public boolean checkOmQyt(String orderNo) {
-        return baseMapper.checkOmQyt(orderNo) == 0 ? true : false;
+        return baseMapper.checkOmQyt(orderNo) == 0;
     }
 
     @Override

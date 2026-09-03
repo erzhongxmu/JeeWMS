@@ -18,8 +18,7 @@ public class BrowserUtils {
 	// 判断是否是IE
 	public static boolean isIE(HttpServletRequest request) {
 		return (request.getHeader("USER-AGENT").toLowerCase().indexOf("msie") > 0 || request
-				.getHeader("USER-AGENT").toLowerCase().indexOf("rv:11.0") > 0) ? true
-				: false;
+				.getHeader("USER-AGENT").toLowerCase().indexOf("rv:11.0") > 0);
 	}
 
 	/**
