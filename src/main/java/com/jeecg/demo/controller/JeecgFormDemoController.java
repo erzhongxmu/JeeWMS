@@ -193,8 +193,8 @@ public class JeecgFormDemoController extends BaseController {
     @RequestMapping(params = "getAutocompleteData", method = {RequestMethod.GET, RequestMethod.POST})
     public void getAutocompleteData(HttpServletRequest request, HttpServletResponse response) {
         String searchVal = request.getParameter("searchVal");
-        String hql = "from TSUser where userName like '%" + searchVal + "%'";
-        List autoList = systemService.findHql(hql);
+        String hql = "from TSUser where userName like ?";
+        List autoList = systemService.findHql(hql, new Object[]{"%" + searchVal + "%"});
         try {
             response.setContentType("application/json;charset=UTF-8");
             response.setHeader("Pragma", "No-cache");
