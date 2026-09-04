@@ -679,6 +679,10 @@ public class MigrateForm<T> {
 				ZipEntry zipEntry = null;
 				while (entryEnum.hasMoreElements()) {
 					zipEntry = (ZipEntry) entryEnum.nextElement();
+					// 防止 Zip Slip: 拒绝包含 .. 路径穿越的 zip 条目名
+					if (zipEntry.getName().contains(".." + File.separator) || zipEntry.getName().contains("../")) {
+						throw new IllegalArgumentException("非法压缩包条目: " + zipEntry.getName());
+					}
 					if (zipEntry.isDirectory()) {
 						directoryPath = directoryPath + File.separator + zipEntry.getName();
 						org.jeecgframework.core.util.LogUtil.info(directoryPath);
@@ -727,6 +731,16 @@ public class MigrateForm<T> {
 	 */
 	public static File buildFile(String fileName, boolean isDirectory) {
 		File target = new File(fileName);
+		try {
+			// 防止 Zip Slip: 拒绝包含 .. 路径穿越的文件名
+			String canonical = target.getCanonicalPath();
+			if (canonical.contains(".." + File.separator)) {
+				throw new IllegalArgumentException("非法文件路径: " + fileName);
+			}
+			target = new File(canonical);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 		if (isDirectory) {
 			target.mkdirs();
 		} else {
