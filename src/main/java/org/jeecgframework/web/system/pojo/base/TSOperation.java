@@ -101,10 +101,6 @@ public class TSOperation extends IdEntity implements java.io.Serializable {
             return false;
         }
         TSOperation other = (TSOperation)obj;  
-        if (getId().equals(other.getId())){
-        	return true; 
-        }else {
-        	return false;  
-        }
+        return getId().equals(other.getId());
     }  
 }
