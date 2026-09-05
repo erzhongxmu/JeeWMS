@@ -244,10 +244,8 @@ public class LoginController extends BaseController{
 			response.addCookie(zIndexCookie);
 
 			return sysTheme.getIndexPath();
-		} else {
-			return "login/login";
 		}
-
+		return "login/login";
 	}
 
 	/**

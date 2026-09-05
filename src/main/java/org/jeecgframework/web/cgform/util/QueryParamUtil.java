@@ -105,17 +105,12 @@ public class QueryParamUtil {
 				result = "'" +value+ "'";
 			}else if(CgAutoListConstant.TYPE_DATE.equalsIgnoreCase(fieldType)){
 				result = getDateFunction(value, "yyyy-MM-dd");
-			}else if(CgAutoListConstant.TYPE_DOUBLE.equalsIgnoreCase(fieldType)){
-				result = value;
-			}else if(CgAutoListConstant.TYPE_INTEGER.equalsIgnoreCase(fieldType)){
-				result = value;
 			}else{
 				result = value;
 			}
 			return result;
-		}else{
-			return "";
 		}
+		return "";
 	}
 	
 	/**
