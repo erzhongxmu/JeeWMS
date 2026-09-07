@@ -205,7 +205,7 @@ public class LogController extends BaseController {
 				Long groupCount = (Long) obj[1];
 				Double  percentage = 0.0;
 				if (count != null && count.intValue() != 0) {
-					percentage = new Double(groupCount)/count;
+					percentage = (double) groupCount / count;
 				}
 				map.put("percentage", percentage*100);
 				lt.add(map);

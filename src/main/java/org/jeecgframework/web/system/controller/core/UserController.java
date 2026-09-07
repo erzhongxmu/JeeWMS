@@ -289,7 +289,7 @@ public class UserController extends BaseController {
         }
         String lockValue = req.getParameter("lockvalue");
 
-        user.setStatus(new Short(lockValue));
+        user.setStatus(Short.valueOf(lockValue));
         try {
             userService.updateEntitie(user);
             if ("0".equals(lockValue)) {
