@@ -1203,7 +1203,7 @@ public class UserController extends BaseController {
             try {
                 List<TSUser> tsUsers = ExcelImportUtil.importExcel(file.getInputStream(), TSUser.class, params);
                 for (TSUser tsUser : tsUsers) {
-                    tsUser.setStatus(new Short("1"));
+                    tsUser.setStatus(Short.valueOf("1"));
                     String username = tsUser.getUserName();
                     String roleCodes = tsUser.getUserKey();
                     String deptCodes = tsUser.getDepartid();

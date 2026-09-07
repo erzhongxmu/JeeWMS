@@ -183,7 +183,7 @@ public class DataBaseServiceImpl extends CommonServiceImpl implements DataBaseSe
                     }
                 } else if ("double".equalsIgnoreCase(type)) {
                     //double->java.lang.Double
-                    Object newV = new Double(0);
+                    Object newV = Double.valueOf(0);
                     try {
                         newV = Double.parseDouble(String.valueOf(beforeV));
                     } catch (Exception e) {
