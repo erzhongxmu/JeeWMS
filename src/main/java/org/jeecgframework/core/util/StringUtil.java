@@ -750,7 +750,7 @@ public class StringUtil {
         try {
             return Float.parseFloat(s);
         } catch (NumberFormatException e) {
-            return new Float(0);
+            return Float.valueOf(0);
         }
     }
 
