@@ -1152,8 +1152,8 @@ public class BusiPoController {
 			 queryWrapperPayment.lambda().orderByDesc(BusiPaymentReceived::getCreateTime);
 			 List<BusiPaymentReceived> list1 = busiPaymentReceivedService.list(queryWrapperPayment);
 
-			 Double hszj = new Double(0); // 含税总金额
-			 Double bhszj = new Double(0); // 不含税总金额
+			 Double hszj = Double.valueOf(0); // 含税总金额
+			 Double bhszj = Double.valueOf(0); // 不含税总金额
 			 for (BusiPo busiPo : list2) {
 				 hszj = hszj + busiPo.getNum02() * busiPo.getNum04();
 				 bhszj = bhszj + busiPo.getNum02() * busiPo.getNum04();
