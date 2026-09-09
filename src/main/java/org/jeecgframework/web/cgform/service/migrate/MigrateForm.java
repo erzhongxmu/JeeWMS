@@ -727,6 +727,16 @@ public class MigrateForm<T> {
 	 */
 	public static File buildFile(String fileName, boolean isDirectory) {
 		File target = new File(fileName);
+		try {
+			// 防止 Zip Slip: 拒绝含 .. 路径穿越的文件名
+			String canonical = target.getCanonicalPath();
+			if (canonical.contains(".." + File.separator)) {
+				throw new IllegalArgumentException("非法文件路径: " + fileName);
+			}
+			target = new File(canonical);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 		if (isDirectory) {
 			target.mkdirs();
 		} else {
