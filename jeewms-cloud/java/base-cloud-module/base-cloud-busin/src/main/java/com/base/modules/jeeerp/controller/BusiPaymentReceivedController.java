@@ -240,7 +240,7 @@ public class BusiPaymentReceivedController extends BaseController<BusiPaymentRec
         IPage<BusiPaymentReceived> pageList = busiPaymentReceivedService.page(page, queryWrapper);
         for (BusiPaymentReceived record : pageList.getRecords()) {
             if (record.getNum10() == null) {
-                record.setNum10(new Double(0));
+                record.setNum10(Double.valueOf(0));
             }
 //            String query22 = record.getQuery22();
 //            QueryWrapper<ConfErp> confErp = new QueryWrapper<>();

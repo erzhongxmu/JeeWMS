@@ -262,7 +262,7 @@ public class ExportTableData {
                 paymentReceived.setQuery24(one2.getZhongWenQch());
                 paymentReceived.setQuery31(one2.getXingYeFenLei());
                 if (paymentReceived.getNum10() == null) {
-                    paymentReceived.setNum10(new Double(0));
+                    paymentReceived.setNum10(Double.valueOf(0));
                 }
             }
         }
