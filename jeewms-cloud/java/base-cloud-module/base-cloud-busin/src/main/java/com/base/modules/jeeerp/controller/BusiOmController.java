@@ -361,7 +361,7 @@ public class BusiOmController {
 			 busiOm.setQuery01("XSD");
 			 busiOm.setQuery02("计划中");
 			 busiOm.setNum02(busiOm.getNum01());
-			 busiOm.setNum03(new Double(0));
+			 busiOm.setNum03(Double.valueOf(0));
 			 busiOm.setQuery23(serial);
 			 busiOmService.saveMain(busiOm, omPage.getBusiOmItemList(),index);
 		 }

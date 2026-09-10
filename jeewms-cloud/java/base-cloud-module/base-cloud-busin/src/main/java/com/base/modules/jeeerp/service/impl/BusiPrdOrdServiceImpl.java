@@ -58,7 +58,7 @@ public class BusiPrdOrdServiceImpl extends ServiceImpl<BusiPrdOrdMapper, BusiPrd
 			for(BusiPrdOrdItem entity:busiPrdOrdItemList) {
 				//外键设置
 				entity.setNum02(busiPrdOrd.getNum01());
-				entity.setNum03(new Double(0));
+				entity.setNum03(Double.valueOf(0));
 				entity.setLink02(busiPrdOrd.getQuery04());
 				busiPrdOrdItemMapper.insert(entity);
 			}
