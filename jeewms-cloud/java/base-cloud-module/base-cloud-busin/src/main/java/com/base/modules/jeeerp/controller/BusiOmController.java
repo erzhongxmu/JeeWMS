@@ -436,7 +436,7 @@ public class BusiOmController {
 			 if(StringUtils.isEmpty(busiOmItem3.getQuery04())){
 				 busiOmItem3.setQuery04(code);
 				 busiOmItem3.setNum02(busiOmItem3.getNum01());
-				 busiOmItem3.setNum03(new Double(0));
+				 busiOmItem3.setNum03(Double.valueOf(0));
 			 }
 			 if(busiOmItem3.getQuery13() == "" || busiOmItem3.getQuery13() == null){
 				 PO = generateCodeUtil.generateCode("busi_po","PO");
