@@ -455,7 +455,7 @@ public class BusiPoController {
                   BusiPo po = new BusiPo();
                   BeanUtils.copyProperties(page, po);
 				  po.setNum02(po.getNum01());
-				  po.setNum03(new Double(0));
+				  po.setNum03(Double.valueOf(0));
 				  po.setQuery02("计划中");
 				  po.setQuery04(code);
 				  po.setQuery23(po.getQuery04()+ "-" +(index*10));
@@ -515,7 +515,7 @@ public class BusiPoController {
 				 }
 			 }else {
 				 busiPo.setNum02(busiPo.getNum01());
-				 busiPo.setNum03(new Double(0));
+				 busiPo.setNum03(Double.valueOf(0));
 			 }
 			 if(!"打样已完成".equals(poPage.getQuery02()) && "YP".equals(poPage.getQuery01())){
 				 QueryWrapper<BusiPoItem> queryWrapper5 = new QueryWrapper<>();
