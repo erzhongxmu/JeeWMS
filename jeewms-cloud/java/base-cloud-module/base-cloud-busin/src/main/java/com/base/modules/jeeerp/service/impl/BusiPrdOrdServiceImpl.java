@@ -156,7 +156,7 @@ public class BusiPrdOrdServiceImpl extends ServiceImpl<BusiPrdOrdMapper, BusiPrd
 			busiPrdOrdPage.setQuery13(PO);
 		}
 		BeanUtils.copyProperties(busiPrdOrdPage, busiPrdOrd);
-		busiPrdOrd.setNum03(new Double(0));
+		busiPrdOrd.setNum03(Double.valueOf(0));
 		busiPrdOrd.setQuery02("计划中");
 		this.saveMain(busiPrdOrd, busiPrdOrdPage.getBusiPrdOrdItemList(), busiPrdOrdPage.getBusiOrdCraftList());
 
@@ -177,7 +177,7 @@ public class BusiPrdOrdServiceImpl extends ServiceImpl<BusiPrdOrdMapper, BusiPrd
 			busiPrdOrd2.setQuery02("未推送");
 		}
 		busiPrdOrd2.setNum02(busiPrdOrd2.getNum01());
-		busiPrdOrd2.setNum03(new Double(0));
+		busiPrdOrd2.setNum03(Double.valueOf(0));
 
 		busiPrdOrd2.setLink02(code);
 		List<BusiPrdOrdItem> busiPrdOrdItem = busiPrdOrdPage.getBusiPrdOrdItemList();
