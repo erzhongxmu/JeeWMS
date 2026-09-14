@@ -202,7 +202,7 @@ public class BusiPrdOrdServiceImpl extends ServiceImpl<BusiPrdOrdMapper, BusiPrd
 			busiPrdOrd3.setLink02(code);
 			busiPrdOrd3.setQuery14(sonPO);
 			busiPrdOrd3.setNum02(busiPrdOrd3.getNum01());
-			busiPrdOrd3.setNum03(new Double(0));
+			busiPrdOrd3.setNum03(Double.valueOf(0));
 			BusiPrdOrdItem busiPrdOrdItemObj = new BusiPrdOrdItem();
 			List<BusiPrdOrdItem> busiPrdOrdItemList = new ArrayList<>();
 			busiPrdOrdItemList.add(busiPrdOrdItemObj);
@@ -218,7 +218,7 @@ public class BusiPrdOrdServiceImpl extends ServiceImpl<BusiPrdOrdMapper, BusiPrd
 			busiPrdOrd3.setQuery04(code3);
 			busiPrdOrd3.setLink02(code);
 			busiPrdOrd3.setNum02(busiPrdOrd3.getNum01());
-			busiPrdOrd3.setNum03(new Double(0));
+			busiPrdOrd3.setNum03(Double.valueOf(0));
 			List<BusiPrdOrdItem> busiPrdOrdItem2 = busiPrdOrdPage.getBusiPrdOrdItemList();
 			for (BusiPrdOrdItem prdOrdItem : busiPrdOrdItem2) {
 				prdOrdItem.setId("");
