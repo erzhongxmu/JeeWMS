@@ -699,7 +699,7 @@ public class BusiPoController {
              busiPo.setQuery13(PO); // 主PO
              String SonPO = generateCodeUtil.getSonPO(index,PO);
              busiPo.setQuery14(SonPO);
-			 busiPo.setNum03(new Double(0));
+			 busiPo.setNum03(Double.valueOf(0));
 			 busiPo.setQuery02("计划中");
 			 busiPo.setQuery04(code);
 			 busiPo.setQuery23(busiPo.getQuery04()+ "-" +(index*10));
@@ -742,7 +742,7 @@ public class BusiPoController {
 			 //未清数量
 			 poPage.setNum02(poPage.getNum01());
 			 //已完成数量
-			 poPage.setNum03(new Double(0));
+			 poPage.setNum03(Double.valueOf(0));
 			 BusiPo busiPo = new BusiPo();
 			 BeanUtils.copyProperties(poPage, busiPo);
 			 //单号
