@@ -63,7 +63,7 @@ public class BaseMap extends HashMap<String, Object> {
     public Long getLong(String key) {
         Object v = get(key);
         if (ObjectUtil.isNotEmpty(v)) {
-            return new Long(v.toString());
+            return Long.valueOf(v.toString());
         }
         return null;
     }

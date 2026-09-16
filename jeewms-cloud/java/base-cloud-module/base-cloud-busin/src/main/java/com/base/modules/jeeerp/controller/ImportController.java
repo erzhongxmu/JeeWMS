@@ -313,7 +313,7 @@ public class ImportController extends BaseController<BaseCraft, IBaseCraftServic
                             BeanUtils.copyProperties(e, busiPo);
                             busiPo.setQuery01("CGD");
                             busiPo.setNum02(busiPo.getNum01());
-                            busiPo.setNum03(new Double(0));
+                            busiPo.setNum03(Double.valueOf(0));
                             busiPo.setQuery02("计划中");
                             busiPo.setQuery04(code);
                             busiPo.setQuery23(busiPo.getQuery04()+ "-" +(index*10));
