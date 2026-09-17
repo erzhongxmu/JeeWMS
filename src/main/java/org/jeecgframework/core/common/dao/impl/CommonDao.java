@@ -510,13 +510,13 @@ public class CommonDao extends GenericBaseCommonDao implements ICommonDao, IGene
 							Method setMethod = entityClass.getMethod(setName, new Class[] { fields[k].getType() });
 							String type = TagUtil.getColumnType(fieldName, fields);
 							if ("int".equals(type)) {
-								setMethod.invoke(obj1, new Integer(node.getText()));
+								setMethod.invoke(obj1, Integer.valueOf(node.getText()));
 							} else if ("string".equals(type)) {
 								setMethod.invoke(obj1, node.getText().toString());
 							} else if ("short".equals(type)) {
-								setMethod.invoke(obj1, new Short(node.getText()));
+								setMethod.invoke(obj1, Short.valueOf(node.getText()));
 							} else if ("double".equals(type)) {
-								setMethod.invoke(obj1, new Double(node.getText()));
+								setMethod.invoke(obj1, Double.valueOf(node.getText()));
 							} else if ("Timestamp".equals(type)) {
 								setMethod.invoke(obj1, new Timestamp(DateUtils.str2Date(node.getText(), DateUtils.datetimeFormat).getTime()));
 							}

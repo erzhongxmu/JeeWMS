@@ -79,7 +79,7 @@ public class BaseMap extends HashMap<String, Object> {
     public List<Long> getListLong(String key) {
         List<String> list = get(key);
         if (ObjectUtil.isNotEmpty(list)) {
-            return list.stream().map(e -> new Long(e)).collect(Collectors.toList());
+            return list.stream().map(e -> Long.valueOf(e)).collect(Collectors.toList());
         } else {
             return null;
         }
