@@ -37,7 +37,7 @@ public class StockWarnTask {
             //查询到所有低于最小库存的商品
             //给admin发型消息
             Date date = new Date();
-        if (list.size() > 0) {
+        if (!list.isEmpty()) {
             List<TSSmsEntity> tsSmsEntityList = new ArrayList<>();
             for (Map<String, String> map : list) {
                 TSSmsEntity tsSmsEntity = new TSSmsEntity();

@@ -64,7 +64,7 @@ public class CostTask {
         String tsql = "select COST_SF  from wm_day_cost_conf   where to_days(cost_date) = to_days(?)";
         if ("N".equals(chongsuan)) {//非重算
             List<Map<String, Object>> resultconf = systemService.findForJdbc(tsql, datestr);
-            if (resultconf.size() > 0) {
+            if (!resultconf.isEmpty()) {
                 return;
             } else {
                 Date costdate = DateUtils.str2Date(datestr, DateUtils.date_sdf);
