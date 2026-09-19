@@ -172,7 +172,7 @@ public class DepartController extends BaseController {
 
 	public void upEntity(TSDepart depart) {
 		List<TSUser> users = systemService.findByProperty(TSUser.class, "TSDepart.id", depart.getId());
-		if (users.size() > 0) {
+		if (!users.isEmpty()) {
 			for (TSUser tsUser : users) {
 				//tsUser.setTSDepart(null);
 				//systemService.saveOrUpdate(tsUser);

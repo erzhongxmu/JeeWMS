@@ -277,14 +277,14 @@ public class IconController extends BaseController {
 
 	public void upEntity(TSIcon icon) {
 		List<TSFunction> functions = systemService.findByProperty(TSFunction.class, "TSIcon.id", icon.getId());
-		if (functions.size() > 0) {
+		if (!functions.isEmpty()) {
 			for (TSFunction tsFunction : functions) {
 				tsFunction.setTSIcon(null);
 				systemService.saveOrUpdate(tsFunction);
 			}
 		}
 		List<TSOperation> operations = systemService.findByProperty(TSOperation.class, "TSIcon.id", icon.getId());
-		if (operations.size() > 0) {
+		if (!operations.isEmpty()) {
 			for (TSOperation tsOperation : operations) {
 				tsOperation.setTSIcon(null);
 				systemService.saveOrUpdate(tsOperation);
