@@ -96,7 +96,7 @@ public class NoticeController extends BaseController {
 
             //将List转换成JSON存储
             JSONArray result = new JSONArray();
-            if (noticeList != null && noticeList.size() > 0) {
+            if (noticeList != null && !noticeList.isEmpty()) {
                 for (int i = 0; i < noticeList.size(); i++) {
                     JSONObject jsonParts = new JSONObject();
                     jsonParts.put("id", noticeList.get(i).get("id"));
@@ -194,7 +194,7 @@ public class NoticeController extends BaseController {
         //将List转换成JSON存储
 
         List<Map<String, Object>> noticeList = new ArrayList<Map<String, Object>>();
-        if (resultList != null && resultList.size() > 0) {
+        if (resultList != null && !resultList.isEmpty()) {
             for (int i = 0; i < resultList.size(); i++) {
                 Map<String, Object> obj = resultList.get(i);
                 Map<String, Object> n = new HashMap<String, Object>(1024);
