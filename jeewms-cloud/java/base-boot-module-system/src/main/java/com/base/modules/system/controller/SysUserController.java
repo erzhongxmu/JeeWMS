@@ -98,7 +98,7 @@ public class SysUserController {
     @PostMapping(value = "/userList")
     public List<SysUser> userList(@RequestBody List<String> userNameList){
         List<SysUser> userList = new ArrayList<>();
-        if (userNameList.size() > 0) {
+        if (!userNameList.isEmpty()) {
             userList = sysUserService.lambdaQuery().in(SysUser::getUsername,userNameList).list();
         }
 
@@ -1144,7 +1144,7 @@ public class SysUserController {
     @GetMapping("/recycleBin")
     public Result getRecycleBin() {
         List<SysUser> logicDeletedUserList = sysUserService.queryLogicDeleted();
-        if (logicDeletedUserList.size() > 0) {
+        if (!logicDeletedUserList.isEmpty()) {
             // 批量查询用户的所属部门
             // step.1 先拿到全部的 userIds
             List<String> userIds = logicDeletedUserList.stream().map(SysUser::getId).collect(Collectors.toList());
