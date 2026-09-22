@@ -246,7 +246,7 @@ public class DictAspect {
 
             }
             //step.2 调用数据库翻译表字典
-            if (needTranslDataTable.size() > 0) {
+            if (!needTranslDataTable.isEmpty()) {
                 String[] arr = dictCode.split(",");
                 String table = arr[0], text = arr[1], code = arr[2];
                 String values = String.join(",", needTranslDataTable);
@@ -270,7 +270,7 @@ public class DictAspect {
         }
 
         //step.3 调用数据库进行翻译普通字典
-        if (needTranslData.size() > 0) {
+        if (!needTranslData.isEmpty()) {
             List<String> dictCodeList = Arrays.asList(dataListMap.keySet().toArray(new String[]{}));
             // 将不包含逗号的字典code筛选出来，因为带逗号的是表字典，而不是普通的数据字典
             List<String> filterDictCodes = dictCodeList.stream().filter(key -> !key.contains(",")).collect(Collectors.toList());

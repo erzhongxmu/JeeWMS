@@ -296,7 +296,7 @@ public class SysDepartServiceImpl extends ServiceImpl<SysDepartMapper, SysDepart
 		//update-begin--Author:huangzhilin  Date:20140417 for：[bugfree号]组织机构搜索回显优化--------------------
 		SysDepartTreeModel model = new SysDepartTreeModel();
 		List<SysDepart> departList = this.list(query);
-		if(departList.size() > 0) {
+		if(!departList.isEmpty()) {
 			for(SysDepart depart : departList) {
 				model = new SysDepartTreeModel(depart);
 				model.setChildren(null);
@@ -352,7 +352,7 @@ public class SysDepartServiceImpl extends ServiceImpl<SysDepartMapper, SysDepart
 		LambdaQueryWrapper<SysDepart> query = new LambdaQueryWrapper<SysDepart>();
 		query.eq(SysDepart::getParentId,id);
 		List<SysDepart> departList = this.list(query);
-		if(departList != null && departList.size() > 0) {
+		if(departList != null && !departList.isEmpty()) {
 			for(SysDepart depart : departList) {
 				idList.add(depart.getId());
 				this.checkChildrenExists(depart.getId(), idList);
