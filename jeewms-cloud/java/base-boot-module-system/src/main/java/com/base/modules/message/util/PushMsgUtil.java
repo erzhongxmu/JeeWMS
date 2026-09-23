@@ -43,7 +43,7 @@ public class PushMsgUtil {
     public boolean sendMessage(String msgType, String templateCode, Map<String, String> map, String sentTo) {
         List<SysMessageTemplate> sysSmsTemplates = sysMessageTemplateService.selectByCode(templateCode);
         SysMessage sysMessage = new SysMessage();
-        if (sysSmsTemplates.size() > 0) {
+        if (!sysSmsTemplates.isEmpty()) {
             SysMessageTemplate sysSmsTemplate = sysSmsTemplates.get(0);
             sysMessage.setEsType(msgType);
             sysMessage.setEsReceiver(sentTo);

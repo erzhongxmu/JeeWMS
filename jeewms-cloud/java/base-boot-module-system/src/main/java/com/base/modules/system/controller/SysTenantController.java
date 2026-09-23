@@ -123,7 +123,7 @@ public class SysTenantController {
                     idList.add(id);
                 }
             }
-            if (idList.size() > 0) {
+            if (!idList.isEmpty()) {
                 sysTenantService.removeByIds(idList);
                 if (ls.length == idList.size()) {
                     result.success("删除成功！");
