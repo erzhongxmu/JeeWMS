@@ -131,7 +131,7 @@ public class ThirdAppDingtalkServiceImpl implements IThirdAppService {
 
     // 递归同步部门到本地
     public void syncDepartmentRecursion(List<SysDepartTreeModel> sysDepartsTree, List<Department> departments, Department parent, String accessToken) {
-        if (sysDepartsTree != null && sysDepartsTree.size() != 0) {
+        if (!sysDepartsTree.isEmpty()) {
             for1:
             for (SysDepartTreeModel depart : sysDepartsTree) {
                 for (Department department : departments) {
@@ -181,7 +181,7 @@ public class ThirdAppDingtalkServiceImpl implements IThirdAppService {
 
     public void syncDepartmentToLocalRecursion(List<JdtDepartmentTreeVo> departmentTreeList, String sysParentId, String username, SyncInfoVo syncInfo, String accessToken) {
 
-        if (departmentTreeList != null && departmentTreeList.size() != 0) {
+        if (!departmentTreeList.isEmpty()) {
             for (JdtDepartmentTreeVo departmentTree : departmentTreeList) {
                 LambdaQueryWrapper<SysDepart> queryWrapper = new LambdaQueryWrapper<>();
                 // 根据 source_identifier 字段查询
