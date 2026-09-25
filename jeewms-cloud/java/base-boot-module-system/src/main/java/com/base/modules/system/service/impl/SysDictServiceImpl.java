@@ -197,7 +197,7 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 		// 查询出来的顺序可能是乱的，需要排个序
 		for (String key : keyArray) {
 			List<DictModel> res = dicts.stream().filter(i -> key.equals(i.getValue())).collect(Collectors.toList());
-			if (res.size() > 0) {
+			if (!res.isEmpty()) {
 				texts.add(res.get(0).getText());
 			} else if (!delNotExist) {
 				texts.add(key);

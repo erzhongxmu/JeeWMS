@@ -331,7 +331,7 @@ public class SysUserController {
         Result<List<DepartIdModel>> result = new Result<>();
         try {
             List<DepartIdModel> depIdModelList = this.sysUserDepartService.queryDepartIdsOfUser(userId);
-            if (depIdModelList != null && depIdModelList.size() > 0) {
+            if (depIdModelList != null && !depIdModelList.isEmpty()) {
                 result.setSuccess(true);
                 result.setMessage("查找成功");
                 result.setResult(depIdModelList);
