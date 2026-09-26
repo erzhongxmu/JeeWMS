@@ -36,7 +36,7 @@ public class OrgCodeRule implements IFillRuleHandler {
         String oldOrgCode = "";
 
         String parentId = null;
-        if (formData != null && formData.size() > 0) {
+        if (formData != null && !formData.isEmpty()) {
             Object obj = formData.get("parentId");
             if (obj != null) {
                 parentId = obj.toString();
@@ -56,7 +56,7 @@ public class OrgCodeRule implements IFillRuleHandler {
             query1.eq(SysDepart::getParentId, "").or().isNull(SysDepart::getParentId);
             query1.orderByDesc(SysDepart::getOrgCode);
             departList = sysDepartService.list(query1);
-            if (departList == null || departList.size() == 0) {
+            if (departList == null || departList.isEmpty()) {
                 strArray[0] = YouBianCodeUtil.getNextYouBianCode(null);
                 strArray[1] = "1";
                 return strArray;
@@ -80,7 +80,7 @@ public class OrgCodeRule implements IFillRuleHandler {
             // 根据父级部门类型算出当前部门的类型
             orgType = String.valueOf(Integer.valueOf(depart.getOrgType()) + 1);
             // 处理同级部门为null的情况
-            if (parentList == null || parentList.size() == 0) {
+            if (parentList == null || parentList.isEmpty()) {
                 // 直接生成当前的部门编码并返回
                 newOrgCode = YouBianCodeUtil.getSubYouBianCode(parentCode, null);
             } else { //处理有同级部门的情况

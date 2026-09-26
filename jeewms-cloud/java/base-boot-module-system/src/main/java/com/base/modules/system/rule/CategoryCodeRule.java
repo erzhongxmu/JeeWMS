@@ -26,7 +26,7 @@ public class CategoryCodeRule implements IFillRuleHandler {
         String categoryPid = ROOT_PID_VALUE;
         String categoryCode = null;
 
-        if (formData != null && formData.size() > 0) {
+        if (formData != null && !formData.isEmpty()) {
             Object obj = formData.get("pid");
             if (oConvertUtils.isNotEmpty(obj)) {
                 categoryPid = obj.toString();
@@ -50,7 +50,7 @@ public class CategoryCodeRule implements IFillRuleHandler {
         LambdaQueryWrapper<SysCategory> query = new LambdaQueryWrapper<SysCategory>().eq(SysCategory::getPid, categoryPid).isNotNull(SysCategory::getCode).orderByDesc(SysCategory::getCode);
         SysCategoryMapper baseMapper = (SysCategoryMapper) SpringContextUtils.getBean("sysCategoryMapper");
         List<SysCategory> list = baseMapper.selectList(query);
-        if (list == null || list.size() == 0) {
+        if (list == null || list.isEmpty()) {
             if (ROOT_PID_VALUE.equals(categoryPid)) {
                 //情况1
                 categoryCode = YouBianCodeUtil.getNextYouBianCode(null);
