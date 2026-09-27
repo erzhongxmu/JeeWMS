@@ -104,7 +104,7 @@ public class SysPermissionServiceImpl extends ServiceImpl<SysPermissionMapper, S
 		query.eq(SysPermission::getParentId, parentId);
 		// 查出该主键下的所有子级
 		List<SysPermission> permissionList = this.list(query);
-		if (permissionList != null && permissionList.size() > 0) {
+		if (permissionList != null && !permissionList.isEmpty()) {
 			String id = ""; // id
 			int num = 0; // 查出的子级数量
 			// 如果查出的集合不为空, 则先删除所有
