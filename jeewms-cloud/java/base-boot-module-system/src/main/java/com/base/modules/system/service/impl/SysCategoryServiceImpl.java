@@ -79,7 +79,7 @@ public class SysCategoryServiceImpl extends ServiceImpl<SysCategoryMapper, SysCa
 		String pid = ROOT_PID_VALUE;
 		if(oConvertUtils.isNotEmpty(pcode)) {
 			List<SysCategory> list = baseMapper.selectList(new LambdaQueryWrapper<SysCategory>().eq(SysCategory::getCode, pcode));
-			if(list==null || list.size() ==0) {
+			if(list==null || list.isEmpty()) {
 				throw new BaseBootException("该编码【"+pcode+"】不存在，请核实!");
 			}
 			if(list.size()>1) {

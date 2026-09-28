@@ -136,10 +136,10 @@ public class SysUserDepartServiceImpl extends ServiceImpl<SysUserDepartMapper, S
 			pageList = this.baseMapper.queryDepartUserPageList(page, sysDepart.getOrgCode(), username, realname);
 		}
 		List<SysUser> userList = pageList.getRecords();
-		if(userList!=null && userList.size()>0){
+		if(userList!=null && !userList.isEmpty()){
 			List<String> userIds = userList.stream().map(SysUser::getId).collect(Collectors.toList());
 			Map<String, SysUser> map = new HashMap<String, SysUser>();
-			if(userIds!=null && userIds.size()>0){
+			if(userIds!=null && !userIds.isEmpty()){
 				// 查部门名称
 				Map<String,String>  useDepNames = sysUserService.getDepNamesByUserIds(userIds);
 				userList.forEach(item->{
