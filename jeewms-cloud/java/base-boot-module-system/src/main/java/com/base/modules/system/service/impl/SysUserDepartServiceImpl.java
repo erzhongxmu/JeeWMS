@@ -50,7 +50,7 @@ public class SysUserDepartServiceImpl extends ServiceImpl<SysUserDepartMapper, S
 			List<String> depIdList = new ArrayList<>();
 			List<DepartIdModel> depIdModelList = new ArrayList<>();
 			List<SysUserDepart> userDepList = this.list(queryUDep);
-			if(userDepList != null && userDepList.size() > 0) {
+			if(!userDepList.isEmpty()) {
 			for(SysUserDepart userDepart : userDepList) {
 					depIdList.add(userDepart.getDepId());
 				}

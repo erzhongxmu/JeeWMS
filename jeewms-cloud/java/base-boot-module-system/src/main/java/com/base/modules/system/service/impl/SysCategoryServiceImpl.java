@@ -193,7 +193,7 @@ public class SysCategoryServiceImpl extends ServiceImpl<SysCategoryMapper, SysCa
 		LambdaQueryWrapper<SysCategory> queryWrapper = new LambdaQueryWrapper<>();
 		queryWrapper.eq(SysCategory::getPid,pidVal);
 		List<SysCategory> dataList = baseMapper.selectList(queryWrapper);
-		if(dataList != null && dataList.size()>0){
+		if(!dataList.isEmpty()){
 			for(SysCategory category : dataList) {
 				if(!sb.toString().contains(category.getId())){
 					sb.append(",").append(category.getId());
