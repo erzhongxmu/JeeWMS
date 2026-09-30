@@ -354,7 +354,7 @@ public class ThirdAppDingtalkServiceImpl implements IThirdAppService {
             SysThirdAccount sysThirdAccount = sysThirdAccountService.getOneByThirdUserId(dtUserInfo.getUserid(), THIRD_TYPE);
             List<SysUser> collect = sysUsersList.stream().filter(user -> (dtUserInfo.getMobile().equals(user.getPhone()) || dtUserInfo.getUserid().equals(user.getUsername()))
                                                                  ).collect(Collectors.toList());
-            if (collect != null && collect.size() > 0) {
+            if (collect != null && !collect.isEmpty()) {
                 SysUser sysUserTemp = collect.get(0);
                 // 循环到此说明用户匹配成功，进行更新操作
                 SysUser updateSysUser = this.dtUserToSysUser(dtUserInfo, sysUserTemp);
@@ -633,7 +633,7 @@ public class ThirdAppDingtalkServiceImpl implements IThirdAppService {
             return -1;
         }
         int count = 0;
-        if (userIdList != null && userIdList.size() > 0) {
+        if (userIdList != null && !userIdList.isEmpty()) {
             String accessToken = this.getAccessToken();
             if (accessToken == null) {
                 return count;
