@@ -70,14 +70,14 @@ public class ZdOnlCgreportHeadServiceImpl extends ServiceImpl<com.base.modules.b
     @Transactional
     public void saveMain(zdOnlCgreportHead zdOnlCgreportHead, List<zdOnlCgreportParam> zdOnlCgreportParamList, List<zdOnlCgreportItem> zdOnlCgreportItemList) {
         zdOnlCgreportHeadMapper.insert(zdOnlCgreportHead);
-        if (zdOnlCgreportParamList != null && zdOnlCgreportParamList.size() > 0) {
+        if (zdOnlCgreportParamList != null && !zdOnlCgreportParamList.isEmpty()) {
             for (zdOnlCgreportParam entity : zdOnlCgreportParamList) {
                 //外键设置
                 entity.setCgrheadId(zdOnlCgreportHead.getId());
                 zdOnlCgreportParamMapper.insert(entity);
             }
         }
-        if (zdOnlCgreportItemList != null && zdOnlCgreportItemList.size() > 0) {
+        if (zdOnlCgreportItemList != null && !zdOnlCgreportItemList.isEmpty()) {
             for (zdOnlCgreportItem entity : zdOnlCgreportItemList) {
                 //外键设置
                 entity.setCgrheadId(zdOnlCgreportHead.getId());
@@ -96,14 +96,14 @@ public class ZdOnlCgreportHeadServiceImpl extends ServiceImpl<com.base.modules.b
         zdOnlCgreportItemMapper.deleteByMainId(zdOnlCgreportHead.getId());
 
         //2.子表数据重新插入
-        if (zdOnlCgreportParamList != null && zdOnlCgreportParamList.size() > 0) {
+        if (zdOnlCgreportParamList != null && !zdOnlCgreportParamList.isEmpty()) {
             for (zdOnlCgreportParam entity : zdOnlCgreportParamList) {
                 //外键设置
                 entity.setCgrheadId(zdOnlCgreportHead.getId());
                 zdOnlCgreportParamMapper.insert(entity);
             }
         }
-        if (zdOnlCgreportItemList != null && zdOnlCgreportItemList.size() > 0) {
+        if (zdOnlCgreportItemList != null && !zdOnlCgreportItemList.isEmpty()) {
             for (zdOnlCgreportItem entity : zdOnlCgreportItemList) {
                 //外键设置
                 entity.setCgrheadId(zdOnlCgreportHead.getId());
