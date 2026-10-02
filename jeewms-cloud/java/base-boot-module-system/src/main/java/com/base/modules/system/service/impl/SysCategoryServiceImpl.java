@@ -170,7 +170,7 @@ public class SysCategoryServiceImpl extends ServiceImpl<SysCategoryMapper, SysCa
 				queryWrapper.eq(SysCategory::getPid,metaPid);
 				queryWrapper.notIn(SysCategory::getId,Arrays.asList(idArr));
 				List<SysCategory> dataList = this.baseMapper.selectList(queryWrapper);
-				if((dataList == null || dataList.size()==0) && !Arrays.asList(idArr).contains(metaPid)
+				if((dataList == null || dataList.isEmpty()) && !Arrays.asList(idArr).contains(metaPid)
 						&& !sb.toString().contains(metaPid)){
 					//如果当前节点原本有子节点 现在木有了，更新状态
 					sb.append(metaPid).append(",");
@@ -225,7 +225,7 @@ public class SysCategoryServiceImpl extends ServiceImpl<SysCategoryMapper, SysCa
 			textList = new ArrayList<>();
 			for (String id : idArray) {
 				List<SysCategory> res = list.stream().filter(i -> id.equals(i.getId())).collect(Collectors.toList());
-				textList.add(res.size() > 0 ? res.get(0).getName() : id);
+				textList.add(!res.isEmpty() ? res.get(0).getName() : id);
 			}
 		}
 		// update-end--author:sunjianlei--date:20210514--for：新增delNotExist参数，设为false不删除数据库里不存在的key ----
