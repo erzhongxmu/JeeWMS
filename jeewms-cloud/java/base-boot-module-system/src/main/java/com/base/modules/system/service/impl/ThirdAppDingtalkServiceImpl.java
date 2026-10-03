@@ -108,7 +108,7 @@ public class ThirdAppDingtalkServiceImpl implements IThirdAppService {
             int deptId = department.getDept_id();
             // 钉钉不允许删除带有用户的部门，所以需要判断下，将有用户的部门的用户移动至根部门
             Response<List<String>> userIdRes = JdtUserAPI.getUserListIdByDeptId(deptId, accessToken);
-            if (userIdRes.isSuccess() && userIdRes.getResult().size() > 0) {
+            if (userIdRes.isSuccess() && !userIdRes.getResult().isEmpty()) {
                 for (String userId : userIdRes.getResult()) {
                     User updateUser = new User();
                     updateUser.setUserid(userId);
@@ -569,7 +569,7 @@ public class ThirdAppDingtalkServiceImpl implements IThirdAppService {
         LambdaQueryWrapper<SysUserDepart> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(SysUserDepart::getUserId, sysUser.getId());
         List<SysUserDepart> sysUserDepartList = sysUserDepartService.list(queryWrapper);
-        if (sysUserDepartList.size() == 0) {
+        if (sysUserDepartList.isEmpty()) {
             return null;
         }
         // 根据用户部门
