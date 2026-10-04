@@ -577,7 +577,7 @@ public class ThirdAppDingtalkServiceImpl implements IThirdAppService {
         List<String> departIdList = sysUserDepartList.stream().map(SysUserDepart::getDepId).collect(Collectors.toList());
         departQueryWrapper.in(SysDepart::getId, departIdList);
         List<SysDepart> departList = sysDepartService.list(departQueryWrapper);
-        return departList.size() == 0 ? null : departList;
+        return departList.isEmpty() ? null : departList;
     }
 
     /**

@@ -1605,7 +1605,7 @@ public class StringUtil {
 	@SuppressWarnings("unchecked")
 	public static String listToStringSlipStr(List list, String slipStr) {
 		StringBuffer returnStr = new StringBuffer();
-		if (list != null && list.size() > 0) {
+		if (list != null && !list.isEmpty()) {
 			for (int i = 0; i < list.size(); i++) {
 				returnStr.append(list.get(i)).append(slipStr);
 			}
