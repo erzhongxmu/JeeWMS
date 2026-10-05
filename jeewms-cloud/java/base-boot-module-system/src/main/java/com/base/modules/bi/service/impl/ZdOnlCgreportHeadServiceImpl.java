@@ -139,7 +139,7 @@ public class ZdOnlCgreportHeadServiceImpl extends ServiceImpl<com.base.modules.b
         }
         String sql = zdOnlCgreportHead.getCgrSql();
         List<Map<String, Object>> ob = zdOnlCgreportHeadMapper.executeQuery(sql);
-        if (ob.size() == 0) {
+        if (ob.isEmpty()) {
             if (!"超期物料列表".equals(zdOnlCgreportHead.getName())) {
                 return new HashMap<>(1024);
             } else {
@@ -166,7 +166,7 @@ public class ZdOnlCgreportHeadServiceImpl extends ServiceImpl<com.base.modules.b
         List<String> value = new ArrayList<>();
         Map<String, Object> map2 = new HashMap<>(1024);
         List<Map<String, Object>> list = new ArrayList<>();
-        if (ob.size() > 0) {
+        if (!ob.isEmpty()) {
             for (Map<String, Object> map1 : ob) {
                 tape.add(map1.get("type").toString());
                 value.add(map1.get("value").toString());
