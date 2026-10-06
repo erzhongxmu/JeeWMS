@@ -447,7 +447,7 @@ public class StringUtil {
 	 * @return
 	 */
 	public static String linkedHashMapToString(LinkedHashMap<String, String> map) {
-		if (map != null && map.size() > 0) {
+		if (map != null && !map.isEmpty()) {
 			String result = "";
 			Iterator it = map.keySet().iterator();
 			while (it.hasNext()) {
@@ -626,7 +626,7 @@ public class StringUtil {
 	}
 
 	public static boolean strPos(String sou, List<String> finds) {
-		if (sou != null && finds != null && finds.size() > 0) {
+		if (sou != null && finds != null && !finds.isEmpty()) {
 			for (String s : finds) {
 				if (sou.indexOf(s) > -1) {
 					return true;
