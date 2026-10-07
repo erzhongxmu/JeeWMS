@@ -211,7 +211,7 @@ public class ZdOnlCgreportHeadServiceImpl extends ServiceImpl<com.base.modules.b
         List var6 = this.onlCgreportParamService.list(var5);
         zdOnlCgreportParam var8;
         String var10;
-        if (var6 != null && var6.size() > 0) {
+        if (var6 != null && !var6.isEmpty()) {
             for(Iterator var7 = var6.iterator(); var7.hasNext(); sql = sql.replace("${" + var8.getParamName() + "}", var10)) {
                 var8 = (zdOnlCgreportParam)var7.next();
                 Object var9 = params.get("self_" + var8.getParamName());
@@ -264,7 +264,7 @@ public class ZdOnlCgreportHeadServiceImpl extends ServiceImpl<com.base.modules.b
         List var11 = this.onlCgreportParamService.list(var10);
         zdOnlCgreportParam var13;
         String var15;
-        if (var11 != null && var11.size() > 0) {
+        if (var11 != null && !var11.isEmpty()) {
             for(Iterator var12 = var11.iterator(); var12.hasNext(); sql = sql.replace("${" + var13.getParamName() + "}", var15)) {
                 var13 = (zdOnlCgreportParam)var12.next();
                 Object var14 = params.get("self_" + var13.getParamName());
