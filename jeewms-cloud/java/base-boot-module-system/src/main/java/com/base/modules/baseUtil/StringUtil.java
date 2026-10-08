@@ -467,7 +467,7 @@ public class StringUtil {
 	 * @return
 	 */
 	public static String HashMapToJsonContent(HashMap<String, String> map) {
-		if (map != null && map.size() > 0) {
+		if (map != null && !map.isEmpty()) {
 			String result = "{";
 			Iterator it = map.keySet().iterator();
 			while (it.hasNext()) {

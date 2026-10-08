@@ -502,7 +502,7 @@ public class ZdOnlCgreportHeadServiceImpl extends ServiceImpl<com.base.modules.b
         } else {
             Page var8 = new Page((long)pageNo, (long)pageSize);
             IPage var9 = this.mapper.selectPageBySql(var8, var6);
-            if (var9.getRecords() != null && var9.getRecords().size() > 0) {
+            if (var9.getRecords() != null && !var9.getRecords().isEmpty()) {
                 var7.addAll(var9.getRecords());
             }
         }
