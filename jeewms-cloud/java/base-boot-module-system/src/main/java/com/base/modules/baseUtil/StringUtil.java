@@ -1076,7 +1076,7 @@ public class StringUtil {
 			}
 		}
 		String[] resultStr = null;
-		if (result.size() > 0) {
+		if (!result.isEmpty()) {
 			resultStr = new String[result.size()];
 			return result.toArray(resultStr);// 将Set result转化为String[] resultStr
 		}

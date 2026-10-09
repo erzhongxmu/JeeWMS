@@ -296,7 +296,7 @@ public class ZdOnlCgreportAPI {
                     Object var14 = ((Map)var7.get(var11)).get("dict_code");
                     JSONArray var15 = JSONObject.parseArray(JSONObject.toJSONString(var9));
                     List var16 = this.a(oConvertUtils.getString(var14), var15, var12);
-                    if (var16 != null && var16.size() > 0) {
+                    if (var16 != null && !var16.isEmpty()) {
                         ArrayList var17 = new ArrayList();
                         Iterator var18 = var16.iterator();
 
